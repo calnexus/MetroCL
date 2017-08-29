@@ -1,0 +1,168 @@
+@import (once) "include/vars";
+
+html {
+    font-size: 100%;
+}
+
+body {
+    font-family: @fontName;
+    font-size: @fontSize;
+    line-height: 1.1;
+    font-style: normal;
+}
+
+.leader {
+    font: 100 48px/1.1 @fontName;
+}
+.sub-leader {
+    font: 500 32px/1.1 @fontName;
+}
+.header {
+    font: 500 24px/1.1 @fontName;
+}
+.sub-header {
+    font: 500 18px/1.1 @fontName;
+}
+.alt-header {
+    font: 500 16px/1.1 @fontName;
+}
+.sub-alt-header {
+    font: 500 14px/1.1 @fontName;
+}
+.minor-header {
+    font: 500 12px/1.1 @fontName;
+}
+.small-text {
+    font: 500 10px/1.1 @fontName;
+}
+
+h1, h2, h3, h4, h5, h6 {
+
+    & > small, & > .small {
+        font-weight: 400;
+        font-size: .7em;
+        line-height: 1;
+        color: #777;
+    }
+}
+
+.text {
+    &-light {
+        font-weight: 100;
+    }
+    &-normal {
+        font-weight: 400;
+    }
+    &-bold {
+        font-weight: 700;
+    }
+}
+
+.text-upper {text-transform: uppercase;}
+.text-lower {text-transform: lowercase;}
+.text-cap   {text-transform: capitalize;}
+.text-left {text-align: left;}
+.text-right {text-align: right;}
+.text-center {text-align: center;}
+.text-just {text-align: justify;}
+.text-ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+abbr {
+    text-decoration: none;
+    //border-bottom: 1px @grayLight dotted;
+    cursor: help;
+    display: inline;
+}
+
+.tag {
+    display: inline-block;
+    line-height: 1.1;
+    font-size: 80%;
+    padding: 1px 4px 2px;
+    //background-color: @grayLighter;
+    border-radius: 2px;
+    color: @dark;
+    vertical-align: middle;
+
+    &.success {
+        background-color: @green;
+        color: @white;
+    }
+    &.alert {
+        background-color: @red;
+        color: @white;
+    }
+    &.info {
+        background-color: @cyan;
+        color: @white;
+    }
+    &.warning {
+        background-color: @orange;
+        color: @white;
+    }
+
+    a & {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+
+sub,
+sup {
+    position: relative;
+    font-size: 75%;
+    line-height: 0;
+    vertical-align: baseline;
+}
+
+sub {
+    bottom: -.25em;
+}
+
+sup {
+    top: -.5em;
+}
+
+pre,
+code,
+kbd,
+samp {
+    font-family: monospace, monospace;
+    font-size: 16px;
+}
+
+pre {
+    margin-top: 0;
+    margin-bottom: 16px;
+    overflow: auto;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+a:not([href]):not([tabindex]) {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:not([href]):not([tabindex]):focus {
+    outline: 0;
+}

@@ -1,0 +1,46 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+.container, .container-fluid, section, header, footer, aside {
+    .set-relative();
+    .clear();
+    margin: 0 auto;
+}
+
+.container {
+    width: 100%;
+}
+
+.container-fluid {
+    width: 100%;
+    max-width: none;
+}
+
+section {
+
+}
+
+@media screen and (min-width: @md) {
+    .container {
+        max-width: 100%;
+    }
+}
+
+@media screen and (min-width: @lg) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media screen and (min-width: @xl) {
+    .container {
+        max-width: 1152px;
+    }
+}
+
+@media screen and (min-width: @xxl) {
+    .container {
+        max-width: 1344px;
+    }
+}
+
