@@ -21,25 +21,32 @@
     display: block;
     flex: 1 1 0;
     padding: @gridGapSize;
+    max-width: 100%;
+}
 
-    // colspan
-    .generate-colspan(@gridColumns12);
-    .generate-colspan(@j, @k: 2) when (@k =< @j){
-        &.colspan@{k} {
-            flex: none;
-            width: @gridCellBaseSize * @k;
-        }
-        .generate-colspan(@j, (@k + 1));
-    }
+.cell-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none;
+}
 
-    // offset
-    .generate-offset(@gridColumns12 - 1);
-    .generate-offset(@j) when (@j > 0){
-        &.offset@{j} {
-            margin-left: @gridCellBaseSize * @j;
-        }
-        .generate-offset(@j - 1);
+// colspan
+.generate-colspan(@gridColumns12);
+.generate-colspan(@j, @k: 2) when (@k =< @j){
+    .colspan-@{k}, .cell-@{k} {
+        flex: 0 0 @gridCellBaseSize * @k;
+        max-width: @gridCellBaseSize * @k;
     }
+    .generate-colspan(@j, (@k + 1));
+}
+
+// offset
+.generate-offset(@gridColumns12 - 1);
+.generate-offset(@j) when (@j > 0){
+    .offset-@{j} {
+        margin-left: @gridCellBaseSize * @j;
+    }
+    .generate-offset(@j - 1);
 }
 
 .stub {
@@ -69,13 +76,35 @@
     .generate-order(@j - 1);
 }
 
+.align-items {
+    &-center {
+        align-items: center !important;
+    }
+    &-baseline {
+        align-items: baseline !important;
+    }
+    &-end {
+        align-items: flex-end !important;
+    }
+    &-start {
+        align-items: flex-start !important;
+    }
+    &-stretch {
+        align-items: stretch !important;
+    }
+    &-inherit {
+        align-items: inherit !important;
+    }
+}
+
+
 .generate-grid-media-options(@mediaBreakpointListDesktopLength);
 .generate-grid-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListDesktopLength) {
     @m: extract(@mediaBreakpointListDesktop, @i);
 
     @media screen and (max-width: @@m) {
         .cell-@{m}-hidden {
-            display: none;
+            display: none !important;
         }
 
         .cell-@{m}-full {
@@ -116,12 +145,29 @@
 
         .generate-colspan(@gridColumns12);
         .generate-colspan(@j, @k: 1) when (@k =< @j) {
-            &.cell-@{m}-@{k} {
-                flex: 0 0 @gridCellBaseSize * @k;
-                max-width: @gridCellBaseSize * @k;
+            .colspan-@{k}, .cell-@{m}-@{k} {
+                flex: 0 0 @gridCellBaseSize * @k ;
+                max-width: @gridCellBaseSize * @k ;
             }
             .generate-colspan(@j, (@k + 1));
         }
+
+        .generate-offset(@gridColumns12 - 1);
+        .generate-offset(@j) when (@j > 0){
+            .offset-@{m}-@{j} {
+                margin-left: @gridCellBaseSize * @j;
+            }
+            .generate-offset(@j - 1);
+        }
+
+        .generate-order(@gridColumns12);
+        .generate-order(@j) when (@j > 0){
+            .order-@{m}-@{j} {
+                order: @j;
+            }
+            .generate-order(@j - 1);
+        }
+
     }
 
     .generate-grid-media-options(@name, @i + 1);

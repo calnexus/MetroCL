@@ -7,36 +7,99 @@ html {
 body {
     font-family: @fontName;
     font-size: @fontSize;
-    line-height: 1.1;
+    line-height: 1.5;
     font-style: normal;
+    font-weight: 400;
 }
 
-.leader {
+.text {
+    &-ultralight {
+        font-weight: 100 !important;
+    }
+    &-light {
+        font-weight: 200 !important;
+    }
+    &-normal {
+        font-weight: 400 !important;
+    }
+    &-medium {
+        font-weight: 500 !important;
+    }
+    &-bold {
+        font-weight: 700 !important;
+    }
+}
+
+.display4 {
+    font-size: 112px;
+    margin-bottom: 20px;
+    font-weight: 200;
+    line-height: 1.2;
+    color: lighten(@black, 46%);
+}
+
+.display3 {
+    font-size: 56px;
+    margin-bottom: 20px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: lighten(@black, 46%);
+}
+
+.display2 {
+    font-size: 45px;
+    margin-bottom: 20px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: lighten(@black, 46%);
+}
+
+.display1 {
+    font-size: 34px;
+    margin-bottom: 16px;
+    font-weight: 400;
+    color: lighten(@black, 46%);
+}
+
+.display4, .display3, .display2, .display1, .caption {
+    color: lighten(@black, 46%);
+}
+
+.leader, .h1 {
     font: 100 48px/1.1 @fontName;
 }
-.sub-leader {
-    font: 500 32px/1.1 @fontName;
+.sub-leader, .h2 {
+    font: 400 32px/1.1 @fontName;
 }
-.header {
-    font: 500 24px/1.1 @fontName;
+.header, .h3 {
+    font: 500 28px/1.1 @fontName;
 }
-.sub-header {
+.sub-header, .h4 {
     font: 500 18px/1.1 @fontName;
 }
-.alt-header {
-    font: 500 16px/1.1 @fontName;
-}
-.sub-alt-header {
+.alt-header, .h5 {
     font: 500 14px/1.1 @fontName;
 }
-.minor-header {
+.sub-alt-header, .h6 {
     font: 500 12px/1.1 @fontName;
 }
 .small-text {
     font: 500 10px/1.1 @fontName;
 }
 
-h1, h2, h3, h4, h5, h6 {
+.lead-text {
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.leader, .h1,
+.sub-leader, .h2,
+.header, .h3,
+.sub-header, .h4,
+.alt-header, .h5,
+.sub-alt-header, .h6 {
+    color: lighten(@black, 13%);
+    margin-bottom: 8px;
 
     & > small, & > .small {
         font-weight: 400;
@@ -46,25 +109,20 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-.text {
-    &-light {
-        font-weight: 100;
-    }
-    &-normal {
-        font-weight: 400;
-    }
-    &-bold {
-        font-weight: 700;
-    }
-}
+h1 {.h1;}
+h2 {.h2;}
+h3 {.h3;}
+h4 {.h4;}
+h5 {.h5;}
+h6 {.h6;}
 
-.text-upper {text-transform: uppercase;}
-.text-lower {text-transform: lowercase;}
-.text-cap   {text-transform: capitalize;}
-.text-left {text-align: left;}
-.text-right {text-align: right;}
-.text-center {text-align: center;}
-.text-just {text-align: justify;}
+.text-upper {text-transform: uppercase !important;}
+.text-lower {text-transform: lowercase !important;}
+.text-cap   {text-transform: capitalize !important;}
+.text-left {text-align: left !important;}
+.text-right {text-align: right !important;}
+.text-center {text-align: center !important;}
+.text-just {text-align: justify !important;}
 .text-ellipsis {
     overflow: hidden;
     white-space: nowrap;
@@ -73,7 +131,7 @@ h1, h2, h3, h4, h5, h6 {
 
 abbr {
     text-decoration: none;
-    //border-bottom: 1px @grayLight dotted;
+    border-bottom: 1px @gray dotted;
     cursor: help;
     display: inline;
 }
@@ -82,8 +140,8 @@ abbr {
     display: inline-block;
     line-height: 1.1;
     font-size: 80%;
-    padding: 1px 4px 2px;
-    //background-color: @grayLighter;
+    padding: 3px;
+    background-color: @grayWhite;
     border-radius: 2px;
     color: @dark;
     vertical-align: middle;
@@ -165,4 +223,32 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
 
 a:not([href]):not([tabindex]):focus {
     outline: 0;
+}
+
+mark {
+    padding: 3px;
+    background-color: rgb(252, 248, 227);
+    color: #000000;
+}
+
+p {
+    margin-bottom: 16px;
+}
+
+
+.generate-text-media-options(@mediaBreakpointListDesktopLength);
+.generate-text-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListDesktopLength) {
+    @m: extract(@mediaBreakpointListDesktop, @i);
+
+    @media screen and (max-width: @@m) {
+        .text-@{m}-upper {text-transform: uppercase !important;}
+        .text-@{m}-lower {text-transform: lowercase !important;}
+        .text-@{m}-cap   {text-transform: capitalize !important;}
+        .text-@{m}-left {text-align: left !important;}
+        .text-@{m}-right {text-align: right !important;}
+        .text-@{m}-center {text-align: center !important;}
+        .text-@{m}-just {text-align: justify !important;}
+    }
+
+    .generate-text-media-options(@name, @i + 1);
 }

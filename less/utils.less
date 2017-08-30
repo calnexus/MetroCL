@@ -1,3 +1,4 @@
+@import (once) "include/vars";
 @import (once) "include/mixins";
 
 .clear, .clear-float, .clear-fix {
@@ -31,5 +32,56 @@
 .no-border-top {border-top: none !important;}
 .no-border-bottom {border-bottom: none !important;}
 .no-border-visible {border-color: transparent !important;}
-.no-user-select {user-select: none;}
-.no-appearance {appearance: none;}
+.no-user-select {user-select: none !important;}
+.no-appearance {appearance: none !important;}
+
+.generate-padding-and-margin(@i) when (@i >= 0) {
+    .p-@{i} {padding: unit(@i * 8, px) !important;}
+    .pr-@{i} {padding-right: unit(@i * 8, px) !important;}
+    .pl-@{i} {padding-left: unit(@i * 8, px) !important;}
+    .pt-@{i} {padding-top: unit(@i * 8, px) !important;}
+    .pb-@{i} {padding-bottom: unit(@i * 8, px) !important;}
+    .m-@{i} {margin: unit(@i * 8, px) !important;}
+    .mr-@{i} {margin-right: unit(@i * 8, px) !important;}
+    .ml-@{i} {margin-left: unit(@i * 8, px) !important;}
+    .mt-@{i} {margin-top: unit(@i * 8, px) !important;}
+    .mb-@{i} {margin-bottom: unit(@i * 8, px) !important;}
+
+    .generate-padding-and-margin(@i - 1);
+}
+.generate-padding-and-margin(6);
+
+.generate-padding-and-margin-media-options(@mediaBreakpointListDesktopLength);
+.generate-padding-and-margin-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListDesktopLength) {
+    @m: extract(@mediaBreakpointListDesktop, @i);
+
+    @media screen and (max-width: @@m) {
+        .generate-media-padding(6);
+        .generate-media-padding(@j, @k: 1) when (@k =< @j) {
+            .p-@{m}-@{k} {padding: unit(@k * 8, px) !important;}
+            .pr-@{m}-@{k} {padding-right: unit(@k * 8, px) !important;}
+            .pl-@{m}-@{k} {padding-left: unit(@k * 8, px) !important;}
+            .pt-@{m}-@{k} {padding-top: unit(@k * 8, px) !important;}
+            .pb-@{m}-@{k} {padding-bottom: unit(@k * 8, px) !important;}
+            .m-@{m}-@{k} {margin: unit(@k * 8, px) !important;}
+            .mr-@{m}-@{k} {margin-right: unit(@k * 8, px) !important;}
+            .ml-@{m}-@{k} {margin-left: unit(@k * 8, px) !important;}
+            .mt-@{m}-@{k} {margin-top: unit(@k * 8, px) !important;}
+            .mb-@{m}-@{k} {margin-bottom: unit(@k * 8, px) !important;}
+
+            .generate-media-padding(@j, (@k + 1));
+        }
+    }
+
+    .generate-padding-and-margin-media-options(@name, @i + 1);
+}
+
+
+.border {
+    border: 1px solid white;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}

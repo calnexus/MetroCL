@@ -336,72 +336,206 @@
 .op-gray {
   background-color: rgba(158, 158, 158, 0.7) !important;
 }
-.fg-blueGray {
+.fg-grayBlue {
   color: #607d8b !important;
 }
-.bg-blueGray {
+.bg-grayBlue {
   background-color: #607d8b !important;
 }
-.bd-blueGray {
+.bd-grayBlue {
   border-color: #607d8b !important;
 }
-.ol-blueGray {
+.ol-grayBlue {
   outline-color: #607d8b !important;
 }
-.fg-blueGray-active:active {
+.fg-grayBlue-active:active {
   color: #607d8b !important;
 }
-.fg-blueGray-hover:hover {
+.fg-grayBlue-hover:hover {
   color: #607d8b !important;
 }
-.fg-blueGray-focus:focus {
+.fg-grayBlue-focus:focus {
   color: #607d8b !important;
 }
-.bg-blueGray-active:active {
+.bg-grayBlue-active:active {
   background-color: #607d8b !important;
 }
-.bg-blueGray-hover:hover {
+.bg-grayBlue-hover:hover {
   background-color: #607d8b !important;
 }
-.bg-blueGray-focus:focus {
+.bg-grayBlue-focus:focus {
   background-color: #607d8b !important;
 }
-.bd-blueGray-active:active {
+.bd-grayBlue-active:active {
   border-color: #607d8b !important;
 }
-.bd-blueGray-hover:hover {
+.bd-grayBlue-hover:hover {
   border-color: #607d8b !important;
 }
-.bd-blueGray-focus:focus {
+.bd-grayBlue-focus:focus {
   border-color: #607d8b !important;
 }
-.ol-blueGray-active:active {
+.ol-grayBlue-active:active {
   outline-color: #607d8b !important;
 }
-.ol-blueGray-hover:hover {
+.ol-grayBlue-hover:hover {
   outline-color: #607d8b !important;
 }
-.ol-blueGray-focus:focus {
+.ol-grayBlue-focus:focus {
   outline-color: #607d8b !important;
 }
-.ribbed-blueGray {
+.ribbed-grayBlue {
   background: #607d8b linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 20px 20px !important;
 }
-.before-bg-blueGray::before {
+.before-bg-grayBlue::before {
   background: #607d8b !important;
 }
-.before-fg-blueGray::before {
+.before-fg-grayBlue::before {
   color: #607d8b !important;
 }
-.after-bg-blueGray::after {
+.after-bg-grayBlue::after {
   background: #607d8b !important;
 }
-.after-fg-blueGray::after {
+.after-fg-grayBlue::after {
   color: #607d8b !important;
 }
-.op-blueGray {
+.op-grayBlue {
   background-color: rgba(96, 125, 139, 0.7) !important;
+}
+.fg-grayWhite {
+  color: #f5f5f5 !important;
+}
+.bg-grayWhite {
+  background-color: #f5f5f5 !important;
+}
+.bd-grayWhite {
+  border-color: #f5f5f5 !important;
+}
+.ol-grayWhite {
+  outline-color: #f5f5f5 !important;
+}
+.fg-grayWhite-active:active {
+  color: #f5f5f5 !important;
+}
+.fg-grayWhite-hover:hover {
+  color: #f5f5f5 !important;
+}
+.fg-grayWhite-focus:focus {
+  color: #f5f5f5 !important;
+}
+.bg-grayWhite-active:active {
+  background-color: #f5f5f5 !important;
+}
+.bg-grayWhite-hover:hover {
+  background-color: #f5f5f5 !important;
+}
+.bg-grayWhite-focus:focus {
+  background-color: #f5f5f5 !important;
+}
+.bd-grayWhite-active:active {
+  border-color: #f5f5f5 !important;
+}
+.bd-grayWhite-hover:hover {
+  border-color: #f5f5f5 !important;
+}
+.bd-grayWhite-focus:focus {
+  border-color: #f5f5f5 !important;
+}
+.ol-grayWhite-active:active {
+  outline-color: #f5f5f5 !important;
+}
+.ol-grayWhite-hover:hover {
+  outline-color: #f5f5f5 !important;
+}
+.ol-grayWhite-focus:focus {
+  outline-color: #f5f5f5 !important;
+}
+.ribbed-grayWhite {
+  background: #f5f5f5 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background-size: 20px 20px !important;
+}
+.before-bg-grayWhite::before {
+  background: #f5f5f5 !important;
+}
+.before-fg-grayWhite::before {
+  color: #f5f5f5 !important;
+}
+.after-bg-grayWhite::after {
+  background: #f5f5f5 !important;
+}
+.after-fg-grayWhite::after {
+  color: #f5f5f5 !important;
+}
+.op-grayWhite {
+  background-color: rgba(245, 245, 245, 0.7) !important;
+}
+.fg-grayMouse {
+  color: #455a64 !important;
+}
+.bg-grayMouse {
+  background-color: #455a64 !important;
+}
+.bd-grayMouse {
+  border-color: #455a64 !important;
+}
+.ol-grayMouse {
+  outline-color: #455a64 !important;
+}
+.fg-grayMouse-active:active {
+  color: #455a64 !important;
+}
+.fg-grayMouse-hover:hover {
+  color: #455a64 !important;
+}
+.fg-grayMouse-focus:focus {
+  color: #455a64 !important;
+}
+.bg-grayMouse-active:active {
+  background-color: #455a64 !important;
+}
+.bg-grayMouse-hover:hover {
+  background-color: #455a64 !important;
+}
+.bg-grayMouse-focus:focus {
+  background-color: #455a64 !important;
+}
+.bd-grayMouse-active:active {
+  border-color: #455a64 !important;
+}
+.bd-grayMouse-hover:hover {
+  border-color: #455a64 !important;
+}
+.bd-grayMouse-focus:focus {
+  border-color: #455a64 !important;
+}
+.ol-grayMouse-active:active {
+  outline-color: #455a64 !important;
+}
+.ol-grayMouse-hover:hover {
+  outline-color: #455a64 !important;
+}
+.ol-grayMouse-focus:focus {
+  outline-color: #455a64 !important;
+}
+.ribbed-grayMouse {
+  background: #455a64 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background-size: 20px 20px !important;
+}
+.before-bg-grayMouse::before {
+  background: #455a64 !important;
+}
+.before-fg-grayMouse::before {
+  color: #455a64 !important;
+}
+.after-bg-grayMouse::after {
+  background: #455a64 !important;
+}
+.after-fg-grayMouse::after {
+  color: #455a64 !important;
+}
+.op-grayMouse {
+  background-color: rgba(69, 90, 100, 0.7) !important;
 }
 .fg-lime {
   color: #a4c400 !important;
@@ -3284,71 +3418,71 @@
 .op-lightGray {
   background-color: rgba(184, 184, 184, 0.7) !important;
 }
-.fg-lightBlueGray {
+.fg-lightGrayBlue {
   color: #7b96a3 !important;
 }
-.bg-lightBlueGray {
+.bg-lightGrayBlue {
   background-color: #7b96a3 !important;
 }
-.bd-lightBlueGray {
+.bd-lightGrayBlue {
   border-color: #7b96a3 !important;
 }
-.ol-lightBlueGray {
+.ol-lightGrayBlue {
   outline-color: #7b96a3 !important;
 }
-.fg-lightBlueGray-active:active {
+.fg-lightGrayBlue-active:active {
   color: #7b96a3 !important;
 }
-.fg-lightBlueGray-hover:hover {
+.fg-lightGrayBlue-hover:hover {
   color: #7b96a3 !important;
 }
-.fg-lightBlueGray-focus:focus {
+.fg-lightGrayBlue-focus:focus {
   color: #7b96a3 !important;
 }
-.bg-lightBlueGray-active:active {
+.bg-lightGrayBlue-active:active {
   background-color: #7b96a3 !important;
 }
-.bg-lightBlueGray-hover:hover {
+.bg-lightGrayBlue-hover:hover {
   background-color: #7b96a3 !important;
 }
-.bg-lightBlueGray-focus:focus {
+.bg-lightGrayBlue-focus:focus {
   background-color: #7b96a3 !important;
 }
-.bd-lightBlueGray-active:active {
+.bd-lightGrayBlue-active:active {
   border-color: #7b96a3 !important;
 }
-.bd-lightBlueGray-hover:hover {
+.bd-lightGrayBlue-hover:hover {
   border-color: #7b96a3 !important;
 }
-.bd-lightBlueGray-focus:focus {
+.bd-lightGrayBlue-focus:focus {
   border-color: #7b96a3 !important;
 }
-.ol-lightBlueGray-active:active {
+.ol-lightGrayBlue-active:active {
   outline-color: #7b96a3 !important;
 }
-.ol-lightBlueGray-hover:hover {
+.ol-lightGrayBlue-hover:hover {
   outline-color: #7b96a3 !important;
 }
-.ol-lightBlueGray-focus:focus {
+.ol-lightGrayBlue-focus:focus {
   outline-color: #7b96a3 !important;
 }
-.ribbed-lightBlueGray {
+.ribbed-lightGrayBlue {
   background: #7b96a3 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 20px 20px !important;
 }
-.before-bg-lightBlueGray::before {
+.before-bg-lightGrayBlue::before {
   background: #7b96a3 !important;
 }
-.before-fg-lightBlueGray::before {
+.before-fg-lightGrayBlue::before {
   color: #7b96a3 !important;
 }
-.after-bg-lightBlueGray::after {
+.after-bg-lightGrayBlue::after {
   background: #7b96a3 !important;
 }
-.after-fg-lightBlueGray::after {
+.after-fg-lightGrayBlue::after {
   color: #7b96a3 !important;
 }
-.op-lightBlueGray {
+.op-lightGrayBlue {
   background-color: rgba(123, 150, 163, 0.7) !important;
 }
 .fg-darkLime {
@@ -4825,70 +4959,70 @@
 .op-darkGray {
   background-color: rgba(133, 133, 133, 0.7) !important;
 }
-.fg-darkBlueGray {
+.fg-darkGrayBlue {
   color: #4b626d !important;
 }
-.bg-darkBlueGray {
+.bg-darkGrayBlue {
   background-color: #4b626d !important;
 }
-.bd-darkBlueGray {
+.bd-darkGrayBlue {
   border-color: #4b626d !important;
 }
-.ol-darkBlueGray {
+.ol-darkGrayBlue {
   outline-color: #4b626d !important;
 }
-.fg-darkBlueGray-active:active {
+.fg-darkGrayBlue-active:active {
   color: #4b626d !important;
 }
-.fg-darkBlueGray-hover:hover {
+.fg-darkGrayBlue-hover:hover {
   color: #4b626d !important;
 }
-.fg-darkBlueGray-focus:focus {
+.fg-darkGrayBlue-focus:focus {
   color: #4b626d !important;
 }
-.bg-darkBlueGray-active:active {
+.bg-darkGrayBlue-active:active {
   background-color: #4b626d !important;
 }
-.bg-darkBlueGray-hover:hover {
+.bg-darkGrayBlue-hover:hover {
   background-color: #4b626d !important;
 }
-.bg-darkBlueGray-focus:focus {
+.bg-darkGrayBlue-focus:focus {
   background-color: #4b626d !important;
 }
-.bd-darkBlueGray-active:active {
+.bd-darkGrayBlue-active:active {
   border-color: #4b626d !important;
 }
-.bd-darkBlueGray-hover:hover {
+.bd-darkGrayBlue-hover:hover {
   border-color: #4b626d !important;
 }
-.bd-darkBlueGray-focus:focus {
+.bd-darkGrayBlue-focus:focus {
   border-color: #4b626d !important;
 }
-.ol-darkBlueGray-active:active {
+.ol-darkGrayBlue-active:active {
   outline-color: #4b626d !important;
 }
-.ol-darkBlueGray-hover:hover {
+.ol-darkGrayBlue-hover:hover {
   outline-color: #4b626d !important;
 }
-.ol-darkBlueGray-focus:focus {
+.ol-darkGrayBlue-focus:focus {
   outline-color: #4b626d !important;
 }
-.ribbed-darkBlueGray {
+.ribbed-darkGrayBlue {
   background: #4b626d linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 20px 20px !important;
 }
-.before-bg-darkBlueGray::before {
+.before-bg-darkGrayBlue::before {
   background: #4b626d !important;
 }
-.before-fg-darkBlueGray::before {
+.before-fg-darkGrayBlue::before {
   color: #4b626d !important;
 }
-.after-bg-darkBlueGray::after {
+.after-bg-darkGrayBlue::after {
   background: #4b626d !important;
 }
-.after-fg-darkBlueGray::after {
+.after-fg-darkGrayBlue::after {
   color: #4b626d !important;
 }
-.op-darkBlueGray {
+.op-darkGrayBlue {
   background-color: rgba(75, 98, 109, 0.7) !important;
 }
