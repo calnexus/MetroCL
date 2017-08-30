@@ -1,12 +1,14 @@
+@unitSize: 4px;
+
 // Fonts
 @fontName:  -apple-system, system-ui, BlinkMacSystemFont,
             "Segoe UI", "Roboto", "Ubuntu", "Droid Sans",
             "Helvetica Neue", sans-serif;
 
-@fontSize: 16px;
+@fontSize: @unitSize * 4;
+
 
 // Colors
-
 @lightenValue: 10%;
 @darkenValue: 10%;
 
@@ -100,6 +102,24 @@
             darkLime, darkGreen, darkEmerald, darkBlue, darkTeal, darkCyan, darkCobalt, darkIndigo, darkViolet, darkPink, darkMagenta, darkCrimson, darkRed, darkOrange, darkAmber, darkYellow, darkBrown, darkOlive, darkSteel, darkMauve, darkTaupe, darkGray, darkGrayBlue;
 
 @colorListLength: length(@colorList);
+
+// Appbar
+@appBarBackground: @steel;
+@appBarBackgroundActive: @lightSteel;
+@appBarColor: @white;
+
+//Borders
+@borderRadius: @unitSize;
+
+// Z-index
+@zindex-dropdown:           1000;
+@zindex-sticky:             1020;
+@zindex-fixed:              1030;
+@zindex-modal-backdrop:     1040;
+@zindex-modal:              1050;
+@zindex-popover:            1060;
+@zindex-tooltip:            1070;
+@zindex-top:                1080;
 
 // Media breakpoints
 @sx: 320px;

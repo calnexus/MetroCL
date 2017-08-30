@@ -136,15 +136,13 @@ abbr {
     display: inline;
 }
 
-.tag {
+.tally {
     display: inline-block;
-    line-height: 1.1;
-    font-size: 80%;
-    padding: 3px;
-    background-color: @grayWhite;
-    border-radius: 2px;
-    color: @dark;
-    vertical-align: middle;
+    padding: 3px 6px;
+    font-size: 90%;
+    color: #bd4147;
+    background-color: #f8f9fa;
+    border-radius: @borderRadius;
 
     &.success {
         background-color: @green;
@@ -208,7 +206,7 @@ a {
 
 a:hover {
     color: #0056b3;
-    text-decoration: underline;
+    //text-decoration: underline;
 }
 
 a:not([href]):not([tabindex]) {
@@ -233,6 +231,27 @@ mark {
 
 p {
     margin-bottom: 16px;
+}
+
+dl, ul, ol {
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+ul, menu, dir {
+    display: block;
+    list-style-type: disc;
+}
+
+ul, ol {
+    margin-left: 20px;
+
+    li {
+
+        & ul, & ol {
+            padding-left: 24px;
+        }
+    }
 }
 
 

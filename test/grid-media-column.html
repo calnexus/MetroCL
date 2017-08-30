@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Grid test</title>
 
-    <link rel="stylesheet" href="../distr/css/metro.css">
-    <link rel="stylesheet" href="../distr/css/metro-colors.css">
+    <link rel="stylesheet" href="../site/css/metro.css">
+    <link rel="stylesheet" href="../site/css/metro-colors.css">
 
     <style>
-        .cell div {
+        [class^=cell] div {
             color: #fff;
             background: #23d160;
             padding: 1.25rem 0;
             text-align: center;
         }
 
-        .cell:nth-child(odd) div {
+        [class^=cell]:nth-child(odd) div {
             background: #ffdd57;
             color: #000;
         }
@@ -39,17 +39,17 @@
         <h1 class="leader">Media columns</h1>
         <div class="grid">
             <div class="row">
-                <div class="cell cell-md-6 cell-ld-full"><div>1</div></div>
-                <div class="cell cell-md-6 cell-ld-full"><div>1</div></div>
-                <div class="cell cell-md-one-third cell-ld-full"><div>1</div></div>
-                <div class="cell cell-md-two-third cell-ld-full"><div>1</div></div>
+                <div class="cell-sm-full cell-ld-one-third cell-md-3"><div>1</div></div>
+                <div class="cell-sm-full cell-ld-two-third cell-md-3"><div>1</div></div>
+                <div class="cell-sm-full cell-ld-half cell-md-3"><div>1</div></div>
+                <div class="cell-sm-full cell-ld-half cell-md-3"><div>1</div></div>
             </div>
-            <div class="row">
-                <div class="cell cell-sm-12 cell-xxl-full cell-sx-hidden"><div>0</div></div>
-                <div class="cell cell-sm-one-third"><div>1</div></div>
-                <div class="cell cell-sm-two-third"><div>1</div></div>
-                <div class="cell cell-sm-12"><div>1</div></div>
-            </div>
+            <!--<div class="row">-->
+                <!--<div class="cell cell-sm-12 cell-xxl-full cell-sx-hidden"><div>0</div></div>-->
+                <!--<div class="cell cell-sm-one-third"><div>1</div></div>-->
+                <!--<div class="cell cell-sm-two-third"><div>1</div></div>-->
+                <!--<div class="cell cell-sm-12"><div>1</div></div>-->
+            <!--</div>-->
         </div>
 
     </div>

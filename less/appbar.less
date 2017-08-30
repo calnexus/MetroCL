@@ -1,0 +1,51 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+.app-bar {
+    display: flex;
+    padding: 8px 16px;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 64px;
+    position: sticky;
+    top: 0;
+    background: @appBarBackground;
+    color: @appBarColor;
+    z-index: @zindex-top;
+}
+
+.brand, .app-bar-element {
+    display: inline-block;
+    padding: 4px 0;
+    white-space: nowrap;
+    font-size: 20px;
+    background: inherit;
+    text-decoration: none;
+
+    * {
+        height: 32px;
+    }
+}
+
+.app-bar-menu {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+* ~ .app-bar-menu {
+    margin-left: 16px;
+}
+
+.app-bar-menu li a, .app-bar-item {
+    padding: 8px 16px;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+
+    &:hover, &:active {
+        background: @appBarBackgroundActive;
+    }
+}

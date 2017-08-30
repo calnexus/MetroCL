@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link href="css/metro.css" rel="stylesheet">
+    <link href="css/metro-colors.css" rel="stylesheet">
+    <link href="css/metro-schemes.css" rel="stylesheet">
+    <link href="css/metro-rtl.css" rel="stylesheet">
+    <link href="css/metro-icons.css" rel="stylesheet">
+
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Grid system - Metro UI CSS 4.0 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+    <header class="app-bar bg-steel" style="height: 64px">
+        <a href="/" class="brand fg-white border bd-white border-radius pr-2 pl-2">M</a>
+        <ul class="app-bar-menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Base</a></li>
+            <li><a href="#">Widgets</a></li>
+        </ul>
+        <ul class="app-bar-menu" style="margin-left: auto">
+            <li><a href="#"><span class="mif-github mif-2x"></span></a></li>
+        </ul>
+    </header>
+
+    <div class="container-fluid pr-5 pl-5">
+
+        <div class="row flex-xl-nowrap">
+            <div class="cell-xl-hidden cell-xl-2 order-2 border-left bd-light">2</div>
+            <main class="cell-12 cell-xl-10 order-1 pr-5 pl-5">
+                <h1>Grid system</h1>
+
+                <p class="lead-text">
+                    Use our powerful mobile-first flexbox grid to build layouts of all shapes and sizes thanks to a twelve column system, seven default responsive tiers, Less variables and mixins, and dozens of predefined classes.
+                </p>
+
+                <div class="container-fluid p-5 border border-4 bd-grayWhite mt-3 mb-3 no-display-ld">
+                    <div class="grid demo-grid">
+                        <div class="row fg-white text-center">
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>2</div></div>
+                            <div class="cell"><div>3</div></div>
+                            <div class="cell"><div>4</div></div>
+                            <div class="cell"><div>5</div></div>
+                            <div class="cell"><div>6</div></div>
+                            <div class="cell"><div>7</div></div>
+                            <div class="cell"><div>8</div></div>
+                            <div class="cell"><div>9</div></div>
+                            <div class="cell"><div>10</div></div>
+                            <div class="cell"><div>11</div></div>
+                            <div class="cell"><div>12</div></div>
+                        </div>
+                        <div class="row fg-white text-center">
+                            <div class="cell-3"><div>cell-3</div></div>
+                            <div class="cell-3"><div>cell-3</div></div>
+                            <div class="cell-3"><div>cell-3</div></div>
+                            <div class="cell-3"><div>cell-3</div></div>
+                        </div>
+                        <div class="row">
+                            <div class="cell-4 offset-4"><div>cell-4 + offset-4</div></div>
+                        </div>
+                        <div class="row fg-white text-center">
+                            <div class="cell-3"><div>cell-3</div></div>
+                            <div class="cell-6 offset-3"><div>cell-6 + offset-3</div></div>
+                        </div>
+                        <div class="row">
+                            <div class="cell-4 offset-4"><div>cell-4 + offset-4</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+                <h3>How it works</h3>
+
+                <p>
+                    Metro UI CSS grid system uses a series of containers, rows, and columns to layout and align content. It’s built with flexbox and is fully responsive. Below is an example and an in-depth look at how the grid comes together.
+                </p>
+
+                <div class="container-fluid p-5 border border-4 bd-grayWhite mt-3 mb-3">
+                    <div class="row fg-white text-center">
+                        <div class="cell-sm bg-lightRed">One of three columns</div>
+                        <div class="cell-sm bg-red">One of three columns</div>
+                        <div class="cell-sm bg-darkRed">One of three columns</div>
+                    </div>
+                </div>
+
+                <p>
+                    The above example creates three equal-width columns on small, medium, large, and extra large devices using our predefined grid classes. Those columns are centered in the page with the parent <span class="tally">.container</span>.
+                </p>
+
+                <p>
+                    Breaking it down, here’s how it works:
+                </p>
+
+                <ul>
+                    <li>Containers provide a means to center your site’s contents. Use <span class="tally">.container</span> for fixed width or <span class="tally">.container-fluid</span> for full width.</li>
+                    <li>User rows grouping with <span class="tally">.grid</span> container</li>
+                    <li>Rows are horizontal groups of columns that ensure your columns are lined up properly. We use the negative margin method on <span class="tally">.row</span> to ensure all your content is aligned properly down the left side.</li>
+                    <li>Content should be placed within columns, and only columns may be immediate children of rows.</li>
+                    <li>Grid columns without a set width will automatically layout with equal widths. For example, four instances of <span class="tally">.cell-sm</span> will each automatically be <span class="tally">25%</span> wide for small breakpoints.</li>
+                    <li>Column classes indicate the number of columns you’d like to use out of the possible 12 per row. So, if you want three equal-width columns, you can use <span class="tally">.cell-sm-4</span>.</li>
+                    <li>Column widths are set in percentallyes, so they’re always fluid and sized relative to their parent element.</li>
+                    <li>Columns have padding to create the gutters between individual columns, however, you can remove the margin from rows and padding from columns with <span class="tally">.no-gap</span> on the <span class="tally">.row</span> or on the <span class="tally">.grid</span> for all rows in grid.</li>
+                    <li>There are seven grid tiers, one for each <a href="#">responsive breakpoint</a>: extra small (sx), small (sm), smaller (ld), medium (md), large (lg), extra large (xl) and ultra large (xxl).</li>
+                    <li>Grid tiers are based on minimum widths, meaning they apply to that one tier and all those above it (e.g., <span class="tally">.cell-sm-4</span> applies to small, smaller, medium, large, extra large and ultra large devices).</li>
+                    <li>You can use predefined grid classes for more semantic markup.</li>
+                </ul>
+
+                <div class="example mt-5 mb-5">
+                    <pre class="prettyprint linenums"><code>
+                        &lt;div class="grid"&gt;
+                            &lt;div class="row"&gt;
+                                &lt;div class="cell"&gt;&lt;/div&gt;
+                                ...
+                                &lt;div class="cell"&gt;&lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    </code></pre>
+                </div>
+
+                <h3 class="text-light">Colspan</h3>
+                <div class="container-fluid p-5 border border-4 bd-grayWhite mt-3 mb-3 no-display-ld">
+                    <div class="grid demo-grid">
+                        <div class="row">
+                            <div class="cell colspan-1"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                        </div>
+                        <div class="row">
+                            <div class="cell colspan-2"><div>colspan2</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                        </div>
+                        <div class="row">
+                            <div class="cell colspan-3"><div>colspan3</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                        </div>
+                        <div class="row">
+                            <div class="cell colspan-4"><div>colspan4</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <pre class="prettyprint linenums"><code>
+                    &lt;div class="row"&gt;
+                        &lt;div class="cell-4"&gt;&lt;/div&gt;
+                        &lt;div class="cell-4"&gt;&lt;/div&gt;
+                        &lt;div class="cell-4"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="row"&gt;
+                        &lt;div class="colspan-4"&gt;&lt;/div&gt;
+                        &lt;div class="colspan-4"&gt;&lt;/div&gt;
+                        &lt;div class="colspan-4"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 class="text-light">Offset</h3>
+                <div class="container-fluid p-5 border border-4 bd-grayWhite mt-3 mb-3 no-display-ld">
+                    <div class="grid demo-grid">
+                        <div class="row">
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                        </div>
+                        <div class="row">
+                            <div class="cell offset-1"><div>offset1</div></div>
+                        </div>
+                        <div class="row">
+                            <div class="cell offset-2"><div>offset2</div></div>
+                        </div>
+                        <div class="row">
+                            <div class="cell offset-3"><div>offset3</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <pre class="prettyprint linenums"><code>
+                    &lt;div class="row"&gt;
+                        &lt;div class="cell offset-1"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="row"&gt;
+                        &lt;div class="cell offset-2"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="row"&gt;
+                        &lt;div class="cell offset-3"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 class="text-light">Media columns</h3>
+                <table class="table bordered cell-media-table">
+                    <thead>
+                    <tr>
+                        <td style="width: 200px">Breakpoints</td>
+                        <td>min-width</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td style="width: 200px" class="bg-light">sx</td>
+                        <td>320px</td>
+                    </tr>
+                    <tr>
+                        <td class="bg-light">sm</td>
+                        <td>480px</td>
+                    </tr>
+                    <tr>
+                        <td class="bg-light">ld</td>
+                        <td>640px</td>
+                    </tr>
+                    <tr>
+                        <td class="bg-light">md</td>
+                        <td>768px</td>
+                    </tr>
+                    <tr>
+                        <td class="bg-light">lg</td>
+                        <td>992px</td>
+                    </tr>
+                    <tr>
+                        <td class="bg-light">xl</td>
+                        <td>1200px</td>
+                    </tr>
+                    <tr>
+                        <td class="bg-light">xxl</td>
+                        <td>1452px</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="table bordered cell-media-table">
+                    <thead>
+                    <tr>
+                        <td style="width: 200px">Target</td>
+                        <td>Media</td>
+                        <td>Example</td>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                        <td style="width: 200px" class="bg-light">colspan</td>
+                        <td>cell-@-*</td>
+                        <td>cell-md-3</td>
+                    </tr>
+                    <tr>
+                        <td class="bg-light">offset</td>
+                        <td>offset-@-*</td>
+                        <td>offset-md-3</td>
+                    </tr>
+                    <tr>
+                        <td class="bg-light">ordering</td>
+                        <td>order-@-*</td>
+                        <td>order-md-3</td>
+                    </tr>
+                    <tr>
+                        <td class="bg-light">width auto</td>
+                        <td>cell-@-auto</td>
+                        <td>cell-md-auto</td>
+                    </tr>
+                    <tr>
+                        <td class="bg-light">width 100%</td>
+                        <td>cell-@-full</td>
+                        <td>cell-md-full</td>
+                    </tr>
+                    <tr>
+                        <td class="bg-light">width 100%</td>
+                        <td>cell-@</td>
+                        <td>cell-md</td>
+                    </tr>
+                    <tr>
+                        <td class="bg-light">width 25%</td>
+                        <td>cell-@-quarter</td>
+                        <td>cell-md-quarter</td>
+                    </tr>
+                    <tr>
+                        <td class="bg-light">width 50%</td>
+                        <td>cell-@-half</td>
+                        <td>cell-md-half</td>
+                    </tr>
+                    <tr>
+                        <td class="bg-light">width 1/3</td>
+                        <td>cell-@-one-third</td>
+                        <td>cell-md-one-third</td>
+                    </tr>
+                    <tr>
+                        <td class="bg-light">width 2/3</td>
+                        <td>cell-@-two-third</td>
+                        <td>cell-md-two-third</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="container-fluid p-5 border border-4 bd-grayWhite mt-3 mb-3 no-display-ld">
+                    <div class="grid demo-grid">
+                        <div class="row">
+                            <div class="cell-sm-full cell-ld-one-third cell-md-3"><div>1</div></div>
+                            <div class="cell-sm-full cell-ld-two-third cell-md-3"><div>1</div></div>
+                            <div class="cell-sm-full cell-ld-half cell-md-3"><div>1</div></div>
+                            <div class="cell-sm-full cell-ld-half cell-md-3"><div>1</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <pre class="prettyprint linenums"><code>
+                    &lt;div class="row"&gt;
+                        &lt;div class="cell-sm-full cell-ld-one-third cell-md-3"&gt;&lt;/div&gt;
+                        &lt;div class="cell-sm-full cell-ld-two-third cell-md-3"&gt;&lt;/div&gt;
+                        &lt;div class="cell-sm-full cell-ld-half cell-md-3"&gt;&lt;/div&gt;
+                        &lt;div class="cell-sm-full cell-ld-half cell-md-3"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 class="text-light">No gaps</h3>
+                <div class="container-fluid p-5 border border-4 bd-grayWhite mt-3 mb-3 no-display-ld">
+                    <div class="grid no-gap demo-grid">
+                        <div class="row">
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                        </div>
+                        <div class="row">
+                            <div class="cell colspan-2"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                            <div class="cell"><div>1</div></div>
+                        </div>
+                        <div class="row">
+                            <div class="cell colspan-4"><div class="bg-lightRed">1</div></div>
+                            <div class="cell colspan-4"><div class="bg-red">1</div></div>
+                            <div class="cell colspan-4"><div class="bg-darkRed">1</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <pre class="prettyprint linenums"><code>
+                    &lt;div class="grid no-gap"&gt;...&lt;/div&gt;
+                    &lt;div class="row no-gap"&gt;...&lt;/div&gt;
+                </code></pre>
+
+                <h3 class="text-light">Stub column</h3>
+                <div class="container-fluid p-5 border border-4 bd-grayWhite mt-3 mb-3 no-display-ld">
+                    <div class="grid demo-grid">
+                        <div class="row">
+                            <div class="stub" style="width: 300px"><div>Stub column</div></div>
+                            <div class="cell"><div>1</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <pre class="prettyprint linenums"><code>
+                    &lt;div class="row"&gt;
+                        &lt;div class="stub" style="width: 300px"&gt;&lt;/div&gt;
+                        &lt;div class="cell"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 class="text-light">Ordering</h3>
+                <p>
+                    You can use classes <span class="tally">.order-*</span> to set order columns.
+                </p>
+
+                <div class="container-fluid p-5 border border-4 bd-grayWhite mt-3 mb-3 no-display-ld">
+                    <div class="grid demo-grid">
+                        <div class="row">
+                            <div class="cell order-2"><div>Order 2</div></div>
+                            <div class="cell order-1"><div>Order 1</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <pre class="prettyprint linenums"><code>
+                    &lt;div class="row"&gt;
+                        &lt;div class="cell order-2"&gt;Order 2&lt;/div&gt;
+                        &lt;div class="cell order-1"&gt;Order 1&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+            </main>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/pre-code.js"></script>
+    <script src="js/github.js"></script>
+    <script src="//cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+.demo-grid [class^=cell] div,
+.demo-grid [class^=stub] div {
+  color: #fff;
+  background: #23d160;
+  padding: .5rem 0;
+  text-align: center;
+}
+.demo-grid [class^=cell]:nth-child(odd) div {
+  background: #ffdd57;
+  color: #000;
+}
+.demo-grid .stub div {
+  background: #ccc;
+  text-align: center;
+}
+pre {
+  margin: 24px 0;
+}
+.prettyprint {
+  background-color: #eeeeee;
+  border-width: 1px !important;
+  border-color: #eeeeee !important;
+  border-left: 8px #555555 solid !important;
+}
+.prettyprint ol {
+  background-color: transparent !important;
+  margin-left: 30px;
+}
+.linenums {
+  font-size: 16px;
+}
+.linenums li {
+  font-size: .8em;
+}
+.prettyprint li {
+  background-color: white !important;
+  list-style-type: decimal !important;
+  padding-left: 1em;
+  border-bottom: 1px #eee solid;
+}
+.prettyprint li:last-child {
+  border-bottom: 0;
+}
+.prettyprint .tag,
+.prettyprint .atn {
+  font-size: .8rem;
+}
+.prettyprint .atv {
+  font-weight: bold;
+}
+.cell-media-table tbody td {
+  font-size: .8em;
+  white-space: nowrap;
+}
