@@ -27,7 +27,7 @@
         </ul>
     </header>
 
-    <div class="container-fluid pr-5 pl-5">
+    <div class="container-fluid  pr-2 pl-2 pr-md-5 pl-md-5">
 
         <div class="row flex-xl-nowrap">
             <div class="no-display-lg cell-lg-2 order-2 border-left bd-light toc-wrapper">
@@ -35,18 +35,43 @@
                 <hr/>
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Typography</a></li>
+                    <li class="toc-entry"><a href="#_reset">Reset</a></li>
                     <li class="toc-entry"><a href="#_font_stack">Font stack</a></li>
                     <li class="toc-entry"><a href="#_headings">Headings</a></li>
                     <li class="toc-entry"><a href="#_super_headings">Super headings</a></li>
+                    <li class="toc-entry"><a href="#_paragraph">Paragraph</a></li>
                 </ul>
             </div>
 
-            <main class="cell-12 cell-lg-10 order-1 pr-5 pl-5">
+            <main class="cell-12 cell-lg-10 order-1 pr-sx-1 pl-sx-1 pr-md-5 pl-md-5">
                 <h1>Typography</h1>
 
                 <p class="text-leader">
                     Metro UI CSS offers various tools and classes for displaying elements of typography for your site. This includes titles, paragraphs, lists, various text elements and much more.
                 </p>
+
+                <h3 id="_reset">Reset</h3>
+
+                <p>
+                    In Metro UI CSS reset method based on Eric Meyer’s <a href="http://meyerweb.com/eric/tools/css/reset/">"Reset CSS" 2.0</a> and include additional rules.
+                </p>
+
+                <p>
+                    The <span class="tally">&lt;html&gt;</span> and <span class="tally">&lt;body&gt;</span> elements are updated to provide better page-wide defaults. More specifically:
+                </p>
+
+                <ul>
+                    <li>
+                        The <span class="tally">box-sizing</span> is globally set on every element—including <span class="tally">*:before</span> and <span class="tally">*:after</span>, to <span class="tally">border-box</span>.
+                        This ensures that the declared width of element is never exceeded due to padding or border.
+                    </li>
+                    <li>
+                        The <span class="tally">&lt;body&gt;</span> also sets a global <span class="tally">font-family</span> and <span class="tally">line-height</span>. This is inherited later by some form elements to prevent font inconsistencies.
+                    </li>
+                    <li>
+                        For safety, the <span class="tally">&lt;body&gt;</span> has a declared <span class="tally">background-color</span>, defaulting to <span class="tally">#fff</span> (white).
+                    </li>
+                </ul>
 
                 <!-- Font stack -->
 
@@ -55,7 +80,7 @@
                     In Metro UI CSS 4.0 i use a "native font stack" for optimum text rendering on every device and OS. Read more about native font stacks in this <a href="https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/">Smashing Magazine article</a>.
                 </p>
 
-                <pre class="prettyprint linenums"><code>
+                <pre class="prettyprint linenums no-display-sm"><code>
                     @fontName:  -apple-system,
                                 system-ui,
                                 BlinkMacSystemFont,
@@ -144,6 +169,90 @@
                     </tbody>
                 </table>
 
+                <p>
+                    If you want to create a header element without using tags <span class="tally">&lt;h1&gt; - &lt;h6&gt;</span>, Metro UI CSS present relevant classes: <span class="tally">.h1</span> through <span class="tally">.h6</span>.  You can also use the following additional classes:
+                </p>
+
+                <table class="table striped bordered">
+                    <thead>
+                    <tr>
+                        <th>Tag</th>
+                        <th>Class</th>
+                        <th>Additional</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>h1</td>
+                        <td>.h1</td>
+                        <td>.leader</td>
+                    </tr>
+                    <tr>
+                        <td>h2</td>
+                        <td>.h2</td>
+                        <td>.sub-leader</td>
+                    </tr>
+                    <tr>
+                        <td>h3</td>
+                        <td>.h2</td>
+                        <td>.header</td>
+                    </tr>
+                    <tr>
+                        <td>h4</td>
+                        <td>.h4</td>
+                        <td>.sub-header</td>
+                    </tr>
+                    <tr>
+                        <td>h5</td>
+                        <td>.h5</td>
+                        <td>.alt-header</td>
+                    </tr>
+                    <tr>
+                        <td>h6</td>
+                        <td>.h6</td>
+                        <td>.sub-alt-header</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h4>Heading secondary text</h4>
+                <p>
+                    You can create lighter, secondary text in any heading with a generic <span class="tally">&lt;small&gt;</span> tag or the <span class="tally">.small</span> class.
+                </p>
+
+                <table class="table striped bordered">
+                    <tbody>
+                    <tr>
+                        <td>h1</td>
+                        <td><h1>Header <small>Secondary</small></h1></td>
+                    </tr>
+                    <tr>
+                        <td>h2</td>
+                        <td><h2>Header <small>Secondary</small></h2></td>
+                    </tr>
+                    <tr>
+                        <td>h3</td>
+                        <td><h3>Header <small>Secondary</small></h3></td>
+                    </tr>
+                    <tr>
+                        <td>h4</td>
+                        <td><h4>Header <small>Secondary</small></h4></td>
+                    </tr>
+                    <tr>
+                        <td>h5</td>
+                        <td><h5>Header <small>Secondary</small></h5></td>
+                    </tr>
+                    <tr>
+                        <td>h6</td>
+                        <td><h6>Header <small>Secondary</small></h6></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <pre class="prettyprint linenums no-display-sm"><code>
+                    &lt;h1&gt;Header &lt;small&gt;Secondary&lt;/small&gt;&lt;/h1&gt;
+                </code></pre>
+
                 <!-- Super headings -->
 
                 <h3 id="_super_headings">Super headings</h3>
@@ -175,6 +284,45 @@
                     </tr>
                     </tbody>
                 </table>
+
+                <!-- Paragraphs -->
+
+                <h3 id="_paragraph">Paragraph</h3>
+
+                <p class="text-leader">
+                    Metro UI CSS provides various classes for creating and working with paragraphs.
+                </p>
+
+                <h4>Lead</h4>
+
+                <p>
+                    To make lead paragraph use classes: <span class="tally">.lead-text</span> or <span class="tally">.text-leader</span>.
+                </p>
+
+                <div class="example">
+                    <p class="lead-text">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    </p>
+                </div>
+
+                <pre class="prettyprint linenums"><code>
+                    &lt;p class="lead-text"&gt;...&lt;/p&gt;
+                </code></pre>
+
+                <h4>Default paragraph</h4>
+                <p>
+                    In Metro UI CSS default paragraph styled with <span class="tally">line-height</span> <span class="tally">1.5</span> value and <span class="tally">margin-bottom</span> <span class="tally">16px</span>.
+                </p>
+
+                <div class="example">
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    </p>
+                </div>
+
+                <pre class="prettyprint linenums"><code>
+                    &lt;p&gt;...&lt;/p&gt;
+                </code></pre>
 
             </main>
         </div>

@@ -51,11 +51,14 @@
 }
 .generate-padding-and-margin(6);
 
-.generate-padding-and-margin-media-options(@mediaBreakpointListDesktopLength);
-.generate-padding-and-margin-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListDesktopLength) {
-    @m: extract(@mediaBreakpointListDesktop, @i);
+.generate-utils-media-options(@mediaBreakpointListMobileLength);
+.generate-utils-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
+    @m: extract(@mediaBreakpointListMobile, @i);
 
-    @media screen and (max-width: @@m) {
+    @media screen and (min-width: @@m) {
+
+        .no-disp-@{m} {display: none !important;}
+
         .generate-media-padding(6);
         .generate-media-padding(@j, @k: 1) when (@k =< @j) {
             .p-@{m}-@{k} {padding: unit(@k * 8, px) !important;}
@@ -73,11 +76,11 @@
         }
     }
 
-    .generate-padding-and-margin-media-options(@name, @i + 1);
+    .generate-utils-media-options(@name, @i + 1);
 }
 
-.generate-utils-media-options(@mediaBreakpointListDesktopLength);
-.generate-utils-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListDesktopLength) {
+.generate-utils-media-options-d(@mediaBreakpointListDesktopLength);
+.generate-utils-media-options-d(@name, @i: 1) when (@i <= @mediaBreakpointListDesktopLength) {
     @m: extract(@mediaBreakpointListDesktop, @i);
 
     @media screen and (max-width: @@m) {
@@ -86,7 +89,7 @@
         }
     }
 
-    .generate-utils-media-options(@name, @i + 1);
+    .generate-utils-media-options-d(@name, @i + 1);
 }
 
 
@@ -95,9 +98,8 @@
 .border-right {border-right: 1px solid @transparent;}
 .border-top {border-top: 1px solid @transparent;}
 .border-bottom {border-bottom: 1px solid @transparent;}
-.border-radius {
-    border-radius: 4px;
-}
+.border-radius {border-radius: 4px;}
+.border-radius-half {border-radius: 50%;}
 
 .generate-border-width(10);
 .generate-border-width(@i) when (@i > 0) {

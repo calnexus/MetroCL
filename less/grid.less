@@ -65,7 +65,7 @@
 }
 
 // offset
-.generate-offset(@gridColumns12 - 1);
+.generate-offset(@gridColumns12);
 .generate-offset(@j) when (@j > 0){
     .offset-@{j} {
         margin-left: @gridCellBaseSize * @j;
@@ -206,7 +206,7 @@
             .generate-colspan(@j, (@k + 1));
         }
 
-        .generate-offset(@gridColumns12 - 1);
+        .generate-offset(@gridColumns12);
         .generate-offset(@j) when (@j > 0){
             .offset-@{m}-@{j} {
                 margin-left: @gridCellBaseSize * @j;
