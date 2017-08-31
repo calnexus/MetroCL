@@ -1984,15 +1984,15 @@ body {
 }
 .sub-header,
 .h4 {
-  font: 500 18px/1.1 -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Ubuntu", "Helvetica Neue", sans-serif;
+  font: 500 24px/1.1 -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Ubuntu", "Helvetica Neue", sans-serif;
 }
 .alt-header,
 .h5 {
-  font: 500 14px/1.1 -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Ubuntu", "Helvetica Neue", sans-serif;
+  font: 500 20px/1.1 -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Ubuntu", "Helvetica Neue", sans-serif;
 }
 .sub-alt-header,
 .h6 {
-  font: 500 12px/1.1 -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Ubuntu", "Helvetica Neue", sans-serif;
+  font: 500 18px/1.1 -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Ubuntu", "Helvetica Neue", sans-serif;
 }
 .small-text,
 .text-small,
@@ -2087,7 +2087,7 @@ h3 > .small {
   color: #777;
 }
 h4 {
-  font: 500 18px/1.1 -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Ubuntu", "Helvetica Neue", sans-serif;
+  font: 500 24px/1.1 -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Ubuntu", "Helvetica Neue", sans-serif;
   color: #212121;
   margin-bottom: 8px;
 }
@@ -2099,7 +2099,7 @@ h4 > .small {
   color: #777;
 }
 h5 {
-  font: 500 14px/1.1 -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Ubuntu", "Helvetica Neue", sans-serif;
+  font: 500 20px/1.1 -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Ubuntu", "Helvetica Neue", sans-serif;
   color: #212121;
   margin-bottom: 8px;
 }
@@ -2111,7 +2111,7 @@ h5 > .small {
   color: #777;
 }
 h6 {
-  font: 500 12px/1.1 -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Ubuntu", "Helvetica Neue", sans-serif;
+  font: 500 18px/1.1 -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Ubuntu", "Helvetica Neue", sans-serif;
   color: #212121;
   margin-bottom: 8px;
 }
@@ -2879,41 +2879,6 @@ aside::after {
 }
 .flex-content-stretch {
   align-content: stretch !important;
-}
-@media screen and (max-width: 1452px) {
-  .cell-xxl-hidden {
-    display: none !important;
-  }
-}
-@media screen and (max-width: 1200px) {
-  .cell-xl-hidden {
-    display: none !important;
-  }
-}
-@media screen and (max-width: 992px) {
-  .cell-lg-hidden {
-    display: none !important;
-  }
-}
-@media screen and (max-width: 768px) {
-  .cell-md-hidden {
-    display: none !important;
-  }
-}
-@media screen and (max-width: 640px) {
-  .cell-ld-hidden {
-    display: none !important;
-  }
-}
-@media screen and (max-width: 480px) {
-  .cell-sm-hidden {
-    display: none !important;
-  }
-}
-@media screen and (max-width: 320px) {
-  .cell-sx-hidden {
-    display: none !important;
-  }
 }
 @media screen and (min-width: 320px) {
   .flex-sx-nowrap {
@@ -4552,6 +4517,7 @@ aside::after {
 }
 .table tbody td {
   padding: 0.625rem 0.85rem;
+  vertical-align: middle;
 }
 .table .sortable-column {
   position: relative;

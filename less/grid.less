@@ -133,20 +133,6 @@
 .flex-content-space-around {align-content: space-around !important;}
 .flex-content-stretch {align-content: stretch !important;}
 
-
-.generate-cell-hidden-media-options(@mediaBreakpointListDesktopLength);
-.generate-cell-hidden-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListDesktopLength) {
-    @m: extract(@mediaBreakpointListDesktop, @i);
-
-    @media screen and (max-width: @@m) {
-        .cell-@{m}-hidden {
-            display: none !important;
-        }
-    }
-
-    .generate-cell-hidden-media-options(@name, @i + 1);
-}
-
 .generate-grid-media-options(@mediaBreakpointListMobileLength);
 .generate-grid-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
     @m: extract(@mediaBreakpointListMobile, @i);
