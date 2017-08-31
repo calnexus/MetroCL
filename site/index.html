@@ -4,26 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <link href="../distr/css/metro.css" rel="stylesheet">
-    <link href="../distr/css/metro-colors.css" rel="stylesheet">
-    <link href="../distr/css/metro-schemes.css" rel="stylesheet">
-    <link href="../distr/css/metro-rtl.css" rel="stylesheet">
+    <link href="css/metro.css" rel="stylesheet">
+    <link href="css/metro-colors.css" rel="stylesheet">
+    <link href="css/metro-schemes.css" rel="stylesheet">
+    <link href="css/metro-rtl.css" rel="stylesheet">
+    <link href="css/metro-icons.css" rel="stylesheet">
+
+    <link href="css/site.css" rel="stylesheet">
 
     <title>Metro UI CSS 4.0 - Popular HTML, CSS and JS library</title>
 </head>
 <body>
-    <header class="container-fluid bg-steel" style="height: 64px">
-
+    <header class="app-bar bg-steel" style="height: 64px">
+        <a href="/" class="brand fg-white border bd-white border-radius pr-2 pl-2">M</a>
+        <ul class="app-bar-menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Base</a></li>
+            <li><a href="#">Widgets</a></li>
+        </ul>
+        <ul class="app-bar-menu" style="margin-left: auto">
+            <li><a href="#"><span class="mif-github mif-2x"></span></a></li>
+        </ul>
     </header>
 
     <div class="container-fluid">
 
         <div class="container hero pt-md-3 pb-md-3">
-            <div class="row align-items-center">
-                <div class="cell cell-ld-12 order-2 order-ld-1 text-ld-center">
+            <div class="row flex-align-center">
+                <div class="cell-md-6 order-md-2 text-ld-center">
                     <img src="images/logo.png" class="img-fluid p-md-4">
                 </div>
-                <div class="cell cell-ld-12 p-md-5 text-ld-center order-ld-2">
+                <div class="cell-md-6 p-md-5 text-ld-center">
                     <h1>Metro UI CSS</h1>
                     <p class="lead-text">
                         Build responsive, mobile-first projects on the web with the first front-end component library in Metro Style.
@@ -41,13 +52,13 @@
         </div>
 
         <div class="row">
-            <div class="cell cell-md-12 p-5 p-md-3 bg-light border">
+            <div class="cell-md-4 p-5 p-md-3 bg-light border">
                 <h2 class="header">Installation</h2>
             </div>
-            <div class="cell cell-md-12 p-5 p-md-3 bg-grayWhite border">
+            <div class="cell-md-4 p-5 p-md-3 bg-grayWhite border">
                 <h2 class="header">Metro UI CDN</h2>
             </div>
-            <div class="cell cell-md-12 p-5 p-md-3 bg-light border">
+            <div class="cell-md-4 p-5 p-md-3 bg-light border">
                 <h2 class="header">Documentation</h2>
             </div>
         </div>
@@ -56,5 +67,10 @@
     <footer class="container-fluid">
 
     </footer>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/pre-code.js"></script>
+    <script src="js/github.js"></script>
+    <script src="//cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 </body>
 </html>

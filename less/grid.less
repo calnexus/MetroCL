@@ -111,26 +111,28 @@
     .generate-order(@j - 1);
 }
 
-.align-items {
-    &-center {
-        align-items: center !important;
-    }
-    &-baseline {
-        align-items: baseline !important;
-    }
-    &-end {
-        align-items: flex-end !important;
-    }
-    &-start {
-        align-items: flex-start !important;
-    }
-    &-stretch {
-        align-items: stretch !important;
-    }
-    &-inherit {
-        align-items: inherit !important;
-    }
-}
+.flex-nowrap {flex-wrap: nowrap !important;}
+.flex-wrap {flex-wrap: wrap !important;}
+.flex-dir-column {flex-direction: column !important;}
+.flex-dir-column-r {flex-direction: column-reverse !important;}
+.flex-dir-row-r {flex-direction: column-reverse !important;}
+.flex-align-start {align-items: flex-start !important;}
+.flex-align-end {align-items: flex-end !important;}
+.flex-align-center {align-items: center !important;}
+.flex-align-stretch {align-items: stretch !important;}
+.flex-align-baseline {align-items: baseline !important;}
+.flex-justify-start {justify-content: flex-start !important;}
+.flex-justify-end {justify-content: flex-end !important;}
+.flex-justify-center {justify-content: center !important;}
+.flex-justify-space-between {justify-content: space-between !important;}
+.flex-justify-space-around {justify-content: space-around !important;}
+.flex-content-start {align-content: flex-start !important;}
+.flex-content-end {align-content: flex-end !important;}
+.flex-content-center {align-content: center !important;}
+.flex-content-space-between {align-content: space-between !important;}
+.flex-content-space-around {align-content: space-around !important;}
+.flex-content-stretch {align-content: stretch !important;}
+
 
 .generate-cell-hidden-media-options(@mediaBreakpointListDesktopLength);
 .generate-cell-hidden-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListDesktopLength) {
@@ -151,13 +153,27 @@
 
     @media screen and (min-width: @@m) {
 
-        .flex-@{m}-nowrap {
-            flex-wrap: nowrap !important;
-        }
-
-        .flex-@{m}-wrap {
-            flex-wrap: wrap !important;
-        }
+        .flex-@{m}-nowrap {flex-wrap: nowrap !important;}
+        .flex-@{m}-wrap {flex-wrap: wrap !important;}
+        .flex-@{m}-dir-column {flex-direction: column !important;}
+        .flex-@{m}-dir-column-r {flex-direction: column-reverse !important;}
+        .flex-@{m}-dir-row-r {flex-direction: column-reverse !important;}
+        .flex-@{m}-align-start {align-items: flex-start !important;}
+        .flex-@{m}-align-end {align-items: flex-end !important;}
+        .flex-@{m}-align-center {align-items: center !important;}
+        .flex-@{m}-align-stretch {align-items: stretch !important;}
+        .flex-@{m}-align-baseline {align-items: baseline !important;}
+        .flex-@{m}-justify-start {justify-content: flex-start !important;}
+        .flex-@{m}-justify-end {justify-content: flex-end !important;}
+        .flex-@{m}-justify-center {justify-content: center !important;}
+        .flex-@{m}-justify-space-between {justify-content: space-between !important;}
+        .flex-@{m}-justify-space-around {justify-content: space-around !important;}
+        .flex-@{m}-content-start {align-content: flex-start !important;}
+        .flex-@{m}-content-end {align-content: flex-end !important;}
+        .flex-@{m}-content-center {align-content: center !important;}
+        .flex-@{m}-content-space-between {align-content: space-between !important;}
+        .flex-@{m}-content-space-around {align-content: space-around !important;}
+        .flex-@{m}-content-stretch {align-content: stretch !important;}
 
         .cell-@{m}-full {
             flex: 0 0 100%;

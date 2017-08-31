@@ -26,6 +26,12 @@
   background: #ccc;
   text-align: center;
 }
+.demo-grid .row .row [class^=cell]:nth-child(odd) div {
+  background: #1ba1e2;
+}
+.demo-grid .row .row [class^=cell]:nth-child(even) div {
+  background: #825a2c;
+}
 pre {
   margin: 24px 0;
 }

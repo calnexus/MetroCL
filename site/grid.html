@@ -88,6 +88,16 @@
                             <div class="cell"><div>1</div></div>
                             <div class="cell"><div>1</div></div>
                         </div>
+                        <div class="row">
+                            <div class="cell">
+                                <div class="row">
+                                    <div class="cell"><div>nested</div></div>
+                                    <div class="cell"><div>nested</div></div>
+                                    <div class="cell"><div>nested</div></div>
+                                    <div class="cell"><div>nested</div></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -130,11 +140,36 @@
 
                 <div class="example mt-5 mb-5">
                     <pre class="prettyprint linenums"><code>
+                        &lt;!-- Grouping rows --&gt;
                         &lt;div class="grid"&gt;
                             &lt;div class="row"&gt;
                                 &lt;div class="cell"&gt;&lt;/div&gt;
                                 ...
                                 &lt;div class="cell"&gt;&lt;/div&gt;
+                            &lt;/div&gt;
+                            ...
+                            &lt;div class="row"&gt;
+                                &lt;div class="cell"&gt;&lt;/div&gt;
+                                ...
+                                &lt;div class="cell"&gt;&lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+
+                        &lt;!-- Single row --&gt;
+                        &lt;div class="row"&gt;
+                            &lt;div class="cell"&gt;&lt;/div&gt;
+                            ...
+                            &lt;div class="cell"&gt;&lt;/div&gt;
+                        &lt;/div&gt;
+
+                        &lt;!-- Nested row --&gt;
+                        &lt;div class="row"&gt;
+                            &lt;div class="cell"&gt;
+                                &lt;div class="row"&gt;
+                                    &lt;div class="cell"&gt;&lt;/div&gt;
+                                    ...
+                                    &lt;div class="cell"&gt;&lt;/div&gt;
+                                &lt;/div&gt;
                             &lt;/div&gt;
                         &lt;/div&gt;
                     </code></pre>
@@ -374,6 +409,11 @@
                 </code></pre>
 
                 <h3 class="text-light" id="_gaps">Gaps</h3>
+
+                <p>
+                    The gaps between columns in our predefined grid classes can be removed with <span class="tally">.no-gap</span>. This removes the negative margins from <span class="tally">.row</span> and the horizontal padding from all immediate children columns.
+                </p>
+
                 <div class="container-fluid p-5 border border-4 bd-grayWhite mt-3 mb-3 no-display-ld">
                     <div class="grid no-gap demo-grid">
                         <div class="row">
