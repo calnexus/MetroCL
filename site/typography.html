@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link href="css/metro.css" rel="stylesheet">
+    <link href="css/metro-colors.css" rel="stylesheet">
+    <link href="css/metro-schemes.css" rel="stylesheet">
+    <link href="css/metro-rtl.css" rel="stylesheet">
+    <link href="css/metro-icons.css" rel="stylesheet">
+
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Typography - Metro UI CSS 4.0 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+    <header class="app-bar bg-steel" style="height: 64px">
+        <a href="/" class="brand fg-white border bd-white border-radius pr-2 pl-2">M</a>
+        <ul class="app-bar-menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Base</a></li>
+            <li><a href="#">Widgets</a></li>
+        </ul>
+        <ul class="app-bar-menu" style="margin-left: auto">
+            <li><a href="#"><span class="mif-github mif-2x"></span></a></li>
+        </ul>
+    </header>
+
+    <div class="container-fluid pr-5 pl-5">
+
+        <div class="row flex-xl-nowrap">
+            <div class="cell-xl-hidden cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h4>Table of content</h4>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Typography</a></li>
+                    <li class="toc-entry"><a href="#_font_stack">Font stack</a></li>
+                </ul>
+            </div>
+
+            <main class="cell-12 cell-xl-10 order-1 pr-5 pl-5">
+                <h1>Typography</h1>
+
+                <p class="text-leader">
+                    Metro UI CSS offers various tools and classes for displaying elements of typography for your site. This includes titles, paragraphs, lists, various text elements and much more.
+                </p>
+
+                <h3 id="_font_stack">Native font stack</h3>
+                <p>
+                    In Metro UI CSS 4.0 i use a "native font stack" for optimum text rendering on every device and OS. Read more about native font stacks in this <a href="https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/">Smashing Magazine article</a>.
+                </p>
+
+                <pre class="prettyprint linenums"><code>
+                    @fontName:  -apple-system,
+                                system-ui,
+                                BlinkMacSystemFont,
+                                "Segoe UI", "Roboto", "Ubuntu",
+                                "Helvetica Neue", sans-serif;
+                </code></pre>
+
+
+                <table class="table striped bordered">
+                    <thead>
+                    <tr>
+                        <th colspan="2">Match table for font family and OS</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>-apple-system</td>
+                        <td>Safari for OS X and iOS (San Francisco)</td>
+                    </tr>
+                    <tr>
+                        <td>system-ui</td>
+                        <td>Chrome >= 56 for OS X (San Francisco), Windows, Linux and Android</td>
+                    </tr>
+                    <tr>
+                        <td>BlinkMacSystemFont</td>
+                        <td>Chrome < 56 for OS X (San Francisco)</td>
+                    </tr>
+                    <tr>
+                        <td>Segoe UI</td>
+                        <td>Windows</td>
+                    </tr>
+                    <tr>
+                        <td>Roboto</td>
+                        <td>Android</td>
+                    </tr>
+                    <tr>
+                        <td>Ubuntu</td>
+                        <td>Linux</td>
+                    </tr>
+                    <tr>
+                        <td>Helvetica Neue, sans-serif</td>
+                        <td>Basic web fallback</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </main>
+        </div>
+
+    </div>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/pre-code.js"></script>
+    <script src="js/github.js"></script>
+    <script src="//cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+</body>
+</html>

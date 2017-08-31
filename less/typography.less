@@ -83,13 +83,15 @@ body {
 .sub-alt-header, .h6 {
     font: 500 12px/1.1 @fontName;
 }
-.small-text {
+.small-text, .text-small, small {
     font: 500 10px/1.1 @fontName;
 }
 
-.lead-text {
+.lead-text, .text-leader {
     font-size: 20px;
     font-weight: 300;
+    line-height: 1.2;
+    margin: 16px 0;
 }
 
 .leader, .h1,
@@ -236,6 +238,10 @@ p {
 dl, ul, ol {
     margin-top: 0;
     margin-bottom: 16px;
+
+    dl, ul, ol {
+        margin-bottom: 0;
+    }
 }
 
 ul, menu, dir {
