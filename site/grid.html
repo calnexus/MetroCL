@@ -30,9 +30,23 @@
     <div class="container-fluid pr-5 pl-5">
 
         <div class="row flex-xl-nowrap">
-            <div class="cell-xl-hidden cell-xl-2 order-2 border-left bd-light">2</div>
+            <div class="cell-xl-hidden cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h4>Table of content</h4>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Grid system</a></li>
+                    <li class="toc-entry"><a href="#_how_it_works">How it works</a></li>
+                    <li class="toc-entry"><a href="#_colspan">Colspan</a></li>
+                    <li class="toc-entry"><a href="#_offset">Offset</a></li>
+                    <li class="toc-entry"><a href="#_media_columns">Media columns</a></li>
+                    <li class="toc-entry"><a href="#_gaps">Gaps</a></li>
+                    <li class="toc-entry"><a href="#_stub_column">Stub column</a></li>
+                    <li class="toc-entry"><a href="#_ordering">Ordering</a></li>
+                </ul>
+            </div>
+
             <main class="cell-12 cell-xl-10 order-1 pr-5 pl-5">
-                <h1>Grid system</h1>
+                <h1 id="_grid_system">Grid system</h1>
 
                 <p class="lead-text">
                     Use our powerful mobile-first flexbox grid to build layouts of all shapes and sizes thanks to a twelve column system, seven default responsive tiers, Less variables and mixins, and dozens of predefined classes.
@@ -78,7 +92,7 @@
                 </div>
 
                 <br />
-                <h3>How it works</h3>
+                <h3 id="_how_it_works">How it works</h3>
 
                 <p>
                     Metro UI CSS grid system uses a series of containers, rows, and columns to layout and align content. It’s built with flexbox and is fully responsive. Below is an example and an in-depth look at how the grid comes together.
@@ -126,7 +140,7 @@
                     </code></pre>
                 </div>
 
-                <h3 class="text-light">Colspan</h3>
+                <h3 class="text-light" id="_colspan">Colspan</h3>
                 <div class="container-fluid p-5 border border-4 bd-grayWhite mt-3 mb-3 no-display-ld">
                     <div class="grid demo-grid">
                         <div class="row">
@@ -195,7 +209,7 @@
                     &lt;/div&gt;
                 </code></pre>
 
-                <h3 class="text-light">Offset</h3>
+                <h3 class="text-light" id="_offset">Offset</h3>
                 <div class="container-fluid p-5 border border-4 bd-grayWhite mt-3 mb-3 no-display-ld">
                     <div class="grid demo-grid">
                         <div class="row">
@@ -236,7 +250,7 @@
                     &lt;/div&gt;
                 </code></pre>
 
-                <h3 class="text-light">Media columns</h3>
+                <h3 class="text-light" id="_media_columns">Media columns</h3>
                 <table class="table bordered cell-media-table">
                     <thead>
                     <tr>
@@ -359,7 +373,7 @@
                     &lt;/div&gt;
                 </code></pre>
 
-                <h3 class="text-light">No gaps</h3>
+                <h3 class="text-light" id="_gaps">Gaps</h3>
                 <div class="container-fluid p-5 border border-4 bd-grayWhite mt-3 mb-3 no-display-ld">
                     <div class="grid no-gap demo-grid">
                         <div class="row">
@@ -402,7 +416,7 @@
                     &lt;div class="row no-gap"&gt;...&lt;/div&gt;
                 </code></pre>
 
-                <h3 class="text-light">Stub column</h3>
+                <h3 class="text-light" id="_stub_column">Stub column</h3>
                 <div class="container-fluid p-5 border border-4 bd-grayWhite mt-3 mb-3 no-display-ld">
                     <div class="grid demo-grid">
                         <div class="row">
@@ -419,7 +433,7 @@
                     &lt;/div&gt;
                 </code></pre>
 
-                <h3 class="text-light">Ordering</h3>
+                <h3 class="text-light" id="_ordering">Ordering</h3>
                 <p>
                     You can use classes <span class="tally">.order-*</span> to set order columns.
                 </p>

@@ -1,3 +1,16 @@
+.set-relative {
+  display: block;
+  position: relative;
+}
+.set-absolute {
+  position: absolute;
+}
+.set-flex {
+  display: flex;
+}
+.demo-grid {
+  margin-bottom: 0;
+}
 .demo-grid [class^=cell] div,
 .demo-grid [class^=stub] div {
   color: #fff;
@@ -51,4 +64,22 @@ pre {
 .cell-media-table tbody td {
   font-size: .8em;
   white-space: nowrap;
+}
+.toc-wrapper {
+  position: sticky;
+  top: 64px;
+  max-height: calc(36vh);
+  overflow-y: auto;
+}
+.toc-wrapper .toc-nav {
+  list-style: none;
+}
+.toc-wrapper .toc-nav li a {
+  color: #9e9e9e;
+}
+.toc-wrapper .toc-nav li a:hover {
+  color: #1d1d1d;
+}
+.toc-wrapper > .toc-nav {
+  margin-left: 0;
 }
