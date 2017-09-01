@@ -30,7 +30,7 @@
     <div class="container-fluid  pr-2 pl-2 pr-md-5 pl-md-5">
 
         <div class="row flex-xl-nowrap">
-            <div class="no-display-lg cell-lg-2 order-2 border-left bd-light toc-wrapper">
+            <div class="no-display display-lg cell-lg-2 order-2 border-left bd-light toc-wrapper">
                 <h4>Table of content</h4>
                 <hr/>
                 <ul class="toc-nav">
@@ -40,6 +40,18 @@
                     <li class="toc-entry"><a href="#_headings">Headings</a></li>
                     <li class="toc-entry"><a href="#_super_headings">Super headings</a></li>
                     <li class="toc-entry"><a href="#_paragraph">Paragraph</a></li>
+                    <li>
+                        <ul>
+                            <li class="toc-entry"><a href="#_paragraph_default">Defaults</a></li>
+                            <li class="toc-entry"><a href="#_paragraph_lead">Leader</a></li>
+                            <li class="toc-entry"><a href="#_paragraph_secondary">Secondary &amp; Small</a></li>
+                            <li class="toc-entry"><a href="#_paragraph_indents">Indents</a></li>
+                        </ul>
+                    </li>
+                    <li class="toc-entry"><a href="#_inline_elements">Inline elements</a></li>
+                    <li class="toc-entry"><a href="#_text_transform">Transform</a></li>
+                    <li class="toc-entry"><a href="#_text_alignment">Alignment</a></li>
+                    <li class="toc-entry"><a href="#_text_weight">Font weight</a></li>
                 </ul>
             </div>
 
@@ -264,23 +276,23 @@
                     <tbody>
                     <tr>
                         <td style="width: 150px;"><span class="tally">.display4</span></td>
-                        <td class="no-display-ld"><span class="display4">Display4</span></td>
+                        <td class="no-display-ld display-md"><span class="display4">Display4</span></td>
                         <td>112px</td>
                     </tr>
                     <tr>
                         <td><span class="tally">.display3</span></td>
-                        <td class="no-display-ld"><span class="display3">Display3</span></td>
+                        <td class="no-display-ld display-md"><span class="display3">Display3</span></td>
                         <td>56px</td>
                     </tr>
                     <tr>
                         <td><span class="tally">.display2</span></td>
-                        <td class="no-display-ld"><span class="display2">Display2</span></td>
-                        <td>45px</td>
+                        <td class="no-display-ld display-md"><span class="display2">Display2</span></td>
+                        <td>48px</td>
                     </tr>
                     <tr>
                         <td><span class="tally">.display1</span></td>
-                        <td class="no-display-ld"><span class="display1">Display1</span></td>
-                        <td>34px</td>
+                        <td class="no-display-ld display-md"><span class="display1">Display1</span></td>
+                        <td>36px</td>
                     </tr>
                     </tbody>
                 </table>
@@ -293,25 +305,9 @@
                     Metro UI CSS provides various classes for creating and working with paragraphs.
                 </p>
 
-                <h4>Lead</h4>
-
+                <h4 id="_paragraph_default">Default paragraph</h4>
                 <p>
-                    To make lead paragraph use classes: <span class="tally">.lead-text</span> or <span class="tally">.text-leader</span>.
-                </p>
-
-                <div class="example">
-                    <p class="lead-text">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                    </p>
-                </div>
-
-                <pre class="prettyprint linenums"><code>
-                    &lt;p class="lead-text"&gt;...&lt;/p&gt;
-                </code></pre>
-
-                <h4>Default paragraph</h4>
-                <p>
-                    In Metro UI CSS default paragraph styled with <span class="tally">line-height</span> <span class="tally">1.5</span> value and <span class="tally">margin-bottom</span> <span class="tally">16px</span>.
+                    In Metro UI CSS default paragraph styled with <span class="tally">line-height</span> <span class="tally">1.5</span> value, <span class="tally">margin-bottom</span> <span class="tally">16px</span> and <span class="tally">font-size</span> <span class="tally">16px</span>.
                 </p>
 
                 <div class="example">
@@ -323,6 +319,194 @@
                 <pre class="prettyprint linenums"><code>
                     &lt;p&gt;...&lt;/p&gt;
                 </code></pre>
+
+                <h4 id="_paragraph_lead">Leader</h4>
+
+                <p>
+                    To make leader paragraph use class: <span class="tally">.text-leader</span>.
+                </p>
+
+                <div class="example">
+                    <p class="text-leader">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    </p>
+                </div>
+
+                <pre class="prettyprint linenums"><code>
+                    &lt;p class="text-leader"&gt;...&lt;/p&gt;
+                </code></pre>
+
+                <h4 id="_paragraph_secondary">Secondary &amp; Small</h4>
+
+                <p>
+                    To make secondary and small paragraph use classes: <span class="tally">.text-secondary</span> and <span class="tally">.text-small</span>.
+                </p>
+
+                <div class="example">
+                    <p class="text-secondary">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    </p>
+                    <p class="text-small">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    </p>
+                </div>
+
+                <pre class="prettyprint linenums"><code>
+                    &lt;p class="text-secondary"&gt;...&lt;/p&gt;
+                    &lt;p class="text-small"&gt;...&lt;/p&gt;
+                </code></pre>
+
+                <h4 id="_paragraph_indents">Paragraph with indents</h4>
+                <div class="example">
+                    <p class="indent">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    </p>
+                    <p class="indent-letter">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    </p>
+                </div>
+
+                <pre class="prettyprint linenums"><code>
+                    &lt;p class='indent'&gt;...&lt;/p&gt;
+                    &lt;p class='indent-letter'&gt;...&lt;/p&gt;
+                </code></pre>
+
+                <h4 id="_paragraph_inline_elements">Inline text elements</h4>
+
+                <p>Styling for common inline HTML5 elements.</p>
+
+                <div class="example">
+                    <p>You can use the mark tag to <mark>highlight</mark> text.</p>
+                    <p><del>This line of text is meant to be treated as deleted text.</del></p>
+                    <p><s>This line of text is meant to be treated as no longer accurate.</s></p>
+                    <p><ins>This line of text is meant to be treated as an addition to the document.</ins></p>
+                    <p><u>This line of text will render as underlined</u></p>
+                    <p><small>This line of text is meant to be treated as fine print.</small></p>
+                    <p><strong>This line rendered as bold text.</strong></p>
+                    <p><em>This line rendered as italicized text.</em></p>
+                </div>
+
+                <pre class="prettyprint linenums"><code>
+                    &lt;p&gt;You can use the mark tag to &lt;mark&gt;highlight&lt;/mark&gt; text.&lt;/p&gt;
+                    &lt;p&gt;&lt;del&gt;This line of text is meant to be treated as deleted text.&lt;/del&gt;&lt;/p&gt;
+                    &lt;p&gt;&lt;s&gt;This line of text is meant to be treated as no longer accurate.&lt;/s&gt;&lt;/p&gt;
+                    &lt;p&gt;&lt;ins&gt;This line of text is meant to be treated as an addition to the document.&lt;/ins&gt;&lt;/p&gt;
+                    &lt;p&gt;&lt;u&gt;This line of text will render as underlined&lt;/u&gt;&lt;/p&gt;
+                    &lt;p&gt;&lt;small&gt;This line of text is meant to be treated as fine print.&lt;/small&gt;&lt;/p&gt;
+                    &lt;p&gt;&lt;strong&gt;This line rendered as bold text.&lt;/strong&gt;&lt;/p&gt;
+                    &lt;p&gt;&lt;em&gt;This line rendered as italicized text.&lt;/em&gt;&lt;/p&gt;
+                </code></pre>
+
+                <h4 id="_text_transform">Text transform</h4>
+                <p>Easily transform text with text transform classes.</p>
+
+                <div class="example">
+                    <p class="text-lower">lowercased text</p>
+                    <p class="text-upper">UPPERCASED TEXT</p>
+                    <p class="text-cap">Capitalized text</p>
+                </div>
+
+                <pre class="prettyprint linenums"><code>
+                    &lt;p class="text-lower"&gt;lowercased text&lt;/p&gt;
+                    &lt;p class="text-upper"&gt;uppercased text&lt;/p&gt;
+                    &lt;p class="text-cap"&gt;сapitalized text&lt;/p&gt;
+                </code></pre>
+
+                <h4 id="_text_alignment">Text alignment</h4>
+                <p>Easily realign text to components with text alignment classes.</p>
+
+                <div class="example">
+                    <p class="text-left">Left aligned text on all viewport sizes.</p>
+                    <p class="text-center">Center aligned text on all viewport sizes.</p>
+                    <p class="text-right">Right aligned text on all viewport sizes.</p>
+                </div>
+
+                <pre class="prettyprint linenums"><code>
+                    &lt;p class="text-left"&gt;Left aligned text on all viewport sizes.&lt;/p&gt;
+                    &lt;p class="text-center"&gt;Center aligned text on all viewport sizes.&lt;/p&gt;
+                    &lt;p class="text-right"&gt;Right aligned text on all viewport sizes.&lt;/p&gt;
+                </code></pre>
+
+                <p>If you need to align the text to the width, you can use the class <span class="tally">.text-just</span></p>
+                <div class="example">
+                    <p class="text-just">
+                        It is a remarkable nuclear flux, sir. Poeta resisteres, tanquam rusticus tus. Not hell or chaos, yearn the acceptance. After smashing the turkey, enamel margerine, strudel and gold tequila with it in a plastic bag.
+                        It is a remarkable nuclear flux, sir. Poeta resisteres, tanquam rusticus tus. Not hell or chaos, yearn the acceptance. After smashing the turkey, enamel margerine, strudel and gold tequila with it in a plastic bag.
+                    </p>
+                </div>
+
+                <pre class="prettyprint linenums"><code>
+                    &lt;p class="text-just"&gt;...&lt;/p&gt;
+                </code></pre>
+
+                <h4>Vertical alignment</h4>
+                <p>
+                    To change vertical alignment you can use predefined classes:
+                        <span class="tally">.va-top</span>,
+                        <span class="tally">.va-bottom</span>,
+                        <span class="tally">.va-baseline</span>,
+                        <span class="tally">.va-middle</span>,
+                        <span class="tally">.va-sub</span>,
+                        <span class="tally">.va-super</span>,
+                        <span class="tally">.va-text-top</span>,
+                        <span class="tally">.va-text-bottom</span>
+                        and their media analogues.
+                </p>
+
+                <p>Transform and alignment classes you can use with media breakpoints rules. For this feature Metro UI CSS present special media classes:
+                    <span class="tally">.text-center-*</span>,
+                    <span class="tally">.text-left-*</span>,
+                    <span class="tally">.text-right-*</span>,
+                    <span class="tally">.text-just-*</span>,
+                    <span class="tally">.text-cap-*</span>,
+                    <span class="tally">.text-upper-*</span>,
+                    <span class="tally">.text-lower-*</span>
+                    Replace the asterisk with the desired point: <span class="tally">sx</span>, <span class="tally">sm</span>, <span class="tally">ld</span>, <span class="tally">md</span>, <span class="tally">lg</span>, <span class="tally">xl</span>, <span class="tally">xxl</span>.
+                    This breakpoints works with <span class="tally">min-width</span> rule.
+                </p>
+
+                <h4 id="_text_weight">Font weight</h4>
+                <p>
+                    You can change font weight with special classes:
+                    <span class="tally">.text-ultralight</span>,
+                    <span class="tally">.text-light</span>,
+                    <span class="tally">.text-normal</span>,
+                    <span class="tally">.text-medium</span>,
+                    <span class="tally">.text-bold</span>.
+                </p>
+
+                <table class="table striped bordered">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Weight</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><p class="text-ultralight">Ultralight text</p></td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td><p class="text-light">Light text</p></td>
+                        <td>200</td>
+                    </tr>
+                    <tr>
+                        <td><p class="text-normal">Normal text</p></td>
+                        <td>400</td>
+                    </tr>
+                    <tr>
+                        <td><p class="text-medium">Medium text</p></td>
+                        <td>500</td>
+                    </tr>
+                    <tr>
+                        <td><p class="text-bold">Bold text</p></td>
+                        <td>700</td>
+                    </tr>
+                    </tbody>
+                </table>
+
 
             </main>
         </div>

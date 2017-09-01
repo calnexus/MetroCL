@@ -79,8 +79,9 @@ pre {
 .toc-wrapper {
   position: sticky;
   top: 64px;
-  max-height: calc(36vh);
+  max-height: calc(100vh - 64px);
   overflow-y: auto;
+  display: block;
 }
 .toc-wrapper .toc-nav {
   list-style: none;
@@ -91,10 +92,18 @@ pre {
 .toc-wrapper .toc-nav li a:hover {
   color: #1d1d1d;
 }
+.toc-wrapper .toc-nav ul,
+.toc-wrapper .toc-nav ol {
+  list-style: none;
+  margin-left: 0;
+}
 .toc-wrapper > .toc-nav {
   margin-left: 0;
 }
 .example {
   padding: 16px;
   border: 4px solid #f8f8f8;
+}
+.example *:last-child {
+  margin-bottom: 0;
 }

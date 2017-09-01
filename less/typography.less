@@ -1,4 +1,5 @@
 @import (once) "include/vars";
+@import (once) "include/mixins";
 
 html {
     font-size: 100%;
@@ -6,7 +7,7 @@ html {
 
 body {
     font-family: @fontName;
-    font-size: @fontSize;
+    font-size: 1rem;
     line-height: 1.5;
     font-style: normal;
     font-weight: 400;
@@ -31,34 +32,28 @@ body {
 }
 
 .display4 {
-    font-size: 112px;
-    margin-bottom: 20px;
+    .px2rem(font-size, 112px);
     font-weight: 200;
-    line-height: 1.2;
-    color: lighten(@black, 46%);
 }
 
 .display3 {
-    font-size: 56px;
-    margin-bottom: 20px;
+    .px2rem(font-size, 56px);
     font-weight: 400;
-    line-height: 1.2;
-    color: lighten(@black, 46%);
 }
 
 .display2 {
-    font-size: 45px;
-    margin-bottom: 20px;
+    .px2rem(font-size, 48px);
     font-weight: 400;
-    line-height: 1.2;
-    color: lighten(@black, 46%);
 }
 
 .display1 {
-    font-size: 34px;
-    margin-bottom: 16px;
+    .px2rem(font-size, 36px);
     font-weight: 400;
-    color: lighten(@black, 46%);
+}
+
+.display1, .display2, .display3, .display4 {
+    .px2rem(margin-bottom, 20px);
+    line-height: 1.2;
 }
 
 .display4, .display3, .display2, .display1, .caption {
@@ -66,31 +61,42 @@ body {
 }
 
 .leader, .h1 {
-    font: 100 48px/1.1 @fontName;
+    font-weight: 100;
+    .px2rem(font-size, 48px);
 }
 .sub-leader, .h2 {
-    font: 400 32px/1.1 @fontName;
+    font-weight: 400;
+    .px2rem(font-size, 32px);
 }
 .header, .h3 {
-    font: 500 28px/1.1 @fontName;
+    font-weight: 500;
+    .px2rem(font-size, 28px);
 }
 .sub-header, .h4 {
-    font: 500 24px/1.1 @fontName;
+    font-weight: 500;
+    .px2rem(font-size, 24px);
 }
 .alt-header, .h5 {
-    font: 500 20px/1.1 @fontName;
+    font-weight: 500;
+    .px2rem(font-size, 20px);
 }
 .sub-alt-header, .h6 {
-    font: 500 18px/1.1 @fontName;
-}
-.small-text, .text-small, small {
-    font: 500 10px/1.1 @fontName;
+    font-weight: 500;
+    .px2rem(font-size, 18px);
 }
 
-.lead-text, .text-leader {
-    font-size: 20px;
+.text-small {
+    font-weight: 400;
+    .px2rem(font-size, 12px);
+}
+.text-secondary {
+    font-weight: 400;
+    .px2rem(font-size, 14px);
+}
+
+.text-leader {
+    .px2rem(font-size, 20px);
     font-weight: 300;
-    margin: 16px 0;
 }
 
 .leader, .h1,
@@ -100,7 +106,8 @@ body {
 .alt-header, .h5,
 .sub-alt-header, .h6 {
     color: lighten(@black, 13%);
-    margin-bottom: 8px;
+    .px2rem(margin-bottom, 8px);
+    line-height: 1.1;
 
     & > small, & > .small {
         font-weight: 400;
@@ -130,6 +137,15 @@ h6 {.h6;}
     text-overflow: ellipsis;
 }
 
+.va-top {vertical-align: top !important;}
+.va-bottom {vertical-align: bottom !important;}
+.va-baseline {vertical-align: baseline !important;}
+.va-middle {vertical-align: middle !important;}
+.va-sub {vertical-align: sub !important;}
+.va-super {vertical-align: super !important;}
+.va-text-top {vertical-align: text-top !important;}
+.va-text-bottom {vertical-align: text-bottom !important;}
+
 abbr {
     text-decoration: none;
     border-bottom: 1px @gray dotted;
@@ -139,11 +155,11 @@ abbr {
 
 .tally {
     display: inline-block;
-    padding: 3px 6px;
+    .px2rem(padding, 3px 6px);
     font-size: 90%;
     color: #bd4147;
     background-color: #f8f9fa;
-    border-radius: @borderRadius;
+    .px2rem(border-radius, @borderRadius);
 
     &.success {
         background-color: @green;
@@ -189,12 +205,12 @@ code,
 kbd,
 samp {
     font-family: monospace, monospace;
-    font-size: 16px;
+    .px2rem(font-size, 16px);
 }
 
 pre {
     margin-top: 0;
-    margin-bottom: 16px;
+    .px2rem(margin-bottom, 16px);
     overflow: auto;
 }
 
@@ -225,21 +241,27 @@ a:not([href]):not([tabindex]):focus {
 }
 
 mark {
-    padding: 3px;
+    .px2rem(padding, 3px);
     background-color: rgb(252, 248, 227);
     color: #000000;
 }
 
+del {
+    color: @gray;
+}
+
 p {
-    margin-bottom: 16px;
+    .px2rem(margin-bottom, 16px);
 }
 
 dl, ul, ol {
     margin-top: 0;
-    margin-bottom: 16px;
+    .px2rem(margin-bottom, 16px);
+    .px2rem(margin-left, 20px);
 
     dl, ul, ol {
         margin-bottom: 0;
+        .px2rem(padding-left, 24px);
     }
 }
 
@@ -248,30 +270,49 @@ ul, menu, dir {
     list-style-type: disc;
 }
 
-ul, ol {
-    margin-left: 20px;
+// Paragraphs
 
-    li {
+.indent {
+    &:first-letter {
+        margin-left: 2.5rem;
+    }
 
-        & ul, & ol {
-            padding-left: 24px;
+    &-letter {
+        &:first-letter {
+            font-weight: bold;
+            float: left;
+            padding: 0;
+            .px2rem(line-height, 40px);
+            .px2rem(font-size, 48px);
+            .px2rem(margin-right, 8px);
+            .px2rem(margin-left, -2px);
+            .px2rem(margin-top, 2px);
         }
     }
 }
 
-
-.generate-text-media-options(@mediaBreakpointListDesktopLength);
-.generate-text-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListDesktopLength) {
-    @m: extract(@mediaBreakpointListDesktop, @i);
+.generate-text-media-options(@mediaBreakpointListMobileLength);
+.generate-text-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
+    @m: extract(@mediaBreakpointListMobile, @i);
 
     @media screen and (max-width: @@m) {
-        .text-@{m}-upper {text-transform: uppercase !important;}
-        .text-@{m}-lower {text-transform: lowercase !important;}
-        .text-@{m}-cap   {text-transform: capitalize !important;}
-        .text-@{m}-left {text-align: left !important;}
-        .text-@{m}-right {text-align: right !important;}
-        .text-@{m}-center {text-align: center !important;}
-        .text-@{m}-just {text-align: justify !important;}
+        .text-upper-@{m} {text-transform: uppercase !important;}
+        .text-lower-@{m} {text-transform: lowercase !important;}
+        .text-cap-@{m}   {text-transform: capitalize !important;}
+
+        .text-left-@{m} {text-align: left !important;}
+        .text-right-@{m} {text-align: right !important;}
+        .text-center-@{m} {text-align: center !important;}
+        .text-just-@{m} {text-align: justify !important;}
+
+        .va-top-@{m} {vertical-align: top !important;}
+        .va-bottom-@{m} {vertical-align: bottom !important;}
+        .va-baseline-@{m} {vertical-align: baseline !important;}
+        .va-middle-@{m} {vertical-align: middle !important;}
+        .va-sub-@{m} {vertical-align: sub !important;}
+        .va-super-@{m} {vertical-align: super !important;}
+        .va-text-top-@{m} {vertical-align: text-top !important;}
+        .va-text-bottom-@{m} {vertical-align: text-bottom !important;}
     }
 
     .generate-text-media-options(@name, @i + 1);

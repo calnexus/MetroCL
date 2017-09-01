@@ -3,11 +3,11 @@
 
 .app-bar {
     display: flex;
-    padding: 8px 16px;
+    .px2rem(padding, 8px 16px);
     flex-wrap: nowrap;
     align-items: center;
     justify-content: flex-start;
-    min-height: 64px;
+    .px2rem(min-height, 64px);
     position: sticky;
     top: 0;
     background: @appBarBackground;
@@ -17,14 +17,14 @@
 
 .brand, .app-bar-element {
     display: inline-block;
-    padding: 4px 0;
+    .px2rem(padding, 4px 0);
     white-space: nowrap;
-    font-size: 20px;
+    .px2rem(font-size, 20px);
     background: inherit;
     text-decoration: none;
 
     * {
-        height: 32px;
+        .px2rem(height, 32px);
     }
 }
 
@@ -36,11 +36,11 @@
 }
 
 * ~ .app-bar-menu {
-    margin-left: 16px;
+    .px2rem(margin-left, 16px);
 }
 
 .app-bar-menu li a, .app-bar-item {
-    padding: 8px 16px;
+    .px2rem(padding, 8px 16px);
     display: block;
     text-decoration: none;
     color: inherit;
