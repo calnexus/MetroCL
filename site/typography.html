@@ -31,7 +31,7 @@
 
         <div class="row flex-xl-nowrap">
             <div class="no-display display-lg cell-lg-2 order-2 border-left bd-light toc-wrapper">
-                <h4>Table of content</h4>
+                <h5>Table of content</h5>
                 <hr/>
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Typography</a></li>
@@ -52,6 +52,12 @@
                     <li class="toc-entry"><a href="#_text_transform">Transform</a></li>
                     <li class="toc-entry"><a href="#_text_alignment">Alignment</a></li>
                     <li class="toc-entry"><a href="#_text_weight">Font weight</a></li>
+                    <li class="toc-entry"><a href="#_abbr">Abbreviations</a></li>
+                    <li class="toc-entry"><a href="#_addr">Address</a></li>
+                    <li class="toc-entry"><a href="#_blockquotes">Blockquotes</a></li>
+                    <li class="toc-entry"><a href="#_lists">Lists</a></li>
+                    <li class="toc-entry"><a href="#_desc">Description</a></li>
+                    <li class="toc-entry"><a href="#_tally">Tally</a></li>
                 </ul>
             </div>
 
@@ -372,7 +378,7 @@
                     &lt;p class='indent-letter'&gt;...&lt;/p&gt;
                 </code></pre>
 
-                <h4 id="_paragraph_inline_elements">Inline text elements</h4>
+                <h4 id="_inline_elements">Inline text elements</h4>
 
                 <p>Styling for common inline HTML5 elements.</p>
 
@@ -507,6 +513,86 @@
                     </tbody>
                 </table>
 
+                <h4 id="_abbr">Abbreviations</h4>
+                <p>
+                    Stylized implementation of HTML’s <span class="tally">&lt;abbr&gt;</span>  element for abbreviations and acronyms to show the expanded version on hover.
+                    Abbreviations have a default underline and gain a help cursor to provide additional context on hover and to users of assistive technologies.
+                </p>
+
+                <div class="example">
+                    <abbr title="this is a abbreviation">Abbreviation</abbr>
+                </div>
+
+                <pre class="prettyprint linenums"><code>
+                    &lt;abbr title="this is a abbreviation"&gt;Abbreviation&lt;/abbr&gt;
+                </code></pre>
+
+                <h4 id="_addr">Address</h4>
+                <p>
+                    Stylized implementation of HTML’s <span class="tally">&lt;addr&gt;</span>  element for creating address.
+                </p>
+
+                <div class="example">
+                    <address>
+                        <strong>Metro UI CSS</strong><br>
+                        Khreschatyk str, Suite 1<br>
+                        Kiev, Ukraine 01001<br>
+                        <abbr title="Phone">P:</abbr> (123) 456-7890
+                    </address>
+
+                    <address>
+                        <strong>Full Name</strong><br>
+                        <a href="mailto:#">first.last@example.com</a>
+                    </address>
+                </div>
+
+                <pre class="prettyprint linenums"><code>
+                    &lt;address&gt;
+                        &lt;strong&gt;Metro UI CSS&lt;/strong&gt;&lt;br&gt;
+                        Khreschatyk str, Suite 1&lt;br&gt;
+                        Kiev, Ukraine 01001&lt;br&gt;
+                        &lt;abbr title="Phone"&gt;P:&lt;/abbr&gt; (123) 456-7890
+                    &lt;/address&gt;
+
+                    &lt;address&gt;
+                        &lt;strong&gt;Full Name&lt;/strong&gt;&lt;br&gt;
+                        &lt;a href="mailto:#"&gt;first.last@example.com&lt;/a&gt;
+                    &lt;/address&gt;
+                </code></pre>
+
+                <h4 id="_blockquotes">Blockquotes</h4>
+                <p>
+                    For quoting blocks of content from another source within your document.
+                </p>
+
+                <div class="example clear">
+                    <blockquote>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                        <small>Someone famous <cite title="Source Title">Source Title</cite></small>
+                    </blockquote>
+
+
+                    <blockquote class="place-right">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                        <small>Someone famous <cite title="Source Title">Source Title</cite></small>
+                    </blockquote>
+                </div>
+
+                <pre class="prettyprint linenums"><code>
+                    &lt;blockquote&gt;
+                        &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
+                        &lt;small&gt;Someone famous
+                            &lt;cite title="Source Title"&gt;Source Title&lt;/cite&gt;
+                        &lt;/small&gt;
+                    &lt;/blockquote&gt;
+
+                    &lt;blockquote class="place-right"&gt;
+                        &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/p&gt;
+                        &lt;small&gt;Someone famous
+                            &lt;cite title="Source Title"&gt;Source Title&lt;/cite&gt;
+                        &lt;/small&gt;
+                    &lt;/blockquote&gt;
+                </code></pre>
 
             </main>
         </div>
@@ -516,6 +602,6 @@
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/pre-code.js"></script>
     <script src="js/github.js"></script>
-    <script src="//cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script src="prettify/run_prettify.js"></script>
 </body>
 </html>

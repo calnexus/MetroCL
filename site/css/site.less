@@ -2,32 +2,27 @@
 @import "../../less/include/mixins";
 
 .demo-grid {
-    [class^=cell] div, [class^=stub] div  {
-        color: #fff;
-        background: #23d160;
-        padding: .5rem 0;
+    .row {
+
+    }
+
+    [class^=cell] {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        border: 1px solid rgba(86,61,124,.2);
         text-align: center;
     }
 
-    [class^=cell]:nth-child(odd) div {
-        background: #ffdd57;
-        color: #000;
+    .cell-auto {
+        padding-left: 12px;
+        padding-right: 12px;
     }
 
-    .stub div {
-        background: #ccc;
+    .stub {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        background-color: #ccc;
         text-align: center;
-    }
-
-    margin-bottom: 0;
-
-    .row .row {
-        [class^=cell]:nth-child(odd) div {
-            background: @cyan;
-        }
-        [class^=cell]:nth-child(even) div {
-            background: @brown;
-        }
     }
 }
 
@@ -66,7 +61,7 @@ pre {
     font-weight: bold;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 667px) {
     .prettyprint {
         display: none !important;
     }
@@ -85,6 +80,7 @@ pre {
     max-height: ~"calc(100vh - 64px)";
     overflow-y: auto;
     display: block;
+    padding-top: .5rem;
 
     .toc-nav {
         list-style: none;

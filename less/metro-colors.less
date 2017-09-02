@@ -8,6 +8,10 @@
     background-color: rgba(red(@cyan), green(@cyan), blue(@cyan), .7) !important;
 }
 
+.bg-transparent {
+    background-color: @transparent !important;
+}
+
 .generate-colors(@colorListLength);
 
 .generate-colors(@name, @i: 1) when (@i =< @colorListLength) {

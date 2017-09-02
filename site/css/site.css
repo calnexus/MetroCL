@@ -8,29 +8,21 @@
 .set-flex {
   display: flex;
 }
-.demo-grid {
-  margin-bottom: 0;
-}
-.demo-grid [class^=cell] div,
-.demo-grid [class^=stub] div {
-  color: #fff;
-  background: #23d160;
-  padding: .5rem 0;
+.demo-grid [class^=cell] {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border: 1px solid rgba(86, 61, 124, 0.2);
   text-align: center;
 }
-.demo-grid [class^=cell]:nth-child(odd) div {
-  background: #ffdd57;
-  color: #000;
+.demo-grid .cell-auto {
+  padding-left: 12px;
+  padding-right: 12px;
 }
-.demo-grid .stub div {
-  background: #ccc;
+.demo-grid .stub {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #ccc;
   text-align: center;
-}
-.demo-grid .row .row [class^=cell]:nth-child(odd) div {
-  background: #1ba1e2;
-}
-.demo-grid .row .row [class^=cell]:nth-child(even) div {
-  background: #825a2c;
 }
 pre {
   margin: 24px 0;
@@ -67,7 +59,7 @@ pre {
 .prettyprint .atv {
   font-weight: bold;
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 667px) {
   .prettyprint {
     display: none !important;
   }
@@ -82,6 +74,7 @@ pre {
   max-height: calc(100vh - 64px);
   overflow-y: auto;
   display: block;
+  padding-top: .5rem;
 }
 .toc-wrapper .toc-nav {
   list-style: none;

@@ -1,6 +1,9 @@
 .op-default {
   background-color: rgba(27, 161, 226, 0.7) !important;
 }
+.bg-transparent {
+  background-color: transparent !important;
+}
 .fg-black {
   color: #000000 !important;
 }

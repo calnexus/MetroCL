@@ -153,6 +153,12 @@ abbr {
     display: inline;
 }
 
+address {
+    font-weight: normal;
+    margin-bottom: 1rem;
+    font-style: normal;
+}
+
 .tally {
     display: inline-block;
     .px2rem(padding, 3px 6px);
@@ -270,8 +276,6 @@ ul, menu, dir {
     list-style-type: disc;
 }
 
-// Paragraphs
-
 .indent {
     &:first-letter {
         margin-left: 2.5rem;
@@ -287,6 +291,36 @@ ul, menu, dir {
             .px2rem(margin-right, 8px);
             .px2rem(margin-left, -2px);
             .px2rem(margin-top, 2px);
+        }
+    }
+}
+
+blockquote {
+    margin-bottom: 1rem;
+    padding: 0 0 0 .625rem;
+    border-left: .25rem @light solid;
+
+    small {
+        color: @gray;
+
+        &:before {
+            content: "\2014 \00A0";
+        }
+    }
+
+    &.place-right {
+        border: 0;
+        border-right: 4px @light solid;
+        padding-right: .625rem;
+        text-align: right;
+
+        small {
+            &:before {
+                content: "";
+            }
+            &:after {
+                content: " \00A0 \2014";
+            }
         }
     }
 }

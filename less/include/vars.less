@@ -122,16 +122,14 @@
 @zindex-top:                1080;
 
 // Media breakpoints
-@sx: 320px;
-@sm: 480px;
-@ld: 640px;
+@sm: 576px;
 @md: 768px;
 @lg: 992px;
 @xl: 1200px;
 @xxl: 1452px;
 
-@mediaBreakpointListMobile: sx, sm, ld, md, lg, xl, xxl;
-@mediaBreakpointListDesktop: xxl, xl, lg, md, ld, sm, sx;
+@mediaBreakpointListMobile: sm, md, lg, xl, xxl;
+@mediaBreakpointListDesktop: xxl, xl, lg, md, sm;
 
 @mediaBreakpointListMobileLength: length(@mediaBreakpointListMobile);
 @mediaBreakpointListDesktopLength: length(@mediaBreakpointListDesktop);
