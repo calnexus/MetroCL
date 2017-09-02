@@ -96,7 +96,16 @@ pre {
 .example {
   padding: 16px;
   border: 4px solid #f8f8f8;
+  margin-bottom: 1rem;
 }
 .example *:last-child {
   margin-bottom: 0;
+}
+main > h3:before,
+main > h5:before {
+  display: block;
+  height: 5rem;
+  margin-top: -5rem;
+  visibility: hidden;
+  content: "";
 }
