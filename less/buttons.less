@@ -1,0 +1,134 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+.button {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .5rem .75rem;
+    font-size: 1rem;
+    line-height: 1.25;
+    transition: @transition-short;
+    background-color: @light;
+    color: @dark;
+    cursor: pointer;
+}
+
+a.button {
+    color: @dark;
+}
+
+.button {
+    &:focus, &:hover {
+        text-decoration: none;
+    }
+
+    &.focus, &:focus {
+        outline: 0;
+        box-shadow: 0 0 0 3px rgba(red(@gray), green(@gray), blue(@gray), 0.25);
+    }
+
+    &.disabled, &:disabled {
+        opacity: .65;
+    }
+}
+
+.button {
+    &.outline {
+        background: transparent none !important;
+        border-width: 2px;
+    }
+}
+
+@primaryColor: @cobalt;
+@secondaryColor: @grayBlue;
+@successColor: @green;
+@alertColor: @red;
+@warningColor: @lightOrange;
+@infoColor: @lightCyan;
+@darkColor: lighten(@dark, 20%);
+
+@buttonPredefinedTypes: primary, secondary, success, alert, warning, info, dark;
+@buttonPredefinedTypesLength: length(@buttonPredefinedTypes);
+
+.button {
+    .generate-buttons(@buttonPredefinedTypesLength);
+    .generate-buttons(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
+        @name: extract(@buttonPredefinedTypes, @i);
+        @color: "@{name}Color";
+
+        &.@{name} {
+            background-color: @@color;
+            outline-color: lighten(@@color, 30%);
+
+            &.outline {
+                color: @@color;
+                border-color: @@color;
+            }
+            &:hover {
+                background-color: darken(@@color, 10%) !important;
+                border-color: darken(@@color, 20%);
+            }
+            &.focus, &:focus {
+                box-shadow: 0 0 0 3px rgba(red(@@color), green(@@color), blue(@@color), 0.45);
+            }
+        }
+
+        .generate-buttons(@name, @i + 1);
+    }
+}
+
+.button {
+    &.link {
+        background-color: @transparent;
+        color: @linkColor;
+        &:hover {
+            color: @linkColorHover;
+            text-decoration: underline;
+        }
+        &.focus, &:focus {
+            box-shadow: none;
+        }
+    }
+}
+
+.button {
+    &.primary, &.secondary, &.success, &.alert, &.warning, &.info, &.dark {
+        color: @white;
+
+        &:hover {
+            color: @white;
+        }
+    }
+}
+
+.button {
+    &.rounded {
+        border-radius: .25rem;
+    }
+}
+
+.button {
+    img {
+        height: 1rem;
+    }
+}
+
+.button {
+    &.mini {
+        font-size: 70%;
+        padding: .2rem .5rem;
+    }
+    &.small {
+        font-size: 85%;
+        padding: .3rem .6rem;
+    }
+    &.large {
+        font-size: 130%;
+        padding: .75rem 1rem;
+    }
+}

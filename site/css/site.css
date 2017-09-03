@@ -39,9 +39,7 @@ pre {
 }
 .prettyprint {
   background-color: #eeeeee;
-  border-width: 1px !important;
-  border-color: #eeeeee !important;
-  border-left: 8px #555555 solid !important;
+  border: 1px #eeeeee !important;
 }
 .prettyprint ol {
   background-color: transparent !important;
@@ -49,6 +47,8 @@ pre {
 }
 .linenums {
   font-size: 16px;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 .linenums li {
   font-size: .8em;
@@ -63,11 +63,15 @@ pre {
   border-bottom: 0;
 }
 .prettyprint .tag,
-.prettyprint .atn {
+.prettyprint .atn,
+.prettyprint .pln {
   font-size: .8rem;
 }
 .prettyprint .atv {
   font-weight: bold;
+}
+.prettyprint .pln {
+  color: #9e9e9e;
 }
 @media screen and (max-width: 667px) {
   .prettyprint {

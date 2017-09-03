@@ -94,8 +94,6 @@
 @darkGray:             darken(@gray, @darkenValue);
 @darkGrayBlue:         darken(@grayBlue, @darkenValue);
 
-
-
 @colorList: black, white, dark, light, grayBlue, grayWhite, grayMouse,
             lime, green, emerald, blue, teal, cyan, cobalt, indigo, violet, pink, magenta, crimson, red, orange, amber, yellow, brown, olive, steel, mauve, taupe, gray,
             lightLime, lightGreen, lightEmerald, lightBlue, lightTeal, lightCyan, lightCobalt, lightIndigo, lightViolet, lightPink, lightMagenta, lightCrimson, lightRed, lightOrange, lightAmber, lightYellow, lightBrown, lightOlive, lightSteel, lightMauve, lightTaupe, lightGray, lightGrayBlue,
@@ -108,8 +106,13 @@
 @appBarBackgroundActive: @lightSteel;
 @appBarColor: @white;
 
-//Borders
+// Borders
 @borderRadius: @unitSize;
+
+// Links
+@linkColor:             #007bff;
+@linkColorHover:        #0056b3;
+
 
 // Z-index
 @zindex-dropdown:           1000;
@@ -140,6 +143,7 @@
 @mediaBreakpointListDesktopLength: length(@mediaBreakpointListDesktop);
 
 // Transition
-@transition-base:        all .2s ease-in-out;
+@transition-short:       all .15s ease-in-out;
+@transition-base:        all .3s ease-in-out;
 @transition-fade:        opacity .15s linear;
 @transition-collapse:    height .35s ease;

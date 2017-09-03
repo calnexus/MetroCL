@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@metroui">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Download">
+    <meta name="twitter:description" content="Download Metro UI CSS to get the compiled CSS and JavaScript, source code, or include it with your favorite package managers like npm, Bower, RubyGems, and more.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/metroui-social-logo.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/download.html">
+    <meta property="og:title" content="Download">
+    <meta property="og:description" content="Download Metro UI CSS to get the compiled CSS and JavaScript, source code, or include it with your favorite package managers like npm, Bower, RubyGems, and more.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/metroui-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/metroui-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="author" content="Sergey Pimenov">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="css/metro-all.css" rel="stylesheet">
+
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Buttons - Metro UI CSS 4.0 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row flex-xl-nowrap">
+            <div class="cell-12 cell-md-3 cell-xl-2" id="sidenav">
+            </div>
+
+            <div class="no-display display-lg cell-lg-2 order-2 border-left bd-light toc-wrapper">
+                <h4>Table of contents</h4>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Buttons</a></li>
+                    <li class="toc-entry">
+                        <a href="#_push_buttons">Push buttons</a>
+                        <ul>
+                            <li class="toc-entry"><a href="#_push_buttons_with_icons">With icons</a></li>
+                        </ul>
+                    </li>
+                    <li class="toc-entry"><a href="#_outline_buttons">Outline buttons</a></li>
+                    <li class="toc-entry"><a href="#_push_buttons_sizes">Any sizes</a></li>
+                    <li class="toc-entry"><a href="#_command_buttons">Command buttons</a></li>
+                    <li class="toc-entry"><a href="#_toolbars">Toolbars</a></li>
+                    <li class="toc-entry"><a href="#_image_buttons">Image buttons</a></li>
+                    <li class="toc-entry"><a href="#_shortcuts">Shortcuts</a></li>
+                    <li class="toc-entry"><a href="#_dropdown_buttons">Dropdown</a></li>
+                    <li class="toc-entry"><a href="#_split_buttons">Split buttons</a></li>
+                    <li class="toc-entry"><a href="#_pagination">Pagination</a></li>
+                    <li class="toc-entry"><a href="#_breadcrumbs">Breadcrumbs</a></li>
+                </ul>
+            </div>
+
+            <main class="cell-12 cell-md-9 cell-xl-8 order-1 pr-sx-1 pl-sx-1 pr-md-5 pl-md-5">
+                <h1>Buttons</h1>
+                <p class="text-leader">
+                    With the Metro UI CSS you can easily create different types of buttons, stylized to Windows Metro Style.
+                </p>
+
+                <h3 id="_push_buttons">Push buttons</h3>
+                <p>
+                    Button styles can be applied to anything with the <span class="tally">.button</span> class applied.
+                </p>
+
+                <div class="example">
+                    <button class="button">Default</button>
+                    <button class="button primary">Primary</button>
+                    <button class="button secondary">Secondary</button>
+                    <button class="button success">Success</button>
+                    <button class="button alert">Alert</button>
+                    <button class="button warning">Warning</button>
+                    <button class="button info">Info</button>
+                    <button class="button dark">Dark</button>
+                    <button class="button link">Link</button>
+                </div>
+
+                <pre class="prettyprint linenums"><code>
+                    &lt;button class="button"&gt;Default&lt;/button&gt;
+                    &lt;button class="button primary"&gt;Primary&lt;/button&gt;
+                    &lt;button class="button secondary"&gt;Secondary&lt;/button&gt;
+                    &lt;button class="button success"&gt;Success&lt;/button&gt;
+                    &lt;button class="button alert"&gt;Alert&lt;/button&gt;
+                    &lt;button class="button warning"&gt;Warning&lt;/button&gt;
+                    &lt;button class="button info"&gt;Info&lt;/button&gt;
+                    &lt;button class="button dark"&gt;Dark&lt;/button&gt;
+                    &lt;button class="button link"&gt;Link&lt;/button&gt;
+                </code></pre>
+
+                <h5>Note for .button class</h5>
+                <p>
+                    The <span class="tally">.button</span> class are designed to be used with the <span class="tally">&lt;button&gt;</span> element.
+                    However, you can also use these classes on <span class="tally">&lt;a&gt;</span> or <span class="tally">&lt;input&gt;</span> elements (though some browsers may apply a slightly different rendering).
+                </p>
+                <p>
+                    When using button class on <span class="tally">&lt;a&gt;</span> elements that are used to trigger in-page functionality (like collapsing content),
+                    rather than linking to new pages or sections within the current page, these links should be given a <span class="tally">role="button"</span> to appropriately convey their purpose to assistive technologies such as screen readers.
+                </p>
+
+                <div class="example">
+                    <a class="button primary" href="#" role="button">Link</a>
+                    <input class="button primary" type="button" value="Input">
+                    <input class="button primary" type="submit" value="Submit">
+                    <input class="button primary" type="reset" value="Reset">
+                </div>
+
+                <pre class="prettyprint linenums"><code>
+                    &lt;a class="button primary" href="#" role="button"&gt;Link&lt;/a&gt;
+                    &lt;input class="button primary" type="button" value="Input"&gt;
+                    &lt;input class="button primary" type="submit" value="Submit"&gt;
+                    &lt;input class="button primary" type="reset" value="Reset"&gt;
+                </code></pre>
+
+                <h5 id="_push_buttons_with_icons">Push buttons with icons</h5>
+                <p>
+                    Metro UI CSS support both types for adding icon to button: icon font and image.
+                </p>
+
+                <div class="example">
+                    <button class="button"><span class="mif-checkmark"></span> Font</button>
+                    <button class="button"><span class="mif-users"></span></button>
+                    <button class="button"><img src="images/checkmark.png"> Image</button>
+                    <button class="button"><img src="images/keycdn-logo.svg"></button>
+                </div>
+
+                <pre class="prettyprint linenums"><code>
+                    &lt;button class="button"&gt;&lt;span class="mif-checkmark"&gt;&lt;/span&gt; Font&lt;/button&gt;
+                    &lt;button class="button"&gt;&lt;span class="mif-users"&gt;&lt;/span&gt;&lt;/button&gt;
+                    &lt;button class="button"&gt;&lt;img src="images/checkmark.png"&gt; Image&lt;/button&gt;
+                    &lt;button class="button"&gt;&lt;img src="images/keycdn-logo.svg"&gt;&lt;/button&gt;
+                </code></pre>
+
+                <h3 id="_outline_buttons">Outline buttons</h3>
+                <p>
+                    In need of a button, but not the hefty background colors they bring? Add subclass <span class="tally">.outline</span> to remove all background images and colors on any button.
+                </p>
+                <div class="example">
+                    <button class="button primary outline">Primary</button>
+                    <button class="button secondary outline">Secondary</button>
+                    <button class="button success outline">Success</button>
+                    <button class="button alert outline">Alert</button>
+                    <button class="button warning outline">Warning</button>
+                    <button class="button info outline">Info</button>
+                    <button class="button dark outline">Dark</button>
+                </div>
+
+                <h5 id="_push_buttons_sizes">Push button sizes</h5>
+                <p>
+                    Fancy larger or smaller buttons? Add one of classes: <span class="tally">.mini</span>, <span class="tally">.small</span> or <span class="tally">.large</span> for additional sizes.
+                </p>
+                <div class="example">
+                    <button class="button primary mini">mini</button>
+                    <button class="button primary small">small</button>
+                    <button class="button primary">default</button>
+                    <button class="button primary large">Large button</button>
+                    <button class="button primary outline mini">Mini</button>
+                    <button class="button secondary outline small">Small</button>
+                    <button class="button success outline">Defaulr</button>
+                    <button class="button alert outline large">Outline Large</button>
+                </div>
+
+                <pre class="prettyprint linenums"><code>
+                    &lt;button class="button primary mini"&gt;mini&lt;/button&gt;
+                    &lt;button class="button primary small"&gt;small&lt;/button&gt;
+                    &lt;button class="button primary"&gt;default&lt;/button&gt;
+                    &lt;button class="button primary large"&gt;Large button&lt;/button&gt;
+                    &lt;button class="button primary outline mini"&gt;Mini&lt;/button&gt;
+                    &lt;button class="button secondary outline small"&gt;Small&lt;/button&gt;
+                    &lt;button class="button success outline"&gt;Defaulr&lt;/button&gt;
+                    &lt;button class="button alert outline large"&gt;Outline Large&lt;/button&gt;
+                </code></pre>
+
+                <h5 id="_push_buttons_rounded">Push button with rounded corners</h5>
+                <p>
+                    Need rounded corners? Add class: <span class="tally">.rounded</span>. This class add <span class="tally">border-radius: 0.25rem</span> to button.
+                </p>
+                <div class="example">
+                    <button class="button primary mini rounded">mini</button>
+                    <button class="button primary small rounded">small</button>
+                    <button class="button primary rounded">default</button>
+                    <button class="button primary large rounded">Large button</button>
+                    <button class="button primary outline mini rounded">Mini</button>
+                    <button class="button secondary outline small rounded">Small</button>
+                    <button class="button success outline rounded">Defaulr</button>
+                    <button class="button alert outline large rounded">Outline Large</button>
+                </div>
+
+            </main>
+        </div>
+
+    </div>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/pre-code.js"></script>
+    <script src="js/github.js"></script>
+    <script src="prettify/run_prettify.js"></script>
+    <script src="js/site.js"></script>
+</body>
+</html>
