@@ -272,73 +272,6 @@
 .op-light {
   background-color: rgba(248, 248, 248, 0.7) !important;
 }
-.fg-gray {
-  color: #9e9e9e !important;
-}
-.bg-gray {
-  background-color: #9e9e9e !important;
-}
-.bd-gray {
-  border-color: #9e9e9e !important;
-}
-.ol-gray {
-  outline-color: #9e9e9e !important;
-}
-.fg-gray-active:active {
-  color: #9e9e9e !important;
-}
-.fg-gray-hover:hover {
-  color: #9e9e9e !important;
-}
-.fg-gray-focus:focus {
-  color: #9e9e9e !important;
-}
-.bg-gray-active:active {
-  background-color: #9e9e9e !important;
-}
-.bg-gray-hover:hover {
-  background-color: #9e9e9e !important;
-}
-.bg-gray-focus:focus {
-  background-color: #9e9e9e !important;
-}
-.bd-gray-active:active {
-  border-color: #9e9e9e !important;
-}
-.bd-gray-hover:hover {
-  border-color: #9e9e9e !important;
-}
-.bd-gray-focus:focus {
-  border-color: #9e9e9e !important;
-}
-.ol-gray-active:active {
-  outline-color: #9e9e9e !important;
-}
-.ol-gray-hover:hover {
-  outline-color: #9e9e9e !important;
-}
-.ol-gray-focus:focus {
-  outline-color: #9e9e9e !important;
-}
-.ribbed-gray {
-  background: #9e9e9e linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-  background-size: 20px 20px !important;
-}
-.before-bg-gray::before {
-  background: #9e9e9e !important;
-}
-.before-fg-gray::before {
-  color: #9e9e9e !important;
-}
-.after-bg-gray::after {
-  background: #9e9e9e !important;
-}
-.after-fg-gray::after {
-  color: #9e9e9e !important;
-}
-.op-gray {
-  background-color: rgba(158, 158, 158, 0.7) !important;
-}
 .fg-grayBlue {
   color: #607d8b !important;
 }
@@ -1546,71 +1479,71 @@
   background-color: rgba(240, 163, 10, 0.7) !important;
 }
 .fg-yellow {
-  color: #e3c800 !important;
+  color: #fff000 !important;
 }
 .bg-yellow {
-  background-color: #e3c800 !important;
+  background-color: #fff000 !important;
 }
 .bd-yellow {
-  border-color: #e3c800 !important;
+  border-color: #fff000 !important;
 }
 .ol-yellow {
-  outline-color: #e3c800 !important;
+  outline-color: #fff000 !important;
 }
 .fg-yellow-active:active {
-  color: #e3c800 !important;
+  color: #fff000 !important;
 }
 .fg-yellow-hover:hover {
-  color: #e3c800 !important;
+  color: #fff000 !important;
 }
 .fg-yellow-focus:focus {
-  color: #e3c800 !important;
+  color: #fff000 !important;
 }
 .bg-yellow-active:active {
-  background-color: #e3c800 !important;
+  background-color: #fff000 !important;
 }
 .bg-yellow-hover:hover {
-  background-color: #e3c800 !important;
+  background-color: #fff000 !important;
 }
 .bg-yellow-focus:focus {
-  background-color: #e3c800 !important;
+  background-color: #fff000 !important;
 }
 .bd-yellow-active:active {
-  border-color: #e3c800 !important;
+  border-color: #fff000 !important;
 }
 .bd-yellow-hover:hover {
-  border-color: #e3c800 !important;
+  border-color: #fff000 !important;
 }
 .bd-yellow-focus:focus {
-  border-color: #e3c800 !important;
+  border-color: #fff000 !important;
 }
 .ol-yellow-active:active {
-  outline-color: #e3c800 !important;
+  outline-color: #fff000 !important;
 }
 .ol-yellow-hover:hover {
-  outline-color: #e3c800 !important;
+  outline-color: #fff000 !important;
 }
 .ol-yellow-focus:focus {
-  outline-color: #e3c800 !important;
+  outline-color: #fff000 !important;
 }
 .ribbed-yellow {
-  background: #e3c800 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background: #fff000 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 20px 20px !important;
 }
 .before-bg-yellow::before {
-  background: #e3c800 !important;
+  background: #fff000 !important;
 }
 .before-fg-yellow::before {
-  color: #e3c800 !important;
+  color: #fff000 !important;
 }
 .after-bg-yellow::after {
-  background: #e3c800 !important;
+  background: #fff000 !important;
 }
 .after-fg-yellow::after {
-  color: #e3c800 !important;
+  color: #fff000 !important;
 }
 .op-yellow {
-  background-color: rgba(227, 200, 0, 0.7) !important;
+  background-color: rgba(255, 240, 0, 0.7) !important;
 }
 .fg-brown {
   color: #825a2c !important;
@@ -1946,6 +1879,73 @@
 }
 .op-taupe {
   background-color: rgba(135, 121, 78, 0.7) !important;
+}
+.fg-gray {
+  color: #9e9e9e !important;
+}
+.bg-gray {
+  background-color: #9e9e9e !important;
+}
+.bd-gray {
+  border-color: #9e9e9e !important;
+}
+.ol-gray {
+  outline-color: #9e9e9e !important;
+}
+.fg-gray-active:active {
+  color: #9e9e9e !important;
+}
+.fg-gray-hover:hover {
+  color: #9e9e9e !important;
+}
+.fg-gray-focus:focus {
+  color: #9e9e9e !important;
+}
+.bg-gray-active:active {
+  background-color: #9e9e9e !important;
+}
+.bg-gray-hover:hover {
+  background-color: #9e9e9e !important;
+}
+.bg-gray-focus:focus {
+  background-color: #9e9e9e !important;
+}
+.bd-gray-active:active {
+  border-color: #9e9e9e !important;
+}
+.bd-gray-hover:hover {
+  border-color: #9e9e9e !important;
+}
+.bd-gray-focus:focus {
+  border-color: #9e9e9e !important;
+}
+.ol-gray-active:active {
+  outline-color: #9e9e9e !important;
+}
+.ol-gray-hover:hover {
+  outline-color: #9e9e9e !important;
+}
+.ol-gray-focus:focus {
+  outline-color: #9e9e9e !important;
+}
+.ribbed-gray {
+  background: #9e9e9e linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background-size: 20px 20px !important;
+}
+.before-bg-gray::before {
+  background: #9e9e9e !important;
+}
+.before-fg-gray::before {
+  color: #9e9e9e !important;
+}
+.after-bg-gray::after {
+  background: #9e9e9e !important;
+}
+.after-fg-gray::after {
+  color: #9e9e9e !important;
+}
+.op-gray {
+  background-color: rgba(158, 158, 158, 0.7) !important;
 }
 .fg-lightLime {
   color: #cff700 !important;
@@ -2953,71 +2953,71 @@
   background-color: rgba(247, 182, 54, 0.7) !important;
 }
 .fg-lightYellow {
-  color: #ffe317 !important;
+  color: #fff333 !important;
 }
 .bg-lightYellow {
-  background-color: #ffe317 !important;
+  background-color: #fff333 !important;
 }
 .bd-lightYellow {
-  border-color: #ffe317 !important;
+  border-color: #fff333 !important;
 }
 .ol-lightYellow {
-  outline-color: #ffe317 !important;
+  outline-color: #fff333 !important;
 }
 .fg-lightYellow-active:active {
-  color: #ffe317 !important;
+  color: #fff333 !important;
 }
 .fg-lightYellow-hover:hover {
-  color: #ffe317 !important;
+  color: #fff333 !important;
 }
 .fg-lightYellow-focus:focus {
-  color: #ffe317 !important;
+  color: #fff333 !important;
 }
 .bg-lightYellow-active:active {
-  background-color: #ffe317 !important;
+  background-color: #fff333 !important;
 }
 .bg-lightYellow-hover:hover {
-  background-color: #ffe317 !important;
+  background-color: #fff333 !important;
 }
 .bg-lightYellow-focus:focus {
-  background-color: #ffe317 !important;
+  background-color: #fff333 !important;
 }
 .bd-lightYellow-active:active {
-  border-color: #ffe317 !important;
+  border-color: #fff333 !important;
 }
 .bd-lightYellow-hover:hover {
-  border-color: #ffe317 !important;
+  border-color: #fff333 !important;
 }
 .bd-lightYellow-focus:focus {
-  border-color: #ffe317 !important;
+  border-color: #fff333 !important;
 }
 .ol-lightYellow-active:active {
-  outline-color: #ffe317 !important;
+  outline-color: #fff333 !important;
 }
 .ol-lightYellow-hover:hover {
-  outline-color: #ffe317 !important;
+  outline-color: #fff333 !important;
 }
 .ol-lightYellow-focus:focus {
-  outline-color: #ffe317 !important;
+  outline-color: #fff333 !important;
 }
 .ribbed-lightYellow {
-  background: #ffe317 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background: #fff333 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 20px 20px !important;
 }
 .before-bg-lightYellow::before {
-  background: #ffe317 !important;
+  background: #fff333 !important;
 }
 .before-fg-lightYellow::before {
-  color: #ffe317 !important;
+  color: #fff333 !important;
 }
 .after-bg-lightYellow::after {
-  background: #ffe317 !important;
+  background: #fff333 !important;
 }
 .after-fg-lightYellow::after {
-  color: #ffe317 !important;
+  color: #fff333 !important;
 }
 .op-lightYellow {
-  background-color: rgba(255, 227, 23, 0.7) !important;
+  background-color: rgba(255, 243, 51, 0.7) !important;
 }
 .fg-lightBrown {
   color: #a87439 !important;
@@ -4494,71 +4494,71 @@
   background-color: rgba(191, 130, 8, 0.7) !important;
 }
 .fg-darkYellow {
-  color: #b09b00 !important;
+  color: #ccc000 !important;
 }
 .bg-darkYellow {
-  background-color: #b09b00 !important;
+  background-color: #ccc000 !important;
 }
 .bd-darkYellow {
-  border-color: #b09b00 !important;
+  border-color: #ccc000 !important;
 }
 .ol-darkYellow {
-  outline-color: #b09b00 !important;
+  outline-color: #ccc000 !important;
 }
 .fg-darkYellow-active:active {
-  color: #b09b00 !important;
+  color: #ccc000 !important;
 }
 .fg-darkYellow-hover:hover {
-  color: #b09b00 !important;
+  color: #ccc000 !important;
 }
 .fg-darkYellow-focus:focus {
-  color: #b09b00 !important;
+  color: #ccc000 !important;
 }
 .bg-darkYellow-active:active {
-  background-color: #b09b00 !important;
+  background-color: #ccc000 !important;
 }
 .bg-darkYellow-hover:hover {
-  background-color: #b09b00 !important;
+  background-color: #ccc000 !important;
 }
 .bg-darkYellow-focus:focus {
-  background-color: #b09b00 !important;
+  background-color: #ccc000 !important;
 }
 .bd-darkYellow-active:active {
-  border-color: #b09b00 !important;
+  border-color: #ccc000 !important;
 }
 .bd-darkYellow-hover:hover {
-  border-color: #b09b00 !important;
+  border-color: #ccc000 !important;
 }
 .bd-darkYellow-focus:focus {
-  border-color: #b09b00 !important;
+  border-color: #ccc000 !important;
 }
 .ol-darkYellow-active:active {
-  outline-color: #b09b00 !important;
+  outline-color: #ccc000 !important;
 }
 .ol-darkYellow-hover:hover {
-  outline-color: #b09b00 !important;
+  outline-color: #ccc000 !important;
 }
 .ol-darkYellow-focus:focus {
-  outline-color: #b09b00 !important;
+  outline-color: #ccc000 !important;
 }
 .ribbed-darkYellow {
-  background: #b09b00 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background: #ccc000 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 20px 20px !important;
 }
 .before-bg-darkYellow::before {
-  background: #b09b00 !important;
+  background: #ccc000 !important;
 }
 .before-fg-darkYellow::before {
-  color: #b09b00 !important;
+  color: #ccc000 !important;
 }
 .after-bg-darkYellow::after {
-  background: #b09b00 !important;
+  background: #ccc000 !important;
 }
 .after-fg-darkYellow::after {
-  color: #b09b00 !important;
+  color: #ccc000 !important;
 }
 .op-darkYellow {
-  background-color: rgba(176, 155, 0, 0.7) !important;
+  background-color: rgba(204, 192, 0, 0.7) !important;
 }
 .fg-darkBrown {
   color: #5c401f !important;

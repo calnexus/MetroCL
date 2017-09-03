@@ -38,7 +38,7 @@
 @red:                   #CE352C;
 @orange:                #fa6800;
 @amber:                 #f0a30a;
-@yellow:                #e3c800;
+@yellow: #fff000;
 @brown:                 #825a2c;
 @olive:                 #6d8764;
 @steel:                 #647687;
@@ -96,8 +96,8 @@
 
 
 
-@colorList: black, white, dark, light, gray, grayBlue, grayWhite, grayMouse,
-            lime, green, emerald, blue, teal, cyan, cobalt, indigo, violet, pink, magenta, crimson, red, orange, amber, yellow, brown, olive, steel, mauve, taupe,
+@colorList: black, white, dark, light, grayBlue, grayWhite, grayMouse,
+            lime, green, emerald, blue, teal, cyan, cobalt, indigo, violet, pink, magenta, crimson, red, orange, amber, yellow, brown, olive, steel, mauve, taupe, gray,
             lightLime, lightGreen, lightEmerald, lightBlue, lightTeal, lightCyan, lightCobalt, lightIndigo, lightViolet, lightPink, lightMagenta, lightCrimson, lightRed, lightOrange, lightAmber, lightYellow, lightBrown, lightOlive, lightSteel, lightMauve, lightTaupe, lightGray, lightGrayBlue,
             darkLime, darkGreen, darkEmerald, darkBlue, darkTeal, darkCyan, darkCobalt, darkIndigo, darkViolet, darkPink, darkMagenta, darkCrimson, darkRed, darkOrange, darkAmber, darkYellow, darkBrown, darkOlive, darkSteel, darkMauve, darkTaupe, darkGray, darkGrayBlue;
 
@@ -120,6 +120,11 @@
 @zindex-popover:            1060;
 @zindex-tooltip:            1070;
 @zindex-top:                1080;
+
+// Percents breakpoints
+@percentBreakpointsList: 25, 50, 75, 100;
+@percentBreakpointsLength: length(@percentBreakpointsList);
+
 
 // Media breakpoints
 @sm: 576px;
