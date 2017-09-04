@@ -49,14 +49,15 @@
                         <a href="#_push_buttons">Push buttons</a>
                         <ul>
                             <li class="toc-entry"><a href="#_push_buttons_with_icons">With icons</a></li>
+                            <li class="toc-entry"><a href="#_outline_buttons">Outline buttons</a></li>
+                            <li class="toc-entry"><a href="#_push_buttons_sizes">Any sizes</a></li>
+                            <li class="toc-entry"><a href="#_push_buttons_rounded">Rounded corners</a></li>
+                            <li class="toc-entry"><a href="#_push_buttons_square_and_cycle">Square &amp; cycle</a></li>
                         </ul>
                     </li>
-                    <li class="toc-entry"><a href="#_outline_buttons">Outline buttons</a></li>
-                    <li class="toc-entry"><a href="#_push_buttons_sizes">Any sizes</a></li>
-                    <li class="toc-entry"><a href="#_push_buttons_rounded">Rounded corners</a></li>
-                    <li class="toc-entry"><a href="#_command_buttons">Command buttons</a></li>
+                    <li class="toc-entry"><a href="#_command_button">Command buttons</a></li>
+                    <li class="toc-entry"><a href="#_image_button">Image buttons</a></li>
                     <li class="toc-entry"><a href="#_toolbars">Toolbars</a></li>
-                    <li class="toc-entry"><a href="#_image_buttons">Image buttons</a></li>
                     <li class="toc-entry"><a href="#_shortcuts">Shortcuts</a></li>
                     <li class="toc-entry"><a href="#_dropdown_buttons">Dropdown</a></li>
                     <li class="toc-entry"><a href="#_split_buttons">Split buttons</a></li>
@@ -85,6 +86,7 @@
                     <button class="button warning">Warning</button>
                     <button class="button info">Info</button>
                     <button class="button dark">Dark</button>
+                    <button class="button light">Light</button>
                     <button class="button link">Link</button>
                 </div>
 
@@ -97,6 +99,7 @@
                     &lt;button class="button warning"&gt;Warning&lt;/button&gt;
                     &lt;button class="button info"&gt;Info&lt;/button&gt;
                     &lt;button class="button dark"&gt;Dark&lt;/button&gt;
+                    &lt;button class="button light"&gt;Light&lt;/button&gt;
                     &lt;button class="button link"&gt;Link&lt;/button&gt;
                 </code></pre>
 
@@ -124,7 +127,7 @@
                     &lt;input class="button primary" type="reset" value="Reset"&gt;
                 </code></pre>
 
-                <h5 id="_push_buttons_with_icons">Push buttons with icons</h5>
+                <h3 id="_push_buttons_with_icons">Push buttons with icons</h3>
                 <p>
                     Metro UI CSS support both types for adding icon to button: icon font and image.
                 </p>
@@ -194,10 +197,216 @@
                     <button class="button primary large rounded">Large button</button>
                     <button class="button primary outline mini rounded">Mini</button>
                     <button class="button secondary outline small rounded">Small</button>
-                    <button class="button success outline rounded">Defaulr</button>
+                    <button class="button success outline rounded">Default</button>
                     <button class="button alert outline large rounded">Outline Large</button>
                 </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;button class="button primary mini rounded"&gt;mini&lt;/button&gt;
+                    &lt;button class="button success outline rounded"&gt;Default&lt;/button&gt;
+                </code></pre>
 
+                <h3 id="_push_buttons_square_and_cycle">Square &amp; cycle buttons</h3>
+                <p>
+                    Need square or cycle button? Add one of modifiers classes: <span class="tally">.square</span> or <span class="tally">.cycle</span>.
+                </p>
+                <div class="example">
+                    <div>
+                        <button class="button primary square mini"><span class="mif-checkmark"></span></button>
+                        <button class="button primary square small"><span class="mif-checkmark"></span></button>
+                        <button class="button primary square "><span class="mif-checkmark"></span></button>
+                        <button class="button primary square large"><span class="mif-checkmark"></span></button>
+                        <button class="button primary cycle mini"><span class="mif-checkmark"></span></button>
+                        <button class="button primary cycle small"><span class="mif-checkmark"></span></button>
+                        <button class="button primary cycle "><span class="mif-checkmark"></span></button>
+                        <button class="button primary cycle large"><span class="mif-checkmark"></span></button>
+                    </div>
+                    <br />
+                    <div>
+                        <button class="button primary square mini outline"><span class="mif-download"></span></button>
+                        <button class="button primary square small outline"><span class="mif-download"></span></button>
+                        <button class="button primary square outline"><span class="mif-download"></span></button>
+                        <button class="button success square large outline"><span class="mif-download"></span></button>
+                        <button class="button secondary cycle mini outline"><span class="mif-play"></span></button>
+                        <button class="button warning cycle small outline"><span class="mif-play"></span></button>
+                        <button class="button dark cycle outline"><span class="mif-play"></span></button>
+                        <button class="button info cycle large outline"><span class="mif-checkmark"></span></button>
+                    </div>
+                    <br />
+                    <div>
+                        <button class="button primary square mini rounded"><span class="mif-download"></span></button>
+                        <button class="button primary square small rounded"><span class="mif-download"></span></button>
+                        <button class="button primary square rounded"><span class="mif-download"></span></button>
+                        <button class="button success square large rounded"><span class="mif-download"></span></button>
+                        <button class="button primary square mini outline rounded"><span class="mif-download"></span></button>
+                        <button class="button primary square small outline rounded"><span class="mif-download"></span></button>
+                        <button class="button primary square outline rounded"><span class="mif-download"></span></button>
+                        <button class="button success square large outline rounded"><span class="mif-download"></span></button>
+                    </div>
+                </div>
+
+                <pre class="prettyprint linenums"><code>
+                        &lt;button class="button primary square mini"&gt;&lt;/button&gt;
+                        &lt;button class="button primary square outline"&gt;&lt;/button&gt;
+                        &lt;button class="button primary cycle small outline"&gt;&lt;/button&gt;
+                        &lt;button class="button primary cycle "&gt;&lt;/button&gt;
+                </code></pre>
+
+                <h3 id="_command_button">Command button</h3>
+                <p>
+                    Need a Windows Command button? Create it with class <span class="tally">.command-button</span>. Command button support accent mode (primary, alert, ...), outline mode, rounded corners and left or right icon position.
+                </p>
+                <div class="example">
+                    <button class="command-button d-flex m-1">
+                        <span class="mif-share icon"></span>
+                        <span class="caption">
+                            Yes, share and connect
+                            <small>Use this option for home or work</small>
+                        </span>
+                    </button>
+                    <button class="command-button primary d-flex m-1">
+                        <span class="mif-share icon"></span>
+                        <span class="caption">
+                            Yes, share and connect
+                            <small>Use this option for home or work</small>
+                        </span>
+                    </button>
+                    <button class="command-button primary outline d-flex m-1">
+                        <span class="mif-share icon"></span>
+                        <span class="caption">
+                            Yes, share and connect
+                            <small>Use this option for home or work</small>
+                        </span>
+                    </button>
+                    <button class="command-button primary outline rounded d-flex m-1">
+                        <span class="mif-share icon"></span>
+                        <span class="caption">
+                            Yes, share and connect
+                            <small>Use this option for home or work</small>
+                        </span>
+                    </button>
+                    <button class="command-button rounded icon-right alert d-flex m-1">
+                        <span class="mif-share icon"></span>
+                        <span class="caption">
+                            Yes, share and connect
+                            <small>Use this option for home or work</small>
+                        </span>
+                    </button>
+                </div>
+
+                <pre class="prettyprint linenums"><code>
+                    &lt;button class="command-button"&gt;
+                        &lt;span class="mif-share icon"&gt;&lt;/span&gt;
+                        &lt;span class="caption"&gt;
+                            Yes, share and connect
+                            &lt;small&gt;Use this option for home or work&lt;/small&gt;
+                        &lt;/span&gt;
+                    &lt;/button&gt;
+                    &lt;button class="command-button primary outline rounded"&gt;
+                        &lt;span class="mif-share icon"&gt;&lt;/span&gt;
+                        &lt;span class="caption"&gt;
+                            Yes, share and connect
+                            &lt;small&gt;Use this option for home or work&lt;/small&gt;
+                        &lt;/span&gt;
+                    &lt;/button&gt;
+                    &lt;button class="command-button icon-right warning"&gt;
+                        &lt;span class="mif-share icon"&gt;&lt;/span&gt;
+                        &lt;span class="caption"&gt;
+                            Yes, share and connect
+                            &lt;small&gt;Use this option for home or work&lt;/small&gt;
+                        &lt;/span&gt;
+                    &lt;/button&gt;
+                </code></pre>
+
+                <h3 id="_image_button">Image button</h3>
+                <p>
+                    With Metro UI CSS you can simple create image button. User <span class="tally">.image-button</span> class to create image button.
+                </p>
+
+                <div class="example">
+                    <div>
+                        <button class="image-button">
+                            <span class="mif-share icon"></span>
+                            <span class="caption">Share it</span>
+                        </button>
+                        <button class="image-button icon-right">
+                            <span class="mif-share icon"></span>
+                            <span class="caption">Share it</span>
+                        </button>
+                    </div>
+                    <br />
+                    <div>
+                        <button class="image-button primary">
+                            <span class="mif-share icon"></span>
+                            <span class="caption">Share it</span>
+                        </button>
+                        <button class="image-button secondary">
+                            <span class="mif-share icon"></span>
+                            <span class="caption">Share it</span>
+                        </button>
+                        <button class="image-button success">
+                            <span class="mif-share icon"></span>
+                            <span class="caption">Share it</span>
+                        </button>
+                        <button class="image-button warning">
+                            <span class="mif-share icon"></span>
+                            <span class="caption">Share it</span>
+                        </button>
+                        <button class="image-button alert">
+                            <span class="mif-share icon"></span>
+                            <span class="caption">Share it</span>
+                        </button>
+                        <button class="image-button info">
+                            <span class="mif-share icon"></span>
+                            <span class="caption">Share it</span>
+                        </button>
+                    </div>
+                    <br />
+                    <div>
+                        <button class="image-button primary outline">
+                            <span class="mif-share icon"></span>
+                            <span class="caption">Share it</span>
+                        </button>
+                        <button class="image-button secondary outline">
+                            <span class="mif-share icon"></span>
+                            <span class="caption">Share it</span>
+                        </button>
+                        <button class="image-button success outline">
+                            <span class="mif-share icon"></span>
+                            <span class="caption">Share it</span>
+                        </button>
+                        <button class="image-button warning outline">
+                            <span class="mif-share icon"></span>
+                            <span class="caption">Share it</span>
+                        </button>
+                        <button class="image-button alert outline">
+                            <span class="mif-share icon"></span>
+                            <span class="caption">Share it</span>
+                        </button>
+                        <button class="image-button info outline">
+                            <span class="mif-share icon"></span>
+                            <span class="caption">Share it</span>
+                        </button>
+                    </div>
+                </div>
+
+                <pre class="prettyprint linenums"><code>
+                    &lt;button class="image-button"&gt;
+                        &lt;span class="mif-share icon"&gt;&lt;/span&gt;
+                        &lt;span class="caption"&gt;Share it&lt;/span&gt;
+                    &lt;/button&gt;
+                    &lt;button class="image-button icon-right"&gt;
+                        &lt;span class="mif-share icon"&gt;&lt;/span&gt;
+                        &lt;span class="caption"&gt;Share it&lt;/span&gt;
+                    &lt;/button&gt;
+                    &lt;button class="image-button alert"&gt;
+                        &lt;span class="mif-share icon"&gt;&lt;/span&gt;
+                        &lt;span class="caption"&gt;Share it&lt;/span&gt;
+                    &lt;/button&gt;
+                    &lt;button class="image-button warning outline"&gt;
+                        &lt;span class="mif-share icon"&gt;&lt;/span&gt;
+                        &lt;span class="caption"&gt;Share it&lt;/span&gt;
+                    &lt;/button&gt;
+                </code></pre>
             </main>
         </div>
 
