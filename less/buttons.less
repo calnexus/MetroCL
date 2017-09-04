@@ -18,11 +18,11 @@
     cursor: pointer;
 }
 
-a.button, a.command-button, .image-button {
+a.button, a.command-button, .image-button, .shortcut {
     color: @dark;
 }
 
-.button, .command-button, .image-button {
+.button, .command-button, .image-button, .shortcut {
     &:focus, &:hover {
         text-decoration: none;
     }
@@ -37,7 +37,7 @@ a.button, a.command-button, .image-button {
     }
 }
 
-.button, .command-button, .image-button {
+.button, .command-button, .image-button, .shortcut {
     &.outline {
         background: transparent none !important;
         border-width: 1px;
@@ -197,7 +197,68 @@ a.button, a.command-button, .image-button {
     }
 }
 
-.button, .command-button, .image-button {
+.shortcut {
+    width: 6rem;
+    height: 6rem;
+    padding: .5rem;
+    display: inline-flex;
+    flex-direction: column;
+    font-size: .9rem;
+    transition: @transition-short;
+    background-color: darken(@light, 5%);
+    color: @dark;
+    cursor: pointer;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+
+    .icon, .caption {
+        display: block;
+    }
+
+    .icon {
+        display: block;
+        vertical-align: middle;
+        width: 1.7rem;
+        height: 1.7rem;
+        font-size: 1.7rem;
+        margin-top: 1rem;
+        order: 1;
+    }
+
+    .caption {
+        color: inherit;
+        height: 1.2rem;
+        order: 2;
+    }
+
+    .icon ~ .caption {
+        margin-top: .875rem;
+    }
+
+    .tag {
+        position: absolute;
+        .px2rem(font-size, 11px);
+        top: .25rem;
+        right: .25rem;
+        color: inherit;
+    }
+
+    &.no-caption {
+        .icon {
+            width: 2rem;
+            height: 2rem;
+            font-size: 2rem;
+            margin-top: 1.5rem;
+        }
+    }
+}
+
+.button, .command-button, .image-button, .shortcut {
     .generate-buttons(@buttonPredefinedTypesLength);
     .generate-buttons(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
         @name: extract(@buttonPredefinedTypes, @i);
@@ -223,7 +284,7 @@ a.button, a.command-button, .image-button {
     }
 }
 
-.button, .command-button, .image-button {
+.button, .command-button, .image-button, .shortcut {
     &.primary, &.secondary, &.success, &.alert, &.warning, &.info, &.dark {
         color: @white;
 

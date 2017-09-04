@@ -319,7 +319,7 @@
 
                 <h3 id="_image_button">Image button</h3>
                 <p>
-                    With Metro UI CSS you can simple create image button. User <span class="tally">.image-button</span> class to create image button.
+                    With Metro UI CSS you can simple create image button. User <span class="tally">.image-button</span> class to create image button. Image button support accent mode (primary, alert, ...), outline mode, rounded corners and left or right icon position.
                 </p>
 
                 <div class="example">
@@ -405,6 +405,77 @@
                     &lt;button class="image-button warning outline"&gt;
                         &lt;span class="mif-share icon"&gt;&lt;/span&gt;
                         &lt;span class="caption"&gt;Share it&lt;/span&gt;
+                    &lt;/button&gt;
+                </code></pre>
+
+                <h3 id="_shortcuts">Shortcut</h3>
+                <p>
+                    Need shortcut button? With Metro UI CSS you can simple create shortcut button. User <span class="tally">.shortcut</span> class to create shortcut button.
+                    Shortcuts support accent mode (primary, alert, ...), outline mode and rounded corners.
+                </p>
+
+                <div class="example">
+                    <button class="shortcut">
+                        <span class="caption">Rocket</span>
+                        <span class="mif-rocket icon"></span>
+                    </button>
+                    <button class="shortcut primary">
+                        <span class="tag">10</span>
+                        <span class="caption">Rocket</span>
+                        <span class="mif-rocket icon"></span>
+                    </button>
+                    <button class="shortcut secondary outline">
+                        <span class="tag">10</span>
+                        <span class="caption">Rocket</span>
+                        <span class="mif-rocket icon"></span>
+                    </button>
+                    <button class="shortcut alert rounded">
+                        <span class="tag">10</span>
+                        <span class="caption">Rocket</span>
+                        <span class="mif-rocket icon"></span>
+                    </button>
+                    <button class="shortcut alert rounded">
+                        <span class="tag">10</span>
+                        <span class="caption">Rocket</span>
+                        <img src="images/checkmark.png" class="icon">
+                    </button>
+                    <button class="shortcut warning no-caption">
+                        <span class="mif-rocket icon"></span>
+                    </button>
+                    <button class="shortcut info outline rounded no-caption">
+                        <span class="tag">10</span>
+                        <span class="mif-rocket icon"></span>
+                    </button>
+                </div>
+
+                <pre class="prettyprint linenums"><code>
+                    &lt;button class="shortcut"&gt;
+                        &lt;span class="caption"&gt;Rocket&lt;/span&gt;
+                        &lt;span class="mif-rocket icon"&gt;&lt;/span&gt;
+                    &lt;/button&gt;
+                    &lt;button class="shortcut"&gt;
+                        &lt;span class="tag"&gt;10&lt;/span&gt;
+                        &lt;span class="caption"&gt;Rocket&lt;/span&gt;
+                        &lt;span class="mif-rocket icon"&gt;&lt;/span&gt;
+                    &lt;/button&gt;
+                    &lt;button class="shortcut primary"&gt;
+                        &lt;span class="tag"&gt;10&lt;/span&gt;
+                        &lt;span class="caption"&gt;Rocket&lt;/span&gt;
+                        &lt;span class="mif-rocket icon"&gt;&lt;/span&gt;
+                    &lt;/button&gt;
+                    &lt;button class="shortcut secondary outline"&gt;
+                        &lt;span class="tag"&gt;10&lt;/span&gt;
+                        &lt;span class="caption"&gt;Rocket&lt;/span&gt;
+                        &lt;span class="mif-rocket icon"&gt;&lt;/span&gt;
+                    &lt;/button&gt;
+                    &lt;button class="shortcut alert rounded"&gt;
+                        &lt;span class="tag"&gt;10&lt;/span&gt;
+                        &lt;span class="caption"&gt;Rocket&lt;/span&gt;
+                        &lt;span class="mif-rocket icon"&gt;&lt;/span&gt;
+                    &lt;/button&gt;
+                    &lt;button class="shortcut info outline rounded no-caption"&gt;
+                        &lt;span class="tag"&gt;10&lt;/span&gt;
+                        &lt;span class="mif-rocket icon"&gt;&lt;/span&gt;
                     &lt;/button&gt;
                 </code></pre>
             </main>
