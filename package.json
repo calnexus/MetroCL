@@ -1,0 +1,43 @@
+{
+  "author": "Sergey Pimenov",
+  "name": "metrouicss",
+  "version": "4.0.0",
+  "version_suffix": "alpha",
+  "description": "The front-end framework for Build responsive, mobile-first projects on the web with the first front-end component library in Metro Style",
+  "keywords": [
+    "metro",
+    "css",
+    "less",
+    "mobile-first",
+    "responsive",
+    "front-end",
+    "framework",
+    "web",
+    "mobile",
+    "cordova",
+    "phonegap"
+  ],
+  "homepage": "https://metroui.org.ua",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/olton/Metro-UI-CSS.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^5.1.11",
+    "grunt": "^0.4.5",
+    "grunt-autoprefixer": "^3.0.0",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-compress": "^1.3.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-cssmin": "^0.12.2",
+    "grunt-contrib-less": "^1.0.0",
+    "grunt-contrib-uglify": "^0.8.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-postcss": "^0.3.0",
+    "grunt-replace": "^0.9.1",
+    "grunt-stripcomments": "^0.6.0",
+    "load-grunt-tasks": "^3.1.0"
+  }
+}
