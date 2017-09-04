@@ -32,3 +32,5 @@ var myObject = {
     _create: function(){
     }
 };
+
+Metro.plugin('myobj', myObject);

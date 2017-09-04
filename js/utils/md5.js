@@ -1,25 +1,8 @@
-/*
- * A JavaScript implementation of the RSA Data Security, Inc. MD5 Message
- * Digest Algorithm, as defined in RFC 1321.
- * Version 2.2 Copyright (C) Paul Johnston 1999 - 2009
- * Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
- * Distributed under the BSD License
- * See http://pajhome.org.uk/crypt/md5 for more info.
- */
-
-/*
- * Configurable variables. You may need to tweak these to be compatible with
- * the server-side, but the defaults work in most cases.
- */
 var hexcase = 0;
 /* hex output format. 0 - lowercase; 1 - uppercase        */
 var b64pad = "";
 /* base-64 pad character. "=" for strict RFC compliance   */
 
-/*
- * These are the functions you'll usually want to call
- * They take string arguments and return either hex or base-64 encoded strings
- */
 function hex_md5(s) {
     return rstr2hex(rstr_md5(str2rstr_utf8(s)));
 }
@@ -39,12 +22,6 @@ function any_hmac_md5(k, d, e) {
     return rstr2any(rstr_hmac_md5(str2rstr_utf8(k), str2rstr_utf8(d)), e);
 }
 
-/*
- * Perform a simple self-test to see if the VM is working
- */
-function md5_vm_test() {
-    return hex_md5("abc").toLowerCase() == "900150983cd24fb0d6963f7d28e17f72";
-}
 
 /*
  * Calculate the MD5 of a raw string
@@ -60,7 +37,7 @@ function rstr_hmac_md5(key, data) {
     var bkey = rstr2binl(key);
     if (bkey.length > 16) bkey = binl_md5(bkey, key.length * 8);
 
-    var ipad = Array(16), opad = Array(16);
+    var ipad = new Array(16), opad = new Array(16);
     for (var i = 0; i < 16; i++) {
         ipad[i] = bkey[i] ^ 0x36363636;
         opad[i] = bkey[i] ^ 0x5C5C5C5C;
@@ -74,11 +51,6 @@ function rstr_hmac_md5(key, data) {
  * Convert a raw string to a hex string
  */
 function rstr2hex(input) {
-    try {
-        hexcase
-    } catch (e) {
-        hexcase = 0;
-    }
     var hex_tab = hexcase ? "0123456789ABCDEF" : "0123456789abcdef";
     var output = "";
     var x;
@@ -94,11 +66,6 @@ function rstr2hex(input) {
  * Convert a raw string to a base-64 string
  */
 function rstr2b64(input) {
-    try {
-        b64pad
-    } catch (e) {
-        b64pad = '';
-    }
     var tab = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     var output = "";
     var len = input.length;
@@ -122,7 +89,7 @@ function rstr2any(input, encoding) {
     var i, j, q, x, quotient;
 
     /* Convert to an array of 16-bit big-endian values, forming the dividend */
-    var dividend = Array(Math.ceil(input.length / 2));
+    var dividend = new Array(Math.ceil(input.length / 2));
     for (i = 0; i < dividend.length; i++) {
         dividend[i] = (input.charCodeAt(i * 2) << 8) | input.charCodeAt(i * 2 + 1);
     }
@@ -135,9 +102,9 @@ function rstr2any(input, encoding) {
      */
     var full_length = Math.ceil(input.length * 8 /
         (Math.log(encoding.length) / Math.log(2)));
-    var remainders = Array(full_length);
+    var remainders = new Array(full_length);
     for (j = 0; j < full_length; j++) {
-        quotient = Array();
+        quotient = [];
         x = 0;
         for (i = 0; i < dividend.length; i++) {
             x = (x << 16) + dividend[i];
@@ -196,33 +163,15 @@ function str2rstr_utf8(input) {
 }
 
 /*
- * Encode a string as utf-16
- */
-function str2rstr_utf16le(input) {
-    var output = "";
-    for (var i = 0; i < input.length; i++)
-        output += String.fromCharCode(input.charCodeAt(i) & 0xFF,
-            (input.charCodeAt(i) >>> 8) & 0xFF);
-    return output;
-}
-
-function str2rstr_utf16be(input) {
-    var output = "";
-    for (var i = 0; i < input.length; i++)
-        output += String.fromCharCode((input.charCodeAt(i) >>> 8) & 0xFF,
-            input.charCodeAt(i) & 0xFF);
-    return output;
-}
-
-/*
  * Convert a raw string to an array of little-endian words
  * Characters >255 have their high-byte silently ignored.
  */
 function rstr2binl(input) {
-    var output = Array(input.length >> 2);
-    for (var i = 0; i < output.length; i++)
+    var i;
+    var output = new Array(input.length >> 2);
+    for (i = 0; i < output.length; i++)
         output[i] = 0;
-    for (var i = 0; i < input.length * 8; i += 8)
+    for (i = 0; i < input.length * 8; i += 8)
         output[i >> 5] |= (input.charCodeAt(i / 8) & 0xFF) << (i % 32);
     return output;
 }
@@ -256,7 +205,7 @@ function binl_md5(x, len) {
         var oldc = c;
         var oldd = d;
 
-        a = md5_ff(a, b, c, d, x[i + 0], 7, -680876936);
+        a = md5_ff(a, b, c, d, x[i], 7, -680876936);
         d = md5_ff(d, a, b, c, x[i + 1], 12, -389564586);
         c = md5_ff(c, d, a, b, x[i + 2], 17, 606105819);
         b = md5_ff(b, c, d, a, x[i + 3], 22, -1044525330);
@@ -276,7 +225,7 @@ function binl_md5(x, len) {
         a = md5_gg(a, b, c, d, x[i + 1], 5, -165796510);
         d = md5_gg(d, a, b, c, x[i + 6], 9, -1069501632);
         c = md5_gg(c, d, a, b, x[i + 11], 14, 643717713);
-        b = md5_gg(b, c, d, a, x[i + 0], 20, -373897302);
+        b = md5_gg(b, c, d, a, x[i], 20, -373897302);
         a = md5_gg(a, b, c, d, x[i + 5], 5, -701558691);
         d = md5_gg(d, a, b, c, x[i + 10], 9, 38016083);
         c = md5_gg(c, d, a, b, x[i + 15], 14, -660478335);
@@ -299,7 +248,7 @@ function binl_md5(x, len) {
         c = md5_hh(c, d, a, b, x[i + 7], 16, -155497632);
         b = md5_hh(b, c, d, a, x[i + 10], 23, -1094730640);
         a = md5_hh(a, b, c, d, x[i + 13], 4, 681279174);
-        d = md5_hh(d, a, b, c, x[i + 0], 11, -358537222);
+        d = md5_hh(d, a, b, c, x[i], 11, -358537222);
         c = md5_hh(c, d, a, b, x[i + 3], 16, -722521979);
         b = md5_hh(b, c, d, a, x[i + 6], 23, 76029189);
         a = md5_hh(a, b, c, d, x[i + 9], 4, -640364487);
@@ -307,7 +256,7 @@ function binl_md5(x, len) {
         c = md5_hh(c, d, a, b, x[i + 15], 16, 530742520);
         b = md5_hh(b, c, d, a, x[i + 2], 23, -995338651);
 
-        a = md5_ii(a, b, c, d, x[i + 0], 6, -198630844);
+        a = md5_ii(a, b, c, d, x[i], 6, -198630844);
         d = md5_ii(d, a, b, c, x[i + 7], 10, 1126891415);
         c = md5_ii(c, d, a, b, x[i + 14], 15, -1416354905);
         b = md5_ii(b, c, d, a, x[i + 5], 21, -57434055);
@@ -329,7 +278,7 @@ function binl_md5(x, len) {
         c = safe_add(c, oldc);
         d = safe_add(d, oldd);
     }
-    return Array(a, b, c, d);
+    return [a, b, c, d];
 }
 
 /*
@@ -394,3 +343,5 @@ window.md5 = {
         return any_hmac_md5(k, d, e);
     }
 };
+
+$.Metro['md5'] = hex_md5;

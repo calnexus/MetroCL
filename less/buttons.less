@@ -18,32 +18,6 @@
     cursor: pointer;
 }
 
-a.button, a.command-button, .image-button, .shortcut {
-    color: @dark;
-}
-
-.button, .command-button, .image-button, .shortcut {
-    &:focus, &:hover {
-        text-decoration: none;
-    }
-
-    &.focus, &:focus {
-        outline: 0;
-        box-shadow: 0 0 0 3px rgba(red(@gray), green(@gray), blue(@gray), 0.25);
-    }
-
-    &.disabled, &:disabled {
-        opacity: .65;
-    }
-}
-
-.button, .command-button, .image-button, .shortcut {
-    &.outline {
-        background: transparent none !important;
-        border-width: 1px;
-    }
-}
-
 .button {
     &.light {
         &.focus, &:focus {
@@ -182,6 +156,7 @@ a.button, a.command-button, .image-button, .shortcut {
 
     .caption {
         order: 2;
+        color: inherit;
     }
 
     &.icon-right {
@@ -258,6 +233,33 @@ a.button, a.command-button, .image-button, .shortcut {
     }
 }
 
+a.button, a.command-button, .image-button, .shortcut {
+    color: @dark;
+}
+
+.button, .command-button, .image-button, .shortcut {
+    &:focus, &:hover {
+        text-decoration: none;
+    }
+
+    &.focus, &:focus {
+        outline: 0;
+        box-shadow: 0 0 0 3px rgba(red(@gray), green(@gray), blue(@gray), 0.25);
+    }
+
+    &.disabled, &:disabled {
+        opacity: .65;
+    }
+}
+
+.button, .command-button, .image-button, .shortcut {
+    &.outline {
+        background-color: transparent;
+        background-image: none;
+        border-width: 1px;
+    }
+}
+
 .button, .command-button, .image-button, .shortcut {
     .generate-buttons(@buttonPredefinedTypesLength);
     .generate-buttons(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
@@ -275,6 +277,12 @@ a.button, a.command-button, .image-button, .shortcut {
                 background-color: darken(@@color, 10%) !important;
                 border-color: darken(@@color, 20%);
             }
+            &.same-color {
+                &:hover {
+                    background-color: @@color !important;
+                    border-color: @@color;
+                }
+            }
             &.focus, &:focus {
                 box-shadow: 0 0 0 3px rgba(red(@@color), green(@@color), blue(@@color), 0.45);
             }
@@ -287,9 +295,15 @@ a.button, a.command-button, .image-button, .shortcut {
 .button, .command-button, .image-button, .shortcut {
     &.primary, &.secondary, &.success, &.alert, &.warning, &.info, &.dark {
         color: @white;
-
         &:hover {
             color: @white!important;
+        }
+    }
+
+    &.yellow {
+        color: @dark;
+        &:hover {
+            color: @dark!important;
         }
     }
 }

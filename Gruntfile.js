@@ -37,7 +37,7 @@ module.exports = function(grunt) {
                 src: [
                     'js/*.js',
                     'js/utils/*.js',
-                    'js/widgets/*.js'
+                    'js/plugins/*.js'
                 ],
                 dest: 'build/js/metro.js'
             },
@@ -178,7 +178,7 @@ module.exports = function(grunt) {
 
         watch: {
             scripts: {
-                files: ['js/*.js', 'js/utils/*.js', 'js/widgets/*js', 'less/*.less', 'less/include/*.less', 'less/schemes/*.less', 'Gruntfile.js'],
+                files: ['js/*.js', 'js/utils/*.js', 'js/plugins/*js', 'less/*.less', 'less/include/*.less', 'less/schemes/*.less', 'Gruntfile.js'],
                 tasks: ['clean', 'less', 'concat', 'postcss',  'uglify', 'cssmin', 'compress', 'copy']
             }
         }

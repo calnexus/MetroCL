@@ -1,19 +1,22 @@
 @import (once) "include/vars";
 @import (once) "include/mixins";
 
+.button {
+
 .generate-accent-colors(@buttonPredefinedTypesLength);
 .generate-accent-colors(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
     @name: extract(@buttonPredefinedTypes, @i);
     @color: "@{name}Color";
 
     &.@{name} {
-        background-color: @@color!important;
-        color: @white!important;
+        background-color: @@color;
+        color: @white;
     }
 
     .generate-accent-colors(@name, @i + 1);
 }
 
 .light {
-    color: @dark!important;
+    color: @dark;
+}
 }
