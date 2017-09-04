@@ -1,22 +1,21 @@
 @import (once) "include/vars";
 @import (once) "include/mixins";
 
-.button {
+.button, .command-button, .image-button, .shortcut {
+    .generate-accent-colors(@buttonPredefinedTypesLength);
+    .generate-accent-colors(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
+        @name: extract(@buttonPredefinedTypes, @i);
+        @color: "@{name}Color";
 
-.generate-accent-colors(@buttonPredefinedTypesLength);
-.generate-accent-colors(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
-    @name: extract(@buttonPredefinedTypes, @i);
-    @color: "@{name}Color";
+        &.@{name} {
+            background-color: @@color;
+            color: @white;
+        }
 
-    &.@{name} {
-        background-color: @@color;
-        color: @white;
+        .generate-accent-colors(@name, @i + 1);
     }
 
-    .generate-accent-colors(@name, @i + 1);
-}
-
-.light {
-    color: @dark;
-}
+    .light {
+        color: @dark;
+    }
 }

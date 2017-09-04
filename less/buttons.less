@@ -254,8 +254,7 @@ a.button, a.command-button, .image-button, .shortcut {
 
 .button, .command-button, .image-button, .shortcut {
     &.outline {
-        background-color: transparent;
-        background-image: none;
+        background: transparent none;
         border-width: 1px;
     }
 }
@@ -270,16 +269,16 @@ a.button, a.command-button, .image-button, .shortcut {
             outline-color: lighten(@@color, 30%);
 
             &.outline {
-                color: @@color !important;
+                color: @@color;
                 border-color: @@color;
             }
             &:hover {
-                background-color: darken(@@color, 10%) !important;
+                background-color: darken(@@color, 10%);
                 border-color: darken(@@color, 20%);
             }
             &.same-color {
                 &:hover {
-                    background-color: @@color !important;
+                    background-color: @@color;
                     border-color: @@color;
                 }
             }
@@ -296,14 +295,14 @@ a.button, a.command-button, .image-button, .shortcut {
     &.primary, &.secondary, &.success, &.alert, &.warning, &.info, &.dark {
         color: @white;
         &:hover {
-            color: @white!important;
+            color: @white;
         }
     }
 
     &.yellow {
         color: @dark;
         &:hover {
-            color: @dark!important;
+            color: @dark;
         }
     }
 }
