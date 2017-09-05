@@ -14,6 +14,9 @@
 
 @transparent:			transparent;
 
+@brandColor1: #2ac4f4;
+@brandColor2: #004d6f;
+
 @black:                 #000000;
 @white:                 #ffffff;
 @dark:                  #1d1d1d;
@@ -94,7 +97,7 @@
 @darkGray:             darken(@gray, @darkenValue);
 @darkGrayBlue:         darken(@grayBlue, @darkenValue);
 
-@colorList: black, white, dark, light, grayBlue, grayWhite, grayMouse,
+@colorList: black, white, dark, light, grayBlue, grayWhite, grayMouse, brandColor1, brandColor2,
             lime, green, emerald, blue, teal, cyan, cobalt, indigo, violet, pink, magenta, crimson, red, orange, amber, yellow, brown, olive, steel, mauve, taupe, gray,
             lightLime, lightGreen, lightEmerald, lightBlue, lightTeal, lightCyan, lightCobalt, lightIndigo, lightViolet, lightPink, lightMagenta, lightCrimson, lightRed, lightOrange, lightAmber, lightYellow, lightBrown, lightOlive, lightSteel, lightMauve, lightTaupe, lightGray, lightGrayBlue,
             darkLime, darkGreen, darkEmerald, darkBlue, darkTeal, darkCyan, darkCobalt, darkIndigo, darkViolet, darkPink, darkMagenta, darkCrimson, darkRed, darkOrange, darkAmber, darkYellow, darkBrown, darkOlive, darkSteel, darkMauve, darkTaupe, darkGray, darkGrayBlue;
@@ -102,8 +105,8 @@
 @colorListLength: length(@colorList);
 
 // Appbar
-@appBarBackground: @steel;
-@appBarBackgroundActive: @lightSteel;
+@appBarBackground: @brandColor2;
+@appBarBackgroundActive: lighten(@brandColor2, 10%);
 @appBarColor: @white;
 
 // Borders
@@ -123,8 +126,10 @@
 @infoColor: @lightCyan;
 @darkColor: lighten(@dark, 20%);
 @lightColor: @light;
+@brand1Color: @brandColor1;
+@brand2Color: @brandColor2;
 
-@buttonPredefinedTypes: primary, secondary, success, alert, warning, yellow, info, dark, light;
+@buttonPredefinedTypes: primary, secondary, success, alert, warning, yellow, info, dark, light, brand1, brand2;
 @buttonPredefinedTypesLength: length(@buttonPredefinedTypes);
 
 // Z-index

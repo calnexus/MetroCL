@@ -2623,6 +2623,22 @@ img {
   background-color: #f8f8f8;
   color: #ffffff;
 }
+.button.brand1,
+.command-button.brand1,
+.image-button.brand1,
+.shortcut.brand1,
+.tool-button.brand1 {
+  background-color: #2ac4f4;
+  color: #ffffff;
+}
+.button.brand2,
+.command-button.brand2,
+.image-button.brand2,
+.shortcut.brand2,
+.tool-button.brand2 {
+  background-color: #004d6f;
+  color: #ffffff;
+}
 .button .light,
 .command-button .light,
 .image-button .light,
@@ -2725,6 +2741,10 @@ body {
 }
 .text-leader {
   font-size: 1.5rem;
+  font-weight: 300;
+}
+.text-leader2 {
+  font-size: 1.25rem;
   font-weight: 300;
 }
 .leader,
@@ -5393,11 +5413,10 @@ aside::after {
       align-items: center;
   -ms-flex-pack: start;
       justify-content: flex-start;
-  min-height: 4rem;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  background: #647687;
+  background: #004d6f;
   color: #ffffff;
   z-index: 1080;
 }
@@ -5439,7 +5458,7 @@ a.app-bar-element {
 .app-bar-item:hover,
 .app-bar-menu li a:active,
 .app-bar-item:active {
-  background: #7e8fa0;
+  background: #0070a2;
 }
 .table {
   width: 100%;
@@ -6301,6 +6320,92 @@ a.command-button,
 .shortcut.light:focus,
 .tool-button.light:focus {
   box-shadow: 0 0 0 3px rgba(248, 248, 248, 0.45);
+}
+.button.brand1,
+.command-button.brand1,
+.image-button.brand1,
+.shortcut.brand1,
+.tool-button.brand1 {
+  outline-color: #bbecfc;
+}
+.button.brand1.outline,
+.command-button.brand1.outline,
+.image-button.brand1.outline,
+.shortcut.brand1.outline,
+.tool-button.brand1.outline {
+  color: #2ac4f4;
+  border-color: #2ac4f4;
+}
+.button.brand1:hover,
+.command-button.brand1:hover,
+.image-button.brand1:hover,
+.shortcut.brand1:hover,
+.tool-button.brand1:hover {
+  background-color: #0caddf;
+  border-color: #0988af;
+}
+.button.brand1.same-color:hover,
+.command-button.brand1.same-color:hover,
+.image-button.brand1.same-color:hover,
+.shortcut.brand1.same-color:hover,
+.tool-button.brand1.same-color:hover {
+  background-color: #2ac4f4;
+  border-color: #2ac4f4;
+}
+.button.brand1.focus,
+.command-button.brand1.focus,
+.image-button.brand1.focus,
+.shortcut.brand1.focus,
+.tool-button.brand1.focus,
+.button.brand1:focus,
+.command-button.brand1:focus,
+.image-button.brand1:focus,
+.shortcut.brand1:focus,
+.tool-button.brand1:focus {
+  box-shadow: 0 0 0 3px rgba(42, 196, 244, 0.45);
+}
+.button.brand2,
+.command-button.brand2,
+.image-button.brand2,
+.shortcut.brand2,
+.tool-button.brand2 {
+  outline-color: #09b4ff;
+}
+.button.brand2.outline,
+.command-button.brand2.outline,
+.image-button.brand2.outline,
+.shortcut.brand2.outline,
+.tool-button.brand2.outline {
+  color: #004d6f;
+  border-color: #004d6f;
+}
+.button.brand2:hover,
+.command-button.brand2:hover,
+.image-button.brand2:hover,
+.shortcut.brand2:hover,
+.tool-button.brand2:hover {
+  background-color: #002a3c;
+  border-color: #000609;
+}
+.button.brand2.same-color:hover,
+.command-button.brand2.same-color:hover,
+.image-button.brand2.same-color:hover,
+.shortcut.brand2.same-color:hover,
+.tool-button.brand2.same-color:hover {
+  background-color: #004d6f;
+  border-color: #004d6f;
+}
+.button.brand2.focus,
+.command-button.brand2.focus,
+.image-button.brand2.focus,
+.shortcut.brand2.focus,
+.tool-button.brand2.focus,
+.button.brand2:focus,
+.command-button.brand2:focus,
+.image-button.brand2:focus,
+.shortcut.brand2:focus,
+.tool-button.brand2:focus {
+  box-shadow: 0 0 0 3px rgba(0, 77, 111, 0.45);
 }
 .button.primary,
 .command-button.primary,

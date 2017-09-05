@@ -7,7 +7,7 @@
     flex-wrap: nowrap;
     align-items: center;
     justify-content: flex-start;
-    .px2rem(min-height, 64px);
+    //.px2rem(min-height, 64px);
     position: sticky;
     top: 0;
     background: @appBarBackground;
@@ -50,6 +50,6 @@ a.brand, a.app-bar-element {
     color: inherit;
 
     &:hover, &:active {
-        background: @appBarBackgroundActive;
+        background: lighten(@appBarBackground, 10%);
     }
 }
