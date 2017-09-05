@@ -617,6 +617,36 @@ img {
 .mb-10 {
   margin-bottom: 5rem !important;
 }
+.p-0 {
+  padding: 0!important;
+}
+.pl-0 {
+  padding-left: 0!important;
+}
+.pr-0 {
+  padding-right: 0!important;
+}
+.pt-0 {
+  padding-top: 0!important;
+}
+.pb-0 {
+  padding-bottom: 0!important;
+}
+.m-0 {
+  margin: 0!important;
+}
+.ml-0 {
+  margin-left: 0!important;
+}
+.mr-0 {
+  margin-right: 0!important;
+}
+.mt-0 {
+  margin-top: 0!important;
+}
+.mb-0 {
+  margin-bottom: 0!important;
+}
 .border {
   border: 1px solid transparent;
 }
@@ -2702,32 +2732,38 @@ body {
   color: #757575;
 }
 .leader,
-.h1 {
+.h1,
+h1 {
   font-weight: 100;
   font-size: 3rem;
 }
 .sub-leader,
-.h2 {
+.h2,
+h2 {
   font-weight: 400;
   font-size: 2rem;
 }
 .header,
-.h3 {
+.h3,
+h3 {
   font-weight: 500;
   font-size: 1.75rem;
 }
 .sub-header,
-.h4 {
+.h4,
+h4 {
   font-weight: 500;
   font-size: 1.5rem;
 }
 .alt-header,
-.h5 {
+.h5,
+h5 {
   font-weight: 500;
   font-size: 1.25rem;
 }
 .sub-alt-header,
-.h6 {
+.h6,
+h6 {
   font-weight: 500;
   font-size: 1.125rem;
 }
@@ -2749,127 +2785,61 @@ body {
 }
 .leader,
 .h1,
+h1,
 .sub-leader,
 .h2,
+h2,
 .header,
 .h3,
+h3,
 .sub-header,
 .h4,
+h4,
 .alt-header,
 .h5,
+h5,
 .sub-alt-header,
-.h6 {
+.h6,
+h6 {
   color: #212121;
   margin-bottom: 0.5rem;
   line-height: 1.1;
 }
 .leader > small,
 .h1 > small,
+h1 > small,
 .sub-leader > small,
 .h2 > small,
+h2 > small,
 .header > small,
 .h3 > small,
+h3 > small,
 .sub-header > small,
 .h4 > small,
+h4 > small,
 .alt-header > small,
 .h5 > small,
+h5 > small,
 .sub-alt-header > small,
 .h6 > small,
+h6 > small,
 .leader > .small,
 .h1 > .small,
+h1 > .small,
 .sub-leader > .small,
 .h2 > .small,
+h2 > .small,
 .header > .small,
 .h3 > .small,
+h3 > .small,
 .sub-header > .small,
 .h4 > .small,
+h4 > .small,
 .alt-header > .small,
 .h5 > .small,
+h5 > .small,
 .sub-alt-header > .small,
-.h6 > .small {
-  font-weight: 400;
-  font-size: .7em;
-  line-height: 1;
-  color: #777;
-}
-h1 {
-  font-weight: 100;
-  font-size: 3rem;
-  color: #212121;
-  margin-bottom: 0.5rem;
-  line-height: 1.1;
-}
-h1 > small,
-h1 > .small {
-  font-weight: 400;
-  font-size: .7em;
-  line-height: 1;
-  color: #777;
-}
-h2 {
-  font-weight: 400;
-  font-size: 2rem;
-  color: #212121;
-  margin-bottom: 0.5rem;
-  line-height: 1.1;
-}
-h2 > small,
-h2 > .small {
-  font-weight: 400;
-  font-size: .7em;
-  line-height: 1;
-  color: #777;
-}
-h3 {
-  font-weight: 500;
-  font-size: 1.75rem;
-  color: #212121;
-  margin-bottom: 0.5rem;
-  line-height: 1.1;
-}
-h3 > small,
-h3 > .small {
-  font-weight: 400;
-  font-size: .7em;
-  line-height: 1;
-  color: #777;
-}
-h4 {
-  font-weight: 500;
-  font-size: 1.5rem;
-  color: #212121;
-  margin-bottom: 0.5rem;
-  line-height: 1.1;
-}
-h4 > small,
-h4 > .small {
-  font-weight: 400;
-  font-size: .7em;
-  line-height: 1;
-  color: #777;
-}
-h5 {
-  font-weight: 500;
-  font-size: 1.25rem;
-  color: #212121;
-  margin-bottom: 0.5rem;
-  line-height: 1.1;
-}
-h5 > small,
-h5 > .small {
-  font-weight: 400;
-  font-size: .7em;
-  line-height: 1;
-  color: #777;
-}
-h6 {
-  font-weight: 500;
-  font-size: 1.125rem;
-  color: #212121;
-  margin-bottom: 0.5rem;
-  line-height: 1.1;
-}
-h6 > small,
+.h6 > .small,
 h6 > .small {
   font-weight: 400;
   font-size: .7em;
@@ -6441,7 +6411,17 @@ a.command-button,
 .command-button.dark,
 .image-button.dark,
 .shortcut.dark,
-.tool-button.dark {
+.tool-button.dark,
+.button.brand1,
+.command-button.brand1,
+.image-button.brand1,
+.shortcut.brand1,
+.tool-button.brand1,
+.button.brand2,
+.command-button.brand2,
+.image-button.brand2,
+.shortcut.brand2,
+.tool-button.brand2 {
   color: #ffffff;
 }
 .button.primary:hover,
@@ -6478,7 +6458,17 @@ a.command-button,
 .command-button.dark:hover,
 .image-button.dark:hover,
 .shortcut.dark:hover,
-.tool-button.dark:hover {
+.tool-button.dark:hover,
+.button.brand1:hover,
+.command-button.brand1:hover,
+.image-button.brand1:hover,
+.shortcut.brand1:hover,
+.tool-button.brand1:hover,
+.button.brand2:hover,
+.command-button.brand2:hover,
+.image-button.brand2:hover,
+.shortcut.brand2:hover,
+.tool-button.brand2:hover {
   color: #ffffff;
 }
 .button.yellow,

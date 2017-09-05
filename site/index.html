@@ -9,14 +9,14 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Download">
     <meta name="twitter:description" content="Download Metro UI CSS to get the compiled CSS and JavaScript, source code, or include it with your favorite package managers like npm, Bower, RubyGems, and more.">
-    <meta name="twitter:image" content="https://metroui.org.ua/images/logo.png">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/logo4.png">
 
     <meta property="og:url" content="https://metroui.org.ua/download.html">
     <meta property="og:title" content="Download">
     <meta property="og:description" content="Download Metro UI CSS to get the compiled CSS and JavaScript, source code, or include it with your favorite package managers like npm, Bower, RubyGems, and more.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://metroui.org.ua/images/logo.png">
-    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/logo.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/logo4.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="540">
     <meta property="og:image:height" content="300">
@@ -34,7 +34,7 @@
     <title>Metro UI CSS 4.0 - Popular HTML, CSS and JS library</title>
 </head>
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid" id="hero-wrapper">
         <div class="container hero pt-md-3 pb-md-3">
             <div class="row flex-align-center">
                 <div class="cell-md-6 order-md-2 text-ld-center">
@@ -43,42 +43,90 @@
                 <div class="cell-md-6 p-md-5 text-ld-center">
                     <h1>Metro 4</h1>
                     <p class="text-leader">
-                        <strong>Are you tired of Bootstrap?</strong> Build responsive, mobile-first projects on the web with the first front-end component library in Metro Style.
+                        <strong>Are you tired of Bootstrap?</strong>
+                        <br />
+                        Build responsive, mobile-first projects on the web with the first front-end component library in Metro Style.
                     </p>
                     <p class="text-leader2">
                         Metro UI CSS is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.
                     </p>
                     <div class="row flex-justify-around">
                         <a href="intro.html" class="cell button brand1 same-color outline large m-1 success">Get started</a>
-                        <a href="download.html" class="cell button outline large m-1 secondary">Download</a>
+                        <a href="download.html" class="cell button outline large m-1 success">Download</a>
                     </div>
                     <p class="text-small mt-2">Currently v4.0.0</p>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="row">
-            <div class="cell-md-4 p-5 p-md-3 bg-light border">
-                <h2 class="header">Installation</h2>
-            </div>
-            <div class="cell-md-4 p-5 p-md-3 bg-grayWhite border">
-                <h2 class="header">Metro UI CDN</h2>
-            </div>
-            <div class="cell-md-4 p-5 p-md-3 bg-light border">
-                <h2 class="header">Documentation</h2>
+    <div class="row">
+        <div class="cell-md-4 p-5 bg-brandColor1 text-center text-leader fg-white">
+            easy to use
+        </div>
+        <div class="cell-md-4 p-5 bg-green text-center text-leader fg-white">
+            less source
+        </div>
+        <div class="cell-md-4 p-5 bg-red text-center text-leader fg-white">
+            mit license
+        </div>
+    </div>
+
+    <div class="container-fluid pl-0 pt-0 bg-light">
+        <div class="container pt-7 pb-6">
+            <div class="row">
+                <div class="cell-md-4 text-center">
+                    <span class="mif-star-full b-block fg-orange" style="font-size: 4rem"></span>
+                    <p class="text-small">github stars</p>
+                    <div id="github_stars" class="h1">0</div>
+                </div>
+                <div class="cell-md-4 text-center">
+                    <span class="mif-share d-block fg-cyan" style="font-size: 4rem"></span>
+                    <p class="text-small">github forks</p>
+                    <div id="github_forks" class="h1">0</div>
+                </div>
+                <div class="cell-md-4 text-center">
+                    <span class="mif-users d-block fg-gray" style="font-size: 4rem"></span>
+                    <p class="text-small">subscribers</p>
+                    <div id="github_subscribes" class="h1">0</div>
+                </div>
             </div>
         </div>
     </div>
 
-    <footer class="container-fluid">
-
+    <footer class="container-fluid pt-5 pb-5 pl-0 pr-0 bg-grayWhite">
+        <div class="container">
+            <ul class="inline-list h-menu">
+                <li><a href="https://github.com/olton/Metro-UI-CSS">Github</a></li>
+                <li><a href="https://www.facebook.com/metrouicss/">Facebook</a></li>
+                <li><a href="https://github.com/olton/Metro-UI-CSS/issues">Issues</a></li>
+                <li><a href="mailto:sergey@pimenov.com.ua">Contacts</a></li>
+            </ul>
+            <p>
+                Designed and built by <a href="https://www.linkedin.com/in/spimenov/">Sergey Pimenov</a>.
+                Hosting by <a href="https://mirohost.net/">Mirohost</a>.
+                Metro CDN by <a href="https://www.keycdn.com/">KeyCDN</a>.
+                Maintained by the <a href="https://www.facebook.com/sergey.s.pimenov">Sergey Pimenov</a>.
+                <br />
+                Currently v4.0.0-alpha. Code licensed <a href="https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+            </p>
+        </div>
     </footer>
 
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="metro/js/metro.min.js"></script>
     <script src="js/pre-code.js"></script>
-    <script src="js/github.js"></script>
     <script src="prettify/run_prettify.js"></script>
     <script src="js/site.js"></script>
+
+    <script src="particles/particles.min.js"></script>
+    <script>
+        particlesJS.load('hero-wrapper', 'particles/particles.json', function(){});
+        $.Metro.utils.github("olton/Metro-UI-CSS", function(data){
+            $("#github_subscribes").text(data.subscribers_count);
+            $("#github_stars").text(data.stargazers_count);
+            $("#github_forks").text(data.forks_count);
+        });
+    </script>
 </body>
 </html>

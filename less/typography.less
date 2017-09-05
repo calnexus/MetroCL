@@ -60,27 +60,27 @@ body {
     color: lighten(@black, 46%);
 }
 
-.leader, .h1 {
+.leader, .h1, h1 {
     font-weight: 100;
     .px2rem(font-size, 48px);
 }
-.sub-leader, .h2 {
+.sub-leader, .h2, h2 {
     font-weight: 400;
     .px2rem(font-size, 32px);
 }
-.header, .h3 {
+.header, .h3, h3 {
     font-weight: 500;
     .px2rem(font-size, 28px);
 }
-.sub-header, .h4 {
+.sub-header, .h4, h4 {
     font-weight: 500;
     .px2rem(font-size, 24px);
 }
-.alt-header, .h5 {
+.alt-header, .h5, h5 {
     font-weight: 500;
     .px2rem(font-size, 20px);
 }
-.sub-alt-header, .h6 {
+.sub-alt-header, .h6, h6 {
     font-weight: 500;
     .px2rem(font-size, 18px);
 }
@@ -103,12 +103,12 @@ body {
     font-weight: 300;
 }
 
-.leader, .h1,
-.sub-leader, .h2,
-.header, .h3,
-.sub-header, .h4,
-.alt-header, .h5,
-.sub-alt-header, .h6 {
+.leader, .h1, h1,
+.sub-leader, .h2, h2,
+.header, .h3, h3,
+.sub-header, .h4, h4,
+.alt-header, .h5, h5,
+.sub-alt-header, .h6, h6 {
     color: lighten(@black, 13%);
     .px2rem(margin-bottom, 8px);
     line-height: 1.1;
@@ -120,13 +120,6 @@ body {
         color: #777;
     }
 }
-
-h1 {.h1;}
-h2 {.h2;}
-h3 {.h3;}
-h4 {.h4;}
-h5 {.h5;}
-h6 {.h6;}
 
 .text-upper {text-transform: uppercase !important;}
 .text-lower {text-transform: lowercase !important;}

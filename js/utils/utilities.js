@@ -217,8 +217,18 @@ var Utils = {
 
     nvl: function(data, other){
         return data === undefined ? other : data;
-    }
+    },
 
+    github: function(repo, callback){
+        var that = this;
+        $.ajax({
+            url: 'https://api.github.com/repos/' + repo,
+            dataType: 'jsonp'
+        })
+        .done(function(data){
+            that.callback(callback, data.data);
+        });
+    }
 };
 
 $.Metro['utils'] = window.metroUtils = Utils;
