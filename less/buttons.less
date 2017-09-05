@@ -10,7 +10,7 @@
     user-select: none;
     border: 1px solid transparent;
     padding: .5rem .75rem;
-    font-size: 1rem;
+    .px2rem(font-size, 14px);
     line-height: 1.25;
     transition: @transition-short;
     background-color: darken(@light, 5%);
@@ -46,24 +46,24 @@
 
 .button {
     &.mini {
-        font-size: 70%;
+        .px2rem(font-size, 10px);
         padding: .2rem .5rem;
         img {
-            height: .7rem;
+            .px2rem(height, 10px);
         }
     }
     &.small {
-        font-size: 85%;
+        .px2rem(font-size, 12px);
         padding: .3rem .6rem;
         img {
-            height: .851rem;
+            .px2rem(height, 12px);
         }
     }
     &.large {
-        font-size: 130%;
+        .px2rem(font-size, 22px);
         padding: .75rem 1rem;
         img {
-            height: 1.3rem;
+            .px2rem(height, 22px);
         }
     }
 }
@@ -139,7 +139,7 @@
 }
 
 .image-button {
-    font-size: 1rem;
+    .px2rem(font-size, 14px);
     padding: 0 .5rem 0 0;
     align-items: center;
 
@@ -233,11 +233,59 @@
     }
 }
 
-a.button, a.command-button, .image-button, .shortcut {
+.toolbar {
+    display: inline-block;
+    position: relative;
+    padding: 0 0 0 .5725rem;
+
+    &.no-divider {
+        &:before {
+            display: none;
+        }
+    }
+
+    &:before {
+        position: absolute;
+        content: "";
+        width: .325rem;
+        height: 100%;
+        left: 0;
+        background-color: rgba(red(@grayMouse), green(@grayMouse), blue(@grayMouse), .20);
+        cursor: move;
+    }
+}
+
+.tool-button {
+    width: 2rem;
+    height: 2rem;
+    vertical-align: middle;
+    display: inline-block;
+    text-align: center;
+    background-color: darken(@light, 5%);
+    color: @dark;
+    user-select: none;
+    border: 1px solid transparent;
+    transition: @transition-short;
+    padding: 0;
+
+    [class*=mif], .icon, img {
+        height: 1rem;
+        max-height: 1rem;
+        font-size: 1rem;
+    }
+
+    &.text-button {
+        width: auto;
+        padding-left: .5rem;
+        padding-right: .5rem;
+    }
+}
+
+a.button, a.command-button, .image-button, .shortcut, .tool-button {
     color: @dark;
 }
 
-.button, .command-button, .image-button, .shortcut {
+.button, .command-button, .image-button, .shortcut, .tool-button {
     &:focus, &:hover {
         text-decoration: none;
     }
@@ -252,14 +300,14 @@ a.button, a.command-button, .image-button, .shortcut {
     }
 }
 
-.button, .command-button, .image-button, .shortcut {
+.button, .command-button, .image-button, .shortcut, .tool-button {
     &.outline {
         background: transparent none;
         border-width: 1px;
     }
 }
 
-.button, .command-button, .image-button, .shortcut {
+.button, .command-button, .image-button, .shortcut, .tool-button {
     .generate-buttons(@buttonPredefinedTypesLength);
     .generate-buttons(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
         @name: extract(@buttonPredefinedTypes, @i);
@@ -291,7 +339,7 @@ a.button, a.command-button, .image-button, .shortcut {
     }
 }
 
-.button, .command-button, .image-button, .shortcut {
+.button, .command-button, .image-button, .shortcut, .tool-button {
     &.primary, &.secondary, &.success, &.alert, &.warning, &.info, &.dark {
         color: @white;
         &:hover {
@@ -299,7 +347,7 @@ a.button, a.command-button, .image-button, .shortcut {
         }
     }
 
-    &.yellow {
+    &.yellow, &.light {
         color: @dark;
         &:hover {
             color: @dark;

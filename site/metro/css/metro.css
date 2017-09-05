@@ -2554,70 +2554,80 @@ img {
 .button.primary,
 .command-button.primary,
 .image-button.primary,
-.shortcut.primary {
+.shortcut.primary,
+.tool-button.primary {
   background-color: #0050ef;
   color: #ffffff;
 }
 .button.secondary,
 .command-button.secondary,
 .image-button.secondary,
-.shortcut.secondary {
+.shortcut.secondary,
+.tool-button.secondary {
   background-color: #607d8b;
   color: #ffffff;
 }
 .button.success,
 .command-button.success,
 .image-button.success,
-.shortcut.success {
+.shortcut.success,
+.tool-button.success {
   background-color: #60a917;
   color: #ffffff;
 }
 .button.alert,
 .command-button.alert,
 .image-button.alert,
-.shortcut.alert {
+.shortcut.alert,
+.tool-button.alert {
   background-color: #CE352C;
   color: #ffffff;
 }
 .button.warning,
 .command-button.warning,
 .image-button.warning,
-.shortcut.warning {
+.shortcut.warning,
+.tool-button.warning {
   background-color: #ff852e;
   color: #ffffff;
 }
 .button.yellow,
 .command-button.yellow,
 .image-button.yellow,
-.shortcut.yellow {
+.shortcut.yellow,
+.tool-button.yellow {
   background-color: #ffe484;
   color: #ffffff;
 }
 .button.info,
 .command-button.info,
 .image-button.info,
-.shortcut.info {
+.shortcut.info,
+.tool-button.info {
   background-color: #47b4e9;
   color: #ffffff;
 }
 .button.dark,
 .command-button.dark,
 .image-button.dark,
-.shortcut.dark {
+.shortcut.dark,
+.tool-button.dark {
   background-color: #505050;
   color: #ffffff;
 }
 .button.light,
 .command-button.light,
 .image-button.light,
-.shortcut.light {
+.shortcut.light,
+.tool-button.light {
   background-color: #f8f8f8;
   color: #ffffff;
 }
 .button .light,
 .command-button .light,
 .image-button .light,
-.shortcut .light {
+.shortcut .light,
+.tool-button .light {
   color: #1d1d1d;
 }
 html {
@@ -5589,7 +5599,7 @@ a.app-bar-element {
           user-select: none;
   border: 1px solid transparent;
   padding: .5rem .75rem;
-  font-size: 1rem;
+  font-size: 0.875rem;
   line-height: 1.25;
   transition: all 0.15s ease-in-out;
   background-color: #ebebeb;
@@ -5616,25 +5626,25 @@ a.app-bar-element {
   height: 1rem;
 }
 .button.mini {
-  font-size: 70%;
+  font-size: 0.625rem;
   padding: .2rem .5rem;
 }
 .button.mini img {
-  height: .7rem;
+  height: 0.625rem;
 }
 .button.small {
-  font-size: 85%;
+  font-size: 0.75rem;
   padding: .3rem .6rem;
 }
 .button.small img {
-  height: .851rem;
+  height: 0.75rem;
 }
 .button.large {
-  font-size: 130%;
+  font-size: 1.375rem;
   padding: .75rem 1rem;
 }
 .button.large img {
-  height: 1.3rem;
+  height: 1.375rem;
 }
 .button.square,
 .button.cycle {
@@ -5715,7 +5725,7 @@ a.app-bar-element {
   margin-right: .5rem;
 }
 .image-button {
-  font-size: 1rem;
+  font-size: 0.875rem;
   padding: 0 .5rem 0 0;
   -ms-flex-align: center;
       align-items: center;
@@ -5808,30 +5818,80 @@ a.app-bar-element {
   font-size: 2rem;
   margin-top: 1.5rem;
 }
+.toolbar {
+  display: inline-block;
+  position: relative;
+  padding: 0 0 0 .5725rem;
+}
+.toolbar.no-divider:before {
+  display: none;
+}
+.toolbar:before {
+  position: absolute;
+  content: "";
+  width: .325rem;
+  height: 100%;
+  left: 0;
+  background-color: rgba(69, 90, 100, 0.2);
+  cursor: move;
+}
+.tool-button {
+  width: 2rem;
+  height: 2rem;
+  vertical-align: middle;
+  display: inline-block;
+  text-align: center;
+  background-color: #ebebeb;
+  color: #1d1d1d;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  border: 1px solid transparent;
+  transition: all 0.15s ease-in-out;
+  padding: 0;
+}
+.tool-button [class*=mif],
+.tool-button .icon,
+.tool-button img {
+  height: 1rem;
+  max-height: 1rem;
+  font-size: 1rem;
+}
+.tool-button.text-button {
+  width: auto;
+  padding-left: .5rem;
+  padding-right: .5rem;
+}
 a.button,
 a.command-button,
 .image-button,
-.shortcut {
+.shortcut,
+.tool-button {
   color: #1d1d1d;
 }
 .button:focus,
 .command-button:focus,
 .image-button:focus,
 .shortcut:focus,
+.tool-button:focus,
 .button:hover,
 .command-button:hover,
 .image-button:hover,
-.shortcut:hover {
+.shortcut:hover,
+.tool-button:hover {
   text-decoration: none;
 }
 .button.focus,
 .command-button.focus,
 .image-button.focus,
 .shortcut.focus,
+.tool-button.focus,
 .button:focus,
 .command-button:focus,
 .image-button:focus,
-.shortcut:focus {
+.shortcut:focus,
+.tool-button:focus {
   outline: 0;
   box-shadow: 0 0 0 3px rgba(158, 158, 158, 0.25);
 }
@@ -5839,43 +5899,50 @@ a.command-button,
 .command-button.disabled,
 .image-button.disabled,
 .shortcut.disabled,
+.tool-button.disabled,
 .button:disabled,
 .command-button:disabled,
 .image-button:disabled,
-.shortcut:disabled {
+.shortcut:disabled,
+.tool-button:disabled {
   opacity: .65;
 }
 .button.outline,
 .command-button.outline,
 .image-button.outline,
-.shortcut.outline {
+.shortcut.outline,
+.tool-button.outline {
   background: transparent none;
   border-width: 1px;
 }
 .button.primary,
 .command-button.primary,
 .image-button.primary,
-.shortcut.primary {
+.shortcut.primary,
+.tool-button.primary {
   outline-color: #89b0ff;
 }
 .button.primary.outline,
 .command-button.primary.outline,
 .image-button.primary.outline,
-.shortcut.primary.outline {
+.shortcut.primary.outline,
+.tool-button.primary.outline {
   color: #0050ef;
   border-color: #0050ef;
 }
 .button.primary:hover,
 .command-button.primary:hover,
 .image-button.primary:hover,
-.shortcut.primary:hover {
+.shortcut.primary:hover,
+.tool-button.primary:hover {
   background-color: #003fbc;
   border-color: #002e89;
 }
 .button.primary.same-color:hover,
 .command-button.primary.same-color:hover,
 .image-button.primary.same-color:hover,
-.shortcut.primary.same-color:hover {
+.shortcut.primary.same-color:hover,
+.tool-button.primary.same-color:hover {
   background-color: #0050ef;
   border-color: #0050ef;
 }
@@ -5883,36 +5950,42 @@ a.command-button,
 .command-button.primary.focus,
 .image-button.primary.focus,
 .shortcut.primary.focus,
+.tool-button.primary.focus,
 .button.primary:focus,
 .command-button.primary:focus,
 .image-button.primary:focus,
-.shortcut.primary:focus {
+.shortcut.primary:focus,
+.tool-button.primary:focus {
   box-shadow: 0 0 0 3px rgba(0, 80, 239, 0.45);
 }
 .button.secondary,
 .command-button.secondary,
 .image-button.secondary,
-.shortcut.secondary {
+.shortcut.secondary,
+.tool-button.secondary {
   outline-color: #b7c6cd;
 }
 .button.secondary.outline,
 .command-button.secondary.outline,
 .image-button.secondary.outline,
-.shortcut.secondary.outline {
+.shortcut.secondary.outline,
+.tool-button.secondary.outline {
   color: #607d8b;
   border-color: #607d8b;
 }
 .button.secondary:hover,
 .command-button.secondary:hover,
 .image-button.secondary:hover,
-.shortcut.secondary:hover {
+.shortcut.secondary:hover,
+.tool-button.secondary:hover {
   background-color: #4b626d;
   border-color: #36474f;
 }
 .button.secondary.same-color:hover,
 .command-button.secondary.same-color:hover,
 .image-button.secondary.same-color:hover,
-.shortcut.secondary.same-color:hover {
+.shortcut.secondary.same-color:hover,
+.tool-button.secondary.same-color:hover {
   background-color: #607d8b;
   border-color: #607d8b;
 }
@@ -5920,36 +5993,42 @@ a.command-button,
 .command-button.secondary.focus,
 .image-button.secondary.focus,
 .shortcut.secondary.focus,
+.tool-button.secondary.focus,
 .button.secondary:focus,
 .command-button.secondary:focus,
 .image-button.secondary:focus,
-.shortcut.secondary:focus {
+.shortcut.secondary:focus,
+.tool-button.secondary:focus {
   box-shadow: 0 0 0 3px rgba(96, 125, 139, 0.45);
 }
 .button.success,
 .command-button.success,
 .image-button.success,
-.shortcut.success {
+.shortcut.success,
+.tool-button.success {
   outline-color: #adeb6e;
 }
 .button.success.outline,
 .command-button.success.outline,
 .image-button.success.outline,
-.shortcut.success.outline {
+.shortcut.success.outline,
+.tool-button.success.outline {
   color: #60a917;
   border-color: #60a917;
 }
 .button.success:hover,
 .command-button.success:hover,
 .image-button.success:hover,
-.shortcut.success:hover {
+.shortcut.success:hover,
+.tool-button.success:hover {
   background-color: #477c11;
   border-color: #2d4f0b;
 }
 .button.success.same-color:hover,
 .command-button.success.same-color:hover,
 .image-button.success.same-color:hover,
-.shortcut.success.same-color:hover {
+.shortcut.success.same-color:hover,
+.tool-button.success.same-color:hover {
   background-color: #60a917;
   border-color: #60a917;
 }
@@ -5957,36 +6036,42 @@ a.command-button,
 .command-button.success.focus,
 .image-button.success.focus,
 .shortcut.success.focus,
+.tool-button.success.focus,
 .button.success:focus,
 .command-button.success:focus,
 .image-button.success:focus,
-.shortcut.success:focus {
+.shortcut.success:focus,
+.tool-button.success:focus {
   box-shadow: 0 0 0 3px rgba(96, 169, 23, 0.45);
 }
 .button.alert,
 .command-button.alert,
 .image-button.alert,
-.shortcut.alert {
+.shortcut.alert,
+.tool-button.alert {
   outline-color: #ecaba7;
 }
 .button.alert.outline,
 .command-button.alert.outline,
 .image-button.alert.outline,
-.shortcut.alert.outline {
+.shortcut.alert.outline,
+.tool-button.alert.outline {
   color: #CE352C;
   border-color: #CE352C;
 }
 .button.alert:hover,
 .command-button.alert:hover,
 .image-button.alert:hover,
-.shortcut.alert:hover {
+.shortcut.alert:hover,
+.tool-button.alert:hover {
   background-color: #a42a23;
   border-color: #7a1f1a;
 }
 .button.alert.same-color:hover,
 .command-button.alert.same-color:hover,
 .image-button.alert.same-color:hover,
-.shortcut.alert.same-color:hover {
+.shortcut.alert.same-color:hover,
+.tool-button.alert.same-color:hover {
   background-color: #CE352C;
   border-color: #CE352C;
 }
@@ -5994,36 +6079,42 @@ a.command-button,
 .command-button.alert.focus,
 .image-button.alert.focus,
 .shortcut.alert.focus,
+.tool-button.alert.focus,
 .button.alert:focus,
 .command-button.alert:focus,
 .image-button.alert:focus,
-.shortcut.alert:focus {
+.shortcut.alert:focus,
+.tool-button.alert:focus {
   box-shadow: 0 0 0 3px rgba(206, 53, 44, 0.45);
 }
 .button.warning,
 .command-button.warning,
 .image-button.warning,
-.shortcut.warning {
+.shortcut.warning,
+.tool-button.warning {
   outline-color: #ffdec7;
 }
 .button.warning.outline,
 .command-button.warning.outline,
 .image-button.warning.outline,
-.shortcut.warning.outline {
+.shortcut.warning.outline,
+.tool-button.warning.outline {
   color: #ff852e;
   border-color: #ff852e;
 }
 .button.warning:hover,
 .command-button.warning:hover,
 .image-button.warning:hover,
-.shortcut.warning:hover {
+.shortcut.warning:hover,
+.tool-button.warning:hover {
   background-color: #fa6800;
   border-color: #c75300;
 }
 .button.warning.same-color:hover,
 .command-button.warning.same-color:hover,
 .image-button.warning.same-color:hover,
-.shortcut.warning.same-color:hover {
+.shortcut.warning.same-color:hover,
+.tool-button.warning.same-color:hover {
   background-color: #ff852e;
   border-color: #ff852e;
 }
@@ -6031,36 +6122,42 @@ a.command-button,
 .command-button.warning.focus,
 .image-button.warning.focus,
 .shortcut.warning.focus,
+.tool-button.warning.focus,
 .button.warning:focus,
 .command-button.warning:focus,
 .image-button.warning:focus,
-.shortcut.warning:focus {
+.shortcut.warning:focus,
+.tool-button.warning:focus {
   box-shadow: 0 0 0 3px rgba(255, 133, 46, 0.45);
 }
 .button.yellow,
 .command-button.yellow,
 .image-button.yellow,
-.shortcut.yellow {
+.shortcut.yellow,
+.tool-button.yellow {
   outline-color: #ffffff;
 }
 .button.yellow.outline,
 .command-button.yellow.outline,
 .image-button.yellow.outline,
-.shortcut.yellow.outline {
+.shortcut.yellow.outline,
+.tool-button.yellow.outline {
   color: #ffe484;
   border-color: #ffe484;
 }
 .button.yellow:hover,
 .command-button.yellow:hover,
 .image-button.yellow:hover,
-.shortcut.yellow:hover {
+.shortcut.yellow:hover,
+.tool-button.yellow:hover {
   background-color: #ffd951;
   border-color: #ffce1e;
 }
 .button.yellow.same-color:hover,
 .command-button.yellow.same-color:hover,
 .image-button.yellow.same-color:hover,
-.shortcut.yellow.same-color:hover {
+.shortcut.yellow.same-color:hover,
+.tool-button.yellow.same-color:hover {
   background-color: #ffe484;
   border-color: #ffe484;
 }
@@ -6068,36 +6165,42 @@ a.command-button,
 .command-button.yellow.focus,
 .image-button.yellow.focus,
 .shortcut.yellow.focus,
+.tool-button.yellow.focus,
 .button.yellow:focus,
 .command-button.yellow:focus,
 .image-button.yellow:focus,
-.shortcut.yellow:focus {
+.shortcut.yellow:focus,
+.tool-button.yellow:focus {
   box-shadow: 0 0 0 3px rgba(255, 228, 132, 0.45);
 }
 .button.info,
 .command-button.info,
 .image-button.info,
-.shortcut.info {
+.shortcut.info,
+.tool-button.info {
   outline-color: #d0ecf9;
 }
 .button.info.outline,
 .command-button.info.outline,
 .image-button.info.outline,
-.shortcut.info.outline {
+.shortcut.info.outline,
+.tool-button.info.outline {
   color: #47b4e9;
   border-color: #47b4e9;
 }
 .button.info:hover,
 .command-button.info:hover,
 .image-button.info:hover,
-.shortcut.info:hover {
+.shortcut.info:hover,
+.tool-button.info:hover {
   background-color: #1ba1e2;
   border-color: #1681b4;
 }
 .button.info.same-color:hover,
 .command-button.info.same-color:hover,
 .image-button.info.same-color:hover,
-.shortcut.info.same-color:hover {
+.shortcut.info.same-color:hover,
+.tool-button.info.same-color:hover {
   background-color: #47b4e9;
   border-color: #47b4e9;
 }
@@ -6105,36 +6208,42 @@ a.command-button,
 .command-button.info.focus,
 .image-button.info.focus,
 .shortcut.info.focus,
+.tool-button.info.focus,
 .button.info:focus,
 .command-button.info:focus,
 .image-button.info:focus,
-.shortcut.info:focus {
+.shortcut.info:focus,
+.tool-button.info:focus {
   box-shadow: 0 0 0 3px rgba(71, 180, 233, 0.45);
 }
 .button.dark,
 .command-button.dark,
 .image-button.dark,
-.shortcut.dark {
+.shortcut.dark,
+.tool-button.dark {
   outline-color: #9d9d9d;
 }
 .button.dark.outline,
 .command-button.dark.outline,
 .image-button.dark.outline,
-.shortcut.dark.outline {
+.shortcut.dark.outline,
+.tool-button.dark.outline {
   color: #505050;
   border-color: #505050;
 }
 .button.dark:hover,
 .command-button.dark:hover,
 .image-button.dark:hover,
-.shortcut.dark:hover {
+.shortcut.dark:hover,
+.tool-button.dark:hover {
   background-color: #373737;
   border-color: #1d1d1d;
 }
 .button.dark.same-color:hover,
 .command-button.dark.same-color:hover,
 .image-button.dark.same-color:hover,
-.shortcut.dark.same-color:hover {
+.shortcut.dark.same-color:hover,
+.tool-button.dark.same-color:hover {
   background-color: #505050;
   border-color: #505050;
 }
@@ -6142,36 +6251,42 @@ a.command-button,
 .command-button.dark.focus,
 .image-button.dark.focus,
 .shortcut.dark.focus,
+.tool-button.dark.focus,
 .button.dark:focus,
 .command-button.dark:focus,
 .image-button.dark:focus,
-.shortcut.dark:focus {
+.shortcut.dark:focus,
+.tool-button.dark:focus {
   box-shadow: 0 0 0 3px rgba(80, 80, 80, 0.45);
 }
 .button.light,
 .command-button.light,
 .image-button.light,
-.shortcut.light {
+.shortcut.light,
+.tool-button.light {
   outline-color: #ffffff;
 }
 .button.light.outline,
 .command-button.light.outline,
 .image-button.light.outline,
-.shortcut.light.outline {
+.shortcut.light.outline,
+.tool-button.light.outline {
   color: #f8f8f8;
   border-color: #f8f8f8;
 }
 .button.light:hover,
 .command-button.light:hover,
 .image-button.light:hover,
-.shortcut.light:hover {
+.shortcut.light:hover,
+.tool-button.light:hover {
   background-color: #dfdfdf;
   border-color: #c5c5c5;
 }
 .button.light.same-color:hover,
 .command-button.light.same-color:hover,
 .image-button.light.same-color:hover,
-.shortcut.light.same-color:hover {
+.shortcut.light.same-color:hover,
+.tool-button.light.same-color:hover {
   background-color: #f8f8f8;
   border-color: #f8f8f8;
 }
@@ -6179,82 +6294,110 @@ a.command-button,
 .command-button.light.focus,
 .image-button.light.focus,
 .shortcut.light.focus,
+.tool-button.light.focus,
 .button.light:focus,
 .command-button.light:focus,
 .image-button.light:focus,
-.shortcut.light:focus {
+.shortcut.light:focus,
+.tool-button.light:focus {
   box-shadow: 0 0 0 3px rgba(248, 248, 248, 0.45);
 }
 .button.primary,
 .command-button.primary,
 .image-button.primary,
 .shortcut.primary,
+.tool-button.primary,
 .button.secondary,
 .command-button.secondary,
 .image-button.secondary,
 .shortcut.secondary,
+.tool-button.secondary,
 .button.success,
 .command-button.success,
 .image-button.success,
 .shortcut.success,
+.tool-button.success,
 .button.alert,
 .command-button.alert,
 .image-button.alert,
 .shortcut.alert,
+.tool-button.alert,
 .button.warning,
 .command-button.warning,
 .image-button.warning,
 .shortcut.warning,
+.tool-button.warning,
 .button.info,
 .command-button.info,
 .image-button.info,
 .shortcut.info,
+.tool-button.info,
 .button.dark,
 .command-button.dark,
 .image-button.dark,
-.shortcut.dark {
+.shortcut.dark,
+.tool-button.dark {
   color: #ffffff;
 }
 .button.primary:hover,
 .command-button.primary:hover,
 .image-button.primary:hover,
 .shortcut.primary:hover,
+.tool-button.primary:hover,
 .button.secondary:hover,
 .command-button.secondary:hover,
 .image-button.secondary:hover,
 .shortcut.secondary:hover,
+.tool-button.secondary:hover,
 .button.success:hover,
 .command-button.success:hover,
 .image-button.success:hover,
 .shortcut.success:hover,
+.tool-button.success:hover,
 .button.alert:hover,
 .command-button.alert:hover,
 .image-button.alert:hover,
 .shortcut.alert:hover,
+.tool-button.alert:hover,
 .button.warning:hover,
 .command-button.warning:hover,
 .image-button.warning:hover,
 .shortcut.warning:hover,
+.tool-button.warning:hover,
 .button.info:hover,
 .command-button.info:hover,
 .image-button.info:hover,
 .shortcut.info:hover,
+.tool-button.info:hover,
 .button.dark:hover,
 .command-button.dark:hover,
 .image-button.dark:hover,
-.shortcut.dark:hover {
+.shortcut.dark:hover,
+.tool-button.dark:hover {
   color: #ffffff;
 }
 .button.yellow,
 .command-button.yellow,
 .image-button.yellow,
-.shortcut.yellow {
+.shortcut.yellow,
+.tool-button.yellow,
+.button.light,
+.command-button.light,
+.image-button.light,
+.shortcut.light,
+.tool-button.light {
   color: #1d1d1d;
 }
 .button.yellow:hover,
 .command-button.yellow:hover,
 .image-button.yellow:hover,
-.shortcut.yellow:hover {
+.shortcut.yellow:hover,
+.tool-button.yellow:hover,
+.button.light:hover,
+.command-button.light:hover,
+.image-button.light:hover,
+.shortcut.light:hover,
+.tool-button.light:hover {
   color: #1d1d1d;
 }
 .debug {

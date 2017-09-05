@@ -41,7 +41,7 @@
             </div>
 
             <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
-                <h4>Table of contents</h4>
+                <h5>Table of contents</h5>
                 <hr/>
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Buttons</a></li>
@@ -74,7 +74,16 @@
 
                 <h3 id="_push_buttons">Push buttons</h3>
                 <p>
-                    Button styles can be applied to anything with the <span class="tally">.button</span> class applied.
+                    Button styles can be applied to anything with the <span class="tally">.button</span> class applied. To change button color use one of accent color subclasses:
+                    <span class="tally">.primary</span>,
+                    <span class="tally">.secondary</span>,
+                    <span class="tally">.success</span>,
+                    <span class="tally">.alert</span>,
+                    <span class="tally">.warning</span>,
+                    <span class="tally">.yellow</span>,
+                    <span class="tally">.info</span>,
+                    <span class="tally">.dark</span>.
+
                 </p>
 
                 <div class="example">
@@ -84,6 +93,7 @@
                     <button class="button success">Success</button>
                     <button class="button alert">Alert</button>
                     <button class="button warning">Warning</button>
+                    <button class="button yellow">Yellow</button>
                     <button class="button info">Info</button>
                     <button class="button dark">Dark</button>
                     <button class="button light">Light</button>
@@ -97,13 +107,14 @@
                     &lt;button class="button success"&gt;Success&lt;/button&gt;
                     &lt;button class="button alert"&gt;Alert&lt;/button&gt;
                     &lt;button class="button warning"&gt;Warning&lt;/button&gt;
+                    &lt;button class="button yellow"&gt;Yellow&lt;/button&gt;
                     &lt;button class="button info"&gt;Info&lt;/button&gt;
                     &lt;button class="button dark"&gt;Dark&lt;/button&gt;
                     &lt;button class="button light"&gt;Light&lt;/button&gt;
                     &lt;button class="button link"&gt;Link&lt;/button&gt;
                 </code></pre>
 
-                <h5>Note for .button class</h5>
+                <h6>Note for .button class</h6>
                 <p>
                     The <span class="tally">.button</span> class are designed to be used with the <span class="tally">&lt;button&gt;</span> element.
                     However, you can also use these classes on <span class="tally">&lt;a&gt;</span> or <span class="tally">&lt;input&gt;</span> elements (though some browsers may apply a slightly different rendering).
@@ -114,17 +125,17 @@
                 </p>
 
                 <div class="example">
-                    <a class="button primary" href="#" role="button">Link</a>
-                    <input class="button primary" type="button" value="Input">
-                    <input class="button primary" type="submit" value="Submit">
-                    <input class="button primary" type="reset" value="Reset">
+                    <a class="button " href="#" role="button">Link</a>
+                    <input class="button " type="button" value="Input">
+                    <input class="button " type="submit" value="Submit">
+                    <input class="button " type="reset" value="Reset">
                 </div>
 
                 <pre class="prettyprint linenums"><code>
-                    &lt;a class="button primary" href="#" role="button"&gt;Link&lt;/a&gt;
-                    &lt;input class="button primary" type="button" value="Input"&gt;
-                    &lt;input class="button primary" type="submit" value="Submit"&gt;
-                    &lt;input class="button primary" type="reset" value="Reset"&gt;
+                    &lt;a class="button " href="#" role="button"&gt;Link&lt;/a&gt;
+                    &lt;input class="button " type="button" value="Input"&gt;
+                    &lt;input class="button " type="submit" value="Submit"&gt;
+                    &lt;input class="button " type="reset" value="Reset"&gt;
                 </code></pre>
 
                 <h3 id="_push_buttons_with_icons">Push buttons with icons</h3>
@@ -158,7 +169,30 @@
                     <button class="button warning outline">Warning</button>
                     <button class="button info outline">Info</button>
                     <button class="button dark outline">Dark</button>
+                    <button class="button yellow outline">Yellow</button>
                 </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;button class="button primary outline"&gt;Primary&lt;/button&gt;
+                    &lt;button class="button secondary outline"&gt;Secondary&lt;/button&gt;
+                    &lt;button class="button success outline"&gt;Success&lt;/button&gt;
+                    &lt;button class="button alert outline"&gt;Alert&lt;/button&gt;
+                    &lt;button class="button warning outline"&gt;Warning&lt;/button&gt;
+                    &lt;button class="button info outline"&gt;Info&lt;/button&gt;
+                    &lt;button class="button dark outline"&gt;Dark&lt;/button&gt;
+                    &lt;button class="button yellow outline"&gt;Yellow&lt;/button&gt;
+                </code></pre>
+                <h6>Note for outline</h6>
+                <p>
+                    <span class="tally">outline</span> class required one of accent color subclasses:
+                        <span class="tally">.primary</span>,
+                        <span class="tally">.secondary</span>,
+                        <span class="tally">.success</span>,
+                        <span class="tally">.alert</span>,
+                        <span class="tally">.warning</span>,
+                        <span class="tally">.yellow</span>,
+                        <span class="tally">.info</span>,
+                        <span class="tally">.dark</span>.
+                </p>
 
                 <h3 id="_push_buttons_sizes">Push button sizes</h3>
                 <p>
@@ -312,7 +346,7 @@
 
                 <h3 id="_image_button">Image button</h3>
                 <p>
-                    With Metro UI CSS you can simple create image button. User <span class="tally">.image-button</span> class to create image button. Image button support accent mode (primary, alert, ...), outline mode, rounded corners and left or right icon position.
+                    With Metro UI CSS you can simple create image button. Use <span class="tally">.image-button</span> class to create image button. Image button support accent mode (primary, alert, ...), outline mode, rounded corners and left or right icon position.
                 </p>
 
                 <div class="example">
@@ -403,7 +437,7 @@
 
                 <h3 id="_shortcuts">Shortcut</h3>
                 <p>
-                    Need shortcut button? With Metro UI CSS you can simple create shortcut button. User <span class="tally">.shortcut</span> class to create shortcut button.
+                    Need shortcut button? With Metro UI CSS you can simple create shortcut button. Use <span class="tally">.shortcut</span> class to create shortcut button.
                     Shortcuts support accent mode (primary, alert, ...), outline mode and rounded corners.
                 </p>
 
@@ -471,6 +505,48 @@
                         &lt;span class="mif-rocket icon"&gt;&lt;/span&gt;
                     &lt;/button&gt;
                 </code></pre>
+
+                <h3 id="_toolbars">Toolbars</h3>
+                <p>
+                    If you need to create toolbar, Metro UI CSS provides the special classes fro this: <span class="tally">.toolbar</span> and <span class="tally">.tool-button</span>.
+                    Toolbar buttons support accent mode (primary, alert, ...), outline mode and rounded corners.
+                </p>
+                <div class="example">
+                    <div class="toolbar">
+                        <button class="tool-button"><span class="mif-floppy-disk"></span></button>
+                        <button class="tool-button"><img src="images/checkmark.png"></button>
+                        <button class="tool-button text-button">Open</button>
+                    </div>
+                    <div class="toolbar">
+                        <button class="tool-button primary"><span class="mif-floppy-disk"></span></button>
+                        <button class="tool-button info"><span class="mif-printer"></span></button>
+                        <button class="tool-button success text-button">Open</button>
+                    </div>
+                    <div class="toolbar">
+                        <button class="tool-button primary outline"><span class="mif-floppy-disk"></span></button>
+                        <button class="tool-button info outline"><span class="mif-printer"></span></button>
+                        <button class="tool-button success outline text-button">Open</button>
+                    </div>
+                    <div class="toolbar">
+                        <button class="tool-button primary rounded"><span class="mif-floppy-disk"></span></button>
+                        <button class="tool-button info rounded"><span class="mif-printer"></span></button>
+                        <button class="tool-button success rounded text-button">Open</button>
+                    </div>
+                </div>
+
+                <pre class="prettyprint linenums"><code>
+                    &lt;div class="toolbar"&gt;
+                        &lt;button class="tool-button"&gt;&lt;span class="mif-floppy-disk"&gt;&lt;/span&gt;&lt;/button&gt;
+                        &lt;button class="tool-button"&gt;&lt;img src="images/checkmark.png"&gt;&lt;/button&gt;
+                        &lt;button class="tool-button"&gt;Open&lt;/button&gt;
+                    &lt;/div&gt;
+                    &lt;div class="toolbar"&gt;
+                        &lt;button class="tool-button primary"&gt;...&lt;/button&gt;
+                        &lt;button class="tool-button primary outline"&gt;...&lt;/button&gt;
+                        &lt;button class="tool-button primary rounded"&gt;...&lt;/button&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
             </main>
         </div>
 

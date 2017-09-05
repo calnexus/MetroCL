@@ -120,7 +120,8 @@ var Metro = {
             return this.each(function() {
                 if ( ! $.data( this, name ) ) {
                     $.data( this, name, Object.create(object).init(
-                        options, this ) );
+                        options, this )
+                    );
                 }
             });
         };
