@@ -315,11 +315,11 @@
 
     .page-item, .page-item.service {
         &:hover, &.active {
-            background-color: @grayMouse;
-            border-color: @grayMouse;
+            background-color: @gray;
+            border-color: @gray;
             color: @white;
             &:hover {
-                background-color: darken(@grayMouse, 10%);
+                background-color: darken(@gray, 10%);
             }
         }
     }
@@ -354,6 +354,21 @@
         }
         .no-link {
             margin:  -1px 1px;
+        }
+
+        &.rounded {
+            .page-item {
+                border-radius: 0;
+            }
+
+            .page-item:first-child {
+                border-top-left-radius: @borderRadius;
+                border-bottom-left-radius: @borderRadius;
+            }
+            .page-item:last-child {
+                border-top-right-radius: @borderRadius;
+                border-bottom-right-radius: @borderRadius;
+            }
         }
     }
 }
