@@ -127,6 +127,18 @@ pre {
   position: absolute;
   font-weight: bold;
 }
+.toc-wrapper .toc-nav li.process a,
+#sidenav .toc-nav li.process a {
+  color: #1d1d1d;
+}
+.toc-wrapper .toc-nav li.process a:before,
+#sidenav .toc-nav li.process a:before {
+  content: "\25CF";
+  color: #1ba1e2;
+  left: -1rem;
+  position: absolute;
+  font-weight: bold;
+}
 .toc-wrapper .toc-nav ul,
 #sidenav .toc-nav ul,
 .toc-wrapper .toc-nav ol,

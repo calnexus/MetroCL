@@ -140,6 +140,18 @@ pre {
             }
         }
 
+        li.process a {
+            color: @dark;
+
+            &:before {
+                content: "\25CF";
+                color: @cyan;
+                left: -1rem;
+                position: absolute;
+                font-weight: bold;
+            }
+        }
+
         ul, ol {
             list-style: none;
             margin-left: 0;
