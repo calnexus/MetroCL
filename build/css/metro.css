@@ -6109,8 +6109,12 @@ a.app-bar-element {
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
   list-style: none inside;
-  margin: 0 0 1rem 0;
+  margin: 0 -0.25rem 1rem -0.25rem;
   padding: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .pagination .page-item {
   cursor: pointer;
@@ -6132,13 +6136,17 @@ a.app-bar-element {
   background-color: transparent;
 }
 .pagination .page-item:hover,
-.pagination .page-item.service:hover {
+.pagination .page-item.service:hover,
+.pagination .page-item.active,
+.pagination .page-item.service.active {
   background-color: #455a64;
   border-color: #455a64;
   color: #ffffff;
 }
 .pagination .page-item:hover:hover,
-.pagination .page-item.service:hover:hover {
+.pagination .page-item.service:hover:hover,
+.pagination .page-item.active:hover,
+.pagination .page-item.service.active:hover {
   background-color: #303f46;
 }
 .pagination .page-item.no-link {
@@ -6150,14 +6158,29 @@ a.app-bar-element {
   border-color: transparent;
   color: #1d1d1d;
 }
+.pagination .page-item.disabled {
+  pointer-events: none;
+  color: #b8b8b8;
+}
 .pagination.rounded .page-item {
   border-radius: 4px;
+}
+.pagination.no-gap {
+  margin: 0 0 1rem 0;
 }
 .pagination.no-gap .page-item {
   margin: -1px;
 }
 .pagination.no-gap .no-link {
   margin: -1px 1px;
+}
+.pagination.size-large .page-link {
+  padding: .75rem 1.5rem;
+  font-size: 1.25rem;
+}
+.pagination.size-small .page-link {
+  padding: .25rem .5rem;
+  font-size: .875rem;
 }
 a.button,
 a.command-button,
