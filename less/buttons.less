@@ -281,6 +281,60 @@
     }
 }
 
+.pagination {
+    display: flex;
+    flex-wrap: nowrap;
+    list-style: none inside;
+    margin: 0 0 1rem 0;
+    padding: 0;
+}
+
+.pagination {
+    li a, .item {
+        cursor: pointer;
+        display: block;
+        position: relative;
+        padding: .5rem .75rem;
+        .px2rem(margin, 4px);
+        line-height: 1.25;
+        color: @dark;
+        background-color: @white;
+        border: 1px solid darken(@light, 10%);
+        font-size: 1rem;
+        transition: @transition-short;
+
+        //&:hover {
+        //    background-color: darken(@white, 10%);
+        //    border-color: darken(@light, 20%);
+        //}
+
+        &:hover, &.active, &.service {
+            background-color: @grayMouse;
+            border-color: @grayMouse;
+            color: @white;
+            &:hover {
+                background-color: darken(@grayMouse, 10%);
+            }
+        }
+
+        &.no-link {
+            cursor: default;
+            border-color: @transparent;
+            &:hover {
+                background-color: @white!important;
+                border-color: @transparent;
+                color: @dark;
+            }
+        }
+    }
+
+    &.rounded {
+        li a, .item {
+            border-radius: @borderRadius;
+        }
+    }
+}
+
 a.button, a.command-button, .image-button, .shortcut, .tool-button {
     color: @dark;
 }

@@ -187,3 +187,11 @@ footer p a {
   color: #1d1d1d;
   font-weight: bold;
 }
+#sidenav {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  #sidenav {
+    display: block;
+  }
+}

@@ -786,6 +786,27 @@ img {
   display: -ms-inline-flexbox !important;
   display: inline-flex !important;
 }
+.w-sxd {
+  width: 320px;
+}
+.w-smd {
+  width: 480px;
+}
+.w-ldd {
+  width: 640px;
+}
+.w-mdd {
+  width: 768px;
+}
+.w-lgd {
+  width: 1024px;
+}
+.w-xld {
+  width: 1200px;
+}
+.w-xxld {
+  width: 1440px;
+}
 @media screen and (min-width: 576px) {
   .d-none-sm {
     display: none!important;
@@ -815,6 +836,24 @@ img {
   .d-inline-flex-sm {
     display: -ms-inline-flexbox !important;
     display: inline-flex !important;
+  }
+  .place-left-sm {
+    float: left!important;
+  }
+  .place-right-sm {
+    float: right!important;
+  }
+  .place-none-sm {
+    float: none!important;
+  }
+  .float-left-sm {
+    float: left!important;
+  }
+  .float-right-sm {
+    float: right!important;
+  }
+  .float-none-sm {
+    float: none!important;
   }
   .mx-auto-sm {
     margin-left: auto!important;
@@ -1175,6 +1214,24 @@ img {
     display: -ms-inline-flexbox !important;
     display: inline-flex !important;
   }
+  .place-left-md {
+    float: left!important;
+  }
+  .place-right-md {
+    float: right!important;
+  }
+  .place-none-md {
+    float: none!important;
+  }
+  .float-left-md {
+    float: left!important;
+  }
+  .float-right-md {
+    float: right!important;
+  }
+  .float-none-md {
+    float: none!important;
+  }
   .mx-auto-md {
     margin-left: auto!important;
     margin-right: auto!important;
@@ -1533,6 +1590,24 @@ img {
   .d-inline-flex-lg {
     display: -ms-inline-flexbox !important;
     display: inline-flex !important;
+  }
+  .place-left-lg {
+    float: left!important;
+  }
+  .place-right-lg {
+    float: right!important;
+  }
+  .place-none-lg {
+    float: none!important;
+  }
+  .float-left-lg {
+    float: left!important;
+  }
+  .float-right-lg {
+    float: right!important;
+  }
+  .float-none-lg {
+    float: none!important;
   }
   .mx-auto-lg {
     margin-left: auto!important;
@@ -1893,6 +1968,24 @@ img {
     display: -ms-inline-flexbox !important;
     display: inline-flex !important;
   }
+  .place-left-xl {
+    float: left!important;
+  }
+  .place-right-xl {
+    float: right!important;
+  }
+  .place-none-xl {
+    float: none!important;
+  }
+  .float-left-xl {
+    float: left!important;
+  }
+  .float-right-xl {
+    float: right!important;
+  }
+  .float-none-xl {
+    float: none!important;
+  }
   .mx-auto-xl {
     margin-left: auto!important;
     margin-right: auto!important;
@@ -2251,6 +2344,24 @@ img {
   .d-inline-flex-xxl {
     display: -ms-inline-flexbox !important;
     display: inline-flex !important;
+  }
+  .place-left-xxl {
+    float: left!important;
+  }
+  .place-right-xxl {
+    float: right!important;
+  }
+  .place-none-xxl {
+    float: none!important;
+  }
+  .float-left-xxl {
+    float: left!important;
+  }
+  .float-right-xxl {
+    float: right!important;
+  }
+  .float-none-xxl {
+    float: none!important;
   }
   .mx-auto-xxl {
     margin-left: auto!important;
@@ -2669,11 +2780,223 @@ img {
   background-color: #004d6f;
   color: #ffffff;
 }
-.button .light,
-.command-button .light,
-.image-button .light,
-.shortcut .light,
-.tool-button .light {
+.button.light,
+.command-button.light,
+.image-button.light,
+.shortcut.light,
+.tool-button.light {
+  color: #1d1d1d;
+}
+.pagination.primary li a.active,
+.pagination.primary .item.active,
+.pagination.primary li a.service,
+.pagination.primary .item.service,
+.pagination.primary li a:hover,
+.pagination.primary .item:hover {
+  background-color: #0050ef;
+  border-color: #0050ef;
+  color: #ffffff;
+}
+.pagination.primary li a.active:hover,
+.pagination.primary .item.active:hover,
+.pagination.primary li a.service:hover,
+.pagination.primary .item.service:hover,
+.pagination.primary li a:hover:hover,
+.pagination.primary .item:hover:hover {
+  background-color: #003fbc;
+}
+.pagination.secondary li a.active,
+.pagination.secondary .item.active,
+.pagination.secondary li a.service,
+.pagination.secondary .item.service,
+.pagination.secondary li a:hover,
+.pagination.secondary .item:hover {
+  background-color: #607d8b;
+  border-color: #607d8b;
+  color: #ffffff;
+}
+.pagination.secondary li a.active:hover,
+.pagination.secondary .item.active:hover,
+.pagination.secondary li a.service:hover,
+.pagination.secondary .item.service:hover,
+.pagination.secondary li a:hover:hover,
+.pagination.secondary .item:hover:hover {
+  background-color: #4b626d;
+}
+.pagination.success li a.active,
+.pagination.success .item.active,
+.pagination.success li a.service,
+.pagination.success .item.service,
+.pagination.success li a:hover,
+.pagination.success .item:hover {
+  background-color: #60a917;
+  border-color: #60a917;
+  color: #ffffff;
+}
+.pagination.success li a.active:hover,
+.pagination.success .item.active:hover,
+.pagination.success li a.service:hover,
+.pagination.success .item.service:hover,
+.pagination.success li a:hover:hover,
+.pagination.success .item:hover:hover {
+  background-color: #477c11;
+}
+.pagination.alert li a.active,
+.pagination.alert .item.active,
+.pagination.alert li a.service,
+.pagination.alert .item.service,
+.pagination.alert li a:hover,
+.pagination.alert .item:hover {
+  background-color: #CE352C;
+  border-color: #CE352C;
+  color: #ffffff;
+}
+.pagination.alert li a.active:hover,
+.pagination.alert .item.active:hover,
+.pagination.alert li a.service:hover,
+.pagination.alert .item.service:hover,
+.pagination.alert li a:hover:hover,
+.pagination.alert .item:hover:hover {
+  background-color: #a42a23;
+}
+.pagination.warning li a.active,
+.pagination.warning .item.active,
+.pagination.warning li a.service,
+.pagination.warning .item.service,
+.pagination.warning li a:hover,
+.pagination.warning .item:hover {
+  background-color: #ff852e;
+  border-color: #ff852e;
+  color: #ffffff;
+}
+.pagination.warning li a.active:hover,
+.pagination.warning .item.active:hover,
+.pagination.warning li a.service:hover,
+.pagination.warning .item.service:hover,
+.pagination.warning li a:hover:hover,
+.pagination.warning .item:hover:hover {
+  background-color: #fa6800;
+}
+.pagination.yellow li a.active,
+.pagination.yellow .item.active,
+.pagination.yellow li a.service,
+.pagination.yellow .item.service,
+.pagination.yellow li a:hover,
+.pagination.yellow .item:hover {
+  background-color: #ffe484;
+  border-color: #ffe484;
+  color: #ffffff;
+}
+.pagination.yellow li a.active:hover,
+.pagination.yellow .item.active:hover,
+.pagination.yellow li a.service:hover,
+.pagination.yellow .item.service:hover,
+.pagination.yellow li a:hover:hover,
+.pagination.yellow .item:hover:hover {
+  background-color: #ffd951;
+}
+.pagination.info li a.active,
+.pagination.info .item.active,
+.pagination.info li a.service,
+.pagination.info .item.service,
+.pagination.info li a:hover,
+.pagination.info .item:hover {
+  background-color: #47b4e9;
+  border-color: #47b4e9;
+  color: #ffffff;
+}
+.pagination.info li a.active:hover,
+.pagination.info .item.active:hover,
+.pagination.info li a.service:hover,
+.pagination.info .item.service:hover,
+.pagination.info li a:hover:hover,
+.pagination.info .item:hover:hover {
+  background-color: #1ba1e2;
+}
+.pagination.dark li a.active,
+.pagination.dark .item.active,
+.pagination.dark li a.service,
+.pagination.dark .item.service,
+.pagination.dark li a:hover,
+.pagination.dark .item:hover {
+  background-color: #505050;
+  border-color: #505050;
+  color: #ffffff;
+}
+.pagination.dark li a.active:hover,
+.pagination.dark .item.active:hover,
+.pagination.dark li a.service:hover,
+.pagination.dark .item.service:hover,
+.pagination.dark li a:hover:hover,
+.pagination.dark .item:hover:hover {
+  background-color: #373737;
+}
+.pagination.light li a.active,
+.pagination.light .item.active,
+.pagination.light li a.service,
+.pagination.light .item.service,
+.pagination.light li a:hover,
+.pagination.light .item:hover {
+  background-color: #f8f8f8;
+  border-color: #f8f8f8;
+  color: #ffffff;
+}
+.pagination.light li a.active:hover,
+.pagination.light .item.active:hover,
+.pagination.light li a.service:hover,
+.pagination.light .item.service:hover,
+.pagination.light li a:hover:hover,
+.pagination.light .item:hover:hover {
+  background-color: #dfdfdf;
+}
+.pagination.brand1 li a.active,
+.pagination.brand1 .item.active,
+.pagination.brand1 li a.service,
+.pagination.brand1 .item.service,
+.pagination.brand1 li a:hover,
+.pagination.brand1 .item:hover {
+  background-color: #2ac4f4;
+  border-color: #2ac4f4;
+  color: #ffffff;
+}
+.pagination.brand1 li a.active:hover,
+.pagination.brand1 .item.active:hover,
+.pagination.brand1 li a.service:hover,
+.pagination.brand1 .item.service:hover,
+.pagination.brand1 li a:hover:hover,
+.pagination.brand1 .item:hover:hover {
+  background-color: #0caddf;
+}
+.pagination.brand2 li a.active,
+.pagination.brand2 .item.active,
+.pagination.brand2 li a.service,
+.pagination.brand2 .item.service,
+.pagination.brand2 li a:hover,
+.pagination.brand2 .item:hover {
+  background-color: #004d6f;
+  border-color: #004d6f;
+  color: #ffffff;
+}
+.pagination.brand2 li a.active:hover,
+.pagination.brand2 .item.active:hover,
+.pagination.brand2 li a.service:hover,
+.pagination.brand2 .item.service:hover,
+.pagination.brand2 li a:hover:hover,
+.pagination.brand2 .item:hover:hover {
+  background-color: #002a3c;
+}
+.pagination.light li a.active,
+.pagination.yellow li a.active,
+.pagination.light .item.active,
+.pagination.yellow .item.active,
+.pagination.light li a.service,
+.pagination.yellow li a.service,
+.pagination.light .item.service,
+.pagination.yellow .item.service,
+.pagination.light li a:hover,
+.pagination.yellow li a:hover,
+.pagination.light .item:hover,
+.pagination.yellow .item:hover {
   color: #1d1d1d;
 }
 html {
@@ -5852,6 +6175,62 @@ a.app-bar-element {
   padding-left: .5rem;
   padding-right: .5rem;
 }
+.pagination {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  list-style: none inside;
+  margin: 0 0 1rem 0;
+  padding: 0;
+}
+.pagination li a,
+.pagination .item {
+  cursor: pointer;
+  display: block;
+  position: relative;
+  padding: .5rem .75rem;
+  margin: 0.25rem;
+  line-height: 1.25;
+  color: #1d1d1d;
+  background-color: #ffffff;
+  border: 1px solid #dfdfdf;
+  font-size: 1rem;
+  transition: all 0.15s ease-in-out;
+}
+.pagination li a:hover,
+.pagination .item:hover,
+.pagination li a.active,
+.pagination .item.active,
+.pagination li a.service,
+.pagination .item.service {
+  background-color: #455a64;
+  border-color: #455a64;
+  color: #ffffff;
+}
+.pagination li a:hover:hover,
+.pagination .item:hover:hover,
+.pagination li a.active:hover,
+.pagination .item.active:hover,
+.pagination li a.service:hover,
+.pagination .item.service:hover {
+  background-color: #303f46;
+}
+.pagination li a.no-link,
+.pagination .item.no-link {
+  cursor: default;
+  border-color: transparent;
+}
+.pagination li a.no-link:hover,
+.pagination .item.no-link:hover {
+  background-color: #ffffff !important;
+  border-color: transparent;
+  color: #1d1d1d;
+}
+.pagination.rounded li a,
+.pagination.rounded .item {
+  border-radius: 4px;
+}
 a.button,
 a.command-button,
 .image-button,
@@ -6494,6 +6873,149 @@ a.command-button,
 .shortcut.light:hover,
 .tool-button.light:hover {
   color: #1d1d1d;
+}
+.tile-container {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding-bottom: 5px;
+}
+.tile {
+  display: block;
+  margin: 5px;
+  background: #1ba1e2;
+  color: #ffffff;
+  width: 150px;
+  height: 150px;
+  box-shadow: inset 0 0 1px #FFFFCC;
+}
+.tile.small {
+  width: 70px;
+  height: 70px;
+}
+.tile.wide {
+  width: 310px;
+  height: 150px;
+}
+.tile.large {
+  width: 310px;
+  height: 310px;
+}
+form {
+  display: block;
+  position: relative;
+  margin-bottom: 1rem;
+}
+.input-control {
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 1rem;
+  position: relative;
+}
+input[type=text],
+input[type=password],
+input[type=tel],
+input[type=datetime-local],
+input[type=email],
+input[type=file],
+input[type=month],
+input[type=number],
+input[type=search],
+input[type=time],
+input[type=url],
+input[type=week],
+select,
+textarea {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  position: relative;
+  border: 1px #d9d9d9 solid;
+  color: #1d1d1d;
+  width: 100%;
+  padding: .5rem .75rem;
+  z-index: 0;
+  font-size: 1rem;
+  line-height: 1.25;
+  background: #ffffff none;
+  background-clip: padding-box;
+}
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=tel]:focus,
+input[type=datetime-local]:focus,
+input[type=email]:focus,
+input[type=file]:focus,
+input[type=month]:focus,
+input[type=number]:focus,
+input[type=search]:focus,
+input[type=time]:focus,
+input[type=url]:focus,
+input[type=week]:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+}
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=tel]:focus,
+input[type=datetime-local]:focus,
+input[type=email]:focus,
+input[type=file]:focus,
+input[type=month]:focus,
+input[type=number]:focus,
+input[type=search]:focus,
+input[type=time]:focus,
+input[type=url]:focus,
+input[type=week]:focus,
+select:focus,
+textarea:focus,
+input[type=text]:hover,
+input[type=password]:hover,
+input[type=tel]:hover,
+input[type=datetime-local]:hover,
+input[type=email]:hover,
+input[type=file]:hover,
+input[type=month]:hover,
+input[type=number]:hover,
+input[type=search]:hover,
+input[type=time]:hover,
+input[type=url]:hover,
+input[type=week]:hover,
+select:hover,
+textarea:hover {
+  border-color: #c0c0c0;
+}
+input[type=button],
+input[type=submit],
+input[type=reset] {
+  width: auto;
+}
+input.error,
+select.error,
+textarea.error {
+  border: 1px solid #CE352C;
+}
+input.warning,
+select.warning,
+textarea.warning {
+  border: 1px solid #fff000;
+}
+input.info,
+select.info,
+textarea.info {
+  border: 1px solid #1ba1e2;
+}
+input.success,
+select.success,
+textarea.success {
+  border: 1px solid #60a917;
+}
+input.required,
+select.required,
+textarea.required {
+  border: 1px dashed #1ba1e2;
 }
 .debug {
   border: 1px red dotted;

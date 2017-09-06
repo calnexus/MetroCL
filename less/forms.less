@@ -1,0 +1,60 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+form {
+    display: block;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.input-control {
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+input[type=text],
+input[type=password],
+input[type=tel],
+input[type=datetime-local],
+input[type=email],
+input[type=file],
+input[type=month],
+input[type=number],
+input[type=search],
+input[type=time],
+input[type=url],
+input[type=week],
+select, textarea {
+    appearance: none;
+    position: relative;
+    border: 1px @inputBorder solid;
+    color: @dark;
+    width: 100%;
+    padding: .5rem .75rem;
+    z-index: 0;
+    font-size: 1rem;
+    line-height: 1.25;
+    background: @white none;
+    background-clip: padding-box;
+    &:focus {
+        outline: none;
+    }
+
+    &:focus, &:hover {
+        border-color: darken(@inputBorder, 10%);
+    }
+}
+
+input[type=button], input[type=submit], input[type=reset] {
+    width: auto;
+}
+
+input, select, textarea {
+    &.error {border: 1px solid @red;}
+    &.warning {border: 1px solid @yellow;}
+    &.info {border: 1px solid @cyan;}
+    &.success {border: 1px solid @green;}
+    &.required {border: 1px dashed @cyan;}
+}

@@ -15,7 +15,38 @@
         .generate-accent-colors(@name, @i + 1);
     }
 
-    .light {
+    &.light {
         color: @dark;
+    }
+}
+
+.pagination {
+    .generate-accent-colors(@buttonPredefinedTypesLength);
+    .generate-accent-colors(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
+        @name: extract(@buttonPredefinedTypes, @i);
+        @color: "@{name}Color";
+
+        &.@{name} {
+            li a, .item {
+                &.active, &.service, &:hover {
+                    background-color: @@color;
+                    border-color: @@color;
+                    color: @white;
+                    &:hover {
+                        background-color: darken(@@color, 10%);
+                    }
+                }
+            }
+        }
+
+        .generate-accent-colors(@name, @i + 1);
+    }
+
+    &.light, &.yellow {
+        li a, .item {
+            &.active, &.service, &:hover {
+                color: @dark;
+            }
+        }
     }
 }

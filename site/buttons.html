@@ -37,7 +37,7 @@
     <div class="container-fluid">
 
         <div class="row flex-xl-nowrap">
-            <div class="cell-12 cell-md-3 cell-xl-2" id="sidenav">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
             </div>
 
             <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
@@ -66,7 +66,11 @@
                 </ul>
             </div>
 
-            <main class="cell-12 cell-md-9 cell-xl-8 order-1 pr-sx-1 pl-sx-1 pr-md-5 pl-md-5">
+            <main class="cell-md-9 cell-xl-8 order-1 pr-sx-1 pl-sx-1 pr-md-5 pl-md-5">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
                 <h1>Buttons</h1>
                 <p class="text-leader">
                     With the Metro UI CSS you can easily create different types of buttons, stylized to Windows Metro Style.
@@ -125,7 +129,7 @@
                 </p>
 
                 <div class="example">
-                    <a class="button " href="#" role="button">Link</a>
+                    <a class="button" href="" role="button" onclick="return false">Link</a>
                     <input class="button " type="button" value="Input">
                     <input class="button " type="submit" value="Submit">
                     <input class="button " type="reset" value="Reset">
@@ -547,6 +551,121 @@
                     &lt;/div&gt;
                 </code></pre>
 
+                <h3 id="_dropdown_buttons">Dropdown</h3>
+                <h3 id="_split_buttons">Split</h3>
+
+                <h3 id="_pagination">Pagination</h3>
+                <p>
+                    Need to create pagination? Create it easy with class <span class="tally">.pagination</span>. Pagination support accent mode (primary, alert, ...) and rounded corners.
+                </p>
+
+                <div class="example">
+                    <ul class="pagination">
+                        <li class="item">1</li>
+                        <li class="item active">2</li>
+                        <li class="item">3</li>
+                        <li class="item">4</li>
+                        <li class="item">5</li>
+                        <li class="item">6</li>
+                        <li class="item">7</li>
+                        <li class="item no-link">...</li>
+                        <li class="item service">Next &gt;</li>
+                    </ul>
+
+                    <ul class="pagination primary">
+                        <li class="item">1</li>
+                        <li class="item active">2</li>
+                        <li class="item">3</li>
+                        <li class="item">4</li>
+                        <li class="item">5</li>
+                        <li class="item">6</li>
+                        <li class="item">7</li>
+                        <li class="item no-link">...</li>
+                        <li class="item service">Next &gt;</li>
+                    </ul>
+
+                    <ul class="pagination secondary">
+                        <li class="item">1</li>
+                        <li class="item active">2</li>
+                        <li class="item">3</li>
+                        <li class="item">4</li>
+                        <li class="item">5</li>
+                        <li class="item">6</li>
+                        <li class="item">7</li>
+                        <li class="item no-link">...</li>
+                        <li class="item service">Next &gt;</li>
+                    </ul>
+
+                    <ul class="pagination success">
+                        <li class="item">1</li>
+                        <li class="item active">2</li>
+                        <li class="item">3</li>
+                        <li class="item">4</li>
+                        <li class="item">5</li>
+                        <li class="item">6</li>
+                        <li class="item">7</li>
+                        <li class="item no-link">...</li>
+                        <li class="item service">Next &gt;</li>
+                    </ul>
+
+                    <ul class="pagination warning">
+                        <li class="item">1</li>
+                        <li class="item active">2</li>
+                        <li class="item">3</li>
+                        <li class="item">4</li>
+                        <li class="item">5</li>
+                        <li class="item">6</li>
+                        <li class="item">7</li>
+                        <li class="item no-link">...</li>
+                        <li class="item service">Next &gt;</li>
+                    </ul>
+
+                    <ul class="pagination alert">
+                        <li class="item">1</li>
+                        <li class="item active">2</li>
+                        <li class="item">3</li>
+                        <li class="item">4</li>
+                        <li class="item">5</li>
+                        <li class="item">6</li>
+                        <li class="item">7</li>
+                        <li class="item no-link">...</li>
+                        <li class="item service">Next &gt;</li>
+                    </ul>
+
+                    <ul class="pagination yellow rounded">
+                        <li class="item">1</li>
+                        <li class="item active">2</li>
+                        <li class="item">3</li>
+                        <li class="item">4</li>
+                        <li class="item">5</li>
+                        <li class="item">6</li>
+                        <li class="item">7</li>
+                        <li class="item no-link">...</li>
+                        <li class="item service">Next &gt;</li>
+                    </ul>
+                </div>
+
+                <pre class="prettyprint linenums"><code>
+                    &lt;ul class="pagination"&gt;
+                        &lt;li class="item"&gt;1&lt;/li&gt;
+                        &lt;li class="item active"&gt;2&lt;/li&gt;
+                        &lt;li class="item"&gt;3&lt;/li&gt;
+                        &lt;li class="item"&gt;4&lt;/li&gt;
+                        &lt;li class="item no-link"&gt;...&lt;/li&gt;
+                        &lt;li class="item service"&gt;Next &gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                    &lt;ul class="pagination primary rounded"&gt;
+                        &lt;li class="item"&gt;1&lt;/li&gt;
+                        &lt;li class="item active"&gt;2&lt;/li&gt;
+                        &lt;li class="item"&gt;3&lt;/li&gt;
+                        &lt;li class="item"&gt;4&lt;/li&gt;
+                        &lt;li class="item no-link"&gt;...&lt;/li&gt;
+                        &lt;li class="item service"&gt;Next &gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <h3 id="_breadcrumbs">Breadcrumbs</h3>
+
             </main>
         </div>
 
@@ -555,7 +674,6 @@
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="metro/js/metro.min.js"></script>
     <script src="js/pre-code.js"></script>
-    <script src="js/github.js"></script>
     <script src="prettify/run_prettify.js"></script>
     <script src="js/site.js"></script>
 </body>
