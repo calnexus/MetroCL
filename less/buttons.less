@@ -290,47 +290,61 @@
 }
 
 .pagination {
-    li a, .item {
+
+    .page-item {
         cursor: pointer;
+        display: list-item;
+        background-color: @white;
+        color: @dark;
+        border: 1px solid darken(@light, 10%);
+        .px2rem(margin, 4px);
+        transition: @transition-short;
+    }
+
+    .page-link {
         display: block;
         position: relative;
         padding: .5rem .75rem;
-        .px2rem(margin, 4px);
-        line-height: 1.25;
-        color: @dark;
-        background-color: @white;
-        border: 1px solid darken(@light, 10%);
+        line-height: 1;
         font-size: 1rem;
-        transition: @transition-short;
+        text-decoration: none;
+        color: inherit;
+        background-color: transparent;
+    }
 
-        //&:hover {
-        //    background-color: darken(@white, 10%);
-        //    border-color: darken(@light, 20%);
-        //}
-
-        &:hover, &.active, &.service {
-            background-color: @grayMouse;
-            border-color: @grayMouse;
-            color: @white;
-            &:hover {
-                background-color: darken(@grayMouse, 10%);
-            }
+    .page-item:hover, .page-item.service:hover {
+        background-color: @grayMouse;
+        border-color: @grayMouse;
+        color: @white;
+        &:hover {
+            background-color: darken(@grayMouse, 10%);
         }
+    }
 
-        &.no-link {
-            cursor: default;
+    .page-item.no-link {
+        cursor: default;
+        border-color: @transparent;
+        &:hover {
+            background-color: @white!important;
             border-color: @transparent;
-            &:hover {
-                background-color: @white!important;
-                border-color: @transparent;
-                color: @dark;
-            }
+            color: @dark;
         }
     }
 
     &.rounded {
-        li a, .item {
+        .page-item {
             border-radius: @borderRadius;
+        }
+    }
+}
+
+.pagination {
+    &.no-gap {
+        .page-item {
+            margin: -1px;
+        }
+        .no-link {
+            margin:  -1px 1px;
         }
     }
 }

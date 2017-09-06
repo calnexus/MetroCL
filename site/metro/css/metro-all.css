@@ -2787,216 +2787,144 @@ img {
 .tool-button.light {
   color: #1d1d1d;
 }
-.pagination.primary li a.active,
-.pagination.primary .item.active,
-.pagination.primary li a.service,
-.pagination.primary .item.service,
-.pagination.primary li a:hover,
-.pagination.primary .item:hover {
+.pagination.primary .page-item.active,
+.pagination.primary .page-item.service,
+.pagination.primary .page-item:hover {
   background-color: #0050ef;
   border-color: #0050ef;
   color: #ffffff;
 }
-.pagination.primary li a.active:hover,
-.pagination.primary .item.active:hover,
-.pagination.primary li a.service:hover,
-.pagination.primary .item.service:hover,
-.pagination.primary li a:hover:hover,
-.pagination.primary .item:hover:hover {
+.pagination.primary .page-item.active:hover,
+.pagination.primary .page-item.service:hover,
+.pagination.primary .page-item:hover:hover {
   background-color: #003fbc;
 }
-.pagination.secondary li a.active,
-.pagination.secondary .item.active,
-.pagination.secondary li a.service,
-.pagination.secondary .item.service,
-.pagination.secondary li a:hover,
-.pagination.secondary .item:hover {
+.pagination.secondary .page-item.active,
+.pagination.secondary .page-item.service,
+.pagination.secondary .page-item:hover {
   background-color: #607d8b;
   border-color: #607d8b;
   color: #ffffff;
 }
-.pagination.secondary li a.active:hover,
-.pagination.secondary .item.active:hover,
-.pagination.secondary li a.service:hover,
-.pagination.secondary .item.service:hover,
-.pagination.secondary li a:hover:hover,
-.pagination.secondary .item:hover:hover {
+.pagination.secondary .page-item.active:hover,
+.pagination.secondary .page-item.service:hover,
+.pagination.secondary .page-item:hover:hover {
   background-color: #4b626d;
 }
-.pagination.success li a.active,
-.pagination.success .item.active,
-.pagination.success li a.service,
-.pagination.success .item.service,
-.pagination.success li a:hover,
-.pagination.success .item:hover {
+.pagination.success .page-item.active,
+.pagination.success .page-item.service,
+.pagination.success .page-item:hover {
   background-color: #60a917;
   border-color: #60a917;
   color: #ffffff;
 }
-.pagination.success li a.active:hover,
-.pagination.success .item.active:hover,
-.pagination.success li a.service:hover,
-.pagination.success .item.service:hover,
-.pagination.success li a:hover:hover,
-.pagination.success .item:hover:hover {
+.pagination.success .page-item.active:hover,
+.pagination.success .page-item.service:hover,
+.pagination.success .page-item:hover:hover {
   background-color: #477c11;
 }
-.pagination.alert li a.active,
-.pagination.alert .item.active,
-.pagination.alert li a.service,
-.pagination.alert .item.service,
-.pagination.alert li a:hover,
-.pagination.alert .item:hover {
+.pagination.alert .page-item.active,
+.pagination.alert .page-item.service,
+.pagination.alert .page-item:hover {
   background-color: #CE352C;
   border-color: #CE352C;
   color: #ffffff;
 }
-.pagination.alert li a.active:hover,
-.pagination.alert .item.active:hover,
-.pagination.alert li a.service:hover,
-.pagination.alert .item.service:hover,
-.pagination.alert li a:hover:hover,
-.pagination.alert .item:hover:hover {
+.pagination.alert .page-item.active:hover,
+.pagination.alert .page-item.service:hover,
+.pagination.alert .page-item:hover:hover {
   background-color: #a42a23;
 }
-.pagination.warning li a.active,
-.pagination.warning .item.active,
-.pagination.warning li a.service,
-.pagination.warning .item.service,
-.pagination.warning li a:hover,
-.pagination.warning .item:hover {
+.pagination.warning .page-item.active,
+.pagination.warning .page-item.service,
+.pagination.warning .page-item:hover {
   background-color: #ff852e;
   border-color: #ff852e;
   color: #ffffff;
 }
-.pagination.warning li a.active:hover,
-.pagination.warning .item.active:hover,
-.pagination.warning li a.service:hover,
-.pagination.warning .item.service:hover,
-.pagination.warning li a:hover:hover,
-.pagination.warning .item:hover:hover {
+.pagination.warning .page-item.active:hover,
+.pagination.warning .page-item.service:hover,
+.pagination.warning .page-item:hover:hover {
   background-color: #fa6800;
 }
-.pagination.yellow li a.active,
-.pagination.yellow .item.active,
-.pagination.yellow li a.service,
-.pagination.yellow .item.service,
-.pagination.yellow li a:hover,
-.pagination.yellow .item:hover {
+.pagination.yellow .page-item.active,
+.pagination.yellow .page-item.service,
+.pagination.yellow .page-item:hover {
   background-color: #ffe484;
   border-color: #ffe484;
   color: #ffffff;
 }
-.pagination.yellow li a.active:hover,
-.pagination.yellow .item.active:hover,
-.pagination.yellow li a.service:hover,
-.pagination.yellow .item.service:hover,
-.pagination.yellow li a:hover:hover,
-.pagination.yellow .item:hover:hover {
+.pagination.yellow .page-item.active:hover,
+.pagination.yellow .page-item.service:hover,
+.pagination.yellow .page-item:hover:hover {
   background-color: #ffd951;
 }
-.pagination.info li a.active,
-.pagination.info .item.active,
-.pagination.info li a.service,
-.pagination.info .item.service,
-.pagination.info li a:hover,
-.pagination.info .item:hover {
+.pagination.info .page-item.active,
+.pagination.info .page-item.service,
+.pagination.info .page-item:hover {
   background-color: #47b4e9;
   border-color: #47b4e9;
   color: #ffffff;
 }
-.pagination.info li a.active:hover,
-.pagination.info .item.active:hover,
-.pagination.info li a.service:hover,
-.pagination.info .item.service:hover,
-.pagination.info li a:hover:hover,
-.pagination.info .item:hover:hover {
+.pagination.info .page-item.active:hover,
+.pagination.info .page-item.service:hover,
+.pagination.info .page-item:hover:hover {
   background-color: #1ba1e2;
 }
-.pagination.dark li a.active,
-.pagination.dark .item.active,
-.pagination.dark li a.service,
-.pagination.dark .item.service,
-.pagination.dark li a:hover,
-.pagination.dark .item:hover {
+.pagination.dark .page-item.active,
+.pagination.dark .page-item.service,
+.pagination.dark .page-item:hover {
   background-color: #505050;
   border-color: #505050;
   color: #ffffff;
 }
-.pagination.dark li a.active:hover,
-.pagination.dark .item.active:hover,
-.pagination.dark li a.service:hover,
-.pagination.dark .item.service:hover,
-.pagination.dark li a:hover:hover,
-.pagination.dark .item:hover:hover {
+.pagination.dark .page-item.active:hover,
+.pagination.dark .page-item.service:hover,
+.pagination.dark .page-item:hover:hover {
   background-color: #373737;
 }
-.pagination.light li a.active,
-.pagination.light .item.active,
-.pagination.light li a.service,
-.pagination.light .item.service,
-.pagination.light li a:hover,
-.pagination.light .item:hover {
+.pagination.light .page-item.active,
+.pagination.light .page-item.service,
+.pagination.light .page-item:hover {
   background-color: #f8f8f8;
   border-color: #f8f8f8;
   color: #ffffff;
 }
-.pagination.light li a.active:hover,
-.pagination.light .item.active:hover,
-.pagination.light li a.service:hover,
-.pagination.light .item.service:hover,
-.pagination.light li a:hover:hover,
-.pagination.light .item:hover:hover {
+.pagination.light .page-item.active:hover,
+.pagination.light .page-item.service:hover,
+.pagination.light .page-item:hover:hover {
   background-color: #dfdfdf;
 }
-.pagination.brand1 li a.active,
-.pagination.brand1 .item.active,
-.pagination.brand1 li a.service,
-.pagination.brand1 .item.service,
-.pagination.brand1 li a:hover,
-.pagination.brand1 .item:hover {
+.pagination.brand1 .page-item.active,
+.pagination.brand1 .page-item.service,
+.pagination.brand1 .page-item:hover {
   background-color: #2ac4f4;
   border-color: #2ac4f4;
   color: #ffffff;
 }
-.pagination.brand1 li a.active:hover,
-.pagination.brand1 .item.active:hover,
-.pagination.brand1 li a.service:hover,
-.pagination.brand1 .item.service:hover,
-.pagination.brand1 li a:hover:hover,
-.pagination.brand1 .item:hover:hover {
+.pagination.brand1 .page-item.active:hover,
+.pagination.brand1 .page-item.service:hover,
+.pagination.brand1 .page-item:hover:hover {
   background-color: #0caddf;
 }
-.pagination.brand2 li a.active,
-.pagination.brand2 .item.active,
-.pagination.brand2 li a.service,
-.pagination.brand2 .item.service,
-.pagination.brand2 li a:hover,
-.pagination.brand2 .item:hover {
+.pagination.brand2 .page-item.active,
+.pagination.brand2 .page-item.service,
+.pagination.brand2 .page-item:hover {
   background-color: #004d6f;
   border-color: #004d6f;
   color: #ffffff;
 }
-.pagination.brand2 li a.active:hover,
-.pagination.brand2 .item.active:hover,
-.pagination.brand2 li a.service:hover,
-.pagination.brand2 .item.service:hover,
-.pagination.brand2 li a:hover:hover,
-.pagination.brand2 .item:hover:hover {
+.pagination.brand2 .page-item.active:hover,
+.pagination.brand2 .page-item.service:hover,
+.pagination.brand2 .page-item:hover:hover {
   background-color: #002a3c;
 }
-.pagination.light li a.active,
-.pagination.yellow li a.active,
-.pagination.light .item.active,
-.pagination.yellow .item.active,
-.pagination.light li a.service,
-.pagination.yellow li a.service,
-.pagination.light .item.service,
-.pagination.yellow .item.service,
-.pagination.light li a:hover,
-.pagination.yellow li a:hover,
-.pagination.light .item:hover,
-.pagination.yellow .item:hover {
+.pagination.light .page-item.active,
+.pagination.yellow .page-item.active,
+.pagination.light .page-item.service,
+.pagination.yellow .page-item.service,
+.pagination.light .page-item:hover,
+.pagination.yellow .page-item:hover {
   color: #1d1d1d;
 }
 html {
@@ -6184,52 +6112,52 @@ a.app-bar-element {
   margin: 0 0 1rem 0;
   padding: 0;
 }
-.pagination li a,
-.pagination .item {
+.pagination .page-item {
   cursor: pointer;
+  display: list-item;
+  background-color: #ffffff;
+  color: #1d1d1d;
+  border: 1px solid #dfdfdf;
+  margin: 0.25rem;
+  transition: all 0.15s ease-in-out;
+}
+.pagination .page-link {
   display: block;
   position: relative;
   padding: .5rem .75rem;
-  margin: 0.25rem;
-  line-height: 1.25;
-  color: #1d1d1d;
-  background-color: #ffffff;
-  border: 1px solid #dfdfdf;
+  line-height: 1;
   font-size: 1rem;
-  transition: all 0.15s ease-in-out;
+  text-decoration: none;
+  color: inherit;
+  background-color: transparent;
 }
-.pagination li a:hover,
-.pagination .item:hover,
-.pagination li a.active,
-.pagination .item.active,
-.pagination li a.service,
-.pagination .item.service {
+.pagination .page-item:hover,
+.pagination .page-item.service:hover {
   background-color: #455a64;
   border-color: #455a64;
   color: #ffffff;
 }
-.pagination li a:hover:hover,
-.pagination .item:hover:hover,
-.pagination li a.active:hover,
-.pagination .item.active:hover,
-.pagination li a.service:hover,
-.pagination .item.service:hover {
+.pagination .page-item:hover:hover,
+.pagination .page-item.service:hover:hover {
   background-color: #303f46;
 }
-.pagination li a.no-link,
-.pagination .item.no-link {
+.pagination .page-item.no-link {
   cursor: default;
   border-color: transparent;
 }
-.pagination li a.no-link:hover,
-.pagination .item.no-link:hover {
+.pagination .page-item.no-link:hover {
   background-color: #ffffff !important;
   border-color: transparent;
   color: #1d1d1d;
 }
-.pagination.rounded li a,
-.pagination.rounded .item {
+.pagination.rounded .page-item {
   border-radius: 4px;
+}
+.pagination.no-gap .page-item {
+  margin: -1px;
+}
+.pagination.no-gap .no-link {
+  margin: -1px 1px;
 }
 a.button,
 a.command-button,

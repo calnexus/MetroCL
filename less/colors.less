@@ -27,7 +27,7 @@
         @color: "@{name}Color";
 
         &.@{name} {
-            li a, .item {
+            .page-item {
                 &.active, &.service, &:hover {
                     background-color: @@color;
                     border-color: @@color;
@@ -43,7 +43,7 @@
     }
 
     &.light, &.yellow {
-        li a, .item {
+        .page-item {
             &.active, &.service, &:hover {
                 color: @dark;
             }
