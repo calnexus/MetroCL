@@ -58,7 +58,11 @@ var Metro = {
     initHotkeys: function(hotkeys){
         $.each(hotkeys, function(){
             var element = $(this);
-            var hotkey = element.data('hotkey').toLowerCase();
+            var hotkey = element.data('hotkey') ? element.data('hotkey').toLowerCase() : false;
+
+            if (hotkey === false) {
+                return;
+            }
 
             //if ($.Metro.hotkeys.indexOf(hotkey) > -1) {
             //    return;

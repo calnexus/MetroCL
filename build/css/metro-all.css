@@ -2696,95 +2696,195 @@ img {
 .command-button.primary,
 .image-button.primary,
 .shortcut.primary,
-.tool-button.primary {
+.tool-button.primary,
+.split-button .split.primary {
   background-color: #0050ef;
   color: #ffffff;
+}
+.button.primary.dropdown-toggle::before,
+.command-button.primary.dropdown-toggle::before,
+.image-button.primary.dropdown-toggle::before,
+.shortcut.primary.dropdown-toggle::before,
+.tool-button.primary.dropdown-toggle::before,
+.split-button .split.primary.dropdown-toggle::before {
+  border-color: #ffffff;
 }
 .button.secondary,
 .command-button.secondary,
 .image-button.secondary,
 .shortcut.secondary,
-.tool-button.secondary {
+.tool-button.secondary,
+.split-button .split.secondary {
   background-color: #607d8b;
   color: #ffffff;
+}
+.button.secondary.dropdown-toggle::before,
+.command-button.secondary.dropdown-toggle::before,
+.image-button.secondary.dropdown-toggle::before,
+.shortcut.secondary.dropdown-toggle::before,
+.tool-button.secondary.dropdown-toggle::before,
+.split-button .split.secondary.dropdown-toggle::before {
+  border-color: #ffffff;
 }
 .button.success,
 .command-button.success,
 .image-button.success,
 .shortcut.success,
-.tool-button.success {
+.tool-button.success,
+.split-button .split.success {
   background-color: #60a917;
   color: #ffffff;
+}
+.button.success.dropdown-toggle::before,
+.command-button.success.dropdown-toggle::before,
+.image-button.success.dropdown-toggle::before,
+.shortcut.success.dropdown-toggle::before,
+.tool-button.success.dropdown-toggle::before,
+.split-button .split.success.dropdown-toggle::before {
+  border-color: #ffffff;
 }
 .button.alert,
 .command-button.alert,
 .image-button.alert,
 .shortcut.alert,
-.tool-button.alert {
+.tool-button.alert,
+.split-button .split.alert {
   background-color: #CE352C;
   color: #ffffff;
+}
+.button.alert.dropdown-toggle::before,
+.command-button.alert.dropdown-toggle::before,
+.image-button.alert.dropdown-toggle::before,
+.shortcut.alert.dropdown-toggle::before,
+.tool-button.alert.dropdown-toggle::before,
+.split-button .split.alert.dropdown-toggle::before {
+  border-color: #ffffff;
 }
 .button.warning,
 .command-button.warning,
 .image-button.warning,
 .shortcut.warning,
-.tool-button.warning {
+.tool-button.warning,
+.split-button .split.warning {
   background-color: #ff852e;
   color: #ffffff;
+}
+.button.warning.dropdown-toggle::before,
+.command-button.warning.dropdown-toggle::before,
+.image-button.warning.dropdown-toggle::before,
+.shortcut.warning.dropdown-toggle::before,
+.tool-button.warning.dropdown-toggle::before,
+.split-button .split.warning.dropdown-toggle::before {
+  border-color: #ffffff;
 }
 .button.yellow,
 .command-button.yellow,
 .image-button.yellow,
 .shortcut.yellow,
-.tool-button.yellow {
+.tool-button.yellow,
+.split-button .split.yellow {
   background-color: #ffe484;
   color: #ffffff;
+}
+.button.yellow.dropdown-toggle::before,
+.command-button.yellow.dropdown-toggle::before,
+.image-button.yellow.dropdown-toggle::before,
+.shortcut.yellow.dropdown-toggle::before,
+.tool-button.yellow.dropdown-toggle::before,
+.split-button .split.yellow.dropdown-toggle::before {
+  border-color: #ffffff;
 }
 .button.info,
 .command-button.info,
 .image-button.info,
 .shortcut.info,
-.tool-button.info {
+.tool-button.info,
+.split-button .split.info {
   background-color: #47b4e9;
   color: #ffffff;
+}
+.button.info.dropdown-toggle::before,
+.command-button.info.dropdown-toggle::before,
+.image-button.info.dropdown-toggle::before,
+.shortcut.info.dropdown-toggle::before,
+.tool-button.info.dropdown-toggle::before,
+.split-button .split.info.dropdown-toggle::before {
+  border-color: #ffffff;
 }
 .button.dark,
 .command-button.dark,
 .image-button.dark,
 .shortcut.dark,
-.tool-button.dark {
+.tool-button.dark,
+.split-button .split.dark {
   background-color: #505050;
   color: #ffffff;
+}
+.button.dark.dropdown-toggle::before,
+.command-button.dark.dropdown-toggle::before,
+.image-button.dark.dropdown-toggle::before,
+.shortcut.dark.dropdown-toggle::before,
+.tool-button.dark.dropdown-toggle::before,
+.split-button .split.dark.dropdown-toggle::before {
+  border-color: #ffffff;
 }
 .button.light,
 .command-button.light,
 .image-button.light,
 .shortcut.light,
-.tool-button.light {
+.tool-button.light,
+.split-button .split.light {
   background-color: #f8f8f8;
   color: #ffffff;
+}
+.button.light.dropdown-toggle::before,
+.command-button.light.dropdown-toggle::before,
+.image-button.light.dropdown-toggle::before,
+.shortcut.light.dropdown-toggle::before,
+.tool-button.light.dropdown-toggle::before,
+.split-button .split.light.dropdown-toggle::before {
+  border-color: #ffffff;
 }
 .button.brand1,
 .command-button.brand1,
 .image-button.brand1,
 .shortcut.brand1,
-.tool-button.brand1 {
+.tool-button.brand1,
+.split-button .split.brand1 {
   background-color: #2ac4f4;
   color: #ffffff;
+}
+.button.brand1.dropdown-toggle::before,
+.command-button.brand1.dropdown-toggle::before,
+.image-button.brand1.dropdown-toggle::before,
+.shortcut.brand1.dropdown-toggle::before,
+.tool-button.brand1.dropdown-toggle::before,
+.split-button .split.brand1.dropdown-toggle::before {
+  border-color: #ffffff;
 }
 .button.brand2,
 .command-button.brand2,
 .image-button.brand2,
 .shortcut.brand2,
-.tool-button.brand2 {
+.tool-button.brand2,
+.split-button .split.brand2 {
   background-color: #004d6f;
   color: #ffffff;
+}
+.button.brand2.dropdown-toggle::before,
+.command-button.brand2.dropdown-toggle::before,
+.image-button.brand2.dropdown-toggle::before,
+.shortcut.brand2.dropdown-toggle::before,
+.tool-button.brand2.dropdown-toggle::before,
+.split-button .split.brand2.dropdown-toggle::before {
+  border-color: #ffffff;
 }
 .button.light,
 .command-button.light,
 .image-button.light,
 .shortcut.light,
-.tool-button.light {
+.tool-button.light,
+.split-button .split.light {
   color: #1d1d1d;
 }
 .pagination.primary .page-item.active,
@@ -3377,6 +3477,39 @@ hr.thin {
 }
 hr.fat {
   height: 3px;
+}
+.dropdown-toggle {
+  position: relative;
+  cursor: pointer;
+  padding-right: 1.5rem!important;
+}
+.dropdown-toggle:before {
+  display: block;
+  position: absolute;
+  vertical-align: middle;
+  color: transparent;
+  font-size: 0;
+  content: "";
+  height: 0.3125rem;
+  width: 0.3125rem;
+  background-color: transparent;
+  border-left: 1px solid;
+  border-bottom: 1px solid;
+  border-color: #1d1d1d;
+  top: 50%;
+  left: 100%;
+  margin-left: -1rem;
+  margin-top: -0.1625rem;
+  z-index: 2;
+  transform: rotate(-45deg);
+  transition: all 0.15s ease-in-out;
+}
+.dropdown-toggle.drop-marker-light:before {
+  border-color: #ffffff;
+}
+.dropdown-toggle.active-toggle:before {
+  transform: rotate(135deg);
+  transition: all 0.15s ease-in-out;
 }
 @media screen and (max-width: 576px) {
   .text-upper-sm {
@@ -5845,9 +5978,9 @@ a.app-bar-element {
   background-color: #ebebeb;
   color: #1d1d1d;
   cursor: pointer;
+  outline: none;
 }
-.button.light.focus,
-.button.light:focus {
+.button.light:active {
   box-shadow: 0 0 0 3px rgba(184, 184, 184, 0.45);
 }
 .button.link {
@@ -5928,6 +6061,7 @@ a.app-bar-element {
       -ms-user-select: none;
           user-select: none;
   border: 1px solid transparent;
+  outline: none;
 }
 .command-button .icon,
 .image-button .icon {
@@ -6021,6 +6155,7 @@ a.app-bar-element {
       align-items: center;
   -ms-flex-pack: justify;
       justify-content: space-between;
+  outline: none;
 }
 .shortcut .icon,
 .shortcut .caption {
@@ -6090,6 +6225,8 @@ a.app-bar-element {
   border: 1px solid transparent;
   transition: all 0.15s ease-in-out;
   padding: 0;
+  cursor: pointer;
+  outline: none;
 }
 .tool-button [class*=mif],
 .tool-button .icon,
@@ -6253,11 +6390,40 @@ a.app-bar-element {
 .breadcrumbs .page-item:last-child {
   font-weight: bold;
 }
+.dropdown-button,
+.split-button {
+  display: inline-block;
+  position: relative;
+  width: auto;
+  margin-bottom: 1rem;
+}
+.split-button .split {
+  margin-left: -2px;
+  padding: .5rem .75rem;
+  text-align: center;
+  vertical-align: middle ;
+  background-color: #b8b8b8;
+  border: 1px transparent solid;
+  color: #1d1d1d;
+  cursor: pointer;
+  outline: none;
+  font-size: .875rem;
+  position: relative;
+  line-height: 1.25;
+  height: 2.1875rem;
+}
+.split-button .split.dropdown-toggle::before {
+  margin-left: -1.25rem;
+}
+.split-button .split:hover {
+  background-color: #9e9e9e;
+}
 a.button,
 a.command-button,
 .image-button,
 .shortcut,
-.tool-button {
+.tool-button,
+.split-button .split {
   color: #1d1d1d;
 }
 .button:focus,
@@ -6265,23 +6431,21 @@ a.command-button,
 .image-button:focus,
 .shortcut:focus,
 .tool-button:focus,
+.split-button .split:focus,
 .button:hover,
 .command-button:hover,
 .image-button:hover,
 .shortcut:hover,
-.tool-button:hover {
+.tool-button:hover,
+.split-button .split:hover {
   text-decoration: none;
 }
-.button.focus,
-.command-button.focus,
-.image-button.focus,
-.shortcut.focus,
-.tool-button.focus,
-.button:focus,
-.command-button:focus,
-.image-button:focus,
-.shortcut:focus,
-.tool-button:focus {
+.button:active,
+.command-button:active,
+.image-button:active,
+.shortcut:active,
+.tool-button:active,
+.split-button .split:active {
   outline: 0;
   box-shadow: 0 0 0 3px rgba(158, 158, 158, 0.25);
 }
@@ -6290,18 +6454,21 @@ a.command-button,
 .image-button.disabled,
 .shortcut.disabled,
 .tool-button.disabled,
+.split-button .split.disabled,
 .button:disabled,
 .command-button:disabled,
 .image-button:disabled,
 .shortcut:disabled,
-.tool-button:disabled {
+.tool-button:disabled,
+.split-button .split:disabled {
   opacity: .65;
 }
 .button.outline,
 .command-button.outline,
 .image-button.outline,
 .shortcut.outline,
-.tool-button.outline {
+.tool-button.outline,
+.split-button .split.outline {
   background: transparent none;
   border-width: 1px;
 }
@@ -6309,473 +6476,649 @@ a.command-button,
 .command-button.primary,
 .image-button.primary,
 .shortcut.primary,
-.tool-button.primary {
+.tool-button.primary,
+.split-button .split.primary {
   outline-color: #89b0ff;
 }
 .button.primary.outline,
 .command-button.primary.outline,
 .image-button.primary.outline,
 .shortcut.primary.outline,
-.tool-button.primary.outline {
+.tool-button.primary.outline,
+.split-button .split.primary.outline {
   color: #0050ef;
+  border-color: #0050ef;
+}
+.button.primary.outline.dropdown-toggle::before,
+.command-button.primary.outline.dropdown-toggle::before,
+.image-button.primary.outline.dropdown-toggle::before,
+.shortcut.primary.outline.dropdown-toggle::before,
+.tool-button.primary.outline.dropdown-toggle::before,
+.split-button .split.primary.outline.dropdown-toggle::before {
   border-color: #0050ef;
 }
 .button.primary:hover,
 .command-button.primary:hover,
 .image-button.primary:hover,
 .shortcut.primary:hover,
-.tool-button.primary:hover {
+.tool-button.primary:hover,
+.split-button .split.primary:hover {
   background-color: #003fbc;
   border-color: #002e89;
+}
+.button.primary:hover.dropdown-toggle::before,
+.command-button.primary:hover.dropdown-toggle::before,
+.image-button.primary:hover.dropdown-toggle::before,
+.shortcut.primary:hover.dropdown-toggle::before,
+.tool-button.primary:hover.dropdown-toggle::before,
+.split-button .split.primary:hover.dropdown-toggle::before {
+  border-color: #ffffff;
 }
 .button.primary.same-color:hover,
 .command-button.primary.same-color:hover,
 .image-button.primary.same-color:hover,
 .shortcut.primary.same-color:hover,
-.tool-button.primary.same-color:hover {
+.tool-button.primary.same-color:hover,
+.split-button .split.primary.same-color:hover {
   background-color: #0050ef;
   border-color: #0050ef;
 }
-.button.primary.focus,
-.command-button.primary.focus,
-.image-button.primary.focus,
-.shortcut.primary.focus,
-.tool-button.primary.focus,
-.button.primary:focus,
-.command-button.primary:focus,
-.image-button.primary:focus,
-.shortcut.primary:focus,
-.tool-button.primary:focus {
+.button.primary:active,
+.command-button.primary:active,
+.image-button.primary:active,
+.shortcut.primary:active,
+.tool-button.primary:active,
+.split-button .split.primary:active {
   box-shadow: 0 0 0 3px rgba(0, 80, 239, 0.45);
 }
 .button.secondary,
 .command-button.secondary,
 .image-button.secondary,
 .shortcut.secondary,
-.tool-button.secondary {
+.tool-button.secondary,
+.split-button .split.secondary {
   outline-color: #b7c6cd;
 }
 .button.secondary.outline,
 .command-button.secondary.outline,
 .image-button.secondary.outline,
 .shortcut.secondary.outline,
-.tool-button.secondary.outline {
+.tool-button.secondary.outline,
+.split-button .split.secondary.outline {
   color: #607d8b;
+  border-color: #607d8b;
+}
+.button.secondary.outline.dropdown-toggle::before,
+.command-button.secondary.outline.dropdown-toggle::before,
+.image-button.secondary.outline.dropdown-toggle::before,
+.shortcut.secondary.outline.dropdown-toggle::before,
+.tool-button.secondary.outline.dropdown-toggle::before,
+.split-button .split.secondary.outline.dropdown-toggle::before {
   border-color: #607d8b;
 }
 .button.secondary:hover,
 .command-button.secondary:hover,
 .image-button.secondary:hover,
 .shortcut.secondary:hover,
-.tool-button.secondary:hover {
+.tool-button.secondary:hover,
+.split-button .split.secondary:hover {
   background-color: #4b626d;
   border-color: #36474f;
+}
+.button.secondary:hover.dropdown-toggle::before,
+.command-button.secondary:hover.dropdown-toggle::before,
+.image-button.secondary:hover.dropdown-toggle::before,
+.shortcut.secondary:hover.dropdown-toggle::before,
+.tool-button.secondary:hover.dropdown-toggle::before,
+.split-button .split.secondary:hover.dropdown-toggle::before {
+  border-color: #ffffff;
 }
 .button.secondary.same-color:hover,
 .command-button.secondary.same-color:hover,
 .image-button.secondary.same-color:hover,
 .shortcut.secondary.same-color:hover,
-.tool-button.secondary.same-color:hover {
+.tool-button.secondary.same-color:hover,
+.split-button .split.secondary.same-color:hover {
   background-color: #607d8b;
   border-color: #607d8b;
 }
-.button.secondary.focus,
-.command-button.secondary.focus,
-.image-button.secondary.focus,
-.shortcut.secondary.focus,
-.tool-button.secondary.focus,
-.button.secondary:focus,
-.command-button.secondary:focus,
-.image-button.secondary:focus,
-.shortcut.secondary:focus,
-.tool-button.secondary:focus {
+.button.secondary:active,
+.command-button.secondary:active,
+.image-button.secondary:active,
+.shortcut.secondary:active,
+.tool-button.secondary:active,
+.split-button .split.secondary:active {
   box-shadow: 0 0 0 3px rgba(96, 125, 139, 0.45);
 }
 .button.success,
 .command-button.success,
 .image-button.success,
 .shortcut.success,
-.tool-button.success {
+.tool-button.success,
+.split-button .split.success {
   outline-color: #adeb6e;
 }
 .button.success.outline,
 .command-button.success.outline,
 .image-button.success.outline,
 .shortcut.success.outline,
-.tool-button.success.outline {
+.tool-button.success.outline,
+.split-button .split.success.outline {
   color: #60a917;
+  border-color: #60a917;
+}
+.button.success.outline.dropdown-toggle::before,
+.command-button.success.outline.dropdown-toggle::before,
+.image-button.success.outline.dropdown-toggle::before,
+.shortcut.success.outline.dropdown-toggle::before,
+.tool-button.success.outline.dropdown-toggle::before,
+.split-button .split.success.outline.dropdown-toggle::before {
   border-color: #60a917;
 }
 .button.success:hover,
 .command-button.success:hover,
 .image-button.success:hover,
 .shortcut.success:hover,
-.tool-button.success:hover {
+.tool-button.success:hover,
+.split-button .split.success:hover {
   background-color: #477c11;
   border-color: #2d4f0b;
+}
+.button.success:hover.dropdown-toggle::before,
+.command-button.success:hover.dropdown-toggle::before,
+.image-button.success:hover.dropdown-toggle::before,
+.shortcut.success:hover.dropdown-toggle::before,
+.tool-button.success:hover.dropdown-toggle::before,
+.split-button .split.success:hover.dropdown-toggle::before {
+  border-color: #ffffff;
 }
 .button.success.same-color:hover,
 .command-button.success.same-color:hover,
 .image-button.success.same-color:hover,
 .shortcut.success.same-color:hover,
-.tool-button.success.same-color:hover {
+.tool-button.success.same-color:hover,
+.split-button .split.success.same-color:hover {
   background-color: #60a917;
   border-color: #60a917;
 }
-.button.success.focus,
-.command-button.success.focus,
-.image-button.success.focus,
-.shortcut.success.focus,
-.tool-button.success.focus,
-.button.success:focus,
-.command-button.success:focus,
-.image-button.success:focus,
-.shortcut.success:focus,
-.tool-button.success:focus {
+.button.success:active,
+.command-button.success:active,
+.image-button.success:active,
+.shortcut.success:active,
+.tool-button.success:active,
+.split-button .split.success:active {
   box-shadow: 0 0 0 3px rgba(96, 169, 23, 0.45);
 }
 .button.alert,
 .command-button.alert,
 .image-button.alert,
 .shortcut.alert,
-.tool-button.alert {
+.tool-button.alert,
+.split-button .split.alert {
   outline-color: #ecaba7;
 }
 .button.alert.outline,
 .command-button.alert.outline,
 .image-button.alert.outline,
 .shortcut.alert.outline,
-.tool-button.alert.outline {
+.tool-button.alert.outline,
+.split-button .split.alert.outline {
   color: #CE352C;
+  border-color: #CE352C;
+}
+.button.alert.outline.dropdown-toggle::before,
+.command-button.alert.outline.dropdown-toggle::before,
+.image-button.alert.outline.dropdown-toggle::before,
+.shortcut.alert.outline.dropdown-toggle::before,
+.tool-button.alert.outline.dropdown-toggle::before,
+.split-button .split.alert.outline.dropdown-toggle::before {
   border-color: #CE352C;
 }
 .button.alert:hover,
 .command-button.alert:hover,
 .image-button.alert:hover,
 .shortcut.alert:hover,
-.tool-button.alert:hover {
+.tool-button.alert:hover,
+.split-button .split.alert:hover {
   background-color: #a42a23;
   border-color: #7a1f1a;
+}
+.button.alert:hover.dropdown-toggle::before,
+.command-button.alert:hover.dropdown-toggle::before,
+.image-button.alert:hover.dropdown-toggle::before,
+.shortcut.alert:hover.dropdown-toggle::before,
+.tool-button.alert:hover.dropdown-toggle::before,
+.split-button .split.alert:hover.dropdown-toggle::before {
+  border-color: #ffffff;
 }
 .button.alert.same-color:hover,
 .command-button.alert.same-color:hover,
 .image-button.alert.same-color:hover,
 .shortcut.alert.same-color:hover,
-.tool-button.alert.same-color:hover {
+.tool-button.alert.same-color:hover,
+.split-button .split.alert.same-color:hover {
   background-color: #CE352C;
   border-color: #CE352C;
 }
-.button.alert.focus,
-.command-button.alert.focus,
-.image-button.alert.focus,
-.shortcut.alert.focus,
-.tool-button.alert.focus,
-.button.alert:focus,
-.command-button.alert:focus,
-.image-button.alert:focus,
-.shortcut.alert:focus,
-.tool-button.alert:focus {
+.button.alert:active,
+.command-button.alert:active,
+.image-button.alert:active,
+.shortcut.alert:active,
+.tool-button.alert:active,
+.split-button .split.alert:active {
   box-shadow: 0 0 0 3px rgba(206, 53, 44, 0.45);
 }
 .button.warning,
 .command-button.warning,
 .image-button.warning,
 .shortcut.warning,
-.tool-button.warning {
+.tool-button.warning,
+.split-button .split.warning {
   outline-color: #ffdec7;
 }
 .button.warning.outline,
 .command-button.warning.outline,
 .image-button.warning.outline,
 .shortcut.warning.outline,
-.tool-button.warning.outline {
+.tool-button.warning.outline,
+.split-button .split.warning.outline {
   color: #ff852e;
+  border-color: #ff852e;
+}
+.button.warning.outline.dropdown-toggle::before,
+.command-button.warning.outline.dropdown-toggle::before,
+.image-button.warning.outline.dropdown-toggle::before,
+.shortcut.warning.outline.dropdown-toggle::before,
+.tool-button.warning.outline.dropdown-toggle::before,
+.split-button .split.warning.outline.dropdown-toggle::before {
   border-color: #ff852e;
 }
 .button.warning:hover,
 .command-button.warning:hover,
 .image-button.warning:hover,
 .shortcut.warning:hover,
-.tool-button.warning:hover {
+.tool-button.warning:hover,
+.split-button .split.warning:hover {
   background-color: #fa6800;
   border-color: #c75300;
+}
+.button.warning:hover.dropdown-toggle::before,
+.command-button.warning:hover.dropdown-toggle::before,
+.image-button.warning:hover.dropdown-toggle::before,
+.shortcut.warning:hover.dropdown-toggle::before,
+.tool-button.warning:hover.dropdown-toggle::before,
+.split-button .split.warning:hover.dropdown-toggle::before {
+  border-color: #ffffff;
 }
 .button.warning.same-color:hover,
 .command-button.warning.same-color:hover,
 .image-button.warning.same-color:hover,
 .shortcut.warning.same-color:hover,
-.tool-button.warning.same-color:hover {
+.tool-button.warning.same-color:hover,
+.split-button .split.warning.same-color:hover {
   background-color: #ff852e;
   border-color: #ff852e;
 }
-.button.warning.focus,
-.command-button.warning.focus,
-.image-button.warning.focus,
-.shortcut.warning.focus,
-.tool-button.warning.focus,
-.button.warning:focus,
-.command-button.warning:focus,
-.image-button.warning:focus,
-.shortcut.warning:focus,
-.tool-button.warning:focus {
+.button.warning:active,
+.command-button.warning:active,
+.image-button.warning:active,
+.shortcut.warning:active,
+.tool-button.warning:active,
+.split-button .split.warning:active {
   box-shadow: 0 0 0 3px rgba(255, 133, 46, 0.45);
 }
 .button.yellow,
 .command-button.yellow,
 .image-button.yellow,
 .shortcut.yellow,
-.tool-button.yellow {
+.tool-button.yellow,
+.split-button .split.yellow {
   outline-color: #ffffff;
 }
 .button.yellow.outline,
 .command-button.yellow.outline,
 .image-button.yellow.outline,
 .shortcut.yellow.outline,
-.tool-button.yellow.outline {
+.tool-button.yellow.outline,
+.split-button .split.yellow.outline {
   color: #ffe484;
+  border-color: #ffe484;
+}
+.button.yellow.outline.dropdown-toggle::before,
+.command-button.yellow.outline.dropdown-toggle::before,
+.image-button.yellow.outline.dropdown-toggle::before,
+.shortcut.yellow.outline.dropdown-toggle::before,
+.tool-button.yellow.outline.dropdown-toggle::before,
+.split-button .split.yellow.outline.dropdown-toggle::before {
   border-color: #ffe484;
 }
 .button.yellow:hover,
 .command-button.yellow:hover,
 .image-button.yellow:hover,
 .shortcut.yellow:hover,
-.tool-button.yellow:hover {
+.tool-button.yellow:hover,
+.split-button .split.yellow:hover {
   background-color: #ffd951;
   border-color: #ffce1e;
+}
+.button.yellow:hover.dropdown-toggle::before,
+.command-button.yellow:hover.dropdown-toggle::before,
+.image-button.yellow:hover.dropdown-toggle::before,
+.shortcut.yellow:hover.dropdown-toggle::before,
+.tool-button.yellow:hover.dropdown-toggle::before,
+.split-button .split.yellow:hover.dropdown-toggle::before {
+  border-color: #ffffff;
 }
 .button.yellow.same-color:hover,
 .command-button.yellow.same-color:hover,
 .image-button.yellow.same-color:hover,
 .shortcut.yellow.same-color:hover,
-.tool-button.yellow.same-color:hover {
+.tool-button.yellow.same-color:hover,
+.split-button .split.yellow.same-color:hover {
   background-color: #ffe484;
   border-color: #ffe484;
 }
-.button.yellow.focus,
-.command-button.yellow.focus,
-.image-button.yellow.focus,
-.shortcut.yellow.focus,
-.tool-button.yellow.focus,
-.button.yellow:focus,
-.command-button.yellow:focus,
-.image-button.yellow:focus,
-.shortcut.yellow:focus,
-.tool-button.yellow:focus {
+.button.yellow:active,
+.command-button.yellow:active,
+.image-button.yellow:active,
+.shortcut.yellow:active,
+.tool-button.yellow:active,
+.split-button .split.yellow:active {
   box-shadow: 0 0 0 3px rgba(255, 228, 132, 0.45);
 }
 .button.info,
 .command-button.info,
 .image-button.info,
 .shortcut.info,
-.tool-button.info {
+.tool-button.info,
+.split-button .split.info {
   outline-color: #d0ecf9;
 }
 .button.info.outline,
 .command-button.info.outline,
 .image-button.info.outline,
 .shortcut.info.outline,
-.tool-button.info.outline {
+.tool-button.info.outline,
+.split-button .split.info.outline {
   color: #47b4e9;
+  border-color: #47b4e9;
+}
+.button.info.outline.dropdown-toggle::before,
+.command-button.info.outline.dropdown-toggle::before,
+.image-button.info.outline.dropdown-toggle::before,
+.shortcut.info.outline.dropdown-toggle::before,
+.tool-button.info.outline.dropdown-toggle::before,
+.split-button .split.info.outline.dropdown-toggle::before {
   border-color: #47b4e9;
 }
 .button.info:hover,
 .command-button.info:hover,
 .image-button.info:hover,
 .shortcut.info:hover,
-.tool-button.info:hover {
+.tool-button.info:hover,
+.split-button .split.info:hover {
   background-color: #1ba1e2;
   border-color: #1681b4;
+}
+.button.info:hover.dropdown-toggle::before,
+.command-button.info:hover.dropdown-toggle::before,
+.image-button.info:hover.dropdown-toggle::before,
+.shortcut.info:hover.dropdown-toggle::before,
+.tool-button.info:hover.dropdown-toggle::before,
+.split-button .split.info:hover.dropdown-toggle::before {
+  border-color: #ffffff;
 }
 .button.info.same-color:hover,
 .command-button.info.same-color:hover,
 .image-button.info.same-color:hover,
 .shortcut.info.same-color:hover,
-.tool-button.info.same-color:hover {
+.tool-button.info.same-color:hover,
+.split-button .split.info.same-color:hover {
   background-color: #47b4e9;
   border-color: #47b4e9;
 }
-.button.info.focus,
-.command-button.info.focus,
-.image-button.info.focus,
-.shortcut.info.focus,
-.tool-button.info.focus,
-.button.info:focus,
-.command-button.info:focus,
-.image-button.info:focus,
-.shortcut.info:focus,
-.tool-button.info:focus {
+.button.info:active,
+.command-button.info:active,
+.image-button.info:active,
+.shortcut.info:active,
+.tool-button.info:active,
+.split-button .split.info:active {
   box-shadow: 0 0 0 3px rgba(71, 180, 233, 0.45);
 }
 .button.dark,
 .command-button.dark,
 .image-button.dark,
 .shortcut.dark,
-.tool-button.dark {
+.tool-button.dark,
+.split-button .split.dark {
   outline-color: #9d9d9d;
 }
 .button.dark.outline,
 .command-button.dark.outline,
 .image-button.dark.outline,
 .shortcut.dark.outline,
-.tool-button.dark.outline {
+.tool-button.dark.outline,
+.split-button .split.dark.outline {
   color: #505050;
+  border-color: #505050;
+}
+.button.dark.outline.dropdown-toggle::before,
+.command-button.dark.outline.dropdown-toggle::before,
+.image-button.dark.outline.dropdown-toggle::before,
+.shortcut.dark.outline.dropdown-toggle::before,
+.tool-button.dark.outline.dropdown-toggle::before,
+.split-button .split.dark.outline.dropdown-toggle::before {
   border-color: #505050;
 }
 .button.dark:hover,
 .command-button.dark:hover,
 .image-button.dark:hover,
 .shortcut.dark:hover,
-.tool-button.dark:hover {
+.tool-button.dark:hover,
+.split-button .split.dark:hover {
   background-color: #373737;
   border-color: #1d1d1d;
+}
+.button.dark:hover.dropdown-toggle::before,
+.command-button.dark:hover.dropdown-toggle::before,
+.image-button.dark:hover.dropdown-toggle::before,
+.shortcut.dark:hover.dropdown-toggle::before,
+.tool-button.dark:hover.dropdown-toggle::before,
+.split-button .split.dark:hover.dropdown-toggle::before {
+  border-color: #ffffff;
 }
 .button.dark.same-color:hover,
 .command-button.dark.same-color:hover,
 .image-button.dark.same-color:hover,
 .shortcut.dark.same-color:hover,
-.tool-button.dark.same-color:hover {
+.tool-button.dark.same-color:hover,
+.split-button .split.dark.same-color:hover {
   background-color: #505050;
   border-color: #505050;
 }
-.button.dark.focus,
-.command-button.dark.focus,
-.image-button.dark.focus,
-.shortcut.dark.focus,
-.tool-button.dark.focus,
-.button.dark:focus,
-.command-button.dark:focus,
-.image-button.dark:focus,
-.shortcut.dark:focus,
-.tool-button.dark:focus {
+.button.dark:active,
+.command-button.dark:active,
+.image-button.dark:active,
+.shortcut.dark:active,
+.tool-button.dark:active,
+.split-button .split.dark:active {
   box-shadow: 0 0 0 3px rgba(80, 80, 80, 0.45);
 }
 .button.light,
 .command-button.light,
 .image-button.light,
 .shortcut.light,
-.tool-button.light {
+.tool-button.light,
+.split-button .split.light {
   outline-color: #ffffff;
 }
 .button.light.outline,
 .command-button.light.outline,
 .image-button.light.outline,
 .shortcut.light.outline,
-.tool-button.light.outline {
+.tool-button.light.outline,
+.split-button .split.light.outline {
   color: #f8f8f8;
+  border-color: #f8f8f8;
+}
+.button.light.outline.dropdown-toggle::before,
+.command-button.light.outline.dropdown-toggle::before,
+.image-button.light.outline.dropdown-toggle::before,
+.shortcut.light.outline.dropdown-toggle::before,
+.tool-button.light.outline.dropdown-toggle::before,
+.split-button .split.light.outline.dropdown-toggle::before {
   border-color: #f8f8f8;
 }
 .button.light:hover,
 .command-button.light:hover,
 .image-button.light:hover,
 .shortcut.light:hover,
-.tool-button.light:hover {
+.tool-button.light:hover,
+.split-button .split.light:hover {
   background-color: #dfdfdf;
   border-color: #c5c5c5;
+}
+.button.light:hover.dropdown-toggle::before,
+.command-button.light:hover.dropdown-toggle::before,
+.image-button.light:hover.dropdown-toggle::before,
+.shortcut.light:hover.dropdown-toggle::before,
+.tool-button.light:hover.dropdown-toggle::before,
+.split-button .split.light:hover.dropdown-toggle::before {
+  border-color: #ffffff;
 }
 .button.light.same-color:hover,
 .command-button.light.same-color:hover,
 .image-button.light.same-color:hover,
 .shortcut.light.same-color:hover,
-.tool-button.light.same-color:hover {
+.tool-button.light.same-color:hover,
+.split-button .split.light.same-color:hover {
   background-color: #f8f8f8;
   border-color: #f8f8f8;
 }
-.button.light.focus,
-.command-button.light.focus,
-.image-button.light.focus,
-.shortcut.light.focus,
-.tool-button.light.focus,
-.button.light:focus,
-.command-button.light:focus,
-.image-button.light:focus,
-.shortcut.light:focus,
-.tool-button.light:focus {
+.button.light:active,
+.command-button.light:active,
+.image-button.light:active,
+.shortcut.light:active,
+.tool-button.light:active,
+.split-button .split.light:active {
   box-shadow: 0 0 0 3px rgba(248, 248, 248, 0.45);
 }
 .button.brand1,
 .command-button.brand1,
 .image-button.brand1,
 .shortcut.brand1,
-.tool-button.brand1 {
+.tool-button.brand1,
+.split-button .split.brand1 {
   outline-color: #bbecfc;
 }
 .button.brand1.outline,
 .command-button.brand1.outline,
 .image-button.brand1.outline,
 .shortcut.brand1.outline,
-.tool-button.brand1.outline {
+.tool-button.brand1.outline,
+.split-button .split.brand1.outline {
   color: #2ac4f4;
+  border-color: #2ac4f4;
+}
+.button.brand1.outline.dropdown-toggle::before,
+.command-button.brand1.outline.dropdown-toggle::before,
+.image-button.brand1.outline.dropdown-toggle::before,
+.shortcut.brand1.outline.dropdown-toggle::before,
+.tool-button.brand1.outline.dropdown-toggle::before,
+.split-button .split.brand1.outline.dropdown-toggle::before {
   border-color: #2ac4f4;
 }
 .button.brand1:hover,
 .command-button.brand1:hover,
 .image-button.brand1:hover,
 .shortcut.brand1:hover,
-.tool-button.brand1:hover {
+.tool-button.brand1:hover,
+.split-button .split.brand1:hover {
   background-color: #0caddf;
   border-color: #0988af;
+}
+.button.brand1:hover.dropdown-toggle::before,
+.command-button.brand1:hover.dropdown-toggle::before,
+.image-button.brand1:hover.dropdown-toggle::before,
+.shortcut.brand1:hover.dropdown-toggle::before,
+.tool-button.brand1:hover.dropdown-toggle::before,
+.split-button .split.brand1:hover.dropdown-toggle::before {
+  border-color: #ffffff;
 }
 .button.brand1.same-color:hover,
 .command-button.brand1.same-color:hover,
 .image-button.brand1.same-color:hover,
 .shortcut.brand1.same-color:hover,
-.tool-button.brand1.same-color:hover {
+.tool-button.brand1.same-color:hover,
+.split-button .split.brand1.same-color:hover {
   background-color: #2ac4f4;
   border-color: #2ac4f4;
 }
-.button.brand1.focus,
-.command-button.brand1.focus,
-.image-button.brand1.focus,
-.shortcut.brand1.focus,
-.tool-button.brand1.focus,
-.button.brand1:focus,
-.command-button.brand1:focus,
-.image-button.brand1:focus,
-.shortcut.brand1:focus,
-.tool-button.brand1:focus {
+.button.brand1:active,
+.command-button.brand1:active,
+.image-button.brand1:active,
+.shortcut.brand1:active,
+.tool-button.brand1:active,
+.split-button .split.brand1:active {
   box-shadow: 0 0 0 3px rgba(42, 196, 244, 0.45);
 }
 .button.brand2,
 .command-button.brand2,
 .image-button.brand2,
 .shortcut.brand2,
-.tool-button.brand2 {
+.tool-button.brand2,
+.split-button .split.brand2 {
   outline-color: #09b4ff;
 }
 .button.brand2.outline,
 .command-button.brand2.outline,
 .image-button.brand2.outline,
 .shortcut.brand2.outline,
-.tool-button.brand2.outline {
+.tool-button.brand2.outline,
+.split-button .split.brand2.outline {
   color: #004d6f;
+  border-color: #004d6f;
+}
+.button.brand2.outline.dropdown-toggle::before,
+.command-button.brand2.outline.dropdown-toggle::before,
+.image-button.brand2.outline.dropdown-toggle::before,
+.shortcut.brand2.outline.dropdown-toggle::before,
+.tool-button.brand2.outline.dropdown-toggle::before,
+.split-button .split.brand2.outline.dropdown-toggle::before {
   border-color: #004d6f;
 }
 .button.brand2:hover,
 .command-button.brand2:hover,
 .image-button.brand2:hover,
 .shortcut.brand2:hover,
-.tool-button.brand2:hover {
+.tool-button.brand2:hover,
+.split-button .split.brand2:hover {
   background-color: #002a3c;
   border-color: #000609;
+}
+.button.brand2:hover.dropdown-toggle::before,
+.command-button.brand2:hover.dropdown-toggle::before,
+.image-button.brand2:hover.dropdown-toggle::before,
+.shortcut.brand2:hover.dropdown-toggle::before,
+.tool-button.brand2:hover.dropdown-toggle::before,
+.split-button .split.brand2:hover.dropdown-toggle::before {
+  border-color: #ffffff;
 }
 .button.brand2.same-color:hover,
 .command-button.brand2.same-color:hover,
 .image-button.brand2.same-color:hover,
 .shortcut.brand2.same-color:hover,
-.tool-button.brand2.same-color:hover {
+.tool-button.brand2.same-color:hover,
+.split-button .split.brand2.same-color:hover {
   background-color: #004d6f;
   border-color: #004d6f;
 }
-.button.brand2.focus,
-.command-button.brand2.focus,
-.image-button.brand2.focus,
-.shortcut.brand2.focus,
-.tool-button.brand2.focus,
-.button.brand2:focus,
-.command-button.brand2:focus,
-.image-button.brand2:focus,
-.shortcut.brand2:focus,
-.tool-button.brand2:focus {
+.button.brand2:active,
+.command-button.brand2:active,
+.image-button.brand2:active,
+.shortcut.brand2:active,
+.tool-button.brand2:active,
+.split-button .split.brand2:active {
   box-shadow: 0 0 0 3px rgba(0, 77, 111, 0.45);
 }
 .button.primary,
@@ -6783,46 +7126,55 @@ a.command-button,
 .image-button.primary,
 .shortcut.primary,
 .tool-button.primary,
+.split-button .split.primary,
 .button.secondary,
 .command-button.secondary,
 .image-button.secondary,
 .shortcut.secondary,
 .tool-button.secondary,
+.split-button .split.secondary,
 .button.success,
 .command-button.success,
 .image-button.success,
 .shortcut.success,
 .tool-button.success,
+.split-button .split.success,
 .button.alert,
 .command-button.alert,
 .image-button.alert,
 .shortcut.alert,
 .tool-button.alert,
+.split-button .split.alert,
 .button.warning,
 .command-button.warning,
 .image-button.warning,
 .shortcut.warning,
 .tool-button.warning,
+.split-button .split.warning,
 .button.info,
 .command-button.info,
 .image-button.info,
 .shortcut.info,
 .tool-button.info,
+.split-button .split.info,
 .button.dark,
 .command-button.dark,
 .image-button.dark,
 .shortcut.dark,
 .tool-button.dark,
+.split-button .split.dark,
 .button.brand1,
 .command-button.brand1,
 .image-button.brand1,
 .shortcut.brand1,
 .tool-button.brand1,
+.split-button .split.brand1,
 .button.brand2,
 .command-button.brand2,
 .image-button.brand2,
 .shortcut.brand2,
-.tool-button.brand2 {
+.tool-button.brand2,
+.split-button .split.brand2 {
   color: #ffffff;
 }
 .button.primary:hover,
@@ -6830,46 +7182,55 @@ a.command-button,
 .image-button.primary:hover,
 .shortcut.primary:hover,
 .tool-button.primary:hover,
+.split-button .split.primary:hover,
 .button.secondary:hover,
 .command-button.secondary:hover,
 .image-button.secondary:hover,
 .shortcut.secondary:hover,
 .tool-button.secondary:hover,
+.split-button .split.secondary:hover,
 .button.success:hover,
 .command-button.success:hover,
 .image-button.success:hover,
 .shortcut.success:hover,
 .tool-button.success:hover,
+.split-button .split.success:hover,
 .button.alert:hover,
 .command-button.alert:hover,
 .image-button.alert:hover,
 .shortcut.alert:hover,
 .tool-button.alert:hover,
+.split-button .split.alert:hover,
 .button.warning:hover,
 .command-button.warning:hover,
 .image-button.warning:hover,
 .shortcut.warning:hover,
 .tool-button.warning:hover,
+.split-button .split.warning:hover,
 .button.info:hover,
 .command-button.info:hover,
 .image-button.info:hover,
 .shortcut.info:hover,
 .tool-button.info:hover,
+.split-button .split.info:hover,
 .button.dark:hover,
 .command-button.dark:hover,
 .image-button.dark:hover,
 .shortcut.dark:hover,
 .tool-button.dark:hover,
+.split-button .split.dark:hover,
 .button.brand1:hover,
 .command-button.brand1:hover,
 .image-button.brand1:hover,
 .shortcut.brand1:hover,
 .tool-button.brand1:hover,
+.split-button .split.brand1:hover,
 .button.brand2:hover,
 .command-button.brand2:hover,
 .image-button.brand2:hover,
 .shortcut.brand2:hover,
-.tool-button.brand2:hover {
+.tool-button.brand2:hover,
+.split-button .split.brand2:hover {
   color: #ffffff;
 }
 .button.yellow,
@@ -6877,11 +7238,13 @@ a.command-button,
 .image-button.yellow,
 .shortcut.yellow,
 .tool-button.yellow,
+.split-button .split.yellow,
 .button.light,
 .command-button.light,
 .image-button.light,
 .shortcut.light,
-.tool-button.light {
+.tool-button.light,
+.split-button .split.light {
   color: #1d1d1d;
 }
 .button.yellow:hover,
@@ -6889,12 +7252,30 @@ a.command-button,
 .image-button.yellow:hover,
 .shortcut.yellow:hover,
 .tool-button.yellow:hover,
+.split-button .split.yellow:hover,
 .button.light:hover,
 .command-button.light:hover,
 .image-button.light:hover,
 .shortcut.light:hover,
-.tool-button.light:hover {
+.tool-button.light:hover,
+.split-button .split.light:hover {
   color: #1d1d1d;
+}
+.button.drop-shadow,
+.command-button.drop-shadow,
+.image-button.drop-shadow,
+.shortcut.drop-shadow,
+.tool-button.drop-shadow,
+.split-button .split.drop-shadow {
+  box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
+}
+.button.drop-shadow:active,
+.command-button.drop-shadow:active,
+.image-button.drop-shadow:active,
+.shortcut.drop-shadow:active,
+.tool-button.drop-shadow:active,
+.split-button .split.drop-shadow:active {
+  box-shadow: none;
 }
 .tile-container {
   display: -ms-flexbox;
@@ -7038,6 +7419,129 @@ input.required,
 select.required,
 textarea.required {
   border: 1px dashed #1ba1e2;
+}
+.drop-menu {
+  position: absolute;
+  display: none;
+  float: left;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  list-style: none inside none;
+  background-color: #ffffff;
+  color: #1d1d1d;
+  z-index: 1000;
+  box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
+}
+.drop-menu .drop-menu {
+  left: 100%;
+  top: -1rem;
+}
+.drop-menu.open {
+  display: block;
+}
+.drop-menu.place-right {
+  left: auto;
+  right: 0;
+}
+.drop-menu li {
+  display: block;
+  float: none;
+  position: relative;
+}
+.drop-menu li a {
+  color: #1d1d1d;
+  font-size: .875rem;
+  display: block;
+  float: none;
+  padding: .75rem 2rem .75rem 2.5rem;
+  text-decoration: none;
+  vertical-align: middle;
+  position: relative;
+  white-space: nowrap;
+  min-width: 12.5rem;
+  border: none;
+}
+.drop-menu li a img,
+.drop-menu li a .icon {
+  position: absolute;
+  left: .875rem;
+  top: 50%;
+  margin-top: -0.5625rem;
+  color: #1d1d1d;
+  max-height: 1.125rem;
+  font-size: 1.125rem;
+  display: inline-block;
+  margin-right: .3125rem;
+  vertical-align: middle;
+  text-align: center;
+  text-decoration: none;
+}
+.drop-menu li.active {
+  border-left: 2px solid;
+  border-color: #dfdfdf;
+}
+.drop-menu li.active > a {
+  background-color: #47b4e9;
+  color: #ffffff;
+  font-weight: bold;
+}
+.drop-menu li:hover {
+  text-decoration: none;
+  background-color: #ebebeb;
+}
+.drop-menu li:hover > a,
+.drop-menu li:hover .icon {
+  color: #1d1d1d;
+}
+.drop-menu li a[data-hotkey] {
+  padding-right: 3.2rem;
+}
+.drop-menu li a[data-hotkey]:after {
+  content: attr(data-hotkey);
+  position: absolute;
+  right: 1.2rem;
+  width: auto;
+  font-size: .8em;
+}
+.drop-menu .divider {
+  padding: 0;
+  height: 1px;
+  margin: 0 1px;
+  overflow: hidden;
+  background-color: #f2f2f2;
+}
+.drop-menu .divider:hover {
+  background-color: #f2f2f2;
+}
+.drop-left {
+  left: -100%;
+}
+.drop-up {
+  top: auto;
+  bottom: 0;
+}
+.default-shadow {
+  box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
+}
+.ripple {
+  display: block;
+  width: 0;
+  height: 0;
+  border-radius: 100%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(0);
+  position: absolute;
+  opacity: 1;
+}
+.rippleEffect {
+  animation: rippleDrop .5s linear;
+}
+@keyframes rippleDrop {
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
 }
 .debug {
   border: 1px red dotted;

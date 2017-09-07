@@ -417,6 +417,47 @@ hr {
     }
 }
 
+.dropdown-toggle {
+    position: relative;
+    cursor: pointer;
+    padding-right: 1.5rem!important;
+
+    &:before {
+        display: block;
+        position: absolute;
+        vertical-align: middle;
+        color: transparent;
+        font-size: 0;
+        content: "";
+        .px2rem(height, 5px);
+        .px2rem(width, 5px);
+        background-color: @transparent ;
+        border-left: 1px solid;
+        border-bottom: 1px solid;
+        border-color: @dark;
+        top: 50%;
+        left: 100%;
+        margin-left: -1rem;
+        margin-top: -.1625rem;
+        z-index: 2;
+        transform: rotate(-45deg);
+        transition: @transition-short;
+    }
+
+    &.drop-marker-light {
+        &:before {
+            border-color: @white;
+        }
+    }
+
+    &.active-toggle {
+        &:before {
+            transform: rotate(135deg);
+            transition: @transition-short;
+        }
+    }
+}
+
 .generate-text-media-options(@mediaBreakpointListMobileLength);
 .generate-text-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
     @m: extract(@mediaBreakpointListMobile, @i);

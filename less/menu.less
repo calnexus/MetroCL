@@ -1,0 +1,123 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+.drop-menu {
+    position: absolute;
+    display: none;
+    float: left;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    list-style: none inside none;
+    background-color: @white;
+    color: @dark;
+    z-index: @zindex-dropdown;
+    box-shadow: 2px 2px 5px 0 rgba(0,0,0,0.4);
+
+    .drop-menu {
+        left: 100%;
+        top: -1rem;
+    }
+
+    &.open {
+        display: block;
+    }
+
+    &.place-right {
+        left: auto;
+        right: 0;
+    }
+}
+
+.drop-menu {
+
+    li {
+        display: block;
+        float: none;
+        position: relative;
+    }
+
+    li {
+        a {
+            color: @dark;
+            font-size: .875rem;
+            display: block;
+            float: none;
+            padding: .75rem 2rem .75rem 2.5rem;
+            text-decoration: none;
+            vertical-align: middle;
+            position: relative;
+            white-space: nowrap;
+            min-width: 12.5rem;
+            border: none;
+
+
+            img, .icon {
+                position: absolute;
+                left: .875rem;
+                top: 50%;
+                margin-top: -.5625rem;
+                color: @dark;
+                max-height: 1.125rem;
+                font-size: 1.125rem;
+                display: inline-block;
+                margin-right: .3125rem;
+                vertical-align: middle;
+                text-align: center;
+                text-decoration: none;
+            }
+        }
+
+        &.active {
+            border-left: 2px solid;
+            border-color: darken(@light, 10%);
+
+            & > a {
+                background-color: @lightCyan;
+                color: @white;
+                font-weight: bold;
+            }
+        }
+
+
+        &:hover {
+            text-decoration: none;
+            background-color: darken(@light, 5%);
+
+            & > a, .icon {
+                color: @dark;
+            }
+        }
+
+        a[data-hotkey] {
+            padding-right: 3.2rem;
+            &:after {
+                content: attr(data-hotkey);
+                position: absolute;
+                right: 1.2rem;
+                width: auto;
+                font-size: .8em;
+            }
+        }
+    }
+
+    .divider {
+        padding: 0;
+        height: 1px;
+        margin: 0 1px;
+        overflow: hidden;
+        background-color: lighten(#e5e5e5, 5%);
+        &:hover {
+            background-color: lighten(#e5e5e5, 5%);
+        }
+    }
+}
+
+.drop-left {
+    left: -100%;
+}
+
+.drop-up {
+    top: auto;
+    bottom: 0;
+}

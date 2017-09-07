@@ -76,7 +76,11 @@ var Metro = {
     initHotkeys: function(hotkeys){
         $.each(hotkeys, function(){
             var element = $(this);
-            var hotkey = element.data('hotkey').toLowerCase();
+            var hotkey = element.data('hotkey') ? element.data('hotkey').toLowerCase() : false;
+
+            if (hotkey === false) {
+                return;
+            }
 
             //if ($.Metro.hotkeys.indexOf(hotkey) > -1) {
             //    return;
@@ -1745,6 +1749,89 @@ $(document).on('click', function(e){
 });
 
 Metro.plugin('dropdown', Dropdown);
+// Source: js/plugins/ripple.js
+// myObject – объект реализуемой модели (например, машина)
+var Ripple = {
+    init: function( options, elem ) {
+        this.options = $.extend( {}, this.options, options );
+        this.elem  = elem;
+        this.element = $(elem);
+
+        this._setOptionsFromDOM();
+        this._create();
+
+        // возвращаем this для более простого обращения к объекту
+        return this;
+    },
+    options: {
+        rippleColor: "#fff",
+        rippleAlpha: .4,
+        rippleTarget: "default"
+    },
+
+    _setOptionsFromDOM: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = $.parseJSON(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+    },
+
+    _create: function(){
+        var that = this, element = this.element, o = this.options;
+
+        var target = o.rippleTarget === 'default' ? null : o.rippleTarget;
+
+        element.on("click", target, function(e){
+
+            var el = $(this);
+
+            if (el.css('position') === 'static') {
+                el.css('position', 'relative');
+            }
+
+            el.css({
+                overflow: 'hidden'
+            });
+
+            $(".ripple").remove();
+
+            var size = Math.max(el.outerWidth(), el.outerHeight());
+
+            // Add the element
+            var ripple = $("<span class='ripple'></span>").css({
+                width: size,
+                height: size
+            });
+
+            el.prepend(ripple);
+
+            // Get the center of the element
+            var x = e.pageX - el.offset().left - ripple.width()/2;
+            var y = e.pageY - el.offset().top - ripple.height()/2;
+
+            // Add the ripples CSS and start the animation
+            ripple.css({
+                background: Utils.hex2rgba(o.rippleColor, o.rippleAlpha),
+                width: size,
+                height: size,
+                top: y + 'px',
+                left: x + 'px'
+            }).addClass("rippleEffect");
+            setTimeout(function(){
+                $(".ripple").remove();
+            }, 400);
+        });
+    }
+};
+
+Metro.plugin('ripple', Ripple);
 
  return Metro.init();
 
