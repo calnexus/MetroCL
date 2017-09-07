@@ -40,7 +40,7 @@
                 <div class="cell-md-6 order-md-2 text-ld-center">
                     <img src="images/logo.png" class="img-fluid p-md-4">
                 </div>
-                <div class="cell-md-6 p-md-5 text-ld-center">
+                <div class="cell-md-6 p-md-5 text-center-sm">
                     <h1>Metro 4</h1>
                     <p class="text-leader">
                         <strong>Are you tired of Bootstrap?</strong>
@@ -60,40 +60,6 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="cell-md-4 p-5 bg-brandColor1 text-center text-leader fg-white">
-            easy to use
-        </div>
-        <div class="cell-md-4 p-5 bg-green text-center text-leader fg-white">
-            less source
-        </div>
-        <div class="cell-md-4 p-5 bg-red text-center text-leader fg-white">
-            mit license
-        </div>
-    </div>
-
-    <div class="container-fluid pl-0 pt-0 bg-light">
-        <div class="container pt-7 pb-6">
-            <div class="row">
-                <div class="cell-md-4 text-center">
-                    <span class="mif-star-full b-block fg-orange" style="font-size: 4rem"></span>
-                    <p class="text-small">github stars</p>
-                    <div id="github_stars" class="h1">0</div>
-                </div>
-                <div class="cell-md-4 text-center">
-                    <span class="mif-share d-block fg-cyan" style="font-size: 4rem"></span>
-                    <p class="text-small">github forks</p>
-                    <div id="github_forks" class="h1">0</div>
-                </div>
-                <div class="cell-md-4 text-center">
-                    <span class="mif-users d-block fg-gray" style="font-size: 4rem"></span>
-                    <p class="text-small">subscribers</p>
-                    <div id="github_subscribes" class="h1">0</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <footer class="container-fluid pt-5 pb-5 pl-0 pr-0 bg-grayWhite">
         <div class="container">
             <ul class="inline-list h-menu">
@@ -103,10 +69,9 @@
                 <li><a href="mailto:sergey@pimenov.com.ua">Contacts</a></li>
             </ul>
             <p>
-                Designed and built by <a href="https://www.linkedin.com/in/spimenov/">Sergey Pimenov</a>.
+                Designed, built and maintained by <a href="https://www.linkedin.com/in/spimenov/">Sergey Pimenov</a>.
                 Hosting by <a href="https://mirohost.net/">Mirohost</a>.
                 Metro CDN by <a href="https://www.keycdn.com/">KeyCDN</a>.
-                Maintained by the <a href="https://www.facebook.com/sergey.s.pimenov">Sergey Pimenov</a>.
                 <br />
                 Currently v4.0.0-alpha. Code licensed <a href="https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
             </p>
@@ -122,11 +87,6 @@
     <script src="particles/particles.min.js"></script>
     <script>
         particlesJS.load('hero-wrapper', 'particles/particles.json', function(){});
-        $.Metro.utils.github("olton/Metro-UI-CSS", function(data){
-            $("#github_subscribes").text(data.subscribers_count);
-            $("#github_stars").text(data.stargazers_count);
-            $("#github_forks").text(data.forks_count);
-        });
     </script>
 </body>
 </html>

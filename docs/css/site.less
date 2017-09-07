@@ -80,6 +80,17 @@ pre {
     color: @gray;
 }
 
+.prettyprint.plain-text {
+    line-height: 1.2;
+    padding: 1rem;
+    color: @dark;
+    font-size: 1rem;
+
+    .pln, .pun {
+        color: @dark;
+    }
+}
+
 @media screen and (max-width: 667px) {
     .prettyprint {
         display: none !important;

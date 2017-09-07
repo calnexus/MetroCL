@@ -57,7 +57,7 @@ module.exports = function(grunt) {
             options: {
                 banner: '<%= banner %>',
                 stripBanners: false,
-                sourceMap: false,
+                sourceMap: true,
                 preserveComments: false
             },
             core: {
@@ -70,7 +70,7 @@ module.exports = function(grunt) {
             options: {
                 paths: ['less'],
                 strictMath: false,
-                sourceMap: false
+                sourceMap: true
             },
             compileCore: {
                 src: 'less/metro.less',
@@ -152,6 +152,19 @@ module.exports = function(grunt) {
                         dest: "."
                     }
                 ]
+            },
+            short: {
+                options: {
+                    archive: "target/metro_<%= pkg.version %>-<%= pkg.version_suffix %>_short.zip"
+                },
+                files: [
+                    {
+                        expand: true,
+                        cwd: "build/",
+                        src: ["css/metro-all.min.css", "js/metro.min.js", "icons/metro.woff"],
+                        dest: "."
+                    }
+                ]
             }
         },
 
@@ -162,17 +175,17 @@ module.exports = function(grunt) {
                 src: '**/*',
                 dest: 'build/icons'
             },
-            site: {
+            docs: {
                 expand: true,
                 cwd: 'build',
                 src: '**/*',
-                dest: 'site/metro'
+                dest: 'docs/metro'
             },
             public_release: {
                 expand: true,
                 cwd: 'target',
                 src: '**/*',
-                dest: 'site/files/'
+                dest: 'docs/files/'
             }
         },
 

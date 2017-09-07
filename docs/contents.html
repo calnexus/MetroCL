@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@metroui">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Download">
+    <meta name="twitter:description" content="Download Metro UI CSS to get the compiled CSS and JavaScript, source code, or include it with your favorite package managers like npm, Bower, RubyGems, and more.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/logo4.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/download.html">
+    <meta property="og:title" content="Download">
+    <meta property="og:description" content="Download Metro UI CSS to get the compiled CSS and JavaScript, source code, or include it with your favorite package managers like npm, Bower, RubyGems, and more.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/logo4.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/logo4.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="540">
+    <meta property="og:image:height" content="300">
+
+    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="author" content="Sergey Pimenov">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.min.css" rel="stylesheet">
+
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Contents - Metro UI CSS 4.0 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
+            </div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Contents</a></li>
+                    <li class="toc-entry"><a href="#_precompiled">Precompiled</a></li>
+                    <li class="toc-entry"><a href="#_source_code">Source code</a></li>
+                </ul>
+            </div>
+
+            <main class="cell-12 cell-md-9 cell-xl-8 order-1 pr-sx-1 pl-sx-1 pr-md-5 pl-md-5">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>Contents</h1>
+                <p class="text-leader">
+                    Discover what's included in Metro 4, including our precompiled and source code flavors. Remember, Metro's JavaScript plugins require jQuery.
+                </p>
+
+                <h3 id="_precompiled">Precompiled Metro</h3>
+                <p>
+                    Once downloaded, unzip the compressed folder and you’ll see something like this:
+                </p>
+
+                <pre class="prettyprint plain-text"><code>
+                    metro/
+                    ├── css/
+                    │   ├── metro.css
+                    │   ├── metro.min.css
+                    │   ├── metro.css.map
+                    │   ├── metro-colors.css
+                    │   ├── metro-colors.min.css
+                    │   ├── metro-colors.css.map
+                    │   ├── metro-rtl.css
+                    │   ├── metro-rtl.min.css
+                    │   ├── metro-rtl.css.map
+                    │   ├── metro-schemes.css
+                    │   ├── metro-schemes.min.css
+                    │   ├── metro-schemes.css.map
+                    │   ├── metro-icons.css
+                    │   ├── metro-icons.min.css
+                    │   ├── metro-icons.css.map
+                    │   ├── metro-all.css
+                    │   └── metro-all.min.css
+                    └── js/
+                    │   ├── metro.js
+                    │   ├── metro.min.js
+                    │   └── metro.min.js.map
+                    └── icon/
+                        ├── metro.eot
+                        ├── metro.svg
+                        ├── metro.ttf
+                        ├── metro.woff
+                        └── metro.json
+                </code></pre>
+                <p>
+                    This is the most basic form of Metro: precompiled files for quick drop-in usage in nearly any web project.
+                    We provide compiled CSS and JS (metro*.*), as well as compiled and minified CSS and JS (metro*.min.*).
+                    CSS source maps (metro*.map) are available for use with certain browsers’ developer tools.
+                </p>
+
+                <h5>Precompiled short</h5>
+                <pre class="prettyprint plain-text"><code>
+                    metro/
+                    ├── css/
+                    │   └── metro-all.min.css
+                    └── js/
+                    │   ├── metro.min.js
+                    └── icon/
+                        └── metro.woff
+                </code></pre>
+                <p>
+                    This is the most for production usage.
+                </p>
+
+                <h3 id="_source_code">Source code</h3>
+                <p>
+                    The Metro source code download includes the precompiled CSS and JavaScript assets, along with source Less, JavaScript, and documentation. More specifically, it includes the following and more:
+                </p>
+                <pre class="prettyprint plain-text"><code>
+                    metro/
+                    ├── build/
+                    │   ├── icons/
+                    │   ├── css/
+                    │   └── js/
+                    ├── docs/
+                    │   └── examples/
+                    ├── icons/
+                    ├── js/
+                    └── less/
+                </code></pre>
+                <p>
+                    The <span class="tally">icons/</span> are the source code for Metro Icon Font.
+                    The <span class="tally">less/</span> and <span class="tally">js/</span> are the source code for our CSS and JavaScript.
+                    The <span class="tally">build/</span> folder includes everything listed in the precompiled download section above.
+                    The <span class="tally">docs/</span> folder includes the source code for our documentation, and <span class="tally">examples/</span> of Metro usage.
+                    Beyond that, any other included file provides support for packages, license information, and development.
+                </p>
+
+            </main>
+        </div>
+
+    </div>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="metro/js/metro.min.js"></script>
+    <script src="js/pre-code.js"></script>
+    <script src="prettify/run_prettify.js"></script>
+    <script src="js/site.js"></script>
+</body>
+</html>
