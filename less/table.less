@@ -54,7 +54,7 @@
         }
 
         &.sort-asc, &.sort-desc {
-            background-color: @lightGray;
+            background-color: darken(@light, 5%);
             &:after {
                 color: @dark;
             }
@@ -97,7 +97,7 @@
         }
     }
 
-    &.hovered {
+    &.row-hover {
         tbody {
             tr {
                 &:hover {
@@ -107,7 +107,7 @@
         }
     }
 
-    &.cell-hovered {
+    &.cell-hover {
         tbody {
             td {
                 &:hover {
@@ -117,13 +117,13 @@
         }
     }
 
-    &.border {
-        border: 1px @lightGray solid;
+    &.table-border {
+        border: 1px @borderColor solid;
     }
 
-    &.bordered {
+    &.cell-border {
         th, td {
-            border: 1px @lightGray solid;
+            border: 1px @borderColor solid;
         }
 
         thead {
@@ -168,10 +168,13 @@
         }
     }
 
-    .condensed {
-        th, td {padding: .3125rem;}
+    &.row-border {
+        tr + tr {
+            border-top: 1px @borderColor solid;
+        }
     }
-    .super-condensed {
-        th, td {padding: .125rem;}
+
+    &.compact {
+        th, td {padding: .3rem;}
     }
 }
