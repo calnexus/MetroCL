@@ -3236,6 +3236,9 @@ h6 {
   font-size: 1.25rem;
   font-weight: 300;
 }
+.text-muted {
+  color: #b8b8b8;
+}
 .leader,
 .h1,
 h1,
