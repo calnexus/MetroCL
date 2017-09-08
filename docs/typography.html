@@ -71,7 +71,15 @@
                             <li class="toc-entry"><a href="#_lists_desc">Description list</a></li>
                         </ul>
                     </li>
-                    <li class="toc-entry"><a href="#_tally">Tally</a></li>
+                    <li class="toc-entry">
+                        <a href="#_tally">Code</a>
+                        <ul>
+                            <li class="toc-entry"><a href="#_code_inline">Inline code</a></li>
+                            <li class="toc-entry"><a href="#_code_vars">Variables</a></li>
+                            <li class="toc-entry"><a href="#_user_input">User input</a></li>
+                            <li class="toc-entry"><a href="#_sample_output">Sample output</a></li>
+                        </ul>
+                    </li>
                     <li class="toc-entry"><a href="#_ellipsis">Text ellipsis</a></li>
                     <li class="toc-entry"><a href="#_text_transform">Transform</a></li>
                     <li class="toc-entry"><a href="#_text_alignment">Alignment</a></li>
@@ -130,7 +138,7 @@
                 </code></pre>
 
 
-                <table class="table striped bordered">
+                <table class="table row-border">
                     <thead>
                     <tr>
                         <th colspan="2">Match table for font family and OS</th>
@@ -175,7 +183,7 @@
                     In Metro 4 You can access all kinds of headings from <span class="tally">h1</span> through <span class="tally">h6</span>.
                 </p>
 
-                <table class="table striped bordered">
+                <table class="table row-border">
                     <tbody>
                     <tr>
                         <td style="width: 150px"><span class="tally">&lt;h1&gt;&lt;/h1&gt;</span></td>
@@ -214,7 +222,7 @@
                     If you want to create a header element without using tags <span class="tally">&lt;h1&gt; - &lt;h6&gt;</span>, Metro 4 present relevant classes: <span class="tally">.h1</span> through <span class="tally">.h6</span>.  You can also use the following additional classes:
                 </p>
 
-                <table class="table striped bordered">
+                <table class="table row-border">
                     <thead>
                     <tr>
                         <th>Tag</th>
@@ -261,7 +269,7 @@
                     You can create lighter, secondary text in any heading with a generic <span class="tally">&lt;small&gt;</span> tag or the <span class="tally">.small</span> class.
                 </p>
 
-                <table class="table striped bordered">
+                <table class="table row-border">
                     <tbody>
                     <tr>
                         <td>h1</td>
@@ -301,7 +309,7 @@
                     Metro 4 support super headings: <span class="tally">.display1</span>, <span class="tally">.display2</span>, <span class="tally">.display3</span>, <span class="tally">.display4</span>.
                 </p>
 
-                <table class="table striped bordered">
+                <table class="table row-border">
                     <tbody>
                     <tr>
                         <td style="width: 150px;"><span class="tally">.display4</span></td>
@@ -687,35 +695,73 @@
                     &lt;/dl&gt;
                 </code></pre>
 
-                <h3 id="_tally">Tags</h3>
+                <h3 id="_tally">Code</h3>
                 <p>
-                    In the Metro 4 you can select a part of the text as tag. To do this, use the <span class="tally">.tally</span> class and subclasses
-                        <span class="tally">.success</span>
-                        <span class="tally">.warning</span>
-                        <span class="tally">.alert</span>
-                        <span class="tally">.info</span>.
+                    Documentation and examples for displaying inline and multiline blocks of code with Metro 4.
+                </p>
+
+                <h5 id="_code_inline">Inline code</h5>
+                <p>
+                    Wrap inline snippets of code with <code>&lt;code&gt;</code> or class <code>.tally</code>. Be sure to escape HTML angle brackets.
                 </p>
                 <div class="example">
+                    <code>code</code>
                     <span class="tally">tally</span>
                     <span class="tally success">success</span>
-                    <span class="tally warning">warning</span>
+                    <code class="warning">warning</code>
                     <span class="tally alert">alert</span>
-                    <span class="tally info">info</span>
+                    <code class="info">info</code>
 
                     <br />
                     <br />
                     <p>
                         Yes, there is chaos, it experiments with core.
-                        Pestilence, <span class="tally info">punishment</span>, and strength. <span class="tally">Sunt</span> zirbuses dignus <span class="tally alert">superbus</span>, clemens cedriumes.
+                        Pestilence, <code class="info">punishment</code>, and strength. <span class="tally">Sunt</span> zirbuses dignus <code class="alert">superbus</code>, clemens cedriumes.
                         <span class="tally success">Gravy</span> soup is just not the same without nutmeg and chopped small meatloafs.
                     </p>
                 </div>
                 <pre class="prettyprint linenums"><code>
+                    &lt;code&gt;code&lt;/code&gt;
                     &lt;span class="tally"&gt;tally&lt;/span&gt;
                     &lt;span class="tally success"&gt;success&lt;/span&gt;
-                    &lt;span class="tally warning"&gt;warning&lt;/span&gt;
+                    &lt;code class="warning"&gt;warning&lt;/code&gt;
                     &lt;span class="tally alert"&gt;alert&lt;/span&gt;
-                    &lt;span class="tally info"&gt;info&lt;/span&gt;
+                    &lt;code class="info"&gt;info&lt;/code&gt;
+                </code></pre>
+
+                <h5 id="_code_vars">Variables</h5>
+                <p>
+                    To create code variable use <code>&lt;var&gt;</code>.
+                </p>
+                <div class="example">
+                    <var>y</var> = <var>m</var><var>x</var> + <var>b</var>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;var&gt;y&lt;/var&gt; = &lt;var&gt;m&lt;/var&gt;&lt;var&gt;x&lt;/var&gt; + &lt;var&gt;b&lt;/var&gt;
+                </code></pre>
+
+                <h5 id="_user_input">User input</h5>
+                <p>
+                    Use the <code>&lt;kbd&gt;</code> to indicate input that is typically entered via keyboard.
+                </p>
+                <div class="example">
+                    To switch directories, type <kbd>cd</kbd> followed by the name of the directory.<br>
+                    To edit settings, press <kbd><kbd>ctrl</kbd> + <kbd>,</kbd></kbd>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    To switch directories, type &lt;kbd&gt;cd&lt;/kbd&gt; followed by the name of the directory.&lt;br&gt;
+                    To edit settings, press &lt;kbd&gt;&lt;kbd&gt;ctrl&lt;/kbd&gt; + &lt;kbd&gt;,&lt;/kbd&gt;&lt;/kbd&gt;
+                </code></pre>
+
+                <h5 id="_sample_output">Sample output</h5>
+                <p>
+                    For indicating sample output from a program use the <code>&lt;samp&gt;</code> tag.
+                </p>
+                <div class="example">
+                    <samp>Sample output from a computer program.</samp>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;samp&gt;Sample output from a computer program.&lt;/samp&gt;
                 </code></pre>
 
                 <h3 id="_ellipsis">Text ellipsis</h3>
@@ -874,6 +920,7 @@
     </div>
 
     <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="metro/js/metro.min.js"></script>
     <script src="js/pre-code.js"></script>
     <script src="prettify/run_prettify.js"></script>
     <script src="js/site.js"></script>

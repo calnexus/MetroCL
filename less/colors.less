@@ -1,7 +1,7 @@
 @import (once) "include/vars";
 @import (once) "include/mixins";
 
-.button, .command-button, .image-button, .shortcut, .tool-button, .split-button .split, tbody tr, tbody td {
+.button, .command-button, .image-button, .shortcut, .tool-button, .split-button .split, tbody tr, tbody td, .tally, code {
     .generate-accent-colors(@buttonPredefinedTypesLength);
     .generate-accent-colors(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
         @name: extract(@buttonPredefinedTypes, @i);
