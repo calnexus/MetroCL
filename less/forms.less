@@ -7,13 +7,6 @@ form {
     margin-bottom: 1rem;
 }
 
-.input-control {
-    display: inline-block;
-    vertical-align: middle;
-    margin-bottom: 1rem;
-    position: relative;
-}
-
 input[type=text],
 input[type=password],
 input[type=tel],
@@ -26,7 +19,8 @@ input[type=search],
 input[type=time],
 input[type=url],
 input[type=week],
-select, textarea {
+input[type=file],
+select, textarea, .file, .input {
     appearance: none;
     position: relative;
     border: 1px @inputBorder solid;
@@ -38,12 +32,23 @@ select, textarea {
     line-height: 1.25;
     background: @white none;
     background-clip: padding-box;
+    transition: @transition-base;
+
     &:focus {
         outline: none;
     }
 
-    &:focus, &:hover {
+    &:hover {
         border-color: darken(@inputBorder, 10%);
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 3px rgba(red(@lightGray), green(@lightGray), blue(@lightGray), 0.45);
+    }
+
+    &:disabled, &.disabled {
+        pointer-events: none;
+        border-color: darken(@light, 5%);
     }
 }
 
@@ -51,10 +56,332 @@ input[type=button], input[type=submit], input[type=reset] {
     width: auto;
 }
 
-input, select, textarea {
-    &.error {border: 1px solid @red;}
-    &.warning {border: 1px solid @yellow;}
-    &.info {border: 1px solid @cyan;}
-    &.success {border: 1px solid @green;}
-    &.required {border: 1px dashed @cyan;}
+select {
+    background: #fff url("data:image/svg+xml;charset=utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'><path fill='#333' d='M2 0L0 2h4zm0 5L0 3h4z'/></svg>") no-repeat right .75rem center;
+    background-size: 8px 10px;
+}
+
+.form-group {
+    display: block;
+    position: relative;
+}
+
+.form-group + .form-group {
+    margin-top: 1rem;
+}
+
+// Checkbox, radio and swith
+
+.checkbox, .radio, .switch {
+    display: inline-block;
+    position: relative;
+    margin: 0;
+    transition: @transition-base;
+    user-select: none;
+    cursor: pointer;
+
+    input {
+        position: absolute;
+        opacity: 0;
+        width: 0.0625rem;
+        height: 0.0625rem;
+    }
+
+    .check, .caption, .title {
+        display: inline-block;
+        vertical-align: middle;
+        .px2rem(line-height, 18px);
+        .px2rem(font-size, 14px);
+    }
+
+    &.disabled {
+        pointer-events: none;
+    }
+}
+
+.checkbox, .radio {
+    .check {
+        display: inline-block;
+        .square(1, rem);
+        border: 2px rgba(0, 0, 0, 0.26) solid;
+        border-radius: 0;
+        position: relative;
+        z-index: 2;
+        box-sizing: content-box;
+        color: @white;
+        background-color: @transparent;
+    }
+
+    .check {
+        transition: @transition-base;
+        &::after {
+            transition: @transition-base;
+        }
+    }
+
+    &.disabled ~ .check, input:disabled ~ .check {
+        border-color: @disabledBorder;
+        background-color: @transparent;
+    }
+
+    &.disabled ~ input:checked, input:disabled:checked {
+        &  ~ .check {
+            background-color: @disabledBackground;
+            border-color: @light;
+
+            &:before {
+                border-color: @white;
+            }
+        }
+
+        & ~ .caption {
+            color: @disabledColor;
+        }
+    }
+
+    input:checked ~ .check {
+        background-color: @white;
+        border-color: @checkBackground;
+
+        &:before {
+            display: block;
+        }
+    }
+
+    .check + .caption, .caption + .check {
+        .px2rem(margin-left, 5px);
+        margin-right: 0;
+    }
+
+    .title {
+        display: inline-block;
+        .px2rem(font-size, 14px);
+        .px2rem(padding, 3px 0);
+    }
+
+    .check + .title, .title + .check {
+        .px2rem(margin-left, 5px);
+        margin-right: 0;
+    }
+
+
+    input:focus ~ .check {
+        box-shadow: 0 0 0 3px rgba(red(@lightGray), green(@lightGray), blue(@lightGray), 0.45);
+    }
+
+    &.disabled {
+        .check {
+            &:after {
+                background-color: @disabledBackground;
+            }
+        }
+    }
+
+    input:disabled {
+        & ~ .check {
+            &:after {
+                background-color: @disabledBackground;
+            }
+        }
+    }
+
+    &:focus, &:active {
+        input:not(:disabled) {
+            & ~ .check {
+                .halo();
+            }
+        }
+    }
+}
+
+.checkbox {
+    .check {
+        &:before {
+            position: absolute;
+            vertical-align: middle;
+            color: transparent;
+            font-size: 0;
+            content: "";
+            .px2rem(height, 6px);
+            .px2rem(width, 10px);
+            background-color: @transparent;
+            border-left: 2px solid;
+            border-bottom: 2px solid;
+            border-color: @dark;
+            left: 50%;
+            top: 50%;
+            .px2rem(margin-left, -5px);
+            .px2rem(margin-top, -5px);
+            display: block;
+            transform: rotate(-45deg);
+        }
+    }
+
+    input:not(:checked) {
+        & ~ .check {
+            &:before {
+                display: none;
+            }
+        }
+    }
+}
+
+.radio {
+    .check {
+        background-color: transparent !important;
+        border-radius: 50%;
+        &:before {
+            display: none;
+            content: "";
+            color: @checkBackground;
+            background-color: @dark;
+            border-radius: 50%;
+            .px2rem(width, 12px);
+            .px2rem(height, 12px);
+            .px2rem(margin, 2px);
+        }
+    }
+
+    input:checked ~ .check {
+        &:before {
+            display: block;
+        }
+    }
+
+    input:disabled:checked {
+        & ~ .check {
+            &:before {
+                color: @disabledColor;
+                background-color: @disabledBackground;
+            }
+        }
+    }
+}
+
+.switch {
+    .caption {
+        margin: 0 5px;
+    }
+
+    .check {
+        position: relative;
+        height: 1.125rem;
+        width: 2.8125rem;
+        outline: 2px #a6a6a6 solid;
+        border: 1px #fff solid;
+        cursor: pointer;
+        background: #A6A6A6;
+        z-index: 1;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .check:after {
+        position: absolute;
+        left: 0;
+        top: -1px;
+        display: block;
+        content: "";
+        height: 1.125rem;
+        width: .5625rem;
+        outline: 2px #333 solid;
+        border: 1px #333 solid;
+        cursor: pointer;
+        background: #333;
+        z-index: 2;
+        transition: @transition-base;
+    }
+
+    input[type="checkbox"]:focus ~ .check {
+        outline: 1px @lightGray dotted ;
+    }
+
+    input[type="checkbox"]:checked ~ .check {
+        background: #008287;
+        &:after {
+            left: auto;
+            transform: translateX(2.25rem);
+            transition: @transition-base;
+        }
+    }
+
+    input[type="checkbox"]:disabled ~ .check {
+        background-color: @disabledBackground;
+        border-color: @white;
+        outline-color: @light;
+        &:after {
+            background-color: darken(@disabledBackground, 10%);
+            outline-color: @disabledBackground;
+            border-color: @disabledBackground;
+        }
+    }
+}
+
+.file {
+    display: flex;
+    justify-content: space-between;
+
+    input[type=file] {
+        position: absolute;
+        opacity: 0;
+        width: 0.0625rem;
+        height: 0.0625rem;
+    }
+
+    .caption {
+        .px2rem(line-height, 35px);
+    }
+
+    &.disabled {
+        button {
+            background-color: @light;
+            color: darken(@light, 10%);
+        }
+    }
+}
+
+.input {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0;
+
+    &:hover {
+        input {
+            border-color: transparent;
+        }
+    }
+
+    &:focus-within, &.focused {
+        box-shadow: 0 0 0 3px rgba(red(@lightGray), green(@lightGray), blue(@lightGray), 0.45);
+    }
+
+    input {
+        border-color: transparent;
+        &:focus {
+            box-shadow: none;
+        }
+    }
+
+    .button-group {
+        display: flex;
+        flex-wrap: nowrap;
+
+        .button {
+            background-color: transparent;
+            &:focus {
+                box-shadow: none;
+            }
+            &:hover {
+                background-color: @light;
+                text-shadow: rgba(0,0,0,.25) 0.1em 0.1em 0.2em;
+            }
+        }
+    }
+}
+
+form, fieldset, .form-group {
+    &:disabled, &.disabled {
+        pointer-events: none;
+    }
 }

@@ -46,6 +46,36 @@
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Forms</a></li>
                     <li class="toc-entry"><a href="#_overview">Overview</a></li>
+                    <li class="toc-entry">
+                        <a href="#_form_controls">Form controls</a>
+                        <ul>
+                            <li class="toc-entry"><a href="#_inputs">Inputs</a></li>
+                            <li class="toc-entry"><a href="#_select">Select</a></li>
+                            <li class="toc-entry"><a href="#_textarea">Textarea</a></li>
+                            <li class="toc-entry"><a href="#_checkbox">Checkbox</a></li>
+                            <li class="toc-entry"><a href="#_radio">Radio</a></li>
+                            <li class="toc-entry"><a href="#_switch">Switch</a></li>
+                            <li class="toc-entry"><a href="#_file">File browser</a></li>
+                            <li class="toc-entry"><a href="#_buttons">Buttons</a></li>
+                        </ul>
+                    </li>
+                    <li class="toc-entry">
+                        <a href="#_layout">Layout</a>
+                        <ul>
+                            <li class="toc-entry"><a href="#_use_grid">Use grid</a></li>
+                            <li class="toc-entry"><a href="#_form_group">Form groups</a></li>
+                            <li class="toc-entry"><a href="#_inline_form">Inline form</a></li>
+                        </ul>
+                    </li>
+                    <li class="toc-entry"><a href="#_disabled">Disabled forms</a></li>
+                    <li class="toc-entry">
+                        <a href="#_validator">Validation</a>
+                        <ul>
+                            <li class="toc-entry"><a href="#_overview">How it works</a></li>
+                            <li class="toc-entry"><a href="#_overview">Styling elements</a></li>
+                            <li class="toc-entry"><a href="#_overview">Browser defaults</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
 
@@ -68,6 +98,264 @@
                     Be sure to use an appropriate <code>type</code> attribute on all inputs (e.g., <code>email</code> for email address or <code>number</code> for numerical information)
                     to take advantage of newer input controls like email verification, number selection, and more.
                 </p>
+
+                <div class="example pb-0">
+                    <form>
+                        <div class="form-group">
+                            <label>Email address</label>
+                            <input type="email" placeholder="Enter email"/>
+                            <small class="text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" placeholder="Enter email"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox">
+                                <input type="checkbox">
+                                <span class="check"></span>
+                                <span class="caption">Remember me</span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <button class="button success">Submit data</button>
+                            <input type="button" class="button" value="Cancel">
+                        </div>
+                    </form>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;form&gt;
+                        &lt;div class="form-group"&gt;
+                            &lt;label&gt;Email address&lt;/label&gt;
+                            &lt;input type="email" placeholder="Enter email"/&gt;
+                            &lt;small class="text-muted"&gt;We'll never share your email with anyone else.&lt;/small&gt;
+                        &lt;/div&gt;
+                        &lt;div class="form-group"&gt;
+                            &lt;label&gt;Password&lt;/label&gt;
+                            &lt;input type="password" placeholder="Enter email"/&gt;
+                        &lt;/div&gt;
+                        &lt;div class="form-group"&gt;
+                            &lt;label class="checkbox"&gt;
+                                &lt;input type="checkbox"&gt;
+                                &lt;span class="check"&gt;&lt;/span&gt;
+                                &lt;span class="caption"&gt;Remember me&lt;/span&gt;
+                            &lt;/label&gt;
+                        &lt;/div&gt;
+                        &lt;div class="form-group"&gt;
+                            &lt;button class="button success"&gt;Submit data&lt;/button&gt;
+                            &lt;input type="button" class="button" value="Cancel"&gt;
+                        &lt;/div&gt;
+                    &lt;/form&gt;
+                </code></pre>
+
+                <h3 id="_form_controls">Form controls</h3>
+                <p>
+                    Metro 4 styling all forms controls with direct styles or special classes. Now supports:
+                        all types of <code>&lt;input&gt;</code>,
+                        <code>select</code>,
+                        <code>textarea</code>,
+                        <code>checkbox</code> and
+                        <code>radio</code>.
+                    Included are styles for general appearance, focus state, sizing, and more.
+                </p>
+
+                <h3 id="_inputs">Inputs</h3>
+                <div class="example pb-0">
+                    <form>
+                        <input type="text" title="">
+                        <br />
+                        <br />
+                        <label class="input">
+                            <input type="text">
+                            <div class="button-group">
+                                <button class="button square" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+                            </div>
+                        </label>
+                        <br />
+                        <label class="input">
+                            <input type="password">
+                            <div class="button-group">
+                                <button class="button square" type="button" tabindex="-1"><span class="mif-cross"></span></button>
+                                <button class="button square" type="button" tabindex="-1"><span class="mif-eye"></span></button>
+                            </div>
+                        </label>
+                    </form>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;input type="text"&gt;
+
+                    &lt;label class="input" data-role="input"&gt;
+                        &lt;input type="text"&gt;
+                    &lt;/label&gt;
+
+                    &lt;label class="input" data-role="input"&gt;
+                        &lt;input type="text"&gt;
+                        &lt;div class="button-group"&gt;
+                            &lt;button class="button square" type="button" tabindex="-1"&gt;&lt;span class="mif-cross"&gt;&lt;/span&gt;&lt;/button&gt;
+                        &lt;/div&gt;
+                    &lt;/label&gt;
+
+                    &lt;label class="input" data-role="input"&gt;
+                        &lt;input type="password"&gt;
+                        &lt;div class="button-group"&gt;
+                            &lt;button class="button square" type="button" tabindex="-1"&gt;
+                                &lt;span class="mif-cross"&gt;&lt;/span&gt;
+                            &lt;/button&gt;
+                            &lt;button class="button square" type="button" tabindex="-1"&gt;
+                                &lt;span class="mif-eye"&gt;&lt;/span&gt;
+                            &lt;/button&gt;
+                        &lt;/div&gt;
+                    &lt;/label&gt;
+                </code></pre>
+
+                <h3 id="_select">Select</h3>
+                <div class="example pb-0">
+                    <form>
+                        <select title="select">
+                            <option>One</option>
+                            <option>Two</option>
+                            <option>Three</option>
+                        </select>
+                    </form>
+                </div>
+
+                <h3 id="_textarea">Textarea</h3>
+                <div class="example pb-0">
+                    <form>
+                        <textarea></textarea>
+                    </form>
+                </div>
+
+                <h3 id="_checkbox">Checkbox</h3>
+                <div class="example pb-0">
+                    <form>
+                        <label class="checkbox">
+                            <input type="checkbox">
+                            <span class="check"></span>
+                            <span class="caption">Check me</span>
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" checked>
+                            <span class="check"></span>
+                            <span class="caption">Check me</span>
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" disabled>
+                            <span class="check"></span>
+                            <span class="caption">Check me</span>
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" checked disabled>
+                            <span class="check"></span>
+                            <span class="caption">Check me</span>
+                        </label>
+                    </form>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                        &lt;label class="checkbox"&gt;
+                            &lt;input type="checkbox" [disabled | checked]&gt;
+                            &lt;span class="check"&gt;&lt;/span&gt;
+                            &lt;span class="caption"&gt;Check me&lt;/span&gt;
+                        &lt;/label&gt;
+                </code></pre>
+
+                <h3 id="_radio">Radio</h3>
+                <div class="example pb-0">
+                    <form>
+                        <label class="radio">
+                            <input type="radio" name="r1">
+                            <span class="check"></span>
+                            <span class="caption">Check me</span>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" checked name="r1">
+                            <span class="check"></span>
+                            <span class="caption">Check me</span>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" disabled name="r2">
+                            <span class="check"></span>
+                            <span class="caption">Check me</span>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" checked disabled name="r2">
+                            <span class="check"></span>
+                            <span class="caption">Check me</span>
+                        </label>
+                    </form>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;label class="radio"&gt;
+                        &lt;input type="radio" [disabled | checked]&gt;
+                        &lt;span class="check"&gt;&lt;/span&gt;
+                        &lt;span class="caption"&gt;Check me&lt;/span&gt;
+                    &lt;/label&gt;
+                </code></pre>
+
+                <h3 id="_switch">Switch</h3>
+                <div class="example">
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="check"></span>
+                        <span class="caption">Check me</span>
+                    </label>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="check"></span>
+                        <span class="caption">Check me</span>
+                    </label>
+                    <label class="switch">
+                        <input type="checkbox" disabled>
+                        <span class="check"></span>
+                        <span class="caption">Check me</span>
+                    </label>
+                    <label class="switch">
+                        <input type="checkbox" disabled checked>
+                        <span class="check"></span>
+                        <span class="caption">Check me</span>
+                    </label>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;label class="switch"&gt;
+                        &lt;input type="checkbox" [disabled | checked]&gt;
+                        &lt;span class="check"&gt;&lt;/span&gt;
+                        &lt;span class="caption"&gt;Check me&lt;/span&gt;
+                    &lt;/label&gt;
+                </code></pre>
+
+                <h3 id="_file">File browser</h3>
+                <div class="example">
+                    <label class="file" data-role="file">
+                        <span class="caption">logo.png</span>
+                        <input type="file">
+                        <button class="button" type="button">Choose file</button>
+                    </label>
+                    <br />
+                    <label class="file disabled" data-role="file">
+                        <span class="caption">logo.png</span>
+                        <input type="file">
+                        <button class="button" type="button">Choose file</button>
+                    </label>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;label class="file" data-role="file"&gt;
+                        &lt;input type="file"&gt;
+                        &lt;button class="button" type="button"&gt;Choose file...&lt;/button&gt;
+                    &lt;/label&gt;
+                </code></pre>
+
+                <h3 id="_form_buttons">Form buttons</h3>
+                <div class="example">
+                    <input type="button" class="button" value="Button">
+                    <input type="reset" class="button" value="Reset">
+                    <input type="submit" class="button" value="Submit">
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;input type="button" class="button" value="Button"&gt;
+                    &lt;input type="reset" class="button" value="Reset"&gt;
+                    &lt;input type="submit" class="button" value="Submit"&gt;
+                </code></pre>
+
             </main>
         </div>
 

@@ -121,3 +121,29 @@
         .get-values(@s, @i + 1);
     }
 }
+
+.square(@size: 0, @unit) {
+    width: unit(@size, @unit);
+    height: unit(@size, @unit);
+}
+
+.circle(@size: 0, @unit) {
+    width: unit(@size, @unit);
+    height: unit(@size, @unit);
+    border-radius: 50%;
+}
+
+.halo() {
+    &:after {
+        display: block;
+        content: "";
+        position: absolute;
+        .circle(3.125, rem);
+        background-color: rgba(187, 187, 187, 0.5);
+        opacity: .3;
+        top: 50%;
+        left: 50%;
+        .px2rem(margin-top, -25px);
+        .px2rem(margin-left, -25px);
+    }
+}
