@@ -67,7 +67,7 @@ input[type=search],
 input[type=time],
 input[type=url],
 input[type=week],
-select, textarea {
+select, textarea, .file, .input, .select, .textarea {
     .generate-accent-colors(@buttonPredefinedTypesLength);
     .generate-accent-colors(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
         @name: extract(@buttonPredefinedTypes, @i);
@@ -75,6 +75,10 @@ select, textarea {
 
         &.@{name} {
             border-color: @@color;
+
+            &:focus, &:focus-within {
+                box-shadow: 0 0 0 3px rgba(red(@@color), green(@@color), blue(@@color), 0.45);
+            }
         }
 
         .generate-accent-colors(@name, @i + 1);

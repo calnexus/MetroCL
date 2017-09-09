@@ -1,4 +1,3 @@
-// myObject – объект реализуемой модели (например, машина)
 var myObject = {
     init: function( options, elem ) {
         this.options = $.extend( {}, this.options, options );
@@ -8,11 +7,12 @@ var myObject = {
         this._setOptionsFromDOM();
         this._create();
 
-        // возвращаем this для более простого обращения к объекту
+        Utils.exec(this.options.onCreate);
+
         return this;
     },
     options: {
-        name: "No name"
+        onCreate: $.noop()
     },
 
     _setOptionsFromDOM: function(){

@@ -120,22 +120,11 @@ var Metro = {
                         $this.data(func + '-initiated', true);
                     }
                 } catch (e) {
-                    if (window.METRO_DEBUG !== undefined) {
-                        console.log(e.message, e.stack);
-                    }
+                    console.log(e.message, e.stack);
                 }
             });
         });
     },
-
-    // Пример использования:
-    // превращаем myObject в плагин
-    // $.plugin('myobj', myObject);
-
-    // и используем, как обычно
-    // $('#elem').myobj({name: "John"});
-    // var inst = $('#elem').data('myobj');
-    // inst.myMethod('I am a method');
 
     plugin: function(name, object){
         $.fn[name] = function( options ) {
@@ -476,8 +465,7 @@ String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 };
 // Source: js/utils/hotkeys.js
-$.hotkeys = {
-    version: "0.8",
+var hotkeys = {
 
     specialKeys: {
         8: "backspace",
@@ -580,80 +568,80 @@ $.hotkeys = {
         filterInputAcceptingElements: true,
         filterTextInputs: true,
         filterContentEditable: true
-    }
-};
+    },
 
-function keyHandler(handleObj) {
-    if (typeof handleObj.data === "string") {
-        handleObj.data = {
-            keys: handleObj.data
-        };
-    }
+    keyHandler: function(handleObj){
+        if (typeof handleObj.data === "string") {
+            handleObj.data = {
+                keys: handleObj.data
+            };
+        }
 
-    // Only care when a possible input has been specified
-    if (!handleObj.data || !handleObj.data.keys || typeof handleObj.data.keys !== "string") {
-        return;
-    }
-
-    var origHandler = handleObj.handler,
-        keys = handleObj.data.keys.toLowerCase().split(" ");
-
-    handleObj.handler = function(event) {
-        //      Don't fire in text-accepting inputs that we didn't directly bind to
-        if (this !== event.target &&
-            ($.hotkeys.options.filterInputAcceptingElements &&
-            $.hotkeys.textInputTypes.test(event.target.nodeName) ||
-            ($.hotkeys.options.filterContentEditable && $(event.target).attr('contenteditable')) ||
-            ($.hotkeys.options.filterTextInputs &&
-            $.inArray(event.target.type, $.hotkeys.textAcceptingInputTypes) > -1))) {
+        // Only care when a possible input has been specified
+        if (!handleObj.data || !handleObj.data.keys || typeof handleObj.data.keys !== "string") {
             return;
         }
 
-        var special = event.type !== "keypress" && $.hotkeys.specialKeys[event.which],
-            character = String.fromCharCode(event.which).toLowerCase(),
-            modif = "",
-            possible = {};
+        var origHandler = handleObj.handler,
+            keys = handleObj.data.keys.toLowerCase().split(" ");
 
-        $.each(["alt", "ctrl", "shift"], function(index, specialKey) {
-
-            if (event[specialKey + 'Key'] && special !== specialKey) {
-                modif += specialKey + '+';
+        handleObj.handler = function(event) {
+            //      Don't fire in text-accepting inputs that we didn't directly bind to
+            if (this !== event.target &&
+                (hotkeys.options.filterInputAcceptingElements && hotkeys.textInputTypes.test(event.target.nodeName) ||
+                    (hotkeys.options.filterContentEditable && $(event.target).attr('contenteditable')) ||
+                    (hotkeys.options.filterTextInputs && $.inArray(event.target.type, hotkeys.textAcceptingInputTypes) > -1))
+            )
+            {
+                return;
             }
-        });
 
-        // metaKey is triggered off ctrlKey erronously
-        if (event.metaKey && !event.ctrlKey && special !== "meta") {
-            modif += "meta+";
-        }
+            var special = event.type !== "keypress" && hotkeys.specialKeys[event.which],
+                character = String.fromCharCode(event.which).toLowerCase(),
+                modif = "",
+                possible = {};
 
-        if (event.metaKey && special !== "meta" && modif.indexOf("alt+ctrl+shift+") > -1) {
-            modif = modif.replace("alt+ctrl+shift+", "hyper+");
-        }
+            $.each(["alt", "ctrl", "shift"], function(index, specialKey) {
 
-        if (special) {
-            possible[modif + special] = true;
-        }
-        else {
-            possible[modif + character] = true;
-            possible[modif + $.hotkeys.shiftNums[character]] = true;
+                if (event[specialKey + 'Key'] && special !== specialKey) {
+                    modif += specialKey + '+';
+                }
+            });
 
-            // "$" can be triggered as "Shift+4" or "Shift+$" or just "$"
-            if (modif === "shift+") {
-                possible[$.hotkeys.shiftNums[character]] = true;
+            // metaKey is triggered off ctrlKey erronously
+            if (event.metaKey && !event.ctrlKey && special !== "meta") {
+                modif += "meta+";
             }
-        }
 
-        for (var i = 0, l = keys.length; i < l; i++) {
-            if (possible[keys[i]]) {
-                return origHandler.apply(this, arguments);
+            if (event.metaKey && special !== "meta" && modif.indexOf("alt+ctrl+shift+") > -1) {
+                modif = modif.replace("alt+ctrl+shift+", "hyper+");
             }
-        }
-    };
-}
+
+            if (special) {
+                possible[modif + special] = true;
+            }
+            else {
+                possible[modif + character] = true;
+                possible[modif + hotkeys.shiftNums[character]] = true;
+
+                // "$" can be triggered as "Shift+4" or "Shift+$" or just "$"
+                if (modif === "shift+") {
+                    possible[hotkeys.shiftNums[character]] = true;
+                }
+            }
+
+            for (var i = 0, l = keys.length; i < l; i++) {
+                if (possible[keys[i]]) {
+                    return origHandler.apply(this, arguments);
+                }
+            }
+        };
+    }
+};
 
 $.each(["keydown", "keyup", "keypress"], function() {
     $.event.special[this] = {
-        add: keyHandler
+        add: hotkeys.keyHandler
     };
 });
 
@@ -1497,7 +1485,6 @@ var d = new Date().getTime();
 
 $.Metro['utils'] = window.metroUtils = Utils;
 // Source: js/plugins/clock.js
-// myObject – объект реализуемой модели (например, машина)
 var Clock = {
     init: function( options, elem ) {
         this.options = $.extend( {}, this.options, options );
@@ -1507,15 +1494,18 @@ var Clock = {
         this._setOptionsFromDOM();
         this._create();
 
-        // возвращаем this для более простого обращения к объекту
+        Utils.exec(this.options.onCreate);
+
         return this;
     },
+
     options: {
         showTime: true,
         showDate: true,
         timeFormat: '24',
         dateFormat: 'american',
-        divider: "&nbsp;&nbsp;"
+        divider: "&nbsp;&nbsp;",
+        onCreate: $.noop()
     },
 
     _clockInterval: null,
@@ -1614,6 +1604,8 @@ var Dropdown = {
         this._setOptionsFromDOM();
         this._create();
 
+        Utils.exec(this.options.onCreate);
+
         return this;
     },
     options: {
@@ -1622,7 +1614,8 @@ var Dropdown = {
         noClose: false,
         duration: METRO_ANIMATION_DURATION,
         onDrop: $.noop(),
-        onUp: $.noop()
+        onUp: $.noop(),
+        onCreate: $.noop()
     },
 
     _setOptionsFromDOM: function(){
@@ -1749,8 +1742,188 @@ $(document).on('click', function(e){
 });
 
 Metro.plugin('dropdown', Dropdown);
+// Source: js/plugins/file.js
+var File = {
+    init: function( options, elem ) {
+        this.options = $.extend( {}, this.options, options );
+        this.elem  = elem;
+        this.element = $(elem);
+
+        this._setOptionsFromDOM();
+        this._create();
+
+        Utils.exec(this.options.onCreate);
+
+        return this;
+    },
+    options: {
+        caption: "Choose file",
+        disabled: false,
+        onCreate: $.noop()
+    },
+
+    _setOptionsFromDOM: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = $.parseJSON(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+    },
+
+    _create: function(){
+        var that = this, element = this.element, o = this.options;
+        var prev = element.prev();
+        var parent = element.parent();
+        var container = $("<div>").addClass("file " + element[0].className);
+        var caption = $("<span>").addClass("caption");
+        var button;
+
+        element.detach().appendTo(container);
+        caption.insertBefore(element);
+
+        if (prev.length === 0) {
+            container.appendTo(parent);
+        } else {
+            container.insertAfter(prev);
+        }
+
+        element.on('change', function(){
+            var val = $(this).val();
+            if (val !== '') {
+                caption.html(val.replace(/.+[\\\/]/, ""));
+                caption.attr('title', val.replace(/.+[\\\/]/, ""));
+            }
+        });
+
+        button = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.caption);
+        button.appendTo(container);
+
+        button.on('click', function(){
+            element.trigger("click");
+        });
+
+        if (element.attr('dir') === 'rtl' ) {
+            container.addClass("rtl");
+        }
+
+        element[0].className = '';
+
+        if (o.disabled === true) {
+            this.disable();
+        }
+    },
+
+    disable: function(){
+        this.element.data("disabled", true);
+        this.element.parent().addClass("disabled");
+    },
+
+    enable: function(){
+        this.element.data("disabled", false);
+        this.element.parent().removeClass("disabled");
+    }
+};
+
+Metro.plugin('file', File);
+// Source: js/plugins/input.js
+var Input = {
+    init: function( options, elem ) {
+        this.options = $.extend( {}, this.options, options );
+        this.elem  = elem;
+        this.element = $(elem);
+
+        this._setOptionsFromDOM();
+        this._create();
+
+        Utils.exec(this.options.onCreate);
+
+        return this;
+    },
+    options: {
+        clearButton: true,
+        revealButton: true,
+        clearButtonIcon: "mif-cross",
+        revealButtonIcon: "mif-eye",
+        disabled: false,
+        onCreate: $.noop()
+    },
+
+    _setOptionsFromDOM: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = $.parseJSON(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+    },
+
+    _create: function(){
+        var that = this, element = this.element, o = this.options;
+        var prev = element.prev();
+        var parent = element.parent();
+        var container = $("<div>").addClass("input " + element[0].className);
+        var buttons = $("<div>").addClass("button-group");
+        var clearButton, revealButton;
+
+        element.detach().appendTo(container);
+
+        buttons.appendTo(container);
+        if (prev.length === 0) {
+            container.appendTo(parent);
+        } else {
+            container.insertAfter(prev);
+        }
+
+        if (o.clearButton !== false) {
+            clearButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html("<span class='"+o.clearButtonIcon+"'></span>");
+            clearButton.on("click", function(){
+                element.val("").trigger('change').focus();
+            });
+            clearButton.appendTo(buttons);
+        }
+        if (element.attr('type') === 'password' && o.revealButton !== false) {
+            revealButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html("<span class='"+o.revealButtonIcon+"'></span>");
+            revealButton
+                .on('mousedown', function(){element.attr('type', 'text');})
+                .on('mouseup', function(){element.attr('type', 'password').focus();});
+            revealButton.appendTo(buttons);
+        }
+
+        if (element.attr('dir') === 'rtl' ) {
+            container.addClass("rtl");
+        }
+
+        element[0].className = '';
+
+        if (o.disabled === true) {
+            this.disable();
+        }
+    },
+
+    disable: function(){
+        this.element.data("disabled", true);
+        this.element.parent().addClass("disabled");
+    },
+
+    enable: function(){
+        this.element.data("disabled", false);
+        this.element.parent().removeClass("disabled");
+    }
+};
+
+Metro.plugin('input', Input);
 // Source: js/plugins/ripple.js
-// myObject – объект реализуемой модели (например, машина)
 var Ripple = {
     init: function( options, elem ) {
         this.options = $.extend( {}, this.options, options );
@@ -1760,13 +1933,15 @@ var Ripple = {
         this._setOptionsFromDOM();
         this._create();
 
-        // возвращаем this для более простого обращения к объекту
+        Utils.exec(this.options.onCreate);
+
         return this;
     },
     options: {
         rippleColor: "#fff",
         rippleAlpha: .4,
-        rippleTarget: "default"
+        rippleTarget: "default",
+        onCreate: $.noop()
     },
 
     _setOptionsFromDOM: function(){

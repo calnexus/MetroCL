@@ -76,6 +76,7 @@
                             <li class="toc-entry"><a href="#_overview">Browser defaults</a></li>
                         </ul>
                     </li>
+                    <li class="toc-entry"><a href="#_forms_rtl">Rtl support</a></li>
                 </ul>
             </div>
 
@@ -100,10 +101,10 @@
                 </p>
 
                 <div class="example pb-0">
-                    <form>
+                    <form  class="mb-2">
                         <div class="form-group">
                             <label>Email address</label>
-                            <input type="email" placeholder="Enter email"/>
+                            <input type="email" placeholder="Enter email" data-role="input"/>
                             <small class="text-muted">We'll never share your email with anyone else.</small>
                         </div>
                         <div class="form-group">
@@ -161,57 +162,57 @@
 
                 <h3 id="_inputs">Inputs</h3>
                 <div class="example pb-0">
-                    <form>
-                        <input type="text" title="">
-                        <br />
-                        <br />
-                        <label class="input">
-                            <input type="text">
-                            <div class="button-group">
-                                <button class="button square" type="button" tabindex="-1"><span class="mif-cross"></span></button>
-                            </div>
-                        </label>
-                        <br />
-                        <label class="input">
-                            <input type="password">
-                            <div class="button-group">
-                                <button class="button square" type="button" tabindex="-1"><span class="mif-cross"></span></button>
-                                <button class="button square" type="button" tabindex="-1"><span class="mif-eye"></span></button>
-                            </div>
-                        </label>
+                    <form class="mb-2">
+                        <input type="text" class="mt-1">
+                        <input type="text" data-role="input"  class="mt-1">
+                        <input type="password" data-role="input" class="mt-1">
+                        <input type="text" data-role="input" data-disabled="true" class="mt-1">
                     </form>
                 </div>
                 <pre class="prettyprint linenums"><code>
                     &lt;input type="text"&gt;
+                    &lt;input type="text" data-role="input" data-clear-button="true"&gt;
+                    &lt;input type="password" data-role="input" data-clear-button="true" data-reveal-button="true"&gt;
+                    &lt;input type="text" data-role="input" data-clear-button="true" data-disabled="true"&gt;
+                </code></pre>
+                <p>
+                    Additional functionality for input is implemented through the plugin <code>input</code>.
+                </p>
 
-                    &lt;label class="input" data-role="input"&gt;
-                        &lt;input type="text"&gt;
-                    &lt;/label&gt;
-
-                    &lt;label class="input" data-role="input"&gt;
-                        &lt;input type="text"&gt;
-                        &lt;div class="button-group"&gt;
-                            &lt;button class="button square" type="button" tabindex="-1"&gt;&lt;span class="mif-cross"&gt;&lt;/span&gt;&lt;/button&gt;
-                        &lt;/div&gt;
-                    &lt;/label&gt;
-
-                    &lt;label class="input" data-role="input"&gt;
-                        &lt;input type="password"&gt;
-                        &lt;div class="button-group"&gt;
-                            &lt;button class="button square" type="button" tabindex="-1"&gt;
-                                &lt;span class="mif-cross"&gt;&lt;/span&gt;
-                            &lt;/button&gt;
-                            &lt;button class="button square" type="button" tabindex="-1"&gt;
-                                &lt;span class="mif-eye"&gt;&lt;/span&gt;
-                            &lt;/button&gt;
-                        &lt;/div&gt;
-                    &lt;/label&gt;
+                <h5>Input accent colors</h5>
+                <p>
+                    You can add accent colors to input control:
+                        <code>.primary</code>,
+                        <code>.secondary</code>,
+                        <code>.success</code>,
+                        <code>.alert</code>,
+                        <code>.warning</code>,
+                        <code>.yellow</code>,
+                        <code>.info</code>,
+                        <code>.dark</code>.
+                </p>
+                <div class="example">
+                    <form>
+                        <input type="text" class="alert mb-1">
+                        <input type="password" class="success mb-1" data-role="input">
+                        <input type="text" class="info mb-1" data-role="input">
+                    </form>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;input type="text" class="alert"&gt;
+                    &lt;input type="password" class="success" data-role="input"&gt;
+                    &lt;input type="text" class="info" data-role="input"&gt;
                 </code></pre>
 
                 <h3 id="_select">Select</h3>
                 <div class="example pb-0">
-                    <form>
-                        <select title="select">
+                    <form  class="mb-2">
+                        <select class="mb-1">
+                            <option>One</option>
+                            <option>Two</option>
+                            <option>Three</option>
+                        </select>
+                        <select multiple>
                             <option>One</option>
                             <option>Two</option>
                             <option>Three</option>
@@ -220,14 +221,14 @@
                 </div>
 
                 <h3 id="_textarea">Textarea</h3>
-                <div class="example pb-0">
+                <div class="example mb-2">
                     <form>
                         <textarea></textarea>
                     </form>
                 </div>
 
                 <h3 id="_checkbox">Checkbox</h3>
-                <div class="example pb-0">
+                <div class="example mb-2">
                     <form>
                         <label class="checkbox">
                             <input type="checkbox">
@@ -260,7 +261,7 @@
                 </code></pre>
 
                 <h3 id="_radio">Radio</h3>
-                <div class="example pb-0">
+                <div class="example mb-2">
                     <form>
                         <label class="radio">
                             <input type="radio" name="r1">
@@ -294,26 +295,28 @@
 
                 <h3 id="_switch">Switch</h3>
                 <div class="example">
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="check"></span>
-                        <span class="caption">Check me</span>
-                    </label>
-                    <label class="switch">
-                        <input type="checkbox" checked>
-                        <span class="check"></span>
-                        <span class="caption">Check me</span>
-                    </label>
-                    <label class="switch">
-                        <input type="checkbox" disabled>
-                        <span class="check"></span>
-                        <span class="caption">Check me</span>
-                    </label>
-                    <label class="switch">
-                        <input type="checkbox" disabled checked>
-                        <span class="check"></span>
-                        <span class="caption">Check me</span>
-                    </label>
+                    <form mb-2>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="check"></span>
+                            <span class="caption">Check me</span>
+                        </label>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="check"></span>
+                            <span class="caption">Check me</span>
+                        </label>
+                        <label class="switch">
+                            <input type="checkbox" disabled>
+                            <span class="check"></span>
+                            <span class="caption">Check me</span>
+                        </label>
+                        <label class="switch">
+                            <input type="checkbox" disabled checked>
+                            <span class="check"></span>
+                            <span class="caption">Check me</span>
+                        </label>
+                    </form>
                 </div>
                 <pre class="prettyprint linenums"><code>
                     &lt;label class="switch"&gt;
@@ -325,17 +328,9 @@
 
                 <h3 id="_file">File browser</h3>
                 <div class="example">
-                    <label class="file" data-role="file">
-                        <span class="caption">logo.png</span>
-                        <input type="file">
-                        <button class="button" type="button">Choose file</button>
-                    </label>
-                    <br />
-                    <label class="file disabled" data-role="file">
-                        <span class="caption">logo.png</span>
-                        <input type="file">
-                        <button class="button" type="button">Choose file</button>
-                    </label>
+                    <form class="">
+                        <input type="file" data-role="file">
+                    </form>
                 </div>
                 <pre class="prettyprint linenums"><code>
                     &lt;label class="file" data-role="file"&gt;
@@ -343,12 +338,17 @@
                         &lt;button class="button" type="button"&gt;Choose file...&lt;/button&gt;
                     &lt;/label&gt;
                 </code></pre>
+                <p>
+                    Additional functionality for input is implemented through the plugin <code>file</code>.
+                </p>
 
                 <h3 id="_form_buttons">Form buttons</h3>
                 <div class="example">
-                    <input type="button" class="button" value="Button">
-                    <input type="reset" class="button" value="Reset">
-                    <input type="submit" class="button" value="Submit">
+                    <form class="">
+                        <input type="button" class="button" value="Button">
+                        <input type="reset" class="button" value="Reset">
+                        <input type="submit" class="button" value="Submit">
+                    </form>
                 </div>
                 <pre class="prettyprint linenums"><code>
                     &lt;input type="button" class="button" value="Button"&gt;
@@ -356,6 +356,32 @@
                     &lt;input type="submit" class="button" value="Submit"&gt;
                 </code></pre>
 
+                <h3 id="_forms_rtl">Rtl support</h3>
+                <p>
+                    Metro supports rtl input method. To set Metro's rtl you can add <code>metro-rtl.css</code> to page head and add attribute <code>dir</code> with <code>rtl</code> value to element.
+                </p>
+
+                <h5>Inputs</h5>
+                <div class="example">
+                    <form class="mb-2">
+                        <input type="text" dir="rtl" class="mb-1">
+                        <input type="text" dir="rtl" data-role="input" data-clear-button="true">
+                    </form>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;input type="text" dir="rtl"&gt;
+                    &lt;input type="text" dir="rtl" data-role="input" data-clear-button="true"&gt;
+                </code></pre>
+
+                <h5>File browser</h5>
+                <div class="example">
+                    <form class="mb-2">
+                        <input type="file" dir="rtl" data-role="file" class="mb-1">
+                    </form>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;input type="file" dir="rtl" data-role="file"&gt;
+                </code></pre>
             </main>
         </div>
 

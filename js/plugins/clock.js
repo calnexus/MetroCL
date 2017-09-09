@@ -1,4 +1,3 @@
-// myObject – объект реализуемой модели (например, машина)
 var Clock = {
     init: function( options, elem ) {
         this.options = $.extend( {}, this.options, options );
@@ -8,15 +7,18 @@ var Clock = {
         this._setOptionsFromDOM();
         this._create();
 
-        // возвращаем this для более простого обращения к объекту
+        Utils.exec(this.options.onCreate);
+
         return this;
     },
+
     options: {
         showTime: true,
         showDate: true,
         timeFormat: '24',
         dateFormat: 'american',
-        divider: "&nbsp;&nbsp;"
+        divider: "&nbsp;&nbsp;",
+        onCreate: $.noop()
     },
 
     _clockInterval: null,

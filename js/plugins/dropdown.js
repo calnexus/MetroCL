@@ -7,6 +7,8 @@ var Dropdown = {
         this._setOptionsFromDOM();
         this._create();
 
+        Utils.exec(this.options.onCreate);
+
         return this;
     },
     options: {
@@ -15,7 +17,8 @@ var Dropdown = {
         noClose: false,
         duration: METRO_ANIMATION_DURATION,
         onDrop: $.noop(),
-        onUp: $.noop()
+        onUp: $.noop(),
+        onCreate: $.noop()
     },
 
     _setOptionsFromDOM: function(){

@@ -102,22 +102,11 @@ var Metro = {
                         $this.data(func + '-initiated', true);
                     }
                 } catch (e) {
-                    if (window.METRO_DEBUG !== undefined) {
-                        console.log(e.message, e.stack);
-                    }
+                    console.log(e.message, e.stack);
                 }
             });
         });
     },
-
-    // Пример использования:
-    // превращаем myObject в плагин
-    // $.plugin('myobj', myObject);
-
-    // и используем, как обычно
-    // $('#elem').myobj({name: "John"});
-    // var inst = $('#elem').data('myobj');
-    // inst.myMethod('I am a method');
 
     plugin: function(name, object){
         $.fn[name] = function( options ) {
