@@ -49,6 +49,7 @@ pre {
 .prettyprint {
     background-color: #eeeeee;
     border: 1px #eeeeee !important;
+    z-index: 2;
 }
 
 .prettyprint ol {
@@ -68,7 +69,13 @@ pre {
     }
 }
 
-.prettyprint li {background-color: white !important; list-style-type: decimal !important; padding-left: 1em; border-bottom: 1px #eee solid;}
+.prettyprint li {
+    background-color: white !important;
+    list-style-type: decimal !important;
+    padding-left: 1em;
+    border-bottom: 1px #eee solid;
+    white-space: pre;
+}
 .prettyprint li:last-child{border-bottom: 0;}
 .prettyprint .tag, .prettyprint .atn, .prettyprint .pln  {
     font-size: .8rem;
@@ -210,12 +217,15 @@ pre {
 }
 
 main > h3, main > h5  {
+    z-index: -1;
+    pointer-events: none;
     &:before {
         display: block;
         height: 5rem;
         margin-top: -5rem;
         visibility: hidden;
         content: "";
+        z-index: -1;
     }
 }
 

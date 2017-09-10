@@ -39,7 +39,9 @@ var Select = {
         var parent = element.parent();
         var container = $("<div>").addClass("select " + element[0].className);
         var multiple = element.prop("multiple");
+        var select_id = Utils.uniqueId();
 
+        container.attr("id", select_id).addClass("dropdown-toggle");
 
         if (prev.length === 0) {
             container.appendTo(parent);
@@ -50,7 +52,7 @@ var Select = {
         element.appendTo(container);
 
         if (multiple === false) {
-            var input = $("<input data-role='input'>").attr("type", "text").attr("name", "__" + element.attr("name") + "__").addClass("dropdown-toggle").prop("readonly", true);
+            var input = $("<input data-role='input'>").attr("type", "text").attr("name", "__" + element.attr("name") + "__").prop("readonly", true);
             var list = $("<ul>").addClass("drop-menu").css({
                 "max-height": o.maxDropHeight
             });
@@ -77,9 +79,16 @@ var Select = {
                 list_obj.close();
                 Utils.exec(o.onChange, val);
             });
+            container.on("click", function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                //input.trigger("click");
+            });
             container.append(input);
             container.append(list);
-            list.dropdown();
+            list.dropdown({
+                toggleElement: "#"+select_id
+            });
         }
 
         if (o.disabled === true && element.is(':disabled')) {

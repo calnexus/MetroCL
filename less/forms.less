@@ -19,7 +19,7 @@ input[type=time],
 input[type=url],
 input[type=week],
 input[type=file],
-select, textarea, .file, .input, .textarea {
+select, textarea, .file, .input, .textarea, .select {
     appearance: none;
     position: relative;
     border: 1px @inputBorder solid;
@@ -54,13 +54,6 @@ select, textarea, .file, .input, .textarea {
 input[type=button], input[type=submit], input[type=reset] {
     width: auto;
 }
-
-select:not([multiple]) {
-    background: #fff url("data:image/svg+xml;charset=utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'><path fill='#333' d='M2 0L0 2h4zm0 5L0 3h4z'/></svg>") no-repeat right .75rem center;
-    background-size: 8px 10px;
-}
-
-
 
 label {
     margin-bottom: .5rem;
@@ -237,10 +230,9 @@ label {
             content: "";
             color: @checkBackground;
             background-color: @dark;
-            border-radius: 50%;
-            .px2rem(width, 12px);
-            .px2rem(height, 12px);
-            .px2rem(margin, 2px);
+            .circle(.75, rem);
+            .px2rem(margin-left, 2px);
+            .px2rem(margin-top, 2px);
         }
     }
 
@@ -400,7 +392,14 @@ label {
 
 .textarea {
     padding: 0;
-    border: 0;
+
+    textarea {
+        border-color: transparent;
+        &:focus {
+            box-shadow: none;
+            border-color: transparent;
+        }
+    }
 
     &.autosize textarea, &.disabled, textarea:disabled {
         resize: none;
@@ -408,6 +407,10 @@ label {
 }
 
 .select {
+    display: block;
+    padding: 0;
+    cursor: pointer;
+
     select {
         position: absolute;
         opacity: 0;
@@ -415,9 +418,56 @@ label {
         height: 0.0625rem;
     }
 
+    input {
+        cursor: pointer;
+        width: ~"calc(100% - 2rem)";
+        border-color: transparent;
+        &:focus {
+            box-shadow: none;
+            border-color: transparent;
+        }
+    }
+
+    &:hover {
+        input {
+            border-color: transparent;
+        }
+    }
+
     .drop-menu {
         width: 100%;
         overflow-y: auto;
+    }
+
+    &:focus-within, &.focused {
+        box-shadow: 0 0 0 3px rgba(red(@lightGray), green(@lightGray), blue(@lightGray), 0.45);
+    }
+}
+
+.inline-form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+
+    input[type=text],
+    input[type=password],
+    input[type=tel],
+    input[type=datetime-local],
+    input[type=email],
+    input[type=file],
+    input[type=month],
+    input[type=number],
+    input[type=search],
+    input[type=time],
+    input[type=url],
+    input[type=week],
+    input[type=file],
+    select, textarea, .file, .input, .textarea, .select {
+        width: auto;
+        margin-left: .5rem;
+        margin-right: .5rem;
     }
 }
 

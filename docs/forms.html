@@ -56,17 +56,19 @@
                             <li class="toc-entry"><a href="#_radio">Radio</a></li>
                             <li class="toc-entry"><a href="#_switch">Switch</a></li>
                             <li class="toc-entry"><a href="#_file">File browser</a></li>
-                            <li class="toc-entry"><a href="#_buttons">Buttons</a></li>
+                            <li class="toc-entry"><a href="#_form_buttons">Buttons</a></li>
                         </ul>
                     </li>
                     <li class="toc-entry">
                         <a href="#_layout">Layout</a>
                         <ul>
-                            <li class="toc-entry"><a href="#_use_grid">Use grid</a></li>
-                            <li class="toc-entry"><a href="#_form_group">Form groups</a></li>
+                            <li class="toc-entry"><a href="#_form_groups">Form groups</a></li>
+                            <li class="toc-entry"><a href="#_grid_layout">Grid layout</a></li>
+                            <li class="toc-entry"><a href="#_horizontal_form">Horizontal form</a></li>
                             <li class="toc-entry"><a href="#_inline_form">Inline form</a></li>
                         </ul>
                     </li>
+                    <li class="toc-entry"><a href="#_accent_colors">Accent colors</a></li>
                     <li class="toc-entry"><a href="#_disabled">Disabled forms</a></li>
                     <li class="toc-entry">
                         <a href="#_validator">Validation</a>
@@ -171,31 +173,6 @@
                     Additional functionality for input is implemented through the plugin <code>input</code>.
                 </p>
 
-                <h5>Input accent colors</h5>
-                <p>
-                    You can add accent colors to input control:
-                        <code>.primary</code>,
-                        <code>.secondary</code>,
-                        <code>.success</code>,
-                        <code>.alert</code>,
-                        <code>.warning</code>,
-                        <code>.yellow</code>,
-                        <code>.info</code>,
-                        <code>.dark</code>.
-                </p>
-                <div class="example">
-                    <form>
-                        <input type="text" class="alert mb-1">
-                        <input type="password" class="success mb-1" data-role="input">
-                        <input type="text" class="info mb-1" data-role="input">
-                    </form>
-                </div>
-                <pre class="prettyprint linenums"><code>
-                    &lt;input type="text" class="alert"&gt;
-                    &lt;input type="password" class="success" data-role="input"&gt;
-                    &lt;input type="text" class="info" data-role="input"&gt;
-                </code></pre>
-
                 <h3 id="_select">Select</h3>
                 <div class="example pb-0">
                     <form  class="mb-2">
@@ -220,8 +197,8 @@
                 <h3 id="_textarea">Textarea</h3>
                 <div class="example mb-2">
                     <form>
-                        <textarea placeholder="Default"></textarea>
-                        <textarea data-role="textarea" placeholder="Autosize" data-auto-size="true"></textarea>
+                        <textarea placeholder="Default" class="mb-1"></textarea>
+                        <textarea data-role="textarea" placeholder="Autosize" data-auto-size="true" class="mb-1"></textarea>
                         <textarea data-role="textarea" placeholder="Disabled" disabled></textarea>
                     </form>
                 </div>
@@ -320,6 +297,207 @@
                     &lt;input type="reset" class="button" value="Reset"&gt;
                     &lt;input type="submit" class="button" value="Submit"&gt;
                 </code></pre>
+
+                <h3 id="_layout">Layout</h3>
+                <p>
+                    Since Metro 4 applies <code>display: block</code> and <code>width: 100%</code> to almost all our form controls, forms will by default stack vertically.
+                    Additional classes can be used to vary this layout on a per-form basis.
+                </p>
+
+                <h3 id="_form_groups">Form groups</h3>
+                <p>
+                    The <code>.form-group</code> class is the easiest way to add some structure to forms.
+                    Its only purpose is to provide margin-bottom around a label and control pairing.
+                    As a bonus, since it’s a class you can use it with <code>&lt;fieldset&gt;</code>, <code>&lt;div&gt;</code>, or nearly any other element.
+                </p>
+                <div class="example">
+                    <form>
+                        <div class="form-group">
+                            <label>Example label</label>
+                            <input type="text"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Example label</label>
+                            <input type="text"/>
+                        </div>
+                    </form>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;form&gt;
+                        &lt;div class="form-group"&gt;
+                            &lt;label&gt;Example label&lt;/label&gt;
+                            &lt;input type="text"/&gt;
+                        &lt;/div&gt;
+                        &lt;div class="form-group"&gt;
+                            &lt;label&gt;Example label&lt;/label&gt;
+                            &lt;input type="text"/&gt;
+                        &lt;/div&gt;
+                    &lt;/form&gt;
+                </code></pre>
+
+                <h3 id="_grid_layout">Grid layout</h3>
+                <p>
+                    More complex forms can be built using our grid classes.
+                    Use these for form layouts that require multiple columns, varied widths, and additional alignment options.
+                </p>
+                <div class="example">
+                    <form>
+                        <div class="row">
+                            <div class="cell-md-6">
+                                <input type="text" placeholder="First name">
+                            </div>
+                            <div class="cell-md-6">
+                                <input type="text" placeholder="Last name">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;form&gt;
+                        &lt;div class="row"&gt;
+                            &lt;div class="cell-md-6"&gt;
+                                &lt;input type="text" placeholder="First name"&gt;
+                            &lt;/div&gt;
+                            &lt;div class="cell-md-6"&gt;
+                                &lt;input type="text" placeholder="Last name"&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/form&gt;
+                </code></pre>
+
+                <h3 id="_horizontal_form">Horizontal form</h3>
+                <p>
+                    Create horizontal forms with the grid by adding the <code>.row</code> class to form groups and using the <code>.cell-*-*</code> classes to specify the width of your labels and controls.
+                </p>
+                <div class="example">
+                    <form>
+                        <div class="row mb-2">
+                            <label class="cell-sm-2">Email</label>
+                            <div class="cell-sm-10">
+                                <input type="email">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label class="cell-sm-2">Password</label>
+                            <div class="cell-sm-10">
+                                <input type="password">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label class="cell-sm-2">Radios</label>
+                            <div class="cell-sm-10">
+                                <input name="horizontal_form_r1" type="radio" data-role="radio" data-caption="Option one" checked>
+                                <input name="horizontal_form_r1" type="radio" data-role="radio" data-caption="Option two">
+                                <input name="horizontal_form_r1" type="radio" data-role="radio" data-caption="Option three is disabled" disabled>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label class="cell-sm-2">Checkbox</label>
+                            <div class="cell-sm-10">
+                                <input name="horizontal_form_c1" type="checkbox" data-role="checkbox" data-caption="Check me out" checked>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="cell">
+                                <button type="submit" class="button primary">Sign in</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;form&gt;
+                        &lt;div class="row mb-2"&gt;
+                            &lt;label class="cell-sm-2"&gt;Email&lt;/label&gt;
+                            &lt;div class="cell-sm-10"&gt;
+                                &lt;input type="email"&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class="row mb-2"&gt;
+                            &lt;label class="cell-sm-2"&gt;Password&lt;/label&gt;
+                            &lt;div class="cell-sm-10"&gt;
+                                &lt;input type="password"&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class="row mb-2"&gt;
+                            &lt;label class="cell-sm-2"&gt;Radios&lt;/label&gt;
+                            &lt;div class="cell-sm-10"&gt;
+                                &lt;input name="horizontal_form_r1" type="radio" data-role="radio" data-caption="Option one" checked&gt;
+                                &lt;input name="horizontal_form_r1" type="radio" data-role="radio" data-caption="Option two"&gt;
+                                &lt;input name="horizontal_form_r1" type="radio" data-role="radio" data-caption="Option three is disabled" disabled&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class="row mb-2"&gt;
+                            &lt;label class="cell-sm-2"&gt;Checkbox&lt;/label&gt;
+                            &lt;div class="cell-sm-10"&gt;
+                                &lt;input name="horizontal_form_c1" type="checkbox" data-role="checkbox" data-caption="Check me out" checked&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class="row"&gt;
+                            &lt;div class="cell"&gt;
+                                &lt;button type="submit" class="button primary"&gt;Sign in&lt;/button&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/form&gt;
+                </code></pre>
+
+                <h3 id="_inline_form">Inline form</h3>
+                <p>
+                    Use the <code>.inline-form</code> class to display a series of labels, form controls, and buttons on a single horizontal row.
+                    Form controls within inline forms vary slightly from their default states.
+                </p>
+                <div class="example">
+                    <form class="inline-form">
+                        <input type="text" placeholder="Your Name">
+                        <input type="text" placeholder="Username">
+                        <input type="checkbox" data-role="checkbox" data-caption="Remember me">
+                        <button class="button success">Submit</button>
+                    </form>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;form class="inline-form"&gt;
+                        &lt;input type="text" placeholder="Your Name"&gt;
+                        &lt;input type="text" placeholder="Username"&gt;
+                        &lt;input type="checkbox" data-role="checkbox" data-caption="Remember me"&gt;
+                        &lt;button class="button success"&gt;Submit&lt;/button&gt;
+                    &lt;/form&gt;
+                </code></pre>
+
+                <h3 id="_accent_colors">Accent colors</h3>
+                <p>
+                    You can add accent colors to form elements such as <code>&lt;input&gt;</code>, <code>&lt;select&gt;</code> and <code>&lt;textarea&gt;</code>.
+                    You can use next classes:
+                    <code>.primary</code>,
+                    <code>.secondary</code>,
+                    <code>.success</code>,
+                    <code>.alert</code>,
+                    <code>.warning</code>,
+                    <code>.yellow</code>,
+                    <code>.info</code>,
+                    <code>.dark</code>.
+                </p>
+                <div class="example">
+                    <form>
+                        <input type="text" class="alert mb-1">
+                        <input type="password" class="success mb-1" data-role="input">
+                        <textarea data-role="textarea" class="primary mb-1"></textarea>
+                        <select class="warning" data-role="select">
+                            <option class="fg-cyan">One</option>
+                            <option class="text-bold fg-red">Two</option>
+                            <option selected class="fg-green">Three</option>
+                        </select>
+                    </form>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;input type="text" class="alert"&gt;
+                    &lt;input type="password" class="success" data-role="input"&gt;
+                    &lt;textarea data-role="textarea" class="primary"&gt;&lt;/textarea&gt;
+                    &lt;select class="warning" data-role="select"&gt;
+                        &lt;option class="fg-cyan"&gt;One&lt;/option&gt;
+                        &lt;option class="text-bold fg-red"&gt;Two&lt;/option&gt;
+                        &lt;option selected class="fg-green"&gt;Three&lt;/option&gt;
+                    &lt;/select&gt;
+                </code></pre>
+
 
                 <h3 id="_forms_rtl">Rtl support</h3>
                 <p>

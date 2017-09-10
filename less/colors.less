@@ -76,7 +76,7 @@ select, textarea, .file, .input, .select, .textarea {
         &.@{name} {
             border-color: @@color;
 
-            &:focus, &:focus-within {
+            &:focus, &:focus-within, &.focused {
                 box-shadow: 0 0 0 3px rgba(red(@@color), green(@@color), blue(@@color), 0.45);
             }
         }
