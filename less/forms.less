@@ -92,7 +92,7 @@ label {
         height: 0.0625rem;
     }
 
-    .check, .caption, .title {
+    .check, .caption {
         display: inline-block;
         vertical-align: middle;
         .px2rem(line-height, 18px);
@@ -105,6 +105,9 @@ label {
 }
 
 .checkbox, .radio {
+
+    display: inline-flex;
+
     .check {
         display: inline-block;
         .square(1, rem);
@@ -153,20 +156,14 @@ label {
         }
     }
 
-    .check + .caption, .caption + .check {
+    .check + .caption {
         .px2rem(margin-left, 5px);
-        margin-right: 0;
+        margin-right: .5rem;
     }
 
-    .title {
-        display: inline-block;
-        .px2rem(font-size, 14px);
-        .px2rem(padding, 3px 0);
-    }
-
-    .check + .title, .title + .check {
+    .caption + .check {
         .px2rem(margin-left, 5px);
-        margin-right: 0;
+        margin-right: .5rem;
     }
 
 

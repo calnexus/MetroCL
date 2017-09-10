@@ -1,4 +1,4 @@
-var Input = {
+var Radio = {
     init: function( options, elem ) {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
@@ -12,10 +12,8 @@ var Input = {
         return this;
     },
     options: {
-        clearButton: true,
-        revealButton: true,
-        clearButtonIcon: "<span class='mif-cross'></span>",
-        revealButtonIcon: "<span class='mif-eye'></span>",
+        caption: "",
+        captionPosition: "right",
         disabled: false,
         onCreate: $.noop()
     },
@@ -38,41 +36,29 @@ var Input = {
         var that = this, element = this.element, o = this.options;
         var prev = element.prev();
         var parent = element.parent();
-        var container = $("<div>").addClass("input " + element[0].className);
-        var buttons = $("<div>").addClass("button-group");
-        var clearButton, revealButton;
+        var container = $("<label>").addClass("radio " + element[0].className);
+        var check = $("<span>").addClass("check");
+        var caption = $("<span>").addClass("caption").html(o.caption);
 
         element.detach().appendTo(container);
 
-        buttons.appendTo(container);
         if (prev.length === 0) {
             container.appendTo(parent);
         } else {
             container.insertAfter(prev);
         }
 
-        if (o.clearButton !== false) {
-            clearButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
-            clearButton.on("click", function(){
-                element.val("").trigger('change').focus();
-            });
-            clearButton.appendTo(buttons);
-        }
-        if (element.attr('type') === 'password' && o.revealButton !== false) {
-            revealButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.revealButtonIcon);
-            revealButton
-                .on('mousedown', function(){element.attr('type', 'text');})
-                .on('mouseup', function(){element.attr('type', 'password').focus();});
-            revealButton.appendTo(buttons);
-        }
+        check.appendTo(container);
 
-        if (element.attr('dir') === 'rtl' ) {
-            container.addClass("rtl");
+        if (o.captionPosition === 'left') {
+            caption.insertBefore(check);
+        } else {
+            caption.insertAfter(check);
         }
 
         element[0].className = '';
 
-        if (o.disabled === true) {
+        if (o.disabled === true && element.is(':disabled')) {
             this.disable();
         }
     },
@@ -88,4 +74,4 @@ var Input = {
     }
 };
 
-Metro.plugin('input', Input);
+Metro.plugin('radio', Radio);

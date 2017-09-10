@@ -1484,6 +1484,84 @@ var d = new Date().getTime();
 };
 
 $.Metro['utils'] = window.metroUtils = Utils;
+// Source: js/plugins/checkbox.js
+var Checkbox = {
+    init: function( options, elem ) {
+        this.options = $.extend( {}, this.options, options );
+        this.elem  = elem;
+        this.element = $(elem);
+
+        this._setOptionsFromDOM();
+        this._create();
+
+        Utils.exec(this.options.onCreate);
+
+        return this;
+    },
+    options: {
+        caption: "",
+        captionPosition: "right",
+        disabled: false,
+        onCreate: $.noop()
+    },
+
+    _setOptionsFromDOM: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = $.parseJSON(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+    },
+
+    _create: function(){
+        var that = this, element = this.element, o = this.options;
+        var prev = element.prev();
+        var parent = element.parent();
+        var container = $("<label>").addClass("checkbox " + element[0].className);
+        var check = $("<span>").addClass("check");
+        var caption = $("<span>").addClass("caption").html(o.caption);
+
+        element.detach().appendTo(container);
+
+        if (prev.length === 0) {
+            container.appendTo(parent);
+        } else {
+            container.insertAfter(prev);
+        }
+
+        check.appendTo(container);
+
+        if (o.captionPosition === 'left') {
+            caption.insertBefore(check);
+        } else {
+            caption.insertAfter(check);
+        }
+
+        element[0].className = '';
+
+        if (o.disabled === true && element.is(':disabled')) {
+            this.disable();
+        }
+    },
+
+    disable: function(){
+        this.element.data("disabled", true);
+        this.element.parent().addClass("disabled");
+    },
+
+    enable: function(){
+        this.element.data("disabled", false);
+        this.element.parent().removeClass("disabled");
+    }
+};
+
+Metro.plugin('checkbox', Checkbox);
 // Source: js/plugins/clock.js
 var Clock = {
     init: function( options, elem ) {
@@ -1848,8 +1926,8 @@ var Input = {
     options: {
         clearButton: true,
         revealButton: true,
-        clearButtonIcon: "mif-cross",
-        revealButtonIcon: "mif-eye",
+        clearButtonIcon: "<span class='mif-cross'></span>",
+        revealButtonIcon: "<span class='mif-eye'></span>",
         disabled: false,
         onCreate: $.noop()
     },
@@ -1886,14 +1964,14 @@ var Input = {
         }
 
         if (o.clearButton !== false) {
-            clearButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html("<span class='"+o.clearButtonIcon+"'></span>");
+            clearButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
             clearButton.on("click", function(){
                 element.val("").trigger('change').focus();
             });
             clearButton.appendTo(buttons);
         }
         if (element.attr('type') === 'password' && o.revealButton !== false) {
-            revealButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html("<span class='"+o.revealButtonIcon+"'></span>");
+            revealButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.revealButtonIcon);
             revealButton
                 .on('mousedown', function(){element.attr('type', 'text');})
                 .on('mouseup', function(){element.attr('type', 'password').focus();});
@@ -1923,6 +2001,84 @@ var Input = {
 };
 
 Metro.plugin('input', Input);
+// Source: js/plugins/radio.js
+var Radio = {
+    init: function( options, elem ) {
+        this.options = $.extend( {}, this.options, options );
+        this.elem  = elem;
+        this.element = $(elem);
+
+        this._setOptionsFromDOM();
+        this._create();
+
+        Utils.exec(this.options.onCreate);
+
+        return this;
+    },
+    options: {
+        caption: "",
+        captionPosition: "right",
+        disabled: false,
+        onCreate: $.noop()
+    },
+
+    _setOptionsFromDOM: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = $.parseJSON(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+    },
+
+    _create: function(){
+        var that = this, element = this.element, o = this.options;
+        var prev = element.prev();
+        var parent = element.parent();
+        var container = $("<label>").addClass("radio " + element[0].className);
+        var check = $("<span>").addClass("check");
+        var caption = $("<span>").addClass("caption").html(o.caption);
+
+        element.detach().appendTo(container);
+
+        if (prev.length === 0) {
+            container.appendTo(parent);
+        } else {
+            container.insertAfter(prev);
+        }
+
+        check.appendTo(container);
+
+        if (o.captionPosition === 'left') {
+            caption.insertBefore(check);
+        } else {
+            caption.insertAfter(check);
+        }
+
+        element[0].className = '';
+
+        if (o.disabled === true && element.is(':disabled')) {
+            this.disable();
+        }
+    },
+
+    disable: function(){
+        this.element.data("disabled", true);
+        this.element.parent().addClass("disabled");
+    },
+
+    enable: function(){
+        this.element.data("disabled", false);
+        this.element.parent().removeClass("disabled");
+    }
+};
+
+Metro.plugin('radio', Radio);
 // Source: js/plugins/ripple.js
 var Ripple = {
     init: function( options, elem ) {
@@ -2007,6 +2163,84 @@ var Ripple = {
 };
 
 Metro.plugin('ripple', Ripple);
+// Source: js/plugins/switch.js
+var Switch = {
+    init: function( options, elem ) {
+        this.options = $.extend( {}, this.options, options );
+        this.elem  = elem;
+        this.element = $(elem);
+
+        this._setOptionsFromDOM();
+        this._create();
+
+        Utils.exec(this.options.onCreate);
+
+        return this;
+    },
+    options: {
+        caption: "",
+        captionPosition: "right",
+        disabled: false,
+        onCreate: $.noop()
+    },
+
+    _setOptionsFromDOM: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = $.parseJSON(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+    },
+
+    _create: function(){
+        var that = this, element = this.element, o = this.options;
+        var prev = element.prev();
+        var parent = element.parent();
+        var container = $("<label>").addClass("switch " + element[0].className);
+        var check = $("<span>").addClass("check");
+        var caption = $("<span>").addClass("caption").html(o.caption);
+
+        element.detach().appendTo(container);
+
+        if (prev.length === 0) {
+            container.appendTo(parent);
+        } else {
+            container.insertAfter(prev);
+        }
+
+        check.appendTo(container);
+
+        if (o.captionPosition === 'left') {
+            caption.insertBefore(check);
+        } else {
+            caption.insertAfter(check);
+        }
+
+        element[0].className = '';
+
+        if (o.disabled === true && element.is(':disabled')) {
+            this.disable();
+        }
+    },
+
+    disable: function(){
+        this.element.data("disabled", true);
+        this.element.parent().addClass("disabled");
+    },
+
+    enable: function(){
+        this.element.data("disabled", false);
+        this.element.parent().removeClass("disabled");
+    }
+};
+
+Metro.plugin('switch', Switch);
 
  return Metro.init();
 

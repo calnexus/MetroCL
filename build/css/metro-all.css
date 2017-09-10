@@ -8365,10 +8365,7 @@ label {
 .switch .check,
 .checkbox .caption,
 .radio .caption,
-.switch .caption,
-.checkbox .title,
-.radio .title,
-.switch .title {
+.switch .caption {
   display: inline-block;
   vertical-align: middle;
   line-height: 1.125rem;
@@ -8378,6 +8375,11 @@ label {
 .radio.disabled,
 .switch.disabled {
   pointer-events: none;
+}
+.checkbox,
+.radio {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
 }
 .checkbox .check,
 .radio .check {
@@ -8436,24 +8438,14 @@ label {
   display: block;
 }
 .checkbox .check + .caption,
-.radio .check + .caption,
+.radio .check + .caption {
+  margin-left: 0.3125rem;
+  margin-right: .5rem;
+}
 .checkbox .caption + .check,
 .radio .caption + .check {
   margin-left: 0.3125rem;
-  margin-right: 0;
-}
-.checkbox .title,
-.radio .title {
-  display: inline-block;
-  font-size: 0.875rem;
-  padding: 0.1875rem 0;
-}
-.checkbox .check + .title,
-.radio .check + .title,
-.checkbox .title + .check,
-.radio .title + .check {
-  margin-left: 0.3125rem;
-  margin-right: 0;
+  margin-right: .5rem;
 }
 .checkbox input:focus ~ .check,
 .radio input:focus ~ .check {

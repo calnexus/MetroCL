@@ -230,113 +230,61 @@
                 <h3 id="_checkbox">Checkbox</h3>
                 <div class="example mb-2">
                     <form>
-                        <label class="checkbox">
-                            <input type="checkbox">
-                            <span class="check"></span>
-                            <span class="caption">Check me</span>
-                        </label>
-                        <label class="checkbox">
-                            <input type="checkbox" checked>
-                            <span class="check"></span>
-                            <span class="caption">Check me</span>
-                        </label>
-                        <label class="checkbox">
-                            <input type="checkbox" disabled>
-                            <span class="check"></span>
-                            <span class="caption">Check me</span>
-                        </label>
-                        <label class="checkbox">
-                            <input type="checkbox" checked disabled>
-                            <span class="check"></span>
-                            <span class="caption">Check me</span>
-                        </label>
+                        <input type="checkbox" data-role="checkbox" data-caption="Check">
+                        <input type="checkbox" data-role="checkbox" data-caption="Check" checked>
+                        <input type="checkbox" data-role="checkbox" data-caption="Check" disabled>
+                        <input type="checkbox" data-role="checkbox" data-caption="Check" disabled checked>
                     </form>
                 </div>
                 <pre class="prettyprint linenums"><code>
-                        &lt;label class="checkbox"&gt;
-                            &lt;input type="checkbox" [disabled | checked]&gt;
-                            &lt;span class="check"&gt;&lt;/span&gt;
-                            &lt;span class="caption"&gt;Check me&lt;/span&gt;
-                        &lt;/label&gt;
+                    &lt;input type="checkbox" data-role="checkbox" data-caption="Check"&gt;
+                    &lt;input type="checkbox" data-role="checkbox" data-caption="Check" checked&gt;
+                    &lt;input type="checkbox" data-role="checkbox" data-caption="Check" disabled&gt;
+                    &lt;input type="checkbox" data-role="checkbox" data-caption="Check" disabled checked&gt;
                 </code></pre>
 
                 <h3 id="_radio">Radio</h3>
                 <div class="example mb-2">
                     <form>
-                        <label class="radio">
-                            <input type="radio" name="r1">
-                            <span class="check"></span>
-                            <span class="caption">Check me</span>
-                        </label>
-                        <label class="radio">
-                            <input type="radio" checked name="r1">
-                            <span class="check"></span>
-                            <span class="caption">Check me</span>
-                        </label>
-                        <label class="radio">
-                            <input type="radio" disabled name="r2">
-                            <span class="check"></span>
-                            <span class="caption">Check me</span>
-                        </label>
-                        <label class="radio">
-                            <input type="radio" checked disabled name="r2">
-                            <span class="check"></span>
-                            <span class="caption">Check me</span>
-                        </label>
+                        <input type="radio" data-role="radio" data-caption="Check" name="r1">
+                        <input type="radio" data-role="radio" data-caption="Check" name="r1" checked>
+                        <input type="radio" data-role="radio" data-caption="Check" name="r2" disabled>
+                        <input type="radio" data-role="radio" data-caption="Check" name="r2" checked disabled>
                     </form>
                 </div>
                 <pre class="prettyprint linenums"><code>
-                    &lt;label class="radio"&gt;
-                        &lt;input type="radio" [disabled | checked]&gt;
-                        &lt;span class="check"&gt;&lt;/span&gt;
-                        &lt;span class="caption"&gt;Check me&lt;/span&gt;
-                    &lt;/label&gt;
+                    &lt;input type="radio" data-role="radio" data-caption="Check" name="r1"&gt;
+                    &lt;input type="radio" data-role="radio" data-caption="Check" name="r1" checked&gt;
+                    &lt;input type="radio" data-role="radio" data-caption="Check" name="r2" disabled&gt;
+                    &lt;input type="radio" data-role="radio" data-caption="Check" name="r2" checked disabled&gt;
                 </code></pre>
 
                 <h3 id="_switch">Switch</h3>
                 <div class="example">
                     <form mb-2>
-                        <label class="switch">
-                            <input type="checkbox">
-                            <span class="check"></span>
-                            <span class="caption">Check me</span>
-                        </label>
-                        <label class="switch">
-                            <input type="checkbox" checked>
-                            <span class="check"></span>
-                            <span class="caption">Check me</span>
-                        </label>
-                        <label class="switch">
-                            <input type="checkbox" disabled>
-                            <span class="check"></span>
-                            <span class="caption">Check me</span>
-                        </label>
-                        <label class="switch">
-                            <input type="checkbox" disabled checked>
-                            <span class="check"></span>
-                            <span class="caption">Check me</span>
-                        </label>
+                        <input type="checkbox" data-role="switch" data-caption="Check">
+                        <input type="checkbox" data-role="switch" data-caption="Check" checked>
+                        <input type="checkbox" data-role="switch" data-caption="Check" disabled>
+                        <input type="checkbox" data-role="switch" data-caption="Check" disabled checked>
                     </form>
                 </div>
                 <pre class="prettyprint linenums"><code>
-                    &lt;label class="switch"&gt;
-                        &lt;input type="checkbox" [disabled | checked]&gt;
-                        &lt;span class="check"&gt;&lt;/span&gt;
-                        &lt;span class="caption"&gt;Check me&lt;/span&gt;
-                    &lt;/label&gt;
+                    &lt;input type="checkbox" data-role="switch" data-caption="Check"&gt;
+                    &lt;input type="checkbox" data-role="switch" data-caption="Check" checked&gt;
+                    &lt;input type="checkbox" data-role="switch" data-caption="Check" disabled&gt;
+                    &lt;input type="checkbox" data-role="switch" data-caption="Check" disabled checked&gt;
                 </code></pre>
 
                 <h3 id="_file">File browser</h3>
                 <div class="example">
                     <form class="">
-                        <input type="file" data-role="file">
+                        <input type="file" data-role="file" class="mb-1">
+                        <input type="file" data-role="file" data-caption="<span class='mif-folder'></span>">
                     </form>
                 </div>
                 <pre class="prettyprint linenums"><code>
-                    &lt;label class="file" data-role="file"&gt;
-                        &lt;input type="file"&gt;
-                        &lt;button class="button" type="button"&gt;Choose file...&lt;/button&gt;
-                    &lt;/label&gt;
+                    &lt;input type="file" data-role="file"&gt;
+                    &lt;input type="file" data-role="file" data-caption="&lt;span class='mif-folder'&gt;&lt;/span&gt;"&gt;
                 </code></pre>
                 <p>
                     Additional functionality for input is implemented through the plugin <code>file</code>.
