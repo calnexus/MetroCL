@@ -407,6 +407,20 @@ label {
     }
 }
 
+.select {
+    select {
+        position: absolute;
+        opacity: 0;
+        width: 0.0625rem;
+        height: 0.0625rem;
+    }
+
+    .drop-menu {
+        width: 100%;
+        overflow-y: auto;
+    }
+}
+
 form, fieldset, .form-group {
     &:disabled, &.disabled {
         pointer-events: none;

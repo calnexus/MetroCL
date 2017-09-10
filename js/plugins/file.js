@@ -39,14 +39,14 @@ var File = {
         var caption = $("<span>").addClass("caption");
         var button;
 
-        element.detach().appendTo(container);
-        caption.insertBefore(element);
-
         if (prev.length === 0) {
             container.appendTo(parent);
         } else {
             container.insertAfter(prev);
         }
+
+        element.appendTo(container);
+        caption.insertBefore(element);
 
         element.on('change', function(){
             var val = $(this).val();

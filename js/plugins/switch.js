@@ -40,14 +40,13 @@ var Switch = {
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
 
-        element.detach().appendTo(container);
-
         if (prev.length === 0) {
             container.appendTo(parent);
         } else {
             container.insertAfter(prev);
         }
 
+        element.appendTo(container);
         check.appendTo(container);
 
         if (o.captionPosition === 'left') {

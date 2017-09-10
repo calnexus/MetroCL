@@ -8658,6 +8658,16 @@ label {
 .textarea textarea:disabled {
   resize: none;
 }
+.select select {
+  position: absolute;
+  opacity: 0;
+  width: 0.0625rem;
+  height: 0.0625rem;
+}
+.select .drop-menu {
+  width: 100%;
+  overflow-y: auto;
+}
 form:disabled,
 fieldset:disabled,
 .form-group:disabled,
@@ -8694,6 +8704,7 @@ fieldset.disabled,
   display: block;
   float: none;
   position: relative;
+  cursor: pointer;
 }
 .drop-menu li a {
   color: #1d1d1d;
@@ -8756,9 +8767,17 @@ fieldset.disabled,
   margin: 0 1px;
   overflow: hidden;
   background-color: #f2f2f2;
+  cursor: default;
 }
 .drop-menu .divider:hover {
   background-color: #f2f2f2;
+}
+.drop-menu.disabled {
+  cursor: default;
+  pointer-events: none;
+}
+.drop-menu.disabled a {
+  color: #b8b8b8;
 }
 .drop-left {
   left: -100%;

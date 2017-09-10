@@ -98,16 +98,7 @@ var Dropdown = {
         this.element.trigger("onClose", null, el);
         toggle.removeClass('active-toggle');
 
-        if (typeof o.onUp === 'function') {
-            o.onUp(el);
-        } else {
-            if (typeof window[o.onUp] === 'function') {
-                window[o.onUp](el);
-            } else {
-                var result = eval("(function(){"+o.onUp+"})");
-                result.call(el);
-            }
-        }
+        Utils.exec(o.onUp);
     },
 
     _open: function(el){
@@ -122,16 +113,15 @@ var Dropdown = {
         this.element.trigger("onOpen", null, el);
         toggle.addClass('active-toggle');
 
-        if (typeof o.onDrop === 'function') {
-            o.onDrop(el);
-        } else {
-            if (typeof window[o.onDrop] === 'function') {
-                window[o.onDrop](el);
-            } else {
-                var result = eval("(function(){"+o.onDrop+"})");
-                result.call(el);
-            }
-        }
+        Utils.exec(o.onDrop);
+    },
+
+    close: function(){
+        this._close(this.element);
+    },
+
+    open: function(){
+        this._open(this.element);
     }
 };
 

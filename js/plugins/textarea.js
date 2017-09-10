@@ -38,13 +38,13 @@ var Textarea = {
         var parent = element.parent();
         var container = $("<div>").addClass("textarea " + element[0].className);
 
-        element.detach().appendTo(container);
-
         if (prev.length === 0) {
             container.appendTo(parent);
         } else {
             container.insertAfter(prev);
         }
+
+        element.appendTo(container);
 
         var resize = function(){
             element[0].style.height = 0;

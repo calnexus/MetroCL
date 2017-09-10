@@ -40,7 +40,7 @@ var Checkbox = {
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
 
-        element.detach().appendTo(container);
+        element.appendTo(container);
 
         if (prev.length === 0) {
             container.appendTo(parent);

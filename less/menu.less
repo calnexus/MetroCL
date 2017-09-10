@@ -35,6 +35,7 @@
         display: block;
         float: none;
         position: relative;
+        cursor: pointer;
     }
 
     li {
@@ -107,8 +108,17 @@
         margin: 0 1px;
         overflow: hidden;
         background-color: lighten(#e5e5e5, 5%);
+        cursor: default;
         &:hover {
             background-color: lighten(#e5e5e5, 5%);
+        }
+    }
+
+    &.disabled {
+        cursor: default;
+        pointer-events: none;
+        a {
+            color: @lightGray;
         }
     }
 }

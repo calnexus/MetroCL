@@ -42,14 +42,14 @@ var Input = {
         var buttons = $("<div>").addClass("button-group");
         var clearButton, revealButton;
 
-        element.detach().appendTo(container);
-
-        buttons.appendTo(container);
         if (prev.length === 0) {
             container.appendTo(parent);
         } else {
             container.insertAfter(prev);
         }
+
+        element.appendTo(container);
+        buttons.appendTo(container);
 
         if (o.clearButton !== false) {
             clearButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);

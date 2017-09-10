@@ -40,20 +40,28 @@ var Metro = {
 
     init: function(){
         var widgets = $("[data-role]");
+        var body = $("body")[0];
         Metro.initHotkeys(widgets);
         Metro.initWidgets(widgets);
         var observer, observerOptions, observerCallback;
         observerOptions = {
             'childList': true,
-            'subtree': true
+            'subtree': true,
+            'attributes': true
         };
         observerCallback = function(mutations){
-            mutations.map(function(record){
-                if (record.addedNodes) {
-                    /*jshint loopfunc: true */
-                    var obj, widgets, plugins;
-                    for(var i = 0, l = record.addedNodes.length; i < l; i++) {
-                        obj = $(record.addedNodes[i]);
+            mutations.map(function(mutation){
+                if (mutation.addedNodes && mutation.addedNodes.length > 0) {
+                    var i, obj, widgets = {}, plugins = {};
+
+                    for(i = 0; i < mutation.addedNodes.length; i++) {
+
+                        var node = mutation.addedNodes[i];
+
+                        if (node.tagName === 'SCRIPT' || node.tagName === 'STYLE') {
+                            return;
+                        }
+                        obj = $(mutation.addedNodes[i]);
                         plugins = obj.find("[data-role]");
                         if (obj.data('role') !== undefined) {
                             widgets = $.merge(plugins, obj);
@@ -64,11 +72,12 @@ var Metro = {
                             Metro.initWidgets(widgets);
                         }
                     }
+
                 }
             });
         };
         observer = new MutationObserver(observerCallback);
-        observer.observe(document, observerOptions);
+        observer.observe(body, observerOptions);
 
         return this;
     },
@@ -80,6 +89,10 @@ var Metro = {
 
             if (hotkey === false) {
                 return;
+            }
+
+            if (METRO_DEBUG) {
+                console.log("Hotkey: "+hotkey);
             }
 
             //if ($.Metro.hotkeys.indexOf(hotkey) > -1) {
@@ -116,6 +129,9 @@ var Metro = {
             roles.map(function (func) {
                 try {
                     if ($.fn[func] !== undefined && $this.data(func + '-initiated') !== true) {
+                        if (METRO_DEBUG) {
+                            console.log("Plugin: "+func);
+                        }
                         $.fn[func].call($this);
                         $this.data(func + '-initiated', true);
                     }
@@ -126,7 +142,20 @@ var Metro = {
         });
     },
 
+    // Пример использования:
+    // превращаем myObject в плагин
+    // $.plugin('myobj', myObject);
+
+    // и используем, как обычно
+    // $('#elem').myobj({name: "John"});
+    // var inst = $('#elem').data('myobj');
+    // inst.myMethod('I am a method');
+
     plugin: function(name, object){
+        if (METRO_DEBUG) {
+            console.log("Registering Plugin: "+name);
+        }
+
         $.fn[name] = function( options ) {
             return this.each(function() {
                 if ( ! $.data( this, name ) ) {
@@ -1527,7 +1556,7 @@ var Checkbox = {
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
 
-        element.detach().appendTo(container);
+        element.appendTo(container);
 
         if (prev.length === 0) {
             container.appendTo(parent);
@@ -1773,16 +1802,7 @@ var Dropdown = {
         this.element.trigger("onClose", null, el);
         toggle.removeClass('active-toggle');
 
-        if (typeof o.onUp === 'function') {
-            o.onUp(el);
-        } else {
-            if (typeof window[o.onUp] === 'function') {
-                window[o.onUp](el);
-            } else {
-                var result = eval("(function(){"+o.onUp+"})");
-                result.call(el);
-            }
-        }
+        Utils.exec(o.onUp);
     },
 
     _open: function(el){
@@ -1797,16 +1817,15 @@ var Dropdown = {
         this.element.trigger("onOpen", null, el);
         toggle.addClass('active-toggle');
 
-        if (typeof o.onDrop === 'function') {
-            o.onDrop(el);
-        } else {
-            if (typeof window[o.onDrop] === 'function') {
-                window[o.onDrop](el);
-            } else {
-                var result = eval("(function(){"+o.onDrop+"})");
-                result.call(el);
-            }
-        }
+        Utils.exec(o.onDrop);
+    },
+
+    close: function(){
+        this._close(this.element);
+    },
+
+    open: function(){
+        this._open(this.element);
     }
 };
 
@@ -1862,14 +1881,14 @@ var File = {
         var caption = $("<span>").addClass("caption");
         var button;
 
-        element.detach().appendTo(container);
-        caption.insertBefore(element);
-
         if (prev.length === 0) {
             container.appendTo(parent);
         } else {
             container.insertAfter(prev);
         }
+
+        element.appendTo(container);
+        caption.insertBefore(element);
 
         element.on('change', function(){
             var val = $(this).val();
@@ -1954,14 +1973,14 @@ var Input = {
         var buttons = $("<div>").addClass("button-group");
         var clearButton, revealButton;
 
-        element.detach().appendTo(container);
-
-        buttons.appendTo(container);
         if (prev.length === 0) {
             container.appendTo(parent);
         } else {
             container.insertAfter(prev);
         }
+
+        element.appendTo(container);
+        buttons.appendTo(container);
 
         if (o.clearButton !== false) {
             clearButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
@@ -2044,14 +2063,13 @@ var Radio = {
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
 
-        element.detach().appendTo(container);
-
         if (prev.length === 0) {
             container.appendTo(parent);
         } else {
             container.insertAfter(prev);
         }
 
+        element.appendTo(container);
         check.appendTo(container);
 
         if (o.captionPosition === 'left') {
@@ -2163,6 +2181,108 @@ var Ripple = {
 };
 
 Metro.plugin('ripple', Ripple);
+// Source: js/plugins/select.js
+var Select = {
+    init: function( options, elem ) {
+        this.options = $.extend( {}, this.options, options );
+        this.elem  = elem;
+        this.element = $(elem);
+
+        this._setOptionsFromDOM();
+        this._create();
+
+        Utils.exec(this.options.onCreate);
+
+        return this;
+    },
+    options: {
+        maxDropHeight: 200,
+        disabled: false,
+        onChange: $.noop(),
+        onCreate: $.noop()
+    },
+
+    _setOptionsFromDOM: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = $.parseJSON(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+    },
+
+    _create: function(){
+        var that = this, element = this.element, o = this.options;
+
+        var prev = element.prev();
+        var parent = element.parent();
+        var container = $("<div>").addClass("select " + element[0].className);
+        var multiple = element.prop("multiple");
+
+
+        if (prev.length === 0) {
+            container.appendTo(parent);
+        } else {
+            container.insertAfter(prev);
+        }
+
+        element.appendTo(container);
+
+        if (multiple === false) {
+            var input = $("<input data-role='input'>").attr("type", "text").attr("name", "__" + element.attr("name") + "__").addClass("dropdown-toggle").prop("readonly", true);
+            var list = $("<ul>").addClass("drop-menu").css({
+                "max-height": o.maxDropHeight
+            });
+            $.each(element.children(), function(){
+                var opt = this, option = $(this);
+                var l, a;
+
+                l = $("<li>").data('value', opt.value).appendTo(list);
+                a = $("<a>").html(opt.text).appendTo(l).addClass(opt.className);
+
+                if (option.is(":selected")) {
+                    input.val(opt.value).trigger("change");
+                }
+
+                a.appendTo(l);
+                l.appendTo(list);
+            });
+            list.on("click", "li", function(){
+                var val = $(this).data('value');
+                var list_obj = list.data('dropdown');
+                input.val(val).trigger("change");
+                element.val(val);
+                element.trigger("change");
+                list_obj.close();
+                Utils.exec(o.onChange, val);
+            });
+            container.append(input);
+            container.append(list);
+            list.dropdown();
+        }
+
+        if (o.disabled === true && element.is(':disabled')) {
+            this.disable();
+        }
+    },
+
+    disable: function(){
+        this.element.data("disabled", true);
+        this.element.parent().addClass("disabled");
+    },
+
+    enable: function(){
+        this.element.data("disabled", false);
+        this.element.parent().removeClass("disabled");
+    }
+};
+
+Metro.plugin('select', Select);
 // Source: js/plugins/switch.js
 var Switch = {
     init: function( options, elem ) {
@@ -2206,14 +2326,13 @@ var Switch = {
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
 
-        element.detach().appendTo(container);
-
         if (prev.length === 0) {
             container.appendTo(parent);
         } else {
             container.insertAfter(prev);
         }
 
+        element.appendTo(container);
         check.appendTo(container);
 
         if (o.captionPosition === 'left') {
@@ -2282,13 +2401,13 @@ var Textarea = {
         var parent = element.parent();
         var container = $("<div>").addClass("textarea " + element[0].className);
 
-        element.detach().appendTo(container);
-
         if (prev.length === 0) {
             container.appendTo(parent);
         } else {
             container.insertAfter(prev);
         }
+
+        element.appendTo(container);
 
         var resize = function(){
             element[0].style.height = 0;

@@ -199,18 +199,23 @@
                 <h3 id="_select">Select</h3>
                 <div class="example pb-0">
                     <form  class="mb-2">
-                        <select class="mb-1">
-                            <option>One</option>
-                            <option>Two</option>
-                            <option>Three</option>
-                        </select>
-                        <select multiple>
-                            <option>One</option>
-                            <option>Two</option>
-                            <option>Three</option>
+                        <select class="mb-1" data-role="select">
+                            <option class="fg-cyan">One</option>
+                            <option class="text-bold fg-red">Two</option>
+                            <option selected class="fg-green">Three</option>
                         </select>
                     </form>
                 </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;select data-role="select"&gt;
+                        &lt;option class="fg-cyan"&gt;One&lt;/option&gt;
+                        &lt;option class="text-bold fg-red"&gt;Two&lt;/option&gt;
+                        &lt;option selected class="fg-green"&gt;Three&lt;/option&gt;
+                    &lt;/select&gt;
+                </code></pre>
+                <p>
+                    Additional functionality for select is implemented through the plugin <code>select</code>.
+                </p>
 
                 <h3 id="_textarea">Textarea</h3>
                 <div class="example mb-2">
@@ -225,6 +230,9 @@
                     &lt;textarea data-role="textarea" data-auto-size="true" data-max-height="200"&gt;&lt;/textarea&gt;
                     &lt;textarea data-role="textarea" disabled&gt;&lt;/textarea&gt;
                 </code></pre>
+                <p>
+                    Additional functionality for textarea is implemented through the plugin <code>textarea</code>.
+                </p>
 
                 <h3 id="_checkbox">Checkbox</h3>
                 <div class="example mb-2">
@@ -241,6 +249,9 @@
                     &lt;input type="checkbox" data-role="checkbox" data-caption="Check" disabled&gt;
                     &lt;input type="checkbox" data-role="checkbox" data-caption="Check" disabled checked&gt;
                 </code></pre>
+                <p>
+                    Additional functionality for input is implemented through the plugin <code>checkbox</code>.
+                </p>
 
                 <h3 id="_radio">Radio</h3>
                 <div class="example mb-2">
@@ -257,6 +268,9 @@
                     &lt;input type="radio" data-role="radio" data-caption="Check" name="r2" disabled&gt;
                     &lt;input type="radio" data-role="radio" data-caption="Check" name="r2" checked disabled&gt;
                 </code></pre>
+                <p>
+                    Additional functionality for input is implemented through the plugin <code>radio</code>.
+                </p>
 
                 <h3 id="_switch">Switch</h3>
                 <div class="example">
@@ -273,6 +287,9 @@
                     &lt;input type="checkbox" data-role="switch" data-caption="Check" disabled&gt;
                     &lt;input type="checkbox" data-role="switch" data-caption="Check" disabled checked&gt;
                 </code></pre>
+                <p>
+                    Additional functionality for input is implemented through the plugin <code>switch</code>.
+                </p>
 
                 <h3 id="_file">File browser</h3>
                 <div class="example">
@@ -329,6 +346,18 @@
                 </div>
                 <pre class="prettyprint linenums"><code>
                     &lt;input type="file" dir="rtl" data-role="file"&gt;
+                </code></pre>
+
+                <h5>Textarea</h5>
+                <div class="example">
+                    <form class="mb-2">
+                        <textarea dir="rtl"></textarea>
+                        <textarea data-role="textarea" dir="rtl"></textarea>
+                    </form>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;textarea dir="rtl"&gt;&lt;/textarea&gt;
+                    &lt;textarea data-role="textarea" dir="rtl"&gt;&lt;/textarea&gt;
                 </code></pre>
             </main>
         </div>

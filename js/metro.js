@@ -22,20 +22,28 @@ var Metro = {
 
     init: function(){
         var widgets = $("[data-role]");
+        var body = $("body")[0];
         Metro.initHotkeys(widgets);
         Metro.initWidgets(widgets);
         var observer, observerOptions, observerCallback;
         observerOptions = {
             'childList': true,
-            'subtree': true
+            'subtree': true,
+            'attributes': true
         };
         observerCallback = function(mutations){
-            mutations.map(function(record){
-                if (record.addedNodes) {
-                    /*jshint loopfunc: true */
-                    var obj, widgets, plugins;
-                    for(var i = 0, l = record.addedNodes.length; i < l; i++) {
-                        obj = $(record.addedNodes[i]);
+            mutations.map(function(mutation){
+                if (mutation.addedNodes && mutation.addedNodes.length > 0) {
+                    var i, obj, widgets = {}, plugins = {};
+
+                    for(i = 0; i < mutation.addedNodes.length; i++) {
+
+                        var node = mutation.addedNodes[i];
+
+                        if (node.tagName === 'SCRIPT' || node.tagName === 'STYLE') {
+                            return;
+                        }
+                        obj = $(mutation.addedNodes[i]);
                         plugins = obj.find("[data-role]");
                         if (obj.data('role') !== undefined) {
                             widgets = $.merge(plugins, obj);
@@ -46,11 +54,12 @@ var Metro = {
                             Metro.initWidgets(widgets);
                         }
                     }
+
                 }
             });
         };
         observer = new MutationObserver(observerCallback);
-        observer.observe(document, observerOptions);
+        observer.observe(body, observerOptions);
 
         return this;
     },
@@ -62,6 +71,10 @@ var Metro = {
 
             if (hotkey === false) {
                 return;
+            }
+
+            if (METRO_DEBUG) {
+                console.log("Hotkey: "+hotkey);
             }
 
             //if ($.Metro.hotkeys.indexOf(hotkey) > -1) {
@@ -98,6 +111,9 @@ var Metro = {
             roles.map(function (func) {
                 try {
                     if ($.fn[func] !== undefined && $this.data(func + '-initiated') !== true) {
+                        if (METRO_DEBUG) {
+                            console.log("Plugin: "+func);
+                        }
                         $.fn[func].call($this);
                         $this.data(func + '-initiated', true);
                     }
@@ -108,7 +124,20 @@ var Metro = {
         });
     },
 
+    // Пример использования:
+    // превращаем myObject в плагин
+    // $.plugin('myobj', myObject);
+
+    // и используем, как обычно
+    // $('#elem').myobj({name: "John"});
+    // var inst = $('#elem').data('myobj');
+    // inst.myMethod('I am a method');
+
     plugin: function(name, object){
+        if (METRO_DEBUG) {
+            console.log("Registering Plugin: "+name);
+        }
+
         $.fn[name] = function( options ) {
             return this.each(function() {
                 if ( ! $.data( this, name ) ) {
