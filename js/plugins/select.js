@@ -84,6 +84,8 @@ var Select = {
                 e.stopPropagation();
                 //input.trigger("click");
             });
+            input.on("blur", function(){container.removeClass("focused");});
+            input.on("focus", function(){container.addClass("focused");});
             container.append(input);
             container.append(list);
             list.dropdown({

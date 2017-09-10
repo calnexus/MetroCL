@@ -225,3 +225,47 @@ footer p a {
     display: block;
   }
 }
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10000;
+  }
+  body {
+    padding-top: 64px;
+  }
+  #sidenav,
+  .toc-wrapper {
+    top: 0;
+    overflow-y: visible;
+  }
+  #sidenav #doc-nav,
+  .toc-wrapper #doc-nav {
+    max-height: none;
+    overflow-y: visible;
+  }
+}
+@supports (-ms-ime-align:auto) {
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10000;
+  }
+  body {
+    padding-top: 64px;
+  }
+  #sidenav,
+  .toc-wrapper {
+    top: 0;
+    overflow-y: visible;
+  }
+  #sidenav #doc-nav,
+  .toc-wrapper #doc-nav {
+    max-height: none;
+    overflow-y: visible;
+  }
+}
