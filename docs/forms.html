@@ -215,9 +215,16 @@
                 <h3 id="_textarea">Textarea</h3>
                 <div class="example mb-2">
                     <form>
-                        <textarea></textarea>
+                        <textarea placeholder="Default"></textarea>
+                        <textarea data-role="textarea" placeholder="Autosize" data-auto-size="true"></textarea>
+                        <textarea data-role="textarea" placeholder="Disabled" disabled></textarea>
                     </form>
                 </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;textarea data-role="textarea"&gt;&lt;/textarea&gt;
+                    &lt;textarea data-role="textarea" data-auto-size="true" data-max-height="200"&gt;&lt;/textarea&gt;
+                    &lt;textarea data-role="textarea" disabled&gt;&lt;/textarea&gt;
+                </code></pre>
 
                 <h3 id="_checkbox">Checkbox</h3>
                 <div class="example mb-2">
@@ -276,6 +283,7 @@
                 </div>
                 <pre class="prettyprint linenums"><code>
                     &lt;input type="file" data-role="file"&gt;
+                    &lt;input type="file" data-role="file" data-caption="Choose file"&gt;
                     &lt;input type="file" data-role="file" data-caption="&lt;span class='mif-folder'&gt;&lt;/span&gt;"&gt;
                 </code></pre>
                 <p>

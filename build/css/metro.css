@@ -8210,7 +8210,8 @@ input[type=file],
 select,
 textarea,
 .file,
-.input {
+.input,
+.textarea {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -8242,7 +8243,8 @@ input[type=file]:focus,
 select:focus,
 textarea:focus,
 .file:focus,
-.input:focus {
+.input:focus,
+.textarea:focus {
   outline: none;
 }
 input[type=text]:hover,
@@ -8261,7 +8263,8 @@ input[type=file]:hover,
 select:hover,
 textarea:hover,
 .file:hover,
-.input:hover {
+.input:hover,
+.textarea:hover {
   border-color: #c0c0c0;
 }
 input[type=text]:focus,
@@ -8280,7 +8283,8 @@ input[type=file]:focus,
 select:focus,
 textarea:focus,
 .file:focus,
-.input:focus {
+.input:focus,
+.textarea:focus {
   box-shadow: 0 0 0 3px rgba(184, 184, 184, 0.45);
 }
 input[type=text]:disabled,
@@ -8300,6 +8304,7 @@ select:disabled,
 textarea:disabled,
 .file:disabled,
 .input:disabled,
+.textarea:disabled,
 input[type=text].disabled,
 input[type=password].disabled,
 input[type=tel].disabled,
@@ -8316,7 +8321,8 @@ input[type=file].disabled,
 select.disabled,
 textarea.disabled,
 .file.disabled,
-.input.disabled {
+.input.disabled,
+.textarea.disabled {
   pointer-events: none;
   border-color: #ebebeb;
 }
@@ -8642,6 +8648,15 @@ label {
 .input.disabled .button-group button {
   background-color: #f8f8f8;
   color: #dfdfdf;
+}
+.textarea {
+  padding: 0;
+  border: 0;
+}
+.textarea.autosize textarea,
+.textarea.disabled,
+.textarea textarea:disabled {
+  resize: none;
 }
 form:disabled,
 fieldset:disabled,

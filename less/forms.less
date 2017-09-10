@@ -19,7 +19,7 @@ input[type=time],
 input[type=url],
 input[type=week],
 input[type=file],
-select, textarea, .file, .input {
+select, textarea, .file, .input, .textarea {
     appearance: none;
     position: relative;
     border: 1px @inputBorder solid;
@@ -395,6 +395,15 @@ label {
             background-color: @light;
             color: darken(@light, 10%);
         }
+    }
+}
+
+.textarea {
+    padding: 0;
+    border: 0;
+
+    &.autosize textarea, &.disabled, textarea:disabled {
+        resize: none;
     }
 }
 
