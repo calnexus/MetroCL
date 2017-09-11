@@ -74,8 +74,8 @@
                         <a href="#_validator">Validation</a>
                         <ul>
                             <li class="toc-entry"><a href="#_overview">How it works</a></li>
-                            <li class="toc-entry"><a href="#_overview">Styling elements</a></li>
                             <li class="toc-entry"><a href="#_overview">Browser defaults</a></li>
+                            <li class="toc-entry"><a href="#_overview">Use the plugin, Luke!</a></li>
                         </ul>
                     </li>
                     <li class="toc-entry"><a href="#_forms_rtl">Rtl support</a></li>
@@ -154,7 +154,7 @@
                     Included are styles for general appearance, focus state, sizing, and more.
                 </p>
 
-                <h5 id="_inputs">Inputs</h5>
+                <h4 id="_inputs">Inputs</h4>
                 <div class="example pb-0">
                     <form class="mb-2">
                         <input type="text" class="mt-1">
@@ -170,10 +170,47 @@
                     &lt;input type="text" data-role="input" data-clear-button="true" data-disabled="true"&gt;
                 </code></pre>
                 <p>
-                    Additional functionality for input is implemented through the plugin <code>input</code>.
+                    Additional functionality for input is implemented through the plugin <code>input</code>. To activate plugin and additional options add the attribute <code>data-role="input"</code> to element.
                 </p>
+                <p class="text-bold">Additional options:</p>
+                <table class="table table-border cell-border compact mb-4">
+                    <thead>
+                    <tr>
+                        <td>data-*</td>
+                        <td>default</td>
+                        <td>description</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>data-clear-button</td>
+                        <td>true</td>
+                        <td>Enable or disable clear button</td>
+                    </tr>
+                    <tr>
+                        <td>data-clear-button-icon</td>
+                        <td>&lt;span class='mif-cross'&gt;&lt;/span&gt;</td>
+                        <td>Icon for clear button</td>
+                    </tr>
+                    <tr>
+                        <td>data-reveal-button</td>
+                        <td>true</td>
+                        <td>Enable or disable reveal button for password inputs</td>
+                    </tr>
+                    <tr>
+                        <td>data-reveal-button-icon</td>
+                        <td>&lt;span class='mif-eye'&gt;&lt;/span&gt;</td>
+                        <td>Icon for reveal button</td>
+                    </tr>
+                    <tr>
+                        <td>data-on-create</td>
+                        <td>$.noop()</td>
+                        <td>Callback triggered when control created</td>
+                    </tr>
+                    </tbody>
+                </table>
 
-                <h5 id="_select">Select</h5>
+                <h4 id="_select">Select</h4>
                 <div class="example pb-0">
                     <form  class="mb-2">
                         <select class="mb-1" data-role="select">
@@ -194,7 +231,7 @@
                     Additional functionality for select is implemented through the plugin <code>select</code>.
                 </p>
 
-                <h5 id="_textarea">Textarea</h5>
+                <h4 id="_textarea">Textarea</h4>
                 <div class="example mb-2">
                     <form>
                         <textarea placeholder="Default" class="mb-1"></textarea>
@@ -211,7 +248,7 @@
                     Additional functionality for textarea is implemented through the plugin <code>textarea</code>.
                 </p>
 
-                <h5 id="_checkbox">Checkbox</h5>
+                <h4 id="_checkbox">Checkbox</h4>
                 <div class="example mb-2">
                     <form>
                         <input type="checkbox" data-role="checkbox" data-caption="Check">
@@ -230,7 +267,7 @@
                     Additional functionality for input is implemented through the plugin <code>checkbox</code>.
                 </p>
 
-                <h5 id="_radio">Radio</h5>
+                <h4 id="_radio">Radio</h4>
                 <div class="example mb-2">
                     <form>
                         <input type="radio" data-role="radio" data-caption="Check" name="r1">
@@ -249,7 +286,7 @@
                     Additional functionality for input is implemented through the plugin <code>radio</code>.
                 </p>
 
-                <h5 id="_switch">Switch</h5>
+                <h4 id="_switch">Switch</h4>
                 <div class="example">
                     <form mb-2>
                         <input type="checkbox" data-role="switch" data-caption="Check">
@@ -268,7 +305,7 @@
                     Additional functionality for input is implemented through the plugin <code>switch</code>.
                 </p>
 
-                <h5 id="_file">File browser</h5>
+                <h4 id="_file">File browser</h4>
                 <div class="example">
                     <form class="">
                         <input type="file" data-role="file" class="mb-1">
@@ -284,7 +321,7 @@
                     Additional functionality for input is implemented through the plugin <code>file</code>.
                 </p>
 
-                <h5 id="_form_buttons">Form buttons</h5>
+                <h4 id="_form_buttons">Form buttons</h4>
                 <div class="example">
                     <form class="">
                         <input type="button" class="button" value="Button">
@@ -304,7 +341,7 @@
                     Additional classes can be used to vary this layout on a per-form basis.
                 </p>
 
-                <h5 id="_form_groups">Form groups</h5>
+                <h4 id="_form_groups">Form groups</h4>
                 <p>
                     The <code>.form-group</code> class is the easiest way to add some structure to forms.
                     Its only purpose is to provide margin-bottom around a label and control pairing.
@@ -335,7 +372,7 @@
                     &lt;/form&gt;
                 </code></pre>
 
-                <h5 id="_grid_layout">Grid layout</h5>
+                <h4 id="_grid_layout">Grid layout</h4>
                 <p>
                     More complex forms can be built using our grid classes.
                     Use these for form layouts that require multiple columns, varied widths, and additional alignment options.
@@ -365,7 +402,7 @@
                     &lt;/form&gt;
                 </code></pre>
 
-                <h5 id="_horizontal_form">Horizontal form</h5>
+                <h4 id="_horizontal_form">Horizontal form</h4>
                 <p>
                     Create horizontal forms with the grid by adding the <code>.row</code> class to form groups and using the <code>.cell-*-*</code> classes to specify the width of your labels and controls.
                 </p>
@@ -440,7 +477,7 @@
                     &lt;/form&gt;
                 </code></pre>
 
-                <h5 id="_inline_form">Inline form</h5>
+                <h4 id="_inline_form">Inline form</h4>
                 <p>
                     Use the <code>.inline-form</code> class to display a series of labels, form controls, and buttons on a single horizontal row.
                     Form controls within inline forms vary slightly from their default states.
@@ -559,7 +596,7 @@
                     Metro supports rtl input method. To set Metro's rtl you can add <code>metro-rtl.css</code> to page head and add attribute <code>dir</code> with <code>rtl</code> value to element.
                 </p>
 
-                <h5>Inputs</h5>
+                <h4>Inputs</h4>
                 <div class="example">
                     <form class="mb-2">
                         <input type="text" dir="rtl" class="mb-1">
@@ -571,7 +608,7 @@
                     &lt;input type="text" dir="rtl" data-role="input" data-clear-button="true"&gt;
                 </code></pre>
 
-                <h5>File browser</h5>
+                <h4>File browser</h4>
                 <div class="example">
                     <form class="mb-2">
                         <input type="file" dir="rtl" data-role="file" class="mb-1">
@@ -581,7 +618,7 @@
                     &lt;input type="file" dir="rtl" data-role="file"&gt;
                 </code></pre>
 
-                <h5>Textarea</h5>
+                <h4>Textarea</h4>
                 <div class="example">
                     <form class="mb-2">
                         <textarea dir="rtl"></textarea>

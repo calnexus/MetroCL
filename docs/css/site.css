@@ -186,12 +186,14 @@ pre {
   border-top: 0 !important;
 }
 main > h3,
-main > h5 {
+main > h5,
+main > h4 {
   z-index: -1;
   pointer-events: none;
 }
 main > h3:before,
-main > h5:before {
+main > h5:before,
+main > h4:before {
   display: block;
   height: 5rem;
   margin-top: -5rem;
@@ -204,6 +206,10 @@ main > h1 {
 }
 main > h3 {
   margin-top: 2rem;
+}
+main > h4 {
+  margin-top: 1rem;
+  font-weight: 400;
 }
 .particles-js-canvas-el {
   z-index: -1;

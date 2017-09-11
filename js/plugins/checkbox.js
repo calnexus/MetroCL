@@ -60,6 +60,8 @@ var Checkbox = {
 
         if (o.disabled === true && element.is(':disabled')) {
             this.disable();
+        } else {
+            this.enable();
         }
     },
 

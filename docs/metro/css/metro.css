@@ -6876,6 +6876,7 @@ a.app-bar-element {
 .table.compact th,
 .table.compact td {
   padding: .3rem;
+  font-size: .9em;
 }
 .step-list {
   margin: 0 0 0 2rem;

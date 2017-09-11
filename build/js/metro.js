@@ -1616,6 +1616,8 @@ var Checkbox = {
 
         if (o.disabled === true && element.is(':disabled')) {
             this.disable();
+        } else {
+            this.enable();
         }
     },
 
@@ -1965,6 +1967,8 @@ var File = {
 
         if (o.disabled === true || element.is(":disabled")) {
             this.disable();
+        } else {
+            this.enable();
         }
     },
 
@@ -2160,6 +2164,8 @@ var Radio = {
 
         if (o.disabled === true && element.is(':disabled')) {
             this.disable();
+        } else {
+            this.enable();
         }
     },
 
@@ -2366,6 +2372,8 @@ var Select = {
 
         if (o.disabled === true || element.is(':disabled')) {
             this.disable();
+        } else {
+            this.enable();
         }
     },
 
@@ -2447,6 +2455,8 @@ var Switch = {
 
         if (o.disabled === true && element.is(':disabled')) {
             this.disable();
+        } else {
+            this.enable();
         }
     },
 
@@ -2551,6 +2561,8 @@ var Textarea = {
 
         if (o.disabled === true || element.is(':disabled')) {
             this.disable();
+        } else {
+            this.enable();
         }
     },
 
