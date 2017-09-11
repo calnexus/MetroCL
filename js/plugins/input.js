@@ -103,7 +103,6 @@ var Input = {
     },
 
     changeAttribute: function(attributeName){
-        console.log(attributeName);
         switch (attributeName) {
             case 'disabled': this.toggleState(); break;
         }

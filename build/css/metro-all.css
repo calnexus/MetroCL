@@ -191,7 +191,6 @@ html [type="button"],
 a,
 area,
 button,
-[role="button"],
 input,
 label,
 select,
@@ -8414,6 +8413,7 @@ textarea,
   border: 1px #d9d9d9 solid;
   color: #1d1d1d;
   width: 100%;
+  display: block;
   padding: .5rem .75rem;
   z-index: 0;
   font-size: 1rem;
@@ -8482,7 +8482,26 @@ textarea:focus,
 .file:focus,
 .input:focus,
 .textarea:focus,
-.select:focus {
+.select:focus,
+input[type=text].focused,
+input[type=password].focused,
+input[type=tel].focused,
+input[type=datetime-local].focused,
+input[type=email].focused,
+input[type=file].focused,
+input[type=month].focused,
+input[type=number].focused,
+input[type=search].focused,
+input[type=time].focused,
+input[type=url].focused,
+input[type=week].focused,
+input[type=file].focused,
+select.focused,
+textarea.focused,
+.file.focused,
+.input.focused,
+.textarea.focused,
+.select.focused {
   box-shadow: 0 0 0 3px rgba(184, 184, 184, 0.45);
 }
 input[type=text]:disabled,
@@ -8857,16 +8876,14 @@ label {
   padding: 0;
 }
 .textarea textarea {
+  min-height: 4rem;
+  overflow-y: hidden;
+  resize: none;
   border-color: transparent;
 }
 .textarea textarea:focus {
   box-shadow: none;
   border-color: transparent;
-}
-.textarea.autosize textarea,
-.textarea.disabled,
-.textarea textarea:disabled {
-  resize: none;
 }
 .select {
   display: block;
@@ -8878,6 +8895,7 @@ label {
   opacity: 0;
   width: 0.0625rem;
   height: 0.0625rem;
+  display: none;
 }
 .select input {
   cursor: pointer;

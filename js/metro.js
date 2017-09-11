@@ -37,13 +37,8 @@ var Metro = {
                 if (mutation.type === 'attributes') {
                     var element = $(mutation.target);
                     if (element.data('metroComponent') !== undefined) {
-
                         var plug = element.data(element.data('metroComponent'));
                         plug.changeAttribute(mutation.attributeName);
-
-                        // console.log(element);
-                        // console.log(element.data('metroComponent'));
-                        // console.log(mutation.attributeName);
                     }
                 }
 
@@ -87,10 +82,6 @@ var Metro = {
                 return;
             }
 
-            if (METRO_DEBUG) {
-                console.log("Hotkey: "+hotkey);
-            }
-
             //if ($.Metro.hotkeys.indexOf(hotkey) > -1) {
             //    return;
             //}
@@ -125,9 +116,6 @@ var Metro = {
             roles.map(function (func) {
                 try {
                     if ($.fn[func] !== undefined && $this.data(func + '-initiated') !== true) {
-                        if (METRO_DEBUG) {
-                            console.log("Plugin: "+func);
-                        }
                         $.fn[func].call($this);
                         $this.data(func + '-initiated', true);
                         $this.data('metroComponent', func);
@@ -149,10 +137,6 @@ var Metro = {
     // inst.myMethod('I am a method');
 
     plugin: function(name, object){
-        if (METRO_DEBUG) {
-            console.log("Registering Plugin: "+name);
-        }
-
         $.fn[name] = function( options ) {
             return this.each(function() {
                 if ( ! $.data( this, name ) ) {

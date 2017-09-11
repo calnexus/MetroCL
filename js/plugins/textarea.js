@@ -13,7 +13,6 @@ var Textarea = {
     },
     options: {
         autoSize: false,
-        maxHeight: 200,
         disabled: false,
         onCreate: $.noop()
     },
@@ -47,24 +46,19 @@ var Textarea = {
         element.appendTo(container);
 
         var resize = function(){
-            element[0].style.height = 0;
-
-            var adjust = element[0].scrollHeight;
-
-            if (o.maxHeight > 0) {
-                if (o.maxHeight > adjust) {
-                    element[0].style.height = adjust + 'px';
-                } else {
-                    element[0].style.height = o.maxHeight + 'px';
-                }
-            } else {
-                element[0].style.height = adjust + 'px';
-            }
+            setTimeout(function(){
+                element[0].style.cssText = 'height:auto;';
+                element[0].style.cssText = 'height:' + element[0].scrollHeight + 'px';
+            }, 0);
         };
 
         if (o.autoSize) {
 
             container.addClass("autosize");
+
+            setTimeout(function(){
+                resize();
+            }, 0);
 
             element.on('keyup', resize);
             element.on('keydown', resize);
@@ -97,8 +91,18 @@ var Textarea = {
         this.element.parent().removeClass("disabled");
     },
 
-    changeAttribute: function(attributeName){
+    toggleState: function(){
+        if (this.element.data("disabled") === false) {
+            this.disable();
+        } else {
+            this.enable();
+        }
+    },
 
+    changeAttribute: function(attributeName){
+        switch (attributeName) {
+            case 'disabled': this.toggleState(); break;
+        }
     }
 };
 

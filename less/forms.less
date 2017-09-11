@@ -25,6 +25,7 @@ select, textarea, .file, .input, .textarea, .select {
     border: 1px @inputBorder solid;
     color: @dark;
     width: 100%;
+    display: block;
     padding: .5rem .75rem;
     z-index: 0;
     font-size: 1rem;
@@ -41,7 +42,7 @@ select, textarea, .file, .input, .textarea, .select {
         border-color: darken(@inputBorder, 10%);
     }
 
-    &:focus {
+    &:focus, &.focused {
         box-shadow: 0 0 0 3px rgba(red(@lightGray), green(@lightGray), blue(@lightGray), 0.45);
     }
 
@@ -401,15 +402,14 @@ label {
     padding: 0;
 
     textarea {
+        min-height: 4rem;
+        overflow-y: hidden;
+        resize: none;
         border-color: transparent;
         &:focus {
             box-shadow: none;
             border-color: transparent;
         }
-    }
-
-    &.autosize textarea, &.disabled, textarea:disabled {
-        resize: none;
     }
 }
 
@@ -423,6 +423,7 @@ label {
         opacity: 0;
         width: 0.0625rem;
         height: 0.0625rem;
+        display: none;
     }
 
     input {

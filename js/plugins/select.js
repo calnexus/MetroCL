@@ -12,7 +12,7 @@ var Select = {
         return this;
     },
     options: {
-        maxDropHeight: 200,
+        dropHeight: 200,
         disabled: false,
         onChange: $.noop(),
         onCreate: $.noop()
@@ -54,7 +54,7 @@ var Select = {
         if (multiple === false) {
             var input = $("<input data-role='input'>").attr("type", "text").attr("name", "__" + element.attr("name") + "__").prop("readonly", true);
             var list = $("<ul>").addClass("drop-menu").css({
-                "max-height": o.maxDropHeight
+                "max-height": o.dropHeight
             });
             $.each(element.children(), function(){
                 var opt = this, option = $(this);
@@ -78,6 +78,7 @@ var Select = {
                 element.trigger("change");
                 list_obj.close();
                 Utils.exec(o.onChange, val);
+                //console.log(element.val());
             });
             container.on("click", function(e){
                 e.preventDefault();

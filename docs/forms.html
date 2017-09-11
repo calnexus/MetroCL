@@ -211,6 +211,9 @@
                 </table>
 
                 <h4 id="_select">Select</h4>
+                <p>
+                    Metro 4 uses a special wrapper to display the drop-down select. When you use Metro 4 select wrapper, you can styling every option with css classes.
+                </p>
                 <div class="example pb-0">
                     <form  class="mb-2">
                         <select class="mb-1" data-role="select">
@@ -228,10 +231,40 @@
                     &lt;/select&gt;
                 </code></pre>
                 <p>
-                    Additional functionality for select is implemented through the plugin <code>select</code>.
+                    Additional functionality for select is implemented through the plugin <code>select</code>. To activate plugin and additional options add the attribute <code>data-role="select"</code> to element.
                 </p>
+                <p class="text-bold">Additional options:</p>
+                <table class="table table-border cell-border compact mb-4">
+                    <thead>
+                    <tr>
+                        <td>data-*</td>
+                        <td>default</td>
+                        <td>description</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>data-drop-height</td>
+                        <td>200px</td>
+                        <td>Max height for drops</td>
+                    </tr>
+                    <tr>
+                        <td>data-on-create</td>
+                        <td>$.noop()</td>
+                        <td>Callback triggered when control created</td>
+                    </tr>
+                    <tr>
+                        <td>data-on-change</td>
+                        <td>$.noop()</td>
+                        <td>Callback triggered when value changed</td>
+                    </tr>
+                    </tbody>
+                </table>
 
                 <h4 id="_textarea">Textarea</h4>
+                <p>
+                    Metro 4 uses a special wrapper to display the textarea. When you use Metro 4 textarea wrapper, you can enabling <code>autosize</code> feature.
+                </p>
                 <div class="example mb-2">
                     <form>
                         <textarea placeholder="Default" class="mb-1"></textarea>
@@ -245,8 +278,30 @@
                     &lt;textarea data-role="textarea" disabled&gt;&lt;/textarea&gt;
                 </code></pre>
                 <p>
-                    Additional functionality for textarea is implemented through the plugin <code>textarea</code>.
+                    Additional functionality for textarea is implemented through the plugin <code>textarea</code>. To activate plugin and additional options add the attribute <code>data-role="textarea"</code> to element.
                 </p>
+                <p class="text-bold">Additional options:</p>
+                <table class="table table-border cell-border compact mb-4">
+                    <thead>
+                    <tr>
+                        <td>data-*</td>
+                        <td>default</td>
+                        <td>description</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>data-auto-size</td>
+                        <td>false</td>
+                        <td>Enabling autosize feature</td>
+                    </tr>
+                    <tr>
+                        <td>data-on-create</td>
+                        <td>$.noop()</td>
+                        <td>Callback triggered when control created</td>
+                    </tr>
+                    </tbody>
+                </table>
 
                 <h4 id="_checkbox">Checkbox</h4>
                 <div class="example mb-2">

@@ -55,13 +55,8 @@ var Metro = {
                 if (mutation.type === 'attributes') {
                     var element = $(mutation.target);
                     if (element.data('metroComponent') !== undefined) {
-
                         var plug = element.data(element.data('metroComponent'));
                         plug.changeAttribute(mutation.attributeName);
-
-                        // console.log(element);
-                        // console.log(element.data('metroComponent'));
-                        // console.log(mutation.attributeName);
                     }
                 }
 
@@ -105,10 +100,6 @@ var Metro = {
                 return;
             }
 
-            if (METRO_DEBUG) {
-                console.log("Hotkey: "+hotkey);
-            }
-
             //if ($.Metro.hotkeys.indexOf(hotkey) > -1) {
             //    return;
             //}
@@ -143,9 +134,6 @@ var Metro = {
             roles.map(function (func) {
                 try {
                     if ($.fn[func] !== undefined && $this.data(func + '-initiated') !== true) {
-                        if (METRO_DEBUG) {
-                            console.log("Plugin: "+func);
-                        }
                         $.fn[func].call($this);
                         $this.data(func + '-initiated', true);
                         $this.data('metroComponent', func);
@@ -167,10 +155,6 @@ var Metro = {
     // inst.myMethod('I am a method');
 
     plugin: function(name, object){
-        if (METRO_DEBUG) {
-            console.log("Registering Plugin: "+name);
-        }
-
         $.fn[name] = function( options ) {
             return this.each(function() {
                 if ( ! $.data( this, name ) ) {
@@ -2094,7 +2078,6 @@ var Input = {
     },
 
     changeAttribute: function(attributeName){
-        console.log(attributeName);
         switch (attributeName) {
             case 'disabled': this.toggleState(); break;
         }
@@ -2288,7 +2271,7 @@ var Select = {
         return this;
     },
     options: {
-        maxDropHeight: 200,
+        dropHeight: 200,
         disabled: false,
         onChange: $.noop(),
         onCreate: $.noop()
@@ -2330,7 +2313,7 @@ var Select = {
         if (multiple === false) {
             var input = $("<input data-role='input'>").attr("type", "text").attr("name", "__" + element.attr("name") + "__").prop("readonly", true);
             var list = $("<ul>").addClass("drop-menu").css({
-                "max-height": o.maxDropHeight
+                "max-height": o.dropHeight
             });
             $.each(element.children(), function(){
                 var opt = this, option = $(this);
@@ -2354,6 +2337,7 @@ var Select = {
                 element.trigger("change");
                 list_obj.close();
                 Utils.exec(o.onChange, val);
+                //console.log(element.val());
             });
             container.on("click", function(e){
                 e.preventDefault();
@@ -2492,7 +2476,6 @@ var Textarea = {
     },
     options: {
         autoSize: false,
-        maxHeight: 200,
         disabled: false,
         onCreate: $.noop()
     },
@@ -2526,24 +2509,19 @@ var Textarea = {
         element.appendTo(container);
 
         var resize = function(){
-            element[0].style.height = 0;
-
-            var adjust = element[0].scrollHeight;
-
-            if (o.maxHeight > 0) {
-                if (o.maxHeight > adjust) {
-                    element[0].style.height = adjust + 'px';
-                } else {
-                    element[0].style.height = o.maxHeight + 'px';
-                }
-            } else {
-                element[0].style.height = adjust + 'px';
-            }
+            setTimeout(function(){
+                element[0].style.cssText = 'height:auto;';
+                element[0].style.cssText = 'height:' + element[0].scrollHeight + 'px';
+            }, 0);
         };
 
         if (o.autoSize) {
 
             container.addClass("autosize");
+
+            setTimeout(function(){
+                resize();
+            }, 0);
 
             element.on('keyup', resize);
             element.on('keydown', resize);
@@ -2576,8 +2554,18 @@ var Textarea = {
         this.element.parent().removeClass("disabled");
     },
 
-    changeAttribute: function(attributeName){
+    toggleState: function(){
+        if (this.element.data("disabled") === false) {
+            this.disable();
+        } else {
+            this.enable();
+        }
+    },
 
+    changeAttribute: function(attributeName){
+        switch (attributeName) {
+            case 'disabled': this.toggleState(); break;
+        }
     }
 };
 
