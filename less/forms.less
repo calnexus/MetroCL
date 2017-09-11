@@ -48,6 +48,7 @@ select, textarea, .file, .input, .textarea, .select {
     &:disabled, &.disabled {
         pointer-events: none;
         border-color: darken(@light, 5%);
+        background-color: @disabledBackground;
     }
 }
 
@@ -426,7 +427,7 @@ label {
 
     input {
         cursor: pointer;
-        width: ~"calc(100% - 2rem)";
+        width: ~"calc(100% - .75rem)";
         border-color: transparent;
         &:focus {
             box-shadow: none;
@@ -447,6 +448,21 @@ label {
 
     &:focus-within, &.focused {
         box-shadow: 0 0 0 3px rgba(red(@lightGray), green(@lightGray), blue(@lightGray), 0.45);
+    }
+
+    &.dropdown-toggle {
+        &:before {
+            margin-left: -1.25rem;
+        }
+    }
+
+    &.disabled {
+        &.dropdown-toggle {
+            &:before {
+                margin-left: -1.25rem;
+                border-color: @white;
+            }
+        }
     }
 }
 
@@ -480,5 +496,18 @@ label {
 form, fieldset, .form-group {
     &:disabled, &.disabled {
         pointer-events: none;
+    }
+}
+
+.file, .input, .textarea, .select {
+    &:disabled, &.disabled {
+        input, textarea, select {
+            background: transparent;
+            color: @white;
+        }
+
+        .button-group {
+            display: none;
+        }
     }
 }

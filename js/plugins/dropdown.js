@@ -122,6 +122,10 @@ var Dropdown = {
 
     open: function(){
         this._open(this.element);
+    },
+
+    changeAttribute: function(attributeName){
+
     }
 };
 

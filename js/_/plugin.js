@@ -30,6 +30,10 @@ var myObject = {
     },
 
     _create: function(){
+    },
+
+    changeAttribute: function(attributeName){
+
     }
 };
 

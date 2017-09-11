@@ -43,7 +43,7 @@ var Input = {
         var clearButton, revealButton;
 
         if (prev.length === 0) {
-            container.appendTo(parent);
+            parent.prepend(container);
         } else {
             container.insertAfter(prev);
         }
@@ -72,19 +72,41 @@ var Input = {
 
         element[0].className = '';
 
-        if (o.disabled === true) {
+        element.on("blur", function(){container.removeClass("focused");});
+        element.on("focus", function(){container.addClass("focused");});
+
+        if (o.disabled === true || element.is(":disabled")) {
             this.disable();
+        } else {
+            this.enable();
         }
     },
 
     disable: function(){
+        //this.element.attr("disabled", true);
         this.element.data("disabled", true);
         this.element.parent().addClass("disabled");
     },
 
     enable: function(){
+        //this.element.attr("disabled", false);
         this.element.data("disabled", false);
         this.element.parent().removeClass("disabled");
+    },
+
+    toggleState: function(){
+        if (this.element.data("disabled") === false) {
+            this.disable();
+        } else {
+            this.enable();
+        }
+    },
+
+    changeAttribute: function(attributeName){
+        console.log(attributeName);
+        switch (attributeName) {
+            case 'disabled': this.toggleState(); break;
+        }
     }
 };
 

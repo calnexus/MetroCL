@@ -69,7 +69,7 @@
                         </ul>
                     </li>
                     <li class="toc-entry"><a href="#_accent_colors">Accent colors</a></li>
-                    <li class="toc-entry"><a href="#_disabled">Disabled forms</a></li>
+                    <li class="toc-entry"><a href="#_disabled_forms">Disabled forms</a></li>
                     <li class="toc-entry">
                         <a href="#_validator">Validation</a>
                         <ul>
@@ -154,7 +154,7 @@
                     Included are styles for general appearance, focus state, sizing, and more.
                 </p>
 
-                <h3 id="_inputs">Inputs</h3>
+                <h5 id="_inputs">Inputs</h5>
                 <div class="example pb-0">
                     <form class="mb-2">
                         <input type="text" class="mt-1">
@@ -173,7 +173,7 @@
                     Additional functionality for input is implemented through the plugin <code>input</code>.
                 </p>
 
-                <h3 id="_select">Select</h3>
+                <h5 id="_select">Select</h5>
                 <div class="example pb-0">
                     <form  class="mb-2">
                         <select class="mb-1" data-role="select">
@@ -194,7 +194,7 @@
                     Additional functionality for select is implemented through the plugin <code>select</code>.
                 </p>
 
-                <h3 id="_textarea">Textarea</h3>
+                <h5 id="_textarea">Textarea</h5>
                 <div class="example mb-2">
                     <form>
                         <textarea placeholder="Default" class="mb-1"></textarea>
@@ -211,7 +211,7 @@
                     Additional functionality for textarea is implemented through the plugin <code>textarea</code>.
                 </p>
 
-                <h3 id="_checkbox">Checkbox</h3>
+                <h5 id="_checkbox">Checkbox</h5>
                 <div class="example mb-2">
                     <form>
                         <input type="checkbox" data-role="checkbox" data-caption="Check">
@@ -230,7 +230,7 @@
                     Additional functionality for input is implemented through the plugin <code>checkbox</code>.
                 </p>
 
-                <h3 id="_radio">Radio</h3>
+                <h5 id="_radio">Radio</h5>
                 <div class="example mb-2">
                     <form>
                         <input type="radio" data-role="radio" data-caption="Check" name="r1">
@@ -249,7 +249,7 @@
                     Additional functionality for input is implemented through the plugin <code>radio</code>.
                 </p>
 
-                <h3 id="_switch">Switch</h3>
+                <h5 id="_switch">Switch</h5>
                 <div class="example">
                     <form mb-2>
                         <input type="checkbox" data-role="switch" data-caption="Check">
@@ -268,7 +268,7 @@
                     Additional functionality for input is implemented through the plugin <code>switch</code>.
                 </p>
 
-                <h3 id="_file">File browser</h3>
+                <h5 id="_file">File browser</h5>
                 <div class="example">
                     <form class="">
                         <input type="file" data-role="file" class="mb-1">
@@ -284,7 +284,7 @@
                     Additional functionality for input is implemented through the plugin <code>file</code>.
                 </p>
 
-                <h3 id="_form_buttons">Form buttons</h3>
+                <h5 id="_form_buttons">Form buttons</h5>
                 <div class="example">
                     <form class="">
                         <input type="button" class="button" value="Button">
@@ -304,7 +304,7 @@
                     Additional classes can be used to vary this layout on a per-form basis.
                 </p>
 
-                <h3 id="_form_groups">Form groups</h3>
+                <h5 id="_form_groups">Form groups</h5>
                 <p>
                     The <code>.form-group</code> class is the easiest way to add some structure to forms.
                     Its only purpose is to provide margin-bottom around a label and control pairing.
@@ -335,7 +335,7 @@
                     &lt;/form&gt;
                 </code></pre>
 
-                <h3 id="_grid_layout">Grid layout</h3>
+                <h5 id="_grid_layout">Grid layout</h5>
                 <p>
                     More complex forms can be built using our grid classes.
                     Use these for form layouts that require multiple columns, varied widths, and additional alignment options.
@@ -365,7 +365,7 @@
                     &lt;/form&gt;
                 </code></pre>
 
-                <h3 id="_horizontal_form">Horizontal form</h3>
+                <h5 id="_horizontal_form">Horizontal form</h5>
                 <p>
                     Create horizontal forms with the grid by adding the <code>.row</code> class to form groups and using the <code>.cell-*-*</code> classes to specify the width of your labels and controls.
                 </p>
@@ -440,7 +440,7 @@
                     &lt;/form&gt;
                 </code></pre>
 
-                <h3 id="_inline_form">Inline form</h3>
+                <h5 id="_inline_form">Inline form</h5>
                 <p>
                     Use the <code>.inline-form</code> class to display a series of labels, form controls, and buttons on a single horizontal row.
                     Form controls within inline forms vary slightly from their default states.
@@ -498,6 +498,61 @@
                     &lt;/select&gt;
                 </code></pre>
 
+                <h3 id="_disabled_forms">Disabled forms</h3>
+                <p>
+                    To disable form elements add the <code>disabled</code> boolean attribute to element.
+                </p>
+                <div class="example">
+                    <form>
+                        <input type="text" data-role="input" disabled class="mb-1">
+                        <input type="file" data-role="file" disabled class="mb-1">
+                        <textarea data-role="textarea" disabled class="mb-1"></textarea>
+                        <select data-role="select" disabled>
+                            <option>One</option>
+                            <option>Two</option>
+                            <option>Three</option>
+                        </select>
+                    </form>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;form&gt;
+                        &lt;input type="text" data-role="input" disabled class="mb-1"&gt;
+                        &lt;input type="file" data-role="file" disabled class="mb-1"&gt;
+                        &lt;textarea data-role="textarea" disabled class="mb-1"&gt;&lt;/textarea&gt;
+                        &lt;select data-role="select" disabled&gt;
+                            &lt;option&gt;One&lt;/option&gt;
+                            &lt;option&gt;Two&lt;/option&gt;
+                            &lt;option&gt;Three&lt;/option&gt;
+                        &lt;/select&gt;
+                    &lt;/form&gt;
+                </code></pre>
+                <p>
+                    To disable elements at runtime:
+                </p>
+                <div class="example">
+                    <input type="text" data-role="input" id="disable_input_runtime">
+                    <div class="d-flex flex-justify-around mt-2">
+                        <span>Disable input</span>
+                        <input type="checkbox" data-role="switch" checked onclick="toggleInputState(this)">
+                        <span>Enable input</span>
+                    </div>
+                    <script>
+                        function toggleInputState(el){
+                            var i = $('#disable_input_runtime');
+                            $(el).is(':checked') ? i.attr('disabled', false) : i.attr('disabled', true);
+                        }
+                    </script>
+                </div>
+                <pre class="prettyprint linenums lang-js"><code>
+                    &lt;input type="text" data-role="input" id="disable_input_runtime"&gt;
+                    &lt;input type="checkbox" data-role="switch" checked onclick="toggleInputState(this)"&gt;
+                    &lt;script&gt;
+                        function toggleInputState(el){
+                            var i = $('#disable_enable_input_runtime');
+                            $(el).is(':checked') ? i.attr('disabled', false) : i.attr('disabled', true);
+                        }
+                    &lt;/script&gt;
+                </code></pre>
 
                 <h3 id="_forms_rtl">Rtl support</h3>
                 <p>

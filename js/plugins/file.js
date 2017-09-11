@@ -69,7 +69,7 @@ var File = {
 
         element[0].className = '';
 
-        if (o.disabled === true) {
+        if (o.disabled === true || element.is(":disabled")) {
             this.disable();
         }
     },
@@ -82,6 +82,10 @@ var File = {
     enable: function(){
         this.element.data("disabled", false);
         this.element.parent().removeClass("disabled");
+    },
+
+    changeAttribute: function(attributeName){
+
     }
 };
 

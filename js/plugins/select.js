@@ -82,10 +82,11 @@ var Select = {
             container.on("click", function(e){
                 e.preventDefault();
                 e.stopPropagation();
-                //input.trigger("click");
             });
+
             input.on("blur", function(){container.removeClass("focused");});
             input.on("focus", function(){container.addClass("focused");});
+
             container.append(input);
             container.append(list);
             list.dropdown({
@@ -93,7 +94,7 @@ var Select = {
             });
         }
 
-        if (o.disabled === true && element.is(':disabled')) {
+        if (o.disabled === true || element.is(':disabled')) {
             this.disable();
         }
     },
@@ -106,6 +107,10 @@ var Select = {
     enable: function(){
         this.element.data("disabled", false);
         this.element.parent().removeClass("disabled");
+    },
+
+    changeAttribute: function(attributeName){
+
     }
 };
 

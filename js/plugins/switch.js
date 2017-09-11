@@ -70,6 +70,10 @@ var Switch = {
     enable: function(){
         this.element.data("disabled", false);
         this.element.parent().removeClass("disabled");
+    },
+
+    changeAttribute: function(attributeName){
+
     }
 };
 

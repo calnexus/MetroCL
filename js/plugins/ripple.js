@@ -77,6 +77,10 @@ var Ripple = {
                 $(".ripple").remove();
             }, 400);
         });
+    },
+
+    changeAttribute: function(attributeName){
+
     }
 };
 

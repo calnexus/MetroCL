@@ -51,6 +51,20 @@ var Metro = {
         };
         observerCallback = function(mutations){
             mutations.map(function(mutation){
+
+                if (mutation.type === 'attributes') {
+                    var element = $(mutation.target);
+                    if (element.data('metroComponent') !== undefined) {
+
+                        var plug = element.data(element.data('metroComponent'));
+                        plug.changeAttribute(mutation.attributeName);
+
+                        // console.log(element);
+                        // console.log(element.data('metroComponent'));
+                        // console.log(mutation.attributeName);
+                    }
+                }
+
                 if (mutation.addedNodes && mutation.addedNodes.length > 0) {
                     var i, obj, widgets = {}, plugins = {};
 
@@ -134,6 +148,7 @@ var Metro = {
                         }
                         $.fn[func].call($this);
                         $this.data(func + '-initiated', true);
+                        $this.data('metroComponent', func);
                     }
                 } catch (e) {
                     console.log(e.message, e.stack);
@@ -1612,6 +1627,10 @@ var Checkbox = {
     enable: function(){
         this.element.data("disabled", false);
         this.element.parent().removeClass("disabled");
+    },
+
+    changeAttribute: function(attributeName){
+
     }
 };
 
@@ -1722,6 +1741,10 @@ var Clock = {
         }
 
         element.html(result);
+    },
+
+    changeAttribute: function(attributeName){
+
     }
 };
 
@@ -1851,6 +1874,10 @@ var Dropdown = {
 
     open: function(){
         this._open(this.element);
+    },
+
+    changeAttribute: function(attributeName){
+
     }
 };
 
@@ -1936,7 +1963,7 @@ var File = {
 
         element[0].className = '';
 
-        if (o.disabled === true) {
+        if (o.disabled === true || element.is(":disabled")) {
             this.disable();
         }
     },
@@ -1949,6 +1976,10 @@ var File = {
     enable: function(){
         this.element.data("disabled", false);
         this.element.parent().removeClass("disabled");
+    },
+
+    changeAttribute: function(attributeName){
+
     }
 };
 
@@ -1999,7 +2030,7 @@ var Input = {
         var clearButton, revealButton;
 
         if (prev.length === 0) {
-            container.appendTo(parent);
+            parent.prepend(container);
         } else {
             container.insertAfter(prev);
         }
@@ -2028,19 +2059,41 @@ var Input = {
 
         element[0].className = '';
 
-        if (o.disabled === true) {
+        element.on("blur", function(){container.removeClass("focused");});
+        element.on("focus", function(){container.addClass("focused");});
+
+        if (o.disabled === true || element.is(":disabled")) {
             this.disable();
+        } else {
+            this.enable();
         }
     },
 
     disable: function(){
+        //this.element.attr("disabled", true);
         this.element.data("disabled", true);
         this.element.parent().addClass("disabled");
     },
 
     enable: function(){
+        //this.element.attr("disabled", false);
         this.element.data("disabled", false);
         this.element.parent().removeClass("disabled");
+    },
+
+    toggleState: function(){
+        if (this.element.data("disabled") === false) {
+            this.disable();
+        } else {
+            this.enable();
+        }
+    },
+
+    changeAttribute: function(attributeName){
+        console.log(attributeName);
+        switch (attributeName) {
+            case 'disabled': this.toggleState(); break;
+        }
     }
 };
 
@@ -2118,6 +2171,10 @@ var Radio = {
     enable: function(){
         this.element.data("disabled", false);
         this.element.parent().removeClass("disabled");
+    },
+
+    changeAttribute: function(attributeName){
+
     }
 };
 
@@ -2202,6 +2259,10 @@ var Ripple = {
                 $(".ripple").remove();
             }, 400);
         });
+    },
+
+    changeAttribute: function(attributeName){
+
     }
 };
 
@@ -2291,10 +2352,11 @@ var Select = {
             container.on("click", function(e){
                 e.preventDefault();
                 e.stopPropagation();
-                //input.trigger("click");
             });
+
             input.on("blur", function(){container.removeClass("focused");});
             input.on("focus", function(){container.addClass("focused");});
+
             container.append(input);
             container.append(list);
             list.dropdown({
@@ -2302,7 +2364,7 @@ var Select = {
             });
         }
 
-        if (o.disabled === true && element.is(':disabled')) {
+        if (o.disabled === true || element.is(':disabled')) {
             this.disable();
         }
     },
@@ -2315,6 +2377,10 @@ var Select = {
     enable: function(){
         this.element.data("disabled", false);
         this.element.parent().removeClass("disabled");
+    },
+
+    changeAttribute: function(attributeName){
+
     }
 };
 
@@ -2392,6 +2458,10 @@ var Switch = {
     enable: function(){
         this.element.data("disabled", false);
         this.element.parent().removeClass("disabled");
+    },
+
+    changeAttribute: function(attributeName){
+
     }
 };
 
@@ -2476,7 +2546,10 @@ var Textarea = {
 
         element[0].className = '';
 
-        if (o.disabled === true && element.is(':disabled')) {
+        element.on("blur", function(){container.removeClass("focused");});
+        element.on("focus", function(){container.addClass("focused");});
+
+        if (o.disabled === true || element.is(':disabled')) {
             this.disable();
         }
     },
@@ -2489,6 +2562,10 @@ var Textarea = {
     enable: function(){
         this.element.data("disabled", false);
         this.element.parent().removeClass("disabled");
+    },
+
+    changeAttribute: function(attributeName){
+
     }
 };
 

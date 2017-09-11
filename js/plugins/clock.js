@@ -103,6 +103,10 @@ var Clock = {
         }
 
         element.html(result);
+    },
+
+    changeAttribute: function(attributeName){
+
     }
 };
 

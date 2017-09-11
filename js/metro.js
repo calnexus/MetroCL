@@ -33,6 +33,20 @@ var Metro = {
         };
         observerCallback = function(mutations){
             mutations.map(function(mutation){
+
+                if (mutation.type === 'attributes') {
+                    var element = $(mutation.target);
+                    if (element.data('metroComponent') !== undefined) {
+
+                        var plug = element.data(element.data('metroComponent'));
+                        plug.changeAttribute(mutation.attributeName);
+
+                        // console.log(element);
+                        // console.log(element.data('metroComponent'));
+                        // console.log(mutation.attributeName);
+                    }
+                }
+
                 if (mutation.addedNodes && mutation.addedNodes.length > 0) {
                     var i, obj, widgets = {}, plugins = {};
 
@@ -116,6 +130,7 @@ var Metro = {
                         }
                         $.fn[func].call($this);
                         $this.data(func + '-initiated', true);
+                        $this.data('metroComponent', func);
                     }
                 } catch (e) {
                     console.log(e.message, e.stack);
