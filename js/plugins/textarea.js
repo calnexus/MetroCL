@@ -39,7 +39,7 @@ var Textarea = {
         var container = $("<div>").addClass("textarea " + element[0].className);
 
         if (prev.length === 0) {
-            container.appendTo(parent);
+            parent.prepend(container);
         } else {
             container.insertAfter(prev);
         }

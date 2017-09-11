@@ -44,7 +44,7 @@ var Select = {
         container.attr("id", select_id).addClass("dropdown-toggle");
 
         if (prev.length === 0) {
-            container.appendTo(parent);
+            parent.prepend(container);
         } else {
             container.insertAfter(prev);
         }

@@ -41,7 +41,7 @@ var Switch = {
         var caption = $("<span>").addClass("caption").html(o.caption);
 
         if (prev.length === 0) {
-            container.appendTo(parent);
+            parent.prepend(container);
         } else {
             container.insertAfter(prev);
         }

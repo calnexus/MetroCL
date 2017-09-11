@@ -1599,7 +1599,7 @@ var Checkbox = {
         element.appendTo(container);
 
         if (prev.length === 0) {
-            container.appendTo(parent);
+            parent.prepend(container);
         } else {
             container.insertAfter(prev);
         }
@@ -1934,7 +1934,7 @@ var File = {
         var button;
 
         if (prev.length === 0) {
-            container.appendTo(parent);
+            parent.prepend(container);
         } else {
             container.insertAfter(prev);
         }
@@ -2142,7 +2142,7 @@ var Radio = {
         var caption = $("<span>").addClass("caption").html(o.caption);
 
         if (prev.length === 0) {
-            container.appendTo(parent);
+            parent.prepend(container);
         } else {
             container.insertAfter(prev);
         }
@@ -2314,7 +2314,7 @@ var Select = {
         container.attr("id", select_id).addClass("dropdown-toggle");
 
         if (prev.length === 0) {
-            container.appendTo(parent);
+            parent.prepend(container);
         } else {
             container.insertAfter(prev);
         }
@@ -2429,7 +2429,7 @@ var Switch = {
         var caption = $("<span>").addClass("caption").html(o.caption);
 
         if (prev.length === 0) {
-            container.appendTo(parent);
+            parent.prepend(container);
         } else {
             container.insertAfter(prev);
         }
@@ -2508,7 +2508,7 @@ var Textarea = {
         var container = $("<div>").addClass("textarea " + element[0].className);
 
         if (prev.length === 0) {
-            container.appendTo(parent);
+            parent.prepend(container);
         } else {
             container.insertAfter(prev);
         }

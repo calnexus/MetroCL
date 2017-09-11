@@ -40,7 +40,7 @@ var File = {
         var button;
 
         if (prev.length === 0) {
-            container.appendTo(parent);
+            parent.prepend(container);
         } else {
             container.insertAfter(prev);
         }
