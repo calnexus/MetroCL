@@ -220,7 +220,8 @@ img {
 /* transform functions */
 .clear::after,
 .clear-float::after,
-.clear-fix::after {
+.clear-fix::after,
+.clearfix::after {
   display: block;
   clear: both;
   content: "";
