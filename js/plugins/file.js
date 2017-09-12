@@ -94,9 +94,18 @@ var File = {
         }
     },
 
+    toggleDir: function(){
+        if (this.element.attr("dir") === 'rtl') {
+            this.element.parent().addClass("rtl");
+        } else {
+            this.element.parent().removeClass("rtl");
+        }
+    },
+
     changeAttribute: function(attributeName){
         switch (attributeName) {
             case 'disabled': this.toggleState(); break;
+            case 'dir': this.toggleDir(); break;
         }
     }
 };

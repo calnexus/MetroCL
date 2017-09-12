@@ -23,4 +23,5 @@ input[dir=rtl] {
 .file.rtl button {
   -ms-flex-order: 1;
       order: 1;
+  margin-right: auto;
 }
