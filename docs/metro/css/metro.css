@@ -3130,6 +3130,39 @@ code.yellow {
 .pagination.yellow .page-item:hover {
   color: #1d1d1d;
 }
+.remark.primary {
+  border-left: 4px solid #0050ef;
+}
+.remark.secondary {
+  border-left: 4px solid #607d8b;
+}
+.remark.success {
+  border-left: 4px solid #60a917;
+}
+.remark.alert {
+  border-left: 4px solid #CE352C;
+}
+.remark.warning {
+  border-left: 4px solid #ff852e;
+}
+.remark.yellow {
+  border-left: 4px solid #ffe484;
+}
+.remark.info {
+  border-left: 4px solid #47b4e9;
+}
+.remark.dark {
+  border-left: 4px solid #505050;
+}
+.remark.light {
+  border-left: 4px solid #f8f8f8;
+}
+.remark.brand1 {
+  border-left: 4px solid #2ac4f4;
+}
+.remark.brand2 {
+  border-left: 4px solid #004d6f;
+}
 input[type=text].primary,
 input[type=password].primary,
 input[type=tel].primary,
@@ -4450,6 +4483,15 @@ pre code {
 .dropdown-toggle.active-toggle:before {
   transform: rotate(135deg);
   transition: all 0.15s ease-in-out;
+}
+.remark {
+  display: block;
+  position: relative;
+  border: 1px solid #dfdfdf;
+  border-left: 4px solid #dfdfdf;
+  padding: 1rem;
+  font-size: 0.875rem;
+  margin: 1rem 0;
 }
 @media screen and (max-width: 576px) {
   .text-upper-sm {
@@ -9003,6 +9045,30 @@ fieldset.disabled,
 .textarea.disabled .button-group,
 .select.disabled .button-group {
   display: none;
+}
+.invalid_feedback {
+  font-size: .9em;
+  color: #CE352C;
+}
+.custom-validation input[required]:valid,
+.custom-validation select[required]:valid,
+.custom-validation textarea[required]:valid {
+  border-color: #60a917;
+}
+.custom-validation input[required]:valid + .invalid_feedback,
+.custom-validation select[required]:valid + .invalid_feedback,
+.custom-validation textarea[required]:valid + .invalid_feedback {
+  display: none;
+}
+.custom-validation input[required]:invalid,
+.custom-validation select[required]:invalid,
+.custom-validation textarea[required]:invalid {
+  border-color: #CE352C;
+}
+.custom-validation input[required]:invalid + .invalid_feedback,
+.custom-validation select[required]:invalid + .invalid_feedback,
+.custom-validation textarea[required]:invalid + .invalid_feedback {
+  display: block;
 }
 .drop-menu {
   position: absolute;

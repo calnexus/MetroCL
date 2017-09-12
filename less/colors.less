@@ -55,6 +55,20 @@
     }
 }
 
+.remark {
+    .generate-accent-colors(@buttonPredefinedTypesLength);
+    .generate-accent-colors(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
+        @name: extract(@buttonPredefinedTypes, @i);
+        @color: "@{name}Color";
+
+        &.@{name} {
+            border-left: 4px solid @@color;
+        }
+
+        .generate-accent-colors(@name, @i + 1);
+    }
+}
+
 input[type=text],
 input[type=password],
 input[type=tel],

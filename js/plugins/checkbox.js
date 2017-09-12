@@ -75,8 +75,18 @@ var Checkbox = {
         this.element.parent().removeClass("disabled");
     },
 
-    changeAttribute: function(attributeName){
+    toggleState: function(){
+        if (this.element.data("disabled") === false) {
+            this.disable();
+        } else {
+            this.enable();
+        }
+    },
 
+    changeAttribute: function(attributeName){
+        switch (attributeName) {
+            case 'disabled': this.toggleState(); break;
+        }
     }
 };
 

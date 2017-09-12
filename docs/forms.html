@@ -71,11 +71,11 @@
                     <li class="toc-entry"><a href="#_accent_colors">Accent colors</a></li>
                     <li class="toc-entry"><a href="#_disabled_forms">Disabled forms</a></li>
                     <li class="toc-entry">
-                        <a href="#_validator">Validation</a>
+                        <a href="#_validation">Validation</a>
                         <ul>
-                            <li class="toc-entry"><a href="#_overview">How it works</a></li>
-                            <li class="toc-entry"><a href="#_overview">Browser defaults</a></li>
-                            <li class="toc-entry"><a href="#_overview">Use the plugin, Luke!</a></li>
+                            <li class="toc-entry"><a href="#_validation_how">How it works</a></li>
+                            <li class="toc-entry"><a href="#_validation_browser">Browser defaults</a></li>
+                            <li class="toc-entry"><a href="#_validation_plugin">Use the power, Luke!</a></li>
                         </ul>
                     </li>
                     <li class="toc-entry"><a href="#_forms_rtl">Rtl support</a></li>
@@ -320,7 +320,35 @@
                 </code></pre>
                 <p>
                     Additional functionality for input is implemented through the plugin <code>checkbox</code>.
+                    To activate plugin and additional options add the attribute <code>data-role="checkbox"</code> to element.
                 </p>
+                <p class="text-bold">Additional options:</p>
+                <table class="table table-border cell-border compact mb-4">
+                    <thead>
+                    <tr>
+                        <td>data-*</td>
+                        <td>default</td>
+                        <td>description</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>data-caption</td>
+                        <td>empty</td>
+                        <td>Caption for checkbox</td>
+                    </tr>
+                    <tr>
+                        <td>data-caption-position</td>
+                        <td>right</td>
+                        <td>Caption position: right or left</td>
+                    </tr>
+                    <tr>
+                        <td>data-on-create</td>
+                        <td>$.noop()</td>
+                        <td>Callback triggered when control created</td>
+                    </tr>
+                    </tbody>
+                </table>
 
                 <h4 id="_radio">Radio</h4>
                 <div class="example mb-2">
@@ -339,7 +367,35 @@
                 </code></pre>
                 <p>
                     Additional functionality for input is implemented through the plugin <code>radio</code>.
+                    To activate plugin and additional options add the attribute <code>data-role="radio"</code> to element.
                 </p>
+                <p class="text-bold">Additional options:</p>
+                <table class="table table-border cell-border compact mb-4">
+                    <thead>
+                    <tr>
+                        <td>data-*</td>
+                        <td>default</td>
+                        <td>description</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>data-caption</td>
+                        <td>empty</td>
+                        <td>Caption for radio</td>
+                    </tr>
+                    <tr>
+                        <td>data-caption-position</td>
+                        <td>right</td>
+                        <td>Caption position: right or left</td>
+                    </tr>
+                    <tr>
+                        <td>data-on-create</td>
+                        <td>$.noop()</td>
+                        <td>Callback triggered when control created</td>
+                    </tr>
+                    </tbody>
+                </table>
 
                 <h4 id="_switch">Switch</h4>
                 <div class="example">
@@ -358,7 +414,35 @@
                 </code></pre>
                 <p>
                     Additional functionality for input is implemented through the plugin <code>switch</code>.
+                    To activate plugin and additional options add the attribute <code>data-role="switch"</code> to element.
                 </p>
+                <p class="text-bold">Additional options:</p>
+                <table class="table table-border cell-border compact mb-4">
+                    <thead>
+                    <tr>
+                        <td>data-*</td>
+                        <td>default</td>
+                        <td>description</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>data-caption</td>
+                        <td>empty</td>
+                        <td>Caption for switch</td>
+                    </tr>
+                    <tr>
+                        <td>data-caption-position</td>
+                        <td>right</td>
+                        <td>Caption position: right or left</td>
+                    </tr>
+                    <tr>
+                        <td>data-on-create</td>
+                        <td>$.noop()</td>
+                        <td>Callback triggered when control created</td>
+                    </tr>
+                    </tbody>
+                </table>
 
                 <h4 id="_file">File browser</h4>
                 <div class="example">
@@ -374,7 +458,30 @@
                 </code></pre>
                 <p>
                     Additional functionality for input is implemented through the plugin <code>file</code>.
+                    To activate plugin and additional options add the attribute <code>data-role="file"</code> to element.
                 </p>
+                <p class="text-bold">Additional options:</p>
+                <table class="table table-border cell-border compact mb-4">
+                    <thead>
+                    <tr>
+                        <td>data-*</td>
+                        <td>default</td>
+                        <td>description</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>data-caption</td>
+                        <td>Choose file</td>
+                        <td>Caption for element button</td>
+                    </tr>
+                    <tr>
+                        <td>data-on-create</td>
+                        <td>$.noop()</td>
+                        <td>Callback triggered when control created</td>
+                    </tr>
+                    </tbody>
+                </table>
 
                 <h4 id="_form_buttons">Form buttons</h4>
                 <div class="example">
@@ -645,6 +752,109 @@
                         }
                     &lt;/script&gt;
                 </code></pre>
+
+                <h3 id="_validation">Validation form</h3>
+                <p>
+                    If you use default form elements (without defining <code>data-role</code>), you can provide valuable, actionable feedback to your users with HTML5 form validation–available in all our supported browsers.
+                    Choose from the browser default validation feedback, or implement custom messages with our built-in classes and starter JavaScript.
+                </p>
+
+                <p class="remark warning">
+                    We <strong>highly recommended</strong> <a href="validator.html">Metro 4 Validator</a> plugin or other third-party plugins for validating form.
+                </p>
+
+                <h4 id="_validation_how">How it works</h4>
+                <p>
+                    Here’s how default form validation works with Metro 4:
+                </p>
+                <ul>
+                    <li>HTML form validation is applied via CSS’s two pseudo-classes, <code>:invalid</code> and <code>:valid</code>. It applies to <code>&lt;input&gt;</code>, <code>&lt;select&gt;</code>, and <code>&lt;textarea&gt;</code> elements.</li>
+                    <li>Add <code>.custom-validation</code> class to form</li>
+                    <li>Add <code>require</code> attribute to element</li>
+                    <li>To invalid feedback add text element after input (select, textarea) with class <code>.invalid-feedback</code></li>
+                    <li>Add <code>novalidate</code> attribute to form</li>
+                </ul>
+                <div class="example">
+                    <form class="custom-validation need-validation" novalidate>
+                        <div class="row mb-3">
+                            <div class="cell-md-6">
+                                <label>First name</label>
+                                <input type="text" required value="Billy">
+                            </div>
+                            <div class="cell-md-6">
+                                <label>Last name</label>
+                                <input type="text" required value="Gates">
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="cell-md-6">
+                                <label>City</label>
+                                <input type="text" required placeholder="City">
+                                <div class="invalid_feedback">Please provide a valid city.</div>
+                            </div>
+                            <div class="cell-md-3">
+                                <label>State</label>
+                                <input type="text" required placeholder="State">
+                                <div class="invalid_feedback">Please provide a valid state.</div>
+                            </div>
+                            <div class="cell-md-3">
+                                <label>Zip</label>
+                                <input type="text" required placeholder="Zip">
+                                <div class="invalid_feedback">Please provide a valid zip.</div>
+                            </div>
+                        </div>
+                        <hr>
+                        <button class="button primary">Submit form</button>
+                    </form>
+                </div>
+
+
+                <h4 id="_validation_browser">Browser defaults</h4>
+                <p>
+                    Not interested in custom validation feedback messages or writing JavaScript to change form behaviors?
+                    All good, you can use the browser defaults. Try submitting the form below.
+                    Depending on your browser and OS, you’ll see a slightly different style of feedback.
+                </p>
+                <p>
+                    While these feedback styles cannot be styled with CSS, you can still customize the feedback text through JavaScript.
+                </p>
+                <div class="example">
+                    <form class="need-validation">
+                        <div class="row mb-3">
+                            <div class="cell-md-6">
+                                <label>First name</label>
+                                <input type="text" required value="Billy">
+                            </div>
+                            <div class="cell-md-6">
+                                <label>Last name</label>
+                                <input type="text" required value="Gates">
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="cell-md-6">
+                                <label>City</label>
+                                <input type="text" required placeholder="City">
+                            </div>
+                            <div class="cell-md-3">
+                                <label>State</label>
+                                <input type="text" required placeholder="State">
+                            </div>
+                            <div class="cell-md-3">
+                                <label>Zip</label>
+                                <input type="text" required placeholder="Zip">
+                            </div>
+                        </div>
+                        <hr>
+                        <button class="button primary">Submit form</button>
+                    </form>
+                </div>
+
+                <h4 id="_validation_plugin">Use the power, Luke!</h4>
+                <p>
+                    To better support form validation, use the plugin <a href="validator.html">Metro 4 Validator</a>.
+                    This plugin provides more functionality to validating form with special validation funcs include custom functions and patterns.
+                </p>
+
 
                 <h3 id="_forms_rtl">Rtl support</h3>
                 <p>

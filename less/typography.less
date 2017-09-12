@@ -457,6 +457,16 @@ pre code {
     }
 }
 
+.remark {
+    display: block;
+    position: relative;
+    border: 1px solid @borderColor;
+    border-left: 4px solid @borderColor;
+    padding: 1rem;
+    .px2rem(font-size, 14px);
+    margin: 1rem 0;
+}
+
 .generate-text-media-options(@mediaBreakpointListMobileLength);
 .generate-text-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
     @m: extract(@mediaBreakpointListMobile, @i);

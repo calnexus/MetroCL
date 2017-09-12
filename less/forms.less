@@ -512,3 +512,30 @@ form, fieldset, .form-group {
         }
     }
 }
+
+.invalid_feedback {
+    font-size: .9em;
+    color: @red;
+}
+
+.custom-validation {
+    input[required],
+    select[required],
+    textarea[required] {
+        &:valid {
+            border-color: @green;
+        }
+
+        &:valid + .invalid_feedback {
+            display: none;
+        }
+
+        &:invalid {
+            border-color: @red;
+        }
+
+        &:invalid + .invalid_feedback {
+            display: block;
+        }
+    }
+}
