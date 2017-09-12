@@ -10,7 +10,7 @@
     vertical-align: middle;
     background-color: @transparent;
     transition: @transition-base;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .img-thumbnail {
@@ -26,6 +26,7 @@
         width: 100%;
         max-width: 100%;
         height: auto;
+        position: relative;
     }
 
     .overlay {
@@ -38,12 +39,16 @@
         overflow: hidden;
         font-size: .875rem;
         line-height: 1rem;
-        padding: 1em 1.5em;
+        padding: 2em;
         background-color: rgba(red(@cyan), green(@cyan), blue(@cyan), .7);
         color: @white;
         text-align: center;
         border-radius: inherit;
         transition: @transition-base;
+
+        * {
+            color: @white;
+        }
 
         &:hover {
             opacity: 1;
@@ -84,6 +89,12 @@
         }
     }
 
+    &.rounded {
+        img {
+            border-radius: @borderRadius;
+        }
+    }
+
     &.thumbnail {
         padding: .25rem;
         border: 1px solid @borderColor;
@@ -106,9 +117,10 @@
     }
 
     &.handing {
-        border: 1px dotted red;
-        display: inline-block;
         .px2rem(margin-top, 20px);
+        border: 1px solid @borderColor;
+        background: @white;
+        padding: .5rem;
         z-index: 1;
 
         &:after {
@@ -129,7 +141,7 @@
             position: absolute;
             content: "";
             background-color: transparent;
-            border: 1px solid @lightGray;
+            border-top: 1px solid @borderColor;
             transform: rotate(16deg);
             z-index: 2;
             top: 0;
@@ -137,6 +149,24 @@
             width: 50%;
             height: 50%;
             transform-origin: top right;
+        }
+
+        .pin {
+            position: absolute;
+            width: .625rem;
+            height: .625rem;
+            background-color: @steel;
+            border-radius: 50%;
+            .px2rem(top, -30px);
+            left: 50%;
+            margin-left: -.3125rem;
+            z-index: 3;
+            box-shadow: 2px 2px 5px 0 rgba(0,0,0,0.4);
+        }
+
+        &.animated {
+            transform-origin: 50% -25px;
+            animation: swinging 10s ease-in-out 0s infinite;
         }
     }
 

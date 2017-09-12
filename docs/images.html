@@ -19,7 +19,7 @@
     <meta property="og:image:secure_url" content="https://metroui.org.ua/images/logo4.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="540">
-    <meta property="og:image:height" content="300">
+    <meta property="og:image:height" content="220">
 
     <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
     <meta name="author" content="Sergey Pimenov">
@@ -45,12 +45,9 @@
                 <hr/>
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Images</a></li>
-                    <li class="toc-entry">
-                        <a href="#_img_container">Image container</a>
-                        <ul>
-                            <li class="toc-entry"><a href="#_image_helpers">Helpers</a></li>
-                        </ul>
-                    </li>
+                    <li class="toc-entry"><a href="#_image_container">Image container</a></li>
+                    <li class="toc-entry"><a href="#_image_helpers">Helpers</a></li>
+                    <li class="toc-entry"><a href="#_image_overlay">Overlay</a></li>
                 </ul>
             </div>
 
@@ -64,10 +61,10 @@
                     Metro 4 contains special classes for displaying images. All lightweight images styles apply to images through classes and special wrappers.
                 </p>
 
-                <h3 id="_img_container">Image container</h3>
+                <h3 id="_image_container">Image container</h3>
                 <p>
                     All styles to image apply if image places in the block with class <code>.img-container</code>.
-                    This container is fluid and are made responsive with <code>.img-fluid</code>, <code>max-width: 100%</code> and <code>height: auto</code>
+                    This container is fluid and are made responsive with <code>max-width: 100%</code> and <code>height: auto</code>
                     are applied to the image so that it scales with the parent element.
                 </p>
 
@@ -82,19 +79,13 @@
                     &lt;/div&gt;
                 </code></pre>
 
-                <h4 id="_image_helpers">Image container helpers</h4>
+                <h3 id="_image_helpers">Image container helpers</h3>
                 <p>
                     With image container you can use special subclasses to extend visual style for images.
                 </p>
 
                 <div class="example">
                     <div class="row mb-2">
-                        <div class="cell-md-3">
-                            <span class="text-bold text-small">default</span>
-                            <div class="img-container">
-                                <img data-src="holder.js/100px100">
-                            </div>
-                        </div>
                         <div class="cell-md-3">
                             <span class="text-bold text-small">.rounded</span>
                             <div class="img-container rounded">
@@ -113,6 +104,12 @@
                                 <img data-src="holder.js/100px100">
                             </div>
                         </div>
+                        <div class="cell-md-3">
+                            <span class="text-bold text-small">.selected</span>
+                            <div class="img-container selected">
+                                <img data-src="holder.js/100px100">
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row">
@@ -123,26 +120,129 @@
                             </div>
                         </div>
                         <div class="cell-md-3">
-                            <span class="text-bold text-small">.polaroid</span>
+                            <span class="text-bold text-small">.polaroid with title</span>
                             <div class="img-container polaroid">
                                 <img data-src="holder.js/100px100">
                                 <span class="title">Image title. Raptus parss ducunt ad devirginato.</span>
                             </div>
                         </div>
                         <div class="cell-md-3">
-                            <span class="text-bold text-small">.handing</span>
-                            <div class="img-container handing">
+                            <span class="text-bold text-small">.handing.animated</span>
+                            <div class="img-container handing animated">
                                 <img data-src="holder.js/100px100">
+                                <span class="pin"></span>
                             </div>
                         </div>
                         <div class="cell-md-3">
-                            <span class="text-bold text-small">.selected</span>
-                            <div class="img-container selected">
+                            <span class="text-bold text-small">.handing</span>
+                            <div class="img-container handing">
                                 <img data-src="holder.js/100px100">
+                                <span class="pin"></span>
                             </div>
                         </div>
                     </div>
                 </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;div class="img-container rounded"&gt;
+                        &lt;img data-src="holder.js/100px100"&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class="img-container drop-shadow"&gt;
+                        &lt;img data-src="holder.js/100px100"&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class="img-container thumbnail"&gt;
+                        &lt;img data-src="holder.js/100px100"&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class="img-container polaroid"&gt;
+                        &lt;img data-src="holder.js/100px100"&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class="img-container polaroid"&gt;
+                        &lt;img data-src="holder.js/100px100"&gt;
+                        &lt;span class="title"&gt;Image title.&lt;/span&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class="img-container handing"&gt;
+                        &lt;img data-src="holder.js/100px100"&gt;
+                        &lt;span class="pin"&gt;&lt;/span&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class="img-container handing animated"&gt;
+                        &lt;img data-src="holder.js/100px100"&gt;
+                        &lt;span class="pin"&gt;&lt;/span&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class="img-container selected"&gt;
+                        &lt;img data-src="holder.js/100px100"&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_image_overlay">Overlay</h3>
+                <p>
+                    With Metro 4 you can create image with overlay and this simple and easy.
+                </p>
+                <div class="example">
+                    <div class="img-container overlay">
+                        <img data-src="holder.js/100px250">
+                        <div class="overlay">
+                            <h2 class="text-light">Image title</h2>
+                            <p>
+                                Ubi est noster nix? An unveiled form of issue is the awareness. Slice nine celeries, pork shoulder, and rosemary in a large pan over medium heat, cook for fifteen minutes and soak with some herring.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;div class="img-container overlay"&gt;
+                        &lt;img data-src="holder.js/100px250"&gt;
+                        &lt;div class="overlay"&gt;
+                            &lt;h2 class="text-light"&gt;Image title&lt;/h2&gt;
+                            &lt;p&gt;
+                                Ubi est noster nix? An unveiled form of issue is the awareness.
+                            &lt;/p&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+                <p>
+                    You can change overlay background color with additional color classes <code>.op-*</code>. Colors are defined in <code>metro-colors.css</code>.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-3">
+                            <div class="img-container overlay">
+                                <img data-src="holder.js/100px100">
+                                <div class="overlay op-amber"></div>
+                            </div>
+                        </div>
+                        <div class="cell-md-3">
+                            <div class="img-container overlay">
+                                <img data-src="holder.js/100px100">
+                                <div class="overlay op-green"></div>
+                            </div>
+                        </div>
+                        <div class="cell-md-3">
+                            <div class="img-container overlay">
+                                <img data-src="holder.js/100px100">
+                                <div class="overlay op-dark"></div>
+                            </div>
+                        </div>
+                        <div class="cell-md-3">
+                            <div class="img-container overlay">
+                                <img data-src="holder.js/100px100">
+                                <div class="overlay op-red"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;div class="img-container overlay"&gt;
+                        &lt;img src="..."&gt;
+                        &lt;div class="overlay op-amber"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
             </main>
         </div>
 
