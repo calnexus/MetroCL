@@ -54,6 +54,71 @@
                 </div>
 
                 <h1>Figures</h1>
+                <p class="text-leader">
+                    Documentation and examples for displaying related images and text with the figure component in Metro 4.
+                </p>
+                <p>
+                    Anytime you need to display a piece of content—like an image with an optional caption, consider using a <code>&lt;figure&gt;</code>.
+                </p>
+                <p>
+                    Use the included <code>.figure</code>, <code>.image</code> and <code>.caption</code> classes to provide some baseline styles
+                    for the HTML5 <code>&lt;figure&gt;</code> and <code>&lt;figcaption&gt;</code> elements.
+                    Images in figures are fluid and are made responsive with <code>max-width: 100%</code> and <code>height: auto</code>.
+                </p>
+
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-4">
+                        </div>
+                        <div class="cell-md-4">
+                            <figure>
+                                <img data-src="holder.js/100px250">
+                                <figcaption>A caption</figcaption>
+                            </figure>
+                        </div>
+                        <div class="cell-md-4">
+                        </div>
+                    </div>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;figure&gt;
+                        &lt;img data-src="holder.js/400x300"&gt;
+                        &lt;figcaption&gt;A caption for the above image&lt;/figcaption&gt;
+                    &lt;/figure&gt;
+                </code></pre>
+
+                <p>
+                    Aligning the figure’s caption is easy with our <a href="typography.html#_text_alignment">text alignment classes</a>.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-4">
+                            <figure>
+                                <img data-src="holder.js/100px250">
+                                <figcaption class="text-left">A caption</figcaption>
+                            </figure>
+                        </div>
+                        <div class="cell-md-4">
+                            <figure>
+                                <img data-src="holder.js/100px250">
+                                <figcaption class="text-center">A caption</figcaption>
+                            </figure>
+                        </div>
+                        <div class="cell-md-4">
+                            <figure>
+                                <img data-src="holder.js/100px250">
+                                <figcaption class="text-right">A caption</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;figure&gt;
+                        &lt;img data-src="holder.js/400x300"&gt;
+                        &lt;figcaption class="text-right"&gt;A caption for the above image&lt;/figcaption&gt;
+                    &lt;/figure&gt;
+                </code></pre>
+
             </main>
         </div>
 
@@ -62,6 +127,7 @@
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="metro/js/metro.min.js"></script>
     <script src="js/pre-code.js"></script>
+    <script src="js/holder.min.js"></script>
     <script src="prettify/run_prettify.js"></script>
     <script src="js/site.js"></script>
 </body>

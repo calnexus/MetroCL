@@ -8,6 +8,7 @@
 .set-flex {
   display: flex;
 }
+/* transform functions */
 .demo-grid [class^=cell] {
   padding-top: 12px;
   padding-bottom: 12px;
@@ -178,7 +179,7 @@ pre {
   font-weight: bold;
 }
 .example {
-  padding: 1rem;
+  padding: .125rem;
   border: 2px solid #eee;
 }
 .example + pre {
@@ -229,6 +230,9 @@ footer p a {
 @media screen and (min-width: 768px) {
   #sidenav {
     display: block;
+  }
+  .example {
+    padding: 1rem;
   }
 }
 @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {

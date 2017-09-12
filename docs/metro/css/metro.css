@@ -9365,6 +9365,19 @@ fieldset.disabled,
   background-size: cover;
   background: no-repeat 100% 100%;
 }
+figure {
+  margin: 0 0 1rem;
+}
+figure img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  position: relative;
+  vertical-align: middle;
+  background-color: transparent;
+  transition: all 0.3s ease-in-out;
+}
 .video-container {
   position: relative;
   padding-bottom: 56.25%;
