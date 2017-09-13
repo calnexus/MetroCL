@@ -10442,9 +10442,7 @@ figure img {
 }
 .ani-spanner,
 .ani-hover-spanner:hover {
-  transform-origin-x: 90%;
-  transform-origin-y: 35%;
-  transform-origin-z: initial;
+  transform-origin: 90% 35%;
   animation: ani-wrench 2.5s ease infinite;
 }
 .ani-spanner.ani-fast,
@@ -10457,9 +10455,7 @@ figure img {
 }
 .ani-ring,
 .ani-hover-ring:hover {
-  transform-origin-x: 50%;
-  transform-origin-y: 0px;
-  transform-origin-z: initial;
+  transform-origin: 50% 0;
   animation: ani-ring 2s ease infinite;
 }
 .ani-ring.ani-fast,
@@ -15769,19 +15765,19 @@ input[dir=rtl] {
   vertical-align: middle;
 }
 .mif-lg {
-  transform: scale(1.2);
+  font-size: 1.2em;
 }
 .mif-2x {
-  transform: scale(1.5);
+  font-size: 1.5em;
 }
 .mif-3x {
-  transform: scale(2);
+  font-size: 2em;
 }
 .mif-4x {
-  transform: scale(2.5);
+  font-size: 2.5em;
 }
 .mif-5x {
-  transform: scale(3);
+  font-size: 3em;
 }
 .mif-unlink:before {
   content: "\f127";

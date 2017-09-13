@@ -284,3 +284,43 @@ footer p a {
   height: 2rem;
   width: 4rem;
 }
+.icon-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.icon-list li {
+  width: 100%;
+  font-size: .8em;
+  color: #9e9e9e;
+  padding: .5rem 1rem;
+  cursor: pointer;
+}
+.icon-list li:hover {
+  background-color: #1ba1e2;
+  color: #ffffff;
+}
+.icon-list li:hover [class*=mif-] {
+  color: #ffffff;
+}
+.icon-list [class*=mif-] {
+  font-size: 2em !important;
+  width: 40px;
+  text-align: center;
+  vertical-align: middle;
+  color: #1d1d1d;
+}
+@media screen and (min-width: 576px) {
+  .icon-list li {
+    width: 50%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .icon-list li {
+    width: 33%;
+  }
+}
+@media screen and (min-width: 992px) {
+  .icon-list li {
+    width: 25%;
+  }
+}

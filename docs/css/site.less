@@ -324,3 +324,55 @@ footer {
     height: 2rem;
     width: 4rem;
 }
+
+.icon-list {
+    display: flex;
+    flex-wrap: wrap;
+
+    li {
+        width: 100%;
+        font-size: .8em;
+        color: @gray;
+        padding: .5rem 1rem;
+        cursor: pointer;
+        &:hover {
+            background-color: @cyan;
+            color: @white;
+            [class*=mif-] {
+                color: @white;
+            }
+        }
+    }
+
+    [class*=mif-] {
+        font-size: 2em !important;
+        width: 40px;
+        text-align: center;
+        vertical-align: middle;
+        color: @dark;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .icon-list {
+        li {
+            width: 50%;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .icon-list {
+        li {
+            width: 33%;
+        }
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .icon-list {
+        li {
+            width: 25%;
+        }
+    }
+}

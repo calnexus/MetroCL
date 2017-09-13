@@ -2058,7 +2058,7 @@ var Input = {
         if (o.clearButton !== false) {
             clearButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
             clearButton.on("click", function(){
-                element.val("").trigger('change').focus();
+                element.val("").trigger('change').trigger('keyup').focus();
             });
             clearButton.appendTo(buttons);
         }
