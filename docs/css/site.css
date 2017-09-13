@@ -279,3 +279,8 @@ footer p a {
     overflow-y: visible;
   }
 }
+.demo-cube {
+  display: inline-block;
+  height: 2rem;
+  width: 4rem;
+}

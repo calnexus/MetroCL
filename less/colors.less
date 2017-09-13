@@ -1,6 +1,24 @@
 @import (once) "include/vars";
 @import (once) "include/mixins";
 
+.op-default {
+    background-color: rgba(red(@cyan), green(@cyan), blue(@cyan), .7) !important;
+}
+
+.bg-transparent {
+    background-color: @transparent !important;
+}
+
+.generate-colors(@colorListLength);
+.generate-colors(@name, @i: 1) when (@i =< @colorListLength) {
+    @name: extract(@colorList, @i);
+
+    .fg-@{name} {color: @@name !important;}
+    .bg-@{name} {background-color: @@name !important;}
+
+    .generate-colors(@name, @i + 1);
+}
+
 .button, .command-button, .image-button, .shortcut, .tool-button, .split-button .split, tbody tr, tbody td, .tally, code {
     .generate-accent-colors(@buttonPredefinedTypesLength);
     .generate-accent-colors(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {

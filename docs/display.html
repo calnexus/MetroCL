@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@metroui">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Download">
+    <meta name="twitter:description" content="Download Metro 4 to get the compiled CSS and JavaScript, source code, or include it with your favorite package managers like npm, Bower, RubyGems, and more.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/logo4.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/download.html">
+    <meta property="og:title" content="Download">
+    <meta property="og:description" content="Download Metro 4 to get the compiled CSS and JavaScript, source code, or include it with your favorite package managers like npm, Bower, RubyGems, and more.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/logo4.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/logo4.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="540">
+    <meta property="og:image:height" content="220">
+
+    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="author" content="Sergey Pimenov">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css" rel="stylesheet">
+
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Display and visibility - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
+            </div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Common</a></li>
+                    <li class="toc-entry"><a href="#">Display</a></li>
+                    <li class="toc-entry"><a href="#">Visibility</a></li>
+                    <li class="toc-entry"><a href="#">Print</a></li>
+                </ul>
+            </div>
+
+            <main class="cell-12 cell-md-9 cell-xl-8 order-1 pr-sx-1 pl-sx-1 pr-md-5 pl-md-5">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>Display and Visibility</h1>
+                <p class="text-leader">
+                    Quickly and responsively toggle the display value of components and more with our display utilities. Includes support for some of the more common values, as well as some extras for controlling display when printing.
+                </p>
+
+                <h3 id="_display">Display</h3>
+                <p>
+                    The display property accepts a handful of values and we support many of them with utility classes. We purposefully don’t provide every value as a utility, so here’s what we support:
+                </p>
+                <ul>
+                    <li><code>.d-none</code></li>
+                    <li><code>.d-block</code></li>
+                    <li><code>.d-inline</code></li>
+                    <li><code>.d-inline-block</code></li>
+                    <li><code>.d-table</code></li>
+                    <li><code>.d-table-row</code></li>
+                    <li><code>.d-table-cell</code></li>
+                    <li><code>.d-flex</code></li>
+                    <li><code>.d-inline-flex</code></li>
+                </ul>
+                <p>
+                    Put them to use by applying any of the classes to an element of your choice. For example, here’s how you could use the inline, block, or inline-block utilities (the same applies to the other classes).
+                </p>
+                <div class="example pt-3 pb-3">
+                    <div class="d-inline p-2 bg-green fg-white">d-inline</div>
+                    <div class="d-inline p-2 bg-yellow fg-dark">d-inline</div>
+                    <div class="d-inline p-2 bg-red fg-white">d-inline</div>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;div class="d-inline"&gt;d-inline&lt;/div&gt;
+                    &lt;div class="d-inline"&gt;d-inline&lt;/div&gt;
+                    &lt;div class="d-inline"&gt;d-inline&lt;/div&gt;
+                </code></pre>
+                <p>
+                    Responsive variations also exist for every single utility mentioned above with specify suffix.
+                </p>
+                <ul>
+                    <li><code>.d-none-[sm | md | lg | xl | xxl]</code></li>
+                    <li><code>.d-block-[sm | md | lg | xl | xxl]</code></li>
+                    <li><code>.d-inline-[sm | md | lg | xl | xxl]</code></li>
+                    <li><code>.d-inline-block-[sm | md | lg | xl | xxl]</code></li>
+                    <li><code>.d-table-[sm | md | lg | xl | xxl]</code></li>
+                    <li><code>.d-table-row-[sm | md | lg | xl | xxl]</code></li>
+                    <li><code>.d-table-cell-[sm | md | lg | xl | xxl]</code></li>
+                    <li><code>.d-flex-[sm | md | lg | xl | xxl]</code></li>
+                    <li><code>.d-inline-flex-[sm | md | lg | xl | xxl]</code></li>
+                </ul>
+                <p class="text-small text-muted">
+                    * Remember! Responsive utilities works with <code>min-width</code> option.
+                </p>
+
+                <h3 id="_visibility">Visibility</h3>
+                <p>
+                    To change element visibility add class <code>.visible</code> or <code>.no-visible</code> to element.  Responsive variations also exist for every single utility mentioned above with specify suffix.
+                </p>
+                <ul>
+                    <li><code>.visible</code></li>
+                    <li><code>.no-visible</code></li>
+                    <li><code>.visible-[sm | md | lg | xl | xxl]</code></li>
+                    <li><code>.no-visible-[sm | md | lg | xl | xxl]</code></li>
+                </ul>
+                <p class="text-small text-muted">
+                    * Remember! Responsive utilities works with <code>min-width</code> option.
+                </p>
+
+                <h3 id="_print">Print</h3>
+                <p>
+                    Change the <code>display</code> and <code>visibility</code> value of elements when printing with our print display utilities.
+                </p>
+                <ul>
+                    <li><code>.d-none-print</code></li>
+                    <li><code>.d-block-print</code></li>
+                    <li><code>.d-inline-print</code></li>
+                    <li><code>.d-inline-block-print</code></li>
+                    <li><code>.d-table-print</code></li>
+                    <li><code>.d-table-row-print</code></li>
+                    <li><code>.d-table-cell-print</code></li>
+                    <li><code>.d-flex-print</code></li>
+                    <li><code>.d-inline-flex-print</code></li>
+                </ul>
+                <p>
+                    Display print utilities defined inside the:
+                </p>
+                <pre class="prettyprint linenums"><code>
+                    @media print {
+                    ...
+                    }
+                </code></pre>
+            </main>
+        </div>
+
+    </div>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="metro/js/metro.min.js"></script>
+    <script src="js/pre-code.js"></script>
+    <script src="prettify/run_prettify.js"></script>
+    <script src="js/site.js"></script>
+</body>
+</html>

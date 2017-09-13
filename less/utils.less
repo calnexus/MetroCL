@@ -9,21 +9,17 @@
 .place-left, .float-left {float: left !important;}
 .place-none, .float-none, .no-float {float: none !important;}
 
-.no-margin {margin: 0 !important;}
-.no-margin-right {margin-right: 0 !important;}
-.no-margin-left {margin-left: 0 !important;}
-.no-margin-top {margin-top: 0 !important;}
-.no-margin-bottom {margin-bottom: 0 !important;}
-.no-padding {padding: 0 !important;}
-.no-padding-left {padding-left: 0 !important;}
-.no-padding-right {padding-right: 0 !important;}
-.no-padding-top {padding-top: 0 !important;}
-.no-padding-bottom {padding-bottom: 0 !important;}
+.visible {visibility: visible !important;}
 .no-visible {visibility: hidden !important;}
+.overflow {overflow: auto !important;}
 .no-overflow {overflow: hidden !important;}
+.scroll {overflow: scroll !important;}
+.scroll-x {overflow-x: auto !important;}
+.scroll-y {overflow-y: auto !important;}
 .no-scroll {overflow: hidden !important;}
 .no-scroll-x {overflow-x: hidden !important;}
 .no-scroll-y {overflow-y: hidden !important;}
+.wrap {white-space: normal !important;}
 .no-wrap {white-space: nowrap !important;}
 .no-border {border: 0 !important;}
 .no-border-left {border-left: none !important;}
@@ -129,6 +125,7 @@
 .w-lgd {width: 1024px;}
 .w-xld {width: 1200px;}
 .w-xxld {width: 1440px;}
+.w-auto {width: auto!important;}
 
 .selected {
     border: 4px @lightBlue solid;
@@ -168,6 +165,18 @@
     @m: extract(@mediaBreakpointListMobile, @i);
 
     @media screen and (min-width: @@m) {
+        .visible-@{m} {visibility: visible !important;}
+        .no-visible-@{m} {visibility: hidden !important;}
+        .overflow-@{m} {overflow: auto !important;}
+        .no-overflow-@{m} {overflow: hidden !important;}
+        .scroll-@{m} {overflow: scroll !important;}
+        .scroll-x-@{m} {overflow-x: auto !important;}
+        .scroll-y-@{m} {overflow-y: auto !important;}
+        .no-scroll-@{m} {overflow: hidden !important;}
+        .no-scroll-x-@{m} {overflow-x: hidden !important;}
+        .no-scroll-y-@{m}{overflow-y: hidden !important;}
+        .wrap-@{m} {white-space: normal !important;}
+        .no-wrap-@{m} {white-space: nowrap !important;}
 
         .d-none-@{m} {display: none!important;}
         .d-block-@{m} {display: block!important;}
@@ -185,12 +194,25 @@
         .float-right-@{m} {float: right!important;}
         .float-none-@{m} {float: none!important;}
 
+        .w-auto-@{m} {width: auto!important;}
+
         .mx-auto-@{m} {
             margin-left: auto!important;
             margin-right: auto!important;
         }
 
-        .generate-media-padding(@j, @k: 1) when (@k =< @j) {
+        .p-0-@{m} {padding: 0!important;}
+        .pl-0-@{m} {padding-left: 0!important;}
+        .pr-0-@{m} {padding-right: 0!important;}
+        .pt-0-@{m} {padding-top: 0!important;}
+        .pb-0-@{m} {padding-bottom: 0!important;}
+        .m-0-@{m} {margin: 0!important;}
+        .ml-0-@{m} {margin-left: 0!important;}
+        .mr-0-@{m} {margin-right: 0!important;}
+        .mt-0-@{m} {margin-top: 0!important;}
+        .mb-0-@{m} {margin-bottom: 0!important;}
+
+        .generate-media-padding(@j, @k: 0) when (@k =< @j) {
             .p-@{m}-@{k} {padding: unit(@k * 8 / 16, rem) !important;}
             .pr-@{m}-@{k} {padding-right: unit(@k * 8 / 16, rem) !important;}
             .pl-@{m}-@{k} {padding-left: unit(@k * 8 / 16, rem) !important;}
@@ -220,4 +242,30 @@
     }
 
     .generate-utils-media-options(@name, @i + 1);
+}
+
+
+
+@media print {
+    .d-none-print {display: none!important;}
+    .d-block-print {display: block!important;}
+    .d-inline-print {display: inline!important;}
+    .d-inline-block-print {display: inline-block!important;}
+    .d-table-print {display: table!important;}
+    .d-table-row-print {display: table-row!important;}
+    .d-table-cell-print {display: table-cell!important;}
+    .d-flex-print {display: flex!important;}
+    .d-inline-flex-print {display: inline-flex!important;}
+    .visible-print {visibility: visible !important;}
+    .no-visible-print {visibility: hidden !important;}
+    .overflow-print {overflow: auto !important;}
+    .no-overflow-print {overflow: hidden !important;}
+    .scroll-print {overflow: scroll !important;}
+    .scroll-x-print {overflow-x: auto !important;}
+    .scroll-y-print {overflow-y: auto !important;}
+    .no-scroll-print {overflow: hidden !important;}
+    .no-scroll-x-print {overflow-x: hidden !important;}
+    .no-scroll-y-print {overflow-y: hidden !important;}
+    .wrap-print {white-space: normal !important;}
+    .no-wrap-print {white-space: nowrap !important;}
 }
