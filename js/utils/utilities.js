@@ -253,6 +253,14 @@ var Utils = {
 
         // other browser
         return false;
+    },
+
+    md5: function(s){
+        return hex_md5(s);
+    },
+
+    encodeURI: function(str){
+        return encodeURI(str).replace(/%5B/g, '[').replace(/%5D/g, ']');
     }
 };
 

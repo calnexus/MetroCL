@@ -10373,7 +10373,7 @@ fieldset.disabled,
   height: .625rem;
   background-color: #647687;
   border-radius: 50%;
-  top: -1.875rem;
+  top: -30px;
   left: 50%;
   margin-left: -0.3125rem;
   z-index: 3;
