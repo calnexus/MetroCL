@@ -146,7 +146,9 @@ var Metro = {
                 }
             });
         };
-    }
+    },
+
+    noop: function(){}
 };
 
 $.Metro = window.metro = Metro;

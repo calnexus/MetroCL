@@ -15,7 +15,7 @@ var Gravatar = {
         email: "",
         size: 80,
         default: "404",
-        onCreate: $.noop()
+        onCreate: function(){}
     },
 
     _setOptionsFromDOM: function(){

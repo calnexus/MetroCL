@@ -15,7 +15,7 @@ var Switch = {
         caption: "",
         captionPosition: "right",
         disabled: false,
-        onCreate: $.noop()
+        onCreate: function(){}
     },
 
     _setOptionsFromDOM: function(){

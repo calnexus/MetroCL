@@ -18,7 +18,7 @@ var Clock = {
         timeFormat: '24',
         dateFormat: 'american',
         divider: "&nbsp;&nbsp;",
-        onCreate: $.noop()
+        onCreate: function(){}
     },
 
     _clockInterval: null,

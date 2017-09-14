@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@metroui">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Download">
+    <meta name="twitter:description" content="Download Metro 4 to get the compiled CSS and JavaScript, source code, or include it with your favorite package managers like npm, Bower, RubyGems, and more.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/logo4.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/download.html">
+    <meta property="og:title" content="Download">
+    <meta property="og:description" content="Download Metro 4 to get the compiled CSS and JavaScript, source code, or include it with your favorite package managers like npm, Bower, RubyGems, and more.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/logo4.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/logo4.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="476">
+    <meta property="og:image:height" content="194">
+
+    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="author" content="Sergey Pimenov">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css" rel="stylesheet">
+
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Validator - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
+            </div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Validator</a></li>
+                    <li class="toc-entry"><a href="#_validator_how_to">How to</a></li>
+                    <li class="toc-entry"><a href="#_validator_funcs">Functions</a></li>
+                    <li class="toc-entry"><a href="#_validator_events">Events</a></li>
+                    <li class="toc-entry"><a href="#_validator_submit">Submit</a></li>
+                </ul>
+            </div>
+
+            <main class="cell-12 cell-md-9 cell-xl-8 order-1 pr-sx-1 pl-sx-1 pr-md-5 pl-md-5">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>Validator</h1>
+                <p class="text-leader">
+                    Makes simple client-side form validation easy, whilst still offering plenty of customization options.
+                    The widget comes bundled with a useful set of validation methods, including URL, email, hex color, min and max values, length validation.
+                </p>
+
+                <h3 id="_validator_how_to">How to</h3>
+                <p>
+                    To activate Validator add attribute <code>data-role="validator"</code> to form and define validation functions over attribute <code>data-validate="..."</code> for inputs.
+                </p>
+
+                <div class="example">
+                    <form data-role="validator" action="javascript:">
+                        <div class="row mb-2">
+                            <div class="cell-md-6">
+                                <label>First name</label>
+                                <input type="text" data-validate="required, minlength=6" placeholder="Enter first name">
+                                <span class="invalid_feedback">
+                                    Input correct name with min length 6 symbols
+                                </span>
+                            </div>
+                            <div class="cell-md-6">
+                                <label>Email</label>
+                                <input type="email" data-validate="required, email" placeholder="Enter email" data-role="input">
+                                <span class="invalid_feedback">
+                                    Input correct email address
+                                </span>
+                            </div>
+                        </div>
+                        <button class="button primary">Submit</button>
+                    </form>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;form data-role="validator" action="javascript:"&gt;
+                        &lt;div class="row mb-2"&gt;
+                            &lt;div class="cell-md-6"&gt;
+                                &lt;label&gt;First name&lt;/label&gt;
+                                &lt;input type="text" data-validate="required, minlength=6"&gt;
+                                &lt;span class="invalid_feedback"&gt;
+                                    Input correct name with min length 6 symbols
+                                &lt;/span&gt;
+                            &lt;/div&gt;
+                            &lt;div class="cell-md-6"&gt;
+                                &lt;label&gt;Email&lt;/label&gt;
+                                &lt;input type="email" data-validate="required, email" data-role="input"&gt;
+                                &lt;span class="invalid_feedback"&gt;
+                                    Input correct email address
+                                &lt;/span&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;button class="button primary"&gt;Submit&lt;/button&gt;
+                    &lt;/form&gt;
+                </code></pre>
+
+                <h3 id="_validator_funcs">Functions</h3>
+                <p>
+                    Metro 4 Validator supports 12 validation functions:
+                </p>
+                <ul>
+                    <li><strong>required</strong>: required value</li>
+                    <li><strong>minlength</strong>: min length in symbols</li>
+                    <li><strong>maxlength</strong>: max length in symbols</li>
+                    <li><strong>min</strong>: value must be more or equal then <code>min</code></li>
+                    <li><strong>max</strong>: value must be less or equal then <code>max</code></li>
+                    <li><strong>email</strong>: valid email required</li>
+                    <li><strong>url</strong>: valid url required</li>
+                    <li><strong>date</strong>: valid date required</li>
+                    <li><strong>number</strong>: value must be a number</li>
+                    <li><strong>digits</strong>: value must contains only digits</li>
+                    <li><strong>digits</strong>: value must contains color in hex</li>
+                    <li><strong>pattern</strong>: value must be equal with regexp pattern</li>
+                </ul>
+                <p>
+                    To define validation for input add to input attribute <code>data-validate="..."</code>. You can combine validation functions. To set function argument use record <code>func_name=arg</code>.
+                </p>
+                <pre class="prettyprint linenums"><code>
+                    &lt;input type="text" data-validate="required"&gt;
+                    &lt;input type="text" data-validate="minlength=6"&gt;
+                    &lt;input type="text" data-validate="number, min=10"&gt;
+                    &lt;input type="text" data-validate="pattern=^\d+$"&gt;
+                </code></pre>
+
+                <h3 id="_validator_events">Events</h3>
+                <p>
+                    When Validator is works, fired any events:
+                        <code>onBeforeSubmit(form)</code>,
+                        <code>onError(element, value)</code>,
+                        <code>onValid(element, value)</code>,
+                        <code>onSubmit(form)</code>,
+                        <code>onCreate(form)</code>.
+                </p>
+                <p>
+                    To use event add attribute <code>data-on-*</code> to form.
+                </p>
+                <div class="example">
+                    <form data-role="validator" action="javascript:" data-on-submit="alert('Form submitted!')">
+                        <div class="row mb-2">
+                            <div class="cell-md-6">
+                                <label>First name</label>
+                                <input type="text" data-validate="required, minlength=6" placeholder="Enter first name">
+                                <span class="invalid_feedback">
+                                    Input correct name with min length 6 symbols
+                                </span>
+                            </div>
+                        </div>
+                        <button class="button primary">Submit</button>
+                    </form>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;form data-role="validator" action="javascript:"
+                          data-on-submit="alert('Form submitted!')"&gt;
+                        &lt;div class="row mb-2"&gt;
+                            &lt;div class="cell-md-6"&gt;
+                                &lt;label&gt;First name&lt;/label&gt;
+                                &lt;input type="text" data-validate="required, minlength=6"&gt;
+                                &lt;span class="invalid_feedback"&gt;
+                                    Input correct name with min length 6 symbols
+                                &lt;/span&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;button class="button primary"&gt;Submit&lt;/button&gt;
+                    &lt;/form&gt;
+                </code></pre>
+
+                <h3 id="_validator_submit">Submit form</h3>
+                <p>
+                    The following conditions must be met to send the form:
+                </p>
+                <ol class="decimal">
+                    <li>The all the validations must be passed</li>
+                    <li>If an onBeforeSubmit event is defined, it must return true</li>
+                </ol>
+            </main>
+        </div>
+
+    </div>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="metro/js/metro.min.js"></script>
+    <script src="js/pre-code.js"></script>
+    <script src="prettify/run_prettify.js"></script>
+    <script src="js/site.js"></script>
+</body>
+</html>

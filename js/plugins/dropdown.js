@@ -16,9 +16,9 @@ var Dropdown = {
         toggleElement: false,
         noClose: false,
         duration: METRO_ANIMATION_DURATION,
-        onDrop: $.noop(),
-        onUp: $.noop(),
-        onCreate: $.noop()
+        onDrop: function(){},
+        onUp: function(){},
+        onCreate: function(){}
     },
 
     _setOptionsFromDOM: function(){

@@ -14,7 +14,7 @@ var File = {
     options: {
         caption: "Choose file",
         disabled: false,
-        onCreate: $.noop()
+        onCreate: function(){}
     },
 
     _setOptionsFromDOM: function(){

@@ -164,7 +164,9 @@ var Metro = {
                 }
             });
         };
-    }
+    },
+
+    noop: function(){}
 };
 
 $.Metro = window.metro = Metro;
@@ -1563,7 +1565,7 @@ var Checkbox = {
         caption: "",
         captionPosition: "right",
         disabled: false,
-        onCreate: $.noop()
+        onCreate: function(){}
     },
 
     _setOptionsFromDOM: function(){
@@ -1660,7 +1662,7 @@ var Clock = {
         timeFormat: '24',
         dateFormat: 'american',
         divider: "&nbsp;&nbsp;",
-        onCreate: $.noop()
+        onCreate: function(){}
     },
 
     _clockInterval: null,
@@ -1772,9 +1774,9 @@ var Dropdown = {
         toggleElement: false,
         noClose: false,
         duration: METRO_ANIMATION_DURATION,
-        onDrop: $.noop(),
-        onUp: $.noop(),
-        onCreate: $.noop()
+        onDrop: function(){},
+        onUp: function(){},
+        onCreate: function(){}
     },
 
     _setOptionsFromDOM: function(){
@@ -1912,7 +1914,7 @@ var File = {
     options: {
         caption: "Choose file",
         disabled: false,
-        onCreate: $.noop()
+        onCreate: function(){}
     },
 
     _setOptionsFromDOM: function(){
@@ -2027,7 +2029,7 @@ var Gravatar = {
         email: "",
         size: 80,
         default: "404",
-        onCreate: $.noop()
+        onCreate: function(){}
     },
 
     _setOptionsFromDOM: function(){
@@ -2119,7 +2121,7 @@ var Input = {
         clearButtonIcon: "<span class='mif-cross'></span>",
         revealButtonIcon: "<span class='mif-eye'></span>",
         disabled: false,
-        onCreate: $.noop()
+        onCreate: function(){}
     },
 
     _setOptionsFromDOM: function(){
@@ -2204,9 +2206,13 @@ var Input = {
         }
     },
 
+    toggleValid: function(){
+    },
+
     changeAttribute: function(attributeName){
         switch (attributeName) {
             case 'disabled': this.toggleState(); break;
+            case 'data-valid': this.toggleValid(); break;
         }
     }
 };
@@ -2230,7 +2236,7 @@ var Radio = {
         caption: "",
         captionPosition: "right",
         disabled: false,
-        onCreate: $.noop()
+        onCreate: function(){}
     },
 
     _setOptionsFromDOM: function(){
@@ -2323,7 +2329,7 @@ var Ripple = {
         rippleColor: "#fff",
         rippleAlpha: .4,
         rippleTarget: "default",
-        onCreate: $.noop()
+        onCreate: function(){}
     },
 
     _setOptionsFromDOM: function(){
@@ -2410,8 +2416,8 @@ var Select = {
     options: {
         dropHeight: 200,
         disabled: false,
-        onChange: $.noop(),
-        onCreate: $.noop()
+        onChange: function(){},
+        onCreate: function(){}
     },
 
     _setOptionsFromDOM: function(){
@@ -2532,7 +2538,7 @@ var Switch = {
         caption: "",
         captionPosition: "right",
         disabled: false,
-        onCreate: $.noop()
+        onCreate: function(){}
     },
 
     _setOptionsFromDOM: function(){
@@ -2624,7 +2630,7 @@ var Textarea = {
     options: {
         autoSize: false,
         disabled: false,
-        onCreate: $.noop()
+        onCreate: function(){}
     },
 
     _setOptionsFromDOM: function(){
@@ -2717,6 +2723,218 @@ var Textarea = {
 };
 
 Metro.plugin('textarea', Textarea);
+// Source: js/plugins/validator.js
+var Validator = {
+    init: function( options, elem ) {
+        this.options = $.extend( {}, this.options, options );
+        this.elem  = elem;
+        this.element = $(elem);
+
+        this._setOptionsFromDOM();
+        this._create();
+
+        Utils.exec(this.options.onCreate, this.element[0]);
+
+        return this;
+    },
+    options: {
+        onBeforeSubmit: function(){},
+        onSubmit: function(){},
+        onError: function(){},
+        onValid: function(){},
+        onCreate: function(){}
+    },
+
+    _onsubmit: null,
+    _action: null,
+
+    _setOptionsFromDOM: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = $.parseJSON(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+    },
+
+    is_control: function(el){
+        return el.parent().hasClass("input") || el.parent().hasClass("select") || el.parent().hasClass("textarea")
+    },
+
+    _create: function(){
+        var that = this, element = this.element, o = this.options;
+        var inputs = element.find("[data-validate]");
+
+        this._action = element[0].action;
+
+        element
+            .attr("novalidate", 'novalidate')
+            .attr("action", "javascript:");
+
+        $.each(inputs, function(){
+            var input = $(this);
+            var funcs = input.data("validate");
+            var required = funcs.indexOf("required") > -1;
+            if (required) {
+                if (that.is_control(input)) {
+                    input.parent().addClass("required");
+                } else {
+                    input.addClass("required");
+                }
+            }
+        });
+
+        if (element[0].onsubmit !== null) {
+            this._onsubmit = element[0].onsubmit;
+            element[0].onsubmit = null;
+        } else {
+            this._onsubmit = null;
+        }
+
+        element[0].onsubmit = function(){
+            return that._submit();
+        };
+    },
+
+    _submit: function(){
+        var that = this, element = this.element, o = this.options;
+        var inputs = element.find("[data-validate]");
+        var submit = element.find(":submit").attr('disabled', 'disabled').addClass('disabled');
+        var result = 0;
+
+        $.each(inputs, function(){
+            var this_result = true;
+            var input = $(this);
+            var control = that.is_control(input);
+            var funcs = input.data('validate') !== undefined ? String(input.data('validate')).split(",").map(function(s){return s.trim();}) : [];
+
+            if (input.is(":disabled")) return;
+
+            if (control) {
+                input.parent().removeClass("invalid valid");
+            } else {
+                input.removeClass("invalid valid");
+            }
+
+            $.each(funcs, function(){
+                if (this_result === false) return;
+                var f = this.split("=")[0], a = this.split("=")[1];
+                this_result = that._funcs[f](input.val(), a);
+                result += this_result ? 0 : 1;
+            });
+
+            if (this_result === false) {
+                if (control) {
+                    input.parent().addClass("invalid")
+                } else {
+                    input.addClass("invalid")
+                }
+
+                Utils.exec(o.onError, [input, input.val()]);
+
+            } else {
+                if (control) {
+                    input.parent().addClass("valid")
+                } else {
+                    input.addClass("valid")
+                }
+
+                Utils.exec(o.onValid, [input, input.val()]);
+            }
+        });
+
+        submit.removeAttr("disabled").removeClass("disabled");
+
+        element[0].action = this._action;
+
+        result += Utils.exec(o.onBeforeSubmit, [element[0]]) === false ? 1 : 0;
+
+        if (result === 0) {
+            Utils.exec(o.onSubmit, [element[0]]);
+        }
+
+        return result === 0;
+    },
+
+    _funcs: {
+        required: function(val){
+            return val.trim() !== "";
+        },
+        minlength: function(val, len){
+            if (len === undefined || isNaN(len) || len <= 0) {
+                return false;
+            }
+            return val.trim().length >= len;
+        },
+        maxlength: function(val, len){
+            if (len === undefined || isNaN(len) || len <= 0) {
+                return false;
+            }
+            return val.trim().length <= len;
+        },
+        min: function(val, min_value){
+            if (min_value === undefined || isNaN(min_value)) {
+                return false;
+            }
+            if (!this.number(val)) {
+                return false;
+            }
+            if (isNaN(val)) {
+                return false;
+            }
+            return Number(val) >= Number(min_value);
+        },
+        max: function(val, max_value){
+            if (max_value === undefined || isNaN(max_value)) {
+                return false;
+            }
+            if (!this.number(val)) {
+                return false;
+            }
+            if (isNaN(val)) {
+                return false;
+            }
+            return Number(val) <= Number(max_value);
+        },
+        email: function(val){
+            return /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i.test(val);
+        },
+        url: function(val){
+            return /^(?:[a-z]+:)?\/\//i.test(val);
+        },
+        date: function(val){
+            return (new Date(val) !== "Invalid Date" && !isNaN(new Date(val)));
+        },
+        number: function(val){
+            return (val - 0) === val && (''+val).trim().length > 0;
+        },
+        digits: function(val){
+            return /^\d+$/.test(val);
+        },
+        hexcolor: function(val){
+            return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(val);
+        },
+        pattern: function(val, pat){
+            if (pat === undefined) {
+                return false;
+            }
+            var reg = new RegExp(pat);
+            return reg.test(val);
+        }
+    },
+
+    changeAttribute: function(attributeName){
+        switch (attributeName) {
+        }
+    }
+};
+
+Metro.plugin('validator', Validator);
 
  return Metro.init();
 

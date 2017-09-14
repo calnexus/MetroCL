@@ -14,7 +14,7 @@ var Textarea = {
     options: {
         autoSize: false,
         disabled: false,
-        onCreate: $.noop()
+        onCreate: function(){}
     },
 
     _setOptionsFromDOM: function(){

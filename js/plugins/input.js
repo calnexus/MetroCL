@@ -17,7 +17,7 @@ var Input = {
         clearButtonIcon: "<span class='mif-cross'></span>",
         revealButtonIcon: "<span class='mif-eye'></span>",
         disabled: false,
-        onCreate: $.noop()
+        onCreate: function(){}
     },
 
     _setOptionsFromDOM: function(){
@@ -102,9 +102,13 @@ var Input = {
         }
     },
 
+    toggleValid: function(){
+    },
+
     changeAttribute: function(attributeName){
         switch (attributeName) {
             case 'disabled': this.toggleState(); break;
+            case 'data-valid': this.toggleValid(); break;
         }
     }
 };

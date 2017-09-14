@@ -5370,6 +5370,21 @@ ol ol {
 ol ol ol {
   list-style: lower-alpha;
 }
+ol.decimal {
+  list-style: decimal;
+}
+ol.roman-upper {
+  list-style: upper-roman;
+}
+ol.roman-lower {
+  list-style: lower-roman;
+}
+ol.alpha-upper {
+  list-style: upper-alpha;
+}
+ol.alpha-lower {
+  list-style: lower-alpha;
+}
 ul.unstyled-list,
 ol.unstyled-list {
   list-style: none inside;
@@ -9910,7 +9925,7 @@ label {
   box-shadow: 0 0 0 3px rgba(184, 184, 184, 0.45);
 }
 .input input {
-  border-color: transparent;
+  border: none!important;
   -ms-flex-order: 1;
       order: 1;
 }
@@ -9952,11 +9967,10 @@ label {
   min-height: 4rem;
   overflow-y: hidden;
   resize: none;
-  border-color: transparent;
+  border: none!important;
 }
 .textarea textarea:focus {
   box-shadow: none;
-  border-color: transparent;
 }
 .select {
   display: block;
@@ -9973,11 +9987,10 @@ label {
 .select input {
   cursor: pointer;
   width: calc(100% - .75rem);
-  border-color: transparent;
+  border: none!important;
 }
 .select input:focus {
   box-shadow: none;
-  border-color: transparent;
 }
 .select:hover input {
   border-color: transparent;
@@ -10100,6 +10113,22 @@ fieldset.disabled,
 .custom-validation select[required]:invalid + .invalid_feedback,
 .custom-validation textarea[required]:invalid + .invalid_feedback {
   display: block;
+}
+.required {
+  border: 1px #1ba1e2 dashed !important;
+}
+.invalid {
+  border: 1px #CE352C solid !important;
+}
+.valid {
+  border: 1px #60a917 solid !important;
+}
+form[data-role*=validator] .invalid_feedback {
+  display: none;
+}
+.invalid ~ .invalid_feedback,
+.invalid > .invalid_feedback {
+  display: block !important;
 }
 .drop-menu {
   position: absolute;

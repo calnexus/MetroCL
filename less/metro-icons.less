@@ -8,13 +8,17 @@
 [class*=mif-] {
     speak: none;
     display: inline-block;
-    //font: normal normal normal 16px/1;
     font-family: 'icons', 'Roboto', 'Noto Sans', sans-serif;
     font-size: inherit;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     vertical-align: middle;
+    text-align: center;
+
+    &::before {
+        text-align: center;
+    }
 }
 
 .mif-lg {

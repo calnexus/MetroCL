@@ -361,7 +361,7 @@ label {
     }
 
     input {
-        border-color: transparent;
+        border: none!important;
         order: 1;
         &:focus {
             box-shadow: none;
@@ -405,10 +405,9 @@ label {
         min-height: 4rem;
         overflow-y: hidden;
         resize: none;
-        border-color: transparent;
+        border: none!important;
         &:focus {
             box-shadow: none;
-            border-color: transparent;
         }
     }
 }
@@ -429,10 +428,9 @@ label {
     input {
         cursor: pointer;
         width: ~"calc(100% - .75rem)";
-        border-color: transparent;
+        border: none!important;
         &:focus {
             box-shadow: none;
-            border-color: transparent;
         }
     }
 
@@ -538,4 +536,28 @@ form, fieldset, .form-group {
             display: block;
         }
     }
+}
+
+.required {
+    border: 1px @cyan dashed !important;
+}
+
+.invalid {
+    border: 1px @red solid !important;
+}
+
+.valid {
+    border: 1px @green solid !important;
+}
+
+
+form[data-role*=validator] {
+    .invalid_feedback {
+        display: none;
+    }
+}
+
+.invalid ~ .invalid_feedback,
+.invalid > .invalid_feedback {
+    display: block !important;
 }

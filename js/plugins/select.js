@@ -14,8 +14,8 @@ var Select = {
     options: {
         dropHeight: 200,
         disabled: false,
-        onChange: $.noop(),
-        onCreate: $.noop()
+        onChange: function(){},
+        onCreate: function(){}
     },
 
     _setOptionsFromDOM: function(){
