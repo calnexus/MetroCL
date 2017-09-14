@@ -35,6 +35,9 @@
     margin-right: auto!important;
 }
 
+.ml-auto {margin-left: auto!important;}
+.mr-auto {margin-right: auto!important;}
+
 .generate-padding-and-margin(@i, @k: 1) when (@k =< @i) {
     .p-@{k} {padding: unit(@k * 8 / 16, rem) !important;}
     .pr-@{k} {padding-right: unit(@k * 8 / 16, rem) !important;}
@@ -115,8 +118,6 @@
 .d-table {display: table!important;}
 .d-table-row {display: table-row!important;}
 .d-table-cell {display: table-cell!important;}
-.d-flex {display: flex!important;}
-.d-inline-flex {display: inline-flex!important;}
 
 .w-sxd {width: 320px;}
 .w-smd {width: 480px;}
@@ -185,8 +186,7 @@
         .d-table-@{m} {display: table!important;}
         .d-table-row-@{m} {display: table-row!important;}
         .d-table-cell-@{m} {display: table-cell!important;}
-        .d-flex-@{m} {display: flex!important;}
-        .d-inline-flex-@{m} {display: inline-flex!important;}
+
         .place-left-@{m} {float: left!important;}
         .place-right-@{m} {float: right!important;}
         .place-none-@{m} {float: none!important;}
@@ -200,6 +200,9 @@
             margin-left: auto!important;
             margin-right: auto!important;
         }
+
+        .ml-auto-@{m} {margin-left: auto!important;}
+        .mr-auto-@{m} {margin-right: auto!important;}
 
         .p-0-@{m} {padding: 0!important;}
         .pl-0-@{m} {padding-left: 0!important;}
@@ -242,30 +245,4 @@
     }
 
     .generate-utils-media-options(@name, @i + 1);
-}
-
-
-
-@media print {
-    .d-none-print {display: none!important;}
-    .d-block-print {display: block!important;}
-    .d-inline-print {display: inline!important;}
-    .d-inline-block-print {display: inline-block!important;}
-    .d-table-print {display: table!important;}
-    .d-table-row-print {display: table-row!important;}
-    .d-table-cell-print {display: table-cell!important;}
-    .d-flex-print {display: flex!important;}
-    .d-inline-flex-print {display: inline-flex!important;}
-    .visible-print {visibility: visible !important;}
-    .no-visible-print {visibility: hidden !important;}
-    .overflow-print {overflow: auto !important;}
-    .no-overflow-print {overflow: hidden !important;}
-    .scroll-print {overflow: scroll !important;}
-    .scroll-x-print {overflow-x: auto !important;}
-    .scroll-y-print {overflow-y: auto !important;}
-    .no-scroll-print {overflow: hidden !important;}
-    .no-scroll-x-print {overflow-x: hidden !important;}
-    .no-scroll-y-print {overflow-y: hidden !important;}
-    .wrap-print {white-space: normal !important;}
-    .no-wrap-print {white-space: nowrap !important;}
 }

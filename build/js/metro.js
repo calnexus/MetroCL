@@ -2824,6 +2824,9 @@ var Validator = {
             $.each(funcs, function(){
                 if (this_result === false) return;
                 var f = this.split("=")[0], a = this.split("=")[1];
+                if (f === 'compare') {
+                    a = that.element[0].elements[a].value;
+                }
                 this_result = that._funcs[f](input.val(), a);
                 result += this_result ? 0 : 1;
             });
@@ -2865,17 +2868,23 @@ var Validator = {
         required: function(val){
             return val.trim() !== "";
         },
+        length: function(val, len){
+            if (len === undefined || isNaN(len) || len <= 0) {
+                return false;
+            }
+            return val.trim().length === parseInt(len);
+        },
         minlength: function(val, len){
             if (len === undefined || isNaN(len) || len <= 0) {
                 return false;
             }
-            return val.trim().length >= len;
+            return val.trim().length >= parseInt(len);
         },
         maxlength: function(val, len){
             if (len === undefined || isNaN(len) || len <= 0) {
                 return false;
             }
-            return val.trim().length <= len;
+            return val.trim().length <= parseInt(len);
         },
         min: function(val, min_value){
             if (min_value === undefined || isNaN(min_value)) {
@@ -2925,6 +2934,9 @@ var Validator = {
             }
             var reg = new RegExp(pat);
             return reg.test(val);
+        },
+        compare: function(val, val2){
+            return val === val2;
         }
     },
 
