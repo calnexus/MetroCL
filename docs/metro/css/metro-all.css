@@ -9243,11 +9243,22 @@ form[data-role*=validator] .invalid_feedback {
       justify-content: flex-start;
   margin: 0;
   padding: 0;
+  background-color: inherit;
 }
 .h-menu > li,
 .h-menu > li > a {
   display: block;
   position: relative;
+}
+.h-menu > li {
+  background-color: inherit;
+}
+.h-menu > li:hover {
+  background-color: #f3f3f3;
+}
+.h-menu > li:hover > a,
+.h-menu > li:hover .icon {
+  color: #1d1d1d;
 }
 .h-menu > li > a {
   font-weight: normal;
@@ -9257,23 +9268,13 @@ form[data-role*=validator] .invalid_feedback {
   text-decoration: none;
   padding: .5rem 1rem;
   border: none;
-}
-.h-menu > li > a:hover {
-  background-color: #ebebeb;
+  background-color: inherit;
 }
 .h-menu > li > a.dropdown-toggle {
   padding-right: 2rem!important;
 }
 .h-menu > li > a.dropdown-toggle::before {
   margin-left: -1.25rem;
-}
-.h-menu > li:hover {
-  text-decoration: none;
-  background-color: #ebebeb;
-}
-.h-menu > li:hover > a,
-.h-menu > li:hover .icon {
-  color: #1d1d1d;
 }
 .h-menu.no-hover > li > a {
   color: #6a6a6a;
@@ -9289,6 +9290,32 @@ form[data-role*=validator] .invalid_feedback {
 }
 .h-menu > .divider {
   display: none;
+}
+.h-menu.mega {
+  position: relative;
+}
+.h-menu.mega > li {
+  position: static;
+}
+.h-menu.mega > li.active-container {
+  background-color: #ebebeb;
+}
+.h-menu.mega > li.active-container a {
+  background-color: inherit;
+}
+.h-menu.mega .mega-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding: 0;
+  background-color: inherit;
+  display: none;
+  color: inherit;
+  box-shadow: 2px 2px 2px 0 rgba(29, 29, 29, 0.4);
+}
+.h-menu.mega .mega-container * {
+  color: inherit;
 }
 .d-menu {
   position: absolute;
@@ -9359,7 +9386,7 @@ form[data-role*=validator] .invalid_feedback {
 }
 .d-menu li:hover {
   text-decoration: none;
-  background-color: #ebebeb;
+  background-color: #f3f3f3;
 }
 .d-menu li:hover > a,
 .d-menu li:hover .icon {
