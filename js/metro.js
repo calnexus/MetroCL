@@ -22,8 +22,9 @@ var Metro = {
 
     init: function(){
         var widgets = $("[data-role]");
+        var hotkeys = $("[data-hotkey]");
         var body = $("body")[0];
-        Metro.initHotkeys(widgets);
+        Metro.initHotkeys(hotkeys);
         Metro.initWidgets(widgets);
         var observer, observerOptions, observerCallback;
         observerOptions = {
@@ -90,6 +91,8 @@ var Metro = {
             }
 
             $.Metro.hotkeys.push(hotkey);
+
+            console.log($.Metro.hotkeys);
 
             $(document).on('keyup', null, hotkey, function(e){
                 if (element === undefined) return;

@@ -54,9 +54,15 @@
                             <li class="toc-entry"><a href="#_h_menu_mega">Mega</a></li>
                         </ul>
                     </li>
+                    <li class="toc-entry"><a href="#_v_menu">Vertical menu</a></li>
                     <li class="toc-entry"><a href="#">Tool menu</a></li>
                     <li class="toc-entry"><a href="#">Sidebar</a></li>
-                    <li class="toc-entry"><a href="#_dropdown_menu">Dropdown menu</a></li>
+                    <li class="toc-entry">
+                        <a href="#_d_menu">Dropdown menu</a>
+                        <ul>
+                            <li class="toc-entry"><a href="#_d_menu_context">Context</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
 
@@ -167,7 +173,7 @@
                 <div class="example">
                     <ul class="h-menu large">
                         <li><a href="#">Home</a></li>
-                        <li><a href="#">Products</a></li>
+                        <li><a href="#" class="dropdown-toggle">Products</a></li>
                         <li><a href="#">Support</a></li>
                         <li><a href="#">Cart</a></li>
                     </ul>
@@ -261,8 +267,68 @@
                     &lt;/ul&gt;
                 </code></pre>
 
+                <h3 id="_v_menu">Vertical menu</h3>
+                <p>
+                    To create horizontal menu add class <code>.v-menu</code> to list.
+                </p>
+                <div class="example clear">
+                    <ul class="v-menu" style="width: 220px;">
+                        <li class="menu-title">General</li>
+                        <li><a href="#"><span class="mif-home icon"></span> Home</a></li>
+                        <li class="menu-title">Products</li>
+                        <li><a href="#"><span class="mif-windows icon"></span> Windows</a></li>
+                        <li class="disabled"><a href="#"><span class="mif-library icon"></span> Office 365</a></li>
+                        <li><a href="#"><span class="mif-skype icon"></span> Skype</a></li>
+                        <li class="menu-title">Support</li>
+                        <li>
+                            <a href="#" data-hotkey="Alt+F1">Community</a>
+                            <ul class="v-menu" data-role="dropdown">
+                                <li><a href="#">Blog</a></li>
+                                <li><a href="#">Github</a></li>
+                                <li><a href="#">Forum</a></li>
+                                <li class="divider"></li>
+                                <li class="p-2 bg-light">
+                                    <button class="button square primary"><span class="mif-target"></span></button>
+                                    <button class="button square success"><span class="mif-apps"></span></button>
+                                    <button class="button square alert"><span class="mif-file-code"></span></button>
+                                    <button class="button square warning"><span class="mif-download"></span></button>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="menu-title">Shop</li>
+                        <li><a href="#"><span class="mif-cart icon"></span> Cart</a></li>
+                    </ul>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;ul class="v-menu"&gt;
+                        &lt;li class="menu-title"&gt;General&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-home icon"&gt;&lt;/span&gt; Home&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="menu-title"&gt;Products&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-windows icon"&gt;&lt;/span&gt; Windows&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-library icon"&gt;&lt;/span&gt; Office 365&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-skype icon"&gt;&lt;/span&gt; Skype&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="menu-title"&gt;Support&lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a href="#" data-hotkey="Alt+F1"&gt;Community&lt;/a&gt;
+                            &lt;ul class="v-menu" data-role="dropdown"&gt;
+                                &lt;li&gt;&lt;a href="#"&gt;Blog&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href="#"&gt;Github&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href="#"&gt;Forum&lt;/a&gt;&lt;/li&gt;
+                                &lt;li class="divider"&gt;&lt;/li&gt;
+                                &lt;li class="p-2 bg-light"&gt;
+                                    &lt;button class="button square primary"&gt;&lt;span class="mif-target"&gt;&lt;/span&gt;&lt;/button&gt;
+                                    &lt;button class="button square success"&gt;&lt;span class="mif-apps"&gt;&lt;/span&gt;&lt;/button&gt;
+                                    &lt;button class="button square alert"&gt;&lt;span class="mif-file-code"&gt;&lt;/span&gt;&lt;/button&gt;
+                                    &lt;button class="button square warning"&gt;&lt;span class="mif-download"&gt;&lt;/span&gt;&lt;/button&gt;
+                                &lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                        &lt;li class="menu-title"&gt;Shop&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-cart icon"&gt;&lt;/span&gt; Cart&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
 
-                <h3 id="_dropdown_menu">Dropdown menu</h3>
+                <h3 id="_d_menu">Dropdown menu</h3>
                 <p>
                     With Metro 4 you can create dropdown menu simple and easy for any element. To create dropdown menu:
                 </p>
@@ -352,6 +418,28 @@
                             &lt;li&gt;&lt;a href="#"&gt;Three&lt;/a&gt;&lt;/li&gt;
                         &lt;/ul&gt;
                     &lt;/div&gt;
+                </code></pre>
+
+                <h4 id="_d_menu_context">Context menu</h4>
+                <div class="example">
+                    <a class="button" id="context_toggle">Open context menu</a>
+                    <ul class="d-menu context" data-role="dropdown" data-toggle-element="#context_toggle">
+                        <li><a href="#"><span class="mif-user icon"></span> Profile</a></li>
+                        <li><a href="#">Calendar</a></li>
+                        <li><a href="#">Photo</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#"><span class="mif-target icon"></span> Location</a></li>
+                    </ul>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;a class="button" id="context_toggle"&gt;Open context menu&lt;/a&gt;
+                    &lt;ul class="d-menu context" data-role="dropdown" data-toggle-element="#context_toggle"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-user icon"&gt;&lt;/span&gt; Profile&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Calendar&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Photo&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="divider"&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-target icon"&gt;&lt;/span&gt; Location&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
                 </code></pre>
 
             </main>
