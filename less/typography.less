@@ -430,6 +430,7 @@ pre code {
     position: relative;
     cursor: pointer;
     padding-right: 1.5rem!important;
+    user-select: none;
 
     &:before {
         display: block;
@@ -463,6 +464,12 @@ pre code {
         &:before {
             transform: rotate(135deg);
             transition: @transition-short;
+        }
+    }
+
+    &.no-marker {
+        &::before {
+            display: none;
         }
     }
 }

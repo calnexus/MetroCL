@@ -1,7 +1,75 @@
 @import (once) "include/vars";
 @import (once) "include/mixins";
 
-.drop-menu {
+.h-menu {
+    list-style: none inside;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+
+    & > li, & > li > a {
+        display: block;
+        position: relative;
+    }
+
+    & > li > a {
+        font-weight: normal;
+        color: lighten(@dark, 10%);
+        font-size: .875rem;
+        outline: none;
+        text-decoration: none;
+        padding: .5rem 1rem;
+        border: none;
+
+        &:hover {
+            background-color: darken(@light, 5%);
+        }
+
+        &.dropdown-toggle {
+            padding-right: 2rem!important;
+            &::before {
+                margin-left: -1.25rem;
+            }
+        }
+    }
+
+    & > li {
+        &:hover {
+            text-decoration: none;
+            background-color: darken(@light, 5%);
+
+            & > a, .icon {
+                color: @dark;
+            }
+        }
+    }
+
+    &.no-hover {
+        & > li > a {
+            //padding: .5rem .75rem;
+            color: lighten(@dark, 30%);
+        }
+
+        & > li:hover, & > li > a:hover {
+            background-color: transparent;
+            color: @dark;
+        }
+    }
+
+    &.large > li > a {
+        padding: 1.125rem 1.625rem;
+        font-size: 2rem;
+    }
+
+    & > .divider {
+        display: none;
+    }
+}
+
+.d-menu {
     position: absolute;
     display: none;
     float: left;
@@ -12,11 +80,11 @@
     background-color: @white;
     color: @dark;
     z-index: @zindex-dropdown;
-    box-shadow: 2px 2px 5px 0 rgba(0,0,0,0.4);
+    .default-shadow();
 
-    .drop-menu {
+    .d-menu {
         left: 100%;
-        top: -1rem;
+        top: -.5rem;
     }
 
     &.open {
@@ -29,8 +97,7 @@
     }
 }
 
-.drop-menu {
-
+.d-menu {
     li {
         display: block;
         float: none;
@@ -100,6 +167,20 @@
                 font-size: .8em;
             }
         }
+
+        a {
+            &.dropdown-toggle {
+                &::before {
+                    transform: rotate(-135deg);
+                }
+
+                &.active-toggle {
+                    &::before {
+                        transform: rotate(45deg);
+                    }
+                }
+            }
+        }
     }
 
     .divider {
@@ -124,10 +205,16 @@
 }
 
 .drop-left {
-    left: -100%;
+    right: 100%;
+    top: 0;
+}
+
+.drop-right {
+    left: 100%;
+    top: 0;
 }
 
 .drop-up {
     top: auto;
-    bottom: 0;
+    bottom: 100%;
 }

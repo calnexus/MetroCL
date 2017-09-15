@@ -69,8 +69,8 @@
 
 .button {
     &.square, &.cycle {
-        .px2rem(width, 39px);
-        .px2rem(height, 39px);
+        .px2rem(width, 35px);
+        .px2rem(height, 35px);
         padding-left: 0 !important;
         padding-right: 0 !important;
 
@@ -89,6 +89,21 @@
     }
     &.cycle {
         border-radius: 50%;
+    }
+
+    &.square, &.cycle {
+        &.dropdown-toggle {
+            &::before {
+                display: none;
+            }
+        }
+    }
+
+}
+
+.button {
+    &.dropdown-toggle.no-marker {
+        padding-right: .75rem!important;
     }
 }
 

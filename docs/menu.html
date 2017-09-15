@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@metroui">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Download">
+    <meta name="twitter:description" content="Download Metro 4 to get the compiled CSS and JavaScript, source code, or include it with your favorite package managers like npm, Bower, RubyGems, and more.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/logo4.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/download.html">
+    <meta property="og:title" content="Download">
+    <meta property="og:description" content="Download Metro 4 to get the compiled CSS and JavaScript, source code, or include it with your favorite package managers like npm, Bower, RubyGems, and more.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/logo4.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/logo4.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="476">
+    <meta property="og:image:height" content="194">
+
+    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="author" content="Sergey Pimenov">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css" rel="stylesheet">
+
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Menu - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
+            </div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Menu</a></li>
+                    <li class="toc-entry">
+                        <a href="#">Horizontal</a>
+                        <ul>
+                            <li class="toc-entry"><a href="#_h_menu_dropdown">Dropdown</a></li>
+                            <li class="toc-entry"><a href="#_h_menu_no_hover">No hover</a></li>
+                            <li class="toc-entry"><a href="#_h_menu_large">Large</a></li>
+                        </ul>
+                    </li>
+                    <li class="toc-entry"><a href="#">Tool menu</a></li>
+                    <li class="toc-entry"><a href="#">Sidebar</a></li>
+                    <li class="toc-entry"><a href="#_dropdown_menu">Dropdown menu</a></li>
+                </ul>
+            </div>
+
+            <main class="cell-12 cell-md-9 cell-xl-8 order-1 pr-sx-1 pl-sx-1 pr-md-5 pl-md-5">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>Menu</h1>
+                <p class="text-leader">
+                    The Metro 4 provides any classes to create different cool menu, as horizontal, vertical, tool and others.
+                    All menus have a similar structure and are created using lists, list items and anchors.
+                    Menu is determined by the class applied to the root list.
+                </p>
+
+                <!-- ADVERT -->
+
+                <h3 id="_h_menu">Horizontal menu</h3>
+                <p>
+                    To create horizontal menu add class <code>.h-menu</code> to list.
+                </p>
+                <div class="example">
+                    <ul class="h-menu">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Cart</a></li>
+                    </ul>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;ul class="h-menu"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Products&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Support&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Cart&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <h4 id="_h_menu_dropdown">Horizontal menu with dropdown</h4>
+                <div class="example">
+                    <ul class="h-menu">
+                        <li><a href="#">Home</a></li>
+                        <li>
+                            <a href="#" class="dropdown-toggle">Products</a>
+                            <ul class="d-menu" data-role="dropdown">
+                                <li>
+                                    <a href="#" class="dropdown-toggle">Windows</a>
+                                    <ul class="d-menu" data-role="dropdown">
+                                        <li><a href="#">Windows 10</a></li>
+                                        <li><a href="#">Windows Server</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">MS-DOS</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Skype</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Office</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Cart</a></li>
+                    </ul>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;ul class="h-menu"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a href="#" class="dropdown-toggle"&gt;Products&lt;/a&gt;
+                            &lt;ul class="d-menu" data-role="dropdown"&gt;
+                                &lt;li&gt;
+                                    &lt;a href="#" class="dropdown-toggle"&gt;Windows&lt;/a&gt;
+                                    &lt;ul class="d-menu" data-role="dropdown"&gt;
+                                        &lt;li&gt;&lt;a href="#"&gt;Windows 10&lt;/a&gt;&lt;/li&gt;
+                                        &lt;li&gt;&lt;a href="#"&gt;Windows Server&lt;/a&gt;&lt;/li&gt;
+                                        &lt;li class="divider"&gt;&lt;/li&gt;
+                                        &lt;li&gt;&lt;a href="#"&gt;MS-DOS&lt;/a&gt;&lt;/li&gt;
+                                    &lt;/ul&gt;
+                                &lt;/li&gt;
+                                &lt;li&gt;&lt;a href="#"&gt;Skype&lt;/a&gt;&lt;/li&gt;
+                                &lt;li class="divider"&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href="#"&gt;Office&lt;/a&gt;&lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Support&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Cart&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <h4 id="_h_menu_no_hover">Horizontal menu with disabled hover effect</h4>
+                <div class="example">
+                    <ul class="h-menu no-hover">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Cart</a></li>
+                    </ul>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;ul class="h-menu no-hover"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Products&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Support&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Cart&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <h4 id="_h_menu_large">Horizontal menu with class .large</h4>
+                <div class="example">
+                    <ul class="h-menu large">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Cart</a></li>
+                    </ul>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;ul class="h-menu large"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Products&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Support&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Cart&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
+
+                <h3 id="_dropdown_menu">Dropdown menu</h3>
+                <p>
+                    With Metro 4 you can create dropdown menu simple and easy for any element. To create dropdown menu:
+                </p>
+                <ol class="decimal">
+                    <li>Create container with a position different from <code>statics</code></li>
+                    <li>Add toggles with class <code>.dropdown-toggle</code></li>
+                    <li>Add menu with class <code>.d-menu</code> and attribute <code>data-role="dropdown"</code></li>
+                    <li>To display the menu up add class <code>.drop-up</code> to menu</li>
+                    <li>To display the menu left class <code>.drop-left</code> to menu</li>
+                    <li>To display the menu right add class <code>.drop-right</code> to menu</li>
+                    <li>To hide dropdown toggle marker add class <code>.no-marker</code> to toggle</li>
+                </ol>
+                <div class="example d-flex">
+                    <div class="pos-relative">
+                        <button class="button dropdown-toggle">Menu toggle</button>
+                        <ul class="d-menu" data-role="dropdown">
+                            <li><a href="#">One</a></li>
+                            <li><a href="#">Two</a></li>
+                            <li><a href="#">Three</a></li>
+                        </ul>
+                    </div>
+                    <div class="pos-relative">
+                        <a class="button link dropdown-toggle">Menu toggle</a>
+                        <ul class="d-menu" data-role="dropdown">
+                            <li><a href="#">One</a></li>
+                            <li><a href="#">Two</a></li>
+                            <li><a href="#">Three</a></li>
+                        </ul>
+                    </div>
+                    <div class="pos-relative">
+                        <button class="button square alert dropdown-toggle"><span class="mif-apps"></span></button>
+                        <ul class="d-menu" data-role="dropdown">
+                            <li><a href="#">One</a></li>
+                            <li><a href="#">Two</a></li>
+                            <li><a href="#">Three</a></li>
+                        </ul>
+                    </div>
+                    <div class="pos-relative ml-1">
+                        <button class="button success dropdown-toggle no-marker">Drop Up</button>
+                        <ul class="d-menu drop-up" data-role="dropdown">
+                            <li><a href="#">One</a></li>
+                            <li><a href="#">Two</a></li>
+                            <li><a href="#">Three</a></li>
+                        </ul>
+                    </div>
+                    <div class="pos-relative ml-1">
+                        <button class="button success dropdown-toggle">Drop Right</button>
+                        <ul class="d-menu drop-right" data-role="dropdown">
+                            <li><a href="#">One</a></li>
+                            <li><a href="#">Two</a></li>
+                            <li><a href="#">Three</a></li>
+                        </ul>
+                    </div>
+                    <div class="pos-relative ml-1">
+                        <button class="button success dropdown-toggle">Drop Left</button>
+                        <ul class="d-menu drop-left" data-role="dropdown">
+                            <li><a href="#">One</a></li>
+                            <li><a href="#">Two</a></li>
+                            <li><a href="#">Three</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;div class="pos-relative"&gt;
+                        &lt;button class="button dropdown-toggle"&gt;Menu toggle&lt;/button&gt;
+                        &lt;ul class="d-menu" data-role="dropdown"&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;One&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Two&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Three&lt;/a&gt;&lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/div&gt;
+                    &lt;div class="pos-relative"&gt;
+                        &lt;a class="button link dropdown-toggle"&gt;Menu toggle&lt;/a&gt;
+                        &lt;ul class="d-menu" data-role="dropdown"&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;One&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Two&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Three&lt;/a&gt;&lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/div&gt;
+                    &lt;div class="pos-relative"&gt;
+                        &lt;button class="button square dropdown-toggle"&gt;
+                            &lt;span class="mif-apps"&gt;&lt;/span&gt;
+                        &lt;/button&gt;
+                        &lt;ul class="d-menu" data-role="dropdown"&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;One&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Two&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Three&lt;/a&gt;&lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+            </main>
+        </div>
+
+    </div>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="metro/js/metro.min.js"></script>
+    <script src="js/pre-code.js"></script>
+    <script src="prettify/run_prettify.js"></script>
+    <script src="js/site.js"></script>
+</body>
+</html>

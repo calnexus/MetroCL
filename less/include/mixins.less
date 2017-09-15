@@ -1,3 +1,5 @@
+@import (once) "vars";
+
 .clear() {
     &::after {
         display: block;
@@ -196,4 +198,12 @@
 }
 .translateY(@y: 0) {
     transform: translateY(@y);
+}
+
+.shadow(@x, @y, @blur, @stretch, @color, @alpha: .4){
+    box-shadow+: @x @y @blur @stretch rgba(red(@color), green(@color), blue(@color), @alpha);
+}
+
+.default-shadow() {
+    .shadow(2px, 2px, 5px, 0, @black);
 }
