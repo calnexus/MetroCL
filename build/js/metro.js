@@ -2789,11 +2789,11 @@ var Validator = {
             }
         });
 
+        this._onsubmit = null;
+
         if (element[0].onsubmit !== null) {
             this._onsubmit = element[0].onsubmit;
             element[0].onsubmit = null;
-        } else {
-            this._onsubmit = null;
         }
 
         element[0].onsubmit = function(){
@@ -2859,6 +2859,7 @@ var Validator = {
 
         if (result === 0) {
             Utils.exec(o.onSubmit, [element[0]]);
+            if (this._onsubmit !==  null) Utils.exec(this._onsubmit);
         }
 
         return result === 0;
@@ -2920,7 +2921,7 @@ var Validator = {
             return (new Date(val) !== "Invalid Date" && !isNaN(new Date(val)));
         },
         number: function(val){
-            return (val - 0) === val && (''+val).trim().length > 0;
+            return !isNaN(val);
         },
         digits: function(val){
             return /^\d+$/.test(val);
