@@ -9,6 +9,10 @@
     background-color: @transparent !important;
 }
 
+.bd-default {
+    border-color: @borderColor;
+}
+
 .generate-colors(@colorListLength);
 .generate-colors(@name, @i: 1) when (@i =< @colorListLength) {
     @name: extract(@colorList, @i);

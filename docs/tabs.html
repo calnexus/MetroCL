@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@metroui">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Download">
+    <meta name="twitter:description" content="Download Metro 4 to get the compiled CSS and JavaScript, source code, or include it with your favorite package managers like npm, Bower, RubyGems, and more.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/logo4.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/download.html">
+    <meta property="og:title" content="Download">
+    <meta property="og:description" content="Download Metro 4 to get the compiled CSS and JavaScript, source code, or include it with your favorite package managers like npm, Bower, RubyGems, and more.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/logo4.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/logo4.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="476">
+    <meta property="og:image:height" content="194">
+
+    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="author" content="Sergey Pimenov">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css" rel="stylesheet">
+
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Tabs - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
+            </div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Tabs</a></li>
+                    <li class="toc-entry"><a href="#_tabs_horizontal">Horizontal</a></li>
+                    <li class="toc-entry"><a href="#_tabs_vertical">Vertical</a></li>
+                    <li class="toc-entry"><a href="#_tabs_alignment">Alignment</a></li>
+                    <li class="toc-entry"><a href="#_tabs_target">Target content</a></li>
+                </ul>
+            </div>
+
+            <main class="cell-12 cell-md-9 cell-xl-8 order-1 pr-sx-1 pl-sx-1 pr-md-5 pl-md-5">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>Tabs</h1>
+                <p class="text-leader">
+                    Metro 4 has at its disposal classes and a plugin for creating an tabbed interface.
+                </p>
+
+                <!-- ADVERT -->
+
+                <h3 id="_tabs_horizontal">Horizontal</h3>
+
+                <div class="example">
+                    <ul class="tabs" data-role="tabs">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Links</a></li>
+                        <li>
+                            <a href="#" class="dropdown-toggle">Dropdown</a>
+                            <ul class="d-menu" data-role="dropdown">
+                                <li><a href="#">Item 1</a></li>
+                                <li><a href="#">Item 2</a></li>
+                                <li><a href="#">Item 3</a></li>
+                            </ul>
+                        </li>
+                        <li class="disabled"><a href="#">Disabled</a></li>
+                    </ul>
+
+                    <ul class="tabs bottom mt-2" data-role="tabs">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Links</a></li>
+                        <li>
+                            <a href="#" class="dropdown-toggle">Dropdown</a>
+                            <ul class="d-menu drop-up" data-role="dropdown">
+                                <li><a href="#">Item 1</a></li>
+                                <li><a href="#">Item 2</a></li>
+                                <li><a href="#">Item 3</a></li>
+                            </ul>
+                        </li>
+                        <li class="disabled"><a href="#">Disabled</a></li>
+                    </ul>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;ul class="tabs" data-role="tabs"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Profile&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Links&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="disabled"&gt;&lt;a href="#"&gt;Disabled&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <h3 id="_tabs_vertical">Vertical</h3>
+                <div class="example clear">
+                    <ul class="tabs vertical place-left" data-role="tabs" style="width: 120px">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Links</a></li>
+                        <li>
+                            <a href="#" class="dropdown-toggle">Dropdown</a>
+                            <ul class="d-menu drop-right" data-role="dropdown">
+                                <li><a href="#">Item 1</a></li>
+                                <li><a href="#">Item 2</a></li>
+                                <li><a href="#">Item 3</a></li>
+                            </ul>
+                        </li>
+                        <li class="disabled"><a href="#">Disabled</a></li>
+                    </ul>
+
+                    <ul class="tabs vertical right place-right" data-role="tabs" style="width: 120px">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Links</a></li>
+                        <li>
+                            <a href="#" class="dropdown-toggle">Dropdown</a>
+                            <ul class="d-menu drop-left" data-role="dropdown">
+                                <li><a href="#">Item 1</a></li>
+                                <li><a href="#">Item 2</a></li>
+                                <li><a href="#">Item 3</a></li>
+                            </ul>
+                        </li>
+                        <li class="disabled"><a href="#">Disabled</a></li>
+                    </ul>
+                </div>
+
+
+                <h3 id="_tabs_alignment">Alignment</h3>
+                <div class="example">
+                    <ul class="tabs flex-justify-start" data-role="tabs">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Links</a></li>
+                        <li class="disabled"><a href="#">Disabled</a></li>
+                    </ul>
+                    <ul class="tabs flex-justify-center mt-2" data-role="tabs">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Links</a></li>
+                        <li class="disabled"><a href="#">Disabled</a></li>
+                    </ul>
+                    <ul class="tabs flex-justify-end mt-2" data-role="tabs">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Links</a></li>
+                        <li class="disabled"><a href="#">Disabled</a></li>
+                    </ul>
+                </div>
+
+                <div class="example clear mt-2" style="height: 400px;">
+                    <ul class="tabs vertical place-left" data-role="tabs">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Links</a></li>
+                        <li>
+                            <a href="#" class="dropdown-toggle">Dropdown</a>
+                            <ul class="d-menu drop-right" data-role="dropdown">
+                                <li><a href="#">Item 1</a></li>
+                                <li><a href="#">Item 2</a></li>
+                                <li><a href="#">Item 3</a></li>
+                            </ul>
+                        </li>
+                        <li class="disabled"><a href="#">Disabled</a></li>
+                    </ul>
+                    <ul class="tabs vertical flex-justify-center ml-2 place-left" data-role="tabs">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Links</a></li>
+                        <li>
+                            <a href="#" class="dropdown-toggle">Dropdown</a>
+                            <ul class="d-menu drop-right" data-role="dropdown">
+                                <li><a href="#">Item 1</a></li>
+                                <li><a href="#">Item 2</a></li>
+                                <li><a href="#">Item 3</a></li>
+                            </ul>
+                        </li>
+                        <li class="disabled"><a href="#">Disabled</a></li>
+                    </ul>
+                    <ul class="tabs vertical flex-justify-end ml-2 place-left" data-role="tabs">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Links</a></li>
+                        <li>
+                            <a href="#" class="dropdown-toggle">Dropdown</a>
+                            <ul class="d-menu drop-right" data-role="dropdown">
+                                <li><a href="#">Item 1</a></li>
+                                <li><a href="#">Item 2</a></li>
+                                <li><a href="#">Item 3</a></li>
+                            </ul>
+                        </li>
+                        <li class="disabled"><a href="#">Disabled</a></li>
+                    </ul>
+                </div>
+
+                <h3 id="_tabs_target">Target content</h3>
+                <div class="example">
+                    <ul class="tabs" data-role="tabs">
+                        <li><a href="#_target_1">Home</a></li>
+                        <li><a href="#_target_2">Profile</a></li>
+                        <li><a href="#_target_3">Links</a></li>
+                        <li class="disabled"><a href="#">Disabled</a></li>
+                        <li>
+                            <a href="#" class="dropdown-toggle">Dropdown</a>
+                            <ul class="d-menu" data-role="dropdown">
+                                <li><a href="#_target_4">Item 1</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="border bd-default no-border-top p-2">
+                        <div id="_target_1">
+                            A falsis, calceus altus racana. Heavens of emptiness will daily know a remarkable doer. When cooking soaked pumpkin seeds, be sure they are room temperature.
+                        </div>
+                        <div id="_target_2">
+                            The shield is a post-apocalyptic nanomachine. Gar, never mark a fish. Instead of decorating sweet milk with avocado, use a handfull tablespoons salsa verde and one container rosemary plastic bag.
+                        </div>
+                        <div id="_target_3">
+                            Cream soup is just not the same without basil and canned ground pork butts. Elogium prareres, tanquam alter species. Engage, extraterrestrial wind!
+                        </div>
+                        <div id="_target_4">
+                            This is content for hidden tab from dropdown.
+                        </div>
+                    </div>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;ul class="tabs" data-role="tabs"&gt;
+                        &lt;li&gt;&lt;a href="#_target_1"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#_target_2"&gt;Profile&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#_target_3"&gt;Links&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="disabled"&gt;&lt;a href="#"&gt;Disabled&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                    &lt;div class="border bd-default no-border-top p-2"&gt;
+                        &lt;div id="_target_1"&gt;
+                            A falsis, calceus altus racana.
+                        &lt;/div&gt;
+                        &lt;div id="_target_2"&gt;
+                            The shield is a post-apocalyptic nanomachine.
+                        &lt;/div&gt;
+                        &lt;div id="_target_3"&gt;
+                            Cream soup is just not the same without basil
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+            </main>
+        </div>
+
+    </div>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="metro/js/metro.min.js"></script>
+    <script src="js/pre-code.js"></script>
+    <script src="prettify/run_prettify.js"></script>
+    <script src="js/site.js"></script>
+</body>
+</html>

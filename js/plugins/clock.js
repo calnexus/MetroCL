@@ -3,7 +3,7 @@ var Clock = {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
         this.element = $(elem);
-
+        this._clockInterval = null;
         this._setOptionsFromDOM();
         this._create();
 
@@ -20,8 +20,6 @@ var Clock = {
         divider: "&nbsp;&nbsp;",
         onCreate: function(){}
     },
-
-    _clockInterval: null,
 
     _setOptionsFromDOM: function(){
         var that = this, element = this.element, o = this.options;

@@ -3,6 +3,8 @@ var Validator = {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
         this.element = $(elem);
+        this._onsubmit = null;
+        this._action = null;
 
         this._setOptionsFromDOM();
         this._create();
@@ -18,9 +20,6 @@ var Validator = {
         onValid: function(){},
         onCreate: function(){}
     },
-
-    _onsubmit: null,
-    _action: null,
 
     _setOptionsFromDOM: function(){
         var that = this, element = this.element, o = this.options;
