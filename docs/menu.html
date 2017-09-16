@@ -55,14 +55,20 @@
                         </ul>
                     </li>
                     <li class="toc-entry"><a href="#_v_menu">Vertical menu</a></li>
-                    <li class="toc-entry"><a href="#">Tool menu</a></li>
-                    <li class="toc-entry"><a href="#">Sidebar</a></li>
+                    <li class="toc-entry">
+                        <a href="#_t_menu">Tool menu</a>
+                        <ul>
+                            <li class="toc-entry"><a href="#_t_menu_dropdown">Dropdown</a></li>
+                        </ul>
+                    </li>
                     <li class="toc-entry">
                         <a href="#_d_menu">Dropdown menu</a>
                         <ul>
                             <li class="toc-entry"><a href="#_d_menu_context">Context</a></li>
                         </ul>
                     </li>
+                    <li class="toc-entry"><a href="#_menu_hotkeys">Hotkeys</a></li>
+                    <li class="toc-entry"><a href="#_menu_color">Menu color</a></li>
                 </ul>
             </div>
 
@@ -85,7 +91,7 @@
                     To create horizontal menu add class <code>.h-menu</code> to list.
                 </p>
                 <div class="example">
-                    <ul class="h-menu">
+                    <ul class="h-menu mb-2">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Products</a></li>
                         <li><a href="#">Support</a></li>
@@ -193,7 +199,7 @@
                         <li><a href="#">Home</a></li>
                         <li>
                             <a href="#" class="dropdown-toggle">Products</a>
-                            <div class="mega-container p-2" data-role="dropdown">
+                            <div class="mega-container p-2 border-top bd-gray" data-role="dropdown">
                                 <div class="row">
                                     <div class="cell-md-6">
                                         <h2 class="text-light">Metro 4</h2>
@@ -269,7 +275,8 @@
 
                 <h3 id="_v_menu">Vertical menu</h3>
                 <p>
-                    To create horizontal menu add class <code>.v-menu</code> to list.
+                    The vertical menu is intended, first of all, to create sidebar menus of your site.
+                    To create vertical menu add class <code>.v-menu</code> to list.
                 </p>
                 <div class="example clear">
                     <ul class="v-menu" style="width: 220px;">
@@ -328,9 +335,175 @@
                     &lt;/ul&gt;
                 </code></pre>
 
+                <h3 id="_t_menu">Tool menu</h3>
+                <p>
+                    If you need to create cool compact tool menu, you can user class <code>.t-menu</code>.
+                </p>
+                <div class="example clear">
+                    <ul class="t-menu open m-1">
+                        <li><a href="#"><span class="mif-apps icon"></span></a></li>
+                        <li><a href="#"><span class="mif-laptop icon"></span></a></li>
+                        <li><a href="#"><span class="mif-bubbles icon"></span></a></li>
+                        <li><a href="#"><span class="mif-bubble icon"></span></a></li>
+                        <li><a href="#"><span class="mif-user icon"></span></a></li>
+                    </ul>
+                    <ul class="t-menu open compact m-1">
+                        <li><a href="#"><span class="mif-apps icon"></span></a></li>
+                        <li><a href="#"><span class="mif-laptop icon"></span></a></li>
+                        <li><a href="#"><span class="mif-bubbles icon"></span></a></li>
+                        <li><a href="#"><span class="mif-bubble icon"></span></a></li>
+                        <li><a href="#"><span class="mif-user icon"></span></a></li>
+                    </ul>
+                    <ul class="t-menu open horizontal m-1">
+                        <li><a href="#"><span class="mif-apps icon"></span></a></li>
+                        <li><a href="#"><span class="mif-laptop icon"></span></a></li>
+                        <li><a href="#"><span class="mif-bubbles icon"></span></a></li>
+                        <li><a href="#"><span class="mif-bubble icon"></span></a></li>
+                        <li><a href="#"><span class="mif-user icon"></span></a></li>
+                    </ul>
+                    <ul class="t-menu open horizontal compact m-1">
+                        <li><a href="#"><span class="mif-apps icon"></span></a></li>
+                        <li><a href="#"><span class="mif-laptop icon"></span></a></li>
+                        <li><a href="#"><span class="mif-bubbles icon"></span></a></li>
+                        <li><a href="#"><span class="mif-bubble icon"></span></a></li>
+                        <li><a href="#"><span class="mif-user icon"></span></a></li>
+                    </ul>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;ul class="t-menu open"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-apps icon"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-laptop icon"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-bubbles icon"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-bubble icon"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-user icon"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                    &lt;ul class="t-menu open compact"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-apps icon"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-laptop icon"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-bubbles icon"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-bubble icon"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-user icon"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                    &lt;ul class="t-menu open horizontal"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-apps icon"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-laptop icon"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-bubbles icon"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-bubble icon"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-user icon"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                    &lt;ul class="t-menu open horizontal compact"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-apps icon"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-laptop icon"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-bubbles icon"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-bubble icon"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-user icon"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <h4 id="_t_menu_dropdown">Tools menu dropdown</h4>
+                <div class="example clear">
+                    <ul class="t-menu open m-1">
+                        <li><a href="#"><span class="icon mif-home"></span></a></li>
+                        <li><a href="#" class="dropdown-toggle"><span class="icon mif-compass"></span></a>
+                            <ul class="t-menu horizontal" data-role="dropdown">
+                                <li><a href="#"><span class="icon mif-home"></span></a></li>
+                                <li><a href="#" class="dropdown-toggle"><span class="icon mif-compass"></span></a>
+                                    <ul class="t-menu" data-role="dropdown">
+                                        <li><a href="#"><span class="icon mif-home"></span></a></li>
+                                        <li><a href="#"><span class="icon mif-compass"></span></a></li>
+                                        <li><a href="#"><span class="icon mif-bubbles"></span></a></li>
+                                        <li><a href="#"><span class="icon mif-file-empty"></span></a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#"><span class="icon mif-bubbles"></span></a></li>
+                                <li><a href="#"><span class="icon mif-bubbles"></span></a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><span class="icon mif-bubbles"></span></a></li>
+                        <li><a href="#"><span class="icon mif-file-empty"></span></a></li>
+                    </ul>
+
+                    <ul class="t-menu horizontal compact open m-1">
+                        <li><a href="#"><span class="icon mif-home"></span></a></li>
+                        <li><a href="#" class="dropdown-toggle"><span class="icon mif-compass"></span></a>
+                            <ul class="t-menu compact" data-role="dropdown">
+                                <li><a href="#"><span class="icon mif-home"></span></a></li>
+                                <li><a href="#" class="dropdown-toggle"><span class="icon mif-compass"></span></a>
+                                    <ul class="t-menu compact horizontal" data-role="dropdown">
+                                        <li><a href="#"><span class="icon mif-home"></span></a></li>
+                                        <li><a href="#"><span class="icon mif-compass"></span></a></li>
+                                        <li><a href="#"><span class="icon mif-bubbles"></span></a></li>
+                                        <li><a href="#"><span class="icon mif-file-empty"></span></a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#"><span class="icon mif-bubbles"></span></a></li>
+                                <li><a href="#"><span class="icon mif-bubbles"></span></a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><span class="icon mif-bubbles"></span></a></li>
+                        <li><a href="#"><span class="icon mif-file-empty"></span></a></li>
+                    </ul>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;ul class="t-menu open"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-home"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#" class="dropdown-toggle"&gt;&lt;span class="icon mif-compass"&gt;&lt;/span&gt;&lt;/a&gt;
+                            &lt;ul class="t-menu horizontal" data-role="dropdown"&gt;
+                                &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-home"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href="#" class="dropdown-toggle"&gt;&lt;span class="icon mif-compass"&gt;&lt;/span&gt;&lt;/a&gt;
+                                    &lt;ul class="t-menu" data-role="dropdown"&gt;
+                                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-home"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-compass"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-bubbles"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-file-empty"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                                    &lt;/ul&gt;
+                                &lt;/li&gt;
+                                &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-bubbles"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-bubbles"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-bubbles"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-file-empty"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+
+                    &lt;ul class="t-menu horizontal compact open"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-home"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#" class="dropdown-toggle"&gt;&lt;span class="icon mif-compass"&gt;&lt;/span&gt;&lt;/a&gt;
+                            &lt;ul class="t-menu compact" data-role="dropdown"&gt;
+                                &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-home"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href="#" class="dropdown-toggle"&gt;&lt;span class="icon mif-compass"&gt;&lt;/span&gt;&lt;/a&gt;
+                                    &lt;ul class="t-menu compact horizontal" data-role="dropdown"&gt;
+                                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-home"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-compass"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-bubbles"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-file-empty"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                                    &lt;/ul&gt;
+                                &lt;/li&gt;
+                                &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-bubbles"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-bubbles"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-bubbles"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-file-empty"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
                 <h3 id="_d_menu">Dropdown menu</h3>
                 <p>
-                    With Metro 4 you can create dropdown menu simple and easy for any element. To create dropdown menu:
+                    With Metro 4 you can create dropdown menu simple and easy for any element.
+                </p>
+                <div class="example clear mb-2">
+                    <ul class="d-menu open pos-static">
+                        <li><a href="#"><span class="mif-user icon"></span> Profile</a></li>
+                        <li><a href="#">Calendar</a></li>
+                        <li><a href="#">Photo</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#"><span class="mif-target icon"></span> Location</a></li>
+                    </ul>
+                </div>
+
+                <p class="text-bold">
+                    To create dropdown menu:
                 </p>
                 <ol class="decimal">
                     <li>Create container with a position different from <code>statics</code></li>
@@ -360,7 +533,7 @@
                     </div>
                     <div class="pos-relative">
                         <button class="button square alert dropdown-toggle"><span class="mif-apps"></span></button>
-                        <ul class="d-menu" data-role="dropdown">
+                        <ul class="d-menu bg-red fg-white" data-role="dropdown">
                             <li><a href="#">One</a></li>
                             <li><a href="#">Two</a></li>
                             <li><a href="#">Three</a></li>
@@ -421,15 +594,31 @@
                 </code></pre>
 
                 <h4 id="_d_menu_context">Context menu</h4>
+                <p>
+                    Context menu is a kind of drop-down menu, with reduced size of menu items.
+                </p>
                 <div class="example">
-                    <a class="button" id="context_toggle">Open context menu</a>
-                    <ul class="d-menu context" data-role="dropdown" data-toggle-element="#context_toggle">
-                        <li><a href="#"><span class="mif-user icon"></span> Profile</a></li>
-                        <li><a href="#">Calendar</a></li>
-                        <li><a href="#">Photo</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#"><span class="mif-target icon"></span> Location</a></li>
-                    </ul>
+                    <div class="row flex-justify-start">
+                        <div class="cell-auto m-1">
+                            <ul class="d-menu open context pos-static">
+                                <li><a href="#"><span class="mif-user icon"></span> Profile</a></li>
+                                <li><a href="#">Calendar</a></li>
+                                <li><a href="#">Photo</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#"><span class="mif-target icon"></span> Location</a></li>
+                            </ul>
+                        </div>
+                        <div class="cell-auto m-1">
+                            <a class="button" id="context_toggle">Open context menu</a>
+                            <ul class="d-menu context" data-role="dropdown" data-toggle-element="#context_toggle">
+                                <li><a href="#"><span class="mif-user icon"></span> Profile</a></li>
+                                <li><a href="#">Calendar</a></li>
+                                <li><a href="#">Photo</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#"><span class="mif-target icon"></span> Location</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <pre class="prettyprint linenums"><code>
                     &lt;a class="button" id="context_toggle"&gt;Open context menu&lt;/a&gt;
@@ -442,6 +631,103 @@
                     &lt;/ul&gt;
                 </code></pre>
 
+                <h3 id="_menu_hotkeys">Hotkeys</h3>
+                <p>
+                    All menus supports hotkey binding to elements. To bind hotkey add attribute <code>data-hotkey="*"</code> to menu <code>a</code> element.
+                </p>
+                <div class="example clear">
+                    <ul class="d-menu open pos-static">
+                        <li><a href="#" data-hotkey="Alt+Q" onclick="alert('Alt+Q')">Test Alt+Q</a></li>
+                        <li><a href="#" data-hotkey="Alt+W" onclick="alert('Alt+W')">Test Alt+W</a></li>
+                        <li><a href="#" data-hotkey="Ctrl+F1" onclick="alert('Ctrl+F1')">Test Ctrl+F1</a></li>
+                    </ul>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;ul class="d-menu open pos-static" style="width: 220px"&gt;
+                        &lt;li&gt;&lt;a href="#" data-hotkey="Alt+Q" onclick="alert('Alt+Q')"&gt;Test Alt+Q&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#" data-hotkey="Alt+W" onclick="alert('Alt+W')"&gt;Test Alt+W&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#" data-hotkey="Ctrl+F1" onclick="alert('Ctrl+F1')"&gt;Test Ctrl+F1&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <h3 id="_menu_color">Menu color</h3>
+                <p>
+                    If you need a menu of a certain color, it's nothing easier, add classes for background color and tex color to your menu.
+                </p>
+                <div class="example clear">
+                    <ul class="h-menu bg-red fg-white m-1">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Cart</a></li>
+                    </ul>
+
+                    <ul class="d-menu open pos-static bg-green fg-white m-1">
+                        <li><a href="#"><span class="mif-user icon"></span> Profile</a></li>
+                        <li><a href="#">Calendar</a></li>
+                        <li><a href="#">Photo</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#"><span class="mif-target icon"></span> Location</a></li>
+                    </ul>
+
+                    <ul class="t-menu horizontal open m-1 bg-cyan fg-white">
+                        <li><a href="#"><span class="icon mif-home"></span></a></li>
+                        <li><a href="#" class="dropdown-toggle"><span class="icon mif-compass"></span></a>
+                            <ul class="t-menu bg-pink fg-white" data-role="dropdown">
+                                <li><a href="#"><span class="icon mif-home"></span></a></li>
+                                <li><a href="#" class="dropdown-toggle"><span class="icon mif-compass"></span></a>
+                                    <ul class="t-menu horizontal bg-brown fg-white" data-role="dropdown">
+                                        <li><a href="#"><span class="icon mif-home"></span></a></li>
+                                        <li><a href="#"><span class="icon mif-compass"></span></a></li>
+                                        <li><a href="#"><span class="icon mif-bubbles"></span></a></li>
+                                        <li><a href="#"><span class="icon mif-file-empty"></span></a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#"><span class="icon mif-bubbles"></span></a></li>
+                                <li><a href="#"><span class="icon mif-bubbles"></span></a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><span class="icon mif-bubbles"></span></a></li>
+                        <li><a href="#"><span class="icon mif-file-empty"></span></a></li>
+                    </ul>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;ul class="h-menu bg-red fg-white"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Products&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Support&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Cart&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+
+                    &lt;ul class="d-menu open pos-static bg-green fg-white"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-user icon"&gt;&lt;/span&gt; Profile&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Calendar&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Photo&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="divider"&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="mif-target icon"&gt;&lt;/span&gt; Location&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+
+                    &lt;ul class="t-menu horizontal open bg-cyan fg-white"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-home"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#" class="dropdown-toggle"&gt;&lt;span class="icon mif-compass"&gt;&lt;/span&gt;&lt;/a&gt;
+                            &lt;ul class="t-menu bg-pink fg-white" data-role="dropdown"&gt;
+                                &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-home"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href="#" class="dropdown-toggle"&gt;&lt;span class="icon mif-compass"&gt;&lt;/span&gt;&lt;/a&gt;
+                                    &lt;ul class="t-menu horizontal bg-brown fg-white" data-role="dropdown"&gt;
+                                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-home"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-compass"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-bubbles"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-file-empty"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                                    &lt;/ul&gt;
+                                &lt;/li&gt;
+                                &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-bubbles"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-bubbles"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-bubbles"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;span class="icon mif-file-empty"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
             </main>
         </div>
 

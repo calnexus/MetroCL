@@ -40,6 +40,12 @@
 
     .op-@{name} {background-color: rgba(red(@@name), green(@@name), blue(@@name), .7) !important;}
 
+    .tg-@{name} {
+        &::before {
+            border-color: @@name;
+        }
+    }
+
     .generate-colors(@name, @i + 1);
 }
 

@@ -1782,6 +1782,8 @@ var Dropdown = {
         onCreate: function(){}
     },
 
+    _toggle: null,
+
     _setOptionsFromDOM: function(){
         var that = this, element = this.element, o = this.options;
 
@@ -1800,7 +1802,7 @@ var Dropdown = {
         var that = this, element = this.element, o = this.options;
         var toggle, parent = element.parent();
 
-        toggle = o.toggleElement ? $(o.toggleElement) : parent.children('.dropdown-toggle').length > 0 ? parent.children('.dropdown-toggle') : parent.children('a:nth-child(1)');
+        this._toggle = toggle = o.toggleElement ? $(o.toggleElement) : parent.children('.dropdown-toggle').length > 0 ? parent.children('.dropdown-toggle') : parent.children('a:nth-child(1)');
 
         toggle.on('click', function(e){
             parent.siblings(parent[0].tagName).removeClass("active-container");
@@ -1849,7 +1851,7 @@ var Dropdown = {
 
     _close: function(el){
         var parent = $(el).parent(), o = this.options;
-        var toggle = o.toggleElement ? $(o.toggleElement) : parent.children('.dropdown-toggle').length > 0 ? parent.children('.dropdown-toggle') : parent.children('a:nth-child(1)');
+        var toggle = this._toggle;
 
         switch (this.options.effect) {
             case 'fade': $(el).fadeOut(o.duration); break;
@@ -1857,14 +1859,14 @@ var Dropdown = {
             default: $(el).hide();
         }
         this.element.trigger("onClose", null, el);
-        toggle.removeClass('active-toggle');
+        toggle.removeClass('active-toggle').removeClass("active-control");
 
         Utils.exec(o.onUp);
     },
 
     _open: function(el){
         var parent = this.element.parent(), o = this.options;
-        var toggle = o.toggleElement ? $(o.toggleElement) : parent.children('.dropdown-toggle').length > 0 ? parent.children('.dropdown-toggle') : parent.children('a:nth-child(1)');
+        var toggle = this._toggle;
 
         switch (this.options.effect) {
             case 'fade': $(el).fadeIn(o.duration); break;
@@ -1872,7 +1874,7 @@ var Dropdown = {
             default: $(el).show();
         }
         this.element.trigger("onOpen", null, el);
-        toggle.addClass('active-toggle');
+        toggle.addClass('active-toggle').addClass("active-control");
 
         Utils.exec(o.onDrop);
     },
