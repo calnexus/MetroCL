@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@metroui">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Download">
+    <meta name="twitter:description" content="Download Metro 4 to get the compiled CSS and JavaScript, source code, or include it with your favorite package managers like npm, Bower, RubyGems, and more.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/logo4.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/download.html">
+    <meta property="og:title" content="Download">
+    <meta property="og:description" content="Download Metro 4 to get the compiled CSS and JavaScript, source code, or include it with your favorite package managers like npm, Bower, RubyGems, and more.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/logo4.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/logo4.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="476">
+    <meta property="og:image:height" content="194">
+
+    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="author" content="Sergey Pimenov">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css" rel="stylesheet">
+
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Toast - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
+            </div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Toast</a></li>
+                </ul>
+            </div>
+
+            <main class="cell-12 cell-md-9 cell-xl-8 order-1 pr-sx-1 pl-sx-1 pr-md-5 pl-md-5">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>Toast</h1>
+                <p class="text-leader">
+                    Toasts are used for system messaging. They also display at the bottom of the screen, but may not be swiped off-screen. Metro 4 provides simple methods to create toasts.
+                </p>
+
+                <!-- ADVERT -->
+
+                <div class="example">
+                    <button class="button primary" onclick="runToast()">Default toast</button>
+                    <button class="button secondary" onclick="runToast('callback')">Toast with a callback</button>
+                    <button class="button info" onclick="runToast('timeout')">Toast timeout</button>
+                    <button class="button success" onclick="runToast('class')">Toast custom class</button>
+                </div>
+                <pre class="prettyprint linenums"><code>
+                    &lt;button class="button primary" onclick="runToast()"&gt;Default toast&lt;/button&gt;
+                    &lt;button class="button secondary" onclick="runToast('callback')"&gt;Toast with a callback&lt;/button&gt;
+                    &lt;button class="button info" onclick="runToast('timeout')"&gt;Toast timeout&lt;/button&gt;
+                    &lt;button class="button success" onclick="runToast('class')"&gt;Toast custom class&lt;/button&gt;
+
+                    &lt;script&gt;
+                        function runToast(mode) {
+                            var toast = $.Metro.toast.create;
+                            switch (mode) {
+                                case 'callback': toast("This is a toast with callback", function(){
+                                    alert('Toast callback executed!');
+                                }); break;
+                                case 'timeout': toast("This is a toast with timeout 5s", null, 5000); break;
+                                case 'class': toast("This is a toast with custom class", null, 5000, "bg-green fg-white"); break;
+                                default: toast("This is default toast");
+                            }
+                        }
+                    &lt;/script&gt;
+                </code></pre>
+            </main>
+        </div>
+
+    </div>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="metro/js/metro.min.js"></script>
+    <script src="js/pre-code.js"></script>
+    <script src="prettify/run_prettify.js"></script>
+    <script src="js/site.js"></script>
+
+    <script>
+        function runToast(mode) {
+            var toast = $.Metro.toast.create;
+            switch (mode) {
+                case 'callback': toast("This is a toast with callback", function(){alert('Toast callback executed!');}); break;
+                case 'timeout': toast("This is a toast with timeout 5s", null, 5000); break;
+                case 'class': toast("This is a toast with custom class", null, 5000, "bg-green fg-white"); break;
+                default: toast("This is default toast");
+            }
+        }
+    </script>
+</body>
+</html>

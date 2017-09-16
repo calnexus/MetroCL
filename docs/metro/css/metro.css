@@ -11424,6 +11424,22 @@ figure img {
         order: 1;
   }
 }
+.toast {
+  position: fixed;
+  bottom: 1.25rem;
+  width: auto;
+  max-width: 35.5rem;
+  padding: .5rem 1.5rem;
+  text-align: left;
+  font-size: .875rem;
+  font-weight: normal;
+  background-color: #323232;
+  color: #ffffff;
+  border-radius: 0.25rem;
+}
+.toast {
+  z-index: 1080;
+}
 @media print {
   .d-none-print {
     display: none!important;
