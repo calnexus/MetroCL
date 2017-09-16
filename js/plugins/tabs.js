@@ -14,9 +14,8 @@ var Tabs = {
     },
 
     options: {
-        target: 'self',
-        duration: METRO_ANIMATION_DURATION,
-        onTab: function(){}
+        onTab: function(){},
+        onCreate: function(){}
     },
 
     _setOptionsFromDOM: function(){
@@ -92,6 +91,8 @@ var Tabs = {
         if (target !== "#") {
             $(target).show();
         }
+
+        Utils.exec(o.onTab, tab[0]);
     },
 
     changeAttribute: function(attributeName){

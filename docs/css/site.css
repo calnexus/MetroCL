@@ -324,3 +324,15 @@ footer p a {
     width: 25%;
   }
 }
+.prettyprint {
+  position: relative;
+}
+.prettyprint .copy-button {
+  position: absolute;
+  z-index: 2;
+  top: .5rem;
+  right: .5rem;
+}
+.hljs {
+  padding: 1rem;
+}

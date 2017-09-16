@@ -28,6 +28,7 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
     <link href="metro/css/metro-all.css" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
 
     <link href="css/site.css" rel="stylesheet">
 
@@ -202,14 +203,14 @@
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="metro/js/metro.min.js"></script>
     <script src="js/pre-code.js"></script>
-    <script src="prettify/run_prettify.js"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
     <script src="js/site.js"></script>
 
     <script>
         function getGravatar(f){
             var val = Number(f.elements['gravatar_size'].value);
             var size = val !== "" && $.Metro.utils.isInt(val) ? val : 0;
-            console.log(size);
             $('#gravatar_runtime_demo_1').attr('data-size', size);
         }
     </script>
