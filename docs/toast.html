@@ -45,6 +45,10 @@
                 <hr/>
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Toast</a></li>
+                    <li class="toc-entry"><a href="#_toast_create">Create toast</a></li>
+                    <li class="toc-entry"><a href="#_toast_callback">Callback</a></li>
+                    <li class="toc-entry"><a href="#_toast_timeout">Timeout</a></li>
+                    <li class="toc-entry"><a href="#_toast_custom">Custom toast</a></li>
                 </ul>
             </div>
 
@@ -60,6 +64,21 @@
 
                 <!-- ADVERT -->
 
+                <h3 id="_toast_create">Create toast</h3>
+                <p>
+                    To create <code>toast</code> you must call method <code>$.Metro.toast.create</code>. Method contains next parameters:
+                </p>
+                <ul>
+                    <li><strong>message</strong>: Toast message</li>
+                    <li><strong>callback</strong>: Callback function.Executed after toast hided</li>
+                    <li><strong>timeout</strong>: Time to show toast</li>
+                    <li><strong>cls</strong>: Classes to customize toast</li>
+                </ul>
+                <pre class="prettyprint linenums"><code>
+                    $.Metro.toast.create(message, callback, timeout, cls);
+                </code></pre>
+
+                <h4>Quick example</h4>
                 <div class="example">
                     <button class="button primary" onclick="runToast()">Default toast</button>
                     <button class="button secondary" onclick="runToast('callback')">Toast with a callback</button>
@@ -85,6 +104,32 @@
                             }
                         }
                     &lt;/script&gt;
+                </code></pre>
+
+                <h3 id="_toast_callback">Callback</h3>
+                <p>
+                    If you need execute code after toast showing, add <code>callback function</code> to call toast.
+                </p>
+                <pre class="prettyprint linenums"><code>
+                    $.Metro.toast.create("Toast message", function(){
+                        ...callback function...
+                    });
+                </code></pre>
+
+                <h3 id="_toast_timeout">Timeout</h3>
+                <p>
+                    Want to show the toast a certain time? Add a <code>timeout</code> parameter.
+                </p>
+                <pre class="prettyprint linenums"><code>
+                    $.Metro.toast.create("Toast message", null, 5000);
+                </code></pre>
+
+                <h3 id="_toast_custom">Custom toast</h3>
+                <p>
+                    If you want to display a toast in your own style, add a <code>cls</code> parameter.
+                </p>
+                <pre class="prettyprint linenums"><code>
+                    $.Metro.toast.create("Toast message", null, null, cls);
                 </code></pre>
             </main>
         </div>
