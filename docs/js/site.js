@@ -20,7 +20,7 @@
 
     $.each($("pre"), function(){
         var pre = $(this);
-        pre.prepend($("<button>").addClass("button square copy-button").html("<span class='mif-files-empty'></span>"));
+        pre.prepend($("<button>").addClass("button square copy-button rounded").attr("title", "Copy").html("<span class='mif-copy'></span>"));
     });
 
     hljs.initHighlightingOnLoad();
