@@ -7204,6 +7204,7 @@ form[data-role*=validator] .invalid_feedback {
   background-color: inherit;
   display: none;
   color: inherit;
+  z-index: 1000;
   box-shadow: 2px 2px 2px 0 rgba(29, 29, 29, 0.4);
 }
 .h-menu.mega .mega-container * {
@@ -7510,6 +7511,9 @@ form[data-role*=validator] .invalid_feedback {
 }
 .t-menu.compact .dropdown-toggle {
   padding-right: .7rem!important;
+}
+.t-menu {
+  z-index: 1000;
 }
 .drop-shadow {
   box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);

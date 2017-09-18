@@ -100,6 +100,7 @@
             background-color: inherit;
             display: none;
             color: inherit;
+            z-index: @zindex-dropdown;
             .shadow(2px, 2px, 2px, 0, @dark);
 
             * {
@@ -471,4 +472,8 @@
             padding-right: .7rem!important;
         }
     }
+}
+
+.t-menu {
+    z-index: @zindex-dropdown;
 }
