@@ -324,10 +324,10 @@ footer p a {
     width: 25%;
   }
 }
-.prettyprint {
+pre {
   position: relative;
 }
-.prettyprint .copy-button {
+pre .copy-button {
   position: absolute;
   z-index: 2;
   top: .5rem;

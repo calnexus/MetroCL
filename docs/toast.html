@@ -75,7 +75,7 @@
                     <li><strong>timeout</strong>: Time to show toast</li>
                     <li><strong>cls</strong>: Classes to customize toast</li>
                 </ul>
-                <pre class="prettyprint linenums"><code>
+                <pre class=""><code>
                     $.Metro.toast.create(message, callback, timeout, cls);
                 </code></pre>
 
@@ -86,7 +86,7 @@
                     <button class="button info" onclick="runToast('timeout')">Toast timeout</button>
                     <button class="button success" onclick="runToast('class')">Toast custom class</button>
                 </div>
-                <pre class="prettyprint linenums"><code>
+                <pre class=""><code>
                     &lt;button class="button primary" onclick="runToast()"&gt;Default toast&lt;/button&gt;
                     &lt;button class="button secondary" onclick="runToast('callback')"&gt;Toast with a callback&lt;/button&gt;
                     &lt;button class="button info" onclick="runToast('timeout')"&gt;Toast timeout&lt;/button&gt;
@@ -111,7 +111,7 @@
                 <p>
                     If you need execute code after toast showing, add <code>callback function</code> to call toast.
                 </p>
-                <pre class="prettyprint linenums"><code>
+                <pre class=""><code>
                     $.Metro.toast.create("Toast message", function(){
                         ...callback function...
                     });
@@ -121,7 +121,7 @@
                 <p>
                     Want to show the toast a certain time? Add a <code>timeout</code> parameter.
                 </p>
-                <pre class="prettyprint linenums"><code>
+                <pre class=""><code>
                     $.Metro.toast.create("Toast message", null, 5000);
                 </code></pre>
 
@@ -129,7 +129,7 @@
                 <p>
                     If you want to display a toast in your own style, add a <code>cls</code> parameter.
                 </p>
-                <pre class="prettyprint linenums"><code>
+                <pre class=""><code>
                     $.Metro.toast.create("Toast message", null, null, cls);
                 </code></pre>
             </main>
