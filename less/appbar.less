@@ -1,13 +1,13 @@
 @import (once) "include/vars";
 @import (once) "include/mixins";
 
-.app-bar {
+.topbar {
     display: flex;
-    .px2rem(padding, 8px 16px);
+    padding: .5rem 1rem;
     flex-wrap: nowrap;
+    flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    //.px2rem(min-height, 64px);
     position: sticky;
     top: 0;
     background: @appBarBackground;
@@ -15,41 +15,66 @@
     z-index: @zindex-top;
 }
 
-.brand, .app-bar-element {
-    display: inline-block;
-    .px2rem(padding, 4px 0);
+
+.topbar-brand, .topbar-element, .topbar-menu {
+    display: block;
     white-space: nowrap;
-    .px2rem(font-size, 20px);
     background: inherit;
-    text-decoration: none;
-
-    * {
-        .px2rem(height, 32px);
-    }
+    color: @white;
+    text-decoration: none!important;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    font-size: .875rem;
+    margin-bottom: 1rem;
 }
 
-a.brand, a.app-bar-element {
-    text-decoration: none;
+.topbar-brand {
+    font-size: 1.25rem;
+    margin-top: 1rem;
 }
 
-.app-bar-menu {
+
+.topbar-menu {
     display: flex;
     padding: 0;
     margin: 0;
     list-style: none;
 }
 
-* ~ .app-bar-menu {
-    .px2rem(margin-left, 16px);
-}
-
-.app-bar-menu li a, .app-bar-item {
-    .px2rem(padding, 8px 16px);
+.topbar-menu li a {
     display: block;
     text-decoration: none;
     color: inherit;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    padding: 0 .5rem;
 
     &:hover, &:active {
         background: lighten(@appBarBackground, 10%);
     }
+}
+
+@media screen and (min-width: @sm){
+    .topbar-element, .topbar-menu {
+       font-size: 1rem;
+    }
+}
+
+
+.generate-topbar-media-options(@mediaBreakpointListMobileLength);
+.generate-topbar-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
+    @m: extract(@mediaBreakpointListMobile, @i);
+
+    @media screen and (min-width: @@m) {
+        .topbar-expand-@{m} {
+            flex-direction: row!important;
+
+            .topbar-brand, .topbar-element, .topbar-menu {
+                margin-bottom: 0;
+                margin-top: 0;
+            }
+        }
+    }
+
+    .generate-topbar-media-options(@name, @i + 1);
 }

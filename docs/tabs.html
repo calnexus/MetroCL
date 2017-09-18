@@ -86,21 +86,6 @@
                         </li>
                         <li class="disabled"><a href="#">Disabled</a></li>
                     </ul>
-
-                    <ul class="tabs bottom mt-2" data-role="tabs">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Profile</a></li>
-                        <li><a href="#">Links</a></li>
-                        <li>
-                            <a href="#" class="dropdown-toggle">Dropdown</a>
-                            <ul class="d-menu drop-up" data-role="dropdown">
-                                <li><a href="#">Item 1</a></li>
-                                <li><a href="#">Item 2</a></li>
-                                <li><a href="#">Item 3</a></li>
-                            </ul>
-                        </li>
-                        <li class="disabled"><a href="#">Disabled</a></li>
-                    </ul>
                 </div>
                 <pre class="prettyprint linenums"><code>
                     &lt;ul class="tabs" data-role="tabs"&gt;
@@ -117,7 +102,25 @@
                         &lt;/li&gt;
                         &lt;li class="disabled"&gt;&lt;a href="#"&gt;Disabled&lt;/a&gt;&lt;/li&gt;
                     &lt;/ul&gt;
+                </code></pre>
 
+                <div class="example">
+                    <ul class="tabs bottom mt-2" data-role="tabs">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Links</a></li>
+                        <li>
+                            <a href="#" class="dropdown-toggle">Dropdown</a>
+                            <ul class="d-menu drop-up" data-role="dropdown">
+                                <li><a href="#">Item 1</a></li>
+                                <li><a href="#">Item 2</a></li>
+                                <li><a href="#">Item 3</a></li>
+                            </ul>
+                        </li>
+                        <li class="disabled"><a href="#">Disabled</a></li>
+                    </ul>
+                </div>
+                <pre class="prettyprint linenums"><code>
                     &lt;ul class="tabs bottom" data-role="tabs"&gt;
                         &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
                         &lt;li&gt;&lt;a href="#"&gt;Profile&lt;/a&gt;&lt;/li&gt;
@@ -138,6 +141,8 @@
                 <p>
                     To create vertical tabs add class <code>tabs vertical</code> to list and attribute <code>data-role="tabs"</code>. To set tabs on right add class <code>right</code>.
                 </p>
+
+                <h4>Left side</h4>
                 <div class="example clear">
                     <ul class="tabs vertical place-left" data-role="tabs" style="width: 120px">
                         <li><a href="#">Home</a></li>
@@ -146,21 +151,6 @@
                         <li>
                             <a href="#" class="dropdown-toggle">Dropdown</a>
                             <ul class="d-menu drop-right" data-role="dropdown">
-                                <li><a href="#">Item 1</a></li>
-                                <li><a href="#">Item 2</a></li>
-                                <li><a href="#">Item 3</a></li>
-                            </ul>
-                        </li>
-                        <li class="disabled"><a href="#">Disabled</a></li>
-                    </ul>
-
-                    <ul class="tabs vertical right place-right" data-role="tabs" style="width: 120px">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Profile</a></li>
-                        <li><a href="#">Links</a></li>
-                        <li>
-                            <a href="#" class="dropdown-toggle">Dropdown</a>
-                            <ul class="d-menu drop-left" data-role="dropdown">
                                 <li><a href="#">Item 1</a></li>
                                 <li><a href="#">Item 2</a></li>
                                 <li><a href="#">Item 3</a></li>
@@ -184,7 +174,26 @@
                         &lt;/li&gt;
                         &lt;li class="disabled"&gt;&lt;a href="#"&gt;Disabled&lt;/a&gt;&lt;/li&gt;
                     &lt;/ul&gt;
+                </code></pre>
 
+                <h4>Right side</h4>
+                <div class="example clear">
+                    <ul class="tabs vertical right place-right" data-role="tabs" style="width: 120px">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Links</a></li>
+                        <li>
+                            <a href="#" class="dropdown-toggle">Dropdown</a>
+                            <ul class="d-menu drop-left" data-role="dropdown">
+                                <li><a href="#">Item 1</a></li>
+                                <li><a href="#">Item 2</a></li>
+                                <li><a href="#">Item 3</a></li>
+                            </ul>
+                        </li>
+                        <li class="disabled"><a href="#">Disabled</a></li>
+                    </ul>
+                </div>
+                <pre class="prettyprint linenums"><code>
                     &lt;ul class="tabs vertical right" data-role="tabs"&gt;
                         &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
                         &lt;li&gt;&lt;a href="#"&gt;Profile&lt;/a&gt;&lt;/li&gt;

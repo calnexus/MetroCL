@@ -26,50 +26,15 @@
 .no-scroll-y {overflow-y: hidden !important;}
 .wrap {white-space: normal !important;}
 .no-wrap {white-space: nowrap !important;}
+.no-user-select {user-select: none !important;}
+.no-appearance {appearance: none !important;}
+
 .no-border {border: 0 !important;}
 .no-border-left {border-left: none !important;}
 .no-border-right {border-right: none !important;}
 .no-border-top {border-top: none !important;}
 .no-border-bottom {border-bottom: none !important;}
 .no-border-visible {border-color: transparent !important;}
-.no-user-select {user-select: none !important;}
-.no-appearance {appearance: none !important;}
-
-.mx-auto {
-    margin-left: auto!important;
-    margin-right: auto!important;
-}
-
-.ml-auto {margin-left: auto!important;}
-.mr-auto {margin-right: auto!important;}
-
-.generate-padding-and-margin(@i, @k: 1) when (@k =< @i) {
-    .p-@{k} {padding: unit(@k * 8 / 16, rem) !important;}
-    .pr-@{k} {padding-right: unit(@k * 8 / 16, rem) !important;}
-    .pl-@{k} {padding-left: unit(@k * 8 / 16, rem) !important;}
-    .pt-@{k} {padding-top: unit(@k * 8 / 16, rem) !important;}
-    .pb-@{k} {padding-bottom: unit(@k * 8 / 16, rem) !important;}
-    .m-@{k} {margin: unit(@k * 8 / 16, rem) !important;}
-    .mr-@{k} {margin-right: unit(@k * 8 / 16, rem) !important;}
-    .ml-@{k} {margin-left: unit(@k * 8 / 16, rem) !important;}
-    .mt-@{k} {margin-top: unit(@k * 8 / 16, rem) !important;}
-    .mb-@{k} {margin-bottom: unit(@k * 8 / 16, rem) !important;}
-
-    .generate-padding-and-margin(@i, @k + 1);
-}
-.generate-padding-and-margin(10);
-
-.p-0 {padding: 0!important;}
-.pl-0 {padding-left: 0!important;}
-.pr-0 {padding-right: 0!important;}
-.pt-0 {padding-top: 0!important;}
-.pb-0 {padding-bottom: 0!important;}
-.m-0 {margin: 0!important;}
-.ml-0 {margin-left: 0!important;}
-.mr-0 {margin-right: 0!important;}
-.mt-0 {margin-top: 0!important;}
-.mb-0 {margin-bottom: 0!important;}
-
 .border {border: 1px solid @transparent;}
 .border-left {border-left: 1px solid @transparent;}
 .border-right {border-right: 1px solid @transparent;}
@@ -134,16 +99,16 @@
 .w-auto {width: auto!important;}
 
 .selected {
-    border: 4px @lightBlue solid;
+    box-shadow: 0 0 0 4px rgba(red(@lightCyan), green(@lightCyan), blue(@lightCyan), 1)!important;
 
     &:after {
         position: absolute;
         display: block;
-        border-top: 28px solid @lightBlue;
+        border-top: 28px solid @lightCyan;
         border-left: 28px solid transparent;
-        right: 0;
+        right: -1px;
         content:"";
-        top: 0;
+        top: -1px;
         z-index: 101;
     }
 
@@ -210,42 +175,6 @@
         .pos-fixed-@{m} {position: fixed!important;}
 
         .w-auto-@{m} {width: auto!important;}
-
-        .mx-auto-@{m} {
-            margin-left: auto!important;
-            margin-right: auto!important;
-        }
-
-        .ml-auto-@{m} {margin-left: auto!important;}
-        .mr-auto-@{m} {margin-right: auto!important;}
-
-        .p-0-@{m} {padding: 0!important;}
-        .pl-0-@{m} {padding-left: 0!important;}
-        .pr-0-@{m} {padding-right: 0!important;}
-        .pt-0-@{m} {padding-top: 0!important;}
-        .pb-0-@{m} {padding-bottom: 0!important;}
-        .m-0-@{m} {margin: 0!important;}
-        .ml-0-@{m} {margin-left: 0!important;}
-        .mr-0-@{m} {margin-right: 0!important;}
-        .mt-0-@{m} {margin-top: 0!important;}
-        .mb-0-@{m} {margin-bottom: 0!important;}
-
-        .generate-media-padding(@j, @k: 0) when (@k =< @j) {
-            .p-@{m}-@{k} {padding: unit(@k * 8 / 16, rem) !important;}
-            .pr-@{m}-@{k} {padding-right: unit(@k * 8 / 16, rem) !important;}
-            .pl-@{m}-@{k} {padding-left: unit(@k * 8 / 16, rem) !important;}
-            .pt-@{m}-@{k} {padding-top: unit(@k * 8 / 16, rem) !important;}
-            .pb-@{m}-@{k} {padding-bottom: unit(@k * 8 / 16, rem) !important;}
-            .m-@{m}-@{k} {margin: unit(@k * 8 / 16, rem) !important;}
-            .mr-@{m}-@{k} {margin-right: unit(@k * 8 / 16, rem) !important;}
-            .ml-@{m}-@{k} {margin-left: unit(@k * 8 / 16, rem) !important;}
-            .mt-@{m}-@{k} {margin-top: unit(@k * 8 / 16, rem) !important;}
-            .mb-@{m}-@{k} {margin-bottom: unit(@k * 8 / 16, rem) !important;}
-
-            .generate-media-padding(@j, (@k + 1));
-        }
-        .generate-media-padding(10);
-
 
         .generate-width(4);
         .generate-width(@i) when (@i > 0) {
