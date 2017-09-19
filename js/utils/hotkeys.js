@@ -98,9 +98,9 @@ var hotkeys = {
     textInputTypes: /textarea|input|select/i,
 
     options: {
-        filterInputAcceptingElements: true,
-        filterTextInputs: true,
-        filterContentEditable: true
+        filterInputAcceptingElements: METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS,
+        filterTextInputs: METRO_HOTKEYS_FILTER_TEXT_INPUTS,
+        filterContentEditable: METRO_HOTKEYS_FILTER_CONTENT_EDITABLE
     },
 
     keyHandler: function(handleObj){

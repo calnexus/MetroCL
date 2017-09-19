@@ -7,6 +7,10 @@ if (window.METRO_CALENDAR_WEEK_START === undefined) {window.METRO_CALENDAR_WEEK_
 if (window.METRO_LOCALE === undefined) {window.METRO_LOCALE = 'en-US';}
 if (window.METRO_ANIMATION_DURATION === undefined) {window.METRO_ANIMATION_DURATION = 200;}
 if (window.METRO_TIMEOUT === undefined) {window.METRO_TIMEOUT = 2000;}
+if (window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE === undefined) {window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE = true;}
+if (window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS === undefined) {window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS = true;}
+if (window.METRO_HOTKEYS_FILTER_TEXT_INPUTS === undefined) {window.METRO_HOTKEYS_FILTER_TEXT_INPUTS = true;}
+if (window.METRO_HOTKEYS_BUBBLE_UP === undefined) {window.METRO_HOTKEYS_BUBBLE_UP = false;}
 
 if ( typeof Object.create !== 'function' ) {
     Object.create = function (o) {
@@ -92,8 +96,6 @@ var Metro = {
 
             $.Metro.hotkeys.push(hotkey);
 
-            console.log($.Metro.hotkeys);
-
             $(document).on('keyup', null, hotkey, function(e){
                 if (element === undefined) return;
 
@@ -105,7 +107,7 @@ var Metro = {
                 } else {
                     element.click();
                 }
-                return false;
+                return METRO_HOTKEYS_BUBBLE_UP;
             });
 
             element.data('hotKeyBonded', true);

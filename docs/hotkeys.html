@@ -46,6 +46,9 @@
                 <hr/>
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Hotkeys</a></li>
+                    <li class="toc-entry"><a href="#_hk_binding">Binding</a></li>
+                    <li class="toc-entry"><a href="#_hk_events">Events</a></li>
+                    <li class="toc-entry"><a href="#_hk_custom">Custom</a></li>
                 </ul>
             </div>
 
@@ -56,11 +59,129 @@
 
                 <h1>Hotkeys</h1>
                 <p class="text-leader">
-
+                    Metro 4 lets you easily add handlers for keyboard events anywhere in your site.
                 </p>
 
                 <!-- ADVERT -->
 
+                <p class="remark warning">
+                    This feature works for desktop browsers.
+                </p>
+
+                <h3 id="_hk_binding">Binding</h3>
+                <p>
+                    To bind <code>hotkey</code> add attribute <code>data-hotkey</code> with hotkey value to your control.
+                </p>
+                <div class="example">
+                    <div class="clear mb-2">
+                        <ul class="d-menu pos-static open">
+                            <li><a href="#" onclick="alert('Ctrl+1 is clicked')" data-hotkey="Ctrl+1">Press Ctrl+1</a></li>
+                        </ul>
+                    </div>
+                    <div class="clear mb-2">
+                        <button class="button" data-hotkey="Alt+2" onclick="alert('Alt+2 clicked!')">Press Alt+2</button>
+                    </div>
+                    <div class="clear mb-2">
+                        <a href="#" data-hotkey="Shift+3" onclick="alert('Shift+3 clicked!')">Press Shift+3</a>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;ul class="v-menu"&gt;
+                        &lt;li&gt;
+                            &lt;a href="#"
+                                onclick="alert('Ctrl+1 is clicked')"
+                                data-hotkey="Ctrl+1"&gt;Press Ctrl+1&lt;/a&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+
+                    &lt;button class="button"
+                            data-hotkey="Alt+2"
+                            onclick="alert('Alt+2 clicked!')"&gt;Press Alt+2&lt;/button&gt;
+
+                    &lt;a href="#"
+                            data-hotkey="Shift+3"
+                            onclick="alert('Shift+3 clicked!')"&gt;Press Shift+3&lt;/a&gt;
+                </code></pre>
+
+                <h6>Note</h6>
+                <p>
+                    Modifiers are not case sensitive (Ctrl == ctrl == cTRL).
+                    If you want to use more than one modifier (e.g. alt+ctrl+z) you should define them by an alphabetical order e.g. <code>alt+ctrl+shift</code>.
+                    Hotkeys aren't tracked if you're inside of an input element (unless you explicitly bind the hotkey directly to the input).
+                    This helps to avoid conflict with normal user typing.
+                </p>
+                <div class="example">
+                    <a href="#"
+                    data-hotkey="alt+ctrl+shift+z"
+                    onclick="alert('alt+ctrl+shift+z clicked!')">Press alt+ctrl+shift+z</a>
+
+                </div>
+                <pre><code>
+                    &lt;a href="#"
+                            data-hotkey="alt+ctrl+shift+z"
+                            onclick="alert('alt+ctrl+shift+z clicked!')"&gt;Press alt+ctrl+shift+z&lt;/a&gt;
+                </code></pre>
+
+                <p>
+                    Hotkeys aren't tracked if the user is focused within an input element or any element that has contenteditable="true" unless you bind the hotkey directly to the element.
+                    This helps to avoid conflict with normal user typing. If you don't want this, you can change the booleans of the following to suit before <code>metro.js</code> loaded:
+                </p>
+                <ul>
+                    <li>METRO_HOTKEYS_FILTER_CONTENT_EDITABLE</li>
+                    <li>METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS</li>
+                    <li>METRO_HOTKEYS_FILTER_TEXT_INPUTS</li>
+                </ul>
+                <pre><code>
+                    &lt;script&gt;
+                        METRO_HOTKEYS_FILTER_CONTENT_EDITABLE = false;
+                    &lt;/script&gt;
+                    &lt;script src="metro/js/metro.min.js"&gt;&lt;/script&gt;
+                </code></pre>
+
+                <h3 id="_hk_events">Events</h3>
+                <p>
+                    In Metro 4 hotkeys triggered when <code>keyup</code> fired. To bubble up your hotkey event set <code>METRO_HOTKEYS_BUBBLE_UP</code> to <code>true</code> before <code>metro.js</code> loaded.
+                </p>
+
+                <h3>Addendum</h3>
+                <p>
+                    Firefox is the most liberal one in the manner of letting you capture all short-cuts even those that are built-in in the browser such as Ctrl-t for new tab, or Ctrl-a for selecting all text. You can always bubble them up to the browser by returning true in your handler.
+                </p>
+                <p>
+                    Others, (IE) either let you handle built-in short-cuts, but will add their functionality after your code has executed. Or (Opera/Safari) will not pass those events to the DOM at all.
+                </p>
+                <p class="remark alert">
+                    So, if you bind Ctrl-Q or Alt-F4 and your Safari/Opera window is closed don't be surprised.
+                </p>
+
+                <h3 id="_hk_custom">Custom binding</h3>
+                <p>
+                    For custom hotkeys you can use next supported event types: <code>keydown</code>, <code>keyup</code> and <code>keypress</code>. To create own event:
+                </p>
+                <pre><code>
+                    <!-- bind, unbind -->
+                    $(expression).bind(types, keys, handler);
+                    $(expression).unbind(types, handler);
+
+                    $(document).bind('keydown', 'ctrl+a', fn);
+
+                    // e.g. replace '$' sign with 'EUR'
+                    $('input.foo').bind('keyup', '$', function(){
+                      this.value = this.value.replace('$', 'EUR');
+                    });
+                </code></pre>
+                <pre><code>
+                    <!-- on, off -->
+                    $(expression).on(types, null, keys, handler);
+                    $(expression).off(types, handler);
+
+                    $(document).on('keydown', null, 'ctrl+a', fn);
+
+                    // e.g. replace '$' sign with 'EUR'
+                    $('input.foo').on('keyup', null, '$', function(){
+                      this.value = this.value.replace('$', 'EUR');
+                    });
+                </code></pre>
             </main>
         </div>
 
