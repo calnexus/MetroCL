@@ -1,0 +1,32 @@
+.fixed-top, .fixed-bottom {
+    position: fixed;
+    left: 0;
+    right: 0;
+}
+
+.fixed-top {
+    top: 0;
+}
+
+.fixed-bottom {
+    bottom: 0;
+}
+
+.pos-relative {position: relative!important;}
+.pos-absolute {position: absolute!important;}
+.pos-static {position: static!important;}
+.pos-fixed {position: fixed!important;}
+
+.generate-position-media-options(@mediaBreakpointListMobileLength);
+.generate-position-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
+    @m: extract(@mediaBreakpointListMobile, @i);
+
+    @media screen and (min-width: @@m) {
+        .pos-relative-@{m} {position: relative!important;}
+        .pos-absolute-@{m} {position: absolute!important;}
+        .pos-static-@{m} {position: static!important;}
+        .pos-fixed-@{m} {position: fixed!important;}
+    }
+
+    .generate-position-media-options(@name, @i + 1);
+}

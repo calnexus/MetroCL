@@ -9,10 +9,6 @@
 .place-left, .float-left {float: left !important;}
 .place-none, .float-none, .no-float {float: none !important;}
 
-.pos-relative {position: relative!important;}
-.pos-absolute {position: absolute!important;}
-.pos-static {position: static!important;}
-.pos-fixed {position: fixed!important;}
 
 .visible {visibility: visible !important;}
 .no-visible {visibility: hidden !important;}
@@ -64,21 +60,6 @@
     .h-@{s} {height: @i * 25 + 0% !important;}
 
     .generate-width(@i - 1);
-}
-
-
-.fixed-top, .fixed-bottom {
-    position: fixed;
-    left: 0;
-    right: 0;
-}
-
-.fixed-top {
-    top: 0;
-}
-
-.fixed-bottom {
-    bottom: 0;
 }
 
 .d-none {display: none!important;}
