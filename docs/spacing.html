@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@metroui">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Download">
+    <meta name="twitter:description" content="Download Metro 4 to get the compiled CSS and JavaScript, source code, or include it with your favorite package managers like npm, Bower, RubyGems, and more.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/logo4.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/download.html">
+    <meta property="og:title" content="Download">
+    <meta property="og:description" content="Download Metro 4 to get the compiled CSS and JavaScript, source code, or include it with your favorite package managers like npm, Bower, RubyGems, and more.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/logo4.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/logo4.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="476">
+    <meta property="og:image:height" content="194">
+
+    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="author" content="Sergey Pimenov">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Spacing - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
+            </div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Spacing</a></li>
+                </ul>
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>Spacing</h1>
+                <p class="text-leader">
+                    Metro 4 includes a wide range of shorthand responsive margin and padding utility classes to modify an element's appearance.
+                </p>
+
+                <!-- ADVERT -->
+
+                <h3>Notation</h3>
+                <p>
+                    The classes are named using the format <code>{property}{sides}-{size}</code> for default
+                    and <code>{property}{sides}-{size}-{breakpoint}</code> for <code>sm</code>, <code>md</code>, <code>lg</code>, <code>xl</code> and <code>xxl</code> breakpoints.
+                </p>
+
+                <p>
+                    Where <i>property</i> is one of:
+                </p>
+                <ul>
+                    <li><code>m</code> - margin classes</li>
+                    <li><code>p</code> - padding classes</li>
+                </ul>
+
+                <p>
+                    Where <i>sides</i> is one of:
+                </p>
+                <ul>
+                    <li><code>t</code> - <code>margin-top</code> or <code>padding-top</code></li>
+                    <li><code>b</code> - <code>margin-bottom</code> or <code>padding-bottom</code></li>
+                    <li><code>l</code> - <code>margin-left</code> or <code>padding-left</code></li>
+                    <li><code>r</code> - <code>margin-right</code> or <code>padding-right</code></li>
+                </ul>
+
+                <p>
+                    Where <i>sise</i> is one of:
+                </p>
+                <ul>
+                    <li><code>0</code> - <code>0</code></li>
+                    <li><code>1</code> - <code>.5rem</code></li>
+                    <li><code>2</code> - <code>1rem</code></li>
+                    <li><code>3</code> - <code>1.5rem</code></li>
+                    <li><code>4</code> - <code>2rem</code></li>
+                    <li><code>5</code> - <code>2.5rem</code></li>
+                    <li><code>6</code> - <code>3rem</code></li>
+                    <li><code>7</code> - <code>3.5rem</code></li>
+                    <li><code>8</code> - <code>4rem</code></li>
+                    <li><code>9</code> - <code>4.5rem</code></li>
+                    <li><code>10</code> - <code>5rem</code></li>
+                </ul>
+                <div class="example">
+                    <div class=" bg-pink fg-white p-1 p-3-md p-5-lg p-8-xl text-center">
+                        This block with dynamic padding
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;div class=" bg-pink fg-white p-1 p-3-md p-5-lg p-8-xl text-center"&gt;
+                        This block with dynamic padding
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3>Additional</h3>
+                <p>
+                    Additionally, Metro 4 also includes an <code>.mx-auto</code>, <code>.ml-auto</code> and <code>.mr-auto</code> and them media variants. This classes sets <code>margin</code> to <code>auto</code>.
+                </p>
+                <ul>
+                    <li><code>mx-auto</code> - set right and left to auto</li>
+                    <li><code>ml-auto</code> - set left to auto</li>
+                    <li><code>mr-auto</code> - set right to auto</li>
+                </ul>
+                <div class="example">
+                    <div class="mx-auto p-2 bg-cyan fg-white" style="width: 220px">This centered block with mx-auto class</div>
+                </div>
+                <pre><code>
+                    &lt;div class="mx-auto p-2 bg-cyan fg-white" style="width: 220px"&gt;
+                        This centered block with mx-auto class
+                    &lt;/div&gt;
+                </code></pre>
+            </main>
+        </div>
+
+    </div>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="metro/js/metro.min.js"></script>
+    <script src="js/pre-code.js"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+</body>
+</html>

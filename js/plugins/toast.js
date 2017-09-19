@@ -1,4 +1,4 @@
-var toast = {
+var Toast = {
     create: function(message, callback, timeout, cls){
         var toast = $("<div>").addClass("toast").html(message).appendTo($("body")).hide();
         var width = toast.outerWidth();
@@ -20,4 +20,4 @@ var toast = {
     }
 };
 
-$.Metro['toast'] = toast;
+$.Metro['toast'] = Toast;

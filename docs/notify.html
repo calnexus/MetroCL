@@ -32,7 +32,7 @@
 
     <link href="css/site.css" rel="stylesheet">
 
-    <title>Clear float - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <title>Notify system - Metro 4 :: Popular HTML, CSS and JS library</title>
 </head>
 <body>
     <div class="container-fluid">
@@ -41,73 +41,26 @@
             <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
             </div>
 
-            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
                 <h5>Table of contents</h5>
                 <hr/>
                 <ul class="toc-nav">
-                    <li class="toc-entry"><a href="#">Clear float</a></li>
-                    <li class="toc-entry"><a href="#_clear_float_mixin">Mixin</a></li>
+                    <li class="toc-entry"><a href="#">Notify system</a></li>
                 </ul>
             </div>
 
-            <main class="cell-12 cell-md-9 cell-xl-8 order-1 pr-sx-1 pl-sx-1 pr-md-5 pl-md-5">
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
                 <div class="place-right d-none d-block-lg" style="width: 200px;">
                     <img src="images/logo.png" class="w-100">
                 </div>
 
-                <h1>Clear float</h1>
+                <h1>Notify system</h1>
                 <p class="text-leader">
-                    Quickly and easily clear floated content within a container by adding a clearfix utility.
+
                 </p>
 
                 <!-- ADVERT -->
 
-                <p>
-                    Easily clear floats by adding <code>.clear</code> (also <code>.clear-fix</code>, <code>.clearfix</code> or <code>.clear-float</code>) to the parent element.
-                </p>
-                <pre class=""><code>
-                    &lt;div class="clear"&gt;...&lt;/div&gt;
-                </code></pre>
-                <p>
-                    The following example shows how the clear can be used.
-                    Without the clear the wrapping div would not span around the buttons which would cause a broken layout.
-                </p>
-                <div class="example">
-                    <div class="bg-teal clear">
-                        <button class="button place-left">Button floated left</button>
-                        <button class="button place-right">Button floated right</button>
-                    </div>
-                </div>
-                <pre class=""><code>
-                    &lt;div class="clear"&gt;
-                        &lt;button class="button place-left"&gt;Button floated left&lt;/button&gt;
-                        &lt;button class="button place-right"&gt;Button floated right&lt;/button&gt;
-                    &lt;/div&gt;
-                </code></pre>
-
-                <h3 id="_clear_float_mixin">Mixin</h3>
-                <p>
-                    Mixin defined in <code>include/mixins.less</code>
-                </p>
-                <pre class=" mt-1"><code>
-                    .clear() {
-                        &::after {
-                            display: block;
-                            clear: both;
-                            content: "";
-                        }
-                    }
-                </code></pre>
-                <p>
-                    Using mixin:
-                </p>
-                <pre class=" mt-1"><code>
-                    @import (once) "include/mixins";
-
-                    .block {
-                        .clear();
-                    }
-                </code></pre>
             </main>
         </div>
 

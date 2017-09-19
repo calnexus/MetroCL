@@ -2223,6 +2223,25 @@ var Input = {
 };
 
 Metro.plugin('input', Input);
+// Source: js/plugins/notify.js
+var Notify = {
+    init: function( options, elem ) {
+        this.options = $.extend( {}, this.options, options );
+        this.elem  = elem;
+        this.element = $(elem);
+
+        this._create();
+
+        return this;
+    },
+    options: {
+    },
+
+    _create: function(){
+    }
+};
+
+$.Metro['notify'] = Notify;
 // Source: js/plugins/radio.js
 var Radio = {
     init: function( options, elem ) {
@@ -2833,7 +2852,7 @@ var Textarea = {
 
 Metro.plugin('textarea', Textarea);
 // Source: js/plugins/toast.js
-var toast = {
+var Toast = {
     create: function(message, callback, timeout, cls){
         var toast = $("<div>").addClass("toast").html(message).appendTo($("body")).hide();
         var width = toast.outerWidth();
@@ -2855,7 +2874,7 @@ var toast = {
     }
 };
 
-$.Metro['toast'] = toast;
+$.Metro['toast'] = Toast;
 // Source: js/plugins/validator.js
 var Validator = {
     init: function( options, elem ) {
