@@ -8,6 +8,8 @@
 
 .ml-auto {margin-left: auto!important;}
 .mr-auto {margin-right: auto!important;}
+.mt-auto {margin-top: auto!important;}
+.mb-auto {margin-bottom: auto!important;}
 
 .generate-padding-and-margin(@i, @k: 1) when (@k =< @i) {
     .p-@{k} {padding: unit(@k * 8 / 16, rem) !important;}
@@ -49,6 +51,8 @@
 
         .ml-auto-@{m} {margin-left: auto!important;}
         .mr-auto-@{m} {margin-right: auto!important;}
+        .mt-auto-@{m} {margin-top: auto!important;}
+        .mb-auto-@{m} {margin-bottom: auto!important;}
 
         .p-0-@{m} {padding: 0!important;}
         .pl-0-@{m} {padding-left: 0!important;}
