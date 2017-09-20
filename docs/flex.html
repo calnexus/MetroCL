@@ -55,6 +55,7 @@
                     <li class="toc-entry"><a href="#_flex_margin">Auto margins</a></li>
                     <li class="toc-entry"><a href="#_flex_wrap">Wrap</a></li>
                     <li class="toc-entry"><a href="#_flex_order">Order</a></li>
+                    <li class="toc-entry"><a href="#_flex_responsive">Responsive</a></li>
                 </ul>
             </div>
 
@@ -152,6 +153,85 @@
                     &lt;/div&gt;
                 </code></pre>
 
+                <h3 id="_flex_justify_content">Justify content</h3>
+                <p>
+                    Use <code>justify-content</code> utilities on flexbox containers to change the alignment of flex items on the main axis (the x-axis to start, y-axis if <code>flex-direction: column</code>).
+                    Choose from <code>start</code> (browser default), <code>end</code>, <code>center</code>, <code>between</code>, or <code>around</code>.
+                </p>
+                <div class="example">
+                    <div class="d-flex flex-justify-start bg-lightGray">
+                        <div class="p-2 bg-lightCyan">Flex item 1</div>
+                        <div class="p-2 bg-cyan">Flex item 2</div>
+                        <div class="p-2 bg-darkCyan">Flex item 3</div>
+                    </div>
+                    <div class="d-flex flex-justify-end bg-lightGray mt-2">
+                        <div class="p-2 bg-lightCyan">Flex item 1</div>
+                        <div class="p-2 bg-cyan">Flex item 2</div>
+                        <div class="p-2 bg-darkCyan">Flex item 3</div>
+                    </div>
+                    <div class="d-flex flex-justify-center bg-lightGray mt-2">
+                        <div class="p-2 bg-lightCyan">Flex item 1</div>
+                        <div class="p-2 bg-cyan">Flex item 2</div>
+                        <div class="p-2 bg-darkCyan">Flex item 3</div>
+                    </div>
+                    <div class="d-flex flex-justify-between bg-lightGray mt-2">
+                        <div class="p-2 bg-lightCyan">Flex item 1</div>
+                        <div class="p-2 bg-cyan">Flex item 2</div>
+                        <div class="p-2 bg-darkCyan">Flex item 3</div>
+                    </div>
+                    <div class="d-flex flex-justify-around bg-lightGray mt-2">
+                        <div class="p-2 bg-lightCyan">Flex item 1</div>
+                        <div class="p-2 bg-cyan">Flex item 2</div>
+                        <div class="p-2 bg-darkCyan">Flex item 3</div>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;div class="d-flex flex-justify-start"&gt;...&lt;/div&gt;
+                    &lt;div class="d-flex flex-justify-end"&gt;...&lt;/div&gt;
+                    &lt;div class="d-flex flex-justify-center"&gt;...&lt;/div&gt;
+                    &lt;div class="d-flex flex-justify-between"&gt;...&lt;/div&gt;
+                    &lt;div class="d-flex flex-justify-around"&gt;...&lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_flex_align_items">Align items</h3>
+                <p>
+                    Use <code>align-items</code> utilities on flexbox containers to change the alignment of flex items on the cross axis (the y-axis to start, x-axis if <code>flex-direction: column</code>).
+                    Choose from <code>start</code>, <code>end</code>, <code>center</code>, <code>baseline</code>, or <code>stretch</code> (browser default).
+                </p>
+                <div class="example">
+                    <div class="d-flex flex-align-start bg-lightGray" style="height: 100px">
+                        <div class="p-2 bg-lightCyan">Flex item 1</div>
+                        <div class="p-2 bg-cyan">Flex item 2</div>
+                        <div class="p-2 bg-darkCyan">Flex item 3</div>
+                    </div>
+                    <div class="d-flex flex-align-end bg-lightGray mt-2" style="height: 100px">
+                        <div class="p-2 bg-lightCyan">Flex item 1</div>
+                        <div class="p-2 bg-cyan">Flex item 2</div>
+                        <div class="p-2 bg-darkCyan">Flex item 3</div>
+                    </div>
+                    <div class="d-flex flex-align-center bg-lightGray mt-2" style="height: 100px">
+                        <div class="p-2 bg-lightCyan">Flex item 1</div>
+                        <div class="p-2 bg-cyan">Flex item 2</div>
+                        <div class="p-2 bg-darkCyan">Flex item 3</div>
+                    </div>
+                    <div class="d-flex flex-align-baseline bg-lightGray mt-2" style="height: 100px">
+                        <div class="p-2 bg-lightCyan">Flex item 1</div>
+                        <div class="p-2 bg-cyan">Flex item 2</div>
+                        <div class="p-2 bg-darkCyan">Flex item 3</div>
+                    </div>
+                    <div class="d-flex flex-align-stretch bg-lightGray mt-2" style="height: 100px">
+                        <div class="p-2 bg-lightCyan">Flex item 1</div>
+                        <div class="p-2 bg-cyan">Flex item 2</div>
+                        <div class="p-2 bg-darkCyan">Flex item 3</div>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;div class="d-flex flex-align-start"&gt;...&lt;/div&gt;
+                    &lt;div class="d-flex flex-align-end"&gt;...&lt;/div&gt;
+                    &lt;div class="d-flex flex-align-center"&gt;...&lt;/div&gt;
+                    &lt;div class="d-flex flex-align-baseline"&gt;...&lt;/div&gt;
+                    &lt;div class="d-flex flex-align-stretch"&gt;...&lt;/div&gt;
+                </code></pre>
             </main>
         </div>
 
