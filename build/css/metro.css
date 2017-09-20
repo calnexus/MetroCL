@@ -7075,11 +7075,23 @@ fieldset.disabled,
 .required {
   border: 1px #1ba1e2 dashed !important;
 }
+.required:focus,
+.required.focused {
+  box-shadow: 0 0 0 3px rgba(27, 161, 226, 0.45) !important;
+}
 .invalid {
   border: 1px #CE352C solid !important;
 }
+.invalid:focus,
+.invalid.focused {
+  box-shadow: 0 0 0 3px rgba(206, 53, 44, 0.45) !important;
+}
 .valid {
   border: 1px #60a917 solid !important;
+}
+.valid:focus,
+.valid.focused {
+  box-shadow: 0 0 0 3px rgba(96, 169, 23, 0.45) !important;
 }
 form[data-role*=validator] .invalid_feedback {
   display: none;

@@ -540,14 +540,23 @@ form, fieldset, .form-group {
 
 .required {
     border: 1px @cyan dashed !important;
+    &:focus, &.focused {
+        box-shadow: 0 0 0 3px rgba(red(@cyan), green(@cyan), blue(@cyan), 0.45)!important;
+    }
 }
 
 .invalid {
     border: 1px @red solid !important;
+    &:focus, &.focused {
+        box-shadow: 0 0 0 3px rgba(red(@red), green(@red), blue(@red), 0.45)!important;
+    }
 }
 
 .valid {
     border: 1px @green solid !important;
+    &:focus, &.focused {
+        box-shadow: 0 0 0 3px rgba(red(@green), green(@green), blue(@green), 0.45)!important;
+    }
 }
 
 

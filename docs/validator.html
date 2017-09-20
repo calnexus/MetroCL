@@ -50,6 +50,7 @@
                     <li class="toc-entry"><a href="#_validator_funcs">Functions</a></li>
                     <li class="toc-entry"><a href="#_validator_events">Events</a></li>
                     <li class="toc-entry"><a href="#_validator_submit">Submit</a></li>
+                    <li class="toc-entry"><a href="#_validator_interactive">Interactive check</a></li>
                 </ul>
             </div>
 
@@ -213,7 +214,7 @@
                         <div class="row mb-2">
                             <div class="cell-md-6">
                                 <label>First name</label>
-                                <input type="text" data-validate="required, minlength=6" placeholder="Enter first name">
+                                <input type="text" data-validate="minlength=6" placeholder="Enter first name">
                                 <span class="invalid_feedback">
                                     Input correct name with min length 6 symbols
                                 </span>
@@ -246,6 +247,42 @@
                     <li>The all the validations must be passed</li>
                     <li>If an onBeforeSubmit event is defined, it must return true</li>
                 </ol>
+
+                <h3 id="_validator_interactive">Interactive check</h3>
+                <p class="text-small text-muted">Thanks to <a href="https://www.facebook.com/itz.prabakar">Prabakar Decipher</a></p>
+                <p>
+                    If you set attribute <code>data-interactive-check</code> to <code>true</code>, validator checks input on user change input value.
+                </p>
+                <div class="example">
+                    <form data-role="validator" action="javascript:" data-interactive-check="true">
+                        <div class="row mb-2">
+                            <div class="cell-md-6">
+                                <label>First name</label>
+                                <input type="text" data-validate="minlength=6" placeholder="Enter first name">
+                                <span class="invalid_feedback">
+                                    Input correct name with min length 6 symbols
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <pre><code>
+                    &lt;form data-role="validator"
+                            action="javascript:" data-interactive-check="true"&gt;
+                        &lt;div class="row mb-2"&gt;
+                            &lt;div class="cell-md-6"&gt;
+                                &lt;label&gt;First name&lt;/label&gt;
+                                &lt;input type="text" data-validate="minlength=6" placeholder="Enter first name"&gt;
+                                &lt;span class="invalid_feedback"&gt;
+                                    Input correct name with min length 6 symbols
+                                &lt;/span&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/form&gt;
+                </code></pre>
+                <p>
+                    This option only check input. When form submited, validator check all values again.
+                </p>
             </main>
         </div>
 
