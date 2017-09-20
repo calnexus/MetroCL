@@ -92,6 +92,65 @@
                 </p>
 
                 <h3 id="_flex_dir">Direction</h3>
+                <p>
+                    Set the direction of flex items in a flex container with direction utilities.
+                    In most cases you can omit the horizontal class here as the browser default is <code>row</code>.
+                    However, you may encounter situations where you needed to explicitly set this value (like responsive layouts).
+                </p>
+                <p>
+                    Use <code>.flex-row</code> to set a horizontal direction (the browser default), or <code>.flex-row-r</code> to start the horizontal direction from the opposite side.
+                </p>
+                <div class="example">
+                    <div class="d-flex flex-row">
+                        <div class="p-2 bg-lightCyan">Flex item 1</div>
+                        <div class="p-2 bg-cyan">Flex item 2</div>
+                        <div class="p-2 bg-darkCyan">Flex item 3</div>
+                    </div>
+                    <div class="d-flex flex-row-r">
+                        <div class="p-2 bg-lightCyan">Flex item 1</div>
+                        <div class="p-2 bg-cyan">Flex item 2</div>
+                        <div class="p-2 bg-darkCyan">Flex item 3</div>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;div class="d-flex flex-row"&gt;
+                        &lt;div class="p-2 bg-lightCyan"&gt;Flex item 1&lt;/div&gt;
+                        &lt;div class="p-2 bg-cyan"&gt;Flex item 2&lt;/div&gt;
+                        &lt;div class="p-2 bg-darkCyan"&gt;Flex item 3&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="d-flex flex-row-r"&gt;
+                        &lt;div class="p-2 bg-lightCyan"&gt;Flex item 1&lt;/div&gt;
+                        &lt;div class="p-2 bg-cyan"&gt;Flex item 2&lt;/div&gt;
+                        &lt;div class="p-2 bg-darkCyan"&gt;Flex item 3&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+                <p>
+                    Use <code>.flex-column</code> to set a vertical direction, or <code>.flex-column-r</code> to start the vertical direction from the opposite side.
+                </p>
+                <div class="example">
+                    <div class="d-flex flex-column">
+                        <div class="p-2 bg-lightCyan">Flex item 1</div>
+                        <div class="p-2 bg-cyan">Flex item 2</div>
+                        <div class="p-2 bg-darkCyan">Flex item 3</div>
+                    </div>
+                    <div class="d-flex flex-column-r mt-2">
+                        <div class="p-2 bg-lightCyan">Flex item 1</div>
+                        <div class="p-2 bg-cyan">Flex item 2</div>
+                        <div class="p-2 bg-darkCyan">Flex item 3</div>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;div class="d-flex flex-column"&gt;
+                        &lt;div class="p-2 bg-lightCyan"&gt;Flex item 1&lt;/div&gt;
+                        &lt;div class="p-2 bg-cyan"&gt;Flex item 2&lt;/div&gt;
+                        &lt;div class="p-2 bg-darkCyan"&gt;Flex item 3&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="d-flex flex-column-r"&gt;
+                        &lt;div class="p-2 bg-lightCyan"&gt;Flex item 1&lt;/div&gt;
+                        &lt;div class="p-2 bg-cyan"&gt;Flex item 2&lt;/div&gt;
+                        &lt;div class="p-2 bg-darkCyan"&gt;Flex item 3&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
 
             </main>
         </div>

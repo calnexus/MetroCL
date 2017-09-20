@@ -2479,7 +2479,7 @@ var Select = {
 
         if (multiple === false) {
             var input = $("<input data-role='input'>").attr("type", "text").attr("name", "__" + element.attr("name") + "__").prop("readonly", true);
-            var list = $("<ul>").addClass("drop-menu").css({
+            var list = $("<ul>").addClass("d-menu").css({
                 "max-height": o.dropHeight
             });
             $.each(element.children(), function(){

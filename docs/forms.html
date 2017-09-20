@@ -109,7 +109,7 @@
                     <form  class="mb-2">
                         <div class="form-group">
                             <label>Email address</label>
-                            <input type="email" placeholder="Enter email" data-role="input"/>
+                            <input type="email" placeholder="Enter email"/>
                             <small class="text-muted">We'll never share your email with anyone else.</small>
                         </div>
                         <div class="form-group">
@@ -150,32 +150,45 @@
                 <p>
                     Metro 4 styling all forms controls with direct styles or special classes. Now supports:
                         all types of <code>&lt;input&gt;</code>,
-                        <code>select</code>,
-                        <code>textarea</code>,
-                        <code>checkbox</code> and
-                        <code>radio</code>.
+                        <code>&lt;select&gt;</code>,
+                        <code>&lt;textarea&gt;</code>,
+                        <code>&lt;checkbox&gt;</code> and
+                        <code>&lt;radio&gt;</code>.
                     Included are styles for general appearance, focus state, sizing, and more.
                 </p>
 
                 <h4 id="_inputs">Inputs</h4>
+                <p>
+                    You can use default <code>input</code> or <code>extended input</code>.
+                </p>
+                <h6>Default input</h6>
                 <div class="example pb-0">
                     <form class="mb-2">
                         <input type="text" class="mt-1">
+                    </form>
+                </div>
+                <pre><code>
+                    &lt;form&gt;
+                        &lt;input type="text" class="mt-1"&gt;
+                    &lt;/form&gt;
+                </code></pre>
+
+
+                <h6>Extended input with data-role="input"</h6>
+                <div class="example pb-0">
+                    <form class="mb-2">
                         <input type="text" data-role="input"  class="mt-1">
                         <input type="password" data-role="input" class="mt-1">
-                        <input type="text" data-role="input" data-disabled="true" class="mt-1">
                     </form>
                 </div>
                 <pre class=""><code>
-                    &lt;input type="text"&gt;
                     &lt;input type="text" data-role="input" data-clear-button="true"&gt;
                     &lt;input type="password" data-role="input" data-clear-button="true" data-reveal-button="true"&gt;
-                    &lt;input type="text" data-role="input" data-clear-button="true" data-disabled="true"&gt;
                 </code></pre>
                 <p>
                     Additional functionality for input is implemented through the plugin <code>input</code>. To activate plugin and additional options add the attribute <code>data-role="input"</code> to element.
                 </p>
-                <p class="text-bold">Additional options:</p>
+                <p class="text-bold">Additional options for extended input:</p>
                 <table class="table table-border cell-border compact mb-4">
                     <thead>
                     <tr>
@@ -216,6 +229,7 @@
                 <h4 id="_select">Select</h4>
                 <p>
                     Metro 4 uses a special wrapper to display the drop-down select. When you use Metro 4 select wrapper, you can styling every option with css classes.
+                    Use attribute <code>data-role="select"</code> to activate wrapper.
                 </p>
                 <div class="example pb-0">
                     <form  class="mb-2">
@@ -267,6 +281,7 @@
                 <h4 id="_textarea">Textarea</h4>
                 <p>
                     Metro 4 uses a special wrapper to display the textarea. When you use Metro 4 textarea wrapper, you can enabling <code>autosize</code> feature.
+                    Use attribute <code>data-role="textarea"</code> to activate wrapper.
                 </p>
                 <div class="example mb-2">
                     <form>
@@ -307,6 +322,17 @@
                 </table>
 
                 <h4 id="_checkbox">Checkbox</h4>
+                <p>
+                    Default checkbox is not styled, but you can add attribute <code>data-role="checkbox"</code> to element to styling.
+                </p>
+                <h6>Default checks</h6>
+                <div class="example">
+                    <input type="checkbox">
+                    <input type="checkbox" checked>
+                    <input type="checkbox" disabled>
+                    <input type="checkbox" disabled checked>
+                </div>
+                <h6 class="mt-2">Styled checks</h6>
                 <div class="example mb-2">
                     <form>
                         <input type="checkbox" data-role="checkbox" data-caption="Check">
@@ -354,6 +380,17 @@
                 </table>
 
                 <h4 id="_radio">Radio</h4>
+                <p>
+                    Default radio is not styled, but you can add attribute <code>data-role="radio"</code> to element to styling.
+                </p>
+                <h6>Default radio</h6>
+                <div class="example">
+                    <input type="radio">
+                    <input type="radio" checked>
+                    <input type="radio" disabled>
+                    <input type="radio" disabled checked>
+                </div>
+                <h6 class="mt-2">Styled radio</h6>
                 <div class="example mb-2">
                     <form>
                         <input type="radio" data-role="radio" data-caption="Check" name="r1">
@@ -401,6 +438,9 @@
                 </table>
 
                 <h4 id="_switch">Switch</h4>
+                <p>
+                    Metro 4 support additional styling for checkbox. Use attribute <code>data-role="switch"</code> to create checkbox styling as <code>switch</code>.
+                </p>
                 <div class="example">
                     <form mb-2>
                         <input type="checkbox" data-role="switch" data-caption="Check">
