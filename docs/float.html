@@ -32,7 +32,7 @@
 
     <link href="css/site.css" rel="stylesheet">
 
-    <title>Clear float - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <title>Float - Metro 4 :: Popular HTML, CSS and JS library</title>
 </head>
 <body>
     <div class="container-fluid">
@@ -45,7 +45,9 @@
                 <h5>Table of contents</h5>
                 <hr/>
                 <ul class="toc-nav">
-                    <li class="toc-entry"><a href="#">Clear float</a></li>
+                    <li class="toc-entry"><a href="#">Float</a></li>
+                    <li class="toc-entry"><a href="#_float_overview">Overview</a></li>
+                    <li class="toc-entry"><a href="#_float_responsive">Responsive</a></li>
                 </ul>
             </div>
 
@@ -54,37 +56,58 @@
                     <img src="images/logo.png" class="w-100">
                 </div>
 
-                <h1>Clear float</h1>
+                <h1>Float</h1>
                 <p class="text-leader">
-                    Quickly and easily clear floated content within a container by adding a clearfix utility.
+                    Toggle floats on any element, across any breakpoint, using our responsive float utilities.
                 </p>
 
                 <!-- ADVERT -->
 
+                <h3 id="_float_overview">Overview</h3>
                 <p>
-                    Easily clear floats by adding <code>.clear</code> (also <code>.clear-fix</code>, <code>.clearfix</code> or <code>.clear-float</code>) to the parent element.
+                    These utility classes float an element to the left or right, or disable floating,
+                    based on the current viewport size using the CSS <code>float</code> property. <code>!important</code> is included to avoid specificity issues.
+                    These use the same viewport breakpoints as our grid system.
                 </p>
-                <pre class=""><code>
-                    &lt;div class="clear"&gt;...&lt;/div&gt;
-                </code></pre>
                 <p>
-                    The following example shows how the clear can be used.
-                    Without the clear the wrapping div would not span around the buttons which would cause a broken layout.
+                    To change floating add one of classes:
+                        <code>.float-left</code>,
+                        <code>.float-right</code>,
+                        <code>.float-none</code>,
+                        and synonyms:
+                        <code>.place-left</code>,
+                        <code>.place-right</code>,
+                        <code>.place-none</code>.
                 </p>
-                <div class="example">
-                    <div class="bg-teal clear p-2">
-                        <button class="button place-left">Button floated left</button>
-                        <button class="button place-right">Button floated right</button>
-                    </div>
+                <div class="example clear">
+                    <div class="float-left p-1 bg-lightCyan">Float left on all viewport sizes</div><br><br>
+                    <div class="float-right p-1 bg-cyan">Float right on all viewport sizes</div><br><br>
+                    <div class="float-none p-1 bg-darkCyan">Don't float on all viewport sizes</div>
                 </div>
-                <pre class=""><code>
-                    &lt;div class="clear"&gt;
-                        &lt;button class="button place-left"&gt;Button floated left&lt;/button&gt;
-                        &lt;button class="button place-right"&gt;Button floated right&lt;/button&gt;
-                    &lt;/div&gt;
+                <pre><code>
+                    &lt;div class="float-left"&gt;Float left on all viewport sizes&lt;/div&gt;
+                    &lt;div class="float-right"&gt;Float right on all viewport sizes&lt;/div&gt;
+                    &lt;div class="float-none"&gt;Don't float on all viewport sizes&lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_float_responsive">Responsive</h3>
+                <p>
+                    All float utilities classes has media variants with breakpoints suffixes:
+                    <code>-sm</code>,
+                    <code>-md</code>,
+                    <code>-lg</code>,
+                    <code>-xl</code>,
+                    <code>-xxl</code>.
+                </p>
+                <div class="example clear">
+                    <div class="p-2 bg-cyan float-left-lg float-right-md">Floating box</div>
+                </div>
+                <pre><code>
+                    &lt;div class="float-left-lg float-right-md"&gt;...&lt;/div&gt;
                 </code></pre>
             </main>
         </div>
+
     </div>
 
     <script src="js/jquery-3.2.1.min.js"></script>
