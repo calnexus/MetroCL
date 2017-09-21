@@ -7968,9 +7968,9 @@ figure img {
   -ms-flex-order: 1;
       order: 1;
 }
-.flex-equal-items {
-  -ms-flex: 1 1 0!important;
-      flex: 1 1 0!important;
+.flex-equal-items > * {
+  -ms-flex: 1;
+      flex: 1;
 }
 .flex-nowrap {
   -ms-flex-wrap: nowrap !important;
@@ -11873,29 +11873,55 @@ figure img {
 .border-bottom {
   border-bottom: 1px solid transparent;
 }
-.border-top-left {
+.border-top-left,
+.border-left-top {
   border-top: 1px solid transparent;
   border-left: 1px solid transparent;
 }
-.border-top-right {
+.border-top-right,
+.border-right-top {
   border-top: 1px solid transparent;
   border-right: 1px solid transparent;
 }
-.border-bottom-right {
+.border-bottom-right,
+.border-right-bottom {
   border-bottom: 1px solid transparent;
   border-right: 1px solid transparent;
 }
-.border-bottom-left {
+.border-bottom-left,
+.border-left-bottom {
   border-bottom: 1px solid transparent;
   border-left: 1px solid transparent;
 }
-.border-top-bottom {
+.border-top-bottom,
+.border-bottom-top {
   border-bottom: 1px solid transparent;
   border-top: 1px solid transparent;
 }
-.border-right-left {
+.border-right-left,
+.border-left-right {
   border-right: 1px solid transparent;
   border-left: 1px solid transparent;
+}
+.border-top-right-bottom {
+  border-top: 1px solid transparent;
+  border-right: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+}
+.border-right-bottom-left {
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+}
+.border-bottom-left-top {
+  border-left: 1px solid transparent;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+}
+.border-left-top-right {
+  border-left: 1px solid transparent;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
 }
 .border-radius {
   border-radius: 0.25rem;

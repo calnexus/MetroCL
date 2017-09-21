@@ -20,29 +20,51 @@
 .border-right {border-right: 1px solid @transparent;}
 .border-top {border-top: 1px solid @transparent;}
 .border-bottom {border-bottom: 1px solid @transparent;}
-.border-top-left {
+
+.border-top-left, .border-left-top {
     border-top: 1px solid @transparent;
     border-left: 1px solid @transparent;
 }
-.border-top-right {
+.border-top-right, .border-right-top {
     border-top: 1px solid @transparent;
     border-right: 1px solid @transparent;
 }
-.border-bottom-right {
+.border-bottom-right, .border-right-bottom {
     border-bottom: 1px solid @transparent;
     border-right: 1px solid @transparent;
 }
-.border-bottom-left {
+.border-bottom-left, .border-left-bottom {
     border-bottom: 1px solid @transparent;
     border-left: 1px solid @transparent;
 }
-.border-top-bottom {
+.border-top-bottom, .border-bottom-top {
     border-bottom: 1px solid @transparent;
     border-top: 1px solid @transparent;
 }
-.border-right-left {
+.border-right-left, .border-left-right {
     border-right: 1px solid @transparent;
     border-left: 1px solid @transparent;
+}
+
+.border-top-right-bottom {
+    border-top: 1px solid @transparent;
+    border-right: 1px solid @transparent;
+    border-bottom: 1px solid @transparent;
+}
+.border-right-bottom-left {
+    border-left: 1px solid @transparent;
+    border-right: 1px solid @transparent;
+    border-bottom: 1px solid @transparent;
+}
+.border-bottom-left-top {
+    border-left: 1px solid @transparent;
+    border-top: 1px solid @transparent;
+    border-bottom: 1px solid @transparent;
+}
+.border-left-top-right {
+    border-left: 1px solid @transparent;
+    border-top: 1px solid @transparent;
+    border-bottom: 1px solid @transparent;
 }
 
 .border-radius {border-radius: @borderRadius;}
