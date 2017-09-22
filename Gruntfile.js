@@ -189,6 +189,30 @@ module.exports = function(grunt) {
             }
         },
 
+        replace: {
+            advert: {
+                options: {
+                    patterns: [
+                        {
+                            match: /<!-- ads-html -->/g,
+                            replacement: '<div style="margin: 10px 0"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1632668592742327" data-ad-slot="8347181909" data-ad-format="auto"></ins></div>'
+                        },
+                        {
+                            match: /<!-- ads-script -->/g,
+                            replacement: '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>'
+                        }
+                    ]
+                },
+                files: [
+                    {
+                        expand: true,
+                        flatten: true,
+                        src: ['docs/*.html'], dest: '.adsense/'
+                    }
+                ]
+            }
+        },
+
         watch: {
             scripts: {
                 files: ['js/*.js', 'js/utils/*.js', 'js/plugins/*js', 'less/*.less', 'less/include/*.less', 'less/schemes/*.less', 'Gruntfile.js'],

@@ -30,6 +30,7 @@
             return trigger.nextElementSibling;
         }
     });
+
 }());
 
 

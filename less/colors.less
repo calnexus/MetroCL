@@ -23,7 +23,7 @@
     .generate-colors(@name, @i + 1);
 }
 
-.button, .command-button, .image-button, .shortcut, .tool-button, .split-button .split, tbody tr, tbody td, .tally, code {
+.button, .command-button, .image-button, .shortcut, .tool-button, .split-button .split, tbody tr, tbody td, .tally, code, .notify {
     .generate-accent-colors(@buttonPredefinedTypesLength);
     .generate-accent-colors(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
         @name: extract(@buttonPredefinedTypes, @i);

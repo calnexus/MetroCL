@@ -131,7 +131,7 @@ var Utils = {
         }
     },
 
-    isCoreObject: function(el, type){
+    isMetroObject: function(el, type){
         var $el = $(el), el_obj = $el.data(type);
 
         if ($el.length === 0) {
@@ -145,6 +145,10 @@ var Utils = {
         }
 
         return true;
+    },
+
+    isJQueryObject: function(el){
+        return (typeof jQuery === "function" && el instanceof jQuery);
     },
 
     addLocale: function(data){
@@ -261,6 +265,13 @@ var Utils = {
 
     encodeURI: function(str){
         return encodeURI(str).replace(/%5B/g, '[').replace(/%5D/g, ']');
+    },
+
+    pageHeight: function(){
+        var body = document.body,
+            html = document.documentElement;
+
+        return Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
     }
 };
 

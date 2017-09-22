@@ -1160,7 +1160,8 @@ img {
 tbody tr.primary,
 tbody td.primary,
 .tally.primary,
-code.primary {
+code.primary,
+.notify.primary {
   background-color: #0050ef;
   color: #ffffff;
 }
@@ -1173,7 +1174,8 @@ code.primary {
 tbody tr.primary.dropdown-toggle::before,
 tbody td.primary.dropdown-toggle::before,
 .tally.primary.dropdown-toggle::before,
-code.primary.dropdown-toggle::before {
+code.primary.dropdown-toggle::before,
+.notify.primary.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.secondary,
@@ -1185,7 +1187,8 @@ code.primary.dropdown-toggle::before {
 tbody tr.secondary,
 tbody td.secondary,
 .tally.secondary,
-code.secondary {
+code.secondary,
+.notify.secondary {
   background-color: #607d8b;
   color: #ffffff;
 }
@@ -1198,7 +1201,8 @@ code.secondary {
 tbody tr.secondary.dropdown-toggle::before,
 tbody td.secondary.dropdown-toggle::before,
 .tally.secondary.dropdown-toggle::before,
-code.secondary.dropdown-toggle::before {
+code.secondary.dropdown-toggle::before,
+.notify.secondary.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.success,
@@ -1210,7 +1214,8 @@ code.secondary.dropdown-toggle::before {
 tbody tr.success,
 tbody td.success,
 .tally.success,
-code.success {
+code.success,
+.notify.success {
   background-color: #60a917;
   color: #ffffff;
 }
@@ -1223,7 +1228,8 @@ code.success {
 tbody tr.success.dropdown-toggle::before,
 tbody td.success.dropdown-toggle::before,
 .tally.success.dropdown-toggle::before,
-code.success.dropdown-toggle::before {
+code.success.dropdown-toggle::before,
+.notify.success.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.alert,
@@ -1235,7 +1241,8 @@ code.success.dropdown-toggle::before {
 tbody tr.alert,
 tbody td.alert,
 .tally.alert,
-code.alert {
+code.alert,
+.notify.alert {
   background-color: #CE352C;
   color: #ffffff;
 }
@@ -1248,7 +1255,8 @@ code.alert {
 tbody tr.alert.dropdown-toggle::before,
 tbody td.alert.dropdown-toggle::before,
 .tally.alert.dropdown-toggle::before,
-code.alert.dropdown-toggle::before {
+code.alert.dropdown-toggle::before,
+.notify.alert.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.warning,
@@ -1260,7 +1268,8 @@ code.alert.dropdown-toggle::before {
 tbody tr.warning,
 tbody td.warning,
 .tally.warning,
-code.warning {
+code.warning,
+.notify.warning {
   background-color: #ff852e;
   color: #ffffff;
 }
@@ -1273,7 +1282,8 @@ code.warning {
 tbody tr.warning.dropdown-toggle::before,
 tbody td.warning.dropdown-toggle::before,
 .tally.warning.dropdown-toggle::before,
-code.warning.dropdown-toggle::before {
+code.warning.dropdown-toggle::before,
+.notify.warning.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.yellow,
@@ -1285,7 +1295,8 @@ code.warning.dropdown-toggle::before {
 tbody tr.yellow,
 tbody td.yellow,
 .tally.yellow,
-code.yellow {
+code.yellow,
+.notify.yellow {
   background-color: #ffe484;
   color: #ffffff;
 }
@@ -1298,7 +1309,8 @@ code.yellow {
 tbody tr.yellow.dropdown-toggle::before,
 tbody td.yellow.dropdown-toggle::before,
 .tally.yellow.dropdown-toggle::before,
-code.yellow.dropdown-toggle::before {
+code.yellow.dropdown-toggle::before,
+.notify.yellow.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.info,
@@ -1310,7 +1322,8 @@ code.yellow.dropdown-toggle::before {
 tbody tr.info,
 tbody td.info,
 .tally.info,
-code.info {
+code.info,
+.notify.info {
   background-color: #47b4e9;
   color: #ffffff;
 }
@@ -1323,7 +1336,8 @@ code.info {
 tbody tr.info.dropdown-toggle::before,
 tbody td.info.dropdown-toggle::before,
 .tally.info.dropdown-toggle::before,
-code.info.dropdown-toggle::before {
+code.info.dropdown-toggle::before,
+.notify.info.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.dark,
@@ -1335,7 +1349,8 @@ code.info.dropdown-toggle::before {
 tbody tr.dark,
 tbody td.dark,
 .tally.dark,
-code.dark {
+code.dark,
+.notify.dark {
   background-color: #505050;
   color: #ffffff;
 }
@@ -1348,82 +1363,8 @@ code.dark {
 tbody tr.dark.dropdown-toggle::before,
 tbody td.dark.dropdown-toggle::before,
 .tally.dark.dropdown-toggle::before,
-code.dark.dropdown-toggle::before {
-  border-color: #ffffff;
-}
-.button.light,
-.command-button.light,
-.image-button.light,
-.shortcut.light,
-.tool-button.light,
-.split-button .split.light,
-tbody tr.light,
-tbody td.light,
-.tally.light,
-code.light {
-  background-color: #f8f8f8;
-  color: #ffffff;
-}
-.button.light.dropdown-toggle::before,
-.command-button.light.dropdown-toggle::before,
-.image-button.light.dropdown-toggle::before,
-.shortcut.light.dropdown-toggle::before,
-.tool-button.light.dropdown-toggle::before,
-.split-button .split.light.dropdown-toggle::before,
-tbody tr.light.dropdown-toggle::before,
-tbody td.light.dropdown-toggle::before,
-.tally.light.dropdown-toggle::before,
-code.light.dropdown-toggle::before {
-  border-color: #ffffff;
-}
-.button.brand1,
-.command-button.brand1,
-.image-button.brand1,
-.shortcut.brand1,
-.tool-button.brand1,
-.split-button .split.brand1,
-tbody tr.brand1,
-tbody td.brand1,
-.tally.brand1,
-code.brand1 {
-  background-color: #2ac4f4;
-  color: #ffffff;
-}
-.button.brand1.dropdown-toggle::before,
-.command-button.brand1.dropdown-toggle::before,
-.image-button.brand1.dropdown-toggle::before,
-.shortcut.brand1.dropdown-toggle::before,
-.tool-button.brand1.dropdown-toggle::before,
-.split-button .split.brand1.dropdown-toggle::before,
-tbody tr.brand1.dropdown-toggle::before,
-tbody td.brand1.dropdown-toggle::before,
-.tally.brand1.dropdown-toggle::before,
-code.brand1.dropdown-toggle::before {
-  border-color: #ffffff;
-}
-.button.brand2,
-.command-button.brand2,
-.image-button.brand2,
-.shortcut.brand2,
-.tool-button.brand2,
-.split-button .split.brand2,
-tbody tr.brand2,
-tbody td.brand2,
-.tally.brand2,
-code.brand2 {
-  background-color: #004d6f;
-  color: #ffffff;
-}
-.button.brand2.dropdown-toggle::before,
-.command-button.brand2.dropdown-toggle::before,
-.image-button.brand2.dropdown-toggle::before,
-.shortcut.brand2.dropdown-toggle::before,
-.tool-button.brand2.dropdown-toggle::before,
-.split-button .split.brand2.dropdown-toggle::before,
-tbody tr.brand2.dropdown-toggle::before,
-tbody td.brand2.dropdown-toggle::before,
-.tally.brand2.dropdown-toggle::before,
-code.brand2.dropdown-toggle::before {
+code.dark.dropdown-toggle::before,
+.notify.dark.dropdown-toggle::before {
   border-color: #ffffff;
 }
 .button.light,
@@ -1436,6 +1377,88 @@ tbody tr.light,
 tbody td.light,
 .tally.light,
 code.light,
+.notify.light {
+  background-color: #f8f8f8;
+  color: #ffffff;
+}
+.button.light.dropdown-toggle::before,
+.command-button.light.dropdown-toggle::before,
+.image-button.light.dropdown-toggle::before,
+.shortcut.light.dropdown-toggle::before,
+.tool-button.light.dropdown-toggle::before,
+.split-button .split.light.dropdown-toggle::before,
+tbody tr.light.dropdown-toggle::before,
+tbody td.light.dropdown-toggle::before,
+.tally.light.dropdown-toggle::before,
+code.light.dropdown-toggle::before,
+.notify.light.dropdown-toggle::before {
+  border-color: #ffffff;
+}
+.button.brand1,
+.command-button.brand1,
+.image-button.brand1,
+.shortcut.brand1,
+.tool-button.brand1,
+.split-button .split.brand1,
+tbody tr.brand1,
+tbody td.brand1,
+.tally.brand1,
+code.brand1,
+.notify.brand1 {
+  background-color: #2ac4f4;
+  color: #ffffff;
+}
+.button.brand1.dropdown-toggle::before,
+.command-button.brand1.dropdown-toggle::before,
+.image-button.brand1.dropdown-toggle::before,
+.shortcut.brand1.dropdown-toggle::before,
+.tool-button.brand1.dropdown-toggle::before,
+.split-button .split.brand1.dropdown-toggle::before,
+tbody tr.brand1.dropdown-toggle::before,
+tbody td.brand1.dropdown-toggle::before,
+.tally.brand1.dropdown-toggle::before,
+code.brand1.dropdown-toggle::before,
+.notify.brand1.dropdown-toggle::before {
+  border-color: #ffffff;
+}
+.button.brand2,
+.command-button.brand2,
+.image-button.brand2,
+.shortcut.brand2,
+.tool-button.brand2,
+.split-button .split.brand2,
+tbody tr.brand2,
+tbody td.brand2,
+.tally.brand2,
+code.brand2,
+.notify.brand2 {
+  background-color: #004d6f;
+  color: #ffffff;
+}
+.button.brand2.dropdown-toggle::before,
+.command-button.brand2.dropdown-toggle::before,
+.image-button.brand2.dropdown-toggle::before,
+.shortcut.brand2.dropdown-toggle::before,
+.tool-button.brand2.dropdown-toggle::before,
+.split-button .split.brand2.dropdown-toggle::before,
+tbody tr.brand2.dropdown-toggle::before,
+tbody td.brand2.dropdown-toggle::before,
+.tally.brand2.dropdown-toggle::before,
+code.brand2.dropdown-toggle::before,
+.notify.brand2.dropdown-toggle::before {
+  border-color: #ffffff;
+}
+.button.light,
+.command-button.light,
+.image-button.light,
+.shortcut.light,
+.tool-button.light,
+.split-button .split.light,
+tbody tr.light,
+tbody td.light,
+.tally.light,
+code.light,
+.notify.light,
 .button.yellow,
 .command-button.yellow,
 .image-button.yellow,
@@ -1445,7 +1468,8 @@ code.light,
 tbody tr.yellow,
 tbody td.yellow,
 .tally.yellow,
-code.yellow {
+code.yellow,
+.notify.yellow {
   color: #1d1d1d;
 }
 .pagination.primary .page-item.active,
@@ -7285,6 +7309,52 @@ figure img {
   vertical-align: middle;
   background-color: transparent;
   transition: all 0.3s ease-in-out;
+}
+.notify-container {
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  z-index: 1080;
+  width: auto;
+}
+.notify-container.position-left {
+  right: auto;
+  left: 0;
+}
+.notify-container.position-top,
+.notify-container.position-bottom {
+  width: 100%!important;
+  -ms-flex-direction: row;
+      flex-direction: row;
+}
+.notify-container.position-bottom {
+  top: auto;
+  bottom: 0;
+}
+.notify {
+  display: block;
+  background-color: #ffffff;
+  color: #1d1d1d;
+  padding: .5rem;
+  margin: .25rem;
+  border: 1px solid #dfdfdf;
+  cursor: pointer;
+}
+.notify-title {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: .5rem;
+}
+.notify-message {
+  font-size: .9rem;
+  font-weight: normal;
 }
 .embed-container {
   position: relative;

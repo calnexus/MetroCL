@@ -46,6 +46,9 @@
                 <hr/>
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Notify system</a></li>
+                    <li class="toc-entry"><a href="#_notify_about">About</a></li>
+                    <li class="toc-entry"><a href="#_notify_setup">Setup system</a></li>
+                    <li class="toc-entry"><a href="#_notify_options">Notify options</a></li>
                 </ul>
             </div>
 
@@ -56,10 +59,152 @@
 
                 <h1>Notify system</h1>
                 <p class="text-leader">
-
+                    Create notifies simple and easy with Metro 4.
                 </p>
 
-                <!-- ADVERT -->
+                <!-- ads-html -->
+
+                <h3 id="_notify_about">About</h3>
+                <p>
+                    The system of notifications is intended for informing users about the processes occurring on the site or in the application.
+                    Metro 4 contains object <code>$.Metro.notify</code> to create notifies.
+                    To create <code>notify</code> execute method <code>create</code> of <code>$.Metro.notify</code> object.
+                    The method <code>create</code> has three parameters:
+                </p>
+                <ul>
+                    <li><strong>message</strong> - notification message</li>
+                    <li><strong>title</strong> - notification title</li>
+                    <li><strong>options</strong> - notification options</li>
+                </ul>
+
+                <div class="example">
+                    <button class="button primary" onclick="showNotify()">Notify Me</button>
+                    <script>
+                        function showNotify(){
+                            $.Metro.notify.create("This is a notify", "Title", {});
+                        }
+                    </script>
+                </div>
+                <pre><code>
+                    &lt;button class="button" onclick="showNotify();"&gt;Notify Me&lt;/button&gt;
+                    &lt;script&gt;
+                        function showNotify(){
+                            $.Metro.notify.create("This is a notify", "Title", {});
+                        }
+                    &lt;/script&gt;
+                </code></pre>
+
+                <h3 id="_notify_setup">Setup system</h3>
+                <p>
+                    For the notification system in Metro 4, a number of parameters are defined:
+                </p>
+                <ul>
+                    <li><strong>container</strong> - where notifies showing (default: null)</li>
+                    <li><strong>width</strong> - notifies width (default: 220px)</li>
+                    <li><strong>timeout</strong> - timeout before the notify is close (default: 2000)</li>
+                    <li><strong>duration</strong> - animation duration (default: 300)</li>
+                    <li><strong>distance</strong> - distance where animation started (default: 100vh)</li>
+                    <li><strong>animation</strong> - animation function (default: swing)</li>
+                </ul>
+                <p>
+                    You can change this options with <code>setup</code> method of <code>$.Metro.notify</code> object.
+                    The <code>reset</code> method returns the default values.
+                </p>
+                <div class="example">
+                    <button class="button secondary" onclick="showSetupDemo()">Setup demo</button>
+                    <script>
+                        function showSetupDemo(){
+                            var notify = $.Metro.notify;
+                            notify.setup({
+                                width: 300,
+                                duration: 1000,
+                                animation: 'easeOutBounce'
+                            });
+                            notify.create("This is a notify");
+                            notify.reset();
+                        }
+                    </script>
+                </div>
+                <pre><code>
+                    &lt;button class="button secondary" onclick="showSetupDemo()"&gt;Setup demo&lt;/button&gt;
+                    &lt;script&gt;
+                        function showSetupDemo(){
+                            var notify = $.Metro.notify;
+                            notify.setup({
+                                width: 300,
+                                duration: 1000,
+                                animation: 'easeOutBounce'
+                            });
+                            notify.create("This is a notify");
+                            notify.reset();
+                        }
+                    &lt;/script&gt;
+                </code></pre>
+
+                <h3 id="_notify_options">Notify options</h3>
+                <p>
+                    For each notify you can set own options:
+                </p>
+                <ul>
+                    <li><strong>keepOpen</strong> - if <code>true</code> the notification will not be automatically closed, user must click on notify to close it.</li>
+                    <li><strong>cls</strong> - additional class(es) for the notification</li>
+                    <li><strong>width</strong> - notification width</li>
+                    <li><strong>onShow</strong> - function to be performed after the notification is showed</li>
+                    <li><strong>onClose</strong> - function to be performed after the notification is closed</li>
+                </ul>
+                <div class="example">
+                    <button class="button info" onclick="showKeepOpenDemo()">Keep open demo</button>
+                    <button class="button dark" onclick="showCallbackDemo()">Callback demo</button>
+                    <button class="button alert" onclick="showClassDemo()">Class demo</button>
+                    <script>
+                        function showClassDemo(){
+                            var notify = $.Metro.notify;
+                            notify.create("This is a notify with additional class.", null, {
+                                cls: "alert"
+                            });
+                        }
+                        function showKeepOpenDemo(){
+                            var notify = $.Metro.notify;
+                            notify.create("This is a notify. Click me to close.", null, {
+                                keepOpen: true
+                            });
+                        }
+                        function showCallbackDemo(){
+                            var notify = $.Metro.notify;
+                            notify.create("This is a notify.", null, {
+                                onClose: function(){
+                                    alert('Hi from notification callback');
+                                }
+                            });
+                        }
+                    </script>
+                </div>
+                <pre><code>
+                    &lt;button class="button info" onclick="showKeepOpenDemo()"&gt;Keep open demo&lt;/button&gt;
+                    &lt;button class="button dark" onclick="showCallbackDemo()"&gt;Callback demo&lt;/button&gt;
+                    &lt;script&gt;
+                        function showClassDemo(){
+                            var notify = $.Metro.notify;
+                            notify.create("This is a notify with additional class.", "Alert", {
+                                cls: "alert"
+                            });
+                        }
+                        function showKeepOpenDemo(){
+                            var notify = $.Metro.notify;
+                            notify.create("This is a notify. Click me to close", null, {
+                                keepOpen: true
+                            });
+                        }
+                        function showCallbackDemo(){
+                            var notify = $.Metro.notify;
+                            notify.create("This is a notify", null, {
+                                onClose: function(){
+                                    alert('Hi from notification callback');
+                                }
+                            });
+                        }
+                    &lt;/script&gt;
+                </code></pre>
 
             </main>
         </div>
@@ -72,5 +217,6 @@
     <script src="highlight/highlight.pack.js"></script>
     <script src="js/clipboard.min.js"></script>
     <script src="js/site.js"></script>
+    <!-- ads-script -->
 </body>
 </html>
