@@ -220,7 +220,7 @@ var Utils = {
     },
 
     nvl: function(data, other){
-        return data === undefined ? other : data;
+        return data === undefined || data === null ? other : data;
     },
 
     github: function(repo, callback){
