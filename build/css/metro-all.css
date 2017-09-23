@@ -9085,6 +9085,46 @@ figure img {
 .tabs.vertical .expand-title {
   display: none!important;
 }
+.tabs-expand {
+  border: none;
+}
+.tabs-expand > ul {
+  border: 0;
+  border-bottom: 1px solid #dfdfdf;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  margin-top: 0;
+}
+.tabs-expand > ul > li {
+  border-bottom: 1px solid #dfdfdf;
+}
+.tabs-expand > ul > li.active {
+  border: 1px solid #dfdfdf;
+  border-bottom: none;
+  background-color: #ffffff;
+}
+.tabs-expand.bottom > ul {
+  border: none;
+  border-top: 1px solid #dfdfdf;
+}
+.tabs-expand.bottom > ul > li {
+  border: none;
+  border-top: 1px solid #dfdfdf;
+}
+.tabs-expand.bottom > ul > li.active {
+  border: 1px solid #dfdfdf;
+  border-top: none;
+}
+.tabs-expand.vertical {
+  -ms-flex-direction: column;
+      flex-direction: column;
+}
+.tabs-expand .expand-button,
+.tabs-expand .expand-title {
+  display: none;
+}
 @media screen and (min-width: 576px) {
   .tabs-expand-sm {
     border: none;
