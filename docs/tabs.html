@@ -69,10 +69,26 @@
                 <h3 id="_tabs_horizontal">Horizontal</h3>
                 <p>
                     To create horizontal tabs add class <code>tabs</code> to list and attribute <code>data-role="tabs"</code>. To set tabs on bottom add class <code>bottom</code>.
+                    Default tabs is <code>collapsed</code>. To expand add one of classes: <code>.tabs-expand-sm</code>, <code>.tabs-expand-md</code>, <code>.tabs-expand-lg</code>, <code>.tabs-expand-xl</code>, <code>.tabs-expand-xxl</code>.
                 </p>
 
                 <div class="example">
-                    <ul class="tabs" data-role="tabs">
+                    <ul class="tabs mb-2" data-role="tabs">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Links</a></li>
+                        <li>
+                            <a href="#" class="dropdown-toggle">Dropdown</a>
+                            <ul class="d-menu" data-role="dropdown">
+                                <li><a href="#">Item 1</a></li>
+                                <li><a href="#">Item 2</a></li>
+                                <li><a href="#">Item 3</a></li>
+                            </ul>
+                        </li>
+                        <li class="disabled"><a href="#">Disabled</a></li>
+                    </ul>
+
+                    <ul class="tabs tabs-expand-md" data-role="tabs">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Profile</a></li>
                         <li><a href="#">Links</a></li>
@@ -102,10 +118,14 @@
                         &lt;/li&gt;
                         &lt;li class="disabled"&gt;&lt;a href="#"&gt;Disabled&lt;/a&gt;&lt;/li&gt;
                     &lt;/ul&gt;
+
+                    &lt;ul class="tabs tabs-expand-md" data-role="tabs"&gt;
+                    ...
+                    &lt;/ul&gt;
                 </code></pre>
 
                 <div class="example">
-                    <ul class="tabs bottom mt-2" data-role="tabs">
+                    <ul class="tabs bottom mt-2 tabs-expand-md" data-role="tabs">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Profile</a></li>
                         <li><a href="#">Links</a></li>
@@ -144,7 +164,7 @@
 
                 <h4>Left side</h4>
                 <div class="example clear">
-                    <ul class="tabs vertical place-left" data-role="tabs" style="width: 120px">
+                    <ul class="tabs vertical place-left tabs-expand-md" data-role="tabs" style="width: 120px">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Profile</a></li>
                         <li><a href="#">Links</a></li>
@@ -178,7 +198,7 @@
 
                 <h4>Right side</h4>
                 <div class="example clear">
-                    <ul class="tabs vertical right place-right" data-role="tabs" style="width: 120px">
+                    <ul class="tabs vertical right place-right tabs-expand-md" data-role="tabs" style="width: 120px">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Profile</a></li>
                         <li><a href="#">Links</a></li>
@@ -216,19 +236,19 @@
                 </p>
                 <h4>Horizontal tabs alignment</h4>
                 <div class="example">
-                    <ul class="tabs flex-justify-start" data-role="tabs">
+                    <ul class="tabs flex-justify-start tabs-expand-md" data-role="tabs">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Profile</a></li>
                         <li><a href="#">Links</a></li>
                         <li class="disabled"><a href="#">Disabled</a></li>
                     </ul>
-                    <ul class="tabs flex-justify-center mt-2" data-role="tabs">
+                    <ul class="tabs flex-justify-center mt-2 tabs-expand-md" data-role="tabs">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Profile</a></li>
                         <li><a href="#">Links</a></li>
                         <li class="disabled"><a href="#">Disabled</a></li>
                     </ul>
-                    <ul class="tabs flex-justify-end mt-2" data-role="tabs">
+                    <ul class="tabs flex-justify-end mt-2 tabs-expand-md" data-role="tabs">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Profile</a></li>
                         <li><a href="#">Links</a></li>
@@ -258,7 +278,7 @@
 
                 <h4>Vertical tabs alignment</h4>
                 <div class="example clear" style="height: 400px;">
-                    <ul class="tabs vertical place-left" data-role="tabs">
+                    <ul class="tabs vertical place-left tabs-expand-md h-100" data-role="tabs">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Profile</a></li>
                         <li><a href="#">Links</a></li>
@@ -272,7 +292,7 @@
                         </li>
                         <li class="disabled"><a href="#">Disabled</a></li>
                     </ul>
-                    <ul class="tabs vertical flex-justify-center ml-2 place-left" data-role="tabs">
+                    <ul class="tabs vertical tabs-expand-md flex-justify-center ml-2 place-left h-100" data-role="tabs">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Profile</a></li>
                         <li><a href="#">Links</a></li>
@@ -286,7 +306,7 @@
                         </li>
                         <li class="disabled"><a href="#">Disabled</a></li>
                     </ul>
-                    <ul class="tabs vertical flex-justify-end ml-2 place-left" data-role="tabs">
+                    <ul class="tabs vertical tabs-expand-md flex-justify-end ml-2 place-left h-100" data-role="tabs">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Profile</a></li>
                         <li><a href="#">Links</a></li>
@@ -351,7 +371,7 @@
                     Target content is determined automatically through the attribute <code>href</code>.
                 </p>
                 <div class="example">
-                    <ul class="tabs" data-role="tabs">
+                    <ul class="tabs tabs-expand-md" data-role="tabs">
                         <li><a href="#_target_1">Home</a></li>
                         <li><a href="#_target_2">Profile</a></li>
                         <li><a href="#_target_3">Links</a></li>

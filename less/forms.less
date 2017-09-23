@@ -355,7 +355,7 @@ label {
         }
     }
 
-    &:focus-within, &.focused {
+    &.focused {
         box-shadow: 0 0 0 3px rgba(red(@lightGray), green(@lightGray), blue(@lightGray), 0.45);
     }
 
@@ -399,6 +399,7 @@ label {
 
 .textarea {
     padding: 0;
+    position: relative;
 
     textarea {
         min-height: 4rem;
@@ -407,6 +408,24 @@ label {
         border: none!important;
         &:focus {
             box-shadow: none;
+        }
+    }
+
+    .clear-button {
+        position: absolute;
+        top: .25rem;
+        right: .25rem;
+        z-index: 2;
+        background-color: transparent;
+        &:hover {
+            background-color: @light;
+            text-shadow: rgba(0,0,0,.25) 0.1em 0.1em 0.2em;
+        }
+    }
+
+    &.disabled {
+        .clear-button {
+            display: none;
         }
     }
 }
@@ -444,7 +463,7 @@ label {
         overflow-y: auto;
     }
 
-    &:focus-within, &.focused {
+    &.focused {
         box-shadow: 0 0 0 3px rgba(red(@lightGray), green(@lightGray), blue(@lightGray), 0.45);
     }
 

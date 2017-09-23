@@ -2782,10 +2782,44 @@ var Tabs = {
 
     _create: function(){
         var that = this, element = this.element, o = this.options;
+        var prev = element.prev();
+        var parent = element.parent();
+        var container = $("<div>").addClass("tabs-wrapper " + element[0].className);
+        var expandButton, expandTitle;
+
+        element[0].className = "";
+
+        if (prev.length === 0) {
+            parent.prepend(container);
+        } else {
+            container.insertAfter(prev);
+        }
+
+        element.appendTo(container);
+
+        element.data('expanded', false);
+
+        expandTitle = $("<div>").addClass("expand-title"); container.prepend(expandTitle);
+        expandButton = $("<span>").addClass("expand-button").html("<span></span>"); container.append(expandButton);
+
+        container.on("click", ".expand-button, .expand-title", function(){
+            if (element.data('expanded') === false) {
+                element.slideDown();
+                element.data('expanded', true);
+            } else {
+                element.slideUp();
+                element.data('expanded', false);
+            }
+        });
+
         element.on("click", "a", function(e){
             var link = $(this);
             var tab = link.parent("li");
 
+            if (element.data('expanded') === true) {
+                element.slideUp();
+                element.data('expanded', false);
+            }
             that._open(tab);
             e.preventDefault();
         });
@@ -2808,6 +2842,7 @@ var Tabs = {
     _open: function(tab){
         var that = this, element = this.element, o = this.options;
         var tabs = element.find("li");
+        var expandTitle = element.siblings(".expand-title");
 
         if (tabs.length === 0) {
             return;
@@ -2840,6 +2875,8 @@ var Tabs = {
             $(target).show();
         }
 
+        expandTitle.html(tab.find("a").html());
+
         Utils.exec(o.onTab, tab[0]);
     },
 
@@ -2864,6 +2901,8 @@ var Textarea = {
         return this;
     },
     options: {
+        clearButton: true,
+        clearButtonIcon: "<span class='mif-cross'></span>",
         autoSize: false,
         disabled: false,
         onCreate: function(){}
@@ -2888,11 +2927,21 @@ var Textarea = {
         var prev = element.prev();
         var parent = element.parent();
         var container = $("<div>").addClass("textarea " + element[0].className);
+        var clearButton;
 
         if (prev.length === 0) {
             parent.prepend(container);
         } else {
             container.insertAfter(prev);
+        }
+
+
+        if (o.clearButton !== false) {
+            clearButton = $("<button>").addClass("button clear-button").attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
+            clearButton.on("click", function(){
+                element.val("").trigger('change').trigger('keyup').focus();
+            });
+            clearButton.appendTo(container);
         }
 
         element.appendTo(container);

@@ -12,6 +12,8 @@ var Textarea = {
         return this;
     },
     options: {
+        clearButton: true,
+        clearButtonIcon: "<span class='mif-cross'></span>",
         autoSize: false,
         disabled: false,
         onCreate: function(){}
@@ -36,11 +38,21 @@ var Textarea = {
         var prev = element.prev();
         var parent = element.parent();
         var container = $("<div>").addClass("textarea " + element[0].className);
+        var clearButton;
 
         if (prev.length === 0) {
             parent.prepend(container);
         } else {
             container.insertAfter(prev);
+        }
+
+
+        if (o.clearButton !== false) {
+            clearButton = $("<button>").addClass("button clear-button").attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
+            clearButton.on("click", function(){
+                element.val("").trigger('change').trigger('keyup').focus();
+            });
+            clearButton.appendTo(container);
         }
 
         element.appendTo(container);
