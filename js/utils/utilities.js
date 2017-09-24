@@ -80,55 +80,44 @@ var Utils = {
     },
 
     callback: function(cb, args){
-        if (cb !== undefined) {
-            if (typeof cb === 'function') {
-                cb(args);
-            } else {
-                if (typeof window[cb] === 'function') {
-                    window[cb](args);
-                } else {
-                    var result = eval("(function(){"+cb+"})");
-                    var _arguments = [];
-                    if (args instanceof Array) {
-                        _arguments = args;
-                    } else {
-                        _arguments.push(args);
-                    }
-                    result.apply(null, _arguments);
-                }
-            }
-        }
+        return this.exec(cb, args);
     },
 
     exec: function(f, args){
-        if (f !== undefined) {
-            if (typeof f === 'function') {
-                return f(args);
-            } else {
-                if (typeof window[f] === 'function') {
-                    return window[f](args);
-                } else {
-                    var result = eval("(function(){"+f+"})");
-                    var _arguments = [];
-                    if (args instanceof Array) {
-                        _arguments = args;
-                    } else {
-                        _arguments.push(args);
-                    }
-                    return result.apply(null, _arguments);
-                }
-            }
+        if (f === undefined) {return false;}
+        var func = this.isFunc(f);
+        if (func === false) {
+            return (new Function(args instanceof Array ? args.join(",") : args, f)());
+        } else {
+            return func(args);
         }
     },
 
     isFunc: function(f){
-        if (f !== undefined) {
-            if (typeof f === 'function') {
-                return true;
-            } else return typeof window[f] === 'function';
-        } else {
+        if (f === undefined || f === null) {
             return false;
         }
+
+        if (typeof f === 'function') {
+            return f;
+        }
+
+        if (typeof window[f] === 'function') {
+            return window[f];
+        }
+
+        if (f.indexOf(".") === -1) {
+            return false;
+        }
+
+        var ns = f.split(".");
+        var i, context = window;
+
+        for(i = 0; i < ns.length; i++) {
+            context = context[ns[i]];
+        }
+
+        return typeof context === "function" ? context : false;
     },
 
     isMetroObject: function(el, type){

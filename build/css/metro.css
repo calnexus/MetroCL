@@ -8987,6 +8987,7 @@ figure img {
   position: relative;
   min-height: 3rem;
   border: 1px solid #dfdfdf;
+  transition: all 0.3s ease-in-out;
 }
 .tabs .expand-button,
 .tabs .expand-title {
@@ -9015,9 +9016,9 @@ figure img {
   -ms-flex-pack: inherit;
       justify-content: inherit;
   width: 100%;
-  border-top: 1px solid #dfdfdf;
   position: relative;
   margin-top: .5rem;
+  margin-bottom: 1px;
 }
 .tabs > ul > li,
 .tabs > ul a {
@@ -9096,6 +9097,7 @@ figure img {
   display: -ms-flexbox !important;
   display: flex !important;
   margin-top: 0;
+  height: auto;
 }
 .tabs-expand > ul > li {
   border-bottom: 1px solid #dfdfdf;

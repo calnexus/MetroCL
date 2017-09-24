@@ -5,6 +5,7 @@
     position: relative;
     min-height: 3rem;
     border: 1px solid @borderColor;
+    transition: @transition-base;
 
     .expand-button, .expand-title {
         cursor: pointer;
@@ -32,9 +33,9 @@
     flex-direction: column;
     justify-content: inherit;
     width: 100%;
-    border-top: 1px solid @borderColor;
     position: relative;
     margin-top: .5rem;
+    margin-bottom: 1px;
 }
 
 .tabs > ul {
@@ -137,6 +138,7 @@
         flex-direction: row;
         display: flex !important;
         margin-top: 0;
+        height: auto;
 
         & > li {
             border-bottom: 1px solid @borderColor;
