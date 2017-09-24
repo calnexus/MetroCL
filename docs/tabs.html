@@ -138,7 +138,7 @@
 
                 <h4>Left side</h4>
                 <div class="example clear">
-                    <ul class="tabs vertical place-left tabs-expand-md" data-role="tabs" style="width: 120px">
+                    <ul class="tabs vertical tabs-expand" data-role="tabs" style="max-width: 120px;">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Profile</a></li>
                         <li><a href="#">Links</a></li>
@@ -156,7 +156,7 @@
 
                 <h4>Right side</h4>
                 <div class="example clear">
-                    <ul class="tabs vertical right place-right tabs-expand-md" data-role="tabs" style="width: 120px">
+                    <ul class="tabs vertical right place-right tabs-expand" data-role="tabs" style="width: 120px">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Profile</a></li>
                         <li><a href="#">Links</a></li>
@@ -220,24 +220,32 @@
 
                 <h4>Vertical tabs alignment</h4>
                 <div class="example clear" style="height: 400px;">
-                    <ul class="tabs vertical place-left tabs-expand-md h-100" data-role="tabs">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Profile</a></li>
-                        <li><a href="#">Links</a></li>
-                        <li class="disabled"><a href="#">Disabled</a></li>
-                    </ul>
-                    <ul class="tabs vertical tabs-expand-md flex-justify-center ml-2 place-left h-100" data-role="tabs">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Profile</a></li>
-                        <li><a href="#">Links</a></li>
-                        <li class="disabled"><a href="#">Disabled</a></li>
-                    </ul>
-                    <ul class="tabs vertical tabs-expand-md flex-justify-end ml-2 place-left h-100" data-role="tabs">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Profile</a></li>
-                        <li><a href="#">Links</a></li>
-                        <li class="disabled"><a href="#">Disabled</a></li>
-                    </ul>
+                    <div class="row h-100">
+                        <div class="cell-sm-4">
+                            <ul class="tabs vertical place-left tabs-expand h-100" data-role="tabs">
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Profile</a></li>
+                                <li><a href="#">Links</a></li>
+                                <li class="disabled"><a href="#">Disabled</a></li>
+                            </ul>
+                        </div>
+                        <div class="cell-sm-4">
+                            <ul class="tabs vertical tabs-expand flex-justify-center ml-2 place-left h-100" data-role="tabs">
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Profile</a></li>
+                                <li><a href="#">Links</a></li>
+                                <li class="disabled"><a href="#">Disabled</a></li>
+                            </ul>
+                        </div>
+                        <div class="cell-sm-4">
+                            <ul class="tabs vertical tabs-expand flex-justify-end ml-2 place-left h-100" data-role="tabs">
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Profile</a></li>
+                                <li><a href="#">Links</a></li>
+                                <li class="disabled"><a href="#">Disabled</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <pre class=""><code>
                     &lt;ul class="tabs vertical place-left" data-role="tabs"&gt;
