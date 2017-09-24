@@ -1366,18 +1366,18 @@ var d = new Date().getTime();
         return (hours ? (hours) + ":" : "") + (minutes < 10 ? "0"+minutes : minutes) + ":" + (seconds < 10 ? "0"+seconds : seconds);
     },
 
-    callback: function(cb, args){
-        return this.exec(cb, args);
+    callback: function(f, args){
+        return this.exec(f, args);
     },
 
     exec: function(f, args){
         if (f === undefined) {return false;}
         var func = this.isFunc(f);
         if (func === false) {
-            return (new Function(args instanceof Array ? args.join(",") : args, f)());
-        } else {
-            return func(args);
+            func = new Function("a", f);
         }
+
+        return func(args);
     },
 
     isFunc: function(f){
@@ -1552,6 +1552,154 @@ var d = new Date().getTime();
 };
 
 $.Metro['utils'] = window.metroUtils = Utils;
+// Source: js/plugins/accordion.js
+var Accordion = {
+    init: function( options, elem ) {
+        this.options = $.extend( {}, this.options, options );
+        this.elem  = elem;
+        this.element = $(elem);
+
+        this._setOptionsFromDOM();
+        this._create();
+
+        Utils.exec(this.options.onCreate);
+
+        return this;
+    },
+    options: {
+        duration: METRO_ANIMATION_DURATION,
+        oneFrame: true,
+        showActive: true,
+        activeFrameClass: "",
+        activeHeadingClass: "",
+        activeContentClass: "",
+        onFrameOpen: function(){},
+        onFrameBeforeOpen: function(){return true;},
+        onFrameClose: function(){},
+        onFrameBeforeClose: function(){return true;},
+        onCreate: function(){}
+    },
+
+    _setOptionsFromDOM: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = $.parseJSON(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+    },
+
+    _create: function(){
+        var that = this, element = this.element, o = this.options;
+        var frames = element.children(".frame");
+        var active = element.children(".frame.active");
+        var frame_to_open;
+
+        if (active.length === 0) {
+            frame_to_open = frames[0];
+        } else {
+            frame_to_open = active[0];
+        }
+
+        this._hideAll();
+
+        if (o.showActive === true || o.oneFrame === true) {
+            this._openFrame(frame_to_open);
+        }
+
+        element.on("click", ".heading", function(){
+            var heading = $(this);
+            var frame = heading.parent();
+
+            if (heading.closest(".accordion")[0] !== element[0]) {
+                return false;
+            }
+
+            if (frame.hasClass("active")) {
+                if (active.length === 1 && o.oneFrame) {
+                } else {
+                    that._closeFrame(frame);
+                }
+            } else {
+                that._openFrame(frame);
+            }
+
+            element.trigger("open", {frame: frame});
+        });
+    },
+
+    _openFrame: function(f){
+        var that = this, element = this.element, o = this.options;
+        var frames = element.children(".frame");
+        var frame = $(f);
+
+        if (Utils.exec(o.onFrameBeforeOpen, frame[0]) === false) {
+            return false;
+        }
+
+        if (o.oneFrame === true) {
+            this._closeAll();
+        }
+
+        frame.addClass("active " + o.activeFrameClass);
+        frame.children(".heading").addClass(o.activeHeadingClass);
+        frame.children(".content").addClass(o.activeContentClass).slideDown(o.duration);
+
+        Utils.callback(o.onFrameOpen, frame[0]);
+    },
+
+    _closeFrame: function(f){
+        var that = this, element = this.element, o = this.options;
+        var frame = $(f);
+
+        if (Utils.exec(o.onFrameBeforeOpen, frame[0]) === false) {
+            return ;
+        }
+
+        frame.removeClass("active " + o.activeFrameClass);
+        frame.children(".heading").removeClass(o.activeHeadingClass);
+        frame.children(".content").removeClass(o.activeContentClass).slideUp(o.duration);
+
+        Utils.callback(o.onFrameClose, frame[0]);
+    },
+
+    _closeAll: function(){
+        var that = this, element = this.element, o = this.options;
+        var frames = element.children(".frame");
+
+        $.each(frames, function(){
+            that._closeFrame(this);
+        });
+    },
+
+    _hideAll: function(){
+        var that = this, element = this.element, o = this.options;
+        var frames = element.children(".frame");
+
+        $.each(frames, function(){
+            $(this).children(".content").hide(0);
+        });
+    },
+
+    _openAll: function(){
+        var that = this, element = this.element, o = this.options;
+        var frames = element.children(".frame");
+
+        $.each(frames, function(){
+            that._openFrame(this);
+        });
+    },
+
+    changeAttribute: function(attributeName){
+    }
+};
+
+Metro.plugin('accordion', Accordion);
 // Source: js/plugins/checkbox.js
 var Checkbox = {
     init: function( options, elem ) {

@@ -12,7 +12,7 @@ var myObject = {
         return this;
     },
     options: {
-        onCreate: $.noop()
+        onCreate: function(){}
     },
 
     _setOptionsFromDOM: function(){

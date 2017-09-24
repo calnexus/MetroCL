@@ -79,18 +79,18 @@ var Utils = {
         return (hours ? (hours) + ":" : "") + (minutes < 10 ? "0"+minutes : minutes) + ":" + (seconds < 10 ? "0"+seconds : seconds);
     },
 
-    callback: function(cb, args){
-        return this.exec(cb, args);
+    callback: function(f, args){
+        return this.exec(f, args);
     },
 
     exec: function(f, args){
         if (f === undefined) {return false;}
         var func = this.isFunc(f);
         if (func === false) {
-            return (new Function(args instanceof Array ? args.join(",") : args, f)());
-        } else {
-            return func(args);
+            func = new Function("a", f);
         }
+
+        return func(args);
     },
 
     isFunc: function(f){

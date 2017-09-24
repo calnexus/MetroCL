@@ -46,6 +46,10 @@
                 <hr/>
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Accordion</a></li>
+                    <li class="toc-entry"><a href="#_accordion_about">About</a></li>
+                    <li class="toc-entry"><a href="#_accordion_options">Options</a></li>
+                    <li class="toc-entry"><a href="#_accordion_active_frame">Active frame</a></li>
+                    <li class="toc-entry"><a href="#_accordion_rtl">RTL support</a></li>
                 </ul>
             </div>
 
@@ -54,12 +58,250 @@
                     <img src="images/logo.png" class="w-100">
                 </div>
 
-                <h1>Title</h1>
+                <h1>Accordion</h1>
                 <p class="text-leader">
-
+                    Metro 4 has at its disposal classes and a plugin for creating an accordion element.
                 </p>
 
                 <!-- ads-html -->
+
+                <h3 id="_accordion_about">About</h3>
+                <p>
+
+                </p>
+
+                <div class="example">
+                    <div class="accordion" data-role="accordion">
+                        <div class="frame">
+                            <div class="heading">Header 1</div>
+                            <div class="content">
+                                <div class="p-2">Cur luba manducare? Pol, a bene ionicis tormento. Warm, sichuan-style pudding is best garnished with aged BBQ sauce.</div>
+                            </div>
+                        </div>
+                        <div class="frame active">
+                            <div class="heading">Header 2</div>
+                            <div class="content">
+                                <div class="p-2">Wildly open a starship. Belay, ye small wench- set sails for hunger! Springy, juicy pudding is best blended with whole ice water.</div>
+                            </div>
+                        </div>
+                        <div class="frame">
+                            <div class="heading">Header 3</div>
+                            <div class="content">
+                                <div class="p-2">Bitter turkey can be made tasty by brushing with sweet chili sauce. Popcorn combines greatly with grey peanut butter.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;div class="accordion" data-role="accordion" data-one-frame="true" data-show-active="true"&gt;
+                        &lt;div class="frame"&gt;
+                            &lt;div class="heading"&gt;Header 1&lt;/div&gt;
+                            &lt;div class="content"&gt;
+                                &lt;div class="p-2"&gt;Cur luba manducare? Pol, a bene ionicis tormento...&lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class="frame active"&gt;
+                            &lt;div class="heading"&gt;Header 2&lt;/div&gt;
+                            &lt;div class="content"&gt;
+                                &lt;div class="p-2"&gt;Wildly open a starship. Belay, ye small wench- set...&lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class="frame"&gt;
+                            &lt;div class="heading"&gt;Header 3&lt;/div&gt;
+                            &lt;div class="content"&gt;
+                                &lt;div class="p-2"&gt;Bitter turkey can be made tasty by brushing with...&lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_accordion_options">Options</h3>
+                <p>
+                    You can set additional options for accordion. To set option add attributes:
+                        <code>data-duration</code>,
+                        <code>data-one-frame</code>,
+                        <code>data-show-active</code>,
+                        <code>data-active-frame-class</code>,
+                        <code>data-active-heading-class</code>,
+                        <code>data-active-content-class</code>,
+                        <code>data-on-frame-open</code>,
+                        <code>data-on-frame-before-open</code>,
+                        <code>data-on-frame-close</code>,
+                        <code>data-on-frame-before-close</code>,
+                        <code>data-on-create</code>.
+                </p>
+                <ul>
+                    <li><strong>duration</strong> - animation duration (default: 300ms)</li>
+                    <li><strong>oneFrame</strong> - visible one frame on one time (default: true)</li>
+                    <li><strong>showActive</strong> - show active frame at startup (default: true)</li>
+                    <li><strong>activeFrameClass</strong> - custom class for active frame</li>
+                    <li><strong>activeHeadingClass</strong> - custom class for active frame heading</li>
+                    <li><strong>activeContentClass</strong> - custom class for active frame content</li>
+                    <li><strong>onFrameOpen(frame)</strong> - callback executed when frame is open</li>
+                    <li><strong>onFrameBeforeOpen(frame)</strong> - if this function return false, frame will not be open</li>
+                    <li><strong>onFrameClose(frame)</strong> - callback executed when frame is close</li>
+                    <li><strong>onFrameBeforeClose(frame)</strong> - if this function return false, frame will not be close</li>
+                    <li><strong>onCreate(frame)</strong> - callback executed when accordion created</li>
+                </ul>
+
+                <div class="example">
+                    <div class="accordion"
+                            data-role="accordion"
+                            data-one-frame="false"
+                            data-show-active="true"
+                            data-on-frame-open="console.log('frame was opened!', arguments[0])"
+                            data-on-frame-close="console.log('frame was closed!', arguments[0])">
+                        <div class="frame">
+                            <div class="heading">Header 1</div>
+                            <div class="content">
+                                <div class="p-2">Cur luba manducare? Pol, a bene ionicis tormento...</div>
+                            </div>
+                        </div>
+                        <div class="frame active">
+                            <div class="heading">Header 2</div>
+                            <div class="content">
+                                <div class="p-2">Wildly open a starship. Belay, ye small wench- set...</div>
+                            </div>
+                        </div>
+                        <div class="frame">
+                            <div class="heading">Header 3</div>
+                            <div class="content">
+                                <div class="p-2">Bitter turkey can be made tasty by brushing with...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;div class="accordion"
+                         data-role="accordion"
+                         data-one-frame="false"
+                         data-show-active="true"
+                         data-on-frame-open="console.log('frame was opened!', arguments[0])"
+                         data-on-frame-close="console.log('frame was closed!', arguments[0])"&gt;
+                        &lt;div class="frame"&gt;
+                            &lt;div class="heading"&gt;Header 1&lt;/div&gt;
+                            &lt;div class="content"&gt;
+                                &lt;div class="p-2"&gt;Cur luba manducare? Pol, a bene ionicis tormento...&lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class="frame active"&gt;
+                            &lt;div class="heading"&gt;Header 2&lt;/div&gt;
+                            &lt;div class="content"&gt;
+                                &lt;div class="p-2"&gt;Wildly open a starship. Belay, ye small wench- set...&lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class="frame"&gt;
+                            &lt;div class="heading"&gt;Header 3&lt;/div&gt;
+                            &lt;div class="content"&gt;
+                                &lt;div class="p-2"&gt;Bitter turkey can be made tasty by brushing with...&lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_accordion_active_frame">Active frame</h3>
+                <p>
+                    You can easy change active frame style. To change style for active frame you can create own class and then set it to one of options:
+                        <code>data-active-frame-class</code>,
+                        <code>data-active-heading-class</code>,
+                        <code>data-active-content-class</code>.
+                </p>
+                <div class="example">
+                    <div class="accordion" data-role="accordion" data-active-heading-class="bg-cyan fg-white" data-active-content-class="bg-dark fg-white" >
+                        <div class="frame">
+                            <div class="heading">Header 1</div>
+                            <div class="content">
+                                <div class="p-2">Cur luba manducare? Pol, a bene ionicis tormento. Warm, sichuan-style pudding is best garnished with aged BBQ sauce.</div>
+                            </div>
+                        </div>
+                        <div class="frame active">
+                            <div class="heading">Header 2</div>
+                            <div class="content">
+                                <div class="p-2">Wildly open a starship. Belay, ye small wench- set sails for hunger! Springy, juicy pudding is best blended with whole ice water.</div>
+                            </div>
+                        </div>
+                        <div class="frame">
+                            <div class="heading">Header 3</div>
+                            <div class="content">
+                                <div class="p-2">Bitter turkey can be made tasty by brushing with sweet chili sauce. Popcorn combines greatly with grey peanut butter.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;div class="accordion"
+                            data-role="accordion"
+                            data-active-heading-class="bg-cyan fg-white"
+                            data-active-content-class="bg-dark fg-white" &gt;
+                        &lt;div class="frame"&gt;
+                            &lt;div class="heading"&gt;Header 1&lt;/div&gt;
+                            &lt;div class="content"&gt;
+                                &lt;div class="p-2"&gt;Cur luba manducare? Pol, a bene ionicis tormento...&lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class="frame active"&gt;
+                            &lt;div class="heading"&gt;Header 2&lt;/div&gt;
+                            &lt;div class="content"&gt;
+                                &lt;div class="p-2"&gt;Wildly open a starship. Belay, ye small wench- set sails...&lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class="frame"&gt;
+                            &lt;div class="heading"&gt;Header 3&lt;/div&gt;
+                            &lt;div class="content"&gt;
+                                &lt;div class="p-2"&gt;Bitter turkey can be made tasty by brushing with sweet...&lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_accordion_rtl">Rtl support</h3>
+                <p>
+                    To set <code>rtl</code> add attribute <code>dir="rtl"</code> to element.
+                </p>
+                <div class="example">
+                    <div class="accordion" dir="rtl" data-role="accordion">
+                        <div class="frame">
+                            <div class="heading">Header 1</div>
+                            <div class="content">
+                                <div class="p-2">Cur luba manducare? Pol, a bene ionicis tormento. Warm, sichuan-style pudding is best garnished with aged BBQ sauce.</div>
+                            </div>
+                        </div>
+                        <div class="frame active">
+                            <div class="heading">Header 2</div>
+                            <div class="content">
+                                <div class="p-2">Wildly open a starship. Belay, ye small wench- set sails for hunger! Springy, juicy pudding is best blended with whole ice water.</div>
+                            </div>
+                        </div>
+                        <div class="frame">
+                            <div class="heading">Header 3</div>
+                            <div class="content">
+                                <div class="p-2">Bitter turkey can be made tasty by brushing with sweet chili sauce. Popcorn combines greatly with grey peanut butter.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;div class="accordion" dir="rtl" data-role="accordion"&gt;
+                        &lt;div class="frame"&gt;
+                            &lt;div class="heading"&gt;Header 1&lt;/div&gt;
+                            &lt;div class="content"&gt;
+                                &lt;div class="p-2"&gt;Cur luba manducare? Pol, a bene ionicis tormento...&lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class="frame active"&gt;
+                            &lt;div class="heading"&gt;Header 2&lt;/div&gt;
+                            &lt;div class="content"&gt;
+                                &lt;div class="p-2"&gt;Wildly open a starship. Belay, ye small wench- set...&lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class="frame"&gt;
+                            &lt;div class="heading"&gt;Header 3&lt;/div&gt;
+                            &lt;div class="content"&gt;
+                                &lt;div class="p-2"&gt;Bitter turkey can be made tasty by brushing with...&lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
 
             </main>
         </div>
@@ -67,7 +309,7 @@
     </div>
 
     <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="metro/js/metro.min.js"></script>
+    <script src="metro/js/metro.js"></script>
     <script src="js/pre-code.js"></script>
     <script src="highlight/highlight.pack.js"></script>
     <script src="js/clipboard.min.js"></script>

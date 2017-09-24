@@ -406,6 +406,18 @@ img {
   .pos-fixed-sm {
     position: fixed!important;
   }
+  .collapse-sm {
+    position: relative;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease;
+  }
+  .expand-sm {
+    max-height: 1000px !important;
+    transition: max-height 0.3s ease !important;
+    transition-duration: 1s !important;
+    overflow: visible!important;
+  }
 }
 @media screen and (min-width: 768px) {
   .visible-md {
@@ -476,6 +488,18 @@ img {
   }
   .pos-fixed-md {
     position: fixed!important;
+  }
+  .collapse-md {
+    position: relative;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease;
+  }
+  .expand-md {
+    max-height: 1000px !important;
+    transition: max-height 0.3s ease !important;
+    transition-duration: 1s !important;
+    overflow: visible!important;
   }
 }
 @media screen and (min-width: 992px) {
@@ -548,6 +572,18 @@ img {
   .pos-fixed-lg {
     position: fixed!important;
   }
+  .collapse-lg {
+    position: relative;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease;
+  }
+  .expand-lg {
+    max-height: 1000px !important;
+    transition: max-height 0.3s ease !important;
+    transition-duration: 1s !important;
+    overflow: visible!important;
+  }
 }
 @media screen and (min-width: 1200px) {
   .visible-xl {
@@ -619,6 +655,18 @@ img {
   .pos-fixed-xl {
     position: fixed!important;
   }
+  .collapse-xl {
+    position: relative;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease;
+  }
+  .expand-xl {
+    max-height: 1000px !important;
+    transition: max-height 0.3s ease !important;
+    transition-duration: 1s !important;
+    overflow: visible!important;
+  }
 }
 @media screen and (min-width: 1452px) {
   .visible-xxl {
@@ -689,6 +737,18 @@ img {
   }
   .pos-fixed-xxl {
     position: fixed!important;
+  }
+  .collapse-xxl {
+    position: relative;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease;
+  }
+  .expand-xxl {
+    max-height: 1000px !important;
+    transition: max-height 0.3s ease !important;
+    transition-duration: 1s !important;
+    overflow: visible!important;
   }
 }
 .op-default {
@@ -7442,6 +7502,31 @@ figure img {
   font-size: .9rem;
   font-weight: normal;
 }
+.accordion {
+  list-style: none inside none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  width: 100%;
+}
+.accordion > .frame {
+  display: block;
+  margin: 1px 0;
+}
+.accordion > .frame > .heading {
+  display: block;
+  padding: .5rem 1rem;
+  background-color: #f8f8f8;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.accordion > .frame > .content {
+  display: block;
+}
 .ani-spin,
 .ani-hover-spin:hover {
   animation: ani-spin 1.5s linear infinite;
@@ -9028,9 +9113,9 @@ figure img {
   -ms-flex-pack: inherit;
       justify-content: inherit;
   width: 100%;
-  position: relative;
   margin-top: .5rem;
   margin-bottom: 1px;
+  position: relative;
   overflow: hidden;
   max-height: 0;
   transition: max-height 0.3s ease;

@@ -165,6 +165,14 @@
     overflow: hidden;
     max-height: 0;
     transition: @transition-collapse;
+    position: relative;
+}
+
+.expand() {
+    max-height: 1000px !important;
+    transition: @transition-collapse !important;
+    transition-duration: 1s !important;
+    overflow: visible!important;
 }
 
 /* transform functions */
