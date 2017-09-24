@@ -253,6 +253,22 @@
                         &lt;/div&gt;
                     &lt;/div&gt;
                 </code></pre>
+                <p>
+                    If you are doing a class for an active frame, you must follow the following css structure:
+                </p>
+                <pre><code>
+                    .accordion > .frame.active {
+                        ...
+                    }
+
+                    .accordion > .frame.active > .heading {
+                        ...
+                    }
+
+                    .accordion > .frame.active > .content {
+                        ...
+                    }
+                </code></pre>
 
                 <h3 id="_accordion_rtl">Rtl support</h3>
                 <p>
