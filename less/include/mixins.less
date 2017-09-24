@@ -161,6 +161,12 @@
     animation: @params;
 }
 
+.collapse() {
+    overflow: hidden;
+    max-height: 0;
+    transition: @transition-collapse;
+}
+
 /* transform functions */
 .perspective(@perspective) {
     transform: perspective(@perspective);

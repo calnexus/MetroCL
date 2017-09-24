@@ -29,6 +29,18 @@
 .d-table-row {display: table-row!important;}
 .d-table-cell {display: table-cell!important;}
 
+.collapse {
+    overflow: hidden;
+    max-height: 0;
+    transition: @transition-collapse;
+}
+
+.expand {
+    max-height: 1000px !important;
+    transition: @transition-collapse !important;
+    transition-duration: 1s !important;
+    overflow: visible!important;
+}
 
 .selected {
     box-shadow: 0 0 0 4px rgba(red(@lightCyan), green(@lightCyan), blue(@lightCyan), 1)!important;

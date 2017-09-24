@@ -56,10 +56,10 @@ var Tabs = {
 
         container.on("click", ".expand-button, .expand-title", function(){
             if (element.data('expanded') === false) {
-                element.slideDown();
+                element.addClass("expand");
                 element.data('expanded', true);
             } else {
-                element.slideUp();
+                element.removeClass("expand");
                 element.data('expanded', false);
             }
         });
@@ -69,7 +69,7 @@ var Tabs = {
             var tab = link.parent("li");
 
             if (element.data('expanded') === true) {
-                element.slideUp();
+                element.removeClass("expand");
                 element.data('expanded', false);
             }
             that._open(tab);

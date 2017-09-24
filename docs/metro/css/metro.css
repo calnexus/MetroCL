@@ -293,6 +293,17 @@ img {
 .d-table-cell {
   display: table-cell !important;
 }
+.collapse {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease;
+}
+.expand {
+  max-height: 1000px !important;
+  transition: max-height 0.3s ease !important;
+  transition-duration: 1s !important;
+  overflow: visible!important;
+}
 .selected {
   box-shadow: 0 0 0 4px #47b4e9 !important;
 }
@@ -9010,7 +9021,8 @@ figure img {
   list-style: none inside none;
   margin: 0;
   padding: 0;
-  display: none;
+  display: -ms-flexbox;
+  display: flex;
   -ms-flex-direction: column;
       flex-direction: column;
   -ms-flex-pack: inherit;
@@ -9019,6 +9031,9 @@ figure img {
   position: relative;
   margin-top: .5rem;
   margin-bottom: 1px;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease;
 }
 .tabs > ul > li,
 .tabs > ul a {
@@ -9041,6 +9056,11 @@ figure img {
 }
 .tabs > ul > li.active {
   background-color: #dfdfdf;
+}
+.tabs > ul .d-menu {
+  position: relative;
+  width: 100%;
+  box-shadow: none;
 }
 .tabs.bottom > ul {
   border: none;
@@ -9098,6 +9118,8 @@ figure img {
   display: flex !important;
   margin-top: 0;
   height: auto;
+  max-height: none;
+  overflow: visible;
 }
 .tabs-expand > ul > li {
   border-bottom: 1px solid #dfdfdf;
@@ -9106,6 +9128,11 @@ figure img {
   border: 1px solid #dfdfdf;
   border-bottom: none;
   background-color: #ffffff;
+}
+.tabs-expand > ul .d-menu {
+  position: absolute;
+  width: auto;
+  box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
 }
 .tabs-expand.bottom > ul {
   border: none;
@@ -9139,6 +9166,9 @@ figure img {
     display: -ms-flexbox !important;
     display: flex !important;
     margin-top: 0;
+    height: auto;
+    max-height: none;
+    overflow: visible;
   }
   .tabs-expand-sm > ul > li {
     border-bottom: 1px solid #dfdfdf;
@@ -9147,6 +9177,11 @@ figure img {
     border: 1px solid #dfdfdf;
     border-bottom: none;
     background-color: #ffffff;
+  }
+  .tabs-expand-sm > ul .d-menu {
+    position: absolute;
+    width: auto;
+    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
   }
   .tabs-expand-sm.bottom > ul {
     border: none;
@@ -9181,6 +9216,9 @@ figure img {
     display: -ms-flexbox !important;
     display: flex !important;
     margin-top: 0;
+    height: auto;
+    max-height: none;
+    overflow: visible;
   }
   .tabs-expand-md > ul > li {
     border-bottom: 1px solid #dfdfdf;
@@ -9189,6 +9227,11 @@ figure img {
     border: 1px solid #dfdfdf;
     border-bottom: none;
     background-color: #ffffff;
+  }
+  .tabs-expand-md > ul .d-menu {
+    position: absolute;
+    width: auto;
+    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
   }
   .tabs-expand-md.bottom > ul {
     border: none;
@@ -9223,6 +9266,9 @@ figure img {
     display: -ms-flexbox !important;
     display: flex !important;
     margin-top: 0;
+    height: auto;
+    max-height: none;
+    overflow: visible;
   }
   .tabs-expand-lg > ul > li {
     border-bottom: 1px solid #dfdfdf;
@@ -9231,6 +9277,11 @@ figure img {
     border: 1px solid #dfdfdf;
     border-bottom: none;
     background-color: #ffffff;
+  }
+  .tabs-expand-lg > ul .d-menu {
+    position: absolute;
+    width: auto;
+    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
   }
   .tabs-expand-lg.bottom > ul {
     border: none;
@@ -9265,6 +9316,9 @@ figure img {
     display: -ms-flexbox !important;
     display: flex !important;
     margin-top: 0;
+    height: auto;
+    max-height: none;
+    overflow: visible;
   }
   .tabs-expand-xl > ul > li {
     border-bottom: 1px solid #dfdfdf;
@@ -9273,6 +9327,11 @@ figure img {
     border: 1px solid #dfdfdf;
     border-bottom: none;
     background-color: #ffffff;
+  }
+  .tabs-expand-xl > ul .d-menu {
+    position: absolute;
+    width: auto;
+    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
   }
   .tabs-expand-xl.bottom > ul {
     border: none;
@@ -9307,6 +9366,9 @@ figure img {
     display: -ms-flexbox !important;
     display: flex !important;
     margin-top: 0;
+    height: auto;
+    max-height: none;
+    overflow: visible;
   }
   .tabs-expand-xxl > ul > li {
     border-bottom: 1px solid #dfdfdf;
@@ -9315,6 +9377,11 @@ figure img {
     border: 1px solid #dfdfdf;
     border-bottom: none;
     background-color: #ffffff;
+  }
+  .tabs-expand-xxl > ul .d-menu {
+    position: absolute;
+    width: auto;
+    box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
   }
   .tabs-expand-xxl.bottom > ul {
     border: none;

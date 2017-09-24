@@ -29,13 +29,15 @@
 
 .tabs > ul {
     .reset-list();
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: inherit;
     width: 100%;
     position: relative;
     margin-top: .5rem;
     margin-bottom: 1px;
+
+    .collapse();
 }
 
 .tabs > ul {
@@ -63,6 +65,12 @@
 
     & > li.active {
         background-color: darken(@light, 10%);
+    }
+
+    .d-menu {
+        position: relative;
+        width: 100%;
+        box-shadow: none;
     }
 }
 
@@ -139,6 +147,8 @@
         display: flex !important;
         margin-top: 0;
         height: auto;
+        max-height: none;
+        overflow: visible;
 
         & > li {
             border-bottom: 1px solid @borderColor;
@@ -148,6 +158,12 @@
                 border-bottom: none;
                 background-color: @white;
             }
+        }
+
+        .d-menu {
+            position: absolute;
+            width: auto;
+            .default-shadow();
         }
     }
 
@@ -184,50 +200,7 @@
 
     @media screen and (min-width: @@m) {
         .tabs-expand-@{m} {
-            border: none;
-
-            & > ul {
-                border: 0;
-                border-bottom: 1px solid @borderColor;
-                flex-direction: row;
-                display: flex !important;
-                margin-top: 0;
-
-                & > li {
-                    border-bottom: 1px solid @borderColor;
-
-                    &.active {
-                        border: 1px solid @borderColor;
-                        border-bottom: none;
-                        background-color: @white;
-                    }
-                }
-            }
-
-            &.bottom {
-                & > ul {
-                    border: none;
-                    border-top: 1px solid @borderColor;
-
-                    & > li {
-                        border: none;
-                        border-top: 1px solid @borderColor;
-
-                        &.active {
-                            border: 1px solid @borderColor;
-                            border-top: none;
-                        }
-                    }
-                }
-            }
-
-            &.vertical {
-                flex-direction: column;
-            }
-
-            .expand-button, .expand-title {
-                display: none;
-            }
+            .tabs-expand;
         }
     }
 
