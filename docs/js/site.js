@@ -1,3 +1,7 @@
+
+$(function(){
+});
+
 (function() {
     "use strict";
 
@@ -41,5 +45,7 @@
         }
     });
 
+    preCode("pre code, textarea");
 }());
+
 

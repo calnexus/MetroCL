@@ -22,13 +22,9 @@ function preCode(selector) {
 			}
 		}
 
-		if (min == 1e3)
+		if (min === 1e3)
 			return;
 
 		el.textContent = txt.replace(new RegExp("^" + str, 'gm'), "");
 	});
 }
-
-document.addEventListener("DOMContentLoaded", function() {
-	preCode("pre code, textarea");
-}, false);
