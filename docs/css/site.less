@@ -200,16 +200,25 @@ footer {
     }
 }
 
-#sidenav {
+#doc-nav {
     display: none;
 }
 @media screen and (min-width: 768px) {
     #sidenav {
-        display: block;
+        position: sticky;
+        top: 64px;
+        #doc-nav {display: block!important;}
     }
 
     .example {
         padding: 1rem;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #sidenav {
+        position: relative;
+        top: 0;
     }
 }
 

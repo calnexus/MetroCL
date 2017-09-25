@@ -1,22 +1,23 @@
-<form class="d-flex flex-align-center p-1 pr-2">
+<form class="d-flex flex-align-center flex-justify-between flex-nowrap p-1 pr-2">
     <input type="text" placeholder="Search..." data-role="input" data-clear-button="true" class="mb-0">
+    <button class="expand-button ml-2 d-block d-none-md" id="doc-nav-toggle"><span></span></button>
 </form>
 
 <hr/>
 
-<nav id="doc-nav" class="pt-1">
-    <div class="doc-nav-item active">
+<nav id="doc-nav" class="pt-1" data-role="dropdown" data-toggle-element="#doc-nav-toggle">
+    <div class="doc-nav-item">
         <a href="intro.html">Getting started</a>
         <ul class="toc-nav">
             <li class="done"><a href="intro.html">Introduction</a></li>
             <li class="done"><a href="download.html">Download</a></li>
             <li class="done"><a href="contents.html">Contents</a></li>
             <li class="done"><a href="browsers.html">Browsers &amp; devices</a></li>
-            <li class="process"><a href="media.html">Media breakpoints</a></li>
+            <li class="done"><a href="media.html">Media breakpoints</a></li>
         </ul>
     </div>
     <div class="doc-nav-item">
-        <a href="#">Base CSS</a>
+        <a href="grid.html">Base CSS</a>
         <ul class="toc-nav">
             <li class="done"><a href="grid.html">Grid system</a></li>
             <li class="done"><a href="typography.html">Typography</a></li>
@@ -28,7 +29,7 @@
         </ul>
     </div>
     <div class="doc-nav-item">
-        <a href="#">Components</a>
+        <a href="appbar.html">Components</a>
         <ul class="toc-nav">
             <li class="toc-nav-title">Menus</li>
                 <li class="process"><a href="appbar.html">App bar</a></li>
@@ -89,7 +90,7 @@
         </ul>
     </div>
     <div class="doc-nav-item">
-        <a href="#">Utilities</a>
+        <a href="clear.html">Utilities</a>
         <ul class="toc-nav">
             <li class="done"><a href="clear.html">Clear float</a></li>
             <li class="done"><a href="colors.html">Colors</a></li>
@@ -108,11 +109,21 @@
         </ul>
     </div>
     <div class="doc-nav-item">
-        <a href="#">Additional</a>
+        <a href="icons.html">Additional</a>
         <ul class="toc-nav">
-            <li><a href="#">Events binding</a></li>
-            <li><a href="#">Themes</a></li>
             <li class="done"><a href="icons.html">Metro Icon Font</a></li>
+            <li><a href="#">Themes</a></li>
+            <li><a href="#">Builder</a></li>
         </ul>
     </div>
 </nav>
+
+<script>
+    var href = window.location.pathname.substring(window.location.pathname.lastIndexOf('/')+1);
+    var link = $("#doc-nav .toc-nav a[href='"+href+"']");
+    var item = link.closest(".doc-nav-item");
+    var menu = item.find(".toc-nav");
+
+    $("#doc-nav .toc-nav").hide(0);
+    menu.show(0)
+</script>

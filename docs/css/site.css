@@ -171,15 +171,25 @@ footer p a {
   color: #1d1d1d;
   font-weight: bold;
 }
-#sidenav {
+#doc-nav {
   display: none;
 }
 @media screen and (min-width: 768px) {
   #sidenav {
-    display: block;
+    position: sticky;
+    top: 64px;
+  }
+  #sidenav #doc-nav {
+    display: block!important;
   }
   .example {
     padding: 1rem;
+  }
+}
+@media screen and (max-width: 767px) {
+  #sidenav {
+    position: relative;
+    top: 0;
   }
 }
 @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
