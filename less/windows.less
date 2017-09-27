@@ -1,0 +1,183 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+.overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255,255,255, .5);
+    z-index: @zindex-modal - 1;
+
+    &.transparent {
+        background-color: rgba(255,255,255, 0);
+    }
+}
+
+.window {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: auto;
+    background-color: @winFlatBackgroundColor;
+    color: @dark;
+    border: 1px @winFlatBorderColor solid;
+}
+
+.window-caption {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    height: 2.25rem;
+    line-height: 2.25rem;
+    padding: 0 .3125rem;
+    border-bottom: 1px @winFlatBorderColor solid;
+    cursor: default;
+    vertical-align: middle;
+}
+
+.window-caption {
+    .title {
+        font-size: .875rem;
+    }
+
+    .icon {
+        margin-left: .3125rem;
+    }
+
+    img.icon {
+        height: 1rem;
+    }
+
+    .icon + .title {
+        margin-left: .3125rem;
+    }
+
+    .buttons {
+        margin-left: auto;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+    }
+}
+
+.window-caption {
+    .buttons {
+        .btn-min, .btn-max, .btn-close {
+            position: relative;
+            height: 1.5rem;
+            width: 1.5rem;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 1rem;
+            font-weight: normal;
+            padding: 0 0 .625rem 0;
+            z-index: 3;
+            outline: none;
+            cursor: pointer;
+            display: block;
+            border: 1px solid @transparent;
+            margin: 0 .5px;
+
+            background-color: @winFlatBackgroundColor;
+            color: @winFlatSystemButtonRestColor;
+
+            &:hover {
+                background-color: @winFlatSystemButtonHoverBackground;
+                color: @winFlatSystemButtonActiveColor;
+                &::before {
+                    border-color: @winFlatSystemButtonActiveColor;
+                    color: @winFlatSystemButtonActiveColor;
+                }
+            }
+            &:active {
+                background-color: @winFlatSystemButtonActiveBackground;
+                color: @white;
+            }
+        }
+
+        .btn-close {
+            &::before {
+                border-color: @winFlatSystemButtonRestColor;
+                content: '\D7';
+                position: absolute;
+                line-height: 1.5rem;
+                left: 50%;
+                top: -4px;
+                margin-left: -.32em;
+                color: #000;
+                font-size: 1.5rem;
+            }
+        }
+
+        .btn-min, .btn-max {
+            &::before {
+                display: block;
+                position: absolute;
+                width: .625rem;
+                height: .625rem;
+                border: 0 #000 solid;
+                border-bottom-width: 2px;
+                content: ' ';
+                bottom: .375rem;
+                left: 50%;
+                margin-left: -.3rem;
+                top: auto;
+            }
+        }
+
+        .btn-max {
+            &::before {
+                height: .575rem;
+                border: 1px #000 solid;
+                border-top-width: 2px;
+            }
+        }
+    }
+}
+
+.window-content {
+    height: ~"calc(100% - 2.25rem)";
+}
+
+.window {
+    &.info {
+        .window-caption {
+            background-color: @cyan;
+            color: @white;
+        }
+    }
+    &.alert {
+        .window-caption {
+            background-color: @red;
+            color: @white;
+        }
+    }
+    &.warning {
+        .window-caption {
+            background-color: @orange;
+            color: @white;
+        }
+    }
+    &.success {
+        .window-caption {
+            background-color: @green;
+            color: @white;
+        }
+    }
+}
+
+.window {
+    &.focused {
+        .win-shadow();
+    }
+}
+
+.window {
+    &.modal {
+        z-index: @zindex-modal;
+    }
+}
