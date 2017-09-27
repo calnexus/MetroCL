@@ -7033,7 +7033,7 @@ form[data-role*=validator] .invalid_feedback {
 }
 .d-menu.open,
 .v-menu.open {
-  display: block;
+  display: block!important;
 }
 .d-menu.place-right,
 .v-menu.place-right {

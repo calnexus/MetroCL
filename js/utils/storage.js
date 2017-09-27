@@ -1,8 +1,22 @@
 var Storage = {
-    key: "MyAppKey",
+    key: "METRO:APP",
+
+    init: function( options, elem ) {
+        this.options = $.extend( {}, this.options, options );
+
+        return this;
+    },
+
+    nvl: function(data, other){
+        return data === undefined || data === null ? other : data;
+    },
 
     setKey: function(key){
         this.key = key;
+    },
+
+    getKey: function(){
+        return this.key;
     },
 
     setItem: function(key, value){
@@ -10,8 +24,10 @@ var Storage = {
     },
 
     getItem: function(key, default_value, reviver){
-        var result,
-            value = window.localStorage.getItem(this.key + ":" + key) || (default_value || null);
+        var result, value;
+
+        value = this.nvl(window.localStorage.getItem(this.key + ":" + key), default_value);
+
         try {
             result = JSON.parse(value, reviver);
         } catch (e) {
@@ -21,8 +37,14 @@ var Storage = {
     },
 
     getItemPart: function(key, sub_key, default_value, reviver){
+        var i;
         var val = this.getItem(key, default_value, reviver);
-        return val !== null && typeof val === 'object' && val[sub_key] !== undefined ? val[sub_key] : null;
+
+        sub_key = sub_key.split("->");
+        for(i = 0; i < sub_key.length; i++) {
+            val = val[sub_key[i]];
+        }
+        return val;
     },
 
     delItem: function(key){
@@ -48,4 +70,4 @@ var Storage = {
     }
 };
 
-$.Metro['storage'] = window.metroStorage = Storage;
+$.Metro['storage'] = Storage.init();

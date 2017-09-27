@@ -21,4 +21,4 @@ var TemplateEngine = function(html, options) {
     return result;
 };
 
-$.Metro['template'] = window.metroTemplate = TemplateEngine;
+$.Metro['template'] = TemplateEngine;
