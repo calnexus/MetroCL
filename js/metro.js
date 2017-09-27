@@ -2,6 +2,12 @@ if (typeof jQuery === 'undefined') {
     throw new Error('Metro\'s JavaScript requires jQuery');
 }
 
+window.canObserveMutation = 'MutationObserver' in window;
+
+if (window.canObserveMutation === false) {
+    throw new Error('Metro 4 requires MutationObserver. Your browser is not support MutationObserver. Please use polyfill, example: //cdn.jsdelivr.net/g/mutationobserver/ or other.');
+}
+
 if (window.METRO_DEBUG === undefined) {window.METRO_DEBUG = true;}
 if (window.METRO_CALENDAR_WEEK_START === undefined) {window.METRO_CALENDAR_WEEK_START = 1;}
 if (window.METRO_LOCALE === undefined) {window.METRO_LOCALE = 'en-US';}
@@ -20,8 +26,9 @@ if ( typeof Object.create !== 'function' ) {
     };
 }
 
-var Metro = {
+var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
 
+var Metro = {
     hotkeys: [],
 
     init: function(){

@@ -7530,6 +7530,20 @@ figure img {
 .accordion > .frame > .content {
   display: block;
 }
+.draggable {
+  animation: drag-flush 1s ease infinite;
+}
+@keyframes drag-flush {
+  0% {
+    box-shadow: 0 0 0 0 rgba(206, 53, 44, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 0 0.625rem rgba(206, 53, 44, 0.45);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(206, 53, 44, 0.45);
+  }
+}
 .ani-spin,
 .ani-hover-spin:hover {
   animation: ani-spin 1.5s linear infinite;

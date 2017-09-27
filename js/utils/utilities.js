@@ -292,6 +292,49 @@ var Utils = {
 
             el.textContent = txt.replace(new RegExp("^" + str, 'gm'), "");
         });
+    },
+
+    coords: function(el){
+        if (this.isJQueryObject(el)) {
+            el = el[0];
+        }
+
+        var box = el.getBoundingClientRect();
+
+        return {
+            top: box.top + window.pageYOffset,
+            left: box.left + window.pageXOffset
+        };
+    },
+
+    positionXY: function(e, t){
+        switch (t) {
+            case 'client': return this.clientXY(e); break;
+            case 'screen': return this.screenXY(e); break;
+            case 'page': return this.pageXY(e); break;
+            default: return {left: o, top: 0}
+        }
+    },
+
+    clientXY: function(event){
+        return {
+            left: this.isTouchDevice() ? event.changedTouches[0].clientX : event.clientX,
+            top: this.isTouchDevice() ? event.changedTouches[0].clientY : event.clientY
+        };
+    },
+
+    screenXY: function(event){
+        return {
+            left: this.isTouchDevice() ? event.changedTouches[0].screenX : event.screenX,
+            top: this.isTouchDevice() ? event.changedTouches[0].screenY : event.screenY
+        };
+    },
+
+    pageXY: function(event){
+        return {
+            left: this.isTouchDevice() ? event.changedTouches[0].pageX : event.pageX,
+            top: this.isTouchDevice() ? event.changedTouches[0].pageY : event.pageY
+        };
     }
 };
 
