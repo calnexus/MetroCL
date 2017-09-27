@@ -50,6 +50,7 @@
                     <li class="toc-entry"><a href="#_draggable_setup">Setup</a></li>
                     <li class="toc-entry"><a href="#_draggable_element">Drag element</a></li>
                     <li class="toc-entry"><a href="#_draggable_area">Drag Area</a></li>
+                    <li class="toc-entry"><a href="#_draggable_events">Events</a></li>
                 </ul>
             </div>
 
@@ -109,6 +110,76 @@
                     &lt;div data-role="draggable" data-drag-area="body"&gt;&lt;/div&gt;
                 </code></pre>
 
+                <h3 id="_draggable_events">Events</h3>
+                <p>
+                    You can define next events with draggable element:
+                </p>
+
+                <table class="table striped">
+                    <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Attribute</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>onDragStart(el, position)</code></td>
+                        <td><code>data-on-drag-start</code></td>
+                        <td>Fired when dragging is started</td>
+                    </tr>
+                    <tr>
+                        <td><code>onDragStop(el, position)</code></td>
+                        <td><code>data-on-drag-stop</code></td>
+                        <td>Fired when dragging is stopped</td>
+                    </tr>
+                    <tr>
+                        <td><code>onDragMove(el, position)</code></td>
+                        <td><code>data-on-drag-move</code></td>
+                        <td>Fired when element is moving</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-2">
+                            <p>X: <span id="-pos-x">0</span></p>
+                            <p>Y: <span id="-pos-y">0</span></p>
+                        </div>
+                        <div class="cell-md-10 -drag-area">
+                            <div style="width: 50px; height: 50px;" class="bg-cyan" data-role="draggable" data-on-drag-move="demoDragMoveEvent"></div>
+                        </div>
+                        <script>
+                            function demoDragMoveEvent(){
+                                var pos = arguments[0][1];
+                                $('#-pos-x').text(pos.x);
+                                $('#-pos-y').text(pos.y);
+                            }
+                        </script>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;div class="row"&gt;
+                        &lt;div class="cell-md-2"&gt;
+                            &lt;p&gt;X: &lt;span id="-pos-x"&gt;0&lt;/span&gt;&lt;/p&gt;
+                            &lt;p&gt;Y: &lt;span id="-pos-y"&gt;0&lt;/span&gt;&lt;/p&gt;
+                        &lt;/div&gt;
+                        &lt;div class="cell-md-10 -drag-area"&gt;
+                            &lt;div style="width: 50px; height: 50px;"
+                                    class="bg-cyan"
+                                    data-role="draggable"
+                                    data-on-drag-move="demoDragMoveEvent"&gt;&lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;script&gt;
+                            function demoDragMoveEvent(){
+                                var pos = arguments[0][1];
+                                $('#-pos-x').text(pos.x);
+                                $('#-pos-y').text(pos.y);
+                            }
+                        &lt;/script&gt;
+                    &lt;/div&gt;
+                </code></pre>
             </main>
         </div>
 

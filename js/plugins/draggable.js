@@ -51,10 +51,7 @@ var Draggable = {
         var offset, position, shift, coords;
         var dragElement  = o.dragElement !== 'self' ? element.find(o.dragElement) : element;
 
-        console.log(o.dragElement);
-        console.log(element);
-
-        //dragElement[0].ondragstart = function(){return false;};
+        dragElement[0].ondragstart = function(){return false;};
 
         dragElement.on(Draggable.eventStart, function(e){
 
@@ -82,6 +79,11 @@ var Draggable = {
             offset = {
                 left: dragArea.offset().left,
                 top:  dragArea.offset().top
+            };
+
+            position = {
+                x: Utils.pageXY(e).left,
+                y: Utils.pageXY(e).top
             };
 
             var drg_h = element.outerHeight(),
@@ -133,8 +135,8 @@ var Draggable = {
             that.drag = false;
             that.move = false;
             position = {
-                x: Utils.pageXY(e).x,
-                y: Utils.pageXY(e).y
+                x: Utils.pageXY(e).left,
+                y: Utils.pageXY(e).top
             };
             $(document).off(Draggable.eventMove);
             Utils.exec(o.onDragStop, [this, position]);
