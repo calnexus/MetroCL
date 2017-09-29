@@ -33,10 +33,13 @@
     align-items: center;
     height: 2.25rem;
     line-height: 2.25rem;
-    padding: 0 .3125rem;
-    border-bottom: 1px @winFlatBorderColor solid;
+    padding: 0 0 0 .3125rem;
+    border-bottom: 1px @transparent solid;
     cursor: default;
     vertical-align: middle;
+    background-color: @winCaptionBackground;
+    color: @winCaptionColor;
+    user-select: none;
 }
 
 .window-caption {
@@ -55,11 +58,12 @@
         height: 1rem;
     }
 
-    .icon + .title {
+    * + .title {
         margin-left: .3125rem;
     }
 
     .buttons {
+        height: 100%;
         margin-left: auto;
         display: flex;
         flex-wrap: nowrap;
@@ -71,8 +75,8 @@
     .buttons {
         .btn-min, .btn-max, .btn-close {
             position: relative;
-            height: 1.5rem;
-            width: 1.5rem;
+            height: 100%;
+            width: 2rem;
             text-align: center;
             vertical-align: middle;
             font-size: 1rem;
@@ -85,15 +89,15 @@
             border: 1px solid @transparent;
             margin: 0 .5px;
 
-            background-color: @winFlatBackgroundColor;
+            background-color: @transparent;
             color: @winFlatSystemButtonRestColor;
 
             &:hover {
-                background-color: @winFlatSystemButtonHoverBackground;
-                color: @winFlatSystemButtonActiveColor;
+                background-color: @hoverBackgroundLight;
+
                 &::before {
-                    border-color: @winFlatSystemButtonActiveColor;
-                    color: @winFlatSystemButtonActiveColor;
+                    border-color: @white;
+                    color: @white;
                 }
             }
             &:active {
@@ -103,15 +107,27 @@
         }
 
         .btn-close {
+            &:hover {
+                background-color: @winCloseButtonColor;
+                color: @white;
+                &::before {
+                    color: @white;
+                }
+            }
+            &:active {
+                background-color: @winCloseButtonActiveColor;
+                color: @white;
+            }
             &::before {
                 border-color: @winFlatSystemButtonRestColor;
                 content: '\D7';
                 position: absolute;
-                line-height: 1.5rem;
+                line-height: 35px;
+                vertical-align: middle;
                 left: 50%;
                 top: -4px;
                 margin-left: -.32em;
-                color: #000;
+                color: #fff;
                 font-size: 1.5rem;
             }
         }
@@ -122,10 +138,10 @@
                 position: absolute;
                 width: .625rem;
                 height: .625rem;
-                border: 0 #000 solid;
+                border: 0 #fff solid;
                 border-bottom-width: 2px;
                 content: ' ';
-                bottom: .375rem;
+                bottom: .72rem;
                 left: 50%;
                 margin-left: -.3rem;
                 top: auto;
@@ -135,7 +151,7 @@
         .btn-max {
             &::before {
                 height: .575rem;
-                border: 1px #000 solid;
+                border: 1px #fff solid;
                 border-top-width: 2px;
             }
         }
@@ -147,7 +163,19 @@
 }
 
 .window-content {
+    overflow: auto;
     height: ~"calc(100% - 2.25rem)";
+}
+
+.window-status {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding: .1rem .5rem;
+    background-color: @light;
+    color: @dark;
+    height: 1.2rem;
+    font-size: .8rem;
 }
 
 .window {
@@ -191,7 +219,7 @@
 
 .window {
     &.minimized {
-        max-width: 10rem;
+        max-width: 12rem;
         max-height: 2.25rem;
 
         .window-caption {
@@ -213,8 +241,7 @@
 
         .btn-max {
             &::before {
-                border: 1px #000 solid;
-                background-color: @winFlatBackgroundColor;
+                border: 1px #fff solid;
                 z-index: 2;
             }
             &::after {
@@ -222,12 +249,37 @@
                 position: absolute;
                 width: .625rem;
                 height: .625rem;
-                border: 1px #000 solid;
+                border-top: 1px #fff solid;
+                border-right: 1px #fff solid;
                 content: ' ';
                 bottom: .375rem;
-                right: 4px;
-                top: 4px;
+                right: 7px;
+                top: 8px;
                 z-index: 1;
+            }
+        }
+    }
+
+    &.resizable {
+        min-width: 12rem;
+        min-height: 2.25rem;
+
+        .resizer {
+            display: block;
+            position: absolute;
+            right: -1px;
+            bottom: -1px;
+            z-index: 101;
+            cursor: nwse-resize;
+
+            &::after {
+                position: absolute;
+                display: block;
+                border-bottom: 12px solid @winFlatBorderColor;
+                border-left: 12px solid transparent;
+                content:"";
+                right: 0;
+                bottom: 0;
             }
         }
     }

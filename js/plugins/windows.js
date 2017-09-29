@@ -1,4 +1,4 @@
-var Win = {
+var Windows = {
     options: {
         desktop: null,
         winWidth: 300,
@@ -60,7 +60,7 @@ var Win = {
         win.appendTo(o.desktop);
 
         if (options.icon !== undefined) {
-            icon = $(o.icon).addClass("icon");
+            icon = $(options.icon).addClass("icon");
             icon.appendTo(caption);
         }
 
@@ -110,20 +110,22 @@ var Win = {
         }
 
 
-        win.draggable({
-            dragArea: o.desktop,
-            dragElement: ".window-caption",
-            onDragStop: function(){
+        if (options.draggable !== false) {
+            win.draggable({
+                dragArea: o.desktop,
+                dragElement: ".window-caption",
+                onDragStop: function () {
 
-                o.desktop.find(".window").css({
-                    zIndex: 1
-                });
+                    o.desktop.find(".window").css({
+                        zIndex: 1
+                    });
 
-                win.css({
-                    zIndex: 2
-                })
-            }
-        });
+                    win.css({
+                        zIndex: 2
+                    })
+                }
+            });
+        }
 
         this._windows[win_id] = win;
 
@@ -183,4 +185,4 @@ var Win = {
 
 };
 
-$.Metro['win'] = Win.setup();
+$.Metro['windows'] = Windows.setup();

@@ -18,10 +18,6 @@ var Draggable = {
         return this;
     },
 
-    eventStart: isTouch ? 'touchstart.metro' : 'mousedown.metro',
-    eventStop: isTouch ? 'touchend.metro' : 'mouseup.metro',
-    eventMove: isTouch ? 'touchmove.metro' : 'mousemove.metro',
-
     options: {
         dragElement: 'self',
         dragArea: "parent",
@@ -53,7 +49,7 @@ var Draggable = {
 
         dragElement[0].ondragstart = function(){return false;};
 
-        dragElement.on(Draggable.eventStart, function(e){
+        dragElement.on(Metro.eventStart, function(e){
 
             if (isTouch === false && e.which !== 1) {
                 return ;
@@ -81,19 +77,16 @@ var Draggable = {
                 top:  dragArea.offset().top
             };
 
-            position = {
-                x: Utils.pageXY(e).left,
-                y: Utils.pageXY(e).top
-            };
+            position = Utils.pageXY(e);
 
             var drg_h = element.outerHeight(),
                 drg_w = element.outerWidth(),
-                pos_y = element.offset().top + drg_h - Utils.pageXY(e).top,
-                pos_x = element.offset().left + drg_w - Utils.pageXY(e).left;
+                pos_y = element.offset().top + drg_h - Utils.pageXY(e).y,
+                pos_x = element.offset().left + drg_w - Utils.pageXY(e).x;
 
             Utils.exec(o.onDragStart, [this, position]);
 
-            $(document).on(Draggable.eventMove, function(e){
+            $(document).on(Metro.eventMove, function(e){
                 var pageX, pageY;
 
                 if (that.drag === false) {
@@ -101,8 +94,8 @@ var Draggable = {
                 }
                 that.move = true;
 
-                pageX = Utils.pageXY(e).left - offset.left;
-                pageY = Utils.pageXY(e).top - offset.top;
+                pageX = Utils.pageXY(e).x - offset.left;
+                pageY = Utils.pageXY(e).y - offset.top;
 
                 var t = (pageY > 0) ? (pageY + pos_y - drg_h) : (0);
                 var l = (pageX > 0) ? (pageX + pos_x - drg_w) : (0);
@@ -127,18 +120,15 @@ var Draggable = {
             });
         });
 
-        dragElement.on(Draggable.eventStop, function(e){
+        dragElement.on(Metro.eventStop, function(e){
             element.css({
                 cursor: that.backup.cursor,
                 zIndex: that.backup.zIndex
             }).removeClass("draggable");
             that.drag = false;
             that.move = false;
-            position = {
-                x: Utils.pageXY(e).left,
-                y: Utils.pageXY(e).top
-            };
-            $(document).off(Draggable.eventMove);
+            position = Utils.pageXY(e);
+            $(document).off(Metro.eventMove);
             Utils.exec(o.onDragStop, [this, position]);
         });
     },

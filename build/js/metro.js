@@ -47,6 +47,11 @@ if ( typeof Object.create !== 'function' ) {
 var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
 
 var Metro = {
+
+    eventStart: isTouch ? 'touchstart.metro' : 'mousedown.metro',
+    eventStop: isTouch ? 'touchend.metro' : 'mouseup.metro',
+    eventMove: isTouch ? 'touchmove.metro' : 'mousemove.metro',
+
     hotkeys: [],
 
     init: function(){
@@ -1634,22 +1639,22 @@ var d = new Date().getTime();
 
     clientXY: function(event){
         return {
-            left: this.isTouchDevice() ? event.changedTouches[0].clientX : event.clientX,
-            top: this.isTouchDevice() ? event.changedTouches[0].clientY : event.clientY
+            x: this.isTouchDevice() ? event.changedTouches[0].clientX : event.clientX,
+            y: this.isTouchDevice() ? event.changedTouches[0].clientY : event.clientY
         };
     },
 
     screenXY: function(event){
         return {
-            left: this.isTouchDevice() ? event.changedTouches[0].screenX : event.screenX,
-            top: this.isTouchDevice() ? event.changedTouches[0].screenY : event.screenY
+            x: this.isTouchDevice() ? event.changedTouches[0].screenX : event.screenX,
+            y: this.isTouchDevice() ? event.changedTouches[0].screenY : event.screenY
         };
     },
 
     pageXY: function(event){
         return {
-            left: this.isTouchDevice() ? event.changedTouches[0].pageX : event.pageX,
-            top: this.isTouchDevice() ? event.changedTouches[0].pageY : event.pageY
+            x: this.isTouchDevice() ? event.changedTouches[0].pageX : event.pageX,
+            y: this.isTouchDevice() ? event.changedTouches[0].pageY : event.pageY
         };
     }
 };
@@ -2030,10 +2035,6 @@ var Draggable = {
         return this;
     },
 
-    eventStart: isTouch ? 'touchstart.metro' : 'mousedown.metro',
-    eventStop: isTouch ? 'touchend.metro' : 'mouseup.metro',
-    eventMove: isTouch ? 'touchmove.metro' : 'mousemove.metro',
-
     options: {
         dragElement: 'self',
         dragArea: "parent",
@@ -2065,7 +2066,7 @@ var Draggable = {
 
         dragElement[0].ondragstart = function(){return false;};
 
-        dragElement.on(Draggable.eventStart, function(e){
+        dragElement.on(Metro.eventStart, function(e){
 
             if (isTouch === false && e.which !== 1) {
                 return ;
@@ -2093,19 +2094,16 @@ var Draggable = {
                 top:  dragArea.offset().top
             };
 
-            position = {
-                x: Utils.pageXY(e).left,
-                y: Utils.pageXY(e).top
-            };
+            position = Utils.pageXY(e);
 
             var drg_h = element.outerHeight(),
                 drg_w = element.outerWidth(),
-                pos_y = element.offset().top + drg_h - Utils.pageXY(e).top,
-                pos_x = element.offset().left + drg_w - Utils.pageXY(e).left;
+                pos_y = element.offset().top + drg_h - Utils.pageXY(e).y,
+                pos_x = element.offset().left + drg_w - Utils.pageXY(e).x;
 
             Utils.exec(o.onDragStart, [this, position]);
 
-            $(document).on(Draggable.eventMove, function(e){
+            $(document).on(Metro.eventMove, function(e){
                 var pageX, pageY;
 
                 if (that.drag === false) {
@@ -2113,8 +2111,8 @@ var Draggable = {
                 }
                 that.move = true;
 
-                pageX = Utils.pageXY(e).left - offset.left;
-                pageY = Utils.pageXY(e).top - offset.top;
+                pageX = Utils.pageXY(e).x - offset.left;
+                pageY = Utils.pageXY(e).y - offset.top;
 
                 var t = (pageY > 0) ? (pageY + pos_y - drg_h) : (0);
                 var l = (pageX > 0) ? (pageX + pos_x - drg_w) : (0);
@@ -2139,18 +2137,15 @@ var Draggable = {
             });
         });
 
-        dragElement.on(Draggable.eventStop, function(e){
+        dragElement.on(Metro.eventStop, function(e){
             element.css({
                 cursor: that.backup.cursor,
                 zIndex: that.backup.zIndex
             }).removeClass("draggable");
             that.drag = false;
             that.move = false;
-            position = {
-                x: Utils.pageXY(e).left,
-                y: Utils.pageXY(e).top
-            };
-            $(document).off(Draggable.eventMove);
+            position = Utils.pageXY(e);
+            $(document).off(Metro.eventMove);
             Utils.exec(o.onDragStop, [this, position]);
         });
     },
@@ -3675,8 +3670,175 @@ var Validator = {
 };
 
 Metro.plugin('validator', Validator);
+// Source: js/plugins/window.js
+var Window = {
+    init: function( options, elem ) {
+        this.options = $.extend( {}, this.options, options );
+        this.elem  = elem;
+        this.element = $(elem);
+
+        this._setOptionsFromDOM();
+        this._create();
+
+        Utils.exec(this.options.onCreate);
+
+        return this;
+    },
+
+    options: {
+        btnClose: true,
+        btnMin: true,
+        btnMax: true,
+        clsCaption: "",
+        clsContent: "",
+        draggable: true,
+        shadow: true,
+        icon: "",
+        title: "",
+        resizable: false,
+        onCreate: function(){},
+        onDestroy: function(){}
+    },
+
+    _setOptionsFromDOM: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = $.parseJSON(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+    },
+
+    _create: function(){
+        var that = this, element = this.element, o = this.options;
+        var is_window = element.hasClass("window") && (element.children(".window-caption").length > 0 && element.children(".window-content").length > 0);
+        var win, caption, content, buttons, btnClose, btnMin, btnMax, icon, title, status;
+        var prev = element.prev();
+        var parent = element.parent();
+
+        if (is_window) {
+            win = element;
+            caption = element.children(".window-caption");
+            content = element.children(".window-content");
+            //status = element.children(".window-status");
+            if (caption.length > 0) buttons = caption.find(".buttons");
+            if (buttons.length > 0) btnClose = buttons.children(".btn-close");
+            if (buttons.length > 0) btnMin = buttons.children(".btn-min");
+            if (buttons.length > 0) btnMax = buttons.children(".btn-max");
+        } else {
+            win = $("<div>").addClass("window");
+            if (prev.length === 0) {
+                parent.prepend(win);
+            } else {
+                win.insertAfter(prev);
+            }
+            //status = $("<div>").addClass("window-status");
+            caption = $("<div>").addClass("window-caption");
+            content = $("<div>").addClass("window-content").append(element);
+
+            win.append(caption);
+            win.append(content);
+            //win.append(status);
+
+            if (o.icon !== "") {
+                icon = $(o.icon).addClass("icon");
+                icon.appendTo(caption);
+            }
+
+            if (o.title === "") {o.title = "Window";}
+            title = $("<span>").addClass("title").html(o.title);
+            title.appendTo(caption);
+
+
+            if (o.btnClose === true || o.btnMin === true || o.btnMax === true) {
+                buttons = $("<div>").addClass("buttons");
+                buttons.appendTo(caption);
+
+                if (o.btnMax === true) {
+                    btnMax = $("<span>").addClass("btn-max");
+                    btnMax.appendTo(buttons);
+                }
+
+                if (o.btnMin === true) {
+                    btnMin = $("<span>").addClass("btn-min");
+                    btnMin.appendTo(buttons);
+                }
+
+                if (o.btnClose === true) {
+                    btnClose = $("<span>").addClass("btn-close");
+                    btnClose.appendTo(buttons);
+                }
+            }
+            this.element = win;
+        }
+
+        caption.addClass(o.clsCaption);
+        content.addClass(o.clsContent);
+
+        if (win.attr("id") === undefined) {
+            win.attr("id", Utils.uniqueId());
+        }
+
+        if (o.resizable === true) {
+            var resizer = $("<span>").addClass("resizer").appendTo(win);
+            win.addClass("resizable");
+            resizer.on(Metro.eventStart, function(e){
+
+                var startXY = Utils.clientXY(e);
+                var startWidth = parseInt(element.outerWidth());
+                var startHeight = parseInt(element.outerHeight());
+
+                $(document).on(Metro.eventMove, function(e){
+                    var moveXY = Utils.clientXY(e);
+                    element.css({
+                        width: startWidth + moveXY.x - startXY.x,
+                        height: startHeight + moveXY.y - startXY.y
+                    });
+                });
+            });
+            resizer.on(Metro.eventStop, function(){
+                $(document).off(Metro.eventMove);
+            });
+        }
+
+        btnMax.on("click", function(){
+            win.toggleClass("maximized");
+        });
+        caption.on("dblclick", function(){
+            win.toggleClass("maximized");
+        });
+        btnMin.on("click", function(){
+            win.toggleClass("minimized");
+        });
+        btnClose.on("click", function(){
+            that._destroy(win);
+        });
+
+    },
+
+    _destroy: function(){
+        var element = this.element, o = this.options;
+        element.fadeOut("slow", function(){
+            element.remove();
+            Utils.exec(o.onDestroy, [element[0]]);
+        })
+    },
+
+    changeAttribute: function(attributeName){
+
+    }
+};
+
+Metro.plugin('window', Window);
+
+
 // Source: js/plugins/windows.js
-var Win = {
+var Windows = {
     options: {
         desktop: null,
         winWidth: 300,
@@ -3738,7 +3900,7 @@ var Win = {
         win.appendTo(o.desktop);
 
         if (options.icon !== undefined) {
-            icon = $(o.icon).addClass("icon");
+            icon = $(options.icon).addClass("icon");
             icon.appendTo(caption);
         }
 
@@ -3788,20 +3950,22 @@ var Win = {
         }
 
 
-        win.draggable({
-            dragArea: o.desktop,
-            dragElement: ".window-caption",
-            onDragStop: function(){
+        if (options.draggable !== false) {
+            win.draggable({
+                dragArea: o.desktop,
+                dragElement: ".window-caption",
+                onDragStop: function () {
 
-                o.desktop.find(".window").css({
-                    zIndex: 1
-                });
+                    o.desktop.find(".window").css({
+                        zIndex: 1
+                    });
 
-                win.css({
-                    zIndex: 2
-                })
-            }
-        });
+                    win.css({
+                        zIndex: 2
+                    })
+                }
+            });
+        }
 
         this._windows[win_id] = win;
 
@@ -3861,7 +4025,7 @@ var Win = {
 
 };
 
-$.Metro['win'] = Win.setup();
+$.Metro['windows'] = Windows.setup();
 
  return Metro.init();
 

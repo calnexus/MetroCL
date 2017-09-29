@@ -29,6 +29,11 @@ if ( typeof Object.create !== 'function' ) {
 var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
 
 var Metro = {
+
+    eventStart: isTouch ? 'touchstart.metro' : 'mousedown.metro',
+    eventStop: isTouch ? 'touchend.metro' : 'mouseup.metro',
+    eventMove: isTouch ? 'touchmove.metro' : 'mousemove.metro',
+
     hotkeys: [],
 
     init: function(){

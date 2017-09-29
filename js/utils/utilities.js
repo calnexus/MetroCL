@@ -318,22 +318,22 @@ var Utils = {
 
     clientXY: function(event){
         return {
-            left: this.isTouchDevice() ? event.changedTouches[0].clientX : event.clientX,
-            top: this.isTouchDevice() ? event.changedTouches[0].clientY : event.clientY
+            x: this.isTouchDevice() ? event.changedTouches[0].clientX : event.clientX,
+            y: this.isTouchDevice() ? event.changedTouches[0].clientY : event.clientY
         };
     },
 
     screenXY: function(event){
         return {
-            left: this.isTouchDevice() ? event.changedTouches[0].screenX : event.screenX,
-            top: this.isTouchDevice() ? event.changedTouches[0].screenY : event.screenY
+            x: this.isTouchDevice() ? event.changedTouches[0].screenX : event.screenX,
+            y: this.isTouchDevice() ? event.changedTouches[0].screenY : event.screenY
         };
     },
 
     pageXY: function(event){
         return {
-            left: this.isTouchDevice() ? event.changedTouches[0].pageX : event.pageX,
-            top: this.isTouchDevice() ? event.changedTouches[0].pageY : event.pageY
+            x: this.isTouchDevice() ? event.changedTouches[0].pageX : event.pageX,
+            y: this.isTouchDevice() ? event.changedTouches[0].pageY : event.pageY
         };
     }
 };

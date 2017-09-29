@@ -1,14 +1,15 @@
 @import (once) "include/vars";
 @import (once) "include/mixins";
 
+@dragFlushAlpha: .45;
+@dragFlushColor: @cyan;
+@dragFlushSize: .25rem;
+
 .draggable {
     animation: drag-flush 1s ease infinite;
     z-index: @zindex-top - 1!important;
 }
 
-@dragFlushAlpha: .45;
-@dragFlushColor: @red;
-@dragFlushSize: .625rem;
 
 @keyframes drag-flush {
     0% {

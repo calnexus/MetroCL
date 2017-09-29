@@ -11,7 +11,7 @@
     <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
     <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
 
-    <meta property="og:url" content="https://metroui.org.ua/">
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
     <meta property="og:title" content="Metro 4 Components Library">
     <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
     <meta property="og:type" content="website">
@@ -68,6 +68,11 @@
             padding: .5rem;
             display: flex;
         }
+
+        #win-bar  > * {
+            margin: 0 .25rem;
+        }
+
     </style>
 
     <title>Desktop demo - Metro 4 :: Popular HTML, CSS and JS library</title>
@@ -78,7 +83,7 @@
         <div id="console"></div>
     </div>
     <div id="win-bar" class="bg-brandColor2">
-        <button class="button info" onclick="createWindow()">Create window</button>
+        <button class="button info " onclick="createWindow()">Create window</button>
     </div>
     <script src="../js/jquery-3.2.1.min.js"></script>
     <script src="../metro/js/metro.min.js"></script>
@@ -86,7 +91,7 @@
 
         var con = $("#console");
 
-        $.Metro.win.setup({
+        $.Metro.windows.setup({
             desktop: "#desktop",
             onWinCreate: function(){
                 var wID = $(arguments[0][0]).attr("id");
@@ -99,7 +104,7 @@
         });
 
         function createWindow(){
-            $.Metro.win.create({
+            $.Metro.windows.create({
                 icon: "<span class='mif-user'></span>",
                 title: "Window",
                 btnClose: true,
@@ -108,6 +113,7 @@
                 clsCaption: "bg-cyan fg-white"
             });
         }
+
     </script>
     <!-- ads-script -->
 </body>
