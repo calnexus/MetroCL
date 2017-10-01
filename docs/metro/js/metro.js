@@ -2014,6 +2014,142 @@ var Clock = {
 };
 
 Metro.plugin('clock', Clock);
+// Source: js/plugins/collapse.js
+var Collapse = {
+    init: function( options, elem ) {
+        this.options = $.extend( {}, this.options, options );
+        this.elem  = elem;
+        this.element = $(elem);
+        this._toggle = null;
+
+        this._setOptionsFromDOM();
+        this._create();
+
+        Utils.exec(this.options.onCreate);
+
+        return this;
+    },
+    options: {
+        effect: 'slide',
+        toggleElement: false,
+        noClose: false,
+        duration: METRO_ANIMATION_DURATION,
+        onDrop: function(){},
+        onUp: function(){},
+        onCreate: function(){}
+    },
+
+    _setOptionsFromDOM: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = $.parseJSON(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+    },
+
+    _create: function(){
+        var that = this, element = this.element, o = this.options;
+        var toggle, parent = element.parent();
+
+        toggle = o.toggleElement !== false ? $(o.toggleElement) : element.siblings('.collapse-toggle').length > 0 ? element.siblings('.collapse-toggle') : element.siblings('a:nth-child(1)');
+
+        toggle.on('click', function(e){
+            parent.siblings(parent[0].tagName).removeClass("active-container");
+            $(".active-container").removeClass("active-container");
+
+            if (element.css('display') === 'block' && !element.hasClass('keep-open')) {
+                that._close(element);
+            } else {
+                $('[data-role=collapse]').each(function(i, el){
+                    if (!element.parents('[data-role=collapse]').is(el) && !$(el).hasClass('keep-open') && $(el).css('display') === 'block') {
+                        that._close(el);
+                    }
+                });
+                that._open(element);
+                parent.addClass("active-container");
+            }
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
+        this._toggle = toggle;
+
+        if (o.noClose === true) {
+            element.on('click', function (e) {
+                //e.preventDefault();
+                e.stopPropagation();
+            });
+        }
+
+        $(element).find('li.disabled a').on('click', function(e){
+            e.preventDefault();
+        });
+    },
+
+    _close: function(el){
+
+        if (Utils.isJQueryObject(el) === false) {
+            el = $(el);
+        }
+
+        var dropdown  = el.data("collapse");
+        var toggle = dropdown._toggle;
+        var options = dropdown.options;
+
+        el.slideUp(options.duration, function(){
+            el.trigger("onClose", null, el);
+            toggle.removeClass('active-toggle').removeClass("active-control");
+
+            Utils.exec(options.onUp, [el]);
+        });
+    },
+
+    _open: function(el){
+        if (Utils.isJQueryObject(el) === false) {
+            el = $(el);
+        }
+
+        var dropdown  = el.data("collapse");
+        var toggle = dropdown._toggle;
+        var options = dropdown.options;
+
+        el.slideDown(options.duration, function(){
+            el.trigger("onOpen", null, el);
+            toggle.addClass('active-toggle').addClass("active-control");
+
+            Utils.exec(options.onDrop, [el]);
+        });
+    },
+
+    close: function(){
+        this._close(this.element);
+    },
+
+    open: function(){
+        this._open(this.element);
+    },
+
+    changeAttribute: function(attributeName){
+
+    }
+};
+
+$(document).on('click', function(e){
+    $('[data-role=dropdown]').each(function(i, el){
+        if (!$(el).hasClass('keep-open') && $(el).css('display')==='block') {
+            var that = $(el).data('collapse');
+            that._close(this);
+        }
+    });
+});
+
+Metro.plugin('collapse', Collapse);
 // Source: js/plugins/draggable.js
 var Draggable = {
     init: function( options, elem ) {
@@ -2162,6 +2298,7 @@ var Dropdown = {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
         this.element = $(elem);
+        this._toggle = null;
 
         this._setOptionsFromDOM();
         this._create();
@@ -2179,8 +2316,6 @@ var Dropdown = {
         onUp: function(){},
         onCreate: function(){}
     },
-
-    _toggle: null,
 
     _setOptionsFromDOM: function(){
         var that = this, element = this.element, o = this.options;
@@ -2200,7 +2335,7 @@ var Dropdown = {
         var that = this, element = this.element, o = this.options;
         var toggle, parent = element.parent();
 
-        this._toggle = toggle = o.toggleElement ? $(o.toggleElement) : parent.children('.dropdown-toggle').length > 0 ? parent.children('.dropdown-toggle') : parent.children('a:nth-child(1)');
+        toggle = o.toggleElement !== false ? $(o.toggleElement) : element.siblings('.dropdown-toggle').length > 0 ? element.siblings('.dropdown-toggle') : element.siblings('a:nth-child(1)');
 
         toggle.on('click', function(e){
             parent.siblings(parent[0].tagName).removeClass("active-container");
@@ -2235,6 +2370,8 @@ var Dropdown = {
             e.stopPropagation();
         });
 
+        this._toggle = toggle;
+
         if (o.noClose === true) {
             element.on('click', function (e) {
                 //e.preventDefault();
@@ -2248,33 +2385,38 @@ var Dropdown = {
     },
 
     _close: function(el){
-        var parent = $(el).parent(), o = this.options;
-        var toggle = this._toggle;
 
-        switch (this.options.effect) {
-            case 'fade': $(el).fadeOut(o.duration); break;
-            case 'slide': $(el).slideUp(o.duration); break;
-            default: $(el).hide();
+        if (Utils.isJQueryObject(el) === false) {
+            el = $(el);
         }
-        this.element.trigger("onClose", null, el);
-        toggle.removeClass('active-toggle').removeClass("active-control");
 
-        Utils.exec(o.onUp);
+        var dropdown  = el.data("dropdown");
+        var toggle = dropdown._toggle;
+        var options = dropdown.options;
+
+        el.slideUp(options.duration, function(){
+            el.trigger("onClose", null, el);
+            toggle.removeClass('active-toggle').removeClass("active-control");
+
+            Utils.exec(options.onUp, [el]);
+        });
     },
 
     _open: function(el){
-        var parent = this.element.parent(), o = this.options;
-        var toggle = this._toggle;
-
-        switch (this.options.effect) {
-            case 'fade': $(el).fadeIn(o.duration); break;
-            case 'slide': $(el).slideDown(o.duration); break;
-            default: $(el).show();
+        if (Utils.isJQueryObject(el) === false) {
+            el = $(el);
         }
-        this.element.trigger("onOpen", null, el);
-        toggle.addClass('active-toggle').addClass("active-control");
 
-        Utils.exec(o.onDrop);
+        var dropdown  = el.data("dropdown");
+        var toggle = dropdown._toggle;
+        var options = dropdown.options;
+
+        el.slideDown(options.duration, function(){
+            el.trigger("onOpen", null, el);
+            toggle.addClass('active-toggle').addClass("active-control");
+
+            Utils.exec(options.onDrop, [el]);
+        });
     },
 
     close: function(){
@@ -2294,7 +2436,7 @@ $(document).on('click', function(e){
     $('[data-role=dropdown]').each(function(i, el){
         if (!$(el).hasClass('keep-open') && $(el).css('display')==='block') {
             var that = $(el).data('dropdown');
-            that._close(el);
+            that._close(this);
         }
     });
 });
@@ -3671,11 +3813,17 @@ var Validator = {
 
 Metro.plugin('validator', Validator);
 // Source: js/plugins/window.js
+var WinUtils = {
+    create: function(o){
+    }
+};
+
 var Window = {
     init: function( options, elem ) {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
         this.element = $(elem);
+        this.win = null;
 
         this._setOptionsFromDOM();
         this._create();
@@ -3686,16 +3834,30 @@ var Window = {
     },
 
     options: {
-        btnClose: true,
-        btnMin: true,
-        btnMax: true,
+        width: "auto",
+        height: "auto",
+        btnClose: false,
+        btnMin: false,
+        btnMax: false,
         clsCaption: "",
         clsContent: "",
-        draggable: true,
-        shadow: true,
+        draggable: false,
+        dragElement: ".window-caption",
+        dragArea: "parent",
+        shadow: false,
         icon: "",
-        title: "",
+        title: "Window",
         resizable: false,
+        onDragStart: function(){},
+        onDragStop: function(){},
+        onDragMove: function(){},
+        onCaptionDblClick: function(){},
+        onCloseClick: function(){},
+        onMaxClick: function(){},
+        onMinClick: function(){},
+        onResizeStart: function(){},
+        onResizeStop: function(){},
+        onResize: function(){},
         onCreate: function(){},
         onDestroy: function(){}
     },
@@ -3714,123 +3876,174 @@ var Window = {
         });
     },
 
-    _create: function(){
-        var that = this, element = this.element, o = this.options;
-        var is_window = element.hasClass("window") && (element.children(".window-caption").length > 0 && element.children(".window-content").length > 0);
-        var win, caption, content, buttons, btnClose, btnMin, btnMax, icon, title, status;
-        var prev = element.prev();
-        var parent = element.parent();
+    createWindow: function(o){
+        var win, caption, content, icon, title, buttons, btnClose, btnMin, btnMax, resizer, status;
 
-        if (is_window) {
-            win = element;
-            caption = element.children(".window-caption");
-            content = element.children(".window-content");
-            //status = element.children(".window-status");
-            if (caption.length > 0) buttons = caption.find(".buttons");
-            if (buttons.length > 0) btnClose = buttons.children(".btn-close");
-            if (buttons.length > 0) btnMin = buttons.children(".btn-min");
-            if (buttons.length > 0) btnMax = buttons.children(".btn-max");
-        } else {
-            win = $("<div>").addClass("window");
-            if (prev.length === 0) {
-                parent.prepend(win);
-            } else {
-                win.insertAfter(prev);
-            }
-            //status = $("<div>").addClass("window-status");
-            caption = $("<div>").addClass("window-caption");
-            content = $("<div>").addClass("window-content").append(element);
+        win = $("<div>").addClass("window");
+        win.css({
+            width: o.width,
+            height: o.height
+        });
 
-            win.append(caption);
-            win.append(content);
-            //win.append(status);
+        caption = $("<div>").addClass("window-caption");
+        content = $("<div>").addClass("window-content");
 
-            if (o.icon !== "") {
-                icon = $(o.icon).addClass("icon");
-                icon.appendTo(caption);
-            }
+        win.append(caption);
+        win.append(content);
 
-            if (o.title === "") {o.title = "Window";}
+        if (o.status === true) {
+            status = $("<div>").addClass("window-status");
+            win.append(status);
+        }
+
+        if (o.shadow === true) {
+            win.addClass("win-shadow");
+        }
+
+        if (o.icon !== undefined) {
+            icon = $(o.icon).addClass("icon");
+            icon.appendTo(caption);
+        }
+
+        if (o.title !== undefined) {
             title = $("<span>").addClass("title").html(o.title);
             title.appendTo(caption);
+        }
 
+        if (o.content !== undefined) {
+            content.html(Utils.isJQueryObject(o.content) ? o.content.html() : o.content);
+        }
 
-            if (o.btnClose === true || o.btnMin === true || o.btnMax === true) {
-                buttons = $("<div>").addClass("buttons");
-                buttons.appendTo(caption);
+        if (o.btnClose === true || o.btnMin === true || o.btnMax === true) {
+            buttons = $("<div>").addClass("buttons");
+            buttons.appendTo(caption);
 
-                if (o.btnMax === true) {
-                    btnMax = $("<span>").addClass("btn-max");
-                    btnMax.appendTo(buttons);
-                }
-
-                if (o.btnMin === true) {
-                    btnMin = $("<span>").addClass("btn-min");
-                    btnMin.appendTo(buttons);
-                }
-
-                if (o.btnClose === true) {
-                    btnClose = $("<span>").addClass("btn-close");
-                    btnClose.appendTo(buttons);
-                }
+            if (o.btnMax === true) {
+                btnMax = $("<span>").addClass("btn-max");
+                btnMax.appendTo(buttons);
             }
-            this.element = win;
+
+            if (o.btnMin === true) {
+                btnMin = $("<span>").addClass("btn-min");
+                btnMin.appendTo(buttons);
+            }
+
+            if (o.btnClose === true) {
+                btnClose = $("<span>").addClass("btn-close");
+                btnClose.appendTo(buttons);
+            }
         }
 
         caption.addClass(o.clsCaption);
         content.addClass(o.clsContent);
 
-        if (win.attr("id") === undefined) {
-            win.attr("id", Utils.uniqueId());
-        }
+        win.attr("id", o.id === undefined ? Utils.uniqueId() : o.id);
 
         if (o.resizable === true) {
-            var resizer = $("<span>").addClass("resizer").appendTo(win);
+            resizer = $("<span>").addClass("resizer");
+            resizer.appendTo(win);
             win.addClass("resizable");
-            resizer.on(Metro.eventStart, function(e){
-
-                var startXY = Utils.clientXY(e);
-                var startWidth = parseInt(element.outerWidth());
-                var startHeight = parseInt(element.outerHeight());
-
-                $(document).on(Metro.eventMove, function(e){
-                    var moveXY = Utils.clientXY(e);
-                    element.css({
-                        width: startWidth + moveXY.x - startXY.x,
-                        height: startHeight + moveXY.y - startXY.y
-                    });
-                });
-            });
-            resizer.on(Metro.eventStop, function(){
-                $(document).off(Metro.eventMove);
-            });
         }
 
-        btnMax.on("click", function(){
+        win.on("dblclick", ".window-caption", function(){
             win.toggleClass("maximized");
+            Utils.exec(o.onCaptionDblClick, [win]);
         });
-        caption.on("dblclick", function(){
+        win.on("click", ".btn-max", function(){
             win.toggleClass("maximized");
+            Utils.exec(o.onMaxClick, [win]);
         });
-        btnMin.on("click", function(){
+        win.on("click", ".btn-min", function(){
             win.toggleClass("minimized");
+            Utils.exec(o.onMinClick, [win]);
         });
-        btnClose.on("click", function(){
-            that._destroy(win);
+        win.on("click", ".btn-close", function(){
+            win.fadeOut("slow", function(){
+                win.remove();
+                Utils.exec(o.onCloseClick, [win]);
+                Utils.exec(o.onDestroy, [win]);
+            });
         });
 
+        win.on(Metro.eventStart, ".resizer", function(e){
+
+            var startXY = Utils.clientXY(e);
+            var startWidth = parseInt(win.outerWidth());
+            var startHeight = parseInt(win.outerHeight());
+
+            Utils.exec(o.onResizeStart, [win]);
+
+            $(document).on(Metro.eventMove, function(e){
+                var moveXY = Utils.clientXY(e);
+                win.css({
+                    width: startWidth + moveXY.x - startXY.x,
+                    height: startHeight + moveXY.y - startXY.y
+                });
+                Utils.exec(o.onResize, [win]);
+            });
+        });
+
+        win.on(Metro.eventStop, ".resizer", function(){
+            $(document).off(Metro.eventMove);
+            Utils.exec(o.onResizeStop, [win]);
+        });
+
+        if (o.draggable === true) {
+            win.draggable({
+                dragElement: o.dragElement,
+                dragArea: o.dragArea,
+                onDragStart: o.onDragStart,
+                onDragStop: o.onDragStop,
+                onDragMove: o.onDragMove
+            })
+        }
+
+        return win;
     },
 
-    _destroy: function(){
-        var element = this.element, o = this.options;
-        element.fadeOut("slow", function(){
-            element.remove();
-            Utils.exec(o.onDestroy, [element[0]]);
-        })
+    _create: function(){
+        var that = this, element = this.element, o = this.options;
+        var win;
+        var prev = element.prev();
+        var parent = element.parent();
+
+
+        win = this.createWindow(o);
+
+        if (prev.length === 0) {
+            parent.prepend(win);
+        } else {
+            win.insertAfter(prev);
+        }
+
+        element.appendTo(win.find(".window-content"));
+
+        this.win = win;
+    },
+
+    toggleButtons: function(a) {
+        var that = this, element = this.element, win = this.win, o = this.options;
+        var btnClose = win.find(".btn-close");
+        var btnMin = win.find(".btn-min");
+        var btnMax = win.find(".btn-max");
+
+        if (a === "data-btn-close") {
+            btnClose.toggle();
+        }
+        if (a === "data-btn-min") {
+            btnMin.toggle();
+        }
+        if (a === "data-btn-max") {
+            btnMax.toggle();
+        }
     },
 
     changeAttribute: function(attributeName){
-
+        switch (attributeName) {
+            case "data-btn-close":
+            case "data-btn-min":
+            case "data-btn-max": this.toggleButtons(attributeName); break;
+        }
     }
 };
 
@@ -3864,110 +4077,66 @@ var Windows = {
         return this;
     },
 
-    /*
-    * options = {
-    *     icon: null,
-    *     title: "",
-    *     content: eny,
-    *     btnClose: true,
-    *     btnMin: true,
-    *     btnMax: true,
-    * }
-    * */
+    // options: {
+    //     width: "auto",
+    //     height: "auto",
+    //     btnClose: false,
+    //     btnMin: false,
+    //     btnMax: false,
+    //     clsCaption: "",
+    //     clsContent: "",
+    //     draggable: false,
+    //     dragElement: ".window-caption",
+    //     dragArea: "parent",
+    //     shadow: false,
+    //     icon: "",
+    //     title: "Window",
+    //     resizable: false,
+    //     onDragStart: function(){},
+    //     onDragStop: function(){},
+    //     onDragMove: function(){},
+    //     onCaptionDblClick: function(){},
+    //     onCloseClick: function(){},
+    //     onMaxClick: function(){},
+    //     onMinClick: function(){},
+    //     onResizeStart: function(){},
+    //     onResizeStop: function(){},
+    //     onResize: function(){},
+    //     onCreate: function(){},
+    //     onDestroy: function(){}
+    // },
 
     create: function(options){
         var that = this, o = this.options;
-        var win_id = Utils.uniqueId();
-        var win = $("<div>").addClass("window win-shadow");
-        var caption = $("<div>").addClass("window-caption");
-        var content = $("<div>").addClass("window-content");
-        var buttons, btnClose, btnMin, btnMax, icon, title;
+        var win;
+        var objects_count = Utils.objectLength(this._windows);
 
-        var objects = Utils.objectLength(this._windows);
+        options.onDragStop = function(){
+            o.desktop.find(".window").css({
+                zIndex: 1
+            });
+
+            win.css({
+                zIndex: 2
+            })
+        };
+        options.onDestroy = function(){
+            Utils.exec(o.onWinDestroy, [win]);
+        };
+        win = Window.createWindow(options);
 
         win.css({
             width: options.width ? options.width : o.winWidth,
             height: options.height ? options.height : o.winHeight,
             zIndex: 1,
             position: "absolute",
-            top: objects * 16,
-            left: objects * 16
+            top: objects_count * 16,
+            left: objects_count * 16
         });
 
-        win.data("wID", win_id).attr("id", win_id);
-        win.append(caption);
-        win.append(content);
         win.appendTo(o.desktop);
 
-        if (options.icon !== undefined) {
-            icon = $(options.icon).addClass("icon");
-            icon.appendTo(caption);
-        }
-
-        if (options.title !== undefined && options.title.trim() !== "") {
-            title = $("<span>").addClass("title").html(options.title);
-            title.appendTo(caption);
-        }
-
-        if (options.btnClose === true || options.btnMin === true || options.btnMax === true) {
-            buttons = $("<div>").addClass("buttons");
-            buttons.appendTo(caption);
-
-            if (options.btnMax === true) {
-                btnMax = $("<span>").addClass("btn-max");
-                btnMax.appendTo(buttons);
-                btnMax.on("click", function(){
-                    win.toggleClass("maximized");
-                });
-                caption.on("dblclick", function(){
-                    win.toggleClass("maximized");
-                });
-            }
-
-            if (options.btnMin === true) {
-                btnMin = $("<span>").addClass("btn-min");
-                btnMin.appendTo(buttons);
-                btnMin.on("click", function(){
-                    win.toggleClass("minimized");
-                });
-            }
-
-            if (options.btnClose === true) {
-                btnClose = $("<span>").addClass("btn-close");
-                btnClose.appendTo(buttons);
-                btnClose.on("click", function(){
-                    that.kill(win);
-                });
-            }
-        }
-
-        if (options.clsCaption !== undefined) {
-            caption.addClass(options.clsCaption);
-        }
-
-        if (options.clsContent !== undefined) {
-            content.addClass(options.clsContent);
-        }
-
-
-        if (options.draggable !== false) {
-            win.draggable({
-                dragArea: o.desktop,
-                dragElement: ".window-caption",
-                onDragStop: function () {
-
-                    o.desktop.find(".window").css({
-                        zIndex: 1
-                    });
-
-                    win.css({
-                        zIndex: 2
-                    })
-                }
-            });
-        }
-
-        this._windows[win_id] = win;
+        this._windows[win.attr("id")] = win;
 
         Utils.exec(o.onWinCreate, [win]);
 
@@ -3988,7 +4157,7 @@ var Windows = {
         if (win.length === 0) {
             return this;
         }
-        win.find(".window-content").html(Utils.isJQueryObject(content) ? content[0] : content);
+        win.find(".window-content").html(Utils.isJQueryObject(content) ? content.html() : content);
         return this;
     },
 
@@ -4007,22 +4176,12 @@ var Windows = {
         return this;
     },
 
-    kill: function(win){
-        var that = this, o = this.options;
-        win.fadeOut('slow', function(){
-            delete that._windows[win.data('wID')];
-            win.remove();
-            Utils.exec(o.onWinDestroy, [win]);
-        });
-    },
-
     killAll: function(){
         var that = this;
         $.each(that._windows, function(){
             //that.kill($(this));
         });
     }
-
 };
 
 $.Metro['windows'] = Windows.setup();

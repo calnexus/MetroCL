@@ -86,7 +86,7 @@
                         <a href="#" data-hotkey="Shift+3" onclick="alert('Shift+3 clicked!')">Press Shift+3</a>
                     </div>
                 </div>
-                <pre><code>
+                <pre><code class="html">
                     &lt;ul class="v-menu"&gt;
                         &lt;li&gt;
                             &lt;a href="#"
@@ -117,7 +117,7 @@
                     onclick="alert('alt+ctrl+shift+z clicked!')">Press alt+ctrl+shift+z</a>
 
                 </div>
-                <pre><code>
+                <pre><code class="html">
                     &lt;a href="#"
                             data-hotkey="alt+ctrl+shift+z"
                             onclick="alert('alt+ctrl+shift+z clicked!')"&gt;Press alt+ctrl+shift+z&lt;/a&gt;
@@ -132,7 +132,7 @@
                     <li>METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS</li>
                     <li>METRO_HOTKEYS_FILTER_TEXT_INPUTS</li>
                 </ul>
-                <pre><code>
+                <pre><code class="javascript">
                     &lt;script&gt;
                         METRO_HOTKEYS_FILTER_CONTENT_EDITABLE = false;
                     &lt;/script&gt;
@@ -159,7 +159,7 @@
                 <p>
                     For custom hotkeys you can use next supported event types: <code>keydown</code>, <code>keyup</code> and <code>keypress</code>. To create own event:
                 </p>
-                <pre><code>
+                <pre><code class="javascript">
                     <!-- bind, unbind -->
                     $(expression).bind(types, keys, handler);
                     $(expression).unbind(types, handler);
@@ -171,7 +171,7 @@
                       this.value = this.value.replace('$', 'EUR');
                     });
                 </code></pre>
-                <pre><code>
+                <pre><code class="javascript">
                     <!-- on, off -->
                     $(expression).on(types, null, keys, handler);
                     $(expression).off(types, handler);

@@ -84,7 +84,7 @@
                 <p>
                     To init storage execute method <code>setKey</code>. This method sets key for your app data in storage. This is a prefix for all your stored data. Method <code>getKey</code> return main key.
                 </p>
-                <pre><code>
+                <pre><code class="html">
                     $.Metro.storage.setKey('MY_APP');
                     $.Metro.storage.getKey();
                 </code></pre>
@@ -93,7 +93,7 @@
                 <p>
                     To store data in storage execute method <code>setItem</code>.
                 </p>
-                <pre><code>
+                <pre><code class="javascript">
                     var key = 'user',
                         data = {
                             'Bill': {
@@ -123,7 +123,7 @@
                         <code>key</code> - key for stored data,
                         <code>default</code> - value returned if key not exist in storage.
                 </p>
-                <pre><code>
+                <pre><code class="javascript">
                     var key = 'user',
                         default_value = {};
 
@@ -137,7 +137,7 @@
                         <code>sub_key</code> - subkey for stored data,
                         <code>default</code> - value returned if key not exist in storage.
                 </p>
-                <pre><code>
+                <pre><code class="javascript">
                     var key = 'user',
                         subkey = 'Bill',
                         subkey2 = 'Bill->LastName',
@@ -151,7 +151,7 @@
                 <p>
                     To delete data you can use method <code>delItem</code>.
                 </p>
-                <pre><code>
+                <pre><code class="javascript">
                     var key = 'user';
 
                     $.Metro.storage.delItem(key);

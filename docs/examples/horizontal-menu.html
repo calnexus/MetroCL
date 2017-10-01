@@ -29,94 +29,54 @@
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
 
     <link href="../metro/css/metro-all.css" rel="stylesheet">
-    <style>
-        body {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
 
-        #area {
-            display: flex;
-            height: calc(100% - 51px);
-        }
-
-        #desktop {
-            display: block;
-            position: relative;
-            background-color: #2b2b2b;
-            color: #ffffff;
-            height: 100%;
-            overflow: auto;
-            width: 100%;
-        }
-
-        #console {
-            height: 100%;
-            display: block;
-            position: relative;
-            width: 220px;
-            max-width: 220px;
-            background-color: #fff;
-            color: #000;
-            font-size: 10px;
-            padding: 8px;
-        }
-
-        #win-bar {
-            height: 51px;
-            padding: .5rem;
-            display: flex;
-        }
-
-        #win-bar  > * {
-            margin: 0 .25rem;
-        }
-
-    </style>
-
-    <title>Desktop demo - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <title>Horizontal menu demo - Metro 4 :: Popular HTML, CSS and JS library</title>
 </head>
 <body>
-    <div id="area">
-        <div id="desktop"></div>
-        <div id="console"></div>
+    <div class="menu-wrapper">
+        <ul class="h-menu">
+            <li><a href="#">Home</a></li>
+            <li>
+                <a id="_test1" href="#" class="dropdown-toggle">Products</a>
+                <ul class="d-menu" data-role="dropdown">
+                    <li>
+                        <a href="#" class="dropdown-toggle">Windows</a>
+                        <ul class="d-menu" data-role="dropdown">
+                            <li><a href="#">Windows 10</a></li>
+                            <li><a href="#">Windows Server</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">MS-DOS</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Skype</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Office</a></li>
+                </ul>
+            </li>
+            <li>
+                <a id="_test2" href="#" class="dropdown-toggle">Products</a>
+                <ul class="d-menu" data-role="dropdown">
+                    <li>
+                        <a href="#" class="dropdown-toggle">Windows</a>
+                        <ul class="d-menu" data-role="dropdown">
+                            <li><a href="#">Windows 10</a></li>
+                            <li><a href="#">Windows Server</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">MS-DOS</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Skype</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Office</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Cart</a></li>
+        </ul>
     </div>
-    <div id="win-bar" class="bg-brandColor2">
-        <button class="button info " onclick="createWindow()">Create window</button>
-    </div>
+
     <script src="../js/jquery-3.2.1.min.js"></script>
     <script src="../metro/js/metro.min.js"></script>
-    <script>
-
-        var con = $("#console");
-
-        $.Metro.windows.setup({
-            desktop: "#desktop",
-            onWinCreate: function(){
-                var wID = $(arguments[0][0]).attr("id");
-                con.append("<p class='text-ellipsis m-0 fg-green'>Created! "+"wID: " + wID+"</p>");
-            },
-            onWinDestroy: function(){
-                var wID = $(arguments[0][0]).attr("id");
-                con.append("<p class='text-ellipsis m-0 fg-red'>Destroyed! "+"wID: " + wID+"</p>");
-            }
-        });
-
-        function createWindow(){
-            $.Metro.windows.create({
-                icon: "<span class='mif-user'></span>",
-                title: "Window",
-                btnClose: true,
-                btnMin: true,
-                btnMax: true,
-                resizable: true,
-                draggable: true,
-                clsCaption: "bg-cyan fg-white"
-            });
-        }
-
-    </script>
     <!-- ads-script -->
 </body>
 </html>

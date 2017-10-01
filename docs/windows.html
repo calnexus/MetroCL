@@ -47,6 +47,7 @@
                 <hr/>
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Windows</a></li>
+                    <li class="toc-entry"><a href="#_window_about">About</a></li>
                     <li class="toc-entry"><a href="#_window_create">Create window</a></li>
                     <li class="toc-entry">
                         <a href="#_window_caption">Window caption</a>
@@ -54,15 +55,14 @@
                             <li class="toc-entry"><a href="#_window_caption_icon">Icon</a></li>
                             <li class="toc-entry"><a href="#_window_caption_title">Title</a></li>
                             <li class="toc-entry"><a href="#_window_caption_buttons">Buttons</a></li>
+                            <li class="toc-entry"><a href="#_window_buttons_events">Buttons events</a></li>
                         </ul>
                     </li>
-                    <li class="toc-entry"><a href="#_window_content">Content</a></li>
                     <li class="toc-entry"><a href="#_window_shadow">Shadow</a></li>
-                    <li class="toc-entry"><a href="#_window_role">Role window</a></li>
                     <li class="toc-entry"><a href="#_window_custom">Customize</a></li>
                     <li class="toc-entry"><a href="#_window_draggable">Draggable</a></li>
                     <li class="toc-entry"><a href="#_window_resizeable">Resizeable</a></li>
-                    <li class="toc-entry"><a href="#_window_system_menu">System menu</a></li>
+                    <li class="toc-entry"><a href="#_window_resizeable">Options</a></li>
                 </ul>
             </div>
 
@@ -78,10 +78,10 @@
 
                 <!-- ads-html -->
 
-                <h3 id="_window_create">Create window</h3>
+                <h3 id="_window_about">About</h3>
                 <p>
-                    To create window you can use next classes:
-                        <code>.window</code>, <code>.window-caption</code>, <code>.window-content</code>.
+                    Metro 4 build windows with using next classes:
+                        <code>.window</code>, <code>.window-caption</code>, <code>.window-content</code> and result window has next structure:
                 </p>
                 <div class="example">
                     <div class="row">
@@ -100,69 +100,8 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="row mt-2">
-                        <div class="cell-md-6 clear">
-                            <div class="window info w-100" style="height: 100px;">
-                                <div class="window-caption">
-                                    <span class="icon mif-windows"></span>
-                                    <span class="title">Metro 4</span>
-                                    <div class="buttons">
-                                        <span class="btn-min"></span>
-                                        <span class="btn-max"></span>
-                                        <span class="btn-close"></span>
-                                    </div>
-                                </div>
-                                <div class="window-content p-2">Window content</div>
-                            </div>
-                        </div>
-                        <div class="cell-md-6 clear">
-                            <div class="window alert w-100" style="height: 100px;">
-                                <div class="window-caption">
-                                    <span class="icon mif-windows"></span>
-                                    <span class="title">Metro 4</span>
-                                    <div class="buttons">
-                                        <span class="btn-min"></span>
-                                        <span class="btn-max"></span>
-                                        <span class="btn-close"></span>
-                                    </div>
-                                </div>
-                                <div class="window-content p-2">Window content</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="cell-md-6 clear">
-                            <div class="window warning w-100" style="height: 100px;">
-                                <div class="window-caption">
-                                    <span class="icon mif-windows"></span>
-                                    <span class="title">Metro 4</span>
-                                    <div class="buttons">
-                                        <span class="btn-min"></span>
-                                        <span class="btn-max"></span>
-                                        <span class="btn-close"></span>
-                                    </div>
-                                </div>
-                                <div class="window-content p-2">Window content</div>
-                            </div>
-                        </div>
-                        <div class="cell-md-6 clear">
-                            <div class="window success w-100" style="height: 100px;">
-                                <div class="window-caption">
-                                    <span class="icon mif-windows"></span>
-                                    <span class="title">Metro 4</span>
-                                    <div class="buttons">
-                                        <span class="btn-min"></span>
-                                        <span class="btn-max"></span>
-                                        <span class="btn-close"></span>
-                                    </div>
-                                </div>
-                                <div class="window-content p-2">Window content</div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                <pre><code>
+                <pre><code class="html">
                     &lt;div class="window"&gt;
                         &lt;div class="window-caption"&gt;
                             &lt;span class="icon mif-windows"&gt;&lt;/span&gt;
@@ -177,267 +116,169 @@
                             Window content
                         &lt;/div&gt;
                     &lt;/div&gt;
+                </code></pre>
 
-                    &lt;div class="window info"&gt;...&lt;/div&gt;
-                    &lt;div class="window alert"&gt;...&lt;/div&gt;
-                    &lt;div class="window warning"&gt;...&lt;/div&gt;
-                    &lt;div class="window success"&gt;...&lt;/div&gt;
+                <h3 id="_window_create">Create window</h3>
+                <p>
+                    To create window add attribute <code>data-role="window"</code> to your block element.
+                </p>
+                <div class="example">
+                    <div data-role="window" class="p-2">
+                        This is a simple window
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="window" class="p-2"&gt;
+                        This is a simple window
+                    &lt;/div&gt;
                 </code></pre>
 
                 <h3 id="_window_caption">Caption</h3>
                 <p>
-                    To create <code>caption</code> add container with class <code>.window-caption</code>. Caption can contains:
-                        <code>icon</code>, <code>title</code> and <code>buttons</code>.
+                    The caption may include the following elements: <code>icon</code>, <code>title</code>, <code>system buttons</code>.
                 </p>
                 <h4 id="_window_caption_icon">Icon</h4>
                 <p>
-                    To create window icon you can use icon font or image. Add element with class <code>.icon</code>:
+                    To add <code>icon</code> to window you must add attribute <code>data-icon="..."</code> to element.
                 </p>
                 <div class="example">
                     <div class="row">
                         <div class="cell-md-6">
-                            <div class="window">
-                                <div class="window-caption">
-                                    <span class="icon mif-rocket"></span>
-                                </div>
+                            <div data-role="window" data-icon="<span class='mif-rocket'></span>" class="p-2">
+                                Use Font icon to create window icon.
                             </div>
                         </div>
                         <div class="cell-md-6">
-                            <div class="window">
-                                <div class="window-caption">
-                                    <img class="icon" src="images/location.png">
-                                </div>
+                            <div data-role="window" data-icon="<img src='images/location.png'>" class="p-2">
+                                Use image to create window icon.
                             </div>
                         </div>
                     </div>
                 </div>
-                <pre><code>
-                    &lt;div class="window"&gt;
-                        &lt;div class="window-caption"&gt;
-                            &lt;span class="icon mif-rocket"&gt;&lt;/span&gt;
-                        &lt;/div&gt;
+                <pre><code class="html">
+                    &lt;div data-role="window"
+                            data-icon="&lt;span class='mif-rocket'&gt;&lt;/span&gt;"
+                            class="p-2"&gt;
+                        Use Font icon to create window icon.
                     &lt;/div&gt;
 
-                    &lt;div class="window"&gt;
-                        &lt;div class="window-caption"&gt;
-                            &lt;img class="icon" src="images/location.png"&gt;
-                        &lt;/div&gt;
+                    &lt;div data-role="window"
+                            data-icon="&lt;img src='images/location.png'&gt;"
+                            class="p-2"&gt;
+                        Use image to create window icon.
                     &lt;/div&gt;
                 </code></pre>
 
                 <h4 id="_window_caption_title">Title</h4>
                 <p>
-                    To create title add <code>&lt;span&gt;</code> with class <code>.title</code> to <code>caption</code>:
+                    To add <code>title</code> to window you must add attribute <code>data-title="..."</code> to element.
                 </p>
                 <div class="example">
-                    <div class="row">
-                        <div class="cell-md-6">
-                            <div class="window">
-                                <div class="window-caption">
-                                    <span class="icon mif-rocket"></span>
-                                    <span class="title">The rocket</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cell-md-6">
-                            <div class="window">
-                                <div class="window-caption">
-                                    <img class="icon" src="images/location.png">
-                                    <span class="title">Target</span>
-                                </div>
-                            </div>
-                        </div>
+                    <div data-role="window" data-title="Window title" class="p-2">
+                        Set the title with data-title attribute.
                     </div>
                 </div>
-                <pre><code>
-                    &lt;div class="window"&gt;
-                        &lt;div class="window-caption"&gt;
-                            &lt;span class="title"&gt;Target&lt;/span&gt;
-                        &lt;/div&gt;
+                <pre><code class="html">
+                    &lt;div data-role="window" data-title="Window title" class="p-2"&gt;
+                        Set the title with data-title attribute.
                     &lt;/div&gt;
                 </code></pre>
 
                 <h4 id="_window_caption_buttons">Buttons</h4>
                 <p>
-                    You can create window buttons such as: <code>close</code>, <code>min</code> and <code>max</code> and styles as default Windows window buttons.
-                    To create buttons first-off you must create buttons container with class <code>buttons</code>. Then you can create inside the container window system buttons.
+                    You can add system buttons to your window such as: <code>close</code>, <code>min</code> and <code>max</code>.
+                    To create buttons you must add relevant attributes:
+                        <code>data-btn-close="true"</code>,
+                        <code>data-btn-min="true"</code>,
+                        <code>data-btn-max="true"</code>.
                 </p>
                 <div class="example">
-                    <div class="window">
-                        <div class="window-caption">
-                            <span class="icon mif-rocket"></span>
-                            <span class="title">The rocket</span>
-                            <div class="buttons">
-                                <span class="btn-min"></span>
-                                <span class="btn-max"></span>
-                                <span class="btn-close"></span>
-                            </div>
-                        </div>
+                    <div data-role="window" id="-window-buttons"
+                         data-title="Window title"
+                         data-btn-close="true"
+                         data-btn-min="true"
+                         data-btn-max="true"
+                         class="p-2">
+                        On/off window system buttons with attributes.
                     </div>
                 </div>
-                <pre><code>
-                    &lt;div class="window"&gt;
-                        &lt;div class="window-caption"&gt;
-                            &lt;span class="icon mif-rocket"&gt;&lt;/span&gt;
-                            &lt;span class="title"&gt;The rocket&lt;/span&gt;
-                            &lt;div class="buttons"&gt;
-                                &lt;span class="btn-min"&gt;&lt;/span&gt;
-                                &lt;span class="btn-max"&gt;&lt;/span&gt;
-                                &lt;span class="btn-close"&gt;&lt;/span&gt;
-                            &lt;/div&gt;
-                        &lt;/div&gt;
+                <pre><code class="html">
+                    &lt;div data-role="window" id="-window-buttons"
+                         data-title="Window title"
+                         data-btn-close="true"
+                         data-btn-min="true"
+                         data-btn-max="true"
+                         class="p-2"&gt;
+                        On/off window system buttons with attributes.
                     &lt;/div&gt;
                 </code></pre>
+                <div class="example d-flex">
+                    <input checked type="checkbox" data-role="checkbox" data-caption="btn-close" onclick="$('#-window-buttons').attr('data-btn-close', $(this).is(':checked'))">
+                    <input checked type="checkbox" data-role="checkbox" data-caption="btn-min" onclick="$('#-window-buttons').attr('data-btn-min', $(this).is(':checked'))">
+                    <input checked type="checkbox" data-role="checkbox" data-caption="btn-max" onclick="$('#-window-buttons').attr('data-btn-max', $(this).is(':checked'))">
+                </div>
+                <pre><code class="html">
+                    &lt;input checked type="checkbox"
+                        data-role="checkbox"
+                        data-caption="btn-close"
+                        onclick="$('#-window-buttons').attr('data-btn-close', $(this).is(':checked'))"&gt;
 
-                <h3 id="_window_content">Window content</h3>
+                    &lt;input checked type="checkbox"
+                        data-role="checkbox"
+                        data-caption="btn-min"
+                        onclick="$('#-window-buttons').attr('data-btn-min', $(this).is(':checked'))"&gt;
+
+                    &lt;input checked type="checkbox"
+                        data-role="checkbox"
+                        data-caption="btn-max"
+                        onclick="$('#-window-buttons').attr('data-btn-max', $(this).is(':checked'))"&gt;
+                </code></pre>
+
+
+                <h4 id="_window_buttons_events">Buttons events</h4>
                 <p>
-                    The window content must be stored in container with class <code>.window-content</code>.
+                    When Metro 4 created window buttons, also created default event for this buttons. You can extend buttons events with custom events over special attributes:
+                        <code>data-on-close-click="..."</code>,
+                        <code>data-on-min-click="..."</code>,
+                        <code>data-on-max-click="..."</code>,
+                        <code>data-on-caption-dbl-click="..."</code>.
                 </p>
-                <div class="example">
-                    <div class="window">
-                        <div class="window-caption">
-                            <span class="icon mif-rocket"></span>
-                            <span class="title">The rocket</span>
-                            <div class="buttons">
-                                <span class="btn-min"></span>
-                                <span class="btn-max"></span>
-                                <span class="btn-close"></span>
-                            </div>
-                        </div>
-
-                        <div class="window-content">
-                            <div class="p-2">
-                                This is a window content.
-                            </div>
-                        </div>
+                <p>
+                    The default events are shown in the example below:
+                </p>
+                <div class="example pos-relative" style="height: 300px;">
+                    <div class="p-2"
+                            data-role="window"
+                            data-draggable="true"
+                            data-title="Window"
+                            data-btn-close="true"
+                            data-btn-min="true"
+                            data-btn-max="true"
+                            data-width="300" data-height="160">
+                        Click to buttons to view default buttons events.
                     </div>
                 </div>
-                <pre><code>
-                    &lt;div class="window"&gt;
-                        &lt;div class="window-caption"&gt;
-                            &lt;span class="icon mif-rocket"&gt;&lt;/span&gt;
-                            &lt;span class="title"&gt;The rocket&lt;/span&gt;
-                            &lt;div class="buttons"&gt;
-                                &lt;span class="btn-min"&gt;&lt;/span&gt;
-                                &lt;span class="btn-max"&gt;&lt;/span&gt;
-                                &lt;span class="btn-close"&gt;&lt;/span&gt;
-                            &lt;/div&gt;
-                        &lt;/div&gt;
-
-                        &lt;div class="window-content"&gt;
-                            &lt;div class="p-2"&gt;
-                                This is a window content.
-                            &lt;/div&gt;
-                        &lt;/div&gt;
-                    &lt;/div&gt;
-                </code></pre>
 
                 <h3 id="_window_shadow">Add shadow to window</h3>
                 <p>
-                    You can add <code>shadow</code> to window. To create <code>shadow</code> add class <code>.win-shadow</code> to window.
+                    You can add <code>shadow</code> to window with attribute <code>data-shadow="true"</code>.
                 </p>
                 <div class="example">
-                    <div class="window win-shadow">
-                        <div class="window-caption">
-                            <span class="icon mif-rocket"></span>
-                            <span class="title">The rocket</span>
-                            <div class="buttons">
-                                <span class="btn-min"></span>
-                                <span class="btn-max"></span>
-                                <span class="btn-close"></span>
-                            </div>
-                        </div>
-
-                        <div class="window-content">
-                            <div class="p-2">
-                                This is a window content.
-                            </div>
-                        </div>
+                    <div data-role="window"
+                         data-title="Window title"
+                         data-shadow="true"
+                         class="p-2">
+                        Add shadow to window with attribute data-shadow
                     </div>
                 </div>
-                <pre><code>
-                    &lt;div class="window win-shadow"&gt;
-                        &lt;div class="window-caption"&gt;
-                            &lt;span class="icon mif-rocket"&gt;&lt;/span&gt;
-                            &lt;span class="title"&gt;The rocket&lt;/span&gt;
-                            &lt;div class="buttons"&gt;
-                                &lt;span class="btn-min"&gt;&lt;/span&gt;
-                                &lt;span class="btn-max"&gt;&lt;/span&gt;
-                                &lt;span class="btn-close"&gt;&lt;/span&gt;
-                            &lt;/div&gt;
-                        &lt;/div&gt;
-
-                        &lt;div class="window-content"&gt;
-                            &lt;div class="p-2"&gt;
-                                This is a window content.
-                            &lt;/div&gt;
-                        &lt;/div&gt;
+                <pre><code class="html">
+                    &lt;div data-role="window"
+                         data-title="Window title"
+                         data-shadow="true"
+                         class="p-2"&gt;
+                        Add shadow to window with attribute data-shadow
                     &lt;/div&gt;
                 </code></pre>
-
-                <h3 id="_window_role">Role window</h3>
-                <p>
-                    If you add attribute <code>data-role="window"</code> to element, you activate Metro 4 handler for window.
-                </p>
-                <div class="example">
-                    <div class="window" data-role="window">
-                        <div class="window-caption">
-                            <span class="icon mif-rocket"></span>
-                            <span class="title">The rocket</span>
-                            <div class="buttons">
-                                <span class="btn-min"></span>
-                                <span class="btn-max"></span>
-                                <span class="btn-close"></span>
-                            </div>
-                        </div>
-
-                        <div class="window-content">
-                            <div class="p-2">
-                                This is a element with full window structure transformed to window.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <pre><code>
-                    &lt;div class="window win-shadow" data-role="window"&gt;
-                        &lt;div class="window-caption"&gt;
-                            &lt;span class="icon mif-rocket"&gt;&lt;/span&gt;
-                            &lt;span class="title"&gt;The rocket&lt;/span&gt;
-                            &lt;div class="buttons"&gt;
-                                &lt;span class="btn-min"&gt;&lt;/span&gt;
-                                &lt;span class="btn-max"&gt;&lt;/span&gt;
-                                &lt;span class="btn-close"&gt;&lt;/span&gt;
-                            &lt;/div&gt;
-                        &lt;/div&gt;
-
-                        &lt;div class="window-content"&gt;
-                            &lt;div class="p-2"&gt;
-                                This is a element with full window structure transformed to window.
-                            &lt;/div&gt;
-                        &lt;/div&gt;
-                    &lt;/div&gt;
-                </code></pre>
-                <p>
-                    You can transform to window any block element:
-                </p>
-                <div class="example">
-                    <div class="p-2" data-role="window">
-                        This is a simple DIV transformed to window with data-role.
-                    </div>
-                </div>
-                <pre><code>
-                    &lt;div class="p-2" data-role="window"&gt;
-                        This is a simple DIV transformed to window with data-role.
-                    &lt;/div&gt;
-                </code></pre>
-                <p>
-                    To set <code>title</code> and <code>icon</code> add attributes <code>data-icon="..."</code> and <code>data-title="..."</code>.
-                </p>
-                <div class="example">
-                    <div class="p-2" data-role="window" data-icon="<img src='images/location.png'>" data-title="Location">
-                        This is a simple DIV transformed to window with data-role.
-                    </div>
-                </div>
 
                 <h3 id="_window_custom">Customize</h3>
                 <p>
@@ -445,10 +286,10 @@
                 </p>
                 <div class="example">
                     <div class="p-2" data-role="window" data-icon="<span class='mif-rocket'></spam>" data-title="The rocket" data-cls-caption="bg-red" data-cls-content="bg-dark fg-yellow">
-                        This is a simple DIV transformed to window with data-role.
+                        You can customize window with own classes.
                     </div>
                 </div>
-                <pre><code>
+                <pre><code class="html">
                     &lt;div class="p-2"
                          data-role="window"
                          data-icon="&lt;span class='mif-rocket'&gt;&lt;/spam&gt;"
@@ -461,47 +302,19 @@
 
                 <h3 id="_window_draggable">Draggable window</h3>
                 <p>
-                    To create <code>draggable</code> window add attribute <code>data-role="draggable"</code> to your window. About <code>draggable</code> you can read <a href="draggable.html">in this article</a>.
+                    To add <code>draggable</code> feature to window add attribute <code>data-draggable="true"</code> to your element. About <code>draggable</code> you can read <a href="draggable.html">in this article</a>.
                 </p>
-                <div class="example pos-relative" style="height: 300px;">
-                    <div class="window pos-absolute" style="width: 220px; height: 160px;" data-role="window, draggable" data-drag-element=".window-caption .title">
-                        <div class="window-caption">
-                            <span class="icon mif-rocket"></span>
-                            <span class="title">The rocket</span>
-                            <div class="buttons">
-                                <span class="btn-min"></span>
-                                <span class="btn-max"></span>
-                                <span class="btn-close"></span>
-                            </div>
-                        </div>
-
-                        <div class="window-content">
-                            <div class="p-2">
-                                Drag this window on the caption.
-                            </div>
-                        </div>
+                <div class="example pos-relative p-0" style="height: 300px;">
+                    <div class="p-2" data-role="window" data-draggable="true" data-width="200" data-height="160">
+                        Drag this window on the caption.
                     </div>
                 </div>
-                <pre><code>
-                    &lt;div class="window pos-absolute"
-                         style="width: 220px; height: 160px;"
-                         data-role="window, draggable"
-                         data-drag-element=".window-caption .title"&gt;
-                        &lt;div class="window-caption"&gt;
-                            &lt;span class="icon mif-rocket"&gt;&lt;/span&gt;
-                            &lt;span class="title"&gt;The rocket&lt;/span&gt;
-                            &lt;div class="buttons"&gt;
-                                &lt;span class="btn-min"&gt;&lt;/span&gt;
-                                &lt;span class="btn-max"&gt;&lt;/span&gt;
-                                &lt;span class="btn-close"&gt;&lt;/span&gt;
-                            &lt;/div&gt;
-                        &lt;/div&gt;
-
-                        &lt;div class="window-content"&gt;
-                            &lt;div class="p-2"&gt;
-                                Drag this window on the caption.
-                            &lt;/div&gt;
-                        &lt;/div&gt;
+                <pre><code class="html">
+                    &lt;div class="p-2" data-role="window"
+                            data-draggable="true"
+                            data-width="200"
+                            data-height="160"&gt;
+                        Drag this window on the caption.
                     &lt;/div&gt;
                 </code></pre>
 
@@ -510,114 +323,21 @@
                     To make window as <code>resizable</code> add attribute <code>data-resizable="true"</code> to your window.
                 </p>
                 <div class="example pos-relative" style="height: 300px;">
-                    <div class="window pos-absolute" style="width: 320px; height: 200px;" data-role="window, draggable" data-drag-element=".window-caption .title" data-resizable="true">
-                        <div class="window-caption">
-                            <span class="icon mif-rocket"></span>
-                            <span class="title">The rocket</span>
-                            <div class="buttons">
-                                <span class="btn-min"></span>
-                                <span class="btn-max"></span>
-                                <span class="btn-close"></span>
-                            </div>
-                        </div>
-
-                        <div class="window-content">
-                            <div class="p-2">
-                                Drag this window on the caption. Resize window by click end move <code>right-bottom</code> window corner.
-                            </div>
-                        </div>
+                    <div class="p-2" data-role="window" data-resizable="true" data-draggable="true" data-width="300" data-height="160">
+                        Resize the window on hold and move bottom right corner of the window.
                     </div>
                 </div>
-                <pre><code>
-                    &lt;div class="window pos-absolute"
-                            style="width: 220px; height: 160px;"
-                            data-role="window, draggable"
-                            data-drag-element=".window-caption .title"
-                            data-resizable="true"&gt;
-                        &lt;div class="window-caption"&gt;
-                            &lt;span class="icon mif-rocket"&gt;&lt;/span&gt;
-                            &lt;span class="title"&gt;The rocket&lt;/span&gt;
-                            &lt;div class="buttons"&gt;
-                                &lt;span class="btn-min"&gt;&lt;/span&gt;
-                                &lt;span class="btn-max"&gt;&lt;/span&gt;
-                                &lt;span class="btn-close"&gt;&lt;/span&gt;
-                            &lt;/div&gt;
-                        &lt;/div&gt;
-
-                        &lt;div class="window-content"&gt;
-                            &lt;div class="p-2"&gt;
-                                Drag this window on the caption.
-                            &lt;/div&gt;
-                        &lt;/div&gt;
+                <pre><code class="html">
+                    &lt;div class="p-2"
+                        data-role="window"
+                        data-resizable="true"
+                        data-draggable="true"
+                        data-width="300"
+                        data-height="160"&gt;
+                        Resize the window on hold and move bottom right corner of the window.
                     &lt;/div&gt;
                 </code></pre>
 
-                <h3 id="_window_system_menu">System menu</h3>
-                <p class="text-small text-muted m-0">The system menu you can do if you want to use the full structure of the window.</p>
-                <p>
-                    You can create window system menu easy and simple with <a href="menu.html#_d_menu">d-menu</a>
-                </p>
-                <div class="example pos-relative" style="height: 300px;">
-                    <div class="window maximized pos-absolute" style="width: 220px; height: 160px;" data-role="window, draggable" data-drag-element=".window-caption .title">
-                        <div class="window-caption">
-                            <div>
-                                <span class="icon mif-rocket" id="-sys-menu-toggle"></span>
-                                <ul class="d-menu context" data-role="dropdown" data-toggle-element="#-sys-menu-toggle">
-                                    <li><a href="#">Item 1</a></li>
-                                    <li><a href="#">Item 2</a></li>
-                                    <li><a href="#">Item 3</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Item 4</a></li>
-                                </ul>
-                            </div>
-                            <span class="title">The rocket</span>
-                            <div class="buttons">
-                                <span class="btn-min"></span>
-                                <span class="btn-max"></span>
-                                <span class="btn-close"></span>
-                            </div>
-                        </div>
-
-                        <div class="window-content">
-                            <div class="p-2">
-                                Drag this window on the caption.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <pre><code>
-                    &lt;div class="window maximized pos-absolute"
-                            style="width: 220px; height: 160px;"
-                            data-role="window, draggable"
-                            data-drag-element=".window-caption .title"&gt;
-                        &lt;div class="window-caption"&gt;
-                            &lt;div&gt;
-                                &lt;span class="icon mif-rocket" id="-sys-menu-toggle"&gt;&lt;/span&gt;
-                                &lt;ul class="d-menu context"
-                                        data-role="dropdown"
-                                        data-toggle-element="#-sys-menu-toggle"&gt;
-                                    &lt;li&gt;&lt;a href="#"&gt;Item 1&lt;/a&gt;&lt;/li&gt;
-                                    &lt;li&gt;&lt;a href="#"&gt;Item 2&lt;/a&gt;&lt;/li&gt;
-                                    &lt;li&gt;&lt;a href="#"&gt;Item 3&lt;/a&gt;&lt;/li&gt;
-                                    &lt;li class="divider"&gt;&lt;/li&gt;
-                                    &lt;li&gt;&lt;a href="#"&gt;Item 4&lt;/a&gt;&lt;/li&gt;
-                                &lt;/ul&gt;
-                            &lt;/div&gt;
-                            &lt;span class="title"&gt;The rocket&lt;/span&gt;
-                            &lt;div class="buttons"&gt;
-                                &lt;span class="btn-min"&gt;&lt;/span&gt;
-                                &lt;span class="btn-max"&gt;&lt;/span&gt;
-                                &lt;span class="btn-close"&gt;&lt;/span&gt;
-                            &lt;/div&gt;
-                        &lt;/div&gt;
-
-                        &lt;div class="window-content"&gt;
-                            &lt;div class="p-2"&gt;
-                                Drag this window on the caption.
-                            &lt;/div&gt;
-                        &lt;/div&gt;
-                    &lt;/div&gt;
-                </code></pre>
             </main>
         </div>
 

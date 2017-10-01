@@ -1,4 +1,4 @@
-var Dropdown = {
+var Collapse = {
     init: function( options, elem ) {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
@@ -40,7 +40,7 @@ var Dropdown = {
         var that = this, element = this.element, o = this.options;
         var toggle, parent = element.parent();
 
-        toggle = o.toggleElement !== false ? $(o.toggleElement) : element.siblings('.dropdown-toggle').length > 0 ? element.siblings('.dropdown-toggle') : element.siblings('a:nth-child(1)');
+        toggle = o.toggleElement !== false ? $(o.toggleElement) : element.siblings('.collapse-toggle').length > 0 ? element.siblings('.collapse-toggle') : element.siblings('a:nth-child(1)');
 
         toggle.on('click', function(e){
             parent.siblings(parent[0].tagName).removeClass("active-container");
@@ -49,25 +49,11 @@ var Dropdown = {
             if (element.css('display') === 'block' && !element.hasClass('keep-open')) {
                 that._close(element);
             } else {
-                $('[data-role=dropdown]').each(function(i, el){
-                    if (!element.parents('[data-role=dropdown]').is(el) && !$(el).hasClass('keep-open') && $(el).css('display') === 'block') {
+                $('[data-role=collapse]').each(function(i, el){
+                    if (!element.parents('[data-role=collapse]').is(el) && !$(el).hasClass('keep-open') && $(el).css('display') === 'block') {
                         that._close(el);
                     }
                 });
-                if (element.hasClass('horizontal')) {
-                    element.css({
-                        'visibility': 'hidden',
-                        'display': 'block'
-                    });
-                    var item_length = $(element.children('li')[0]).outerWidth();
-                    //var item_length2 = $(menu.children('li')[0]).width();
-                    element.css({
-                        'visibility': 'visible',
-                        'display': 'none'
-                    });
-                    var menu_width = element.children('li').length * item_length + (element.children('li').length - 1);
-                    element.css('width', menu_width);
-                }
                 that._open(element);
                 parent.addClass("active-container");
             }
@@ -95,7 +81,7 @@ var Dropdown = {
             el = $(el);
         }
 
-        var dropdown  = el.data("dropdown");
+        var dropdown  = el.data("collapse");
         var toggle = dropdown._toggle;
         var options = dropdown.options;
 
@@ -112,7 +98,7 @@ var Dropdown = {
             el = $(el);
         }
 
-        var dropdown  = el.data("dropdown");
+        var dropdown  = el.data("collapse");
         var toggle = dropdown._toggle;
         var options = dropdown.options;
 
@@ -140,10 +126,10 @@ var Dropdown = {
 $(document).on('click', function(e){
     $('[data-role=dropdown]').each(function(i, el){
         if (!$(el).hasClass('keep-open') && $(el).css('display')==='block') {
-            var that = $(el).data('dropdown');
+            var that = $(el).data('collapse');
             that._close(this);
         }
     });
 });
 
-Metro.plugin('dropdown', Dropdown);
+Metro.plugin('collapse', Collapse);

@@ -7785,11 +7785,11 @@ figure img {
 .window.resizable .resizer::after {
   position: absolute;
   display: block;
-  border-bottom: 12px solid #e9e9e9;
+  border-bottom: 12px solid #9e9e9e;
   border-left: 12px solid transparent;
   content: "";
-  right: 0;
-  bottom: 0;
+  right: -2px;
+  bottom: -2px;
 }
 .draggable {
   animation: drag-flush 1s ease infinite;
