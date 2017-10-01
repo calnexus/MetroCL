@@ -124,10 +124,12 @@ var Collapse = {
 };
 
 $(document).on('click', function(e){
-    $('[data-role=dropdown]').each(function(i, el){
-        if (!$(el).hasClass('keep-open') && $(el).css('display')==='block') {
-            var that = $(el).data('collapse');
-            that._close(this);
+    $('[data-role*=collapse]').each(function(){
+        var el = $(this);
+
+        if (el.css('display')==='block' && el.hasClass('keep-open') === false) {
+            var dropdown = el.data('collapse');
+            dropdown.close();
         }
     });
 });
