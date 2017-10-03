@@ -1,13 +1,40 @@
 var Utils = {
     isUrl: function (val) {
-        "use strict";
-        var regexp = /^(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@\-\/]))?/;
-        return regexp.test(val);
+        return /^(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@\-\/]))?/.test(val);
+    },
+
+    isTag: function(val){
+        return /<\/?[\w\s="/.':;#-\/\?]+>/gi.test(val);
     },
 
     isColor: function (val) {
-        "use strict";
         return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(val);
+    },
+
+    isEmbedObject: function(val){
+        var embed = ["iframe", "object", "embed", "video"];
+        var result = false;
+        $.each(embed, function(){
+            if (val.indexOf(this) !== -1) {
+                result = true;
+            }
+        });
+        return result;
+    },
+
+    isVideoUrl: function(val){
+        return /youtu\.be|youtube|vimeo/gi.test(val);
+    },
+
+    embedObject: function(val){
+        return "<div class='embed-container'>"+val+"</div>";
+    },
+
+    embedUrl: function(val){
+        if (val.indexOf("youtu.be") !== -1) {
+            val = "https://www.youtube.com/embed/" + val.split("/").pop();
+        }
+        return "<div class='embed-container'><iframe src='"+val+"'></iframe></div>";
     },
 
     secondsToTime: function(secs) {
@@ -98,6 +125,10 @@ var Utils = {
             return false;
         }
 
+        if (this.isTag(f) || this.isUrl(f)) {
+            return false;
+        }
+
         if (typeof f === 'function') {
             return f;
         }
@@ -154,7 +185,7 @@ var Utils = {
     },
 
     elementInViewport: function(el) {
-        if (typeof jQuery === "function" && el instanceof jQuery) {
+        if (this.isJQueryObject(el)) {
             el = el[0];
         }
 

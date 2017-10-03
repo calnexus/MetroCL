@@ -336,6 +336,44 @@ img {
   pointer-events: none!important;
   color: #b8b8b8 !important;
 }
+.resize-element {
+  display: block;
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  z-index: 101;
+  cursor: nwse-resize;
+  width: 12px;
+  height: 12px;
+}
+.resize-element::after {
+  position: absolute;
+  display: block;
+  border-bottom: 12px solid #60a917;
+  border-left: 12px solid transparent;
+  content: "";
+  right: -2px;
+  bottom: -2px;
+}
+.resize-element.resize-element-disabled {
+  cursor: default;
+}
+.resize-element.resize-element-disabled::after {
+  border-bottom-color: #9e9e9e;
+}
+.resize-element:not(.resize-element-disabled):hover::after {
+  animation: resize-element-animation 1s ease infinite;
+}
+@keyframes resize-element-animation {
+  from {
+    right: 0;
+    bottom: 0;
+  }
+  to {
+    right: -2px;
+    bottom: -2px;
+  }
+}
 @media screen and (min-width: 576px) {
   .visible-sm {
     visibility: visible !important;
@@ -7555,6 +7593,7 @@ figure img {
   background-color: #ffffff;
   color: #1d1d1d;
   border: 1px #e9e9e9 solid;
+  z-index: 1;
 }
 .window-caption {
   display: -ms-flexbox;
@@ -7589,8 +7628,12 @@ figure img {
 .window-caption .icon {
   margin-left: .3125rem;
 }
-.window-caption img.icon {
-  height: 1rem;
+.window-caption .icon * {
+  width: 1rem;
+  font-size: 1rem;
+  max-height: 1rem;
+  line-height: 1rem;
+  text-align: center;
 }
 .window-caption * + .title {
   margin-left: .3125rem;
@@ -7616,7 +7659,6 @@ figure img {
   font-size: 1rem;
   font-weight: normal;
   padding: 0 0 .625rem 0;
-  z-index: 3;
   outline: none;
   cursor: pointer;
   display: block;
@@ -7639,7 +7681,7 @@ figure img {
 .window-caption .buttons .btn-min:active,
 .window-caption .buttons .btn-max:active,
 .window-caption .buttons .btn-close:active {
-  background-color: #92c0e0;
+  background-color: rgba(255, 255, 255, 0.3);
   color: #ffffff;
 }
 .window-caption .buttons .btn-close:hover {
@@ -7774,22 +7816,14 @@ figure img {
   min-width: 12rem;
   min-height: 2.25rem;
 }
-.window.resizable .resizer {
-  display: block;
-  position: absolute;
-  right: -1px;
-  bottom: -1px;
-  z-index: 101;
-  cursor: nwse-resize;
-}
-.window.resizable .resizer::after {
-  position: absolute;
-  display: block;
-  border-bottom: 12px solid #9e9e9e;
-  border-left: 12px solid transparent;
-  content: "";
-  right: -2px;
-  bottom: -2px;
+.dialog {
+  position: fixed;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: column;
+      flex-flow: column;
+  width: auto;
+  height: auto;
 }
 .draggable {
   animation: drag-flush 1s ease infinite;

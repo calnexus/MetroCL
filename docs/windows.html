@@ -62,7 +62,8 @@
                     <li class="toc-entry"><a href="#_window_custom">Customize</a></li>
                     <li class="toc-entry"><a href="#_window_draggable">Draggable</a></li>
                     <li class="toc-entry"><a href="#_window_resizeable">Resizeable</a></li>
-                    <li class="toc-entry"><a href="#_window_resizeable">Options</a></li>
+                    <li class="toc-entry"><a href="#_window_options">Options</a></li>
+                    <li class="toc-entry"><a href="#_window_events">Events</a></li>
                 </ul>
             </div>
 
@@ -264,7 +265,7 @@
                     You can add <code>shadow</code> to window with attribute <code>data-shadow="true"</code>.
                 </p>
                 <div class="example">
-                    <div data-role="window"
+                    <div data-role="window" id="-window-shadow"
                          data-title="Window title"
                          data-shadow="true"
                          class="p-2">
@@ -279,6 +280,9 @@
                         Add shadow to window with attribute data-shadow
                     &lt;/div&gt;
                 </code></pre>
+                <div class="example d-flex">
+                    <input checked type="checkbox" data-role="checkbox" data-caption="Enable shadow" onclick="$('#-window-shadow').attr('data-shadow', $(this).is(':checked'))">
+                </div>
 
                 <h3 id="_window_custom">Customize</h3>
                 <p>
@@ -305,7 +309,7 @@
                     To add <code>draggable</code> feature to window add attribute <code>data-draggable="true"</code> to your element. About <code>draggable</code> you can read <a href="draggable.html">in this article</a>.
                 </p>
                 <div class="example pos-relative p-0" style="height: 300px;">
-                    <div class="p-2" data-role="window" data-draggable="true" data-width="200" data-height="160">
+                    <div class="p-2" data-role="window" data-draggable="true" data-width="200" data-height="160" id="-window-draggable">
                         Drag this window on the caption.
                     </div>
                 </div>
@@ -317,13 +321,16 @@
                         Drag this window on the caption.
                     &lt;/div&gt;
                 </code></pre>
+                <div class="example d-flex">
+                    <input checked type="checkbox" data-role="checkbox" data-caption="Enable draggable" onclick="$('#-window-draggable').attr('data-draggable', $(this).is(':checked'))">
+                </div>
 
                 <h3 id="_window_resizeable">Resizeable window</h3>
                 <p>
                     To make window as <code>resizable</code> add attribute <code>data-resizable="true"</code> to your window.
                 </p>
                 <div class="example pos-relative" style="height: 300px;">
-                    <div class="p-2" data-role="window" data-resizable="true" data-draggable="true" data-width="300" data-height="160">
+                    <div class="p-2" data-role="window" data-resizable="true" data-draggable="true" data-width="300" data-height="160" id="-window-resizable">
                         Resize the window on hold and move bottom right corner of the window.
                     </div>
                 </div>
@@ -337,7 +344,206 @@
                         Resize the window on hold and move bottom right corner of the window.
                     &lt;/div&gt;
                 </code></pre>
+                <div class="example d-flex">
+                    <input checked type="checkbox" data-role="checkbox" data-caption="Enable resizable" onclick="$('#-window-resizable').attr('data-resizable', $(this).is(':checked'))">
+                </div>
 
+                <h3 id="_window_options">Available options</h3>
+                <p>
+                    All options you can set over <code>data-*</code> attribute:
+                </p>
+                <table class="table cell-border table-border">
+                    <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Data attribute</th>
+                        <th>Default</th>
+                        <th>Desc</th>
+                        <th>Observe</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>width</td>
+                        <td>data-width</td>
+                        <td>auto</td>
+                        <td>Set initial width to window</td>
+                        <td><span class="mif-checkmark fg-green"></span></td>
+                    </tr>
+                    <tr>
+                        <td>height</td>
+                        <td>data-height</td>
+                        <td>auto</td>
+                        <td>Set initial height to window</td>
+                        <td><span class="mif-checkmark fg-green"></span></td>
+                    </tr>
+                    <tr>
+                        <td>btnClose</td>
+                        <td>data-btn-close</td>
+                        <td>false</td>
+                        <td>Add close button</td>
+                        <td><span class="mif-checkmark fg-green"></span></td>
+                    </tr>
+                    <tr>
+                        <td>btnMin</td>
+                        <td>data-btn-min</td>
+                        <td>false</td>
+                        <td>Add min button</td>
+                        <td><span class="mif-checkmark fg-green"></span></td>
+                    </tr>
+                    <tr>
+                        <td>btnMax</td>
+                        <td>data-btn-max</td>
+                        <td>false</td>
+                        <td>Add max button</td>
+                        <td><span class="mif-checkmark fg-green"></span></td>
+                    </tr>
+                    <tr>
+                        <td>clsCaption</td>
+                        <td>data-cls-caption</td>
+                        <td></td>
+                        <td>Additional classes for caption</td>
+                        <td><span class="mif-checkmark fg-green"></span></td>
+                    </tr>
+                    <tr>
+                        <td>clsContent</td>
+                        <td>data-cls-content</td>
+                        <td></td>
+                        <td>Additional classes for content</td>
+                        <td><span class="mif-checkmark fg-green"></span></td>
+                    </tr>
+                    <tr>
+                        <td>drag</td>
+                        <td>data-drag</td>
+                        <td>false</td>
+                        <td>Add draggable to window</td>
+                        <td><span class="mif-cancel fg-red"></span></td>
+                    </tr>
+                    <tr>
+                        <td>dragElement</td>
+                        <td>data-drag-element</td>
+                        <td>.window-caption</td>
+                        <td>Set the drag element</td>
+                        <td><span class="mif-cancel fg-red"></span></td>
+                    </tr>
+                    <tr>
+                        <td>dragArea</td>
+                        <td>data-drag-area</td>
+                        <td>parent</td>
+                        <td>Set the drag area</td>
+                        <td><span class="mif-cancel fg-red"></span></td>
+                    </tr>
+                    <tr>
+                        <td>shadow</td>
+                        <td>data-shadow</td>
+                        <td>false</td>
+                        <td>Add shadow to window</td>
+                        <td><span class="mif-checkmark fg-green"></span></td>
+                    </tr>
+                    <tr>
+                        <td>icon</td>
+                        <td>data-icon</td>
+                        <td></td>
+                        <td>Window icon</td>
+                        <td><span class="mif-checkmark fg-green"></span></td>
+                    </tr>
+                    <tr>
+                        <td>title</td>
+                        <td>data-title</td>
+                        <td>Window</td>
+                        <td>Window title</td>
+                        <td><span class="mif-checkmark fg-green"></span></td>
+                    </tr>
+                    <tr>
+                        <td>content</td>
+                        <td>data-content</td>
+                        <td></td>
+                        <td>Window content</td>
+                        <td><span class="mif-checkmark fg-green"></span></td>
+                    </tr>
+                    <tr>
+                        <td>resizable</td>
+                        <td>data-resizable</td>
+                        <td>false</td>
+                        <td>Add resizable to window</td>
+                        <td><span class="mif-checkmark fg-green"></span></td>
+                    </tr>
+                    <tr>
+                        <td>top</td>
+                        <td>data-top</td>
+                        <td>auto</td>
+                        <td>Set window top position</td>
+                        <td><span class="mif-checkmark fg-green"></span></td>
+                    </tr>
+                    <tr>
+                        <td>left</td>
+                        <td>data-left</td>
+                        <td>auto</td>
+                        <td>Set window left position</td>
+                        <td><span class="mif-checkmark fg-green"></span></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="_window_events">Events</h3>
+                <table class="table cell-border table-border">
+                    <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Data attribute</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>onDragStart</td>
+                        <td>data-on-drag-start</td>
+                    </tr>
+                    <tr>
+                        <td>onDragStop</td>
+                        <td>data-on-drag-stop</td>
+                    </tr>
+                    <tr>
+                        <td>onDragMove</td>
+                        <td>data-on-drag-move</td>
+                    </tr>
+                    <tr>
+                        <td>onCaptionDblClick</td>
+                        <td>data-on-caption-dbl-click</td>
+                    </tr>
+                    <tr>
+                        <td>onCloseClick</td>
+                        <td>data-on-close-click</td>
+                    </tr>
+                    <tr>
+                        <td>onMaxClick</td>
+                        <td>data-on-max-click</td>
+                    </tr>
+                    <tr>
+                        <td>onMinClick</td>
+                        <td>data-on-min-click</td>
+                    </tr>
+                    <tr>
+                        <td>onResizeStart</td>
+                        <td>data-on-resize-start</td>
+                    </tr>
+                    <tr>
+                        <td>onResizeStop</td>
+                        <td>data-on-resize-stop</td>
+                    </tr>
+                    <tr>
+                        <td>onResize</td>
+                        <td>data-on-resize</td>
+                    </tr>
+                    <tr>
+                        <td>onCreate</td>
+                        <td>data-on-create</td>
+                    </tr>
+                    <tr>
+                        <td>onDestroy</td>
+                        <td>data-on-destroy</td>
+                    </tr>
+                    </tbody>
+                </table>
             </main>
         </div>
 

@@ -47,9 +47,14 @@ var Draggable = {
         var offset, position, shift, coords;
         var dragElement  = o.dragElement !== 'self' ? element.find(o.dragElement) : element;
 
+        this.on();
         dragElement[0].ondragstart = function(){return false;};
 
         dragElement.on(Metro.eventStart, function(e){
+
+            if (element.data("canDrag") === false) {
+                return ;
+            }
 
             if (isTouch === false && e.which !== 1) {
                 return ;
@@ -84,7 +89,7 @@ var Draggable = {
                 pos_y = element.offset().top + drg_h - Utils.pageXY(e).y,
                 pos_x = element.offset().left + drg_w - Utils.pageXY(e).x;
 
-            Utils.exec(o.onDragStart, [this, position]);
+            Utils.exec(o.onDragStart, [element, position]);
 
             $(document).on(Metro.eventMove, function(e){
                 var pageX, pageY;
@@ -114,7 +119,7 @@ var Draggable = {
                     y: t
                 };
 
-                Utils.exec(o.onDragMove, [this, position]);
+                Utils.exec(o.onDragMove, [element, position]);
 
                 return false;
             });
@@ -129,8 +134,16 @@ var Draggable = {
             that.move = false;
             position = Utils.pageXY(e);
             $(document).off(Metro.eventMove);
-            Utils.exec(o.onDragStop, [this, position]);
+            Utils.exec(o.onDragStop, [element, position]);
         });
+    },
+
+    off: function(){
+        this.element.data("canDrag", false);
+    },
+
+    on: function(){
+        this.element.data("canDrag", true);
     },
 
     changeAttribute: function(attributeName){
