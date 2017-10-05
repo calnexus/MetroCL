@@ -40,31 +40,30 @@ var Desktop = {
         var that = this;
         o.position = "fixed";
         o.onDragStart = function(el, pos){
-            console.log(el);
             win = $(el);
             win.css("z-index", 1);
             if (!win.hasClass("modal"))
                 win.css("z-index", 3);
         };
         o.onDragStop = function(el, pos){
-            console.log(el);
             win = $(el);
             if (!win.hasClass("modal"))
                 win.css("z-index", 2);
         };
-        o.onDestroy = function(el){
-            console.log(el);
-            win = el[0];
+        o.onDestroy = function(win){
             that.removeFromTaskBar(win);
         };
         var w = $("<div>").appendTo($(this.options.windowArea));
         var wnd = w.window(o).data("window");
         var win = wnd.win;
         var shift = $.Metro.utils.objectLength(this.wins) * 16;
-        win.css({
-            top: shift,
-            left: shift
-        });
+
+        if (o.top === "auto" && o.left === "auto") {
+            win.css({
+                top: shift,
+                left: shift
+            });
+        }
         this.wins[win.attr("id")] = wnd;
         this.addToTaskBar(wnd);
     }

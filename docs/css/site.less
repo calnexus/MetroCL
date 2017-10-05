@@ -150,6 +150,7 @@ pre {
 //}
 
 .example {
+    position: relative;
     padding: .125rem;
     border: 2px solid #eee;
 }
@@ -157,6 +158,12 @@ pre {
 .example + pre {
     margin-top: -2px;
     border-top: 0 !important;
+}
+
+.example {
+    .window {
+        position: relative!important;
+    }
 }
 
 main > h3, main > h5, main > h4  {

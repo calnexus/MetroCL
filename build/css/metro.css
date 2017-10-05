@@ -2850,6 +2850,12 @@ pre {
   margin-bottom: 1rem;
   overflow: auto;
 }
+code {
+  white-space: nowrap;
+}
+pre code {
+  white-space: inherit;
+}
 a {
   color: #007bff;
   text-decoration: none;
@@ -4716,7 +4722,8 @@ aside::after {
   top: .3125rem;
   margin-left: -1.5rem;
 }
-.button {
+.button,
+.flat-button {
   display: inline-block;
   font-weight: 400;
   text-align: center;
@@ -4728,13 +4735,17 @@ aside::after {
           user-select: none;
   border: 1px solid transparent;
   padding: .5rem .75rem;
-  font-size: 0.875rem;
+  font-size: .875rem;
   line-height: 1.25;
   transition: all 0.15s ease-in-out;
   background-color: #ebebeb;
   color: #1d1d1d;
   cursor: pointer;
   outline: none;
+}
+.flat-button {
+  min-width: 64px;
+  background-color: transparent;
 }
 .button:active,
 .button.focus,

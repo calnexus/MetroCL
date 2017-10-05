@@ -47,8 +47,7 @@ module.exports = function(grunt) {
                     'build/css/metro-colors.css',
                     'build/css/metro-rtl.css',
                     'build/css/metro-schemes.css',
-                    'build/css/metro-icons.css',
-                    'build/css/metro-animations.css'
+                    'build/css/metro-icons.css'
                 ],
                 dest: 'build/css/metro-all.css'
             }
@@ -92,10 +91,6 @@ module.exports = function(grunt) {
             compileSchemes: {
                 src: 'less/metro-schemes.less',
                 dest: 'build/css/metro-schemes.css'
-            },
-            compileAnimations: {
-                src: 'less/metro-animations.less',
-                dest: 'build/css/metro-animations.css'
             }
         },
 
@@ -133,10 +128,6 @@ module.exports = function(grunt) {
             minSchemes: {
                 src: 'build/css/metro-schemes.css',
                 dest: 'build/css/metro-schemes.min.css'
-            },
-            minAnimations: {
-                src: 'build/css/metro-animations.css',
-                dest: 'build/css/metro-animations.min.css'
             },
             minAll: {
                 src: 'build/css/metro-all.css',

@@ -366,6 +366,110 @@ var Utils = {
             x: this.isTouchDevice() ? event.changedTouches[0].pageX : event.pageX,
             y: this.isTouchDevice() ? event.changedTouches[0].pageY : event.pageY
         };
+    },
+
+    hiddenElementSize: function(el, inner){
+        var clone = $(el).clone();
+        clone.css({
+            visibility: "hidden",
+            position: "absolute",
+            display: "block"
+        });
+        $("body").append(clone);
+        var width = inner === true ? clone.innerWidth() : clone.outerWidth();
+        var height = inner === true ? clone.innerHeight() : clone.outerHeight();
+        clone.remove();
+        return {
+            width: width,
+            height: height
+        }
+    },
+
+    placeElement: function(el, place){
+
+        var elementSize = Utils.hiddenElementSize(el);
+        var windowWidth = $(window).width();
+        var windowHeight = $(window).height();
+
+        if (place === 'center' || place === 'center-center') {
+            return {
+                left: ( windowWidth - elementSize.width ) / 2,
+                top: ( windowHeight - elementSize.height ) / 2,
+                right: "auto",
+                bottom: "auto"
+            };
+        }
+        if (place === 'top-left') {
+            return {
+                left: 0,
+                top: 0,
+                right: "auto",
+                bottom: "auto"
+            };
+        }
+        if (place === 'top-right') {
+            return {
+                right: 0,
+                top: 0,
+                left: "auto",
+                bottom: "auto"
+            };
+        }
+        if (place === 'top-center') {
+            return {
+                left: ( windowWidth - elementSize.width ) / 2,
+                top: 0,
+                right: "auto",
+                bottom: "auto"
+            };
+        }
+        if (place === 'bottom-right') {
+            return {
+                right: 0,
+                bottom: 0,
+                top: "auto",
+                left: "auto"
+            };
+        }
+        if (place === 'bottom-left') {
+            return {
+                left: 0,
+                bottom: 0,
+                top: "auto",
+                right: "auto"
+            };
+        }
+        if (place === 'bottom-center') {
+            return {
+                left: ( windowWidth - elementSize.width ) / 2,
+                bottom: 0,
+                top: "auto",
+                right: "auto"
+            };
+        }
+        if (place === 'left-center') {
+            return {
+                top: ( windowHeight - elementSize.height ) / 2,
+                left: 0,
+                right: "auto",
+                bottom: "auto"
+            };
+        }
+        if (place === 'right-center') {
+            return {
+                top: ( windowHeight - elementSize.height ) / 2,
+                right: 0,
+                left: "auto",
+                bottom: "auto"
+            };
+        }
+
+        return {
+            top: "auto",
+            right: "auto",
+            left: "auto",
+            bottom: "auto"
+        };
     }
 };
 

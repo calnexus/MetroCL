@@ -1689,6 +1689,110 @@ var d = new Date().getTime();
             x: this.isTouchDevice() ? event.changedTouches[0].pageX : event.pageX,
             y: this.isTouchDevice() ? event.changedTouches[0].pageY : event.pageY
         };
+    },
+
+    hiddenElementSize: function(el, inner){
+        var clone = $(el).clone();
+        clone.css({
+            visibility: "hidden",
+            position: "absolute",
+            display: "block"
+        });
+        $("body").append(clone);
+        var width = inner === true ? clone.innerWidth() : clone.outerWidth();
+        var height = inner === true ? clone.innerHeight() : clone.outerHeight();
+        clone.remove();
+        return {
+            width: width,
+            height: height
+        }
+    },
+
+    placeElement: function(el, place){
+
+        var elementSize = Utils.hiddenElementSize(el);
+        var windowWidth = $(window).width();
+        var windowHeight = $(window).height();
+
+        if (place === 'center' || place === 'center-center') {
+            return {
+                left: ( windowWidth - elementSize.width ) / 2,
+                top: ( windowHeight - elementSize.height ) / 2,
+                right: "auto",
+                bottom: "auto"
+            };
+        }
+        if (place === 'top-left') {
+            return {
+                left: 0,
+                top: 0,
+                right: "auto",
+                bottom: "auto"
+            };
+        }
+        if (place === 'top-right') {
+            return {
+                right: 0,
+                top: 0,
+                left: "auto",
+                bottom: "auto"
+            };
+        }
+        if (place === 'top-center') {
+            return {
+                left: ( windowWidth - elementSize.width ) / 2,
+                top: 0,
+                right: "auto",
+                bottom: "auto"
+            };
+        }
+        if (place === 'bottom-right') {
+            return {
+                right: 0,
+                bottom: 0,
+                top: "auto",
+                left: "auto"
+            };
+        }
+        if (place === 'bottom-left') {
+            return {
+                left: 0,
+                bottom: 0,
+                top: "auto",
+                right: "auto"
+            };
+        }
+        if (place === 'bottom-center') {
+            return {
+                left: ( windowWidth - elementSize.width ) / 2,
+                bottom: 0,
+                top: "auto",
+                right: "auto"
+            };
+        }
+        if (place === 'left-center') {
+            return {
+                top: ( windowHeight - elementSize.height ) / 2,
+                left: 0,
+                right: "auto",
+                bottom: "auto"
+            };
+        }
+        if (place === 'right-center') {
+            return {
+                top: ( windowHeight - elementSize.height ) / 2,
+                right: 0,
+                left: "auto",
+                bottom: "auto"
+            };
+        }
+
+        return {
+            top: "auto",
+            right: "auto",
+            left: "auto",
+            bottom: "auto"
+        };
     }
 };
 
@@ -4024,7 +4128,7 @@ var WinUtils = {
                 o.content = Utils.embedUrl(o.content);
             }
 
-            if (Utils.isFunc(o.content)) {
+            if (!Utils.isJQueryObject(o.content) && Utils.isFunc(o.content)) {
                 o.content = Utils.exec(o.content);
             }
 
@@ -4055,9 +4159,6 @@ var WinUtils = {
             }
         }
 
-        caption.addClass(o.clsCaption);
-        content.addClass(o.clsContent);
-
         win.attr("id", o.id === undefined ? Utils.uniqueId() : o.id);
 
         if (o.resizable === true) {
@@ -4068,15 +4169,15 @@ var WinUtils = {
 
         win.on("dblclick", ".window-caption", function(){
             win.toggleClass("maximized");
-            Utils.exec(o.onCaptionDblClick, [win]);
+            Utils.exec(o.onCaptionDblClick, win);
         });
         win.on("click", ".btn-max", function(){
             win.toggleClass("maximized");
-            Utils.exec(o.onMaxClick, [win]);
+            Utils.exec(o.onMaxClick, win);
         });
         win.on("click", ".btn-min", function(){
             win.toggleClass("minimized");
-            Utils.exec(o.onMinClick, [win]);
+            Utils.exec(o.onMinClick, win);
         });
         win.on("click", ".btn-close", function(){
             win.fadeOut(METRO_ANIMATION_DURATION, function(){
@@ -4084,8 +4185,8 @@ var WinUtils = {
                     win.siblings(".overlay").remove();
                 }
                 win.remove();
-                Utils.exec(o.onCloseClick, [win]);
-                Utils.exec(o.onDestroy, [win]);
+                Utils.exec(o.onCloseClick, win);
+                Utils.exec(o.onDestroy, win);
             });
         });
 
@@ -4107,6 +4208,15 @@ var WinUtils = {
                 onDragMove: o.onDragMove
             })
         }
+
+
+        if (o.place !== 'auto') {
+            win.css(Utils.placeElement(win, o.place));
+        }
+
+        win.addClass(o.clsWindow);
+        caption.addClass(o.clsCaption);
+        content.addClass(o.clsContent);
 
         return win;
     },
@@ -4140,26 +4250,28 @@ var Window = {
     options: {
         width: "auto",
         height: "auto",
-        btnClose: false,
-        btnMin: false,
-        btnMax: false,
+        btnClose: true,
+        btnMin: true,
+        btnMax: true,
         clsCaption: "",
         clsContent: "",
-        draggable: false,
+        clsWindow: "",
+        draggable: true,
         dragElement: ".window-caption",
         dragArea: "parent",
         shadow: false,
         icon: "",
         title: "Window",
         content: "original",
-        resizable: false,
+        resizable: true,
         overlay: false,
         overlayTransparent: false,
         modal: false,
-        position: "relative",
+        position: "absolute",
         checkEmbed: true,
         top: "auto",
         left: "auto",
+        place: "auto",
         onDragStart: function(){},
         onDragStop: function(){},
         onDragMove: function(){},
@@ -4171,6 +4283,7 @@ var Window = {
         onResizeStop: function(){},
         onResize: function(){},
         onCreate: function(){},
+        onShow: function(){},
         onDestroy: function(){}
     },
 
@@ -4201,7 +4314,16 @@ var Window = {
             o.resizable = false;
         }
 
+        if (o.content === "original") {
+            o.content = element;
+        }
+
         win = WinUtils.window(o);
+
+        if (o.overlay === true) {
+            overlay = WinUtils.overlay(o.overlayTransparent).appendTo(win.parent());
+            this.overlay = overlay;
+        }
 
         if (prev.length === 0) {
             parent.prepend(win);
@@ -4209,14 +4331,19 @@ var Window = {
             win.insertAfter(prev);
         }
 
-        if (o.overlay === true) {
-            overlay = WinUtils.overlay(o.overlayTransparent).appendTo(win.parent());
-            this.overlay = overlay;
-        }
-
-        element.appendTo(win.find(".window-content"));
+        Utils.exec(o.onShow, win);
 
         this.win = win;
+    },
+
+    maximized: function(){
+        var that = this, win = this.win,  element = this.element, o = this.options;
+        win.toggleClass("maximized");
+    },
+
+    minimized: function(){
+        var that = this, win = this.win,  element = this.element, o = this.options;
+        win.toggleClass("minimized");
     },
 
     close: function(){
@@ -4226,7 +4353,7 @@ var Window = {
                 win.siblings(".overlay").remove();
             }
             win.remove();
-            Utils.exec(o.onDestroy, [win]);
+            Utils.exec(o.onDestroy, win);
         });
     },
 
@@ -4282,7 +4409,7 @@ var Window = {
         var content = element.attr("data-content");
         var result;
 
-        if (Utils.isFunc(content)) {
+        if (!Utils.isJQueryObject(content) && Utils.isFunc(content)) {
             result = Utils.exec(content);
         } else if (Utils.isJQueryObject(content)) {
             result = content.html();
@@ -4339,7 +4466,7 @@ var Window = {
         }
     },
 
-    changePosition: function(a){
+    changeTopLeft: function(a){
         var that = this, element = this.element, win = this.win, o = this.options;
         var pos;
         if (a === "data-top") {
@@ -4358,6 +4485,12 @@ var Window = {
         }
     },
 
+    changePlace: function (a) {
+        var that = this, element = this.element, win = this.win, o = this.options;
+        var place = element.attr("data-place");
+        Utils.placeElement(win, place);
+    },
+
     changeAttribute: function(attributeName){
         switch (attributeName) {
             case "data-btn-close":
@@ -4374,7 +4507,8 @@ var Window = {
             case "data-draggable": this.toggleDraggable(); break;
             case "data-resizable": this.toggleResizable(); break;
             case "data-top":
-            case "data-left": this.changePosition(attributeName); break;
+            case "data-left": this.changeTopLeft(attributeName); break;
+            case "data-place": this.changePlace(attributeName); break;
         }
     }
 };

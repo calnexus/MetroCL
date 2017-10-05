@@ -309,7 +309,7 @@
                     To add <code>draggable</code> feature to window add attribute <code>data-draggable="true"</code> to your element. About <code>draggable</code> you can read <a href="draggable.html">in this article</a>.
                 </p>
                 <div class="example pos-relative p-0" style="height: 300px;">
-                    <div class="p-2" data-role="window" data-draggable="true" data-width="200" data-height="160" id="-window-draggable">
+                    <div class="p-2" data-role="window" data-draggable="true" data-resizable="false" data-width="200" data-height="160" id="-window-draggable">
                         Drag this window on the caption.
                     </div>
                 </div>
@@ -365,121 +365,128 @@
                     <tbody>
                     <tr>
                         <td>width</td>
-                        <td>data-width</td>
+                        <td><code>data-width</code></td>
                         <td>auto</td>
                         <td>Set initial width to window</td>
                         <td><span class="mif-checkmark fg-green"></span></td>
                     </tr>
                     <tr>
                         <td>height</td>
-                        <td>data-height</td>
+                        <td><code>data-height</code></td>
                         <td>auto</td>
                         <td>Set initial height to window</td>
                         <td><span class="mif-checkmark fg-green"></span></td>
                     </tr>
                     <tr>
                         <td>btnClose</td>
-                        <td>data-btn-close</td>
-                        <td>false</td>
+                        <td><code>data-btn-close</code></td>
+                        <td>true</td>
                         <td>Add close button</td>
                         <td><span class="mif-checkmark fg-green"></span></td>
                     </tr>
                     <tr>
                         <td>btnMin</td>
-                        <td>data-btn-min</td>
-                        <td>false</td>
+                        <td><code>data-btn-min</code></td>
+                        <td>true</td>
                         <td>Add min button</td>
                         <td><span class="mif-checkmark fg-green"></span></td>
                     </tr>
                     <tr>
                         <td>btnMax</td>
-                        <td>data-btn-max</td>
-                        <td>false</td>
+                        <td><code>data-btn-max</code></td>
+                        <td>true</td>
                         <td>Add max button</td>
                         <td><span class="mif-checkmark fg-green"></span></td>
                     </tr>
                     <tr>
                         <td>clsCaption</td>
-                        <td>data-cls-caption</td>
+                        <td><code>data-cls-caption</code></td>
                         <td></td>
                         <td>Additional classes for caption</td>
                         <td><span class="mif-checkmark fg-green"></span></td>
                     </tr>
                     <tr>
                         <td>clsContent</td>
-                        <td>data-cls-content</td>
+                        <td><code>data-cls-content</code></td>
                         <td></td>
                         <td>Additional classes for content</td>
                         <td><span class="mif-checkmark fg-green"></span></td>
                     </tr>
                     <tr>
-                        <td>drag</td>
-                        <td>data-drag</td>
-                        <td>false</td>
+                        <td>draggable</td>
+                        <td><code>data-draggable</code></td>
+                        <td>true</td>
                         <td>Add draggable to window</td>
-                        <td><span class="mif-cancel fg-red"></span></td>
+                        <td><span class="mif-checkmark fg-green"></span></td>
                     </tr>
                     <tr>
                         <td>dragElement</td>
-                        <td>data-drag-element</td>
+                        <td><code>data-drag-element</code></td>
                         <td>.window-caption</td>
                         <td>Set the drag element</td>
                         <td><span class="mif-cancel fg-red"></span></td>
                     </tr>
                     <tr>
                         <td>dragArea</td>
-                        <td>data-drag-area</td>
+                        <td><code>data-drag-area</code></td>
                         <td>parent</td>
-                        <td>Set the drag area</td>
+                        <td>Set the area where element can be draggable</td>
                         <td><span class="mif-cancel fg-red"></span></td>
                     </tr>
                     <tr>
                         <td>shadow</td>
-                        <td>data-shadow</td>
+                        <td><code>data-shadow</code></td>
                         <td>false</td>
                         <td>Add shadow to window</td>
                         <td><span class="mif-checkmark fg-green"></span></td>
                     </tr>
                     <tr>
                         <td>icon</td>
-                        <td>data-icon</td>
+                        <td><code>data-icon</code></td>
                         <td></td>
                         <td>Window icon</td>
                         <td><span class="mif-checkmark fg-green"></span></td>
                     </tr>
                     <tr>
                         <td>title</td>
-                        <td>data-title</td>
+                        <td><code>data-title</code></td>
                         <td>Window</td>
                         <td>Window title</td>
                         <td><span class="mif-checkmark fg-green"></span></td>
                     </tr>
                     <tr>
                         <td>content</td>
-                        <td>data-content</td>
+                        <td><code>data-content</code></td>
                         <td></td>
                         <td>Window content</td>
                         <td><span class="mif-checkmark fg-green"></span></td>
                     </tr>
                     <tr>
                         <td>resizable</td>
-                        <td>data-resizable</td>
-                        <td>false</td>
+                        <td><code>data-resizable</code></td>
+                        <td>true</td>
                         <td>Add resizable to window</td>
                         <td><span class="mif-checkmark fg-green"></span></td>
                     </tr>
                     <tr>
                         <td>top</td>
-                        <td>data-top</td>
+                        <td><code>data-top</code></td>
                         <td>auto</td>
                         <td>Set window top position</td>
                         <td><span class="mif-checkmark fg-green"></span></td>
                     </tr>
                     <tr>
                         <td>left</td>
-                        <td>data-left</td>
+                        <td><code>data-left</code></td>
                         <td>auto</td>
                         <td>Set window left position</td>
+                        <td><span class="mif-checkmark fg-green"></span></td>
+                    </tr>
+                    <tr>
+                        <td>place</td>
+                        <td><code>data-place</code></td>
+                        <td>auto</td>
+                        <td>Set window place (can be: center, top-left, top-center, top-right, right-center, bottom-right, bottom-center, bottom-left, left-center)</td>
                         <td><span class="mif-checkmark fg-green"></span></td>
                     </tr>
                     </tbody>

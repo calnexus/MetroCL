@@ -1,7 +1,7 @@
 @import (once) "include/vars";
 @import (once) "include/mixins";
 
-.button {
+.button, .flat-button {
     display: inline-block;
     font-weight: 400;
     text-align: center;
@@ -10,13 +10,18 @@
     user-select: none;
     border: 1px solid transparent;
     padding: .5rem .75rem;
-    .px2rem(font-size, 14px);
+    font-size: .875rem;
     line-height: 1.25;
     transition: @transition-short;
     background-color: darken(@light, 5%);
     color: @dark;
     cursor: pointer;
     outline: none;
+}
+
+.flat-button {
+    min-width: 64px;
+    background-color: transparent;
 }
 
 .button {
