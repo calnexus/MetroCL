@@ -120,10 +120,15 @@
 
 <script>
     var href = window.location.pathname.substring(window.location.pathname.lastIndexOf('/')+1);
-    var link = $("#doc-nav .toc-nav a[href='"+href+"']");
+    var link = $("#doc-nav a[href='"+href+"']");
     var item = link.closest(".doc-nav-item");
     var menu = item.find(".toc-nav");
+    var dov_nav = $("#doc-nav");
 
-    $("#doc-nav .toc-nav").hide(0);
-    menu.show(0)
+    dov_nav.find(".toc-nav").hide(0);
+    menu.show(0, function(){
+        dov_nav.animate({
+            scrollTop: link.offset().top - dov_nav.offset().top
+        });
+    })
 </script>
