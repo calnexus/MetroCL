@@ -4292,17 +4292,6 @@ var Window = {
         });
         win.on("click", ".btn-close", function(e){
             that.close(e);
-            // if (Utils.exec(o.onCanClose, [win]) === false) {
-            //     return false;
-            // }
-            // win.fadeOut(METRO_ANIMATION_DURATION, function(){
-            //     if (o.modal === true) {
-            //         win.siblings(".overlay").remove();
-            //     }
-            //     win.remove();
-            //     Utils.exec(o.onCloseClick, [win]);
-            //     Utils.exec(o.onDestroy, [win]);
-            // });
         });
 
         if (o.resizable === true) {
@@ -4376,7 +4365,7 @@ var Window = {
         }
 
         Utils.exec(o.onClose, [win]);
-        
+
         setTimeout(function(){
             if (o.modal === true) {
                 win.siblings(".overlay").remove();
