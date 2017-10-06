@@ -7,13 +7,13 @@ var Dialog = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
 
     options: {
-        onCreate: function(){}
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

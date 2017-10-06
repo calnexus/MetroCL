@@ -7,14 +7,15 @@ var File = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
     options: {
         caption: "Choose file",
         disabled: false,
-        onCreate: function(){}
+        onSelect: Metro.noop,
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -51,8 +52,10 @@ var File = {
         element.on('change', function(){
             var val = $(this).val();
             if (val !== '') {
-                caption.html(val.replace(/.+[\\\/]/, ""));
-                caption.attr('title', val.replace(/.+[\\\/]/, ""));
+                val = val.replace(/.+[\\\/]/, "");
+                caption.html(val);
+                caption.attr('title', val);
+                Utils.exec(o.onSelect, [val, element])
             }
         });
 

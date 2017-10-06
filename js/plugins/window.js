@@ -1,5 +1,111 @@
-var WinUtils = {
-    window: function(o){
+var Window = {
+    init: function( options, elem ) {
+        this.options = $.extend( {}, this.options, options );
+        this.elem  = elem;
+        this.element = $(elem);
+        this.win = null;
+        this.overlay = null;
+
+        this._setOptionsFromDOM();
+        this._create();
+
+        Utils.exec(this.options.onCreate, [this.win, this.element]);
+
+        return this;
+    },
+
+    options: {
+        width: "auto",
+        height: "auto",
+        btnClose: true,
+        btnMin: true,
+        btnMax: true,
+        clsCaption: "",
+        clsContent: "",
+        clsWindow: "",
+        draggable: true,
+        dragElement: ".window-caption",
+        dragArea: "parent",
+        shadow: false,
+        icon: "",
+        title: "Window",
+        content: "original",
+        resizable: true,
+        overlay: false,
+        overlayTransparent: false,
+        modal: false,
+        position: "absolute",
+        checkEmbed: true,
+        top: "auto",
+        left: "auto",
+        place: "auto",
+        onDragStart: Metro.noop,
+        onDragStop: Metro.noop,
+        onDragMove: Metro.noop,
+        onCaptionDblClick: Metro.noop,
+        onCloseClick: Metro.noop,
+        onMaxClick: Metro.noop,
+        onMinClick: Metro.noop,
+        onResizeStart: Metro.noop,
+        onResizeStop: Metro.noop,
+        onResize: Metro.noop,
+        onCreate: Metro.noop,
+        onShow: Metro.noop,
+        onDestroy: Metro.noop,
+        onCanClose: Metro.noop_true,
+        onClose: Metro.noop
+    },
+
+    _setOptionsFromDOM: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = $.parseJSON(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+    },
+
+    _create: function(){
+        var that = this, element = this.element, o = this.options;
+        var win, overlay;
+        var prev = element.prev();
+        var parent = element.parent();
+
+        if (o.modal === true) {
+            o.btnMax = false;
+            o.btnMin = false;
+            o.resizable = false;
+        }
+
+        if (o.content === "original") {
+            o.content = element;
+        }
+
+        win = this._window(o);
+
+        if (o.overlay === true) {
+            overlay = this._overlay(o.overlayTransparent).appendTo(win.parent());
+            this.overlay = overlay;
+        }
+
+        if (prev.length === 0) {
+            parent.prepend(win);
+        } else {
+            win.insertAfter(prev);
+        }
+
+        Utils.exec(o.onShow, [win]);
+
+        this.win = win;
+    },
+
+    _window: function(o){
+        var that = this;
         var win, caption, content, icon, title, buttons, btnClose, btnMin, btnMax, resizer, status;
 
         win = $("<div>").addClass("window");
@@ -85,27 +191,28 @@ var WinUtils = {
             win.addClass("resizable");
         }
 
-        win.on("dblclick", ".window-caption", function(){
-            win.toggleClass("maximized");
-            Utils.exec(o.onCaptionDblClick, win);
+        win.on("dblclick", ".window-caption", function(e){
+            that.maximized(e);
         });
-        win.on("click", ".btn-max", function(){
-            win.toggleClass("maximized");
-            Utils.exec(o.onMaxClick, win);
+        win.on("click", ".btn-max", function(e){
+            that.maximized(e);
         });
-        win.on("click", ".btn-min", function(){
-            win.toggleClass("minimized");
-            Utils.exec(o.onMinClick, win);
+        win.on("click", ".btn-min", function(e){
+            that.minimized(e);
         });
-        win.on("click", ".btn-close", function(){
-            win.fadeOut(METRO_ANIMATION_DURATION, function(){
-                if (o.modal === true) {
-                    win.siblings(".overlay").remove();
-                }
-                win.remove();
-                Utils.exec(o.onCloseClick, win);
-                Utils.exec(o.onDestroy, win);
-            });
+        win.on("click", ".btn-close", function(e){
+            that.close(e);
+            // if (Utils.exec(o.onCanClose, [win]) === false) {
+            //     return false;
+            // }
+            // win.fadeOut(METRO_ANIMATION_DURATION, function(){
+            //     if (o.modal === true) {
+            //         win.siblings(".overlay").remove();
+            //     }
+            //     win.remove();
+            //     Utils.exec(o.onCloseClick, [win]);
+            //     Utils.exec(o.onDestroy, [win]);
+            // });
         });
 
         if (o.resizable === true) {
@@ -139,140 +246,55 @@ var WinUtils = {
         return win;
     },
 
-    overlay: function(transparent){
+    _overlay: function(transparent){
         var o = $("<div>").addClass("overlay");
         if (transparent === true) {
             o.addClass("transparent");
         }
 
         return o;
-    }
-};
-
-var Window = {
-    init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
-        this.elem  = elem;
-        this.element = $(elem);
-        this.win = null;
-        this.overlay = null;
-
-        this._setOptionsFromDOM();
-        this._create();
-
-        Utils.exec(this.options.onCreate, [this.win, this.element]);
-
-        return this;
     },
 
-    options: {
-        width: "auto",
-        height: "auto",
-        btnClose: true,
-        btnMin: true,
-        btnMax: true,
-        clsCaption: "",
-        clsContent: "",
-        clsWindow: "",
-        draggable: true,
-        dragElement: ".window-caption",
-        dragArea: "parent",
-        shadow: false,
-        icon: "",
-        title: "Window",
-        content: "original",
-        resizable: true,
-        overlay: false,
-        overlayTransparent: false,
-        modal: false,
-        position: "absolute",
-        checkEmbed: true,
-        top: "auto",
-        left: "auto",
-        place: "auto",
-        onDragStart: function(){},
-        onDragStop: function(){},
-        onDragMove: function(){},
-        onCaptionDblClick: function(){},
-        onCloseClick: function(){},
-        onMaxClick: function(){},
-        onMinClick: function(){},
-        onResizeStart: function(){},
-        onResizeStop: function(){},
-        onResize: function(){},
-        onCreate: function(){},
-        onShow: function(){},
-        onDestroy: function(){}
-    },
-
-    _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = $.parseJSON(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
-    },
-
-    _create: function(){
-        var that = this, element = this.element, o = this.options;
-        var win, overlay;
-        var prev = element.prev();
-        var parent = element.parent();
-        var body = $("body");
-
-        if (o.modal === true) {
-            o.btnMax = false;
-            o.btnMin = false;
-            o.resizable = false;
-        }
-
-        if (o.content === "original") {
-            o.content = element;
-        }
-
-        win = WinUtils.window(o);
-
-        if (o.overlay === true) {
-            overlay = WinUtils.overlay(o.overlayTransparent).appendTo(win.parent());
-            this.overlay = overlay;
-        }
-
-        if (prev.length === 0) {
-            parent.prepend(win);
-        } else {
-            win.insertAfter(prev);
-        }
-
-        Utils.exec(o.onShow, win);
-
-        this.win = win;
-    },
-
-    maximized: function(){
+    maximized: function(e){
         var that = this, win = this.win,  element = this.element, o = this.options;
+        var target = $(e.currentTarget);
         win.toggleClass("maximized");
+        if (target.hasClass("window-caption")) {
+            Utils.exec(o.onCaptionDblClick, [win]);
+        } else {
+            Utils.exec(o.onMaxClick, [win]);
+        }
     },
 
-    minimized: function(){
+    minimized: function(e){
         var that = this, win = this.win,  element = this.element, o = this.options;
         win.toggleClass("minimized");
+        Utils.exec(o.onMinClick, [win]);
     },
 
-    close: function(){
+    close: function(e){
         var that = this, win = this.win,  element = this.element, o = this.options;
-        win.fadeOut(METRO_ANIMATION_DURATION, function(){
+
+        if (Utils.exec(o.onCanClose, [win]) === false) {
+            return false;
+        }
+
+        var timeout = 0;
+
+        if (o.onClose !== Metro.noop) {
+            timeout = 500;
+        }
+
+        Utils.exec(o.onClose, [win]);
+        
+        setTimeout(function(){
             if (o.modal === true) {
                 win.siblings(".overlay").remove();
             }
+            Utils.exec(o.onCloseClick(), [win]);
+            Utils.exec(o.onDestroy, [win]);
             win.remove();
-            Utils.exec(o.onDestroy, win);
-        });
+        }, timeout);
     },
 
     toggleButtons: function(a) {
@@ -432,4 +454,3 @@ var Window = {
 };
 
 Metro.plugin('window', Window);
-

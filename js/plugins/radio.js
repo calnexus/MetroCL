@@ -7,7 +7,7 @@ var Radio = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
@@ -15,7 +15,7 @@ var Radio = {
         caption: "",
         captionPosition: "right",
         disabled: false,
-        onCreate: function(){}
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

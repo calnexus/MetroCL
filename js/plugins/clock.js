@@ -7,7 +7,7 @@ var Clock = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
@@ -18,7 +18,7 @@ var Clock = {
         timeFormat: '24',
         dateFormat: 'american',
         divider: "&nbsp;&nbsp;",
-        onCreate: function(){}
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

@@ -7,16 +7,16 @@ var Resizable = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
     options: {
         resizeElement: ".resize-element",
-        onResizeStart: function(){},
-        onResizeStop: function(){},
-        onResize: function(){},
-        onCreate: function(){}
+        onResizeStart: Metro.noop,
+        onResizeStop: Metro.noop,
+        onResize: Metro.noop,
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

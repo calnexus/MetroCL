@@ -7,7 +7,7 @@ var Accordion = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
@@ -18,11 +18,11 @@ var Accordion = {
         activeFrameClass: "",
         activeHeadingClass: "",
         activeContentClass: "",
-        onFrameOpen: function(){},
-        onFrameBeforeOpen: function(){return true;},
-        onFrameClose: function(){},
-        onFrameBeforeClose: function(){return true;},
-        onCreate: function(){}
+        onFrameOpen: Metro.noop,
+        onFrameBeforeOpen: Metro.noop_true,
+        onFrameClose: Metro.noop,
+        onFrameBeforeClose: Metro.noop_true,
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

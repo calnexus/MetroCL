@@ -7,7 +7,7 @@ var Ripple = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
@@ -15,7 +15,7 @@ var Ripple = {
         rippleColor: "#fff",
         rippleAlpha: .4,
         rippleTarget: "default",
-        onCreate: function(){}
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

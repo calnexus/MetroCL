@@ -165,7 +165,9 @@ var Metro = {
         };
     },
 
-    noop: function(){}
+    noop: function(){},
+    noop_true: function(){return true;},
+    noop_false: function(){return false;}
 };
 
-$.Metro = window.metro = Metro;
+$.Metro = window['Metro'] = Metro;

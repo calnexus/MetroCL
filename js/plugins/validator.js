@@ -9,18 +9,18 @@ var Validator = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, this.element[0]);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
     options: {
         submitTimeout: 200,
         interactiveCheck: false,
-        onBeforeSubmit: function(){},
-        onSubmit: function(){},
-        onError: function(){},
-        onValid: function(){},
-        onCreate: function(){}
+        onBeforeSubmit: Metro.noop_true,
+        onSubmit: Metro.noop,
+        onError: Metro.noop,
+        onValid: Metro.noop,
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -153,11 +153,11 @@ var Validator = {
 
         element[0].action = this._action;
 
-        result.val += Utils.exec(o.onBeforeSubmit, [element[0]]) === false ? 1 : 0;
+        result.val += Utils.exec(o.onBeforeSubmit, [element]) === false ? 1 : 0;
 
         if (result.val === 0) {
             setTimeout(function(){
-                Utils.exec(o.onSubmit, [element[0]]);
+                Utils.exec(o.onSubmit, [element]);
                 if (that._onsubmit !==  null) Utils.exec(that._onsubmit);
             }, o.submitTimeout);
         }

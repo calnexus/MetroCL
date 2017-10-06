@@ -8,18 +8,19 @@ var Dropdown = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
+
     options: {
         effect: 'slide',
         toggleElement: false,
         noClose: false,
         duration: METRO_ANIMATION_DURATION,
-        onDrop: function(){},
-        onUp: function(){},
-        onCreate: function(){}
+        onDrop: Metro.noop,
+        onUp: Metro.noop,
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

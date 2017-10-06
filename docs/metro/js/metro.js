@@ -183,10 +183,12 @@ var Metro = {
         };
     },
 
-    noop: function(){}
+    noop: function(){},
+    noop_true: function(){return true;},
+    noop_false: function(){return false;}
 };
 
-$.Metro = window.metro = Metro;
+$.Metro = window['Metro'] = Metro;
 
 // Source: js/utils/easing.js
 $.easing['jswing'] = $.easing['swing'];
@@ -1429,18 +1431,18 @@ var d = new Date().getTime();
         return (hours ? (hours) + ":" : "") + (minutes < 10 ? "0"+minutes : minutes) + ":" + (seconds < 10 ? "0"+seconds : seconds);
     },
 
-    callback: function(f, args){
-        return this.exec(f, args);
+    callback: function(f, args, context){
+        return this.exec(f, args, context);
     },
 
-    exec: function(f, args){
-        if (f === undefined) {return false;}
+    exec: function(f, args, context){
+        if (f === undefined || f === null) {return false;}
         var func = this.isFunc(f);
         if (func === false) {
             func = new Function("a", f);
         }
 
-        return func(args);
+        return func.apply(context, args);
     },
 
     isFunc: function(f){
@@ -1807,7 +1809,7 @@ var Accordion = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
@@ -1818,11 +1820,11 @@ var Accordion = {
         activeFrameClass: "",
         activeHeadingClass: "",
         activeContentClass: "",
-        onFrameOpen: function(){},
-        onFrameBeforeOpen: function(){return true;},
-        onFrameClose: function(){},
-        onFrameBeforeClose: function(){return true;},
-        onCreate: function(){}
+        onFrameOpen: Metro.noop,
+        onFrameBeforeOpen: Metro.noop_true,
+        onFrameClose: Metro.noop,
+        onFrameBeforeClose: Metro.noop_true,
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -1955,7 +1957,7 @@ var Checkbox = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
@@ -1963,7 +1965,7 @@ var Checkbox = {
         caption: "",
         captionPosition: "right",
         disabled: false,
-        onCreate: function(){}
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -2049,7 +2051,7 @@ var Clock = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
@@ -2060,7 +2062,7 @@ var Clock = {
         timeFormat: '24',
         dateFormat: 'american',
         divider: "&nbsp;&nbsp;",
-        onCreate: function(){}
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -2162,7 +2164,7 @@ var Collapse = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
@@ -2170,9 +2172,9 @@ var Collapse = {
     options: {
         toggleElement: false,
         duration: METRO_ANIMATION_DURATION,
-        onDrop: function(){},
-        onUp: function(){},
-        onCreate: function(){}
+        onExpand: Metro.noop,
+        onCollapse: Metro.noop,
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -2221,7 +2223,7 @@ var Collapse = {
             el.trigger("onCollapse", null, el);
             el.data("collapsed", true);
             el.addClass("collapsed");
-            Utils.exec(options.onUp, [el]);
+            Utils.exec(options.onCollapse, [el]);
         });
     },
 
@@ -2237,7 +2239,7 @@ var Collapse = {
             el.trigger("onExpand", null, el);
             el.data("collapsed", false);
             el.removeClass("collapsed");
-            Utils.exec(options.onDrop, [el]);
+            Utils.exec(options.onExpand, [el]);
         });
     },
 
@@ -2281,13 +2283,13 @@ var Dialog = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
 
     options: {
-        onCreate: function(){}
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -2329,7 +2331,7 @@ var Draggable = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
@@ -2337,10 +2339,11 @@ var Draggable = {
     options: {
         dragElement: 'self',
         dragArea: "parent",
-        onDragStart: function(){},
-        onDragStop: function(){},
-        onDragMove: function(){},
-        onCreate: function(){}
+        onCanDrag: Metro.noop_true,
+        onDragStart: Metro.noop,
+        onDragStop: Metro.noop,
+        onDragMove: Metro.noop,
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -2368,7 +2371,7 @@ var Draggable = {
 
         dragElement.on(Metro.eventStart, function(e){
 
-            if (element.data("canDrag") === false) {
+            if (element.data("canDrag") === false || Utils.exec(o.onCanDrag, [element]) !== true) {
                 return ;
             }
 
@@ -2450,6 +2453,7 @@ var Draggable = {
             that.move = false;
             position = Utils.pageXY(e);
             $(document).off(Metro.eventMove);
+            //console.log(o.onDragStop);
             Utils.exec(o.onDragStop, [element, position]);
         });
     },
@@ -2479,18 +2483,19 @@ var Dropdown = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
+
     options: {
         effect: 'slide',
         toggleElement: false,
         noClose: false,
         duration: METRO_ANIMATION_DURATION,
-        onDrop: function(){},
-        onUp: function(){},
-        onCreate: function(){}
+        onDrop: Metro.noop,
+        onUp: Metro.noop,
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -2630,14 +2635,15 @@ var File = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
     options: {
         caption: "Choose file",
         disabled: false,
-        onCreate: function(){}
+        onSelect: Metro.noop,
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -2674,8 +2680,10 @@ var File = {
         element.on('change', function(){
             var val = $(this).val();
             if (val !== '') {
-                caption.html(val.replace(/.+[\\\/]/, ""));
-                caption.attr('title', val.replace(/.+[\\\/]/, ""));
+                val = val.replace(/.+[\\\/]/, "");
+                caption.html(val);
+                caption.attr('title', val);
+                Utils.exec(o.onSelect, [val, element])
             }
         });
 
@@ -2744,7 +2752,7 @@ var Gravatar = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
@@ -2752,7 +2760,7 @@ var Gravatar = {
         email: "",
         size: 80,
         default: "404",
-        onCreate: function(){}
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -2834,7 +2842,7 @@ var Input = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
@@ -2844,7 +2852,7 @@ var Input = {
         clearButtonIcon: "<span class='mif-cross'></span>",
         revealButtonIcon: "<span class='mif-eye'></span>",
         disabled: false,
-        onCreate: function(){}
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -3067,7 +3075,7 @@ var Radio = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
@@ -3075,7 +3083,7 @@ var Radio = {
         caption: "",
         captionPosition: "right",
         disabled: false,
-        onCreate: function(){}
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -3160,16 +3168,16 @@ var Resizable = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
     options: {
         resizeElement: ".resize-element",
-        onResizeStart: function(){},
-        onResizeStop: function(){},
-        onResize: function(){},
-        onCreate: function(){}
+        onResizeStart: Metro.noop,
+        onResizeStop: Metro.noop,
+        onResize: Metro.noop,
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -3249,7 +3257,7 @@ var Ripple = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
@@ -3257,7 +3265,7 @@ var Ripple = {
         rippleColor: "#fff",
         rippleAlpha: .4,
         rippleTarget: "default",
-        onCreate: function(){}
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -3337,15 +3345,15 @@ var Select = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
     options: {
         dropHeight: 200,
         disabled: false,
-        onChange: function(){},
-        onCreate: function(){}
+        onChange: Metro.noop,
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -3407,7 +3415,7 @@ var Select = {
                 element.val(val);
                 element.trigger("change");
                 list_obj.close();
-                Utils.exec(o.onChange, val);
+                Utils.exec(o.onChange, [val]);
                 //console.log(element.val());
             });
             container.on("click", function(e){
@@ -3458,7 +3466,7 @@ var Switch = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
@@ -3466,7 +3474,7 @@ var Switch = {
         caption: "",
         captionPosition: "right",
         disabled: false,
-        onCreate: function(){}
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -3552,14 +3560,14 @@ var Tabs = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
 
     options: {
-        onTab: function(){},
-        onCreate: function(){}
+        onTab: Metro.noop,
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -3673,7 +3681,7 @@ var Tabs = {
 
         expandTitle.html(tab.find("a").html());
 
-        Utils.exec(o.onTab, tab[0]);
+        Utils.exec(o.onTab, [tab]);
     },
 
     changeAttribute: function(attributeName){
@@ -3692,7 +3700,7 @@ var Textarea = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
@@ -3701,7 +3709,7 @@ var Textarea = {
         clearButtonIcon: "<span class='mif-cross'></span>",
         autoSize: false,
         disabled: false,
-        onCreate: function(){}
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -3840,18 +3848,18 @@ var Validator = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, this.element[0]);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
     options: {
         submitTimeout: 200,
         interactiveCheck: false,
-        onBeforeSubmit: function(){},
-        onSubmit: function(){},
-        onError: function(){},
-        onValid: function(){},
-        onCreate: function(){}
+        onBeforeSubmit: Metro.noop_true,
+        onSubmit: Metro.noop,
+        onError: Metro.noop,
+        onValid: Metro.noop,
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -3984,11 +3992,11 @@ var Validator = {
 
         element[0].action = this._action;
 
-        result.val += Utils.exec(o.onBeforeSubmit, [element[0]]) === false ? 1 : 0;
+        result.val += Utils.exec(o.onBeforeSubmit, [element]) === false ? 1 : 0;
 
         if (result.val === 0) {
             setTimeout(function(){
-                Utils.exec(o.onSubmit, [element[0]]);
+                Utils.exec(o.onSubmit, [element]);
                 if (that._onsubmit !==  null) Utils.exec(that._onsubmit);
             }, o.submitTimeout);
         }
@@ -4080,8 +4088,114 @@ var Validator = {
 
 Metro.plugin('validator', Validator);
 // Source: js/plugins/window.js
-var WinUtils = {
-    window: function(o){
+var Window = {
+    init: function( options, elem ) {
+        this.options = $.extend( {}, this.options, options );
+        this.elem  = elem;
+        this.element = $(elem);
+        this.win = null;
+        this.overlay = null;
+
+        this._setOptionsFromDOM();
+        this._create();
+
+        Utils.exec(this.options.onCreate, [this.win, this.element]);
+
+        return this;
+    },
+
+    options: {
+        width: "auto",
+        height: "auto",
+        btnClose: true,
+        btnMin: true,
+        btnMax: true,
+        clsCaption: "",
+        clsContent: "",
+        clsWindow: "",
+        draggable: true,
+        dragElement: ".window-caption",
+        dragArea: "parent",
+        shadow: false,
+        icon: "",
+        title: "Window",
+        content: "original",
+        resizable: true,
+        overlay: false,
+        overlayTransparent: false,
+        modal: false,
+        position: "absolute",
+        checkEmbed: true,
+        top: "auto",
+        left: "auto",
+        place: "auto",
+        onDragStart: Metro.noop,
+        onDragStop: Metro.noop,
+        onDragMove: Metro.noop,
+        onCaptionDblClick: Metro.noop,
+        onCloseClick: Metro.noop,
+        onMaxClick: Metro.noop,
+        onMinClick: Metro.noop,
+        onResizeStart: Metro.noop,
+        onResizeStop: Metro.noop,
+        onResize: Metro.noop,
+        onCreate: Metro.noop,
+        onShow: Metro.noop,
+        onDestroy: Metro.noop,
+        onCanClose: Metro.noop_true,
+        onClose: Metro.noop
+    },
+
+    _setOptionsFromDOM: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = $.parseJSON(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+    },
+
+    _create: function(){
+        var that = this, element = this.element, o = this.options;
+        var win, overlay;
+        var prev = element.prev();
+        var parent = element.parent();
+
+        if (o.modal === true) {
+            o.btnMax = false;
+            o.btnMin = false;
+            o.resizable = false;
+        }
+
+        if (o.content === "original") {
+            o.content = element;
+        }
+
+        win = this._window(o);
+
+        if (o.overlay === true) {
+            overlay = this._overlay(o.overlayTransparent).appendTo(win.parent());
+            this.overlay = overlay;
+        }
+
+        if (prev.length === 0) {
+            parent.prepend(win);
+        } else {
+            win.insertAfter(prev);
+        }
+
+        Utils.exec(o.onShow, [win]);
+
+        this.win = win;
+    },
+
+    _window: function(o){
+        var that = this;
         var win, caption, content, icon, title, buttons, btnClose, btnMin, btnMax, resizer, status;
 
         win = $("<div>").addClass("window");
@@ -4167,27 +4281,28 @@ var WinUtils = {
             win.addClass("resizable");
         }
 
-        win.on("dblclick", ".window-caption", function(){
-            win.toggleClass("maximized");
-            Utils.exec(o.onCaptionDblClick, win);
+        win.on("dblclick", ".window-caption", function(e){
+            that.maximized(e);
         });
-        win.on("click", ".btn-max", function(){
-            win.toggleClass("maximized");
-            Utils.exec(o.onMaxClick, win);
+        win.on("click", ".btn-max", function(e){
+            that.maximized(e);
         });
-        win.on("click", ".btn-min", function(){
-            win.toggleClass("minimized");
-            Utils.exec(o.onMinClick, win);
+        win.on("click", ".btn-min", function(e){
+            that.minimized(e);
         });
-        win.on("click", ".btn-close", function(){
-            win.fadeOut(METRO_ANIMATION_DURATION, function(){
-                if (o.modal === true) {
-                    win.siblings(".overlay").remove();
-                }
-                win.remove();
-                Utils.exec(o.onCloseClick, win);
-                Utils.exec(o.onDestroy, win);
-            });
+        win.on("click", ".btn-close", function(e){
+            that.close(e);
+            // if (Utils.exec(o.onCanClose, [win]) === false) {
+            //     return false;
+            // }
+            // win.fadeOut(METRO_ANIMATION_DURATION, function(){
+            //     if (o.modal === true) {
+            //         win.siblings(".overlay").remove();
+            //     }
+            //     win.remove();
+            //     Utils.exec(o.onCloseClick, [win]);
+            //     Utils.exec(o.onDestroy, [win]);
+            // });
         });
 
         if (o.resizable === true) {
@@ -4221,140 +4336,55 @@ var WinUtils = {
         return win;
     },
 
-    overlay: function(transparent){
+    _overlay: function(transparent){
         var o = $("<div>").addClass("overlay");
         if (transparent === true) {
             o.addClass("transparent");
         }
 
         return o;
-    }
-};
-
-var Window = {
-    init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
-        this.elem  = elem;
-        this.element = $(elem);
-        this.win = null;
-        this.overlay = null;
-
-        this._setOptionsFromDOM();
-        this._create();
-
-        Utils.exec(this.options.onCreate, [this.win, this.element]);
-
-        return this;
     },
 
-    options: {
-        width: "auto",
-        height: "auto",
-        btnClose: true,
-        btnMin: true,
-        btnMax: true,
-        clsCaption: "",
-        clsContent: "",
-        clsWindow: "",
-        draggable: true,
-        dragElement: ".window-caption",
-        dragArea: "parent",
-        shadow: false,
-        icon: "",
-        title: "Window",
-        content: "original",
-        resizable: true,
-        overlay: false,
-        overlayTransparent: false,
-        modal: false,
-        position: "absolute",
-        checkEmbed: true,
-        top: "auto",
-        left: "auto",
-        place: "auto",
-        onDragStart: function(){},
-        onDragStop: function(){},
-        onDragMove: function(){},
-        onCaptionDblClick: function(){},
-        onCloseClick: function(){},
-        onMaxClick: function(){},
-        onMinClick: function(){},
-        onResizeStart: function(){},
-        onResizeStop: function(){},
-        onResize: function(){},
-        onCreate: function(){},
-        onShow: function(){},
-        onDestroy: function(){}
-    },
-
-    _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = $.parseJSON(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
-    },
-
-    _create: function(){
-        var that = this, element = this.element, o = this.options;
-        var win, overlay;
-        var prev = element.prev();
-        var parent = element.parent();
-        var body = $("body");
-
-        if (o.modal === true) {
-            o.btnMax = false;
-            o.btnMin = false;
-            o.resizable = false;
-        }
-
-        if (o.content === "original") {
-            o.content = element;
-        }
-
-        win = WinUtils.window(o);
-
-        if (o.overlay === true) {
-            overlay = WinUtils.overlay(o.overlayTransparent).appendTo(win.parent());
-            this.overlay = overlay;
-        }
-
-        if (prev.length === 0) {
-            parent.prepend(win);
-        } else {
-            win.insertAfter(prev);
-        }
-
-        Utils.exec(o.onShow, win);
-
-        this.win = win;
-    },
-
-    maximized: function(){
+    maximized: function(e){
         var that = this, win = this.win,  element = this.element, o = this.options;
+        var target = $(e.currentTarget);
         win.toggleClass("maximized");
+        if (target.hasClass("window-caption")) {
+            Utils.exec(o.onCaptionDblClick, [win]);
+        } else {
+            Utils.exec(o.onMaxClick, [win]);
+        }
     },
 
-    minimized: function(){
+    minimized: function(e){
         var that = this, win = this.win,  element = this.element, o = this.options;
         win.toggleClass("minimized");
+        Utils.exec(o.onMinClick, [win]);
     },
 
-    close: function(){
+    close: function(e){
         var that = this, win = this.win,  element = this.element, o = this.options;
-        win.fadeOut(METRO_ANIMATION_DURATION, function(){
+
+        if (Utils.exec(o.onCanClose, [win]) === false) {
+            return false;
+        }
+
+        var timeout = 0;
+
+        if (o.onClose !== Metro.noop) {
+            timeout = 500;
+        }
+
+        Utils.exec(o.onClose, [win]);
+        
+        setTimeout(function(){
             if (o.modal === true) {
                 win.siblings(".overlay").remove();
             }
+            Utils.exec(o.onCloseClick(), [win]);
+            Utils.exec(o.onDestroy, [win]);
             win.remove();
-            Utils.exec(o.onDestroy, win);
-        });
+        }, timeout);
     },
 
     toggleButtons: function(a) {
@@ -4514,8 +4544,6 @@ var Window = {
 };
 
 Metro.plugin('window', Window);
-
-
 
  return Metro.init();
 

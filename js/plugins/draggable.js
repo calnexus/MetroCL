@@ -13,7 +13,7 @@ var Draggable = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
@@ -21,10 +21,11 @@ var Draggable = {
     options: {
         dragElement: 'self',
         dragArea: "parent",
-        onDragStart: function(){},
-        onDragStop: function(){},
-        onDragMove: function(){},
-        onCreate: function(){}
+        onCanDrag: Metro.noop_true,
+        onDragStart: Metro.noop,
+        onDragStop: Metro.noop,
+        onDragMove: Metro.noop,
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -52,7 +53,7 @@ var Draggable = {
 
         dragElement.on(Metro.eventStart, function(e){
 
-            if (element.data("canDrag") === false) {
+            if (element.data("canDrag") === false || Utils.exec(o.onCanDrag, [element]) !== true) {
                 return ;
             }
 
@@ -134,6 +135,7 @@ var Draggable = {
             that.move = false;
             position = Utils.pageXY(e);
             $(document).off(Metro.eventMove);
+            //console.log(o.onDragStop);
             Utils.exec(o.onDragStop, [element, position]);
         });
     },

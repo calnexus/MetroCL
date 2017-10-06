@@ -8,14 +8,14 @@ var Tabs = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
 
     options: {
-        onTab: function(){},
-        onCreate: function(){}
+        onTab: Metro.noop,
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -129,7 +129,7 @@ var Tabs = {
 
         expandTitle.html(tab.find("a").html());
 
-        Utils.exec(o.onTab, tab[0]);
+        Utils.exec(o.onTab, [tab]);
     },
 
     changeAttribute: function(attributeName){

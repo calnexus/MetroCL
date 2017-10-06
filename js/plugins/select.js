@@ -7,15 +7,15 @@ var Select = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
     options: {
         dropHeight: 200,
         disabled: false,
-        onChange: function(){},
-        onCreate: function(){}
+        onChange: Metro.noop,
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -77,7 +77,7 @@ var Select = {
                 element.val(val);
                 element.trigger("change");
                 list_obj.close();
-                Utils.exec(o.onChange, val);
+                Utils.exec(o.onChange, [val]);
                 //console.log(element.val());
             });
             container.on("click", function(e){

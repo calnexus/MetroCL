@@ -38,10 +38,9 @@ var Desktop = {
 
     createWindow: function(o){
         var that = this;
-        o.position = "fixed";
         o.onDragStart = function(el, pos){
             win = $(el);
-            win.css("z-index", 1);
+            $(".window").css("z-index", 1);
             if (!win.hasClass("modal"))
                 win.css("z-index", 3);
         };
@@ -58,7 +57,7 @@ var Desktop = {
         var win = wnd.win;
         var shift = $.Metro.utils.objectLength(this.wins) * 16;
 
-        if (o.top === "auto" && o.left === "auto") {
+        if (wnd.options.place === "auto" && wnd.options.top === "auto" && wnd.options.left === "auto") {
             win.css({
                 top: shift,
                 left: shift

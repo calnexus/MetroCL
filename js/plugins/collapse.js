@@ -8,7 +8,7 @@ var Collapse = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate);
+        Utils.exec(this.options.onCreate, [this.element]);
 
         return this;
     },
@@ -16,9 +16,9 @@ var Collapse = {
     options: {
         toggleElement: false,
         duration: METRO_ANIMATION_DURATION,
-        onDrop: function(){},
-        onUp: function(){},
-        onCreate: function(){}
+        onExpand: Metro.noop,
+        onCollapse: Metro.noop,
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -67,7 +67,7 @@ var Collapse = {
             el.trigger("onCollapse", null, el);
             el.data("collapsed", true);
             el.addClass("collapsed");
-            Utils.exec(options.onUp, [el]);
+            Utils.exec(options.onCollapse, [el]);
         });
     },
 
@@ -83,7 +83,7 @@ var Collapse = {
             el.trigger("onExpand", null, el);
             el.data("collapsed", false);
             el.removeClass("collapsed");
-            Utils.exec(options.onDrop, [el]);
+            Utils.exec(options.onExpand, [el]);
         });
     },
 
