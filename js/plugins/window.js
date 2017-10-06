@@ -29,10 +29,11 @@ var Window = {
         shadow: false,
         icon: "",
         title: "Window",
-        content: "original",
+        content: "default",
         resizable: true,
         overlay: false,
-        overlayTransparent: false,
+        overlayColor: 'transparent',
+        overlayAlpha: .5,
         modal: false,
         position: "absolute",
         checkEmbed: true,
@@ -82,21 +83,21 @@ var Window = {
             o.resizable = false;
         }
 
-        if (o.content === "original") {
+        if (o.content === "default") {
             o.content = element;
         }
 
         win = this._window(o);
 
-        if (o.overlay === true) {
-            overlay = this._overlay(o.overlayTransparent).appendTo(win.parent());
-            this.overlay = overlay;
-        }
-
         if (prev.length === 0) {
             parent.prepend(win);
         } else {
             win.insertAfter(prev);
+        }
+        if (o.overlay === true) {
+            overlay = this._overlay();
+            overlay.appendTo(win.parent());
+            this.overlay = overlay;
         }
 
         Utils.exec(o.onShow, [win]);
@@ -235,13 +236,21 @@ var Window = {
         return win;
     },
 
-    _overlay: function(transparent){
-        var o = $("<div>").addClass("overlay");
-        if (transparent === true) {
-            o.addClass("transparent");
+    _overlay: function(){
+        var that = this, win = this.win,  element = this.element, o = this.options;
+
+        var overlay = $("<div>");
+        overlay.addClass("overlay");
+
+        if (o.overlayColor === 'transparent') {
+            overlay.addClass("transparent");
+        } else {
+            overlay.css({
+                background: Utils.hex2rgba(o.overlayColor, o.overlayAlpha)
+            });
         }
 
-        return o;
+        return overlay;
     },
 
     maximized: function(e){

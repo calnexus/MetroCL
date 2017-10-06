@@ -65,6 +65,7 @@ var Desktop = {
         }
         this.wins[win.attr("id")] = wnd;
         this.addToTaskBar(wnd);
+        w.remove();
     }
 };
 

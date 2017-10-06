@@ -370,7 +370,7 @@ var Utils = {
 
     hiddenElementSize: function(el, inner){
         var clone = $(el).clone();
-        clone.css({
+        clone.removeAttr("data-role").css({
             visibility: "hidden",
             position: "absolute",
             display: "block"

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="//cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>Dialog - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row flex-xl-nowrap">
+            <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav">
+            </div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">Dialog</a></li>
+                    <li class="toc-entry"><a href="#_dialog_about">About</a></li>
+                </ul>
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>Dialog</h1>
+                <p class="text-leader">
+                    Metro 4 provides the ability to easily create dialogs. Dialogs can be predefined or created in runtime.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_dialog_about">About dialog</h3>
+                <p>
+                    Metro 4 build windows with using next classes: <code>.dialog</code>, <code>.dialog-title</code>, <code>.dialog-content</code> and <code>.dialog-actions</code> and result <code>dialog</code> has next structure:
+                </p>
+
+                <div class="example p-2">
+                    <div class="dialog mx-auto mt-4 mb-4" style="position: static; width: 480px;">
+                        <div class="dialog-title">Use Windows location service?</div>
+                        <div class="dialog-content">
+                            Bassus abactors ducunt ad triticum. A fraternal form of manifestation is the bliss.
+                        </div>
+                        <div class="dialog-actions">
+                            <button class="button">Disagree</button>
+                            <button class="button primary">Agree</button>
+                        </div>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;div class="dialog"&gt;
+                        &lt;div class="dialog-title"&gt;Use Windows location service?&lt;/div&gt;
+                        &lt;div class="dialog-content"&gt;
+                            Bassus abactors ducunt ad triticum.
+                            A fraternal form of manifestation is the bliss.
+                        &lt;/div&gt;
+                        &lt;div class="dialog-actions"&gt;
+                            &lt;button class="button"&gt;Disagree&lt;/button&gt;
+                            &lt;button class="button primary"&gt;Agree&lt;/button&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <div class="example">
+                    <div data-role="dialog" id="demoDialog1">
+                        <div class="dialog-title">Use Windows location service?</div>
+                        <div class="dialog-content">
+                            Bassus abactors ducunt ad triticum.
+                            A fraternal form of manifestation is the bliss.
+                        </div>
+                        <div class="dialog-actions">
+                            <button class="button js-dialog-close">Disagree</button>
+                            <button class="button primary js-dialog-close">Agree</button>
+                        </div>
+                    </div>
+                    <button class="button primary" onclick="Metro.dialog.open('#demoDialog1')">Open dialog</button>
+                </div>
+            </main>
+        </div>
+
+    </div>
+
+    <script src="//cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="metro/js/metro.min.js"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
+</body>
+</html>

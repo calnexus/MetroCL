@@ -7,16 +7,39 @@
     flex-flow: column;
     width: auto;
     height: auto;
+    background-color: @white;
+    color: @dark;
+    z-index: @zindex-modal;
+    .shadow(3);
 }
 
-.dialog-caption {
+.dialog-title, .dialog-content, .dialog-actions {
+    display: block;
+}
 
+.dialog-title {
+    font-size: 1.325rem;
+    padding: 24px 24px 0;
+    order: 1;
 }
 
 .dialog-content {
-
+    padding: 12px 24px;
+    order: 2;
 }
 
 .dialog-actions {
+    border-top: 1px solid @winFlatBorderColor;
+    text-align: right;
+    padding: 8px 16px;
+    order: 3;
+}
 
+.dialog {
+    * + .dialog-content {
+        margin-top: 8px;
+    }
+    * + .dialog-actions {
+        margin-top: 8px;
+    }
 }
