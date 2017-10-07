@@ -175,7 +175,7 @@
                 <p>
                     You can set any options to define dialog:
                 </p>
-                <table class="table table-border cell-border">
+                <table class="table table-border cell-border options-table">
                     <thead>
                     <tr>
                         <td>Options</td>
@@ -282,7 +282,7 @@
                         <td>Add additional classes to dialog default action button</td>
                     </tr>
                     <tr>
-                        <td>clsAutoHide</td>
+                        <td>autoHide</td>
                         <td><code>data-auto-hide</code></td>
                         <td>0</td>
                         <td>If this options &gt; 0, dialog closed after this timeout in milliseconds</td>
@@ -316,6 +316,18 @@
                         <td><code>data-on-close</code></td>
                         <td>Metro.noop</td>
                         <td>This <code>callback</code> executed after dialog is close</td>
+                    </tr>
+                    <tr>
+                        <td>onShow</td>
+                        <td><code>data-on-show</code></td>
+                        <td>Metro.noop</td>
+                        <td>This <code>callback</code> executed after dialog is showing</td>
+                    </tr>
+                    <tr>
+                        <td>onHide</td>
+                        <td><code>data-on-hide</code></td>
+                        <td>Metro.noop</td>
+                        <td>This <code>callback</code> executed before dialog is hiding</td>
                     </tr>
                     </tbody>
                 </table>

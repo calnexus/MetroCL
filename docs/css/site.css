@@ -415,3 +415,6 @@ pre .copy-button {
     width: 175%;
   }
 }
+.options-table {
+  font-size: 14px;
+}

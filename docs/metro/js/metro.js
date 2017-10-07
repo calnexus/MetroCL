@@ -2303,8 +2303,6 @@ var Dialog = {
         overlayClickClose: false,
         width: '480',
         height: 'auto',
-        duration: METRO_ANIMATION_DURATION,
-        easing: 'swing',
         closeAction: true,
         clsDialog: "",
         clsTitle: "",
