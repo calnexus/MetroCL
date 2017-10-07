@@ -29,7 +29,8 @@ if (window.canObserveMutation === false) {
 if (window.METRO_DEBUG === undefined) {window.METRO_DEBUG = true;}
 if (window.METRO_CALENDAR_WEEK_START === undefined) {window.METRO_CALENDAR_WEEK_START = 1;}
 if (window.METRO_LOCALE === undefined) {window.METRO_LOCALE = 'en-US';}
-if (window.METRO_ANIMATION_DURATION === undefined) {window.METRO_ANIMATION_DURATION = 200;}
+if (window.METRO_ANIMATION_DURATION === undefined) {window.METRO_ANIMATION_DURATION = 300;}
+if (window.METRO_CALLBACK_TIMEOUT === undefined) {window.METRO_CALLBACK_TIMEOUT = 500;}
 if (window.METRO_TIMEOUT === undefined) {window.METRO_TIMEOUT = 2000;}
 if (window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE === undefined) {window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE = true;}
 if (window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS === undefined) {window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS = true;}
@@ -2313,6 +2314,8 @@ var Dialog = {
         autoHide: 0,
         removeOnClose: false,
         show: false,
+        onShow: Metro.noop,
+        onHide: Metro.noop,
         onOpen: Metro.noop,
         onClose: Metro.noop,
         onCreate: Metro.noop
@@ -2424,32 +2427,27 @@ var Dialog = {
 
     hide: function(callback){
         var element = this.element, o = this.options;
-        element.animate({
-            top: "100%",
-            opacity: 0
-        }, o.duration, function(){
+        var timeout = 0;
+        if (o.onHide !== Metro.noop) {
+            timeout = 300;
+            Utils.exec(o.onHide, [element]);
+        }
+        setTimeout(function(){
             element.css({
                 visibility: "hidden"
             });
-            if (o.removeOnClose === true) {
-                element.remove();
-            }
             Utils.callback(callback);
-        });
+        }, timeout);
     },
 
     show: function(callback){
         var element = this.element, o = this.options;
         this.setPosition();
         element.css({
-            visibility: "visible",
-            top: "100%"
-        }).animate({
-            top: Utils.placeElement(element, "center").top,
-            opacity: 1
-        }, o.duration, o.easing, function () {
-            Utils.callback(callback);
+            visibility: "visible"
         });
+        Utils.callback(callback);
+        Utils.exec(o.onShow, [element]);
     },
 
     setPosition: function(){

@@ -11,7 +11,8 @@ if (window.canObserveMutation === false) {
 if (window.METRO_DEBUG === undefined) {window.METRO_DEBUG = true;}
 if (window.METRO_CALENDAR_WEEK_START === undefined) {window.METRO_CALENDAR_WEEK_START = 1;}
 if (window.METRO_LOCALE === undefined) {window.METRO_LOCALE = 'en-US';}
-if (window.METRO_ANIMATION_DURATION === undefined) {window.METRO_ANIMATION_DURATION = 200;}
+if (window.METRO_ANIMATION_DURATION === undefined) {window.METRO_ANIMATION_DURATION = 300;}
+if (window.METRO_CALLBACK_TIMEOUT === undefined) {window.METRO_CALLBACK_TIMEOUT = 500;}
 if (window.METRO_TIMEOUT === undefined) {window.METRO_TIMEOUT = 2000;}
 if (window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE === undefined) {window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE = true;}
 if (window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS === undefined) {window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS = true;}

@@ -37,6 +37,8 @@ var Dialog = {
         autoHide: 0,
         removeOnClose: false,
         show: false,
+        onShow: Metro.noop,
+        onHide: Metro.noop,
         onOpen: Metro.noop,
         onClose: Metro.noop,
         onCreate: Metro.noop
@@ -148,32 +150,27 @@ var Dialog = {
 
     hide: function(callback){
         var element = this.element, o = this.options;
-        element.animate({
-            top: "100%",
-            opacity: 0
-        }, o.duration, function(){
+        var timeout = 0;
+        if (o.onHide !== Metro.noop) {
+            timeout = 300;
+            Utils.exec(o.onHide, [element]);
+        }
+        setTimeout(function(){
             element.css({
                 visibility: "hidden"
             });
-            if (o.removeOnClose === true) {
-                element.remove();
-            }
             Utils.callback(callback);
-        });
+        }, timeout);
     },
 
     show: function(callback){
         var element = this.element, o = this.options;
         this.setPosition();
         element.css({
-            visibility: "visible",
-            top: "100%"
-        }).animate({
-            top: Utils.placeElement(element, "center").top,
-            opacity: 1
-        }, o.duration, o.easing, function () {
-            Utils.callback(callback);
+            visibility: "visible"
         });
+        Utils.callback(callback);
+        Utils.exec(o.onShow, [element]);
     },
 
     setPosition: function(){
