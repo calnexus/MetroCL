@@ -7873,10 +7873,13 @@ figure img {
 }
 .dialog-actions {
   border-top: 1px solid #e9e9e9;
-  text-align: right;
   padding: 8px 16px;
   -ms-flex-order: 3;
       order: 3;
+}
+.dialog-actions > * {
+  margin: 0 4px;
+  min-width: 64px;
 }
 .dialog * + .dialog-content {
   margin-top: 8px;

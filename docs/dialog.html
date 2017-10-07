@@ -48,6 +48,16 @@
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Dialog</a></li>
                     <li class="toc-entry"><a href="#_dialog_about">About</a></li>
+                    <li class="toc-entry">
+                        <a href="#_dialog_about">Create dialog</a>
+                        <ul>
+                            <li class="toc-entry"><a href="#_dialog_predefined">Predefined</a></li>
+                            <li class="toc-entry"><a href="#_dialog_runtime">Runtime</a></li>
+                        </ul>
+                    </li>
+                    <li class="toc-entry"><a href="#_dialog_options">Options</a></li>
+                    <li class="toc-entry"><a href="#_dialog_actions">Dialog actions</a></li>
+                    <li class="toc-entry"><a href="#_dialog_utils">Utilities</a></li>
                 </ul>
             </div>
 
@@ -65,7 +75,7 @@
 
                 <h3 id="_dialog_about">About dialog</h3>
                 <p>
-                    Metro 4 build windows with using next classes: <code>.dialog</code>, <code>.dialog-title</code>, <code>.dialog-content</code> and <code>.dialog-actions</code> and result <code>dialog</code> has next structure:
+                    Dialogs inform users about a specific task and may contain critical information, require decisions, or involve multiple tasks. Metro 4 build windows with using next classes: <code>.dialog</code>, <code>.dialog-title</code>, <code>.dialog-content</code> and <code>.dialog-actions</code> and result <code>dialog</code> has next structure:
                 </p>
 
                 <div class="example p-2">
@@ -94,23 +104,320 @@
                     &lt;/div&gt;
                 </code></pre>
 
+                <h3 id="_dialog_create">Create dialog</h3>
+                <p>
+                    Metro 4 provides two ways for create dialogs:
+                </p>
+                <ul>
+                    <li>Predefined method</li>
+                    <li>Runtime method</li>
+                </ul>
+
+                <h4 id="_dialog_create_predefined">Predefined method</h4>
+                <p>
+                    First-off you must create <code>HTML</code> element with special structure and define all actions required for dialog, include dismiss action.
+                    Then add any <a href="#_dialog_options">options</a> over <code>data-*</code> attributes.
+                    And at the end add an attribute <code>data-role="dialog"</code> to your element for initialization <code>dialog</code>.
+                    After the initialization, the dialog will be hidden until it is called.
+                </p>
+                <pre><code>
+                    &lt;div class="dialog" data-role="dialog"&gt;
+                        &lt;div class="dialog-title"&gt;Use Windows location service?&lt;/div&gt;
+                        &lt;div class="dialog-content"&gt;
+                            Bassus abactors ducunt ad triticum.
+                            A fraternal form of manifestation is the bliss.
+                        &lt;/div&gt;
+                        &lt;div class="dialog-actions"&gt;
+                            &lt;button class="button js-dialog-close"&gt;Disagree&lt;/button&gt;
+                            &lt;button class="button primary"&gt;Agree&lt;/button&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;button class="button primary"
+                        onclick="Metro.dialog.open('#demoDialog1')"&gt;Open dialog&lt;/button&gt;
+                </code></pre>
                 <div class="example">
                     <div data-role="dialog" id="demoDialog1">
                         <div class="dialog-title">Use Windows location service?</div>
                         <div class="dialog-content">
-                            Bassus abactors ducunt ad triticum.
-                            A fraternal form of manifestation is the bliss.
+                            Bassus abactors ducunt ad triticum. A fraternal form of manifestation is the bliss.
                         </div>
                         <div class="dialog-actions">
-                            <button class="button js-dialog-close">Disagree</button>
                             <button class="button primary js-dialog-close">Agree</button>
+                            <button class="button js-dialog-close">Disagree</button>
                         </div>
                     </div>
                     <button class="button primary" onclick="Metro.dialog.open('#demoDialog1')">Open dialog</button>
                 </div>
+
+                <h4 id="_dialog_create_runtime">Create dialog at runtime</h4>
+                <p>
+                    To create <code>dialog</code> at <code>runtime</code> you mus execute method <code>Metro.dialog.create</code> with required options.
+                </p>
+                <pre><code>
+                    Metro.dialog.create({
+                        title: "Use Windows location service?",
+                        content: "&lt;div&gt;Bassus abactors ducunt ad triticum...&lt;/div&gt;"
+                    });
+                </code></pre>
+                <div class="example">
+                    <button class="button secondary" onclick="openDemoDialog()">Open dialog</button>
+                    <script>
+                        function openDemoDialog(){
+                            Metro.dialog.create({
+                                title: "Use Windows location service?",
+                                content: "<div>Bassus abactors ducunt ad triticum. A fraternal form of manifestation is the bliss.</div>"
+                            });
+                        }
+                    </script>
+                </div>
+
+                <h3 id="_dialog_options">Options</h3>
+                <p>
+                    You can set any options to define dialog:
+                </p>
+                <table class="table table-border cell-border">
+                    <thead>
+                    <tr>
+                        <td>Options</td>
+                        <td>Data-*</td>
+                        <td>Default</td>
+                        <td>Description</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>title</td>
+                        <td><code>data-title</code></td>
+                        <td></td>
+                        <td>Set dialog title</td>
+                    </tr>
+                    <tr>
+                        <td>content</td>
+                        <td><code>data-content</code></td>
+                        <td></td>
+                        <td>Set dialog content. Can be simple html, jquery object or function. Simple html text requires wrapping in a tag</td>
+                    </tr>
+                    <tr>
+                        <td>actions</td>
+                        <td><code>data-actions</code></td>
+                        <td>{}</td>
+                        <td>Set dialog actions.</td>
+                    </tr>
+                    <tr>
+                        <td>actionsAlign</td>
+                        <td><code>data-actions-align</code></td>
+                        <td>right</td>
+                        <td>Set dialog actions align.</td>
+                    </tr>
+                    <tr>
+                        <td>defaultAction</td>
+                        <td><code>data-default-action</code></td>
+                        <td>true</td>
+                        <td>If you are not defined actions to dialog will be added default action</td>
+                    </tr>
+                    <tr>
+                        <td>overlay</td>
+                        <td><code>data-overlay</code></td>
+                        <td>true</td>
+                        <td>Add overlay when dialog is opened</td>
+                    </tr>
+                    <tr>
+                        <td>overlayColor</td>
+                        <td><code>data-overlay-color</code></td>
+                        <td>#000000</td>
+                        <td>Overlay color. Can be hex color value or transparent</td>
+                    </tr>
+                    <tr>
+                        <td>overlayAlpha</td>
+                        <td><code>data-overlay-alpha</code></td>
+                        <td>0.5</td>
+                        <td>Overlay color alpha channel value.</td>
+                    </tr>
+                    <tr>
+                        <td>overlayClickClose</td>
+                        <td><code>data-overlay-click-close</code></td>
+                        <td>false</td>
+                        <td>Close dialog when user click on overlay</td>
+                    </tr>
+                    <tr>
+                        <td>width</td>
+                        <td><code>data-width</code></td>
+                        <td>480</td>
+                        <td>Dialog width</td>
+                    </tr>
+                    <tr>
+                        <td>duration</td>
+                        <td><code>data-duration</code></td>
+                        <td>0.3s</td>
+                        <td>Dialog animation duration</td>
+                    </tr>
+                    <tr>
+                        <td>easing</td>
+                        <td><code>data-easing</code></td>
+                        <td>swing</td>
+                        <td>Dialog animation function</td>
+                    </tr>
+                    <tr>
+                        <td>closeAction</td>
+                        <td><code>data-close-action</code></td>
+                        <td>true</td>
+                        <td>If this options is true Metro 4 add event to elements with class <code>.js-dialog-close</code> for close dialog</td>
+                    </tr>
+                    <tr>
+                        <td>clsDialog</td>
+                        <td><code>data-cls-dialog</code></td>
+                        <td></td>
+                        <td>Add additional classes to dialog</td>
+                    </tr>
+                    <tr>
+                        <td>clsTitle</td>
+                        <td><code>data-cls-title</code></td>
+                        <td></td>
+                        <td>Add additional classes to dialog title</td>
+                    </tr>
+                    <tr>
+                        <td>clsContent</td>
+                        <td><code>data-cls-content</code></td>
+                        <td></td>
+                        <td>Add additional classes to dialog content</td>
+                    </tr>
+                    <tr>
+                        <td>clsAction</td>
+                        <td><code>data-cls-actions</code></td>
+                        <td></td>
+                        <td>Add additional classes to dialog actions block</td>
+                    </tr>
+                    <tr>
+                        <td>clsDefaultAction</td>
+                        <td><code>data-cls-default-actions</code></td>
+                        <td></td>
+                        <td>Add additional classes to dialog default action button</td>
+                    </tr>
+                    <tr>
+                        <td>clsAutoHide</td>
+                        <td><code>data-auto-hide</code></td>
+                        <td>0</td>
+                        <td>If this options &gt; 0, dialog closed after this timeout in milliseconds</td>
+                    </tr>
+                    <tr>
+                        <td>removeOnClose</td>
+                        <td><code>data-remove-on-close</code></td>
+                        <td>false</td>
+                        <td>If this options is <code>true</code> dialog will be removed after closes</td>
+                    </tr>
+                    <tr>
+                        <td>show</td>
+                        <td><code>data-show</code></td>
+                        <td>false</td>
+                        <td>If this options is <code>true</code> dialog will be showed immediate after initializing</td>
+                    </tr>
+                    <tr>
+                        <td>show</td>
+                        <td><code>data-show</code></td>
+                        <td>false</td>
+                        <td>If this options is <code>true</code> dialog will be showed immediate after initializing</td>
+                    </tr>
+                    <tr>
+                        <td>onCreate</td>
+                        <td><code>data-on-create</code></td>
+                        <td>Metro.noop</td>
+                        <td>This <code>callback</code> executed after dialog is created</td>
+                    </tr>
+                    <tr>
+                        <td>onOpen</td>
+                        <td><code>data-on-open</code></td>
+                        <td>Metro.noop</td>
+                        <td>This <code>callback</code> executed after dialog is open</td>
+                    </tr>
+                    <tr>
+                        <td>onClose</td>
+                        <td><code>data-on-close</code></td>
+                        <td>Metro.noop</td>
+                        <td>This <code>callback</code> executed after dialog is close</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="_dialog_actions">Dialog actions</h3>
+                <p>
+                    If you add custom actions to dialog, you can use next options for each action:
+                </p>
+                <ul>
+                    <li><strong>cls</strong> - additional class for action element</li>
+                    <li><strong>caption</strong> - caption for action element</li>
+                    <li><strong>onclick</strong> - event function for action element</li>
+                </ul>
+                <div class="example">
+                    <button class="button info" onclick="openDemoDialogActions()">Open dialog</button>
+                    <script>
+                        function openDemoDialogActions(){
+                            Metro.dialog.create({
+                                title: "Use Windows location service?",
+                                content: "<div>Bassus abactors ducunt ad triticum. A fraternal form of manifestation is the bliss.</div>",
+                                actions: [
+                                    {
+                                        caption: "Agree",
+                                        cls: "js-dialog-close alert",
+                                        onclick: function(){
+                                            alert("You clicked Agree action");
+                                        }
+                                    },
+                                    {
+                                        caption: "Disagree",
+                                        cls: "js-dialog-close",
+                                        onclick: function(){
+                                            alert("You clicked Disagree action");
+                                        }
+                                    }
+                                ]
+                            });
+                        }
+                    </script>
+                </div>
+                <pre><code>
+                    &lt;button class="button info"
+                        onclick="openDemoDialogActions()"&gt;Open dialog&lt;/button&gt;
+                    &lt;script&gt;
+                        function openDemoDialogActions(){
+                            Metro.dialog.create({
+                                title: "Use Windows location service?",
+                                content: "&lt;div&gt;Bassus abactors ducunt ad triticum...&lt;/div&gt;",
+                                actions: [
+                                    {
+                                        caption: "Agree",
+                                        cls: "js-dialog-close alert",
+                                        onclick: function(){
+                                            alert("You clicked Agree action");
+                                        }
+                                    },
+                                    {
+                                        caption: "Disagree",
+                                        cls: "js-dialog-close",
+                                        onclick: function(){
+                                            alert("You clicked Disagree action");
+                                        }
+                                    }
+                                ]
+                            });
+                        }
+                    &lt;/script&gt;
+                </code></pre>
+
+                <h3 id="_dialog_utils">Utilities</h3>
+                <p>
+                    Metro 4 contains special object <code>Metro.dialog</code> to manipulate <code>dialogs</code>. This object contains next methods:
+                </p>
+                <ul>
+                    <li><strong>create(options)</strong> - create dialog with options</li>
+                    <li><strong>open(el, content, title)</strong> - open dialog</li>
+                    <li><strong>close(el)</strong> - close dialog</li>
+                    <li><strong>toggle(el)</strong> - toggle dialog state</li>
+                    <li><strong>remove(el)</strong> - remove dialog from DOM</li>
+                    <li><strong>isDialog(el)</strong> - check if element is dialog instance</li>
+                    <li><strong>isOpen(el)</strong> - check if dialog is open</li>
+                </ul>
             </main>
         </div>
-
     </div>
 
     <script src="//cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>

@@ -30,9 +30,13 @@
 
 .dialog-actions {
     border-top: 1px solid @winFlatBorderColor;
-    text-align: right;
     padding: 8px 16px;
     order: 3;
+
+    & > * {
+        margin: 0 4px;
+        min-width: 64px;
+    }
 }
 
 .dialog {

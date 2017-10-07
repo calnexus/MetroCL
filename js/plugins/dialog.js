@@ -18,6 +18,8 @@ var Dialog = {
         title: "",
         content: "",
         actions: {},
+        actionsAlign: "right",
+        defaultAction: true,
         overlay: true,
         overlayColor: '#000000',
         overlayAlpha: .5,
@@ -27,10 +29,11 @@ var Dialog = {
         duration: METRO_ANIMATION_DURATION,
         easing: 'swing',
         closeAction: true,
-        closeElement: ".js-dialog-close",
         clsDialog: "",
         clsTitle: "",
         clsContent: "",
+        clsAction: "",
+        clsDefaultAction: "",
         autoHide: 0,
         removeOnClose: false,
         show: false,
@@ -72,11 +75,22 @@ var Dialog = {
             this.setContent(o.content);
         }
 
-        if (o.actions !== false && typeof o.actions === 'object' && Utils.objectLength(o.actions) > 0) {
-            var buttons = $("<div>").addClass("dialog-actions").appendTo(element);
+        if (o.defaultAction === true || (o.actions !== false && typeof o.actions === 'object' && Utils.objectLength(o.actions) > 0)) {
+            var buttons = element.find(".dialog-actions");
+            var button;
+
+            if (buttons.length === 0) {
+                buttons = $("<div>").addClass("dialog-actions").addClass("text-"+o.actionsAlign).appendTo(element);
+            }
+
+            if (o.defaultAction === true && (Utils.objectLength(o.actions) === 0 && element.find(".dialog-actions > *").length === 0)) {
+                button = $("<button>").addClass("button js-dialog-close").addClass(o.clsDefaultAction).html("OK");
+                button.appendTo(buttons);
+            }
+
             $.each(o.actions, function(){
                 var item = this;
-                var button = $("<button>").addClass("button").addClass(item.cls).html(item.caption);
+                button = $("<button>").addClass("button").addClass(item.cls).html(item.caption);
                 if (item.onclick !== undefined) button.on("click", function(){
                     Utils.exec(item.onclick, [element]);
                 });
@@ -106,6 +120,7 @@ var Dialog = {
         element.addClass(o.clsDialog);
         element.find(".dialog-title").addClass(o.clsTitle);
         element.find(".dialog-content").addClass(o.clsContent);
+        element.find(".dialog-actions").addClass(o.clsAction);
 
         element.appendTo(body);
 
@@ -149,8 +164,7 @@ var Dialog = {
 
     show: function(callback){
         var element = this.element, o = this.options;
-        //this._setContent();
-        console.log("show");
+        this.setPosition();
         element.css({
             visibility: "visible",
             top: "100%"
@@ -184,8 +198,6 @@ var Dialog = {
         } else {
             content.html(c);
         }
-
-        this.setPosition();
     },
 
     setTitle: function(t){
@@ -196,8 +208,6 @@ var Dialog = {
             title.appendTo(element);
         }
         title.html(t);
-
-        this.setPosition();
     },
 
     close: function(){
