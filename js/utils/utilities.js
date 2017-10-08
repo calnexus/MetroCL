@@ -121,34 +121,48 @@ var Utils = {
     },
 
     isFunc: function(f){
-        if (f === undefined || f === null) {
+        return this.isType(f, 'function');
+    },
+
+    isObject: function(o){
+        return this.isType(o, 'object')
+    },
+
+    isType: function(o, t){
+        if (o === undefined || o === null) {
             return false;
         }
-
-        if (this.isTag(f) || this.isUrl(f)) {
+        console.log("1", o, t);
+        if (this.isTag(o) || this.isUrl(o)) {
             return false;
         }
+        console.log("2", o, t);
 
-        if (typeof f === 'function') {
-            return f;
+        if (typeof o === t) {
+            return o;
         }
+        console.log("3", o, t);
 
-        if (typeof window[f] === 'function') {
-            return window[f];
+        if (typeof window[o] === t) {
+            return window[o];
         }
+        console.log(typeof window[o]);
+        console.log("4", o, t);
 
-        if (f.indexOf(".") === -1) {
+        if (typeof o === 'string' && o.indexOf(".") === -1) {
             return false;
         }
+        console.log("5", o, t);
 
-        var ns = f.split(".");
+        var ns = o.split(".");
         var i, context = window;
 
         for(i = 0; i < ns.length; i++) {
             context = context[ns[i]];
         }
+        console.log("6", o, t);
 
-        return typeof context === "function" ? context : false;
+        return typeof context === t ? context : false;
     },
 
     isMetroObject: function(el, type){
