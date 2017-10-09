@@ -254,6 +254,31 @@
 }
 
 .streamer {
+    .stream-event {
+        position: relative;
+        &.selected {
+            box-shadow: 0 0 0 1px rgba(red(@lightCyan), green(@lightCyan), blue(@lightCyan), 1)!important;
+        }
+    }
+}
+
+.streamer {
+    .stream {
+        &.disabled {
+
+        }
+    }
+
+    .stream-events:not(.global-stream) {
+        .stream-event {
+            &.disabled {
+                opacity: .2;
+            }
+        }
+    }
+}
+
+.streamer {
     .size-auto {
         width: auto;
     }

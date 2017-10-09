@@ -14,7 +14,10 @@ var Streamer = {
     options: {
         source: null,
         data: null,
-        onCreate: function(){}
+        onStreamClick: Metro.noop,
+        onEventClick: Metro.noop,
+        onEventSelect: Metro.noop,
+        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -147,11 +150,8 @@ var Streamer = {
         }
 
         if (data.global !== undefined) {
-            console.log(data.global);
             if (data.global.before !== undefined) {
-                console.log("before");
                 $.each(data.global.before, function(){
-                    console.log("ku");
                     var group = $("<div>").addClass("event-group").addClass("size-"+this.size+"x").insertBefore(event_group_main);
                     var events = $("<div>").addClass("stream-events global-stream").appendTo(group);
                     var event = $("<div>").addClass("stream-event").html(this.html).appendTo(events);
@@ -159,7 +159,44 @@ var Streamer = {
             }
         }
 
+        element.on("click", ".stream-event", function(e){
+            if (e.ctrlKey) {
+                $(this).toggleClass("selected");
+                Utils.exec(o.onEventSelect, [$(this), $(this).hasClass("selected")]);
+                return;
+            }
+            Utils.exec(o.onEventClick, [$(this)]);
+        });
+
+        element.on("click", ".stream", function(e){
+            var el = $(this);
+            that.toggleStream(el);
+            Utils.exec(o.onStreamClick, [el]);
+        });
+
         Utils.exec(o.onCreate, [element]);
+    },
+
+    enableStream: function(stream){
+        var that = this, element = this.element, o = this.options, data = this.data;
+        var index = stream.index();
+        stream.data("streamDisabled", false);
+        element.find(".stream-events").eq(index).find(".stream-event").removeClass("disabled");
+    },
+
+    disableStream: function(stream){
+        var that = this, element = this.element, o = this.options, data = this.data;
+        var index = stream.index();
+        stream.data("streamDisabled", true);
+        element.find(".stream-events").eq(index).find(".stream-event").addClass("disabled");
+    },
+
+    toggleStream: function(stream){
+        if (stream.data("streamDisabled") === true) {
+            this.enableStream(stream);
+        } else {
+            this.disableStream(stream);
+        }
     },
 
     changeAttribute: function(attributeName){
