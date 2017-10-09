@@ -315,7 +315,7 @@ img {
   right: -1px;
   content: "";
   top: -1px;
-  z-index: 101;
+  z-index: 100;
 }
 .selected:before {
   position: absolute;
@@ -7906,7 +7906,7 @@ figure img {
   margin-top: 2px;
   left: 0;
   top: 0;
-  z-index: 2;
+  z-index: 500;
 }
 .streamer .streamer-actions {
   position: absolute;
