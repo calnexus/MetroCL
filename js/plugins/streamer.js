@@ -56,6 +56,17 @@ var Streamer = {
             this.data = o.data;
             this.build();
         }
+
+        if (Utils.detectChrome() === true) {
+            $("<p>").addClass("text-small text-muted").html("*) In Chrome browser please press and hold Shift and turn the mouse wheel.").insertAfter(element);
+        }
+
+        $(element).on('mousewheel DOMMouseScroll', ".events-area", function(event){
+            var delta = Math.max(-1, Math.min(1, (event.originalEvent.wheelDelta || -event.originalEvent.detail)));
+            var scroll = $(this).scrollLeft() - ( delta * 40 );
+            $(this).scrollLeft( scroll );
+            event.preventDefault();
+        });
     },
 
     build: function(){

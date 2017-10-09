@@ -77,9 +77,6 @@
                 <div class="example mt-3 p-0 no-border">
                     <div data-role="streamer" data-source="data/streamer_data.json" data-start-from="09:00"></div>
                 </div>
-                <p class="text-small text-muted">
-                    *) In Chrome browser please press and hold Shift and turn the mouse wheel.
-                </p>
 
             </main>
         </div>
@@ -93,14 +90,5 @@
     <script src="js/clipboard.min.js"></script>
     <script src="js/site.js"></script>
     <!-- ads-script -->
-    <script>
-        $('body').on('mousewheel DOMMouseScroll', ".streamer .events-area", function(event){
-            //event.keyCode = "";
-            var delta = Math.max(-1, Math.min(1, (event.originalEvent.wheelDelta || -event.originalEvent.detail)));
-            var scroll = $(this).scrollLeft() - ( delta * 40 );
-            $(this).scrollLeft( scroll );
-            event.preventDefault();
-        });
-    </script>
 </body>
 </html>
