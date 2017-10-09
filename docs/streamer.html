@@ -74,7 +74,7 @@
                     Streamer is a complex element for creating an event program. The component includes a special HTML structure, styles, and a javascript code to interact with this structure.
                 </p>
 
-                <div class="example p-0 no-border">
+                <div class="example p-0 no-border d-none">
                     <div class="streamer">
 
                         <div class="streams fg-white">
@@ -294,18 +294,57 @@
                     }
                 ],
 
+                timeline: {
+                    start: "08:40",
+                    stop: "19:00",
+                    step: 20
+                },
+
                 streams: [
                     {
                         title: "Internet business",
                         secondary: "room 1",
                         icon: "<span class=\"mif-link stream-icon\"></span>",
-                        cls: "bg-teal fg-white"
+                        cls: "bg-teal fg-white",
+
+                        events: [
+                            {
+                                icon: "images/olshanskysmall.jpg",
+                                time: "09:00",
+                                title: "Alexandr Olshansky",
+                                subtitle: "Internet Invest Group",
+                                desc: "Information revolution - the way to new middle ages",
+                                size: 1,
+                                shift: 0
+                            },
+                            {
+                                icon: "images/ambass.jpg",
+                                time: "09:20",
+                                title: "Marie Yovanovitch",
+                                subtitle: "U.S. Ambassador to Ukraine",
+                                desc: "Greeting speech",
+                                size: 1,
+                                shift: 0
+                            }
+                        ]
                     },
                     {
                         title: "Advertising<br>Analyst<br>SEO",
                         secondary: "room 2",
                         icon: "<span class=\"mif-cog stream-icon\"></span>",
-                        cls: "bg-orange fg-white"
+                        cls: "bg-orange fg-white",
+
+                        events: [
+                            {
+                                icon: "images/ChernodubAr.jpg",
+                                time: "09:20",
+                                title: "Artem Chernodub",
+                                subtitle: "Clikque Technology",
+                                desc: "Practical AI: what tasks are really solved using artificial intelligence technologies",
+                                size: 2,
+                                shift: 1
+                            }
+                        ]
                     },
                     {
                         title: "Startups<br>E-Commerce",
@@ -333,11 +372,16 @@
                     }
                 ],
 
-                global: [
-                    {
-
-                    }
-                ]
+                global: {
+                    before: [
+                        {
+                            size: 1,
+                            shift: 0,
+                            html: "<div class='p-1'><div>08:00 - 09:00</div><h2 class=\"text-light\">Registration</h2></div>"
+                        }
+                    ],
+                    after: []
+                }
             }
         });
 

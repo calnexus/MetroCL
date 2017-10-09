@@ -132,27 +132,22 @@ var Utils = {
         if (o === undefined || o === null) {
             return false;
         }
-        console.log("1", o, t);
+
         if (this.isTag(o) || this.isUrl(o)) {
             return false;
         }
-        console.log("2", o, t);
 
         if (typeof o === t) {
             return o;
         }
-        console.log("3", o, t);
 
         if (typeof window[o] === t) {
             return window[o];
         }
-        console.log(typeof window[o]);
-        console.log("4", o, t);
 
         if (typeof o === 'string' && o.indexOf(".") === -1) {
             return false;
         }
-        console.log("5", o, t);
 
         var ns = o.split(".");
         var i, context = window;
@@ -160,7 +155,6 @@ var Utils = {
         for(i = 0; i < ns.length; i++) {
             context = context[ns[i]];
         }
-        console.log("6", o, t);
 
         return typeof context === t ? context : false;
     },
@@ -484,6 +478,27 @@ var Utils = {
             left: "auto",
             bottom: "auto"
         };
+    },
+
+    getStyle: function(el, pseudo){
+        if (Utils.isJQueryObject(el) === true) {
+            el  = el[0];
+        }
+        return window.getComputedStyle(el, pseudo);
+    },
+
+    getStyleOne: function(el, property){
+        return this.getStyle(el).getPropertyValue(property);
+    },
+
+    computedRgbToHex: function(rgb){
+        var a = rgb.replace(/[^\d,]/g, '').split(',');
+        var result = "#";
+        $.each(a, function(){
+            var h = parseInt(this).toString(16);
+            result += h.length === 1 ? "0" + h : h;
+        });
+        return result;
     }
 };
 
