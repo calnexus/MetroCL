@@ -287,6 +287,10 @@ var Utils = {
         return false;
     },
 
+    detectChrome: function(){
+        return /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+    },
+
     md5: function(s){
         return hex_md5(s);
     },

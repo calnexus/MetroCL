@@ -131,7 +131,7 @@ pre {
   margin: 0.5rem 1rem 0.2rem -0.5rem;
 }
 #doc-nav {
-  max-height: calc(84vh);
+  max-height: calc(100vh - 140px);
   overflow-y: auto;
 }
 .doc-nav-item > a {

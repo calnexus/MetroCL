@@ -1613,6 +1613,10 @@ var d = new Date().getTime();
         return false;
     },
 
+    detectChrome: function(){
+        return /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+    },
+
     md5: function(s){
         return hex_md5(s);
     },
@@ -3788,9 +3792,13 @@ var Streamer = {
     },
 
     options: {
+        startFrom: null,
+        startSlideSleep: 1000,
         source: null,
         data: null,
+        eventClick: "select",
         onStreamClick: Metro.noop,
+        onStreamSelect: Metro.noop,
         onEventClick: Metro.noop,
         onEventSelect: Metro.noop,
         onCreate: Metro.noop
@@ -3878,7 +3886,7 @@ var Streamer = {
             var h = t.getHours(), m = t.getMinutes();
             var v = (h < 10 ? "0"+h : h) + ":" + (m < 10 ? "0"+m : m);
 
-            $("<li>").html("<em>"+v+"</em>").appendTo(timeline);
+            $("<li>").data("time", v).addClass("js-time-point-" + v.replace(":", "-")).html("<em>"+v+"</em>").appendTo(timeline);
         }
 
         // -- End timeline creator
@@ -3887,6 +3895,7 @@ var Streamer = {
             $.each(data.streams, function(){
                 var item = this;
                 var stream = $("<div>").addClass("stream").addClass(this.cls).appendTo(streams);
+                stream.data("one", false);
 
                 $("<div>").addClass("stream-title").html(this.title).appendTo(stream);
                 $("<div>").addClass("stream-secondary").html(this.secondary).appendTo(stream);
@@ -3936,34 +3945,68 @@ var Streamer = {
         }
 
         element.on("click", ".stream-event", function(e){
-            if (e.ctrlKey) {
-                $(this).toggleClass("selected");
-                Utils.exec(o.onEventSelect, [$(this), $(this).hasClass("selected")]);
-                return;
+            var event = $(this);
+            if (o.eventClick === 'select') {
+                event.toggleClass("selected");
+                Utils.exec(o.onEventSelect, [event, event.hasClass("selected")]);
+            } else {
+                Utils.exec(o.onEventClick, [event]);
             }
-            Utils.exec(o.onEventClick, [$(this)]);
         });
 
         element.on("click", ".stream", function(e){
-            var el = $(this);
-            that.toggleStream(el);
-            Utils.exec(o.onStreamClick, [el]);
+            var stream = $(this);
+            var index = stream.index();
+
+            if (element.data("stream") === index) {
+                element.find(".stream-event").removeClass("disabled");
+                element.data("stream", -1);
+            } else {
+                element.data("stream", index);
+                element.find(".stream-event").addClass("disabled");
+                that.enableStream(stream);
+                Utils.exec(o.onStreamSelect, [stream]);
+            }
+
+            Utils.exec(o.onStreamClick, [stream]);
         });
 
+        element.data("stream", -1);
+
+        if (o.startFrom !== null) {
+            setTimeout(function(){
+                that.slideTo(o.startFrom);
+            }, o.startSlideSleep);
+        }
+
         Utils.exec(o.onCreate, [element]);
+    },
+
+    slideTo: function(time){
+        var that = this, element = this.element, o = this.options, data = this.data;
+        var target;
+        if (time === undefined) {
+            target = $(element.find(".streamer-timeline li")[0]);
+        } else {
+            target = $(element.find(".streamer-timeline .js-time-point-" + time.replace(":", "-"))[0]);
+        }
+
+        element.find(".events-area").animate({
+            scrollLeft: target[0].offsetLeft - element.find(".streams").width()
+        }, METRO_ANIMATION_DURATION);
     },
 
     enableStream: function(stream){
         var that = this, element = this.element, o = this.options, data = this.data;
         var index = stream.index();
-        stream.data("streamDisabled", false);
+        stream.removeClass("disabled").data("streamDisabled", false);
         element.find(".stream-events").eq(index).find(".stream-event").removeClass("disabled");
     },
 
     disableStream: function(stream){
         var that = this, element = this.element, o = this.options, data = this.data;
         var index = stream.index();
-        stream.data("streamDisabled", true);
+        stream.addClass("disabled").data("streamDisabled", true);
         element.find(".stream-events").eq(index).find(".stream-event").addClass("disabled");
     },
 
