@@ -75,9 +75,16 @@
                 </p>
 
                 <div class="example mt-3 p-0 no-border">
-                    <div data-role="streamer" data-source="data/streamer_data.json" data-start-from="09:00"></div>
+                    <div id="streamer" data-role="streamer" data-source="data/streamer_data.json" data-start-from="09:00"></div>
+                    <button class="button" onclick="getLink()">Get link</button>
+                    <div id="link_result"></div>
                 </div>
-
+                <script>
+                    function getLink(){
+                        var streamer = $("#streamer").data("streamer");
+                        $("#link_result").html(streamer.getLink());
+                    }
+                </script>
             </main>
         </div>
 

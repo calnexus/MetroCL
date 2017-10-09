@@ -57,7 +57,7 @@ var Streamer = {
             this.build();
         }
 
-        if (Utils.detectChrome() === true) {
+        if (Utils.detectChrome() === true && Utils.isTouchDevice() === false) {
             $("<p>").addClass("text-small text-muted").html("*) In Chrome browser please press and hold Shift and turn the mouse wheel.").insertAfter(element);
         }
 
@@ -76,6 +76,8 @@ var Streamer = {
         var timeline = $("<ul>").addClass("streamer-timeline").appendTo(events_area);
         var streamer_events = $("<div>").addClass("streamer-events").appendTo(events_area);
         var event_group_main = $("<div>").addClass("event-group").appendTo(streamer_events);
+        var StreamerIDS = Utils.getURIParameter(null, "StreamerIDS");
+        var StreamerIDS_a = StreamerIDS ? StreamerIDS.split(",") : [];
 
         if (data.actions !== undefined) {
             var actions = $("<div>").addClass("streamer-actions").appendTo(streams);
@@ -123,7 +125,7 @@ var Streamer = {
         // -- End timeline creator
 
         if (data.streams !== undefined) {
-            $.each(data.streams, function(){
+            $.each(data.streams, function(stream_index){
                 var item = this;
                 var stream = $("<div>").addClass("stream").addClass(this.cls).appendTo(streams);
                 stream.data("one", false);
@@ -141,8 +143,10 @@ var Streamer = {
                     .appendTo(event_group_main);
 
                 if (this.events !== undefined) {
-                    $.each(this.events, function(){
+                    $.each(this.events, function(event_index){
+                        var sid = stream_index+":"+event_index;
                         var event = $("<div>")
+                            .data("id", sid)
                             .addClass("stream-event")
                             .addClass("size-"+this.size+"x")
                             .addClass("shift-"+this.shift+"x")
@@ -160,6 +164,10 @@ var Streamer = {
                         $("<div>").addClass("title").html(this.title).appendTo(slide_data);
                         $("<div>").addClass("subtitle").html(this.subtitle).appendTo(slide_data);
                         $("<div>").addClass("desc").html(this.desc).appendTo(slide_data);
+
+                        if (StreamerIDS_a.indexOf(sid) !== -1) {
+                            event.addClass("selected");
+                        }
                     });
                 }
             });
@@ -247,6 +255,27 @@ var Streamer = {
         } else {
             this.disableStream(stream);
         }
+    },
+
+    getLink: function(){
+        var that = this, element = this.element, o = this.options, data = this.data;
+        var events = element.find(".stream-event");
+        var a = [];
+        var link;
+        var origin = window.location.href;
+
+        $.each(events, function(){
+            var event = $(this);
+            if (event.data("id") === undefined || !event.hasClass("selected")) {
+                return;
+            }
+
+            a.push(event.data("id"));
+        });
+
+        link = a.join(",");
+
+        return Utils.updateURIParameter(origin, "StreamerIDS", link);
     },
 
     changeAttribute: function(attributeName){
