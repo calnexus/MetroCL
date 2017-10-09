@@ -36,7 +36,8 @@
                     "subtitle": "Internet Invest Group",
                     "desc": "Information revolution - the way to new middle ages",
                     "size": 1,
-                    "shift": 0
+                    "shift": 0,
+                    "selected": 1
                 },
                 {
                     "icon": "images/ambass.jpg",

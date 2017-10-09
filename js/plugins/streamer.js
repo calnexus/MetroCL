@@ -165,7 +165,7 @@ var Streamer = {
                         $("<div>").addClass("subtitle").html(this.subtitle).appendTo(slide_data);
                         $("<div>").addClass("desc").html(this.desc).appendTo(slide_data);
 
-                        if (StreamerIDS_a.indexOf(sid) !== -1) {
+                        if (StreamerIDS_a.indexOf(sid) !== -1 || this.selected === true || parseInt(this.selected) === 1) {
                             event.addClass("selected");
                         }
                     });
