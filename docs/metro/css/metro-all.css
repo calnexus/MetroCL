@@ -7895,7 +7895,8 @@ figure img {
   margin-bottom: 1rem;
 }
 .streamer .streams {
-  width: 200px;
+  width: 40px;
+  overflow: visible;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-flow: column nowrap;
@@ -7915,8 +7916,7 @@ figure img {
   left: 0;
   width: 100%;
   height: 32px;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   -ms-flex-flow: row nowrap;
       flex-flow: row nowrap;
   -ms-flex-pack: start;
@@ -7947,7 +7947,7 @@ figure img {
 .streamer .stream {
   position: relative;
   height: 75px;
-  width: 100%;
+  width: 40px;
   padding: 4px 8px;
   display: -ms-flexbox;
   display: flex;
@@ -7957,10 +7957,15 @@ figure img {
   color: inherit;
   border: 2px solid #ffffff;
   cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  transition: width 0.3s ease;
 }
 .streamer .stream-title,
 .streamer .stream-secondary {
-  display: block;
+  display: none;
   z-index: 2;
 }
 .streamer .stream-title {
@@ -7976,8 +7981,10 @@ figure img {
 }
 .streamer .stream-icon {
   position: absolute;
-  bottom: 4px;
-  right: 4px;
+  top: 50%;
+  left: 50%;
+  margin-top: -16px;
+  margin-left: -16px;
   width: 32px;
   height: 32px;
   font-size: 24px;
@@ -7990,7 +7997,7 @@ figure img {
   -ms-flex-flow: column nowrap;
       flex-flow: column nowrap;
   overflow-x: auto;
-  padding-left: 200px;
+  padding-left: 40px;
   z-index: 1;
 }
 .streamer .streamer-timeline {
@@ -8243,6 +8250,150 @@ figure img {
 }
 .streamer .stream-event.shift-10x {
   margin-left: 2241px;
+}
+.streamer .stream:hover {
+  transition: width 0.3s ease;
+  width: 200px;
+}
+.streamer .stream:hover .stream-title,
+.streamer .stream:hover .stream-secondary {
+  display: block;
+}
+.streamer .stream:hover .stream-icon {
+  bottom: 4px;
+  right: 4px;
+  top: auto;
+  left: auto;
+}
+.streamer.streamer-expand .stream {
+  width: 200px;
+}
+.streamer.streamer-expand .streamer-actions {
+  display: -ms-flexbox;
+  display: flex;
+}
+.streamer.streamer-expand .stream-title,
+.streamer.streamer-expand .stream-secondary {
+  display: block;
+}
+.streamer.streamer-expand .stream-icon {
+  bottom: 4px;
+  right: 4px;
+  top: auto;
+  left: auto;
+}
+.streamer.streamer-expand .events-area {
+  padding-left: 200px;
+}
+@media screen and (min-width: 576px) {
+  .streamer.streamer-expand-sm .stream {
+    width: 200px;
+  }
+  .streamer.streamer-expand-sm .streamer-actions {
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .streamer.streamer-expand-sm .stream-title,
+  .streamer.streamer-expand-sm .stream-secondary {
+    display: block;
+  }
+  .streamer.streamer-expand-sm .stream-icon {
+    bottom: 4px;
+    right: 4px;
+    top: auto;
+    left: auto;
+  }
+  .streamer.streamer-expand-sm .events-area {
+    padding-left: 200px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .streamer.streamer-expand-md .stream {
+    width: 200px;
+  }
+  .streamer.streamer-expand-md .streamer-actions {
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .streamer.streamer-expand-md .stream-title,
+  .streamer.streamer-expand-md .stream-secondary {
+    display: block;
+  }
+  .streamer.streamer-expand-md .stream-icon {
+    bottom: 4px;
+    right: 4px;
+    top: auto;
+    left: auto;
+  }
+  .streamer.streamer-expand-md .events-area {
+    padding-left: 200px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .streamer.streamer-expand-lg .stream {
+    width: 200px;
+  }
+  .streamer.streamer-expand-lg .streamer-actions {
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .streamer.streamer-expand-lg .stream-title,
+  .streamer.streamer-expand-lg .stream-secondary {
+    display: block;
+  }
+  .streamer.streamer-expand-lg .stream-icon {
+    bottom: 4px;
+    right: 4px;
+    top: auto;
+    left: auto;
+  }
+  .streamer.streamer-expand-lg .events-area {
+    padding-left: 200px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .streamer.streamer-expand-xl .stream {
+    width: 200px;
+  }
+  .streamer.streamer-expand-xl .streamer-actions {
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .streamer.streamer-expand-xl .stream-title,
+  .streamer.streamer-expand-xl .stream-secondary {
+    display: block;
+  }
+  .streamer.streamer-expand-xl .stream-icon {
+    bottom: 4px;
+    right: 4px;
+    top: auto;
+    left: auto;
+  }
+  .streamer.streamer-expand-xl .events-area {
+    padding-left: 200px;
+  }
+}
+@media screen and (min-width: 1452px) {
+  .streamer.streamer-expand-xxl .stream {
+    width: 200px;
+  }
+  .streamer.streamer-expand-xxl .streamer-actions {
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .streamer.streamer-expand-xxl .stream-title,
+  .streamer.streamer-expand-xxl .stream-secondary {
+    display: block;
+  }
+  .streamer.streamer-expand-xxl .stream-icon {
+    bottom: 4px;
+    right: 4px;
+    top: auto;
+    left: auto;
+  }
+  .streamer.streamer-expand-xxl .events-area {
+    padding-left: 200px;
+  }
 }
 .draggable {
   animation: drag-flush 1s ease infinite;
