@@ -8,6 +8,7 @@
     display: block;
     width: 100%;
     overflow: hidden;
+    margin-bottom: 1rem;
 }
 
 .streamer {
@@ -249,6 +250,14 @@
             * + .subtitle {
                 margin-top: 2px;
             }
+        }
+
+        .closed-icon {
+            position: absolute;
+            z-index: @zindex-selectedCheck - 1;
+            top: 4px;
+            right: 8px;
+            color: @darkGray;
         }
     }
 }

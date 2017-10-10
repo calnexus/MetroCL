@@ -7892,6 +7892,7 @@ figure img {
   display: block;
   width: 100%;
   overflow: hidden;
+  margin-bottom: 1rem;
 }
 .streamer .streams {
   width: 200px;
@@ -8129,6 +8130,13 @@ figure img {
 }
 .streamer .stream-event-slide .slide-data * + .subtitle {
   margin-top: 2px;
+}
+.streamer .stream-event-slide .closed-icon {
+  position: absolute;
+  z-index: 99;
+  top: 4px;
+  right: 8px;
+  color: #858585;
 }
 .streamer .stream-event {
   position: relative;

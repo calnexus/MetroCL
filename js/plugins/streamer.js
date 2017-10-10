@@ -12,6 +12,8 @@ var Streamer = {
     },
 
     options: {
+        closed: false,
+        chromeNotice: false,
         startFrom: null,
         slideToStart: true,
         startSlideSleep: 1000,
@@ -58,7 +60,7 @@ var Streamer = {
             this.build();
         }
 
-        if (Utils.detectChrome() === true && Utils.isTouchDevice() === false) {
+        if (o.chromeNotice === true && Utils.detectChrome() === true && Utils.isTouchDevice() === false) {
             $("<p>").addClass("text-small text-muted").html("*) In Chrome browser please press and hold Shift and turn the mouse wheel.").insertAfter(element);
         }
 
@@ -166,8 +168,15 @@ var Streamer = {
                         $("<div>").addClass("subtitle").html(this.subtitle).appendTo(slide_data);
                         $("<div>").addClass("desc").html(this.desc).appendTo(slide_data);
 
-                        if (StreamerIDS_a.indexOf(sid) !== -1 || this.selected === true || parseInt(this.selected) === 1) {
+                        if (o.closed === false && StreamerIDS_a.indexOf(sid) !== -1 || this.selected === true || parseInt(this.selected) === 1) {
                             event.addClass("selected");
+                        }
+
+                        if (o.closed === true || this.closed === true || parseInt(this.closed) === 1) {
+                            $(this.closeIcon).addClass("closed-icon").appendTo(slide);
+                            event
+                                .data("closed", true)
+                                .data("target", this.target);
                         }
                     });
                 }
@@ -193,11 +202,18 @@ var Streamer = {
 
         element.on("click", ".stream-event", function(e){
             var event = $(this);
-            if (o.eventClick === 'select') {
+            if (o.closed === false && event.data("closed") !== true && o.eventClick === 'select') {
                 event.toggleClass("selected");
                 Utils.exec(o.onEventSelect, [event, event.hasClass("selected")]);
             } else {
                 Utils.exec(o.onEventClick, [event]);
+
+                if (o.closed === true || event.data("closed") === true) {
+                    var target = event.data("target");
+                    if (target) {
+                        window.location.href = target;
+                    }
+                }
             }
         });
 
