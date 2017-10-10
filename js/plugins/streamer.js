@@ -13,6 +13,7 @@ var Streamer = {
 
     options: {
         startFrom: null,
+        slideToStart: true,
         startSlideSleep: 1000,
         source: null,
         data: null,
@@ -181,6 +182,13 @@ var Streamer = {
                     var event = $("<div>").addClass("stream-event").html(this.html).appendTo(events);
                 });
             }
+            if (data.global.after !== undefined) {
+                $.each(data.global.after, function(){
+                    var group = $("<div>").addClass("event-group").addClass("size-"+this.size+"x").insertAfter(element.find(".event-group:last-child"));
+                    var events = $("<div>").addClass("stream-events global-stream").appendTo(group);
+                    var event = $("<div>").addClass("stream-event").html(this.html).appendTo(events);
+                });
+            }
         }
 
         element.on("click", ".stream-event", function(e){
@@ -212,7 +220,7 @@ var Streamer = {
 
         element.data("stream", -1);
 
-        if (o.startFrom !== null) {
+        if (o.startFrom !== null && o.slideToStart === true) {
             setTimeout(function(){
                 that.slideTo(o.startFrom);
             }, o.startSlideSleep);

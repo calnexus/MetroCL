@@ -19,7 +19,7 @@
     ],
     "timeline": {
         "start": "08:40",
-        "stop": "19:00",
+        "stop": "13:00",
         "step": 20
     },
     "streams": [
@@ -37,7 +37,7 @@
                     "desc": "Information revolution - the way to new middle ages",
                     "size": 1,
                     "shift": 0,
-                    "selected": 1
+                    "selected": 0
                 },
                 {
                     "icon": "images/ambass.jpg",
@@ -56,6 +56,33 @@
                     "desc": "Practical AI: what tasks are really solved using artificial intelligence technologies",
                     "size": 2,
                     "shift": 0
+                },
+                {
+                    "icon": "images/ChernodubAr.jpg",
+                    "time": "09:20",
+                    "title": "Artem Chernodub",
+                    "subtitle": "Clikque Technology",
+                    "desc": "Practical AI: what tasks are really solved using artificial intelligence technologies",
+                    "size": 1,
+                    "shift": 0
+                },
+                {
+                    "icon": "images/ChernodubAr.jpg",
+                    "time": "09:20",
+                    "title": "Artem Chernodub",
+                    "subtitle": "Clikque Technology",
+                    "desc": "Practical AI: what tasks are really solved using artificial intelligence technologies",
+                    "size": 2,
+                    "shift": 0
+                },
+                {
+                    "icon": "images/ChernodubAr.jpg",
+                    "time": "09:20",
+                    "title": "Artem Chernodub",
+                    "subtitle": "Clikque Technology",
+                    "desc": "Practical AI: what tasks are really solved using artificial intelligence technologies",
+                    "size": 1,
+                    "shift": 1
                 }
             ]
         },
@@ -73,6 +100,33 @@
                     "desc": "Practical AI: what tasks are really solved using artificial intelligence technologies",
                     "size": 2,
                     "shift": 1
+                },
+                {
+                    "icon": "images/ChernodubAr.jpg",
+                    "time": "09:20",
+                    "title": "Artem Chernodub",
+                    "subtitle": "Clikque Technology",
+                    "desc": "Practical AI: what tasks are really solved using artificial intelligence technologies",
+                    "size": 1,
+                    "shift": 1
+                },
+                {
+                    "icon": "images/ChernodubAr.jpg",
+                    "time": "09:20",
+                    "title": "Artem Chernodub",
+                    "subtitle": "Clikque Technology",
+                    "desc": "Practical AI: what tasks are really solved using artificial intelligence technologies",
+                    "size": 3,
+                    "shift": 0
+                },
+                {
+                    "icon": "images/ChernodubAr.jpg",
+                    "time": "09:20",
+                    "title": "Artem Chernodub",
+                    "subtitle": "Clikque Technology",
+                    "desc": "Practical AI: what tasks are really solved using artificial intelligence technologies",
+                    "size": 1,
+                    "shift": 0
                 }
             ]
         },
@@ -115,6 +169,24 @@
                     "subtitle": "Clikque Technology",
                     "desc": "Practical AI: what tasks are really solved using artificial intelligence technologies",
                     "size": 1,
+                    "shift": 3
+                },
+                {
+                    "icon": "images/ChernodubAr.jpg",
+                    "time": "09:20",
+                    "title": "Artem Chernodub",
+                    "subtitle": "Clikque Technology",
+                    "desc": "Practical AI: what tasks are really solved using artificial intelligence technologies",
+                    "size": 2,
+                    "shift": 0
+                },
+                {
+                    "icon": "images/ChernodubAr.jpg",
+                    "time": "09:20",
+                    "title": "Artem Chernodub",
+                    "subtitle": "Clikque Technology",
+                    "desc": "Practical AI: what tasks are really solved using artificial intelligence technologies",
+                    "size": 1,
                     "shift": 0
                 }
             ]
@@ -133,6 +205,33 @@
                     "desc": "Practical AI: what tasks are really solved using artificial intelligence technologies",
                     "size": 1,
                     "shift": 0
+                },
+                {
+                    "icon": "images/ChernodubAr.jpg",
+                    "time": "09:20",
+                    "title": "Artem Chernodub",
+                    "subtitle": "Clikque Technology",
+                    "desc": "Practical AI: what tasks are really solved using artificial intelligence technologies",
+                    "size": 2,
+                    "shift": 1
+                },
+                {
+                    "icon": "images/ChernodubAr.jpg",
+                    "time": "09:20",
+                    "title": "Artem Chernodub",
+                    "subtitle": "Clikque Technology",
+                    "desc": "Practical AI: what tasks are really solved using artificial intelligence technologies",
+                    "size": 2,
+                    "shift": 0
+                },
+                {
+                    "icon": "images/ChernodubAr.jpg",
+                    "time": "09:20",
+                    "title": "Artem Chernodub",
+                    "subtitle": "Clikque Technology",
+                    "desc": "Practical AI: what tasks are really solved using artificial intelligence technologies",
+                    "size": 2,
+                    "shift": 0
                 }
             ]
         },
@@ -150,6 +249,69 @@
                     "desc": "Practical AI: what tasks are really solved using artificial intelligence technologies",
                     "size": 1,
                     "shift": 0
+                },
+                {
+                    "icon": "images/ChernodubAr.jpg",
+                    "time": "09:20",
+                    "title": "Artem Chernodub",
+                    "subtitle": "Clikque Technology",
+                    "desc": "Practical AI: what tasks are really solved using artificial intelligence technologies",
+                    "size": 1,
+                    "shift": 0
+                },
+                {
+                    "icon": "images/ChernodubAr.jpg",
+                    "time": "09:20",
+                    "title": "Artem Chernodub",
+                    "subtitle": "Clikque Technology",
+                    "desc": "Practical AI: what tasks are really solved using artificial intelligence technologies",
+                    "size": 1,
+                    "shift": 0
+                },
+                {
+                    "icon": "images/ChernodubAr.jpg",
+                    "time": "09:20",
+                    "title": "Artem Chernodub",
+                    "subtitle": "Clikque Technology",
+                    "desc": "Practical AI: what tasks are really solved using artificial intelligence technologies",
+                    "size": 1,
+                    "shift": 0
+                },
+                {
+                    "icon": "images/ChernodubAr.jpg",
+                    "time": "09:20",
+                    "title": "Artem Chernodub",
+                    "subtitle": "Clikque Technology",
+                    "desc": "Practical AI: what tasks are really solved using artificial intelligence technologies",
+                    "size": 1,
+                    "shift": 0
+                },
+                {
+                    "icon": "images/ChernodubAr.jpg",
+                    "time": "09:20",
+                    "title": "Artem Chernodub",
+                    "subtitle": "Clikque Technology",
+                    "desc": "Practical AI: what tasks are really solved using artificial intelligence technologies",
+                    "size": 1,
+                    "shift": 0
+                },
+                {
+                    "icon": "images/ChernodubAr.jpg",
+                    "time": "09:20",
+                    "title": "Artem Chernodub",
+                    "subtitle": "Clikque Technology",
+                    "desc": "Practical AI: what tasks are really solved using artificial intelligence technologies",
+                    "size": 1,
+                    "shift": 0
+                },
+                {
+                    "icon": "images/ChernodubAr.jpg",
+                    "time": "09:20",
+                    "title": "Artem Chernodub",
+                    "subtitle": "Clikque Technology",
+                    "desc": "Practical AI: what tasks are really solved using artificial intelligence technologies",
+                    "size": 2,
+                    "shift": 0
                 }
             ]
         }
@@ -162,6 +324,17 @@
                 "html": "<div class='p-1'><div>08:00 - 09:00</div><h2 class=\"text-light\">Registration</h2></div>"
             }
         ],
-        "after": []
+        "after": [
+            {
+                "size": 2,
+                "shift": 0,
+                "html": "<div class='p-1'><h2 class=\"text-light\">Closing ceremony</h2></div>"
+            },
+            {
+                "size": 2,
+                "shift": 0,
+                "html": "<div class='p-1'><h2 class=\"text-light\">Banquet</h2></div>"
+            }
+        ]
     }
 }
