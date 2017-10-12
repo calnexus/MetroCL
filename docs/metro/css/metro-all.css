@@ -7436,7 +7436,7 @@ form[data-role*=validator] .invalid_feedback {
   height: auto;
   position: relative;
 }
-.img-container .overlay {
+.img-container .image-overlay {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -7453,19 +7453,19 @@ form[data-role*=validator] .invalid_feedback {
   border-radius: inherit;
   transition: all 0.3s ease-in-out;
 }
-.img-container .overlay * {
+.img-container .image-overlay * {
   color: #ffffff;
 }
-.img-container .overlay:hover {
+.img-container .image-overlay:hover {
   opacity: 1;
 }
-.img-container .overlay:hover:before,
-.img-container .overlay:hover:after {
+.img-container .image-overlay:hover:before,
+.img-container .image-overlay:hover:after {
   opacity: 1;
   transform: scale(1);
 }
-.img-container .overlay:before,
-.img-container .overlay:after {
+.img-container .image-overlay:before,
+.img-container .image-overlay:after {
   display: block;
   position: absolute;
   content: "";
@@ -7479,13 +7479,13 @@ form[data-role*=validator] .invalid_feedback {
   transform: scale(1.5);
   transition: all 0.3s ease-in-out;
 }
-.img-container .overlay:after {
+.img-container .image-overlay:after {
   border-left: none;
   border-right: none;
   bottom: 1em;
   top: 1em;
 }
-.img-container .overlay:before {
+.img-container .image-overlay:before {
   border-top: none;
   border-bottom: none;
   bottom: 1em;
@@ -7922,21 +7922,26 @@ figure img {
   -ms-flex-pack: start;
       justify-content: flex-start;
   background-color: inherit;
+  z-index: 101;
 }
 .streamer .streamer-action {
   margin: 1px;
   height: 26px;
   width: 26px;
-  border: 1px solid #dfdfdf;
+  border: 0px solid #dfdfdf;
   line-height: 26px;
   text-align: center;
   cursor: pointer;
   background-color: #ffffff;
   color: #1d1d1d;
   outline: none;
+  padding: 0;
 }
 .streamer .streamer-action * {
   vertical-align: inherit ;
+  font-size: 26px;
+  width: 100%!important;
+  height: 100%!important;
 }
 .streamer a.streamer-action {
   color: #1d1d1d;
@@ -7999,6 +8004,7 @@ figure img {
   overflow-x: auto;
   padding-left: 40px;
   z-index: 1;
+  -webkit-overflow-scrolling: touch;
 }
 .streamer .streamer-timeline {
   height: 32px;
@@ -8271,6 +8277,7 @@ figure img {
 .streamer.streamer-expand .streamer-actions {
   display: -ms-flexbox;
   display: flex;
+  width: 200px;
 }
 .streamer.streamer-expand .stream-title,
 .streamer.streamer-expand .stream-secondary {
@@ -8292,6 +8299,7 @@ figure img {
   .streamer.streamer-expand-sm .streamer-actions {
     display: -ms-flexbox;
     display: flex;
+    width: 200px;
   }
   .streamer.streamer-expand-sm .stream-title,
   .streamer.streamer-expand-sm .stream-secondary {
@@ -8314,6 +8322,7 @@ figure img {
   .streamer.streamer-expand-md .streamer-actions {
     display: -ms-flexbox;
     display: flex;
+    width: 200px;
   }
   .streamer.streamer-expand-md .stream-title,
   .streamer.streamer-expand-md .stream-secondary {
@@ -8336,6 +8345,7 @@ figure img {
   .streamer.streamer-expand-lg .streamer-actions {
     display: -ms-flexbox;
     display: flex;
+    width: 200px;
   }
   .streamer.streamer-expand-lg .stream-title,
   .streamer.streamer-expand-lg .stream-secondary {
@@ -8358,6 +8368,7 @@ figure img {
   .streamer.streamer-expand-xl .streamer-actions {
     display: -ms-flexbox;
     display: flex;
+    width: 200px;
   }
   .streamer.streamer-expand-xl .stream-title,
   .streamer.streamer-expand-xl .stream-secondary {
@@ -8380,6 +8391,7 @@ figure img {
   .streamer.streamer-expand-xxl .streamer-actions {
     display: -ms-flexbox;
     display: flex;
+    width: 200px;
   }
   .streamer.streamer-expand-xxl .stream-title,
   .streamer.streamer-expand-xxl .stream-secondary {

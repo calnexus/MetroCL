@@ -39,22 +39,27 @@
         flex-flow: row nowrap;
         justify-content: flex-start;
         background-color: inherit;
+        z-index: @zindex-selectedCheck + 1;
     }
 
     .streamer-action {
         margin: 1px;
         height: 26px;
         width: 26px;
-        border: 1px solid @borderColor;
+        border: 0px solid @borderColor;
         line-height: 26px;
         text-align: center;
         cursor: pointer;
         background-color: @white;
         color: @dark;
         outline: none;
+        padding: 0;
 
         * {
             vertical-align: inherit ;
+            font-size: 26px;
+            width: 100%!important;
+            height: 100%!important;
         }
     }
 
@@ -120,6 +125,7 @@
         overflow-x: auto;
         padding-left: 40px;
         z-index: 1;
+        -webkit-overflow-scrolling: touch;
     }
 
     .streamer-timeline {
@@ -349,6 +355,7 @@
 
     .streamer-actions {
         display: flex;
+        width: 200px;
     }
 
     .stream-title, .stream-secondary {

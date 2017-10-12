@@ -1,0 +1,23 @@
+.times-list {
+    list-style: none inside;
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    justify-content: space-between;
+
+    li {
+        display: block;
+        height: 32px;
+        width: 32px;
+        background-color: #7b96a3;
+        margin: 4px;
+        cursor: pointer;
+        padding: 4px 0;
+
+        &.events-selected {
+            background-color: #00bd00;
+        }
+    }
+}

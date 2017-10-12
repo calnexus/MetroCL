@@ -12,6 +12,8 @@ var Streamer = {
     },
 
     options: {
+        changeUri: true,
+        encodeLink: true,
         closed: false,
         chromeNotice: false,
         startFrom: null,
@@ -47,6 +49,10 @@ var Streamer = {
 
         element.addClass("streamer");
 
+        if (element.attr("id") === undefined) {
+            element.attr("id", Utils.uniqueId());
+        }
+
         if (o.source === null && o.data === null) {
             return false;
         }
@@ -66,11 +72,18 @@ var Streamer = {
         }
 
         if (Utils.isTouchDevice() !== true) {
-            $(element).on('mousewheel DOMMouseScroll', ".events-area", function (event) {
-                var delta = Math.max(-1, Math.min(1, (event.originalEvent.wheelDelta || -event.originalEvent.detail)));
-                var scroll = $(this).scrollLeft() - ( delta * 40 );
-                $(this).scrollLeft(scroll);
-                event.preventDefault();
+            $(element).on("mousewheel", ".events-area", function(e) {
+                var acrollable = $(this);
+
+                if (e.deltaY === undefined || e.deltaFactor === undefined) {
+                    return ;
+                }
+
+                if (e.deltaFactor > 1) {
+                    var scroll = acrollable.scrollLeft() - ( e.deltaY * 30 );
+                    acrollable.scrollLeft(scroll);
+                    e.preventDefault();
+                }
             });
         }
     },
@@ -83,7 +96,13 @@ var Streamer = {
         var streamer_events = $("<div>").addClass("streamer-events").appendTo(events_area);
         var event_group_main = $("<div>").addClass("event-group").appendTo(streamer_events);
         var StreamerIDS = Utils.getURIParameter(null, "StreamerIDS");
-        var StreamerIDS_a = StreamerIDS ? StreamerIDS.split(",") : [];
+
+        if (StreamerIDS !== null && o.encodeLink === true) {
+            StreamerIDS = atob(StreamerIDS);
+        }
+
+        var StreamerIDS_i = StreamerIDS ? StreamerIDS.split("|")[0] : null;
+        var StreamerIDS_a = StreamerIDS ? StreamerIDS.split("|")[1].split(",") : [];
 
         if (data.actions !== undefined) {
             var actions = $("<div>").addClass("streamer-actions").appendTo(streams);
@@ -132,13 +151,16 @@ var Streamer = {
 
         if (data.streams !== undefined) {
             $.each(data.streams, function(stream_index){
-                var item = this;
+                var stream_item = this;
                 var stream = $("<div>").addClass("stream").addClass(this.cls).appendTo(streams);
-                stream.data("one", false);
+                stream
+                    .addClass(stream_item.cls)
+                    .data("one", false)
+                    .data("data", stream_item.data);
 
-                $("<div>").addClass("stream-title").html(this.title).appendTo(stream);
-                $("<div>").addClass("stream-secondary").html(this.secondary).appendTo(stream);
-                $(this.icon).addClass("stream-icon").appendTo(stream);
+                $("<div>").addClass("stream-title").html(stream_item.title).appendTo(stream);
+                $("<div>").addClass("stream-secondary").html(stream_item.secondary).appendTo(stream);
+                $(stream_item.icon).addClass("stream-icon").appendTo(stream);
 
                 var bg = Utils.computedRgbToHex(Utils.getStyleOne(stream, "background-color"));
                 var fg = Utils.computedRgbToHex(Utils.getStyleOne(stream, "color"));
@@ -148,38 +170,43 @@ var Streamer = {
                     .data("text-color", fg)
                     .appendTo(event_group_main);
 
-                if (this.events !== undefined) {
-                    $.each(this.events, function(event_index){
+                if (stream_item.events !== undefined) {
+                    $.each(stream_item.events, function(event_index){
+                        var event_item = this;
                         var sid = stream_index+":"+event_index;
                         var event = $("<div>")
-                            .data("id", sid)
+                            .data("origin", event_item)
+                            .data("sid", sid)
+                            .data("data", event_item.data)
+                            .data("time", event_item.time)
                             .addClass("stream-event")
-                            .addClass("size-"+this.size+"x")
-                            .addClass("shift-"+this.shift+"x")
+                            .addClass("size-"+event_item.size+"x")
+                            .addClass("shift-"+event_item.shift+"x")
+                            .addClass(event_item.cls)
                             .appendTo(stream_events);
                         var slide = $("<div>").addClass("stream-event-slide").appendTo(event);
                         var slide_logo = $("<div>").addClass("slide-logo").appendTo(slide);
                         var slide_data = $("<div>").addClass("slide-data").appendTo(slide);
 
-                        $("<img>").addClass("icon").attr("src", this.icon).appendTo(slide_logo);
+                        $("<img>").addClass("icon").attr("src", event_item.icon).appendTo(slide_logo);
                         $("<span>").addClass("time").css({
                             backgroundColor: bg,
                             color: fg
-                        }).html(this.time).appendTo(slide_logo);
+                        }).html(event_item.time).appendTo(slide_logo);
 
-                        $("<div>").addClass("title").html(this.title).appendTo(slide_data);
-                        $("<div>").addClass("subtitle").html(this.subtitle).appendTo(slide_data);
-                        $("<div>").addClass("desc").html(this.desc).appendTo(slide_data);
+                        $("<div>").addClass("title").html(event_item.title).appendTo(slide_data);
+                        $("<div>").addClass("subtitle").html(event_item.subtitle).appendTo(slide_data);
+                        $("<div>").addClass("desc").html(event_item.desc).appendTo(slide_data);
 
-                        if (o.closed === false && StreamerIDS_a.indexOf(sid) !== -1 || this.selected === true || parseInt(this.selected) === 1) {
+                        if (o.closed === false && (element.attr("id") === StreamerIDS_i && StreamerIDS_a.indexOf(sid) !== -1) || event_item.selected === true || parseInt(event_item.selected) === 1) {
                             event.addClass("selected");
                         }
 
-                        if (o.closed === true || this.closed === true || parseInt(this.closed) === 1) {
-                            $(this.closeIcon).addClass("closed-icon").appendTo(slide);
+                        if (o.closed === true || event_item.closed === true || parseInt(event_item.closed) === 1) {
+                            $(event_item.closeIcon).addClass("closed-icon").appendTo(slide);
                             event
                                 .data("closed", true)
-                                .data("target", this.target);
+                                .data("target", event_item.target);
                         }
                     });
                 }
@@ -187,26 +214,41 @@ var Streamer = {
         }
 
         if (data.global !== undefined) {
-            if (data.global.before !== undefined) {
-                $.each(data.global.before, function(){
-                    var group = $("<div>").addClass("event-group").addClass("size-"+this.size+"x").insertBefore(event_group_main);
-                    var events = $("<div>").addClass("stream-events global-stream").appendTo(group);
-                    var event = $("<div>").addClass("stream-event").html(this.html).appendTo(events);
-                });
-            }
-            if (data.global.after !== undefined) {
-                $.each(data.global.after, function(){
-                    var group = $("<div>").addClass("event-group").addClass("size-"+this.size+"x").insertAfter(element.find(".event-group:last-child"));
-                    var events = $("<div>").addClass("stream-events global-stream").appendTo(group);
-                    var event = $("<div>").addClass("stream-event").html(this.html).appendTo(events);
-                });
-            }
+            $.each(['before', 'after'], function(){
+                var global_item = this;
+                if (data.global[global_item] !== undefined) {
+                    $.each(data.global[global_item], function(){
+                        var event_item = this;
+                        var group = $("<div>").addClass("event-group").addClass("size-"+event_item.size+"x");
+                        var events = $("<div>").addClass("stream-events global-stream").appendTo(group);
+                        var event = $("<div>").addClass("stream-event").appendTo(events);
+                        event
+                            .addClass(event_item.cls)
+                            .data("time", event_item.time)
+                            .data("origin", event_item)
+                            .data("data", event_item.data);
+
+                        $("<div>").addClass("event-title").html(event_item.title).appendTo(event);
+                        $("<div>").addClass("event-subtitle").html(event_item.subtitle).appendTo(event);
+                        $("<div>").addClass("event-html").html(event_item.html).appendTo(event);
+
+                        if (global_item === 'before') {
+                            group.insertBefore(event_group_main);
+                        } else {
+                            group.insertAfter(element.find(".event-group:last-child"));
+                        }
+                    });
+                }
+            });
         }
 
         element.on("click", ".stream-event", function(e){
             var event = $(this);
             if (o.closed === false && event.data("closed") !== true && o.eventClick === 'select') {
                 event.toggleClass("selected");
+                if (o.changeUri === true) {
+                    that.changeURI();
+                }
                 Utils.exec(o.onEventSelect, [event, event.hasClass("selected")]);
             } else {
                 Utils.exec(o.onEventClick, [event]);
@@ -253,6 +295,7 @@ var Streamer = {
     },
 
     slideTo: function(time){
+        console.log(time);
         var that = this, element = this.element, o = this.options, data = this.data;
         var target;
         if (time === undefined) {
@@ -262,7 +305,7 @@ var Streamer = {
         }
 
         element.find(".events-area").animate({
-            scrollLeft: target[0].offsetLeft - element.find(".streams").width()
+            scrollLeft: target[0].offsetLeft - element.find(".streams .stream").outerWidth()
         }, METRO_ANIMATION_DURATION);
     },
 
@@ -297,16 +340,60 @@ var Streamer = {
 
         $.each(events, function(){
             var event = $(this);
-            if (event.data("id") === undefined || !event.hasClass("selected")) {
+            if (event.data("sid") === undefined || !event.hasClass("selected")) {
                 return;
             }
 
-            a.push(event.data("id"));
+            a.push(event.data("sid"));
         });
 
-        link = a.join(",");
+        link = element.attr("id") + "|" + a.join(",");
+
+        if (o.encodeLink === true) {
+            link = btoa(link);
+        }
 
         return Utils.updateURIParameter(origin, "StreamerIDS", link);
+    },
+
+    getTimes: function(){
+        var that = this, element = this.element, o = this.options, data = this.data;
+        var times = element.find(".streamer-timeline > li");
+        var result = [];
+        $.each(times, function(){
+            result.push($(this).data("time"));
+        });
+        return result;
+    },
+
+    getEvents: function(event_type, include_global){
+        var that = this, element = this.element, o = this.options, data = this.data;
+        var items, events = [];
+
+        switch (event_type) {
+            case "selected": items = element.find(".stream-event.selected"); break;
+            case "non-selected": items = element.find(".stream-event:not(.selected)"); break;
+            default: items = element.find(".stream-event");
+        }
+
+        $.each(items, function(){
+            var item = $(this);
+            var origin;
+
+            if (include_global !== true && item.parent().hasClass("global-stream")) return ;
+
+            origin = item.data("origin");
+
+            events.push(origin);
+        });
+
+        return events;
+    },
+
+    changeURI: function(){
+        var that = this, element = this.element, o = this.options, data = this.data;
+        var link = this.getLink();
+        history.pushState({}, document.title, link);
     },
 
     changeAttribute: function(attributeName){
