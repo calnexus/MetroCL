@@ -65,10 +65,36 @@
             var streamer = $("#streamer").data("streamer");
             var times = streamer.getTimes();
             var times_list = $(".times-list");
+            var events = streamer.getEvents("selected", true);
 
             $.each(times, function(){
                 var time = this;
                 $("<li>").addClass("-js-quick-access-"+time.replace(":", "-")).data("time", time).data("selected", 0).appendTo(times_list);
+            });
+
+            $.each(events, function(){
+                var time = this.time;
+                var times_list = $(".times-list");
+                var li = times_list.find(".-js-quick-access-"+time.replace(":", "-"));
+                var selected_count = li.data("selected");
+
+                function clearClass(li){
+                    li.removeClass("bg-yellow bg-green bg-red");
+                }
+
+                selected_count += 1;
+
+                clearClass(li);
+
+                if (selected_count === 1) {
+                    li.addClass("bg-yellow");
+                } else if (selected_count === 2 ) {
+                    li.addClass("bg-green");
+                } else if (selected_count >= 3 ) {
+                    li.addClass("bg-red");
+                }
+
+                li.data("selected", selected_count);
             });
 
             $(document).on("click", ".times-list li", function(){
