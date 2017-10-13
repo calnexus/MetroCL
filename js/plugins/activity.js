@@ -1,4 +1,4 @@
-var Preloader = {
+var Activity = {
     init: function( options, elem ) {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
@@ -15,6 +15,8 @@ var Preloader = {
     options: {
         type: "ring",
         style: "light",
+        size: 64,
+        radius: 20,
         onCreate: Metro.noop
     },
 
@@ -39,7 +41,7 @@ var Preloader = {
         element
             .html('')
             .addClass(o.style + "-style")
-            .addClass("preloader-" + o.type);
+            .addClass("activity-" + o.type);
 
         function _metro(){
             for(i = 0; i < 5 ; i++) {
@@ -64,10 +66,15 @@ var Preloader = {
             }
         }
 
+        function _simple(){
+            $('<svg class="circular"><circle class="path" cx="'+o.size/2+'" cy="'+o.size/2+'" r="'+o.radius+'" fill="none" stroke-width="2" stroke-miterlimit="10"/></svg>').appendTo(element);
+        }
+
         switch (o.type) {
             case 'metro': _metro(); break;
             case 'square': _square(); break;
             case 'cycle': _cycle(); break;
+            case 'simple': _simple(); break;
             default: _ring();
         }
     },
@@ -77,4 +84,4 @@ var Preloader = {
     }
 };
 
-Metro.plugin('preloader', Preloader);
+Metro.plugin('activity', Activity);

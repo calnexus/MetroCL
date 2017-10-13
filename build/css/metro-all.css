@@ -10372,26 +10372,26 @@ figure img {
     display: none;
   }
 }
-.preloader-ring {
+.activity-ring {
   position: relative;
   padding-top: .22rem;
   width: 32px;
   height: 32px;
   margin: .625rem;
 }
-.preloader-ring > .wrap {
+.activity-ring > .wrap {
   position: absolute;
   width: 30px;
   height: 30px;
 }
-.preloader-ring > .wrap > .circle {
+.activity-ring > .wrap > .circle {
   opacity: 0;
   width: 30px;
   height: 30px;
   transform: rotate(225deg);
   animation: orbit 4000ms infinite;
 }
-.preloader-ring > .wrap > .circle:after {
+.activity-ring > .wrap > .circle:after {
   position: absolute;
   content: '';
   width: 4px;
@@ -10399,56 +10399,56 @@ figure img {
   border-radius: 4px;
   background: #ffffff;
 }
-.preloader-ring > .wrap:nth-child(2) {
+.activity-ring > .wrap:nth-child(2) {
   transform: rotate(-14deg);
 }
-.preloader-ring > .wrap:nth-child(2) > .circle {
+.activity-ring > .wrap:nth-child(2) > .circle {
   animation-delay: 133.33333333ms;
 }
-.preloader-ring > .wrap:nth-child(3) {
+.activity-ring > .wrap:nth-child(3) {
   transform: rotate(-28deg);
 }
-.preloader-ring > .wrap:nth-child(3) > .circle {
+.activity-ring > .wrap:nth-child(3) > .circle {
   animation-delay: 266.66666667ms;
 }
-.preloader-ring > .wrap:nth-child(4) {
+.activity-ring > .wrap:nth-child(4) {
   transform: rotate(-42deg);
 }
-.preloader-ring > .wrap:nth-child(4) > .circle {
+.activity-ring > .wrap:nth-child(4) > .circle {
   animation-delay: 400ms;
 }
-.preloader-ring > .wrap:nth-child(5) {
+.activity-ring > .wrap:nth-child(5) {
   transform: rotate(-56deg);
 }
-.preloader-ring > .wrap:nth-child(5) > .circle {
+.activity-ring > .wrap:nth-child(5) > .circle {
   animation-delay: 533.33333333ms;
 }
-.preloader-ring.dark-style > .wrap > .circle:after {
+.activity-ring.dark-style > .wrap > .circle:after {
   background-color: #858585;
 }
-.preloader-ring.color-style > .wrap > .circle:after {
+.activity-ring.color-style > .wrap > .circle:after {
   background-color: #1ba1e2;
 }
-.preloader-ring.color-style > .wrap:nth-child(2) > .circle:after {
+.activity-ring.color-style > .wrap:nth-child(2) > .circle:after {
   background-color: #fa6800;
 }
-.preloader-ring.color-style > .wrap:nth-child(3) > .circle:after {
+.activity-ring.color-style > .wrap:nth-child(3) > .circle:after {
   background-color: #60a917;
 }
-.preloader-ring.color-style > .wrap:nth-child(4) > .circle:after {
+.activity-ring.color-style > .wrap:nth-child(4) > .circle:after {
   background-color: #CE352C;
 }
-.preloader-ring.color-style > .wrap:nth-child(5) > .circle:after {
+.activity-ring.color-style > .wrap:nth-child(5) > .circle:after {
   background-color: #fff000;
 }
-.preloader-metro {
+.activity-metro {
   overflow: hidden;
   position: relative;
   width: 100%;
   height: 10px;
   background-color: transparent;
 }
-.preloader-metro > .circle {
+.activity-metro > .circle {
   display: inline-block;
   position: absolute;
   width: 10px;
@@ -10458,37 +10458,37 @@ figure img {
   margin-left: 5px;
   animation: metro-slide 3s cubic-bezier(0.1, 0.85, 0.9, 0.15) infinite, metro-opacity 2s ease-in-out infinite alternate;
 }
-.preloader-metro > .circle:nth-child(2) {
+.activity-metro > .circle:nth-child(2) {
   animation-delay: .8s;
 }
-.preloader-metro > .circle:nth-child(3) {
+.activity-metro > .circle:nth-child(3) {
   animation-delay: .7s;
 }
-.preloader-metro > .circle:nth-child(4) {
+.activity-metro > .circle:nth-child(4) {
   animation-delay: .6s;
 }
-.preloader-metro > .circle:nth-child(5) {
+.activity-metro > .circle:nth-child(5) {
   animation-delay: .5s;
 }
-.preloader-metro.dark-style > .circle {
+.activity-metro.dark-style > .circle {
   background-color: #858585;
 }
-.preloader-metro.color-style > .circle {
+.activity-metro.color-style > .circle {
   background-color: #1ba1e2;
 }
-.preloader-metro.color-style > .circle:nth-child(2) {
+.activity-metro.color-style > .circle:nth-child(2) {
   background-color: #fa6800;
 }
-.preloader-metro.color-style > .circle:nth-child(3) {
+.activity-metro.color-style > .circle:nth-child(3) {
   background-color: #60a917;
 }
-.preloader-metro.color-style > .circle:nth-child(4) {
+.activity-metro.color-style > .circle:nth-child(4) {
   background-color: #CE352C;
 }
-.preloader-metro.color-style > .circle:nth-child(5) {
+.activity-metro.color-style > .circle:nth-child(5) {
   background-color: #fff000;
 }
-.preloader-square {
+.activity-square {
   position: relative;
   width: 40px;
   height: 40px;
@@ -10496,53 +10496,53 @@ figure img {
   transform-origin: bottom left;
   animation: ani-shrink 1s linear infinite;
 }
-.preloader-square .square {
+.activity-square .square {
   position: absolute;
   width: 19px;
   height: 19px;
   background: #ffffff;
 }
-.preloader-square .square:nth-child(1) {
+.activity-square .square:nth-child(1) {
   left: 0;
   top: 21px;
 }
-.preloader-square .square:nth-child(2) {
+.activity-square .square:nth-child(2) {
   left: 21px;
   top: 21px;
   animation: ani-drop 1s linear infinite;
 }
-.preloader-square .square:nth-child(3) {
+.activity-square .square:nth-child(3) {
   left: 0;
   top: 0;
   animation: ani-drop2 1s linear infinite;
 }
-.preloader-square .square:nth-child(4) {
+.activity-square .square:nth-child(4) {
   left: 21px;
   top: 0;
   animation: ani-drop3 1s linear infinite;
 }
-.preloader-square.dark-style > .square {
+.activity-square.dark-style > .square {
   background-color: #858585;
 }
-.preloader-square.color-style > .square:nth-child(1) {
+.activity-square.color-style > .square:nth-child(1) {
   background-color: #fa6800;
 }
-.preloader-square.color-style > .square:nth-child(2) {
+.activity-square.color-style > .square:nth-child(2) {
   background-color: #60a917;
 }
-.preloader-square.color-style > .square:nth-child(3) {
+.activity-square.color-style > .square:nth-child(3) {
   background-color: #1ba1e2;
 }
-.preloader-square.color-style > .square:nth-child(4) {
+.activity-square.color-style > .square:nth-child(4) {
   background-color: #fff000;
 }
-.preloader-cycle {
+.activity-cycle {
   width: 64px;
   height: 64px;
   position: relative;
   overflow: hidden;
 }
-.preloader-cycle .cycle {
+.activity-cycle .cycle {
   display: block;
   position: relative;
   left: 50%;
@@ -10556,45 +10556,193 @@ figure img {
   animation: ani-pre-spin 1s linear infinite;
   z-index: 1001;
 }
-.preloader-cycle .cycle::before,
-.preloader-cycle .cycle::after {
+.activity-cycle .cycle::before,
+.activity-cycle .cycle::after {
   content: "";
   position: absolute;
   border-radius: 50%;
   border: 3px solid transparent;
   border-top-color: #ffffff;
 }
-.preloader-cycle .cycle:before {
+.activity-cycle .cycle:before {
   top: 5px;
   left: 5px;
   right: 5px;
   bottom: 5px;
   animation: ani-pre-spin 2s linear infinite;
 }
-.preloader-cycle .cycle:after {
+.activity-cycle .cycle:after {
   top: 15px;
   left: 15px;
   right: 15px;
   bottom: 15px;
   animation: spin 1.5s linear infinite;
 }
-.preloader-cycle.dark-style .cycle {
+.activity-cycle.dark-style .cycle {
   border-top-color: #1d1d1d;
 }
-.preloader-cycle.dark-style .cycle:before {
+.activity-cycle.dark-style .cycle:before {
   border-top-color: #1d1d1d;
 }
-.preloader-cycle.dark-style .cycle:after {
+.activity-cycle.dark-style .cycle:after {
   border-top-color: #1d1d1d;
 }
-.preloader-cycle.color-style .cycle {
+.activity-cycle.color-style .cycle {
   border-top-color: #1ba1e2;
 }
-.preloader-cycle.color-style .cycle:before {
+.activity-cycle.color-style .cycle:before {
   border-top-color: #CE352C;
 }
-.preloader-cycle.color-style .cycle:after {
+.activity-cycle.color-style .cycle:after {
   border-top-color: #fff000;
+}
+.activity-simple {
+  width: 64px;
+  height: 64px;
+}
+.activity-simple .circular {
+  animation: rotate 2s linear infinite;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.activity-simple .path {
+  stroke-dasharray: 1,200;
+  stroke-dashoffset: 0;
+  animation: dash 1.5s ease-in-out infinite;
+  stroke-linecap: round;
+  stroke: #ffffff;
+}
+.activity-simple.dark-style .path {
+  stroke: #1d1d1d;
+}
+.activity-simple.color-style .path {
+  animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+}
+.activity-simple.small {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+.activity-simple.small .circular {
+  width: 32px;
+  height: 32px;
+}
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1,200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89,200;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 89,200;
+    stroke-dashoffset: -124;
+  }
+}
+@keyframes color {
+  100%,
+  0% {
+    stroke: #CE352C;
+  }
+  40% {
+    stroke: #00AFF0;
+  }
+  66% {
+    stroke: #60a917;
+  }
+  80%,
+  90% {
+    stroke: #fff000;
+  }
+}
+.progress {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 12px;
+  background-color: #eeeeee;
+  overflow: hidden;
+}
+.progress.with-buffer {
+  background: transparent;
+}
+.progress .bar,
+.progress .buffer,
+.progress .load {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+.progress .load {
+  width: 100%;
+  animation: progress-loading 3s infinite linear;
+  background: radial-gradient(#a9c0e9 0%, #a9c0e9 16%, transparent 42%);
+  background-size: 12px 12px;
+  z-index: 1;
+  margin-top: -1px;
+}
+.progress .buffer {
+  z-index: 2;
+  background-color: #CE352C;
+}
+.progress .bar {
+  z-index: 3;
+  background: #60a917;
+}
+.progress.line {
+  background-color: #b3d4fc;
+  display: -ms-flexbox;
+  display: flex;
+}
+.progress.line::before {
+  height: 100%;
+  width: 100%;
+  background-color: #004d6f;
+  content: '';
+  animation: running-progress 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+.progress.small {
+  height: 6px;
+}
+.progress.small .load {
+  background-size: 6px 6px;
+}
+@keyframes progress-loading {
+  0% {
+    opacity: 1;
+    background-position: 0px -23px;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    background-position: -200px -23px;
+  }
+}
+@keyframes running-progress {
+  0% {
+    margin-left: 0;
+    margin-right: 100%;
+  }
+  50% {
+    margin-left: 25%;
+    margin-right: 0;
+  }
+  100% {
+    margin-left: 100%;
+    margin-right: 0;
+  }
 }
 .ripple {
   display: block;
