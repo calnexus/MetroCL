@@ -10671,7 +10671,7 @@ figure img {
   background-color: #eeeeee;
   overflow: hidden;
 }
-.progress.with-buffer {
+.progress.with-load {
   background: transparent;
 }
 .progress .bar,

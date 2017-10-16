@@ -8,7 +8,7 @@ function insertBefore(newNode, referenceNode) {
 var styles =  [
     "metro/css/metro-all.css",
     "highlight/styles/github.css",
-    "//cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css",
+    "docsearch/docsearch.min.css",
     "css/site.css"
 ];
 
