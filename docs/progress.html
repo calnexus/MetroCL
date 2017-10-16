@@ -290,11 +290,11 @@
                 </p>
                 <pre><code class="javascript">
                     $("#progress").on("valuechange", function(val){
-                        conaole.log(val);
+                        console.log(val);
                     });
 
                     $("#progress").on("bufferchange", function(val){
-                        conaole.log(val);
+                        console.log(val);
                     });
                 </code></pre>
 
@@ -352,10 +352,14 @@
                     If you change <code>data-value</code> or <code>data-buffer</code> attributes at runtime, your <code>progress</code> will be updated.
                 </p>
                 <div class="example">
-                    <div id="progress-observe" data-role="progress" data-type="buffer" class="mb-4"></div>
+                    <div id="progress-observe" data-role="progress" data-type="buffer"></div>
 
-                    <div>
+                    <div class="mt-2 d-flex">
+                        <label style="width: 100px" for="progress-observe-value">Value</label>
                         <input id="progress-observe-value" class="w-100" type="range" min="0" max="100" value="0">
+                    </div>
+                    <div class="mt-2 d-flex">
+                        <label style="width: 100px" for="progress-observe-buffer">Buffer</label>
                         <input id="progress-observe-buffer" class="w-100"  type="range" min="0" max="100" value="0">
                     </div>
                 </div>
@@ -395,12 +399,12 @@
                 <div class="example">
                     <div id="progress_methods" data-role="progress" data-type="buffer"></div>
                     <div class="mt-2 d-flex">
-                        <label style="width: 100px">Value</label>
+                        <label for="progress_methods_input_val" style="width: 100px">Value</label>
                         <input type="number" min="0" max="100" value="0" id="progress_methods_input_val">
                         <button class="button primary" onclick="alert($('#progress_methods').data('progress').val())">Get value</button>
                     </div>
                     <div class="mt-2 d-flex">
-                        <label style="width: 100px">Buffer</label>
+                        <label for="progress_methods_input_buff" style="width: 100px">Buffer</label>
                         <input type="number" min="0" max="100" value="0" id="progress_methods_input_buff">
                         <button class="button secondary" onclick="alert($('#progress_methods').data('progress').buff())">Get value</button>
                     </div>
