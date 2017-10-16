@@ -524,6 +524,10 @@ var Utils = {
         if (!results) return null;
         if (!results[2]) return '';
         return decodeURIComponent(results[2].replace(/\+/g, " "));
+    },
+
+    isDate: function(val){
+        return (new Date(val) !== "Invalid Date" && !isNaN(new Date(val)));
     }
 };
 
