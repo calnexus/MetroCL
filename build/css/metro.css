@@ -10764,6 +10764,12 @@ figure img {
       justify-content: center;
   min-width: 2rem;
   padding-bottom: .6rem;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -ms-flex-positive: 0;
+      flex-grow: 0;
+  padding-left: .5rem;
+  padding-right: .5rem;
 }
 .countdown .part::before {
   content: ":";

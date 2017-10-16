@@ -2652,18 +2652,16 @@ var Countdown = {
         minutes: 0,
         seconds: 0,
         date: null,
-        alarm: false,
         daysLabel: "days",
         hoursLabel: "hours",
         minutesLabel: "mins",
         secondsLabel: "secs",
         clsZero: "",
-        clsAlert: "",
+        clsAlarm: "",
         clsDays: "",
         clsHours: "",
         clsMinutes: "",
         clsSeconds: "",
-        chars: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
         onCreate: Metro.noop,
         onAlarm: Metro.noop,
         onTick: Metro.noop,
@@ -2733,6 +2731,11 @@ var Countdown = {
 
             var part = $("<div>").addClass("part " + this).attr("data-label", o[this+'Label']).appendTo(element);
 
+            if (this === "days") {part.addClass(o.clsDays);}
+            if (this === "hours") {part.addClass(o.clsHours);}
+            if (this === "minutes") {part.addClass(o.clsMinutes);}
+            if (this === "seconds") {part.addClass(o.clsSeconds);}
+
             $("<div>").addClass("digit").appendTo(part);
             $("<div>").addClass("digit").appendTo(part);
 
@@ -2745,7 +2748,7 @@ var Countdown = {
             }
         });
 
-        element.find(".digit").html(o.chars[0]);
+        element.find(".digit").html("0");
     },
 
     blink: function(){
@@ -2762,6 +2765,7 @@ var Countdown = {
 
         if (left <= 0) {
             this.stop();
+            element.addClass(o.clsAlarm);
             Utils.exec(o.onAlarm, [now, element]);
             return ;
         }
@@ -2770,46 +2774,76 @@ var Countdown = {
         left -= d * dm;
         this.draw("days", d);
 
+        if (d === 0) {
+            element.find(".part.days").addClass(o.clsZero);
+            Utils.exec(o.onZero, ["days", element]);
+        }
+
         h = Math.floor(left / hm);
         left -= h*hm;
         this.draw("hours", h);
+
+        if (d === 0 && h === 0) {
+            element.find(".part.hours").addClass(o.clsZero);
+            Utils.exec(o.onZero, ["hours", element]);
+        }
 
         m = Math.floor(left / mm);
         left -= m*mm;
         this.draw("minutes", m);
 
+        if (d === 0 && h === 0 && m === 0) {
+            element.find(".part.minutes").addClass(o.clsZero);
+            Utils.exec(o.onZero, ["minutes", element]);
+        }
+
         s = Math.floor(left / sm);
         this.draw("seconds", s);
+
+        if (d === 0 && h === 0 && m === 0 && s === 0) {
+            element.find(".part.seconds").addClass(o.clsZero);
+            Utils.exec(o.onZero, ["seconds", element]);
+        }
+
+        Utils.exec(o.onTick, [{days:d, hours:h, minutes:m, seconds:s}, element]);
     },
 
     draw: function(part, value){
         var that = this, element = this.element, o = this.options;
-        var major_value, minor_value;
+        var major_value, minor_value, digit_value;
         var len = String(value).length;
 
-        if (len > 2) {
+        var digits = element.find("."+part+" .digit").html("0");
+        var digits_length = digits.length;
 
-            for(var i = 0; i < len; i++){
-                minor_value = Math.floor( value / Math.pow(10, i) ) % 10;
-                console.log(i, minor_value);
-                element.find("." + part + " .digit:eq("+ (len - 1 - i) +")").html(minor_value);
-            }
-
-            // major_value = Math.floor( value / 10 ) % 10;
-            // minor_value = value % 10;
-            //
-            // element.find("." + part + " .digit:eq(0)").html(major_value);
-            // element.find("." + part + " .digit:eq(1)").html(minor_value);
-        } else {
-            major_value = Math.floor( value / 10 ) % 10;
-            minor_value = value % 10;
-
-            element.find("." + part + " .digit:eq(0)").html(major_value);
-            element.find("." + part + " .digit:eq(1)").html(minor_value);
+        for(var i = 0; i < len; i++){
+            digit_value = Math.floor( value / Math.pow(10, i) ) % 10;
+            element.find("." + part + " .digit:eq("+ (digits_length - 1) +")").html(digit_value);
+            digits_length--;
         }
+        // if (len > 2) {
+        //
+        //     var digits = element.find("."+part+" .digit").html("0");
+        //     var digits_length = digits.length;
+        //
+        //     for(var i = 0; i < len; i++){
+        //         minor_value = Math.floor( value / Math.pow(10, i) ) % 10;
+        //         element.find("." + part + " .digit:eq("+ (digits_length - 1) +")").html(minor_value);
+        //         digits_length--;
+        //     }
+        //
+        // } else {
+        //     major_value = Math.floor( value / 10 ) % 10;
+        //     minor_value = value % 10;
+        //
+        //     element.find("." + part + " .digit:eq(0)").html(major_value);
+        //     element.find("." + part + " .digit:eq(1)").html(minor_value);
+        // }
     },
 
     stop: function(){
+        var that = this, element = this.element, o = this.options;
+        element.find(".digit").html("0");
         clearInterval(this.blinkInterval);
         clearInterval(this.tickInterval);
     },
