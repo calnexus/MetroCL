@@ -16,18 +16,19 @@
         flex-flow: row nowrap;
         justify-content: center;
         min-width: 2rem;
-        padding-bottom: .6rem;
+        padding-bottom: .6em;
         flex-shrink: 0;
         flex-grow: 0;
-        padding-left: .5rem;
-        padding-right: .5rem;
+        padding-left: .5em;
+        padding-right: .5em;
     }
 
     .part {
         &::before {
             content: ":";
-            left: -.5rem;
+            left: -.4em;
             position: absolute;
+            color: @gray;
         }
 
         &:nth-child(1), &.no-divider {

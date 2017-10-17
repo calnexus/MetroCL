@@ -9,15 +9,19 @@ var Countdown = {
         this.blinkInterval = null;
         this.tickInterval = null;
 
+        this.zeroDaysFired = false;
+        this.zeroHoursFired = false;
+        this.zeroMinutesFired = false;
+        this.zeroSecondsFired = false;
+
         this._setOptionsFromDOM();
         this._create();
 
         Utils.exec(this.options.onCreate, [this.element]);
 
-        this.tick();
-
-        this.blinkInterval = setInterval(function(){that.blink();}, 500);
-        this.tickInterval = setInterval(function(){that.tick();}, 1000);
+        if (this.options.start === true) {
+            this.start();
+        }
 
         return this;
     },
@@ -28,10 +32,12 @@ var Countdown = {
         minutes: 0,
         seconds: 0,
         date: null,
+        start: true,
         daysLabel: "days",
         hoursLabel: "hours",
         minutesLabel: "mins",
         secondsLabel: "secs",
+        clsCountdown: "",
         clsZero: "",
         clsAlarm: "",
         clsDays: "",
@@ -64,7 +70,7 @@ var Countdown = {
         var dm = 24*60*60*1000, hm = 60*60*1000, mm = 60*1000, sm = 1000;
         var delta_days, delta_hours, delta_minutes;
 
-        element.addClass("countdown");
+        element.addClass("countdown").addClass(o.clsCountdown);
 
         if (o.date !== null && Utils.isDate(o.date) !== false) {
             this.timepoint = (new Date(o.date)).getTime();
@@ -141,6 +147,9 @@ var Countdown = {
 
         if (left <= 0) {
             this.stop();
+            if (o.clsZero !== "") {
+                element.find(".part").removeClass(o.clsZero);
+            }
             element.addClass(o.clsAlarm);
             Utils.exec(o.onAlarm, [now, element]);
             return ;
@@ -151,8 +160,14 @@ var Countdown = {
         this.draw("days", d);
 
         if (d === 0) {
-            element.find(".part.days").addClass(o.clsZero);
-            Utils.exec(o.onZero, ["days", element]);
+            if (o.clsDays !== "") {
+                element.find(".days").removeClass(o.clsDays);
+            }
+            if (this.zeroDaysFired === false) {
+                this.zeroDaysFired = true;
+                element.find(".days").addClass(o.clsZero);
+                Utils.exec(o.onZero, ["days", element]);
+            }
         }
 
         h = Math.floor(left / hm);
@@ -160,8 +175,14 @@ var Countdown = {
         this.draw("hours", h);
 
         if (d === 0 && h === 0) {
-            element.find(".part.hours").addClass(o.clsZero);
-            Utils.exec(o.onZero, ["hours", element]);
+            if (o.clsHours !== "") {
+                element.find(".hours").removeClass(o.clsHours);
+            }
+            if (this.zeroHoursFired === false) {
+                this.zeroHoursFired = true;
+                element.find(".hours").addClass(o.clsZero);
+                Utils.exec(o.onZero, ["hours", element]);
+            }
         }
 
         m = Math.floor(left / mm);
@@ -169,16 +190,28 @@ var Countdown = {
         this.draw("minutes", m);
 
         if (d === 0 && h === 0 && m === 0) {
-            element.find(".part.minutes").addClass(o.clsZero);
-            Utils.exec(o.onZero, ["minutes", element]);
+            if (o.clsMinutes !== "") {
+                element.find(".minutes").removeClass(o.clsMinutes);
+            }
+            if (this.zeroMinutesFired === false) {
+                this.zeroMinutesFired = true;
+                element.find(".minutes").addClass(o.clsZero);
+                Utils.exec(o.onZero, ["minutes", element]);
+            }
         }
 
         s = Math.floor(left / sm);
         this.draw("seconds", s);
 
         if (d === 0 && h === 0 && m === 0 && s === 0) {
-            element.find(".part.seconds").addClass(o.clsZero);
-            Utils.exec(o.onZero, ["seconds", element]);
+            if (o.clsSeconds !== "") {
+                element.find(".seconds").removeClass(o.clsSeconds);
+            }
+            if (this.zeroSecondsFired === false) {
+                this.zeroSecondsFired = true;
+                element.find(".seconds").addClass(o.clsZero);
+                Utils.exec(o.onZero, ["seconds", element]);
+            }
         }
 
         Utils.exec(o.onTick, [{days:d, hours:h, minutes:m, seconds:s}, element]);
@@ -186,7 +219,7 @@ var Countdown = {
 
     draw: function(part, value){
         var that = this, element = this.element, o = this.options;
-        var major_value, minor_value, digit_value;
+        var digit_value;
         var len = String(value).length;
 
         var digits = element.find("."+part+" .digit").html("0");
@@ -197,24 +230,16 @@ var Countdown = {
             element.find("." + part + " .digit:eq("+ (digits_length - 1) +")").html(digit_value);
             digits_length--;
         }
-        // if (len > 2) {
-        //
-        //     var digits = element.find("."+part+" .digit").html("0");
-        //     var digits_length = digits.length;
-        //
-        //     for(var i = 0; i < len; i++){
-        //         minor_value = Math.floor( value / Math.pow(10, i) ) % 10;
-        //         element.find("." + part + " .digit:eq("+ (digits_length - 1) +")").html(minor_value);
-        //         digits_length--;
-        //     }
-        //
-        // } else {
-        //     major_value = Math.floor( value / 10 ) % 10;
-        //     minor_value = value % 10;
-        //
-        //     element.find("." + part + " .digit:eq(0)").html(major_value);
-        //     element.find("." + part + " .digit:eq(1)").html(minor_value);
-        // }
+    },
+
+    start: function(){
+        var that = this;
+
+        this.element.data("paused", false);
+
+        this.tick();
+        this.blinkInterval = setInterval(function(){that.blink();}, 500);
+        this.tickInterval = setInterval(function(){that.tick();}, 1000);
     },
 
     stop: function(){
@@ -224,8 +249,48 @@ var Countdown = {
         clearInterval(this.tickInterval);
     },
 
-    changeAttribute: function(attributeName){
+    pause: function(){
+        this.element.data("paused", true);
+        clearInterval(this.blinkInterval);
+        clearInterval(this.tickInterval);
+    },
 
+    togglePlay: function(){
+        if (this.element.attr("data-pause") === true) {
+            this.pause();
+        } else {
+            this.start();
+        }
+    },
+
+    isPaused: function(){
+        return this.element.data("paused");
+    },
+
+    getTimepoint: function(asDate){
+        return asDate === true ? new Date(this.timepoint) : this.timepoint;
+    },
+
+    getBreakpoint: function(asDate){
+        return asDate === true ? new Date(this.breakpoint) : this.breakpoint;
+    },
+
+    getLeft: function(){
+        var dm = 24*60*60*1000, hm = 60*60*1000, mm = 60*1000, sm = 1000;
+        var now = (new Date()).getTime();
+        var left_seconds = Math.floor(this.breakpoint - now);
+        return {
+            days: Math.round(left_seconds / dm),
+            hours: Math.round(left_seconds / hm),
+            minutes: Math.round(left_seconds / mm),
+            seconds: Math.round(left_seconds / sm)
+        };
+    },
+
+    changeAttribute: function(attributeName){
+        switch (attributeName) {
+            case "data-pause": this.togglePlay(); break;
+        }
     }
 };
 

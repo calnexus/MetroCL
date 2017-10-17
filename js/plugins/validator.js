@@ -9,7 +9,7 @@ var Validator = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onValidatorCreate, [this.element]);
 
         return this;
     },
@@ -20,7 +20,7 @@ var Validator = {
         onSubmit: Metro.noop,
         onError: Metro.noop,
         onValid: Metro.noop,
-        onCreate: Metro.noop
+        onValidatorCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

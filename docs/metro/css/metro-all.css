@@ -10763,18 +10763,19 @@ figure img {
   -ms-flex-pack: center;
       justify-content: center;
   min-width: 2rem;
-  padding-bottom: .6rem;
+  padding-bottom: .6em;
   -ms-flex-negative: 0;
       flex-shrink: 0;
   -ms-flex-positive: 0;
       flex-grow: 0;
-  padding-left: .5rem;
-  padding-right: .5rem;
+  padding-left: .5em;
+  padding-right: .5em;
 }
 .countdown .part::before {
   content: ":";
-  left: -0.5rem;
+  left: -0.4em;
   position: absolute;
+  color: #9e9e9e;
 }
 .countdown .part:nth-child(1)::before,
 .countdown .part.no-divider::before {
@@ -10814,6 +10815,16 @@ figure img {
 }
 .countdown.blink .part::before {
   display: none;
+}
+.hint {
+  display: block;
+  position: fixed;
+  z-index: 1070;
+  background-color: #fffcc0;
+  color: #1d1d1d;
+  font-size: .75rem;
+  max-width: 13.75rem;
+  padding: .625rem;
 }
 .ripple {
   display: block;

@@ -34,6 +34,8 @@ var Metro = {
     eventStart: isTouch ? 'touchstart.metro' : 'mousedown.metro',
     eventStop: isTouch ? 'touchend.metro' : 'mouseup.metro',
     eventMove: isTouch ? 'touchmove.metro' : 'mousemove.metro',
+    eventEnter: isTouch ? 'touchstart.metro' : 'mouseenter.metro',
+    eventLeave: isTouch ? 'touchend.metro' : 'mouseleave.metro',
 
     hotkeys: [],
 

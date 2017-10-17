@@ -14,7 +14,7 @@
             <li class="done"><a href="contents.html">Contents</a></li>
             <li class="done"><a href="browsers.html">Browsers &amp; devices</a></li>
             <li class="done"><a href="media.html">Media breakpoints</a></li>
-            <li class=""><a href="event_rules.html">Events define rules</a></li>
+            <li class=""><a href="events.html">Events define rules</a></li>
         </ul>
     </div>
     <div class="doc-nav-item">
@@ -57,7 +57,6 @@
                 <li><a href="#">Panels</a></li>
                 <li><a href="#">Rating</a></li>
                 <li class="done"><a href="progress.html">Progress &amp; Activity</a></li>
-                <li><a href="#">Hints</a></li>
                 <li class="done"><a href="streamer.html">Streamer</a></li>
                 <li><a href="#">Presenter</a></li>
                 <li><a href="#">Donut chart</a></li>
@@ -67,6 +66,7 @@
                 <li class="done"><a href="gravatar.html">Gravatar</a></li>
 
             <li class="toc-nav-title">Information</li>
+                <li class="process"><a href="hints.html">Hints</a></li>
                 <li class="done"><a href="toast.html">Toasts</a></li>
                 <li class="done"><a href="notify.html">Notify system</a></li>
                 <li class="done"><a href="dialog.html">Dialogs</a></li>
@@ -76,7 +76,7 @@
                 <li><a href="#">Calendar</a></li>
                 <li><a href="#">Datepicker</a></li>
                 <li><a href="#">Timepicker</a></li>
-                <li class="process"><a href="countdown.html">Countdown</a></li>
+                <li class="done"><a href="countdown.html">Countdown</a></li>
 
             <li class="toc-nav-title">Media</li>
                 <li><a href="#">Video player</a></li>
@@ -126,6 +126,7 @@
 
     dov_nav.find(".toc-nav").hide(0);
     menu.show(0, function(){
+        link.parent().addClass("active");
         dov_nav.animate({
             scrollTop: link.offset().top - dov_nav.offset().top
         });

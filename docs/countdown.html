@@ -48,6 +48,11 @@
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Countdown</a></li>
                     <li class="toc-entry"><a href="#_countdown_about">About</a></li>
+                    <li class="toc-entry"><a href="#_countdown_options">Options</a></li>
+                    <li class="toc-entry"><a href="#_countdown_interval">Setup interval</a></li>
+                    <li class="toc-entry"><a href="#_countdown_customize">Customize</a></li>
+                    <li class="toc-entry"><a href="#_countdown_events">Events</a></li>
+                    <li class="toc-entry"><a href="#_countdown_methods">Methods</a></li>
                 </ul>
             </div>
 
@@ -66,10 +71,288 @@
                 <h3 id="_countdown_about">About</h3>
                 <p>
                     The goal of the <code>countdown</code> component is to create an element that can count down time from the specified time point.
+                    To create <code>countdown</code> add <code>data-role="countdown"</code> attribute to element and <code>setup options</code>.
                 </p>
                 <div class="example">
-                    <div data-role="countdown" data-days="1000" data-seconds="10" data-on-alarm="console.log('alarm')"></div>
+                    <div data-role="countdown" data-hours="90" data-on-alarm="console.log('alarm')" style="font-size: 36px"></div>
                 </div>
+                <pre><code class="html">
+                    &lt;div data-role="countdown" data-hours="90"&gt;&lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_countdown_options">Options</h3>
+                <p>
+                    You can set <code>options</code> to set times and visual styles for the <code>countdown</code> element.
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Options</th>
+                        <th>Data-*</th>
+                        <th>Default</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>days</td>
+                        <td><code>data-days</code></td>
+                        <td>0</td>
+                        <td>Add days to interval</td>
+                    </tr>
+                    <tr>
+                        <td>hours</td>
+                        <td><code>data-hours</code></td>
+                        <td>0</td>
+                        <td>Add hours to interval</td>
+                    </tr>
+                    <tr>
+                        <td>minutes</td>
+                        <td><code>data-minutes</code></td>
+                        <td>0</td>
+                        <td>Add minutes to interval</td>
+                    </tr>
+                    <tr>
+                        <td>seconds</td>
+                        <td><code>data-seconds</code></td>
+                        <td>0</td>
+                        <td>Add seconds to interval</td>
+                    </tr>
+                    <tr>
+                        <td>date</td>
+                        <td><code>data-date</code></td>
+                        <td>Now</td>
+                        <td>Set start point interval</td>
+                    </tr>
+                    <tr>
+                        <td>daysLabel</td>
+                        <td><code>data-days-label</code></td>
+                        <td>days</td>
+                        <td>Set label for days</td>
+                    </tr>
+                    <tr>
+                        <td>hoursLabel</td>
+                        <td><code>data-hours-label</code></td>
+                        <td>hours</td>
+                        <td>Set label for hours</td>
+                    </tr>
+                    <tr>
+                        <td>minutesLabel</td>
+                        <td><code>data-minutes-label</code></td>
+                        <td>mins</td>
+                        <td>Set label for minutes</td>
+                    </tr>
+                    <tr>
+                        <td>secondsLabel</td>
+                        <td><code>data-seconds-label</code></td>
+                        <td>secs</td>
+                        <td>Set label for seconds</td>
+                    </tr>
+                    <tr>
+                        <td>clsZero</td>
+                        <td><code>data-cls-zero</code></td>
+                        <td></td>
+                        <td>Set additional class for zero value</td>
+                    </tr>
+                    <tr>
+                        <td>clsAlarm</td>
+                        <td><code>data-cls-alarm</code></td>
+                        <td></td>
+                        <td>Set additional class for alarm state</td>
+                    </tr>
+                    <tr>
+                        <td>clsDays</td>
+                        <td><code>data-cls-days</code></td>
+                        <td></td>
+                        <td>Set additional class for days</td>
+                    </tr>
+                    <tr>
+                        <td>clsHours</td>
+                        <td><code>data-cls-hours</code></td>
+                        <td></td>
+                        <td>Set additional class for hours</td>
+                    </tr>
+                    <tr>
+                        <td>clsMinutes</td>
+                        <td><code>data-cls-minutes</code></td>
+                        <td></td>
+                        <td>Set additional class for minutes</td>
+                    </tr>
+                    <tr>
+                        <td>clsSeconds</td>
+                        <td><code>data-cls-seconds</code></td>
+                        <td></td>
+                        <td>Set additional class for seconds</td>
+                    </tr>
+                    <tr>
+                        <td>onCreate</td>
+                        <td><code>data-on-create</code></td>
+                        <td>Metro.noop</td>
+                        <td>Fired when component is created</td>
+                    </tr>
+                    <tr>
+                        <td>onAlarm</td>
+                        <td><code>data-on-alarm</code></td>
+                        <td>Metro.noop</td>
+                        <td>Fired when countdown is done</td>
+                    </tr>
+                    <tr>
+                        <td>onTick</td>
+                        <td><code>data-on-tick</code></td>
+                        <td>Metro.noop</td>
+                        <td>Fired when countdown is ticks</td>
+                    </tr>
+                    <tr>
+                        <td>onZero</td>
+                        <td><code>data-on-zero</code></td>
+                        <td>Metro.noop</td>
+                        <td>Fired when part is sets to zero</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="_countdown_interval">Setup interval</h3>
+                <p>
+                    By default the <code>start point</code> for interval is <code>today</code>. To this point you can add <code>days</code>, <code>hours</code>, <code>minutes</code> and <code>seconds</code>.
+                </p>
+                <div class="example">
+                    <div data-role="countdown" data-days="1" data-hours="2" data-minutes="3" data-seconds="4"></div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="countdown"
+                         data-days="1"
+                         data-hours="2"
+                         data-minutes="3"
+                         data-seconds="4"&gt;&lt;/div&gt;
+                </code></pre>
+
+                <p>
+                    Also you can set start point manually. To set start point add <code>data-date</code> attribute to element.
+                    Value for this attribute can be <a href="https://tools.ietf.org/html/rfc2822#page-14"><strong>VALID</strong> date string</a> or <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">this</a>.
+                </p>
+                <div class="example">
+                    <div data-role="countdown" data-date="01/01/2018" data-days="1" data-hours="2" data-minutes="3" data-seconds="4"></div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="countdown"  data-date="01/01/2018"
+                         data-days="1"
+                         data-hours="2"
+                         data-minutes="3"
+                         data-seconds="4"&gt;&lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_countdown_customize">Customize</h3>
+                <p>
+                    You can customize <code>countdown</code> control with special attributes:
+                        <code>data-cls-zero</code>,
+                        <code>data-cls-alarm</code>,
+                        <code>data-cls-days</code>,
+                        <code>data-cls-hours</code>,
+                        <code>data-cls-minutes</code>,
+                        <code>data-cls-seconds</code>.
+                    With this attributes you can define classes to customize visual style for <code>countdown</code>.
+                </p>
+                <div class="example text-center">
+                    <div id="countdown_paused" data-role="countdown" data-start="false" data-days="1" data-seconds="10" data-cls-days="bg-orange fg-white" data-cls-hours="bg-red fg-white" data-cls-minutes="bg-green fg-white" data-cls-seconds="bg-blue fg-white" data-cls-zero="bg-light fg-lightGray"></div>
+                    <button class="button mt-2" onclick="$('#countdown_paused').data('countdown').start()">Start</button>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="countdown"
+                         data-days="1"
+                         data-cls-zero="bg-light fg-lightGray"
+                         data-cls-hours="bg-red fg-white"
+                         data-cls-minutes="bg-green fg-white"
+                         data-cls-seconds="bg-blue fg-white"&gt;&lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_countdown_events">Events</h3>
+                <p>
+                    When the <code>countdown</code> is running, it generates various <code>events</code> that you can use. How to define Metro 4 components events see <a href="events.html">Events rules</a>.
+                </p>
+                <ul>
+                    <li><strong>onCreate(el)</strong> - fired when component created</li>
+                    <li><strong>onAlarm(now, el) - fired when countdown is done</strong></li>
+                    <li><strong>onTick({d, h, m, s}, el) - fired every tick (one second)</strong></li>
+                    <li><strong>onZero(part, el) - fired when part sets to zero</strong></li>
+                </ul>
+                <div class="example text-center">
+                    <div id="countdown_events" data-role="countdown"
+                         data-start="false"
+                         data-days="1"
+                         data-seconds="10"
+                         data-on-create="console.log('Countdown was created!')"
+                         data-on-zero="console.log(arguments)"
+                         data-on-tick="console.log(arguments)"
+                         data-on-alarm="console.log(arguments)"
+                    ></div>
+                    <button class="button mt-2" onclick="$('#countdown_events').data('countdown').start()">Start</button>
+                </div>
+                <pre><code class="html">
+                    &lt;div id="countdown_events" data-role="countdown"
+                         data-start="false"
+                         data-days="1"
+                         data-seconds="10"
+                         data-on-create="console.log('Countdown was created!')"
+                         data-on-zero="console.log(arguments)"
+                         data-on-tick="console.log(arguments)"
+                         data-on-alarm="console.log(arguments)"
+                    &gt;&lt;/div&gt;
+                    &lt;button class="button mt-2"
+                        onclick="$('#countdown_events').data('countdown').start()"&gt;Start&lt;/button&gt;
+                </code></pre>
+
+                <h3 id="_countdown_methods">Methods</h3>
+                <p>
+                    Each <code>countdown</code> component contains same methods:
+                </p>
+                <ul>
+                    <li><strong>start()</strong> - Start countdown</li>
+                    <li><strong>stop()</strong> - Stop countdown</li>
+                    <li><strong>pause()</strong> - Pause countdown</li>
+                    <li><strong>isPaused()</strong> - Return true, if countdown is paused</li>
+                    <li><strong>getTimepoint(asDate)</strong> - Return countdown start point</li>
+                    <li><strong>getBreakpoint(asDate)</strong> - Return countdown break point</li>
+                    <li><strong>getLeft()</strong> - Return object. It contains days, hours, minutes and seconds to stop</li>
+                </ul>
+                <div class="example text-center">
+                    <div id="countdown_methods" data-role="countdown"
+                         data-start="false"
+                         data-days="1"
+                         data-seconds="10"
+                    ></div>
+                    <button class="button mt-2" onclick="$('#countdown_methods').data('countdown').start()">Start</button>
+                    <button class="button mt-2" onclick="$('#countdown_methods').data('countdown').stop()">Stop</button>
+                    <button class="button mt-2" onclick="$('#countdown_methods').data('countdown').pause()">Pause</button>
+                    <button class="button mt-2" onclick="alert($('#countdown_methods').data('countdown').getTimepoint(true))">Timepoint</button>
+                    <button class="button mt-2" onclick="alert($('#countdown_methods').data('countdown').getBreakpoint(true))">Breakpoint</button>
+                    <button class="button mt-2" onclick="alert('Minutes left: ' + $('#countdown_methods').data('countdown').getLeft().minutes)">Minutes left</button>
+                </div>
+                <pre><code>
+                    &lt;div id="countdown_methods" data-role="countdown"
+                         data-start="false"
+                         data-days="1"
+                         data-seconds="10"
+                    &gt;&lt;/div&gt;
+
+                    &lt;button class="button mt-2"
+                        onclick="$('#countdown_methods').data('countdown').start()"&gt;Start&lt;/button&gt;
+
+                    &lt;button class="button mt-2"
+                        onclick="$('#countdown_methods').data('countdown').stop()"&gt;Stop&lt;/button&gt;
+
+                    &lt;button class="button mt-2"
+                        onclick="$('#countdown_methods').data('countdown').pause()"&gt;Pause&lt;/button&gt;
+
+                    &lt;button class="button mt-2"
+                        onclick="alert($('#countdown_methods').data('countdown').getTimepoint(true))"&gt;Timepoint&lt;/button&gt;
+
+                    &lt;button class="button mt-2"
+                        onclick="alert($('#countdown_methods').data('countdown').getBreakpoint(true))"&gt;Breakpoint&lt;/button&gt;
+
+                    &lt;button class="button mt-2"
+                        onclick="alert('Minutes left: ' + $('#countdown_methods').data('countdown').getLeft().minutes)"&gt;Minutes left&lt;/button&gt;
+                </code></pre>
+
             </main>
         </div>
 
