@@ -11,6 +11,7 @@ var Ripple = {
 
         return this;
     },
+
     options: {
         rippleColor: "#fff",
         rippleAlpha: .4,
@@ -38,7 +39,6 @@ var Ripple = {
         var target = o.rippleTarget === 'default' ? null : o.rippleTarget;
 
         element.on("click", target, function(e){
-
             var el = $(this);
 
             if (el.css('position') === 'static') {

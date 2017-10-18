@@ -5,7 +5,7 @@
     display: inline-flex;
     flex-flow: column nowrap;
     position: relative;
-    width: auto;
+    width: 280px;
     max-width: 90%;
     border: 1px solid @borderColor;
 }
@@ -22,18 +22,18 @@
     background-color: @brandColor2;
     color: @white;
 
-    .year {
+    .header-year {
         font-size: .75rem;
     }
-    .day {
-        font-size: 1.75rem;
+    .header-day {
+        font-size: 1.325rem;
     }
 }
 
 .calendar-content {
     padding: 0 .5rem;
 
-    .toolbar, .days-wrapper {
+    .calendar-toolbar, .days-wrapper {
         display: flex;
         position: relative;
     }
@@ -43,12 +43,14 @@
         justify-content: space-between;
         align-items: center;
         padding: .5rem 0;
+        width: 100%;
 
         .prev-month, .prev-year, .next-month, .next-year {
-            padding: .5rem 1rem;
+            padding: .5rem;
             cursor: pointer;
             text-align: center;
             flex-grow: 1;
+            width: 37px;
 
             &::after {
                 font-size: 1.625rem;
@@ -70,8 +72,11 @@
         }
 
         .curr-month, .curr-year {
-            flex-grow: 10;
-            padding: .5rem 1rem;
+            flex-grow: 2;
+            padding: .5rem;
+            width: 100%;
+            text-align: center;
+            cursor: pointer;
         }
     }
 
@@ -93,19 +98,25 @@
     .days-row {
         display: flex;
         flex-flow: row nowrap;
-        justify-content: space-between;
+        justify-content: flex-start;
         align-items: center;
     }
 
     .day {
-        width: ~"calc(100%/7 - 2px)";
-        flex: 1;
+        width: ~"calc(100%/7)";
         text-align: center;
         cursor: pointer;
+        font-size: .85rem;
+        position: relative;
+
+        &.selected {
+            box-shadow: 0 0 0 1px rgba(red(@lightCyan), green(@lightCyan), blue(@lightCyan), 1)!important;
+        }
     }
 
     .outside {
         color: @gray;
+        font-size: .75rem;
     }
 
     .today {
@@ -116,10 +127,33 @@
 
 .calendar-footer {
     padding: .5rem;
+    border-top: 1px solid @borderColor;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+
+    & > * {
+        margin: 0 2px;
+        font-size: .75rem;
+    }
 }
 
 .wide-calendar(){
     flex-flow: row nowrap;
+    width: auto;
+
+    .calendar-footer {
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+        border-top: none;
+        border-left: 1px solid @borderColor;
+
+        * > {
+            width: 100%;
+            margin: 2px 0;
+        }
+    }
 }
 
 .calendar {

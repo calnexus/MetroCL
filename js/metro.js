@@ -136,6 +136,7 @@ var Metro = {
             var $this = $(this), w = this;
             var roles = $this.data('role').split(/\s*,\s*/);
             roles.map(function (func) {
+                //console.log(func);
                 try {
                     if ($.fn[func] !== undefined && $this.data(func + '-initiated') !== true) {
                         $.fn[func].call($this);
@@ -161,11 +162,9 @@ var Metro = {
     plugin: function(name, object){
         $.fn[name] = function( options ) {
             return this.each(function() {
-                if ( ! $.data( this, name ) ) {
-                    $.data( this, name, Object.create(object).init(
-                        options, this )
-                    );
-                }
+                $.data( this, name, Object.create(object).init(
+                    options, this )
+                );
             });
         };
     },
