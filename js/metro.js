@@ -31,6 +31,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
+    isTouchable: isTouch,
+
     eventStart: isTouch ? 'touchstart.metro' : 'mousedown.metro',
     eventStop: isTouch ? 'touchend.metro' : 'mouseup.metro',
     eventMove: isTouch ? 'touchmove.metro' : 'mousemove.metro',
