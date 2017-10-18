@@ -1,3 +1,6 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
 @font-face {
     font-family: 'icons';
     src: url('../icons/metro.woff') format('woff');
@@ -16,6 +19,7 @@
     vertical-align: middle;
     text-align: center;
     position: relative;
+    z-index: 1;
 
     &::before {
         text-align: center;

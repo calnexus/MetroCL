@@ -17,7 +17,7 @@ var Countdown = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onCountdownCreate, [this.element]);
 
         if (this.options.start === true) {
             this.start();
@@ -44,7 +44,7 @@ var Countdown = {
         clsHours: "",
         clsMinutes: "",
         clsSeconds: "",
-        onCreate: Metro.noop,
+        onCountdownCreate: Metro.noop,
         onAlarm: Metro.noop,
         onTick: Metro.noop,
         onZero: Metro.noop

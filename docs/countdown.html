@@ -270,7 +270,7 @@
                     When the <code>countdown</code> is running, it generates various <code>events</code> that you can use. How to define Metro 4 components events see <a href="events.html">Events rules</a>.
                 </p>
                 <ul>
-                    <li><strong>onCreate(el)</strong> - fired when component created</li>
+                    <li><strong>onCountdownCreate(el)</strong> - fired when component created</li>
                     <li><strong>onAlarm(now, el) - fired when countdown is done</strong></li>
                     <li><strong>onTick({d, h, m, s}, el) - fired every tick (one second)</strong></li>
                     <li><strong>onZero(part, el) - fired when part sets to zero</strong></li>
@@ -280,7 +280,7 @@
                          data-start="false"
                          data-days="1"
                          data-seconds="10"
-                         data-on-create="console.log('Countdown was created!')"
+                         data-on-countdown-create="console.log('Countdown was created!')"
                          data-on-zero="console.log(arguments)"
                          data-on-tick="console.log(arguments)"
                          data-on-alarm="console.log(arguments)"
@@ -292,11 +292,10 @@
                          data-start="false"
                          data-days="1"
                          data-seconds="10"
-                         data-on-create="console.log('Countdown was created!')"
+                         data-on-countdown-create="console.log('Countdown was created!')"
                          data-on-zero="console.log(arguments)"
                          data-on-tick="console.log(arguments)"
-                         data-on-alarm="console.log(arguments)"
-                    &gt;&lt;/div&gt;
+                         data-on-alarm="console.log(arguments)"&gt;&lt;/div&gt;
                     &lt;button class="button mt-2"
                         onclick="$('#countdown_events').data('countdown').start()"&gt;Start&lt;/button&gt;
                 </code></pre>

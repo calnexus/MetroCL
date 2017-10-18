@@ -151,8 +151,7 @@
                             <div style="width: 50px; height: 50px;" class="bg-cyan" data-role="draggable" data-on-drag-move="demoDragMoveEvent"></div>
                         </div>
                         <script>
-                            function demoDragMoveEvent(){
-                                var pos = arguments[0][1];
+                            function demoDragMoveEvent(el, pos){
                                 $('#-pos-x').text(pos.x);
                                 $('#-pos-y').text(pos.y);
                             }
@@ -172,8 +171,7 @@
                                     data-on-drag-move="demoDragMoveEvent"&gt;&lt;/div&gt;
                         &lt;/div&gt;
                         &lt;script&gt;
-                            function demoDragMoveEvent(){
-                                var pos = arguments[0][1];
+                            function demoDragMoveEvent(el, pos){
                                 $('#-pos-x').text(pos.x);
                                 $('#-pos-y').text(pos.y);
                             }

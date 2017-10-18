@@ -7,7 +7,7 @@ var Gravatar = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onGravatarCreate, [this.element]);
 
         return this;
     },
@@ -15,7 +15,7 @@ var Gravatar = {
         email: "",
         size: 80,
         default: "404",
-        onCreate: Metro.noop
+        onGravatarCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

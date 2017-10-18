@@ -9,7 +9,7 @@ var Dialog = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onDialogCreate, [this.element]);
 
         return this;
     },
@@ -39,7 +39,7 @@ var Dialog = {
         onHide: Metro.noop,
         onOpen: Metro.noop,
         onClose: Metro.noop,
-        onCreate: Metro.noop
+        onDialogCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

@@ -13,7 +13,7 @@ var Draggable = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onDraggableCreate, [this.element]);
 
         return this;
     },
@@ -25,7 +25,7 @@ var Draggable = {
         onDragStart: Metro.noop,
         onDragStop: Metro.noop,
         onDragMove: Metro.noop,
-        onCreate: Metro.noop
+        onDraggableCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

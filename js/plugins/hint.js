@@ -4,6 +4,7 @@ var Hint = {
         this.elem  = elem;
         this.element = $(elem);
         this.hint = null;
+        this.interval = null;
 
         this._setOptionsFromDOM();
         this._create();
@@ -44,7 +45,7 @@ var Hint = {
         element.on(Metro.eventEnter, function(){
             that.createHint();
             if (o.hintHide > 0) {
-                setTimeout(function(){
+                that.interval = setTimeout(function(){
                     that.removeHint();
                 }, o.hintHide);
             }
@@ -107,6 +108,7 @@ var Hint = {
 
         if (hint !== null) {
             Utils.exec(options.onHintHide, [hint, element]);
+            clearInterval(this.interval);
             setTimeout(function(){
                 hint.hide(0, function(){
                     hint.remove();

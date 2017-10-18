@@ -27,7 +27,7 @@ var Streamer = {
         onStreamSelect: Metro.noop,
         onEventClick: Metro.noop,
         onEventSelect: Metro.noop,
-        onCreate: Metro.noop
+        onStreamerCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -291,7 +291,7 @@ var Streamer = {
             }, o.startSlideSleep);
         }
 
-        Utils.exec(o.onCreate, [element]);
+        Utils.exec(o.onStreamerCreate, [element]);
     },
 
     slideTo: function(time){

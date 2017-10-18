@@ -7,7 +7,7 @@ var Switch = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onSwitchCreate, [this.element]);
 
         return this;
     },
@@ -15,7 +15,7 @@ var Switch = {
         caption: "",
         captionPosition: "right",
         disabled: false,
-        onCreate: Metro.noop
+        onSwitchCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

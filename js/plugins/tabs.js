@@ -8,14 +8,14 @@ var Tabs = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onTabsCreate, [this.element]);
 
         return this;
     },
 
     options: {
         onTab: Metro.noop,
-        onCreate: Metro.noop
+        onTabsCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

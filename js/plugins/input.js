@@ -7,7 +7,7 @@ var Input = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onInputCreate, [this.element]);
 
         return this;
     },
@@ -17,7 +17,7 @@ var Input = {
         clearButtonIcon: "<span class='mif-cross'></span>",
         revealButtonIcon: "<span class='mif-eye'></span>",
         disabled: false,
-        onCreate: Metro.noop
+        onInputCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

@@ -8,7 +8,7 @@ var Dropdown = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onDropdownCreate, [this.element]);
 
         return this;
     },
@@ -20,7 +20,7 @@ var Dropdown = {
         duration: METRO_ANIMATION_DURATION,
         onDrop: Metro.noop,
         onUp: Metro.noop,
-        onCreate: Metro.noop
+        onDropdownCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

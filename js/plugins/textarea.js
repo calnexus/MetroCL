@@ -7,7 +7,7 @@ var Textarea = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onTextareaCreate, [this.element]);
 
         return this;
     },
@@ -16,7 +16,7 @@ var Textarea = {
         clearButtonIcon: "<span class='mif-cross'></span>",
         autoSize: false,
         disabled: false,
-        onCreate: Metro.noop
+        onTextareaCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

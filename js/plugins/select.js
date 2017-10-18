@@ -7,7 +7,7 @@ var Select = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onSelectCreate, [this.element]);
 
         return this;
     },
@@ -15,7 +15,7 @@ var Select = {
         dropHeight: 200,
         disabled: false,
         onChange: Metro.noop,
-        onCreate: Metro.noop
+        onSelectCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

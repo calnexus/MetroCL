@@ -2071,7 +2071,7 @@ var Accordion = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onAccordionCreate, [this.element]);
 
         return this;
     },
@@ -2086,7 +2086,7 @@ var Accordion = {
         onFrameBeforeOpen: Metro.noop_true,
         onFrameClose: Metro.noop,
         onFrameBeforeClose: Metro.noop_true,
-        onCreate: Metro.noop
+        onAccordionCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -2219,7 +2219,7 @@ var Activity = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onActivityCreate, [this.element]);
 
         return this;
     },
@@ -2229,7 +2229,7 @@ var Activity = {
         style: "light",
         size: 64,
         radius: 20,
-        onCreate: Metro.noop
+        onActivityCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -2307,7 +2307,7 @@ var Checkbox = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onCheckboxCreate, [this.element]);
 
         return this;
     },
@@ -2315,7 +2315,7 @@ var Checkbox = {
         caption: "",
         captionPosition: "right",
         disabled: false,
-        onCreate: Metro.noop
+        onCheckboxCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -2401,7 +2401,7 @@ var Clock = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onClockCreate, [this.element]);
 
         return this;
     },
@@ -2412,7 +2412,7 @@ var Clock = {
         timeFormat: '24',
         dateFormat: 'american',
         divider: "&nbsp;&nbsp;",
-        onCreate: Metro.noop
+        onClockCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -2514,7 +2514,7 @@ var Collapse = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onCollapseCreate, [this.element]);
 
         return this;
     },
@@ -2524,7 +2524,7 @@ var Collapse = {
         duration: METRO_ANIMATION_DURATION,
         onExpand: Metro.noop,
         onCollapse: Metro.noop,
-        onCreate: Metro.noop
+        onCollapseCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -2643,7 +2643,7 @@ var Countdown = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onCountdownCreate, [this.element]);
 
         if (this.options.start === true) {
             this.start();
@@ -2670,7 +2670,7 @@ var Countdown = {
         clsHours: "",
         clsMinutes: "",
         clsSeconds: "",
-        onCreate: Metro.noop,
+        onCountdownCreate: Metro.noop,
         onAlarm: Metro.noop,
         onTick: Metro.noop,
         onZero: Metro.noop
@@ -2933,7 +2933,7 @@ var Dialog = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onDialogCreate, [this.element]);
 
         return this;
     },
@@ -2963,7 +2963,7 @@ var Dialog = {
         onHide: Metro.noop,
         onOpen: Metro.noop,
         onClose: Metro.noop,
-        onCreate: Metro.noop
+        onDialogCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -3266,7 +3266,7 @@ var Draggable = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onDraggableCreate, [this.element]);
 
         return this;
     },
@@ -3278,7 +3278,7 @@ var Draggable = {
         onDragStart: Metro.noop,
         onDragStop: Metro.noop,
         onDragMove: Metro.noop,
-        onCreate: Metro.noop
+        onDraggableCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -3418,7 +3418,7 @@ var Dropdown = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onDropdownCreate, [this.element]);
 
         return this;
     },
@@ -3430,7 +3430,7 @@ var Dropdown = {
         duration: METRO_ANIMATION_DURATION,
         onDrop: Metro.noop,
         onUp: Metro.noop,
-        onCreate: Metro.noop
+        onDropdownCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -3570,7 +3570,7 @@ var File = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onFileCreate, [this.element]);
 
         return this;
     },
@@ -3578,7 +3578,7 @@ var File = {
         caption: "Choose file",
         disabled: false,
         onSelect: Metro.noop,
-        onCreate: Metro.noop
+        onFileCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -3687,7 +3687,7 @@ var Gravatar = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onGravatarCreate, [this.element]);
 
         return this;
     },
@@ -3695,7 +3695,7 @@ var Gravatar = {
         email: "",
         size: 80,
         default: "404",
-        onCreate: Metro.noop
+        onGravatarCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -3774,6 +3774,7 @@ var Hint = {
         this.elem  = elem;
         this.element = $(elem);
         this.hint = null;
+        this.interval = null;
 
         this._setOptionsFromDOM();
         this._create();
@@ -3814,7 +3815,7 @@ var Hint = {
         element.on(Metro.eventEnter, function(){
             that.createHint();
             if (o.hintHide > 0) {
-                setTimeout(function(){
+                that.interval = setTimeout(function(){
                     that.removeHint();
                 }, o.hintHide);
             }
@@ -3877,6 +3878,7 @@ var Hint = {
 
         if (hint !== null) {
             Utils.exec(options.onHintHide, [hint, element]);
+            clearInterval(this.interval);
             setTimeout(function(){
                 hint.hide(0, function(){
                     hint.remove();
@@ -3901,7 +3903,7 @@ var Input = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onInputCreate, [this.element]);
 
         return this;
     },
@@ -3911,7 +3913,7 @@ var Input = {
         clearButtonIcon: "<span class='mif-cross'></span>",
         revealButtonIcon: "<span class='mif-eye'></span>",
         disabled: false,
-        onCreate: Metro.noop
+        onInputCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -4136,7 +4138,7 @@ var Progress = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onProgressCreate, [this.element]);
 
         return this;
     },
@@ -4153,7 +4155,7 @@ var Progress = {
         onBufferChange: Metro.noop,
         onComplete: Metro.noop,
         onBuffered: Metro.noop,
-        onCreate: Metro.noop
+        onProgressCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -4295,7 +4297,7 @@ var Radio = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onRadioCreate, [this.element]);
 
         return this;
     },
@@ -4303,7 +4305,7 @@ var Radio = {
         caption: "",
         captionPosition: "right",
         disabled: false,
-        onCreate: Metro.noop
+        onRadioCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -4388,7 +4390,7 @@ var Resizable = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onResizableCreate, [this.element]);
 
         return this;
     },
@@ -4397,7 +4399,7 @@ var Resizable = {
         onResizeStart: Metro.noop,
         onResizeStop: Metro.noop,
         onResize: Metro.noop,
-        onCreate: Metro.noop
+        onResizableCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -4477,7 +4479,7 @@ var Ripple = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onRippleCreate, [this.element]);
 
         return this;
     },
@@ -4485,7 +4487,7 @@ var Ripple = {
         rippleColor: "#fff",
         rippleAlpha: .4,
         rippleTarget: "default",
-        onCreate: Metro.noop
+        onRippleCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -4565,7 +4567,7 @@ var Select = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onSelectCreate, [this.element]);
 
         return this;
     },
@@ -4573,7 +4575,7 @@ var Select = {
         dropHeight: 200,
         disabled: false,
         onChange: Metro.noop,
-        onCreate: Metro.noop
+        onSelectCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -4706,7 +4708,7 @@ var Streamer = {
         onStreamSelect: Metro.noop,
         onEventClick: Metro.noop,
         onEventSelect: Metro.noop,
-        onCreate: Metro.noop
+        onStreamerCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -4970,7 +4972,7 @@ var Streamer = {
             }, o.startSlideSleep);
         }
 
-        Utils.exec(o.onCreate, [element]);
+        Utils.exec(o.onStreamerCreate, [element]);
     },
 
     slideTo: function(time){
@@ -5091,7 +5093,7 @@ var Switch = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onSwitchCreate, [this.element]);
 
         return this;
     },
@@ -5099,7 +5101,7 @@ var Switch = {
         caption: "",
         captionPosition: "right",
         disabled: false,
-        onCreate: Metro.noop
+        onSwitchCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -5185,14 +5187,14 @@ var Tabs = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onTabsCreate, [this.element]);
 
         return this;
     },
 
     options: {
         onTab: Metro.noop,
-        onCreate: Metro.noop
+        onTabsCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -5325,7 +5327,7 @@ var Textarea = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onTextareaCreate, [this.element]);
 
         return this;
     },
@@ -5334,7 +5336,7 @@ var Textarea = {
         clearButtonIcon: "<span class='mif-cross'></span>",
         autoSize: false,
         disabled: false,
-        onCreate: Metro.noop
+        onTextareaCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -5442,13 +5444,11 @@ var Toast = {
     create: function(message, callback, timeout, cls){
         var toast = $("<div>").addClass("toast").html(message).appendTo($("body")).hide();
         var width = toast.outerWidth();
-        var height = toast.outerHeight();
         timeout = timeout || METRO_TIMEOUT;
 
         toast.css({
             'left': '50%',
-            'margin-left': -(width / 2),
-            'border-radius': height/2
+            'margin-left': -(width / 2)
         }).addClass(cls).fadeIn(METRO_ANIMATION_DURATION);
 
         setTimeout(function(){
@@ -5724,7 +5724,7 @@ var Window = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.win, this.element]);
+        Utils.exec(this.options.onWindowCreate, [this.win, this.element]);
 
         return this;
     },
@@ -5765,9 +5765,9 @@ var Window = {
         onResizeStart: Metro.noop,
         onResizeStop: Metro.noop,
         onResize: Metro.noop,
-        onCreate: Metro.noop,
+        onWindowCreate: Metro.noop,
         onShow: Metro.noop,
-        onDestroy: Metro.noop,
+        onWindowDestroy: Metro.noop,
         onCanClose: Metro.noop_true,
         onClose: Metro.noop
     },
@@ -6005,7 +6005,7 @@ var Window = {
                 win.siblings(".overlay").remove();
             }
             Utils.exec(o.onCloseClick(), [win]);
-            Utils.exec(o.onDestroy, [win]);
+            Utils.exec(o.onWindowDestroy, [win]);
             win.remove();
         }, timeout);
     },

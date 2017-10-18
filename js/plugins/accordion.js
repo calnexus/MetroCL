@@ -7,7 +7,7 @@ var Accordion = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onAccordionCreate, [this.element]);
 
         return this;
     },
@@ -22,7 +22,7 @@ var Accordion = {
         onFrameBeforeOpen: Metro.noop_true,
         onFrameClose: Metro.noop,
         onFrameBeforeClose: Metro.noop_true,
-        onCreate: Metro.noop
+        onAccordionCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

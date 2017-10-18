@@ -7,7 +7,7 @@ var File = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onFileCreate, [this.element]);
 
         return this;
     },
@@ -15,7 +15,7 @@ var File = {
         caption: "Choose file",
         disabled: false,
         onSelect: Metro.noop,
-        onCreate: Metro.noop
+        onFileCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

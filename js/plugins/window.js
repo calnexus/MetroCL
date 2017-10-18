@@ -9,7 +9,7 @@ var Window = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.win, this.element]);
+        Utils.exec(this.options.onWindowCreate, [this.win, this.element]);
 
         return this;
     },
@@ -50,9 +50,9 @@ var Window = {
         onResizeStart: Metro.noop,
         onResizeStop: Metro.noop,
         onResize: Metro.noop,
-        onCreate: Metro.noop,
+        onWindowCreate: Metro.noop,
         onShow: Metro.noop,
-        onDestroy: Metro.noop,
+        onWindowDestroy: Metro.noop,
         onCanClose: Metro.noop_true,
         onClose: Metro.noop
     },
@@ -290,7 +290,7 @@ var Window = {
                 win.siblings(".overlay").remove();
             }
             Utils.exec(o.onCloseClick(), [win]);
-            Utils.exec(o.onDestroy, [win]);
+            Utils.exec(o.onWindowDestroy, [win]);
             win.remove();
         }, timeout);
     },

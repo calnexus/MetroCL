@@ -9,7 +9,7 @@ var Progress = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onProgressCreate, [this.element]);
 
         return this;
     },
@@ -26,7 +26,7 @@ var Progress = {
         onBufferChange: Metro.noop,
         onComplete: Metro.noop,
         onBuffered: Metro.noop,
-        onCreate: Metro.noop
+        onProgressCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

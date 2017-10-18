@@ -7,7 +7,7 @@ var Activity = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onActivityCreate, [this.element]);
 
         return this;
     },
@@ -17,7 +17,7 @@ var Activity = {
         style: "light",
         size: 64,
         radius: 20,
-        onCreate: Metro.noop
+        onActivityCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

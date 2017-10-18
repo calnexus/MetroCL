@@ -8,7 +8,7 @@ var Collapse = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(this.options.onCollapseCreate, [this.element]);
 
         return this;
     },
@@ -18,7 +18,7 @@ var Collapse = {
         duration: METRO_ANIMATION_DURATION,
         onExpand: Metro.noop,
         onCollapse: Metro.noop,
-        onCreate: Metro.noop
+        onCollapseCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

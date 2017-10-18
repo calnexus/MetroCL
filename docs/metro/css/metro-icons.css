@@ -1,3 +1,15 @@
+.set-relative {
+  display: block;
+  position: relative;
+}
+.set-absolute {
+  position: absolute;
+}
+.set-flex {
+  display: -ms-flexbox;
+  display: flex;
+}
+/* transform functions */
 @font-face {
   font-family: 'icons';
   src: url('../icons/metro.woff') format('woff');
@@ -15,6 +27,7 @@
   vertical-align: middle;
   text-align: center;
   position: relative;
+  z-index: 1;
 }
 [class*=mif-]::before {
   text-align: center;
