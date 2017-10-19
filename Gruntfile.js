@@ -161,7 +161,7 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         cwd: "build/",
-                        src: ["css/metro-all.min.css", "js/metro.min.js", "icons/metro.woff"],
+                        src: ["css/metro-all.min.css", "js/i18n/*", "js/metro.min.js", "icons/metro.woff"],
                         dest: "."
                     }
                 ]
@@ -175,11 +175,23 @@ module.exports = function(grunt) {
                 src: '**/*',
                 dest: 'build/icons'
             },
+            i18n: {
+                expand: true,
+                cwd: 'js/i18n',
+                src: '**/*',
+                dest: 'build/js/i18n'
+            },
             docs: {
                 expand: true,
                 cwd: 'build',
                 src: '**/*',
                 dest: 'docs/metro'
+            },
+            i18n_docs: {
+                expand: true,
+                cwd: 'js/i18n',
+                src: '**/*',
+                dest: 'docs/metro/i18n'
             },
             public_release: {
                 expand: true,
@@ -215,7 +227,7 @@ module.exports = function(grunt) {
 
         watch: {
             scripts: {
-                files: ['js/*.js', 'js/utils/*.js', 'js/plugins/*js', 'less/*.less', 'less/include/*.less', 'less/schemes/*.less', 'Gruntfile.js'],
+                files: ['js/i18n/*.json', 'js/*.js', 'js/utils/*.js', 'js/plugins/*js', 'less/*.less', 'less/include/*.less', 'less/schemes/*.less', 'Gruntfile.js'],
                 tasks: ['clean', 'less', 'concat', 'postcss',  'uglify', 'cssmin', 'compress', 'copy']
             }
         }

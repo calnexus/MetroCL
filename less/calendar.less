@@ -2,11 +2,10 @@
 @import (once) "include/mixins";
 
 .calendar {
-    display: inline-flex;
+    display: flex;
     flex-flow: column nowrap;
     position: relative;
     width: 280px;
-    max-width: 90%;
     border: 1px solid @borderColor;
     overflow: hidden;
 }
@@ -33,6 +32,7 @@
 
 .calendar-content {
     padding: 0 .5rem;
+    width: 278px;
 
     .calendar-toolbar, .days-wrapper {
         display: flex;
@@ -218,18 +218,21 @@
         margin: 0 2px;
         font-size: .75rem;
         width: 25%;
+        padding: .5rem 0;
     }
 }
 
 .wide-calendar(){
     flex-flow: row nowrap;
-    width: auto;
+    width: 540px;
 
     .calendar-footer {
         flex-flow: column nowrap;
         justify-content: flex-start;
+        align-items: stretch;
         border-top: none;
         border-left: 1px solid @borderColor;
+        width: 96px;
 
         * > {
             width: 100%;

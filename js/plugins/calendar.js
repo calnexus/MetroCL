@@ -15,6 +15,7 @@ var Calendar = {
         this.exclude = [];
         this.min = null;
         this.max = null;
+        this.locale = null;
 
         this._setOptionsFromDOM();
         this._create();
@@ -123,10 +124,20 @@ var Calendar = {
             this.max.setHours(0,0,0,0);
         }
 
+        $.get(METRO_ROOT + "/i18n/" + o.locale + ".json", function(data){
+            that.locale = data;
+            that._build();
+        });
+    },
+
+    _build: function(){
+
+        //console.log(this.locale);
+
         this._drawCalendar();
         this._bindEvents();
 
-        if (o.ripple === true) {
+        if (this.options.ripple === true) {
             element.ripple({
                 rippleTarget: ".button, .prev-month, .next-month, .prev-year, .next-year, .day",
                 rippleColor: o.rippleColor
@@ -197,48 +208,53 @@ var Calendar = {
             Utils.exec(o.onDone, [that.selected, element]);
         });
 
-        element.on("click", ".day", function(){
+        element.on("click", ".week-days .day", function(){
+            if (o.multiSelect === false) {
+                return ;
+            }
+            var day = $(this);
+            var index = day.index();
+            var days = o.outside === true ? element.find(".days-row .day:nth-child("+(index + 1)+")") : element.find(".days-row .day:not(.outside):nth-child("+(index + 1)+")");
+            $.each(days, function(){
+                var d = $(this);
+                var dd = d.data('day');
+                Utils.arrayDelete(that.selected, dd);
+                that.selected.push(dd);
+                d.addClass("selected").addClass(o.clsSelected);
+            });
+            Utils.exec(o.onWeekDayClick, [that.selected, day, element]);
+        });
+
+        element.on("click", ".days-row .day", function(){
             var day = $(this);
             var index, date;
 
-            if ($(this).parent().hasClass("week-days") && o.weekDayClick === true) {
-                index = day.index();
-                $.each(element.find(".days-row .day:nth-child("+(index + 1)+")"), function(){
-                    var d = $(this);
-                    var dd = d.data('day');
-                    Utils.arrayDelete(that.selected, dd);
-                    that.selected.push(dd);
-                    d.addClass("selected").addClass(o.clsSelected);
-                });
-                Utils.exec(o.onWeekDayClick, [that.selected, day, element]);
-            } else {
-                date = day.data('day');
-                index = that.selected.indexOf(date);
+            date = day.data('day');
+            index = that.selected.indexOf(date);
 
-                if (day.hasClass("outside")) {
-                    date = new Date(date);
-                    that.current = {
-                        year: date.getFullYear(),
-                        month: date.getMonth(),
-                        day: date.getDate()
-                    };
-                    that._drawContent();
-                    return ;
-                }
-
-                if (index === -1) {
-                    if (o.multiSelect === false) {
-                        element.find(".days-row .day").removeClass("selected").removeClass(o.clsSelected);
-                        that.selected = [];
-                    }
-                    that.selected.push(date);
-                    day.addClass("selected").addClass(o.clsSelected);
-                } else {
-                    day.removeClass("selected").removeClass(o.clsSelected);
-                    Utils.arrayDelete(that.selected, date);
-                }
-                Utils.exec(o.onDayClick, [that.selected, day, element]);
+            if (day.hasClass("outside")) {
+                date = new Date(date);
+                that.current = {
+                    year: date.getFullYear(),
+                    month: date.getMonth(),
+                    day: date.getDate()
+                };
+                that._drawContent();
+                return ;
             }
+
+            if (index === -1) {
+                if (o.multiSelect === false) {
+                    element.find(".days-row .day").removeClass("selected").removeClass(o.clsSelected);
+                    that.selected = [];
+                }
+                that.selected.push(date);
+                day.addClass("selected").addClass(o.clsSelected);
+            } else {
+                day.removeClass("selected").removeClass(o.clsSelected);
+                Utils.arrayDelete(that.selected, date);
+            }
+            Utils.exec(o.onDayClick, [that.selected, day, element]);
         });
 
         element.on("click", ".curr-month", function(e){
@@ -277,7 +293,7 @@ var Calendar = {
 
     _drawHeader: function(){
         var element = this.element, o = this.options;
-        var calendar_locale = Locales[o.locale]['calendar'];
+        var calendar_locale = this.locale['calendar'];
         var header = element.find(".calendar-header");
 
         if (header.length === 0) {
@@ -292,7 +308,7 @@ var Calendar = {
 
     _drawFooter: function(){
         var element = this.element, o = this.options;
-        var buttons_locale = Locales[o.locale]['buttons'];
+        var buttons_locale = this.locale['buttons'];
         var footer = element.find(".calendar-footer");
 
         if (o.buttons === false) {
@@ -317,7 +333,7 @@ var Calendar = {
         var element = this.element, o = this.options;
         var months = $("<div>").addClass("calendar-months").appendTo(element);
         var list = $("<ul>").addClass("months-list").appendTo(months);
-        var calendar_locale = Locales[o.locale]['calendar'];
+        var calendar_locale = this.locale['calendar'];
         var i;
         for(i = 0; i < 12; i++) {
             $("<li>").html(calendar_locale['months'][i]).appendTo(list);
@@ -337,7 +353,7 @@ var Calendar = {
     _drawContent: function(){
         var element = this.element, o = this.options;
         var content = element.find(".calendar-content"), toolbar;
-        var calendar_locale = Locales[o.locale]['calendar'];
+        var calendar_locale = this.locale['calendar'];
         var i, j, d, s, counter = 0;
         var first = new Date(this.current.year, this.current.month, 1);
         var first_day;

@@ -14,6 +14,8 @@ var Countdown = {
         this.zeroMinutesFired = false;
         this.zeroSecondsFired = false;
 
+        this.locale = null;
+
         this._setOptionsFromDOM();
         this._create();
 
@@ -27,16 +29,17 @@ var Countdown = {
     },
 
     options: {
+        locale: METRO_LOCALE,
         days: 0,
         hours: 0,
         minutes: 0,
         seconds: 0,
         date: null,
         start: true,
-        daysLabel: "days",
-        hoursLabel: "hours",
-        minutesLabel: "mins",
-        secondsLabel: "secs",
+        // daysLabel: "days",
+        // hoursLabel: "hours",
+        // minutesLabel: "mins",
+        // secondsLabel: "secs",
         clsCountdown: "",
         clsZero: "",
         clsAlarm: "",
@@ -65,6 +68,15 @@ var Countdown = {
     },
 
     _create: function(){
+        var that = this;
+
+        $.get(METRO_ROOT + "/i18n/" + this.options.locale + ".json", function(data){
+            that.locale = data;
+            that._build();
+        });
+    },
+
+    _build: function(){
         var that = this, element = this.element, o = this.options;
         var parts = ["days", "hours", "minutes", "seconds"];
         var dm = 24*60*60*1000, hm = 60*60*1000, mm = 60*1000, sm = 1000;
@@ -111,7 +123,7 @@ var Countdown = {
             if (this === "seconds") {
             }
 
-            var part = $("<div>").addClass("part " + this).attr("data-label", o[this+'Label']).appendTo(element);
+            var part = $("<div>").addClass("part " + this).attr("data-label", that.locale["calendar"]["time"][this]).appendTo(element);
 
             if (this === "days") {part.addClass(o.clsDays);}
             if (this === "hours") {part.addClass(o.clsHours);}

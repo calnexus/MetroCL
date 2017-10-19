@@ -53,6 +53,7 @@
                     <li class="toc-entry"><a href="#_countdown_customize">Customize</a></li>
                     <li class="toc-entry"><a href="#_countdown_events">Events</a></li>
                     <li class="toc-entry"><a href="#_countdown_methods">Methods</a></li>
+                    <li class="toc-entry"><a href="#_countdown_i18n">i18n</a></li>
                 </ul>
             </div>
 
@@ -350,6 +351,18 @@
 
                     &lt;button class="button mt-2"
                         onclick="alert('Minutes left: ' + $('#countdown_methods').data('countdown').getLeft().minutes)"&gt;Minutes left&lt;/button&gt;
+                </code></pre>
+
+                <h3 id="_countdown_i18n">i18n</h3>
+                <p>
+                    To change <code>language</code> for <code>countdown</code> use attribute <code>data-locale</code>. All predefined language files stored in <code>i18n</code> folder.
+                    You can add own internationalisation file to <code>i18n</code> folder with same structure and use it. For more information about <code>i18n</code> see <a href="i18n.html">this page</a>.
+                </p>
+                <div class="example">
+                    <div data-role="countdown" data-hours="90" data-locale="de-DE" style="font-size: 36px"></div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="countdown" data-hours="90" data-locale="de-DE"&gt;&lt;/div&gt;
                 </code></pre>
 
             </main>

@@ -15,6 +15,7 @@ var Dialog = {
     },
 
     options: {
+        locale: METRO_LOCALE,
         title: "",
         content: "",
         actions: {},
@@ -57,6 +58,15 @@ var Dialog = {
     },
 
     _create: function(){
+        var that = this;
+
+        $.get(METRO_ROOT + "/i18n/" + this.options.locale + ".json", function(data){
+            that.locale = data;
+            that._build();
+        });
+    },
+
+    _build: function(){
         var that = this, element = this.element, o = this.options;
         var body = $("body");
         var overlay;
@@ -84,7 +94,7 @@ var Dialog = {
             }
 
             if (o.defaultAction === true && (Utils.objectLength(o.actions) === 0 && element.find(".dialog-actions > *").length === 0)) {
-                button = $("<button>").addClass("button js-dialog-close").addClass(o.clsDefaultAction).html("OK");
+                button = $("<button>").addClass("button js-dialog-close").addClass(o.clsDefaultAction).html(this.locale["buttons"]["ok"]);
                 button.appendTo(buttons);
             }
 

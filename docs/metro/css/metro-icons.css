@@ -6,6 +6,7 @@
   position: absolute;
 }
 .set-flex {
+  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }

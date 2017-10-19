@@ -47,6 +47,7 @@
                 <hr/>
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Calendar</a></li>
+                    <li class="toc-entry"><a href="#_calendar_about">About</a></li>
                 </ul>
             </div>
 
@@ -62,14 +63,26 @@
 
                 <!-- ads-html -->
 
+                <h3 id="_calendar_about">About</h3>
+                <p>
+                    The calendar component is designed to organize the user's choice of a date or a list of dates.
+                    To create <code>calendar</code> add <code>data-role="calendar"</code> attribute to element.
+                </p>
                 <div class="example">
-                    <div data-role="calendar" data-outside="true" data-preset="10/01/2017, 10/10/2017" data-multi-select="true"></div>
-                    <div data-role="calendar" data-outside="true" data-min-date="10/15/2017" data-max-date="10/20/2017"></div>
+                    <div data-role="calendar" class="mx-auto"></div>
                 </div>
-
-                <div class="example mt-2">
-                    <div class="calendar-wide" data-role="calendar" data-outside="true" data-preset="10/01/2017, 10/10/2017"></div>
+                <pre><code>
+                    &lt;div data-role="calendar"&gt;&lt;/div&gt;
+                </code></pre>
+                <p>
+                    Also you can use <code>wide</code> calendar. To create <code>wide</code> calendar add class <code>.calendar-wide</code> to element.
+                </p>
+                <div class="example">
+                    <div data-role="calendar" class="calendar-wide mx-auto"></div>
                 </div>
+                <pre><code>
+                    &lt;div class="calendar-wide" data-role="calendar"&gt;&lt;/div&gt;
+                </code></pre>
 
             </main>
         </div>
@@ -78,7 +91,7 @@
 
     <script src="docsearch/docsearch.min.js"></script>
     <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="metro/js/metro.min.js"></script>
+    <script src="metro/js/metro.js"></script>
     <script src="highlight/highlight.pack.js"></script>
     <script src="js/clipboard.min.js"></script>
     <script src="js/site.js"></script>

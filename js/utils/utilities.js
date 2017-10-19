@@ -179,19 +179,6 @@ var Utils = {
         return (typeof jQuery === "function" && el instanceof jQuery);
     },
 
-    addLocale: function(data){
-        $.extend(Locales, data);
-    },
-
-    getLocaleNames: function(){
-        var result = [];
-        $.each(Locales, function(i){
-            result.push(i);
-        });
-
-        return result;
-    },
-
     elementInViewport: function(el) {
         if (this.isJQueryObject(el)) {
             el = el[0];
@@ -531,4 +518,4 @@ var Utils = {
     }
 };
 
-$.Metro['utils'] = window.metroUtils = Utils;
+$.Metro['utils'] = Metro['utils'] = Utils;

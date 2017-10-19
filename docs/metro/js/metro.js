@@ -36,6 +36,7 @@ if (window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE === undefined) {window.METRO_HO
 if (window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS === undefined) {window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS = true;}
 if (window.METRO_HOTKEYS_FILTER_TEXT_INPUTS === undefined) {window.METRO_HOTKEYS_FILTER_TEXT_INPUTS = true;}
 if (window.METRO_HOTKEYS_BUBBLE_UP === undefined) {window.METRO_HOTKEYS_BUBBLE_UP = false;}
+if (window.METRO_ROOT === undefined) {window.METRO_ROOT = "metro";}
 
 if ( typeof Object.create !== 'function' ) {
     Object.create = function (o) {
@@ -122,9 +123,6 @@ var Metro = {
                 return;
             }
 
-            //if ($.Metro.hotkeys.indexOf(hotkey) > -1) {
-            //    return;
-            //}
             if (element.data('hotKeyBonded') === true ) {
                 return;
             }
@@ -154,7 +152,6 @@ var Metro = {
             var $this = $(this), w = this;
             var roles = $this.data('role').split(/\s*,\s*/);
             roles.map(function (func) {
-                //console.log(func);
                 try {
                     if ($.fn[func] !== undefined && $this.data(func + '-initiated') !== true) {
                         $.fn[func].call($this);
@@ -167,15 +164,6 @@ var Metro = {
             });
         });
     },
-
-    // Пример использования:
-    // превращаем myObject в плагин
-    // $.plugin('myobj', myObject);
-
-    // и используем, как обычно
-    // $('#elem').myobj({name: "John"});
-    // var inst = $('#elem').data('myobj');
-    // inst.myMethod('I am a method');
 
     plugin: function(name, object){
         $.fn[name] = function( options ) {
@@ -390,130 +378,6 @@ Number.prototype.format = function(n, x, s, c) {
     return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
 };
 
-/*
- * Date Format 1.2.3
- * (c) 2007-2009 Steven Levithan <stevenlevithan.com>
- * MIT license
- *
- * Includes enhancements by Scott Trenda <scott.trenda.net>
- * and Kris Kowal <cixar.com/~kris.kowal/>
- *
- * Accepts a date, a mask, or a date and a mask.
- * Returns a formatted version of the given date.
- * The date defaults to the current date/time.
- * The mask defaults to dateFormat.masks.default.
- */
-// this is a temporary solution
-
-var dateFormat = function () {
-
-var token = /d{1,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|[LloSZ]|"[^"]*"|'[^']*'/g,
-        timezone = /\b(?:[PMCEA][SDP]T|(?:Pacific|Mountain|Central|Eastern|Atlantic) (?:Standard|Daylight|Prevailing) Time|(?:GMT|UTC)(?:[-+]\d{4})?)\b/g,
-        timezoneClip = /[^-+\dA-Z]/g,
-        pad = function (val, len) {
-            val = String(val);
-            len = len || 2;
-            while (val.length < len) {
-                val = "0" + val;
-            }
-            return val;
-        };
-
-    // Regexes and supporting functions are cached through closure
-    return function (date, mask, utc) {
-        var dF = dateFormat;
-
-        // You can't provide utc if you skip other args (use the "UTC:" mask prefix)
-        if (arguments.length === 1 && Object.prototype.toString.call(date) === "[object String]" && !/\d/.test(date)) {
-            mask = date;
-            date = undefined;
-        }
-
-        //console.log(arguments);
-
-        // Passing date through Date applies Date.parse, if necessary
-        date = date ? new Date(date) : new Date();
-        //if (isNaN(date)) throw SyntaxError("invalid date");
-
-        mask = String(dF.masks[mask] || mask || dF.masks["default"]);
-
-        // Allow setting the utc argument via the mask
-        if (mask.slice(0, 4) === "UTC:") {
-            mask = mask.slice(4);
-            utc = true;
-        }
-
-        //console.log(locale);
-
-        var locale = CORE_LOCALE || 'en-US';
-
-        var _ = utc ? "getUTC" : "get",
-            d = date[_ + "Date"](),
-            D = date[_ + "Day"](),
-            m = date[_ + "Month"](),
-            y = date[_ + "FullYear"](),
-            H = date[_ + "Hours"](),
-            M = date[_ + "Minutes"](),
-            s = date[_ + "Seconds"](),
-            L = date[_ + "Milliseconds"](),
-            o = utc ? 0 : date.getTimezoneOffset(),
-            flags = {
-                d: d,
-                dd: pad(d),
-                ddd: coreLocales[locale].calendar.days[D],
-                dddd: coreLocales[locale].calendar.days[D + 7],
-                m: m + 1,
-                mm: pad(m + 1),
-                mmm: coreLocales[locale].calendar.months[m],
-                mmmm: coreLocales[locale].calendar.months[m + 12],
-                yy: String(y).slice(2),
-                yyyy: y,
-                h: H % 12 || 12,
-                hh: pad(H % 12 || 12),
-                H: H,
-                HH: pad(H),
-                M: M,
-                MM: pad(M),
-                s: s,
-                ss: pad(s),
-                l: pad(L, 3),
-                L: pad(L > 99 ? Math.round(L / 10) : L),
-                t: H < 12 ? "a" : "p",
-                tt: H < 12 ? "am" : "pm",
-                T: H < 12 ? "A" : "P",
-                TT: H < 12 ? "AM" : "PM",
-                Z: utc ? "UTC" : (String(date).match(timezone) || [""]).pop().replace(timezoneClip, ""),
-                o: (o > 0 ? "-" : "+") + pad(Math.floor(Math.abs(o) / 60) * 100 + Math.abs(o) % 60, 4),
-                S: ["th", "st", "nd", "rd"][d % 10 > 3 ? 0 : (d % 100 - d % 10 !== 10) * d % 10]
-            };
-
-        return mask.replace(token, function ($0) {
-            return $0 in flags ? flags[$0] : $0.slice(1, $0.length - 1);
-        });
-    };
-}();
-
-// Some common format strings
-dateFormat.masks = {
-    default: "ddd mmm dd yyyy HH:MM:ss",
-    shortDate: "m/d/yy",
-    mediumDate: "mmm d, yyyy",
-    longDate: "mmmm d, yyyy",
-    fullDate: "dddd, mmmm d, yyyy",
-    shortTime: "h:MM TT",
-    mediumTime: "h:MM:ss TT",
-    longTime: "h:MM:ss TT Z",
-    isoDate: "yyyy-mm-dd",
-    isoTime: "HH:MM:ss",
-    isoDateTime: "yyyy-mm-dd'T'HH:MM:ss",
-    isoUtcDateTime: "UTC:yyyy-mm-dd'T'HH:MM:ss'Z'"
-};
-
-// For convenience...
-Date.prototype.format = function (mask, utc) {
-return dateFormat(this, mask, utc);
-};
-
 String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 };
@@ -697,121 +561,6 @@ $.each(["keydown", "keyup", "keypress"], function() {
         add: hotkeys.keyHandler
     };
 });
-
-// Source: js/utils/locales.js
-var Locales = {
-
-    'en-US': {
-        calendar: {
-            months: [
-                "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",
-                "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-            ],
-            days: [
-                "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",
-                "Su", "Mo", "Tu", "We", "Th", "Fr", "Sa",
-                "Sun", "Mon", "Tus", "Wen", "Thu", "Fri", "Sat"
-            ],
-            time: ["HOUR", "MIN", "SEC"]
-        },
-        buttons: {
-            ok: "OK",
-            cancel: "Cancel",
-            done: "Done",
-            today: "Today",
-            now: "Now",
-            clear: "Clear",
-            help: "Help",
-            yes: "Yes",
-            no: "No",
-            random: "Random"
-        }
-    },
-
-    'uk-UA': {
-        calendar: {
-            months: [
-                "Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень",
-                "Січ", "Лют", "Бер", "Кві", "Тра", "Чер", "Лип", "Сер", "Вер", "Жов", "Лис", "Гру"
-            ],
-            days: [
-                "Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П’ятниця", "Субота",
-                "Нд", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб",
-                "Нед", "Пон", "Вiв", "Сер", "Чет", "Пят", "Суб"
-            ],
-            time: ["ГОД", "ХВЛ", "СЕК"]
-        },
-        buttons: {
-            ok: "ОК",
-            cancel: "Відміна",
-            done: "Готово",
-            today: "Сьогодні",
-            now: "Зараз",
-            clear: "Очистити",
-            help: "Допомога",
-            yes: "Так",
-            no: "Ні",
-            random: "Випадково"
-        }
-    },
-
-    'ru-RU': {
-        calendar: {
-            months: [
-                "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь",
-                "Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"
-            ],
-            days: [
-                "Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота",
-                "Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб",
-                "Вос", "Пон", "Вто", "Сре", "Чет", "Пят", "Суб"
-            ],
-            time: ["ЧАС", "МИН", "СЕК"]
-        },
-        buttons: {
-            ok: "ОК",
-            cancel: "Отмена",
-            done: "Готово",
-            today: "Сегодня",
-            now: "Сейчас",
-            clear: "Очистить",
-            help: "Помощь",
-            yes: "Да",
-            no: "Нет",
-            random: "Случайно"
-        }
-    },
-
-    'de-DE': {
-        calendar: {
-            months: [
-                "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember",
-                "Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"
-            ],
-            days: [
-                "Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag",
-                "Sn", "Mn", "Di", "Mi", "Do", "Fr", "Sa",
-                "Son", "Mon", "Die", "Mit", "Don", "Fre", "Sam"
-            ],
-            time: ["UHR", "MIN", "SEK"]
-        },
-        buttons: {
-            ok: "OK",
-            cancel: "Abbrechen",
-            done: "Fertig",
-            today: "Heute",
-            now: "Jetzt",
-            clear: "Reinigen",
-            help: "Hilfe",
-            yes: "Ja",
-            no: "Nein",
-            random: "Zufällig"
-        }
-    }
-
-};
-
-$.Metro['locales'] = window.metroLocales = Locales;
 
 // Source: js/utils/md5.js
 var hexcase = 0;
@@ -1709,19 +1458,6 @@ var d = new Date().getTime();
         return (typeof jQuery === "function" && el instanceof jQuery);
     },
 
-    addLocale: function(data){
-        $.extend(Locales, data);
-    },
-
-    getLocaleNames: function(){
-        var result = [];
-        $.each(Locales, function(i){
-            result.push(i);
-        });
-
-        return result;
-    },
-
     elementInViewport: function(el) {
         if (this.isJQueryObject(el)) {
             el = el[0];
@@ -2061,7 +1797,7 @@ var d = new Date().getTime();
     }
 };
 
-$.Metro['utils'] = window.metroUtils = Utils;
+$.Metro['utils'] = Metro['utils'] = Utils;
 // Source: js/plugins/accordion.js
 var Accordion = {
     init: function( options, elem ) {
@@ -2316,6 +2052,7 @@ var Calendar = {
         this.exclude = [];
         this.min = null;
         this.max = null;
+        this.locale = null;
 
         this._setOptionsFromDOM();
         this._create();
@@ -2424,10 +2161,20 @@ var Calendar = {
             this.max.setHours(0,0,0,0);
         }
 
+        $.get(METRO_ROOT + "/i18n/" + o.locale + ".json", function(data){
+            that.locale = data;
+            that._build();
+        });
+    },
+
+    _build: function(){
+
+        //console.log(this.locale);
+
         this._drawCalendar();
         this._bindEvents();
 
-        if (o.ripple === true) {
+        if (this.options.ripple === true) {
             element.ripple({
                 rippleTarget: ".button, .prev-month, .next-month, .prev-year, .next-year, .day",
                 rippleColor: o.rippleColor
@@ -2498,48 +2245,53 @@ var Calendar = {
             Utils.exec(o.onDone, [that.selected, element]);
         });
 
-        element.on("click", ".day", function(){
+        element.on("click", ".week-days .day", function(){
+            if (o.multiSelect === false) {
+                return ;
+            }
+            var day = $(this);
+            var index = day.index();
+            var days = o.outside === true ? element.find(".days-row .day:nth-child("+(index + 1)+")") : element.find(".days-row .day:not(.outside):nth-child("+(index + 1)+")");
+            $.each(days, function(){
+                var d = $(this);
+                var dd = d.data('day');
+                Utils.arrayDelete(that.selected, dd);
+                that.selected.push(dd);
+                d.addClass("selected").addClass(o.clsSelected);
+            });
+            Utils.exec(o.onWeekDayClick, [that.selected, day, element]);
+        });
+
+        element.on("click", ".days-row .day", function(){
             var day = $(this);
             var index, date;
 
-            if ($(this).parent().hasClass("week-days") && o.weekDayClick === true) {
-                index = day.index();
-                $.each(element.find(".days-row .day:nth-child("+(index + 1)+")"), function(){
-                    var d = $(this);
-                    var dd = d.data('day');
-                    Utils.arrayDelete(that.selected, dd);
-                    that.selected.push(dd);
-                    d.addClass("selected").addClass(o.clsSelected);
-                });
-                Utils.exec(o.onWeekDayClick, [that.selected, day, element]);
-            } else {
-                date = day.data('day');
-                index = that.selected.indexOf(date);
+            date = day.data('day');
+            index = that.selected.indexOf(date);
 
-                if (day.hasClass("outside")) {
-                    date = new Date(date);
-                    that.current = {
-                        year: date.getFullYear(),
-                        month: date.getMonth(),
-                        day: date.getDate()
-                    };
-                    that._drawContent();
-                    return ;
-                }
-
-                if (index === -1) {
-                    if (o.multiSelect === false) {
-                        element.find(".days-row .day").removeClass("selected").removeClass(o.clsSelected);
-                        that.selected = [];
-                    }
-                    that.selected.push(date);
-                    day.addClass("selected").addClass(o.clsSelected);
-                } else {
-                    day.removeClass("selected").removeClass(o.clsSelected);
-                    Utils.arrayDelete(that.selected, date);
-                }
-                Utils.exec(o.onDayClick, [that.selected, day, element]);
+            if (day.hasClass("outside")) {
+                date = new Date(date);
+                that.current = {
+                    year: date.getFullYear(),
+                    month: date.getMonth(),
+                    day: date.getDate()
+                };
+                that._drawContent();
+                return ;
             }
+
+            if (index === -1) {
+                if (o.multiSelect === false) {
+                    element.find(".days-row .day").removeClass("selected").removeClass(o.clsSelected);
+                    that.selected = [];
+                }
+                that.selected.push(date);
+                day.addClass("selected").addClass(o.clsSelected);
+            } else {
+                day.removeClass("selected").removeClass(o.clsSelected);
+                Utils.arrayDelete(that.selected, date);
+            }
+            Utils.exec(o.onDayClick, [that.selected, day, element]);
         });
 
         element.on("click", ".curr-month", function(e){
@@ -2578,7 +2330,7 @@ var Calendar = {
 
     _drawHeader: function(){
         var element = this.element, o = this.options;
-        var calendar_locale = Locales[o.locale]['calendar'];
+        var calendar_locale = this.locale['calendar'];
         var header = element.find(".calendar-header");
 
         if (header.length === 0) {
@@ -2593,7 +2345,7 @@ var Calendar = {
 
     _drawFooter: function(){
         var element = this.element, o = this.options;
-        var buttons_locale = Locales[o.locale]['buttons'];
+        var buttons_locale = this.locale['buttons'];
         var footer = element.find(".calendar-footer");
 
         if (o.buttons === false) {
@@ -2618,7 +2370,7 @@ var Calendar = {
         var element = this.element, o = this.options;
         var months = $("<div>").addClass("calendar-months").appendTo(element);
         var list = $("<ul>").addClass("months-list").appendTo(months);
-        var calendar_locale = Locales[o.locale]['calendar'];
+        var calendar_locale = this.locale['calendar'];
         var i;
         for(i = 0; i < 12; i++) {
             $("<li>").html(calendar_locale['months'][i]).appendTo(list);
@@ -2638,7 +2390,7 @@ var Calendar = {
     _drawContent: function(){
         var element = this.element, o = this.options;
         var content = element.find(".calendar-content"), toolbar;
-        var calendar_locale = Locales[o.locale]['calendar'];
+        var calendar_locale = this.locale['calendar'];
         var i, j, d, s, counter = 0;
         var first = new Date(this.current.year, this.current.month, 1);
         var first_day;
@@ -3155,6 +2907,8 @@ var Countdown = {
         this.zeroMinutesFired = false;
         this.zeroSecondsFired = false;
 
+        this.locale = null;
+
         this._setOptionsFromDOM();
         this._create();
 
@@ -3168,16 +2922,17 @@ var Countdown = {
     },
 
     options: {
+        locale: METRO_LOCALE,
         days: 0,
         hours: 0,
         minutes: 0,
         seconds: 0,
         date: null,
         start: true,
-        daysLabel: "days",
-        hoursLabel: "hours",
-        minutesLabel: "mins",
-        secondsLabel: "secs",
+        // daysLabel: "days",
+        // hoursLabel: "hours",
+        // minutesLabel: "mins",
+        // secondsLabel: "secs",
         clsCountdown: "",
         clsZero: "",
         clsAlarm: "",
@@ -3206,6 +2961,15 @@ var Countdown = {
     },
 
     _create: function(){
+        var that = this;
+
+        $.get(METRO_ROOT + "/i18n/" + this.options.locale + ".json", function(data){
+            that.locale = data;
+            that._build();
+        });
+    },
+
+    _build: function(){
         var that = this, element = this.element, o = this.options;
         var parts = ["days", "hours", "minutes", "seconds"];
         var dm = 24*60*60*1000, hm = 60*60*1000, mm = 60*1000, sm = 1000;
@@ -3252,7 +3016,7 @@ var Countdown = {
             if (this === "seconds") {
             }
 
-            var part = $("<div>").addClass("part " + this).attr("data-label", o[this+'Label']).appendTo(element);
+            var part = $("<div>").addClass("part " + this).attr("data-label", that.locale["calendar"]["time"][this]).appendTo(element);
 
             if (this === "days") {part.addClass(o.clsDays);}
             if (this === "hours") {part.addClass(o.clsHours);}
@@ -3454,6 +3218,7 @@ var Dialog = {
     },
 
     options: {
+        locale: METRO_LOCALE,
         title: "",
         content: "",
         actions: {},
@@ -3496,6 +3261,15 @@ var Dialog = {
     },
 
     _create: function(){
+        var that = this;
+
+        $.get(METRO_ROOT + "/i18n/" + this.options.locale + ".json", function(data){
+            that.locale = data;
+            that._build();
+        });
+    },
+
+    _build: function(){
         var that = this, element = this.element, o = this.options;
         var body = $("body");
         var overlay;
@@ -3523,7 +3297,7 @@ var Dialog = {
             }
 
             if (o.defaultAction === true && (Utils.objectLength(o.actions) === 0 && element.find(".dialog-actions > *").length === 0)) {
-                button = $("<button>").addClass("button js-dialog-close").addClass(o.clsDefaultAction).html("OK");
+                button = $("<button>").addClass("button js-dialog-close").addClass(o.clsDefaultAction).html(this.locale["buttons"]["ok"]);
                 button.appendTo(buttons);
             }
 

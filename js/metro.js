@@ -18,6 +18,7 @@ if (window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE === undefined) {window.METRO_HO
 if (window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS === undefined) {window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS = true;}
 if (window.METRO_HOTKEYS_FILTER_TEXT_INPUTS === undefined) {window.METRO_HOTKEYS_FILTER_TEXT_INPUTS = true;}
 if (window.METRO_HOTKEYS_BUBBLE_UP === undefined) {window.METRO_HOTKEYS_BUBBLE_UP = false;}
+if (window.METRO_ROOT === undefined) {window.METRO_ROOT = "metro";}
 
 if ( typeof Object.create !== 'function' ) {
     Object.create = function (o) {
@@ -104,9 +105,6 @@ var Metro = {
                 return;
             }
 
-            //if ($.Metro.hotkeys.indexOf(hotkey) > -1) {
-            //    return;
-            //}
             if (element.data('hotKeyBonded') === true ) {
                 return;
             }
@@ -136,7 +134,6 @@ var Metro = {
             var $this = $(this), w = this;
             var roles = $this.data('role').split(/\s*,\s*/);
             roles.map(function (func) {
-                //console.log(func);
                 try {
                     if ($.fn[func] !== undefined && $this.data(func + '-initiated') !== true) {
                         $.fn[func].call($this);
@@ -149,15 +146,6 @@ var Metro = {
             });
         });
     },
-
-    // Пример использования:
-    // превращаем myObject в плагин
-    // $.plugin('myobj', myObject);
-
-    // и используем, как обычно
-    // $('#elem').myobj({name: "John"});
-    // var inst = $('#elem').data('myobj');
-    // inst.myMethod('I am a method');
 
     plugin: function(name, object){
         $.fn[name] = function( options ) {
