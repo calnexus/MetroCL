@@ -47,7 +47,18 @@
                 <hr/>
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Calendar</a></li>
-                    <li class="toc-entry"><a href="#_calendar_about">About</a></li>
+                    <li class="toc-entry"><a href="#_calendar_create">Create</a></li>
+                    <li class="toc-entry"><a href="#_calendar_week_start">Week start</a></li>
+                    <li class="toc-entry"><a href="#_calendar_selection">Selection</a></li>
+                    <li class="toc-entry"><a href="#_calendar_buttons">Buttons</a></li>
+                    <li class="toc-entry"><a href="#_calendar_exclude">Exclude</a></li>
+                    <li class="toc-entry"><a href="#_calendar_preset">Preset</a></li>
+                    <li class="toc-entry"><a href="#_calendar_min_max">Min &amp; Max dates</a></li>
+                    <li class="toc-entry"><a href="#_calendar_events">Events</a></li>
+                    <li class="toc-entry"><a href="#_calendar_methods">Methods</a></li>
+                    <li class="toc-entry"><a href="#_calendar_observe">Observe</a></li>
+                    <li class="toc-entry"><a href="#_calendar_customize">Customize</a></li>
+                    <li class="toc-entry"><a href="#_calendar_i18n">i18n</a></li>
                 </ul>
             </div>
 
@@ -63,7 +74,7 @@
 
                 <!-- ads-html -->
 
-                <h3 id="_calendar_about">About</h3>
+                <h3 id="_calendar_create">Create calendar</h3>
                 <p>
                     The calendar component is designed to organize the user's choice of a date or a list of dates.
                     To create <code>calendar</code> add <code>data-role="calendar"</code> attribute to element.
@@ -75,13 +86,44 @@
                     &lt;div data-role="calendar"&gt;&lt;/div&gt;
                 </code></pre>
                 <p>
-                    Also you can use <code>wide</code> calendar. To create <code>wide</code> calendar add class <code>.calendar-wide</code> to element.
+                    Also you can use <code>wide</code> calendar. To create <code>wide</code> calendar add class <code>.calendar-wide</code> to element or use media variants:
+                        <code>.calendar-wide-md</code>,
+                        <code>.calendar-wide-lg</code>,
+                        <code>.calendar-wide-xl</code>,
+                        <code>.calendar-wide-xxl</code>.
                 </p>
                 <div class="example">
                     <div data-role="calendar" class="calendar-wide mx-auto"></div>
                 </div>
                 <pre><code>
                     &lt;div class="calendar-wide" data-role="calendar"&gt;&lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_calendar_week_start">Week start</h3>
+                <p>
+                    Metro 4 <code>calendar</code> support two modes for <code>week start</code>:
+                </p>
+                <ul>
+                    <li>from <code>sunday</code> (default)</li>
+                    <li>from <code>monday</code></li>
+                </ul>
+                <p>
+                    To set <code>week start</code> use <code>data-week-start</code> attribute.
+                    When value is <code>0</code> (default), calendar started from sunday, when value is <code>1</code>, calendar started from monday.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-6">
+                            <div data-role="calendar" data-week-start="0"></div>
+                        </div>
+                        <div class="cell-md-6">
+                            <div data-role="calendar" data-week-start="1"></div>
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="calendar" data-week-start="0"&gt;&lt;/div&gt;
+                    &lt;div data-role="calendar" data-week-start="1"&gt;&lt;/div&gt;
                 </code></pre>
 
             </main>
