@@ -114,16 +114,36 @@
                 <div class="example">
                     <div class="row">
                         <div class="cell-md-6">
-                            <div data-role="calendar" data-week-start="0"></div>
+                            <div class="mx-auto" data-role="calendar" data-week-start="0"></div>
                         </div>
                         <div class="cell-md-6">
-                            <div data-role="calendar" data-week-start="1"></div>
+                            <div class="mx-auto" data-role="calendar" data-week-start="1"></div>
                         </div>
                     </div>
                 </div>
                 <pre><code class="html">
                     &lt;div data-role="calendar" data-week-start="0"&gt;&lt;/div&gt;
                     &lt;div data-role="calendar" data-week-start="1"&gt;&lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_calendar_selection">Selection</h3>
+                <p>
+                    You can use two variants of date selecting: <code>one date</code> mode (default) or <code>multi dates</code> mode.
+                    To set <code>selection</code> mode use attribute <code>data-multi-select</code> with values <code>true</code> or <code>false</code>.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-6">
+                            <div class="mx-auto" data-role="calendar" data-multi-select="true"></div>
+                        </div>
+                        <div class="cell-md-6">
+                            <div class="mx-auto" data-role="calendar" data-multi-select="false"></div>
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="calendar" data-multi-select="true"&gt;&lt;/div&gt;
+                    &lt;div data-role="calendar" data-multi-select="false"&gt;&lt;/div&gt;
                 </code></pre>
 
             </main>

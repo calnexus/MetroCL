@@ -12359,8 +12359,8 @@ figure img {
   border-left: 20px solid transparent;
 }
 .calendar-content .day.selected::before {
-  right: .1rem;
-  top: .1rem;
+  right: 1px!important;
+  top: 1px!important;
 }
 .calendar-content .outside {
   color: #9e9e9e;

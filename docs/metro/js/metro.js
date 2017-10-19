@@ -2303,6 +2303,7 @@ var Calendar = {
         element.on("click", ".calendar-months li", function(){
             that.current.month = $(this).index();
             that._drawContent();
+            Utils.exec(o.onMonthChange, [that.current, element]);
         });
 
         element.on("click", ".curr-year", function(e){
@@ -2314,6 +2315,7 @@ var Calendar = {
         element.on("click", ".calendar-years li", function(){
             that.current.year = $(this).text();
             that._drawContent();
+            Utils.exec(o.onYearChange, [that.current, element]);
         });
 
         element.on("click", function(){
