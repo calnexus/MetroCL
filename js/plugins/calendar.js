@@ -124,7 +124,7 @@ var Calendar = {
             this.max.setHours(0,0,0,0);
         }
 
-        $.get(METRO_ROOT + "/i18n/" + o.locale + ".json", function(data){
+        $.get(METRO_I18N + o.locale + ".json", function(data){
             that.locale = data;
             that._build();
         });

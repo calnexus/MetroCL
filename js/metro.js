@@ -19,6 +19,7 @@ if (window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS === undefined) {window.
 if (window.METRO_HOTKEYS_FILTER_TEXT_INPUTS === undefined) {window.METRO_HOTKEYS_FILTER_TEXT_INPUTS = true;}
 if (window.METRO_HOTKEYS_BUBBLE_UP === undefined) {window.METRO_HOTKEYS_BUBBLE_UP = false;}
 if (window.METRO_ROOT === undefined) {window.METRO_ROOT = "metro";}
+if (window.METRO_I18N === undefined) {window.METRO_I18N = METRO_ROOT + "/js/i18n/";}
 
 if ( typeof Object.create !== 'function' ) {
     Object.create = function (o) {

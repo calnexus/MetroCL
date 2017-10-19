@@ -37,6 +37,7 @@ if (window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS === undefined) {window.
 if (window.METRO_HOTKEYS_FILTER_TEXT_INPUTS === undefined) {window.METRO_HOTKEYS_FILTER_TEXT_INPUTS = true;}
 if (window.METRO_HOTKEYS_BUBBLE_UP === undefined) {window.METRO_HOTKEYS_BUBBLE_UP = false;}
 if (window.METRO_ROOT === undefined) {window.METRO_ROOT = "metro";}
+if (window.METRO_I18N === undefined) {window.METRO_I18N = METRO_ROOT + "/js/i18n/";}
 
 if ( typeof Object.create !== 'function' ) {
     Object.create = function (o) {
@@ -2161,7 +2162,7 @@ var Calendar = {
             this.max.setHours(0,0,0,0);
         }
 
-        $.get(METRO_ROOT + "/i18n/" + o.locale + ".json", function(data){
+        $.get(METRO_I18N + o.locale + ".json", function(data){
             that.locale = data;
             that._build();
         });
@@ -2965,7 +2966,7 @@ var Countdown = {
     _create: function(){
         var that = this;
 
-        $.get(METRO_ROOT + "/i18n/" + this.options.locale + ".json", function(data){
+        $.get(METRO_I18N + this.options.locale + ".json", function(data){
             that.locale = data;
             that._build();
         });
@@ -3265,7 +3266,7 @@ var Dialog = {
     _create: function(){
         var that = this;
 
-        $.get(METRO_ROOT + "/i18n/" + this.options.locale + ".json", function(data){
+        $.get(METRO_I18N + this.options.locale + ".json", function(data){
             that.locale = data;
             that._build();
         });

@@ -135,39 +135,6 @@ module.exports = function(grunt) {
             }
         },
 
-        compress: {
-            main: {
-                options: {
-                    archive: "target/metro_<%= pkg.version %>-<%= pkg.version_suffix %>.zip"
-                },
-                files: [
-                    {
-                        expand: true,
-                        cwd: "build/",
-                        src: ["**/*"],
-                        dest: "."
-                    },
-                    {
-                        src: ["README.md", "LICENSE", "CHANGELOG.md"],
-                        dest: "."
-                    }
-                ]
-            },
-            short: {
-                options: {
-                    archive: "target/metro_<%= pkg.version %>-<%= pkg.version_suffix %>_short.zip"
-                },
-                files: [
-                    {
-                        expand: true,
-                        cwd: "build/",
-                        src: ["css/metro-all.min.css", "js/i18n/*", "js/metro.min.js", "icons/metro.woff"],
-                        dest: "."
-                    }
-                ]
-            }
-        },
-
         copy: {
             fonts: {
                 expand: true,
@@ -186,18 +153,6 @@ module.exports = function(grunt) {
                 cwd: 'build',
                 src: '**/*',
                 dest: 'docs/metro'
-            },
-            i18n_docs: {
-                expand: true,
-                cwd: 'js/i18n',
-                src: '**/*',
-                dest: 'docs/metro/i18n'
-            },
-            public_release: {
-                expand: true,
-                cwd: 'target',
-                src: '**/*',
-                dest: 'docs/files/'
             }
         },
 
@@ -228,13 +183,13 @@ module.exports = function(grunt) {
         watch: {
             scripts: {
                 files: ['js/i18n/*.json', 'js/*.js', 'js/utils/*.js', 'js/plugins/*js', 'less/*.less', 'less/include/*.less', 'less/schemes/*.less', 'Gruntfile.js'],
-                tasks: ['clean', 'less', 'concat', 'postcss',  'uglify', 'cssmin', 'compress', 'copy']
+                tasks: ['clean', 'less', 'concat', 'postcss',  'uglify', 'cssmin', 'copy']
             }
         }
     });
 
     grunt.registerTask('default', [
-        'clean', 'less', 'concat', 'postcss',  'uglify', 'cssmin', 'compress', 'copy', 'watch'
+        'clean', 'less', 'concat', 'postcss',  'uglify', 'cssmin', 'copy', 'watch'
     ]);
 
 };

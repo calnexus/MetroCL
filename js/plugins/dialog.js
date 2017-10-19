@@ -60,7 +60,7 @@ var Dialog = {
     _create: function(){
         var that = this;
 
-        $.get(METRO_ROOT + "/i18n/" + this.options.locale + ".json", function(data){
+        $.get(METRO_I18N + this.options.locale + ".json", function(data){
             that.locale = data;
             that._build();
         });
