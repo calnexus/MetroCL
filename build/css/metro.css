@@ -307,7 +307,7 @@ img {
 .selected {
   box-shadow: 0 0 0 4px #47b4e9 !important;
 }
-.selected:after {
+.selected::after {
   position: absolute;
   display: block;
   border-top: 28px solid #47b4e9;
@@ -317,7 +317,7 @@ img {
   top: -1px;
   z-index: 100;
 }
-.selected:before {
+.selected::before {
   position: absolute;
   display: block;
   content: "";
@@ -10948,6 +10948,14 @@ figure img {
 }
 .calendar-content .day.selected {
   box-shadow: 0 0 0 1px #47b4e9 !important;
+}
+.calendar-content .day.selected::after {
+  border-top: 20px solid #47b4e9;
+  border-left: 20px solid transparent;
+}
+.calendar-content .day.selected::before {
+  right: .1rem;
+  top: .1rem;
 }
 .calendar-content .outside {
   color: #9e9e9e;

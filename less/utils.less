@@ -42,7 +42,7 @@
 .selected {
     box-shadow: 0 0 0 4px rgba(red(@lightCyan), green(@lightCyan), blue(@lightCyan), 1)!important;
 
-    &:after {
+    &::after {
         position: absolute;
         display: block;
         border-top: 28px solid @lightCyan;
@@ -53,7 +53,7 @@
         z-index: @zindex-selectedCheck;
     }
 
-    &:before {
+    &::before {
         position: absolute;
         display: block;
         content: "";

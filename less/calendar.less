@@ -112,6 +112,16 @@
 
         &.selected {
             box-shadow: 0 0 0 1px rgba(red(@lightCyan), green(@lightCyan), blue(@lightCyan), 1)!important;
+
+            &::after {
+                border-top: 20px solid @lightCyan;
+                border-left: 20px solid transparent;
+            }
+
+            &::before {
+                right: .1rem;
+                top: .1rem;
+            }
         }
     }
 
