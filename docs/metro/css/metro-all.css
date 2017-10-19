@@ -10835,6 +10835,7 @@ figure img {
   width: 280px;
   max-width: 90%;
   border: 1px solid #dfdfdf;
+  overflow: hidden;
 }
 .calendar-header,
 .calendar-content,
@@ -10956,6 +10957,67 @@ figure img {
   background-color: #60a917;
   color: #ffffff;
 }
+.calendar-months {
+  height: 100%;
+  display: block;
+  position: absolute;
+  left: -100%;
+  background-color: #f8f8f8;
+  color: #1d1d1d;
+  transition: left 0.3s ease;
+  z-index: 500;
+  float: left;
+  width: auto;
+  overflow-y: auto;
+}
+.calendar-months.open {
+  transition: left 0.3s ease;
+  left: 0;
+  box-shadow: 5px 0 7px -6px rgba(0, 0, 0, 0.75);
+}
+.calendar-months .months-list {
+  list-style: none inside;
+  padding: 0;
+  margin: 10px 0;
+}
+.calendar-months .months-list li {
+  padding: 4px 16px;
+  cursor: pointer;
+}
+.calendar-months .months-list li:hover {
+  background-color: rgba(29, 29, 29, 0.1);
+}
+.calendar-years {
+  height: 100%;
+  display: block;
+  position: absolute;
+  right: -100%;
+  background-color: #f8f8f8;
+  color: #1d1d1d;
+  transition: right 0.3s ease;
+  z-index: 500;
+  float: left;
+  width: auto;
+  overflow-y: auto;
+}
+.calendar-years.open {
+  transition: right 0.3s ease;
+  right: 0;
+  box-shadow: -5px 0 7px -6px rgba(0, 0, 0, 0.75);
+}
+.calendar-years .years-list {
+  list-style: none inside;
+  padding: 0;
+  margin: 10px 0;
+  text-align: center;
+}
+.calendar-years .years-list li {
+  padding: 4px 16px;
+  cursor: pointer;
+}
+.calendar-years .years-list li:hover {
+  background-color: rgba(29, 29, 29, 0.1);
+}
 .calendar-footer {
   padding: .5rem;
   border-top: 1px solid #dfdfdf;
@@ -10971,6 +11033,7 @@ figure img {
 .calendar-footer > * {
   margin: 0 2px;
   font-size: .75rem;
+  width: 25%;
 }
 .calendar.calendar-wide {
   -ms-flex-flow: row nowrap;

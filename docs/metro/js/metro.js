@@ -2342,6 +2342,7 @@ var Calendar = {
         preset: null,
         minDate: null,
         maxDate: null,
+        weekDayClick: false,
         onCancel: Metro.noop,
         onToday: Metro.noop,
         onClear: Metro.noop,
@@ -2488,7 +2489,7 @@ var Calendar = {
             var day = $(this);
             var index, date;
 
-            if ($(this).parent().hasClass("week-days")) {
+            if ($(this).parent().hasClass("week-days") && o.weekDayClick === true) {
                 index = day.index();
                 $.each(element.find(".days-row .day:nth-child("+(index + 1)+")"), function(){
                     var d = $(this);
@@ -2502,6 +2503,17 @@ var Calendar = {
                 date = day.data('day');
                 index = that.selected.indexOf(date);
 
+                if (day.hasClass("outside")) {
+                    date = new Date(date);
+                    that.current = {
+                        year: date.getFullYear(),
+                        month: date.getMonth(),
+                        day: date.getDate()
+                    };
+                    that._drawContent();
+                    return ;
+                }
+
                 if (index === -1) {
                     that.selected.push(date);
                     day.addClass("selected").addClass(o.clsSelected);
@@ -2512,6 +2524,39 @@ var Calendar = {
                 Utils.exec(o.onDayClick, [that.selected, day, element]);
             }
         });
+
+        element.on("click", ".curr-month", function(e){
+            element.find(".calendar-months").addClass("open");
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
+        element.on("click", ".calendar-months li", function(){
+            that.current.month = $(this).index();
+            that._drawContent();
+        });
+
+        element.on("click", ".curr-year", function(e){
+            element.find(".calendar-years").addClass("open");
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
+        element.on("click", ".calendar-years li", function(){
+            that.current.year = $(this).text();
+            that._drawContent();
+        });
+
+        element.on("click", function(){
+            var months = element.find(".calendar-months");
+            var years = element.find(".calendar-years");
+            if (months.hasClass("open")) {
+                months.removeClass("open");
+            }
+            if (years.hasClass("open")) {
+                years.removeClass("open");
+            }
+        })
     },
 
     _drawHeader: function(){
@@ -2550,6 +2595,28 @@ var Calendar = {
                 button.addClass("js-dialog-close");
             }
         });
+    },
+
+    _drawMonths: function(){
+        var element = this.element, o = this.options;
+        var months = $("<div>").addClass("calendar-months").appendTo(element);
+        var list = $("<ul>").addClass("months-list").appendTo(months);
+        var calendar_locale = Locales[o.locale]['calendar'];
+        var i;
+        for(i = 0; i < 12; i++) {
+            $("<li>").html(calendar_locale['months'][i]).appendTo(list);
+        }
+    },
+
+    _drawYears: function(){
+        var element = this.element, o = this.options;
+        var years = $("<div>").addClass("calendar-years").appendTo(element);
+        var list = $("<ul>").addClass("years-list").appendTo(years);
+        var calendar_locale = Locales[o.locale]['calendar'];
+        var i;
+        for(i = this.current.year - 100; i < this.current.year + 100; i++) {
+            $("<li>").html(i).appendTo(list);
+        }
     },
 
     _drawContent: function(){
@@ -2674,6 +2741,7 @@ var Calendar = {
             d = $("<div>").addClass("day outside").appendTo(days_row);
             s = new Date(year, month, i + 1);
             s.setHours(0,0,0,0);
+            d.data('day', s.getTime());
             if (o.outside === true) {
                 d.html(i + 1);
                 if (this.selected.indexOf(s.getTime()) !== -1) {
@@ -2698,6 +2766,8 @@ var Calendar = {
         this._drawHeader();
         this._drawContent();
         this._drawFooter();
+        this._drawMonths();
+        this._drawYears();
     },
 
     changeAttribute: function(attributeName){

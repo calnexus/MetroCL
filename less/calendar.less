@@ -8,6 +8,7 @@
     width: 280px;
     max-width: 90%;
     border: 1px solid @borderColor;
+    overflow: hidden;
 }
 
 .calendar-header, .calendar-content, .calendar-footer {
@@ -125,6 +126,76 @@
     }
 }
 
+.calendar-months {
+    height: 100%;
+    display: block;
+    position: absolute;
+    left: -100%;
+    background-color: @light;
+    color: @dark;
+    transition: @transition-left;
+    z-index: @zindex-absolute;
+    float: left;
+    width: auto;
+    overflow-y: auto;
+
+    &.open {
+        transition: @transition-left;
+        left: 0;
+        .shadow-right();
+    }
+
+    .months-list {
+        list-style: none inside;
+        padding: 0;
+        margin: 10px 0;
+
+        li {
+            padding: 4px 16px;
+            cursor: pointer;
+            &:hover {
+                background-color: @hoverBackground;
+            }
+        }
+    }
+}
+
+.calendar-years {
+    height: 100%;
+    display: block;
+    position: absolute;
+    right: -100%;
+    background-color: @light;
+    color: @dark;
+    transition: @transition-right;
+    z-index: @zindex-absolute;
+    float: left;
+    width: auto;
+    overflow-y: auto;
+
+    &.open {
+        transition: @transition-right;
+        right: 0;
+        .shadow-left();
+    }
+
+    .years-list {
+        list-style: none inside;
+        padding: 0;
+        margin: 10px 0;
+        text-align: center;
+
+        li {
+            padding: 4px 16px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: @hoverBackground;
+            }
+        }
+    }
+}
+
 .calendar-footer {
     padding: .5rem;
     border-top: 1px solid @borderColor;
@@ -136,6 +207,7 @@
     & > * {
         margin: 0 2px;
         font-size: .75rem;
+        width: 25%;
     }
 }
 
