@@ -36,8 +36,7 @@ if (window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE === undefined) {window.METRO_HO
 if (window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS === undefined) {window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS = true;}
 if (window.METRO_HOTKEYS_FILTER_TEXT_INPUTS === undefined) {window.METRO_HOTKEYS_FILTER_TEXT_INPUTS = true;}
 if (window.METRO_HOTKEYS_BUBBLE_UP === undefined) {window.METRO_HOTKEYS_BUBBLE_UP = false;}
-if (window.METRO_ROOT === undefined) {window.METRO_ROOT = "metro";}
-if (window.METRO_I18N === undefined) {window.METRO_I18N = METRO_ROOT + "/js/i18n/";}
+if (window.METRO_I18N === undefined) {window.METRO_I18N = "metro/js/i18n/";}
 
 if ( typeof Object.create !== 'function' ) {
     Object.create = function (o) {
@@ -48,6 +47,38 @@ if ( typeof Object.create !== 'function' ) {
 }
 
 var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
+
+var default_locale = {
+    "calendar": {
+        "months": [
+            "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",
+            "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        ],
+        "days": [
+            "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",
+            "Su", "Mo", "Tu", "We", "Th", "Fr", "Sa",
+            "Sun", "Mon", "Tus", "Wen", "Thu", "Fri", "Sat"
+        ],
+        "time": {
+            "days": "DAYS",
+            "hours": "HOURS",
+            "minutes": "MINS",
+            "seconds": "SECS"
+        }
+    },
+    "buttons": {
+        "ok": "OK",
+        "cancel": "Cancel",
+        "done": "Done",
+        "today": "Today",
+        "now": "Now",
+        "clear": "Clear",
+        "help": "Help",
+        "yes": "Yes",
+        "no": "No",
+        "random": "Random"
+    }
+};
 
 var Metro = {
 
@@ -60,6 +91,8 @@ var Metro = {
     eventLeave: isTouch ? 'touchend.metro' : 'mouseleave.metro',
 
     hotkeys: [],
+
+    default_locale: default_locale,
 
     init: function(){
         var widgets = $("[data-role]");
@@ -1795,6 +1828,14 @@ var d = new Date().getTime();
 
     isDate: function(val){
         return (new Date(val) !== "Invalid Date" && !isNaN(new Date(val)));
+    },
+
+    dateToString: function(val){
+        var y = val.getFullYear();
+        var m = val.getMonth() + 1;
+        var d = val.getDate();
+
+        return (m < 10 ? '0'+m:m)+ "/" + (d<10?'0'+d:d)+"/"+y;
     }
 };
 
@@ -2043,10 +2084,12 @@ var Calendar = {
         this.element = $(elem);
         this.today = new Date();
         this.today.setHours(0,0,0,0);
+        this.show = new Date();
+        this.show.setHours(0,0,0,0);
         this.current = {
-            year: this.today.getFullYear(),
-            month: this.today.getMonth(),
-            day: this.today.getDate()
+            year: this.show.getFullYear(),
+            month: this.show.getMonth(),
+            day: this.show.getDate()
         };
         this.preset = [];
         this.selected = [];
@@ -2058,12 +2101,11 @@ var Calendar = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCalendarCreate, [this.element]);
-
         return this;
     },
 
     options: {
+        show: null,
         locale: METRO_LOCALE,
         weekStart: 0,
         outside: true,
@@ -2162,15 +2204,26 @@ var Calendar = {
             this.max.setHours(0,0,0,0);
         }
 
+        if (o.show !== null && Utils.isDate(o.show)) {
+            this.show = new Date(o.show);
+            this.show.setHours(0,0,0,0);
+            this.current = {
+                year: this.show.getFullYear(),
+                month: this.show.getMonth(),
+                day: this.show.getDate()
+            }
+        }
+
         $.get(METRO_I18N + o.locale + ".json", function(data){
             that.locale = data;
+            that._build();
+        }).fail(function(){
+            that.locale = Metro.default_locale;
             that._build();
         });
     },
 
     _build: function(){
-
-        //console.log(this.locale);
 
         this._drawCalendar();
         this._bindEvents();
@@ -2181,6 +2234,9 @@ var Calendar = {
                 rippleColor: o.rippleColor
             });
         }
+
+
+        Utils.exec(this.options.onCalendarCreate, [this.element]);
     },
 
     _bindEvents: function(){
@@ -2463,13 +2519,13 @@ var Calendar = {
                     d.addClass("selected").addClass(o.clsSelected);
                 }
                 if (this.exclude.indexOf(s.getTime()) !== -1) {
-                    d.addClass("disabled").addClass(o.clsExclude);
+                    d.addClass("disabled excluded").addClass(o.clsExclude);
                 }
                 if (this.min !== null && s.getTime() < this.min.getTime()) {
-                    d.addClass("disabled").addClass(o.clsExclude);
+                    d.addClass("disabled excluded").addClass(o.clsExclude);
                 }
                 if (this.max !== null && s.getTime() > this.max.getTime()) {
-                    d.addClass("disabled").addClass(o.clsExclude);
+                    d.addClass("disabled excluded").addClass(o.clsExclude);
                 }
             }
 
@@ -2494,14 +2550,14 @@ var Calendar = {
                 d.addClass("selected").addClass(o.clsSelected);
             }
             if (this.exclude.indexOf(first.getTime()) !== -1) {
-                d.addClass("disabled").addClass(o.clsExclude);
+                d.addClass("disabled excluded").addClass(o.clsExclude);
             }
 
             if (this.min !== null && first.getTime() < this.min.getTime()) {
-                d.addClass("disabled").addClass(o.clsExclude);
+                d.addClass("disabled excluded").addClass(o.clsExclude);
             }
             if (this.max !== null && first.getTime() > this.max.getTime()) {
-                d.addClass("disabled").addClass(o.clsExclude);
+                d.addClass("disabled excluded").addClass(o.clsExclude);
             }
 
             counter++;
@@ -2533,13 +2589,13 @@ var Calendar = {
                     d.addClass("selected").addClass(o.clsSelected);
                 }
                 if (this.exclude.indexOf(s.getTime()) !== -1) {
-                    d.addClass("disabled").addClass(o.clsExclude);
+                    d.addClass("disabled excluded").addClass(o.clsExclude);
                 }
                 if (this.min !== null && s.getTime() < this.min.getTime()) {
-                    d.addClass("disabled").addClass(o.clsExclude);
+                    d.addClass("disabled excluded").addClass(o.clsExclude);
                 }
                 if (this.max !== null && s.getTime() > this.max.getTime()) {
-                    d.addClass("disabled").addClass(o.clsExclude);
+                    d.addClass("disabled excluded").addClass(o.clsExclude);
                 }
             }
         }
@@ -2561,8 +2617,33 @@ var Calendar = {
         this._drawYears();
     },
 
-    changeAttribute: function(attributeName){
+    setExclude: function(exclude){
+        var that = this, element = this.element, o = this.options;
 
+        o.exclude = exclude !== undefined ? exclude : element.attr("data-exclude");
+
+        if (o.exclude !== null) {
+            if (Array.isArray(o.exclude) === false) {
+                o.exclude = o.exclude.split(",").map(function(item){
+                    return item.trim();
+                });
+            }
+
+            $.each(o.exclude, function(){
+                if (Utils.isDate(this) === false) {
+                    return ;
+                }
+                that.exclude.push((new Date(this)).getTime());
+            });
+        }
+
+        this._drawContent();
+    },
+
+    changeAttribute: function(attributeName){
+        switch (attributeName) {
+            case 'data-exclude': this.setExclude(); break;
+        }
     }
 };
 
@@ -2915,12 +2996,6 @@ var Countdown = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCountdownCreate, [this.element]);
-
-        if (this.options.start === true) {
-            this.start();
-        }
-
         return this;
     },
 
@@ -2932,10 +3007,6 @@ var Countdown = {
         seconds: 0,
         date: null,
         start: true,
-        // daysLabel: "days",
-        // hoursLabel: "hours",
-        // minutesLabel: "mins",
-        // secondsLabel: "secs",
         clsCountdown: "",
         clsZero: "",
         clsAlarm: "",
@@ -2968,6 +3039,9 @@ var Countdown = {
 
         $.get(METRO_I18N + this.options.locale + ".json", function(data){
             that.locale = data;
+            that._build();
+        }).fail(function(){
+            that.locale = Metro.default_locale;
             that._build();
         });
     },
@@ -3039,6 +3113,12 @@ var Countdown = {
         });
 
         element.find(".digit").html("0");
+
+        Utils.exec(this.options.onCountdownCreate, [this.element]);
+
+        if (this.options.start === true) {
+            this.start();
+        }
     },
 
     blink: function(){
@@ -3215,8 +3295,6 @@ var Dialog = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onDialogCreate, [this.element]);
-
         return this;
     },
 
@@ -3268,6 +3346,9 @@ var Dialog = {
 
         $.get(METRO_I18N + this.options.locale + ".json", function(data){
             that.locale = data;
+            that._build();
+        }).fail(function(){
+            that.locale = Metro.default_locale;
             that._build();
         });
     },
@@ -3343,6 +3424,8 @@ var Dialog = {
         if (o.show) {
             this.open();
         }
+
+        Utils.exec(this.options.onDialogCreate, [this.element]);
     },
 
     _overlay: function(){

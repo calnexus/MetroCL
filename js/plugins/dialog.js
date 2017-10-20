@@ -9,8 +9,6 @@ var Dialog = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onDialogCreate, [this.element]);
-
         return this;
     },
 
@@ -62,6 +60,9 @@ var Dialog = {
 
         $.get(METRO_I18N + this.options.locale + ".json", function(data){
             that.locale = data;
+            that._build();
+        }).fail(function(){
+            that.locale = Metro.default_locale;
             that._build();
         });
     },
@@ -137,6 +138,8 @@ var Dialog = {
         if (o.show) {
             this.open();
         }
+
+        Utils.exec(this.options.onDialogCreate, [this.element]);
     },
 
     _overlay: function(){

@@ -18,8 +18,7 @@ if (window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE === undefined) {window.METRO_HO
 if (window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS === undefined) {window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS = true;}
 if (window.METRO_HOTKEYS_FILTER_TEXT_INPUTS === undefined) {window.METRO_HOTKEYS_FILTER_TEXT_INPUTS = true;}
 if (window.METRO_HOTKEYS_BUBBLE_UP === undefined) {window.METRO_HOTKEYS_BUBBLE_UP = false;}
-if (window.METRO_ROOT === undefined) {window.METRO_ROOT = "metro";}
-if (window.METRO_I18N === undefined) {window.METRO_I18N = METRO_ROOT + "/js/i18n/";}
+if (window.METRO_I18N === undefined) {window.METRO_I18N = "metro/js/i18n/";}
 
 if ( typeof Object.create !== 'function' ) {
     Object.create = function (o) {
@@ -30,6 +29,38 @@ if ( typeof Object.create !== 'function' ) {
 }
 
 var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
+
+var default_locale = {
+    "calendar": {
+        "months": [
+            "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",
+            "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        ],
+        "days": [
+            "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",
+            "Su", "Mo", "Tu", "We", "Th", "Fr", "Sa",
+            "Sun", "Mon", "Tus", "Wen", "Thu", "Fri", "Sat"
+        ],
+        "time": {
+            "days": "DAYS",
+            "hours": "HOURS",
+            "minutes": "MINS",
+            "seconds": "SECS"
+        }
+    },
+    "buttons": {
+        "ok": "OK",
+        "cancel": "Cancel",
+        "done": "Done",
+        "today": "Today",
+        "now": "Now",
+        "clear": "Clear",
+        "help": "Help",
+        "yes": "Yes",
+        "no": "No",
+        "random": "Random"
+    }
+};
 
 var Metro = {
 
@@ -42,6 +73,8 @@ var Metro = {
     eventLeave: isTouch ? 'touchend.metro' : 'mouseleave.metro',
 
     hotkeys: [],
+
+    default_locale: default_locale,
 
     init: function(){
         var widgets = $("[data-role]");

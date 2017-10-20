@@ -54,6 +54,7 @@
                     <li class="toc-entry"><a href="#_calendar_exclude">Exclude</a></li>
                     <li class="toc-entry"><a href="#_calendar_preset">Preset</a></li>
                     <li class="toc-entry"><a href="#_calendar_min_max">Min &amp; Max dates</a></li>
+                    <li class="toc-entry"><a href="#_calendar_show">Show specific month</a></li>
                     <li class="toc-entry"><a href="#_calendar_events">Events</a></li>
                     <li class="toc-entry"><a href="#_calendar_methods">Methods</a></li>
                     <li class="toc-entry"><a href="#_calendar_observe">Observe</a></li>
@@ -149,6 +150,139 @@
                     &lt;div data-role="calendar" data-multi-select="false"&gt;&lt;/div&gt;
                 </code></pre>
 
+                <h3 id="_calendar_buttons">Buttons</h3>
+                <p>
+                    Metro 4 calendar contains predefined four buttons to behavior with component:
+                        <code>cancel</code>,
+                        <code>today</code>,
+                        <code>clear</code>
+                         and <code>done</code>.
+                </p>
+                <p>
+                    To define buttons use <code>data-buttons</code> attribute with string value with enumeration of buttons.
+                    By default a all buttons are present.
+                    If this attribute value is a <code>false</code>, all buttons will be hide.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-6">
+                            <div class="mx-auto" data-role="calendar" data-buttons="today, clear"></div>
+                        </div>
+                        <div class="cell-md-6">
+                            <div class="mx-auto" data-role="calendar" data-buttons="false"></div>
+                        </div>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;div data-role="calendar" data-buttons="today, clear"&gt;&lt;/div&gt;
+                    &lt;div data-role="calendar" data-buttons="false"&gt;&lt;/div&gt;
+                </code></pre>
+                <p>
+                    For all buttons defined callbacks:
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Button</th>
+                        <th>Event</th>
+                        <th>Data-*</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>cancel</td>
+                        <td>onCancel(el)</td>
+                        <td>data-on-cancel</td>
+                    </tr>
+                    <tr>
+                        <td>today</td>
+                        <td>onToday(today, el)</td>
+                        <td>data-on-today</td>
+                    </tr>
+                    <tr>
+                        <td>clear</td>
+                        <td>onClear(el)</td>
+                        <td>data-on-clear</td>
+                    </tr>
+                    <tr>
+                        <td>done</td>
+                        <td>onDone(selection, el)</td>
+                        <td>data-on-done</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <p>
+                    Buttons <code>today</code> and <code>clear</code> has specific predefined functions.
+                    Button <code>today</code> - set today for calendar.
+                    Button <code>clear</code> - clear selection for calendar.
+                    Callbacks for this buttons <strong>executed after predefined functions</strong>.
+                </p>
+
+                <h3 id="_calendar_exclude">Exclude dates</h3>
+                <p>
+                    You can exclude any dates from user selection. To exclude dates add <code>data-exclude="..."</code> attribute and specify dates who can be excluded.
+                </p>
+                <div class="example">
+                    <div id="calendar_exclude"
+                         data-role="calendar"
+                         data-show="10/15/2017"
+                         data-exclude="
+                            10/10/2017,
+                            10/11/2017,
+                            10/12/2017,
+                            10/13/2017,
+                            10/14/2017,
+                            10/15/2017,
+                            10/16/2017"
+                    ></div>
+                </div>
+                <pre><code>
+                    &lt;div
+                        data-role="calendar"
+                        data-exclude="
+                            10/10/2017,
+                            10/11/2017,
+                            10/12/2017,
+                            10/13/2017,
+                            10/14/2017,
+                            10/15/2017,
+                            10/16/2017"
+                    &gt;&lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_calendar_preset">Preset dates</h3>
+                <p>
+                    You can preselect dates. To preselect dates use <code>data-preset="..."</code> attribute and specify dates who can be preselect.
+                </p>
+                <div class="example">
+                    <div id="calendar_preset"
+                         data-role="calendar"
+                         data-show="10/15/2017"
+                         data-preset="
+                            10/10/2017,
+                            10/11/2017,
+                            10/12/2017,
+                            10/13/2017,
+                            10/14/2017,
+                            10/15/2017,
+                            10/16/2017"
+                    ></div>
+                </div>
+                <pre><code>
+                    &lt;div
+                        data-role="calendar"
+                        data-show="10/15/2017"
+                        data-preset="
+                            10/10/2017,
+                            10/11/2017,
+                            10/12/2017,
+                            10/13/2017,
+                            10/14/2017,
+                            10/15/2017,
+                            10/16/2017"
+                    &gt;&lt;/div&gt;
+                </code></pre>
+
             </main>
         </div>
 
@@ -161,5 +295,23 @@
     <script src="js/clipboard.min.js"></script>
     <script src="js/site.js"></script>
     <!-- ads-script -->
+    <script>
+
+        function dayClick(){
+            console.log(arguments);
+        }
+
+        function setExcludedDays(){
+            var exclude_days = [];
+            var day = new Date();
+            day.setDate(10);
+            for (var i = 0; i < 7; i++) {
+                exclude_days.push(Metro.utils.dateToString(day));
+                day.setDate(day.getDate() + 1);
+            }
+            $("#calendar_exclude").data('calendar').setExclude(exclude_days.join(","));
+        }
+
+    </script>
 </body>
 </html>

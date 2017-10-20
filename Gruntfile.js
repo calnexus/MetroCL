@@ -183,13 +183,13 @@ module.exports = function(grunt) {
         watch: {
             scripts: {
                 files: ['js/i18n/*.json', 'js/*.js', 'js/utils/*.js', 'js/plugins/*js', 'less/*.less', 'less/include/*.less', 'less/schemes/*.less', 'Gruntfile.js'],
-                tasks: ['clean', 'less', 'concat', 'postcss',  'uglify', 'cssmin', 'copy']
+                tasks: ['clean', 'less', 'concat', 'postcss',  'uglify', 'cssmin', 'copy', 'replace']
             }
         }
     });
 
     grunt.registerTask('default', [
-        'clean', 'less', 'concat', 'postcss',  'uglify', 'cssmin', 'copy', 'watch'
+        'clean', 'less', 'concat', 'postcss',  'uglify', 'cssmin', 'copy', 'replace', 'watch'
     ]);
 
 };

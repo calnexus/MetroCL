@@ -19,12 +19,6 @@ var Countdown = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCountdownCreate, [this.element]);
-
-        if (this.options.start === true) {
-            this.start();
-        }
-
         return this;
     },
 
@@ -36,10 +30,6 @@ var Countdown = {
         seconds: 0,
         date: null,
         start: true,
-        // daysLabel: "days",
-        // hoursLabel: "hours",
-        // minutesLabel: "mins",
-        // secondsLabel: "secs",
         clsCountdown: "",
         clsZero: "",
         clsAlarm: "",
@@ -72,6 +62,9 @@ var Countdown = {
 
         $.get(METRO_I18N + this.options.locale + ".json", function(data){
             that.locale = data;
+            that._build();
+        }).fail(function(){
+            that.locale = Metro.default_locale;
             that._build();
         });
     },
@@ -143,6 +136,12 @@ var Countdown = {
         });
 
         element.find(".digit").html("0");
+
+        Utils.exec(this.options.onCountdownCreate, [this.element]);
+
+        if (this.options.start === true) {
+            this.start();
+        }
     },
 
     blink: function(){

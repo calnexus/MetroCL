@@ -12370,6 +12370,9 @@ figure img {
   background-color: #60a917;
   color: #ffffff;
 }
+.calendar-content .excluded {
+  background-color: #f8f8f8;
+}
 .calendar-months {
   height: 100%;
   display: block;

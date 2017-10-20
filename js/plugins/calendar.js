@@ -5,10 +5,12 @@ var Calendar = {
         this.element = $(elem);
         this.today = new Date();
         this.today.setHours(0,0,0,0);
+        this.show = new Date();
+        this.show.setHours(0,0,0,0);
         this.current = {
-            year: this.today.getFullYear(),
-            month: this.today.getMonth(),
-            day: this.today.getDate()
+            year: this.show.getFullYear(),
+            month: this.show.getMonth(),
+            day: this.show.getDate()
         };
         this.preset = [];
         this.selected = [];
@@ -20,12 +22,11 @@ var Calendar = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCalendarCreate, [this.element]);
-
         return this;
     },
 
     options: {
+        show: null,
         locale: METRO_LOCALE,
         weekStart: 0,
         outside: true,
@@ -124,15 +125,26 @@ var Calendar = {
             this.max.setHours(0,0,0,0);
         }
 
+        if (o.show !== null && Utils.isDate(o.show)) {
+            this.show = new Date(o.show);
+            this.show.setHours(0,0,0,0);
+            this.current = {
+                year: this.show.getFullYear(),
+                month: this.show.getMonth(),
+                day: this.show.getDate()
+            }
+        }
+
         $.get(METRO_I18N + o.locale + ".json", function(data){
             that.locale = data;
+            that._build();
+        }).fail(function(){
+            that.locale = Metro.default_locale;
             that._build();
         });
     },
 
     _build: function(){
-
-        //console.log(this.locale);
 
         this._drawCalendar();
         this._bindEvents();
@@ -143,6 +155,9 @@ var Calendar = {
                 rippleColor: o.rippleColor
             });
         }
+
+
+        Utils.exec(this.options.onCalendarCreate, [this.element]);
     },
 
     _bindEvents: function(){
@@ -425,13 +440,13 @@ var Calendar = {
                     d.addClass("selected").addClass(o.clsSelected);
                 }
                 if (this.exclude.indexOf(s.getTime()) !== -1) {
-                    d.addClass("disabled").addClass(o.clsExclude);
+                    d.addClass("disabled excluded").addClass(o.clsExclude);
                 }
                 if (this.min !== null && s.getTime() < this.min.getTime()) {
-                    d.addClass("disabled").addClass(o.clsExclude);
+                    d.addClass("disabled excluded").addClass(o.clsExclude);
                 }
                 if (this.max !== null && s.getTime() > this.max.getTime()) {
-                    d.addClass("disabled").addClass(o.clsExclude);
+                    d.addClass("disabled excluded").addClass(o.clsExclude);
                 }
             }
 
@@ -456,14 +471,14 @@ var Calendar = {
                 d.addClass("selected").addClass(o.clsSelected);
             }
             if (this.exclude.indexOf(first.getTime()) !== -1) {
-                d.addClass("disabled").addClass(o.clsExclude);
+                d.addClass("disabled excluded").addClass(o.clsExclude);
             }
 
             if (this.min !== null && first.getTime() < this.min.getTime()) {
-                d.addClass("disabled").addClass(o.clsExclude);
+                d.addClass("disabled excluded").addClass(o.clsExclude);
             }
             if (this.max !== null && first.getTime() > this.max.getTime()) {
-                d.addClass("disabled").addClass(o.clsExclude);
+                d.addClass("disabled excluded").addClass(o.clsExclude);
             }
 
             counter++;
@@ -495,13 +510,13 @@ var Calendar = {
                     d.addClass("selected").addClass(o.clsSelected);
                 }
                 if (this.exclude.indexOf(s.getTime()) !== -1) {
-                    d.addClass("disabled").addClass(o.clsExclude);
+                    d.addClass("disabled excluded").addClass(o.clsExclude);
                 }
                 if (this.min !== null && s.getTime() < this.min.getTime()) {
-                    d.addClass("disabled").addClass(o.clsExclude);
+                    d.addClass("disabled excluded").addClass(o.clsExclude);
                 }
                 if (this.max !== null && s.getTime() > this.max.getTime()) {
-                    d.addClass("disabled").addClass(o.clsExclude);
+                    d.addClass("disabled excluded").addClass(o.clsExclude);
                 }
             }
         }
@@ -523,8 +538,33 @@ var Calendar = {
         this._drawYears();
     },
 
-    changeAttribute: function(attributeName){
+    setExclude: function(exclude){
+        var that = this, element = this.element, o = this.options;
 
+        o.exclude = exclude !== undefined ? exclude : element.attr("data-exclude");
+
+        if (o.exclude !== null) {
+            if (Array.isArray(o.exclude) === false) {
+                o.exclude = o.exclude.split(",").map(function(item){
+                    return item.trim();
+                });
+            }
+
+            $.each(o.exclude, function(){
+                if (Utils.isDate(this) === false) {
+                    return ;
+                }
+                that.exclude.push((new Date(this)).getTime());
+            });
+        }
+
+        this._drawContent();
+    },
+
+    changeAttribute: function(attributeName){
+        switch (attributeName) {
+            case 'data-exclude': this.setExclude(); break;
+        }
     }
 };
 

@@ -515,6 +515,14 @@ var Utils = {
 
     isDate: function(val){
         return (new Date(val) !== "Invalid Date" && !isNaN(new Date(val)));
+    },
+
+    dateToString: function(val){
+        var y = val.getFullYear();
+        var m = val.getMonth() + 1;
+        var d = val.getDate();
+
+        return (m < 10 ? '0'+m:m)+ "/" + (d<10?'0'+d:d)+"/"+y;
     }
 };
 
