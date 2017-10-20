@@ -48,38 +48,6 @@ if ( typeof Object.create !== 'function' ) {
 
 var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
 
-var default_locale = {
-    "calendar": {
-        "months": [
-            "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",
-            "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-        ],
-        "days": [
-            "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",
-            "Su", "Mo", "Tu", "We", "Th", "Fr", "Sa",
-            "Sun", "Mon", "Tus", "Wen", "Thu", "Fri", "Sat"
-        ],
-        "time": {
-            "days": "DAYS",
-            "hours": "HOURS",
-            "minutes": "MINS",
-            "seconds": "SECS"
-        }
-    },
-    "buttons": {
-        "ok": "OK",
-        "cancel": "Cancel",
-        "done": "Done",
-        "today": "Today",
-        "now": "Now",
-        "clear": "Clear",
-        "help": "Help",
-        "yes": "Yes",
-        "no": "No",
-        "random": "Random"
-    }
-};
-
 var Metro = {
 
     isTouchable: isTouch,
@@ -91,8 +59,6 @@ var Metro = {
     eventLeave: isTouch ? 'touchend.metro' : 'mouseleave.metro',
 
     hotkeys: [],
-
-    default_locale: default_locale,
 
     init: function(){
         var widgets = $("[data-role]");
@@ -415,6 +381,76 @@ Number.prototype.format = function(n, x, s, c) {
 String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 };
+
+Date.prototype.format = function(format, locale){
+
+    if (locale === undefined) {
+        locale = Metro.default_locale['calendar'];
+    }
+
+    var date = this;
+    var nDay = date.getDay(),
+        nDate = date.getDate(),
+        nMonth = date.getMonth(),
+        nYear = date.getFullYear(),
+        nHour = date.getHours(),
+        aDays = locale['days'],
+        aMonths = locale['months'],
+        aDayCount = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334],
+        isLeapYear = function() {
+            return (nYear%4===0 && nYear%100!==0) || nYear%400===0;
+        },
+        getThursday = function() {
+            var target = new Date(date);
+            target.setDate(nDate - ((nDay+6)%7) + 3);
+            return target;
+        },
+        zeroPad = function(nNum, nPad) {
+            return ('' + (Math.pow(10, nPad) + nNum)).slice(1);
+        };
+    return format.replace(/%[a-z]/gi, function(sMatch) {
+        return {
+            '%a': aDays[nDay].slice(0,3),
+            '%A': aDays[nDay],
+            '%b': aMonths[nMonth].slice(0,3),
+            '%B': aMonths[nMonth],
+            '%c': date.toUTCString(),
+            '%C': Math.floor(nYear/100),
+            '%d': zeroPad(nDate, 2),
+            '%e': nDate,
+            '%F': date.toISOString().slice(0,10),
+            '%G': getThursday().getFullYear(),
+            '%g': ('' + getThursday().getFullYear()).slice(2),
+            '%H': zeroPad(nHour, 2),
+            '%I': zeroPad((nHour+11)%12 + 1, 2),
+            '%j': zeroPad(aDayCount[nMonth] + nDate + ((nMonth>1 && isLeapYear()) ? 1 : 0), 3),
+            '%k': '' + nHour,
+            '%l': (nHour+11)%12 + 1,
+            '%m': zeroPad(nMonth + 1, 2),
+            '%M': zeroPad(date.getMinutes(), 2),
+            '%p': (nHour<12) ? 'AM' : 'PM',
+            '%P': (nHour<12) ? 'am' : 'pm',
+            '%s': Math.round(date.getTime()/1000),
+            '%S': zeroPad(date.getSeconds(), 2),
+            '%u': nDay || 7,
+            '%V': (function() {
+                var target = getThursday(),
+                    n1stThu = target.valueOf();
+                target.setMonth(0, 1);
+                var nJan1 = target.getDay();
+                if (nJan1!==4) target.setMonth(0, 1 + ((4-nJan1)+7)%7);
+                return zeroPad(1 + Math.ceil((n1stThu-target)/604800000), 2);
+            })(),
+            '%w': '' + nDay,
+            '%x': date.toLocaleDateString(),
+            '%X': date.toLocaleTimeString(),
+            '%y': ('' + nYear).slice(2),
+            '%Y': nYear,
+            '%z': date.toTimeString().replace(/.+GMT([+-]\d+).+/, '$1'),
+            '%Z': date.toTimeString().replace(/.+\((.+?)\)$/, '$1')
+        }[sMatch] || sMatch;
+    });
+};
 // Source: js/utils/hotkeys.js
 var hotkeys = {
 
@@ -596,6 +632,138 @@ $.each(["keydown", "keyup", "keypress"], function() {
     };
 });
 
+// Source: js/utils/i18n.js
+var Locales = {
+    'en-US': {
+        "calendar": {
+            "months": [
+                "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",
+                "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+            ],
+            "days": [
+                "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",
+                "Su", "Mo", "Tu", "We", "Th", "Fr", "Sa",
+                "Sun", "Mon", "Tus", "Wen", "Thu", "Fri", "Sat"
+            ],
+            "time": {
+                "days": "DAYS",
+                "hours": "HOURS",
+                "minutes": "MINS",
+                "seconds": "SECS"
+            }
+        },
+        "buttons": {
+            "ok": "OK",
+            "cancel": "Cancel",
+            "done": "Done",
+            "today": "Today",
+            "now": "Now",
+            "clear": "Clear",
+            "help": "Help",
+            "yes": "Yes",
+            "no": "No",
+            "random": "Random"
+        }
+    },
+
+    'de-DE': {
+        "calendar": {
+            "months": [
+                "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember",
+                "Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"
+            ],
+            "days": [
+                "Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag",
+                "Sn", "Mn", "Di", "Mi", "Do", "Fr", "Sa",
+                "Son", "Mon", "Die", "Mit", "Don", "Fre", "Sam"
+            ],
+            "time": {
+                "days": "TAGE",
+                "hours": "UHR",
+                "minutes": "MIN",
+                "seconds": "SEK"
+            }
+        },
+        "buttons": {
+            "ok": "OK",
+            "cancel": "Abbrechen",
+            "done": "Fertig",
+            "today": "Heute",
+            "now": "Jetzt",
+            "clear": "Reinigen",
+            "help": "Hilfe",
+            "yes": "Ja",
+            "no": "Nein",
+            "random": "Zufällig"
+        }
+    },
+
+    'ru-RU': {
+        "calendar": {
+            "months": [
+                "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь",
+                "Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"
+            ],
+            "days": [
+                "Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота",
+                "Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб",
+                "Вос", "Пон", "Вто", "Сре", "Чет", "Пят", "Суб"
+            ],
+            "time": {
+                "days": "ДНИ",
+                "hours": "ЧАСЫ",
+                "minutes": "МИН",
+                "seconds": "СЕК"
+            }
+        },
+        "buttons": {
+            "ok": "ОК",
+            "cancel": "Отмена",
+            "done": "Готово",
+            "today": "Сегодня",
+            "now": "Сейчас",
+            "clear": "Очистить",
+            "help": "Помощь",
+            "yes": "Да",
+            "no": "Нет",
+            "random": "Случайно"
+        }
+    },
+
+    'uk-UA': {
+        "calendar": {
+            "months": [
+                "Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень",
+                "Січ", "Лют", "Бер", "Кві", "Тра", "Чер", "Лип", "Сер", "Вер", "Жов", "Лис", "Гру"
+            ],
+            "days": [
+                "Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П’ятниця", "Субота",
+                "Нд", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб",
+                "Нед", "Пон", "Вiв", "Сер", "Чет", "Пят", "Суб"
+            ],
+            "time": {
+                "days": "ДНІ",
+                "hours": "ГОД",
+                "minutes": "ХВИЛ",
+                "seconds": "СЕК"
+            }
+        },
+        "buttons": {
+            "ok": "ОК",
+            "cancel": "Відміна",
+            "done": "Готово",
+            "today": "Сьогодні",
+            "now": "Зараз",
+            "clear": "Очистити",
+            "help": "Допомога",
+            "yes": "Так",
+            "no": "Ні",
+            "random": "Випадково"
+        }
+    }
+};
+
+Metro['locales'] = Locales;
 // Source: js/utils/md5.js
 var hexcase = 0;
 /* hex output format. 0 - lowercase; 1 - uppercase        */
@@ -2220,13 +2388,8 @@ var Calendar = {
             }
         }
 
-        $.get(METRO_I18N + o.locale + ".json", function(data){
-            that.locale = data;
-            that._build();
-        }).fail(function(){
-            that.locale = Metro.default_locale;
-            that._build();
-        });
+        this.locale = Metro.locales[o.locale] !== undefined ? Metro.locales[o.locale] : Metro.locales["en-US"];
+        this._build();
     },
 
     _build: function(){
@@ -3125,15 +3288,9 @@ var Countdown = {
     },
 
     _create: function(){
-        var that = this;
-
-        $.get(METRO_I18N + this.options.locale + ".json", function(data){
-            that.locale = data;
-            that._build();
-        }).fail(function(){
-            that.locale = Metro.default_locale;
-            that._build();
-        });
+        var o = this.options;
+        this.locale = Metro.locales[o.locale] !== undefined ? Metro.locales[o.locale] : Metro.locales["en-US"];
+        this._build();
     },
 
     _build: function(){
@@ -3432,15 +3589,9 @@ var Dialog = {
     },
 
     _create: function(){
-        var that = this;
-
-        $.get(METRO_I18N + this.options.locale + ".json", function(data){
-            that.locale = data;
-            that._build();
-        }).fail(function(){
-            that.locale = Metro.default_locale;
-            that._build();
-        });
+        var o = this.options;
+        this.locale = Metro.locales[o.locale] !== undefined ? Metro.locales[o.locale] : Metro.locales["en-US"];
+        this._build();
     },
 
     _build: function(){

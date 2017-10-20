@@ -141,13 +141,8 @@ var Calendar = {
             }
         }
 
-        $.get(METRO_I18N + o.locale + ".json", function(data){
-            that.locale = data;
-            that._build();
-        }).fail(function(){
-            that.locale = Metro.default_locale;
-            that._build();
-        });
+        this.locale = Metro.locales[o.locale] !== undefined ? Metro.locales[o.locale] : Metro.locales["en-US"];
+        this._build();
     },
 
     _build: function(){

@@ -58,15 +58,9 @@ var Countdown = {
     },
 
     _create: function(){
-        var that = this;
-
-        $.get(METRO_I18N + this.options.locale + ".json", function(data){
-            that.locale = data;
-            that._build();
-        }).fail(function(){
-            that.locale = Metro.default_locale;
-            that._build();
-        });
+        var o = this.options;
+        this.locale = Metro.locales[o.locale] !== undefined ? Metro.locales[o.locale] : Metro.locales["en-US"];
+        this._build();
     },
 
     _build: function(){

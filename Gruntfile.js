@@ -142,12 +142,6 @@ module.exports = function(grunt) {
                 src: '**/*',
                 dest: 'build/icons'
             },
-            i18n: {
-                expand: true,
-                cwd: 'js/i18n',
-                src: '**/*',
-                dest: 'build/js/i18n'
-            },
             docs: {
                 expand: true,
                 cwd: 'build',
