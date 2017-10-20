@@ -34,6 +34,12 @@
     <link href="css/site.css" rel="stylesheet">
 
     <title>Calendar - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+    <style>
+        #calendarShowMonthYear .curr-month, #calendarShowMonthYear .curr-year {
+            border: 1px dotted red;
+        }
+    </style>
 </head>
 <body>
     <div class="container-fluid">
@@ -54,12 +60,14 @@
                     <li class="toc-entry"><a href="#_calendar_exclude">Exclude</a></li>
                     <li class="toc-entry"><a href="#_calendar_preset">Preset</a></li>
                     <li class="toc-entry"><a href="#_calendar_min_max">Min &amp; Max dates</a></li>
-                    <li class="toc-entry"><a href="#_calendar_show">Show specific month</a></li>
+                    <li class="toc-entry"><a href="#_calendar_show">Show specific date</a></li>
+                    <li class="toc-entry"><a href="#_calendar_select_month_year">Select month, year</a></li>
+                    <li class="toc-entry"><a href="#_calendar_i18n">i18n</a></li>
+                    <li class="toc-entry"><a href="#_calendar_options">Options</a></li>
                     <li class="toc-entry"><a href="#_calendar_events">Events</a></li>
                     <li class="toc-entry"><a href="#_calendar_methods">Methods</a></li>
                     <li class="toc-entry"><a href="#_calendar_observe">Observe</a></li>
                     <li class="toc-entry"><a href="#_calendar_customize">Customize</a></li>
-                    <li class="toc-entry"><a href="#_calendar_i18n">i18n</a></li>
                 </ul>
             </div>
 
@@ -173,7 +181,7 @@
                         </div>
                     </div>
                 </div>
-                <pre><code>
+                <pre><code class="html">
                     &lt;div data-role="calendar" data-buttons="today, clear"&gt;&lt;/div&gt;
                     &lt;div data-role="calendar" data-buttons="false"&gt;&lt;/div&gt;
                 </code></pre>
@@ -221,9 +229,10 @@
                 <h3 id="_calendar_exclude">Exclude dates</h3>
                 <p>
                     You can exclude any dates from user selection. To exclude dates add <code>data-exclude="..."</code> attribute and specify dates who can be excluded.
+                    Values for this attributes can be <a href="https://tools.ietf.org/html/rfc2822#page-14">valid string date</a>.
                 </p>
                 <div class="example">
-                    <div id="calendar_exclude"
+                    <div id="calendar_exclude" class="mx-auto"
                          data-role="calendar"
                          data-show="10/15/2017"
                          data-exclude="
@@ -236,7 +245,7 @@
                             10/16/2017"
                     ></div>
                 </div>
-                <pre><code>
+                <pre><code class="html">
                     &lt;div
                         data-role="calendar"
                         data-exclude="
@@ -253,9 +262,10 @@
                 <h3 id="_calendar_preset">Preset dates</h3>
                 <p>
                     You can preselect dates. To preselect dates use <code>data-preset="..."</code> attribute and specify dates who can be preselect.
+                    Values for this attributes can be <a href="https://tools.ietf.org/html/rfc2822#page-14">valid string date</a>.
                 </p>
                 <div class="example">
-                    <div id="calendar_preset"
+                    <div id="calendar_preset"  class="mx-auto"
                          data-role="calendar"
                          data-show="10/15/2017"
                          data-preset="
@@ -268,7 +278,7 @@
                             10/16/2017"
                     ></div>
                 </div>
-                <pre><code>
+                <pre><code class="html">
                     &lt;div
                         data-role="calendar"
                         data-show="10/15/2017"
@@ -280,6 +290,404 @@
                             10/14/2017,
                             10/15/2017,
                             10/16/2017"
+                    &gt;&lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_calendar_min_max">Min &amp; max dates</h3>
+                <p>
+                    You can limit the set of dates for user selection. To set limit use <code>data-min-date="..."</code> and <code>data-max-date="..."</code> attributes.
+                    Values for this attributes can be <a href="https://tools.ietf.org/html/rfc2822#page-14">valid string date</a>.
+                </p>
+                <div class="example">
+                    <div id="calendar_min_max" class="mx-auto"
+                         data-role="calendar"
+                         data-show="10/15/2017"
+                         data-min-date="10/08/2017"
+                         data-max-date="10/25/2017"
+                    ></div>
+                </div>
+                <pre><code class="html">
+                    &lt;div
+                         data-role="calendar"
+                         data-show="10/15/2017"
+                         data-min-date="10/08/2017"
+                         data-max-date="10/25/2017"
+                    &gt;&lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_calendar_show">Show specific date</h3>
+                <p>
+                    You can switch calndar to specific date. To switch calendar use attribute <code>data-show="..."</code>.
+                    Values for this attribute can be <a href="https://tools.ietf.org/html/rfc2822#page-14">valid string date</a>.
+                </p>
+                <div class="example">
+                    <div id="calendar_show" class="mx-auto"
+                         data-role="calendar"
+                         data-show="01/01/2017"
+                    ></div>
+                </div>
+                <pre><code class="html">
+                    &lt;div
+                         data-role="calendar"
+                         data-show="01/01/2017"
+                    &gt;&lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_calendar_select_month_year">Select month, year</h3>
+                <p>
+                    You can quick change <code>month</code> or <code>year</code>.
+                    To change <code>month</code>, click on <strong>current month name</strong> and select required month from months panel.
+                    To change <code>year</code>, click on <strong>current year name</strong> and select required year from year panel.
+                </p>
+                <div class="example">
+                    <div data-role="calendar" id="calendarShowMonthYear" class="mx-auto"></div>
+                </div>
+
+                <h3 id="_calendar_i18n">Internationalisation</h3>
+                <p>
+                    You can use attribute <code>data-locale="..."</code> to setup language for calendar. The default locale is <code>en-US</code>.
+                    All language files stored in <code>i18n</code> folder of library.
+                    To access to i18n files you must set global variable <code>METRO_I18N</code> with files path before include <code>metro library javascript</code>.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-6">
+                            <div data-role="calendar" data-locale="de-DE" class="mx-auto"></div>
+                        </div>
+                        <div class="cell-md-6">
+                            <div data-role="calendar" data-locale="uk-UA" class="mx-auto"></div>
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="calendar" data-locale="de-DE"&gt;&lt;/div&gt;
+                    &lt;div data-role="calendar" data-locale="uk-UA"&gt;&lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_calendar_options">Options</h3>
+                <p>
+                    You can use calendar options to setup it behavior.
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Data-*</th>
+                        <th>Default</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>show</td>
+                        <td><code>data-show</code></td>
+                        <td>null</td>
+                        <td>Show specific date</td>
+                    </tr>
+                    <tr>
+                        <td>locale</td>
+                        <td><code>data-locale</code></td>
+                        <td>METRO_LOCALE (default en-US)</td>
+                        <td>Calendar language</td>
+                    </tr>
+                    <tr>
+                        <td>weekStart</td>
+                        <td><code>data-week-start</code></td>
+                        <td>0</td>
+                        <td>Start month from sunday or monday (0 - sunday, 1 - monday)</td>
+                    </tr>
+                    <tr>
+                        <td>outside</td>
+                        <td><code>data-outside</code></td>
+                        <td>true</td>
+                        <td>Show dates outside from month (prev or next month dates)</td>
+                    </tr>
+                    <tr>
+                        <td>buttons</td>
+                        <td><code>data-buttons</code></td>
+                        <td>cancel, today, clear, done</td>
+                        <td>Buttons can be showing in calendar</td>
+                    </tr>
+                    <tr>
+                        <td>ripple</td>
+                        <td><code>data-ripple</code></td>
+                        <td>false</td>
+                        <td>Add ripple effect to click</td>
+                    </tr>
+                    <tr>
+                        <td>rippleColor</td>
+                        <td><code>data-ripple-color</code></td>
+                        <td>#cccccc</td>
+                        <td>Ripple color</td>
+                    </tr>
+                    <tr>
+                        <td>exclude</td>
+                        <td><code>data-exclude</code></td>
+                        <td>null</td>
+                        <td>Dates can be excluded from selection</td>
+                    </tr>
+                    <tr>
+                        <td>preset</td>
+                        <td><code>data-preset</code></td>
+                        <td>null</td>
+                        <td>Dates can be preselect</td>
+                    </tr>
+                    <tr>
+                        <td>minDate</td>
+                        <td><code>data-min-date</code></td>
+                        <td>null</td>
+                        <td>Min date</td>
+                    </tr>
+                    <tr>
+                        <td>maxDate</td>
+                        <td><code>data-max-date</code></td>
+                        <td>null</td>
+                        <td>Max date</td>
+                    </tr>
+                    <tr>
+                        <td>weekDayClick</td>
+                        <td><code>data-week-day-click</code></td>
+                        <td>false</td>
+                        <td>If true, user can click on week day to select column of days, required multiSelect can be set to true</td>
+                    </tr>
+                    <tr>
+                        <td>multiSelect</td>
+                        <td><code>data-week-day-click</code></td>
+                        <td>false</td>
+                        <td>If true, user can select a few days</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="_calendar_events">Events</h3>
+                <p>
+                    When calendar works, it generated the numbers of events. You can use callback for this event to behavior with calendar or eny elements.
+                    Rules for working with events are described on <a href="events.html">this page</a>.
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Data-*</th>
+                        <th>Default</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>onCancel(el)</code></td>
+                        <td><code>data-on-cancel</code></td>
+                        <td>Metro.noop</td>
+                        <td>Callback for cancel button</td>
+                    </tr>
+                    <tr>
+                        <td><code>onToday(today, el)</code></td>
+                        <td><code>data-on-today</code></td>
+                        <td>Metro.noop</td>
+                        <td>Callback for today button</td>
+                    </tr>
+                    <tr>
+                        <td><code>onClear(el)</code></td>
+                        <td><code>data-on-clear</code></td>
+                        <td>Metro.noop</td>
+                        <td>Callback for clear button</td>
+                    </tr>
+                    <tr>
+                        <td><code>onDone(sel, el)</code></td>
+                        <td><code>data-on-done</code></td>
+                        <td>Metro.noop</td>
+                        <td>Callback for done button</td>
+                    </tr>
+                    <tr>
+                        <td><code>onDayClick(sel, day, el)</code></td>
+                        <td><code>data-on-day-click</code></td>
+                        <td>Metro.noop</td>
+                        <td>Callback for day click</td>
+                    </tr>
+                    <tr>
+                        <td><code>onWeekDayClick(sel, day, el)</code></td>
+                        <td><code>data-on-week-day-click</code></td>
+                        <td>Metro.noop</td>
+                        <td>Callback for week day click</td>
+                    </tr>
+                    <tr>
+                        <td><code>onMonthChange(curr, el)</code></td>
+                        <td><code>data-on-month-change</code></td>
+                        <td>Metro.noop</td>
+                        <td>Callback for month change event</td>
+                    </tr>
+                    <tr>
+                        <td><code>onYearChange(curr, el)</code></td>
+                        <td><code>data-on-year-change</code></td>
+                        <td>Metro.noop</td>
+                        <td>Callback for year change event</td>
+                    </tr>
+                    <tr>
+                        <td><code>onCalendarCreate(el)</code></td>
+                        <td><code>data-on-calendar-create</code></td>
+                        <td>Metro.noop</td>
+                        <td>Callback fired when calendar is created</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <pre><code>
+                    &lt;div data-role="calendar" data-on-day-click="console.log(arguments)"&gt;&lt;/div&gt;
+
+                    &lt;div data-role="calendar" data-on-day-click="myFunction"&gt;&lt;/div&gt;
+
+                    &lt;script&gt;
+                        function myFunction(sel, day, el){
+                            console.log(sel)
+                            console.log(day)
+                            console.log(el)
+                        }
+                    &lt;/script&gt;
+                </code></pre>
+
+                <h3 id="_calendar_methods">Methods</h3>
+                <p>
+                    You can use calendar methods to interact with the calendar.
+                </p>
+                <ul>
+                    <li><strong>getPreset()</strong></li>
+                    <li><strong>getSelected()</strong></li>
+                    <li><strong>getExcluded()</strong></li>
+                    <li><strong>getToday()</strong></li>
+                    <li><strong>getCurrent()</strong></li>
+                    <li><strong>setExclude(exclude)</strong></li>
+                    <li><strong>setPreset(preset)</strong></li>
+                    <li><strong>setShow(show)</strong></li>
+                    <li><strong>setMinDate(date)</strong></li>
+                    <li><strong>setMaxDate(date)</strong></li>
+                </ul>
+                <pre><code>
+                    var calendar = $(element).data('calendar');
+
+                    console.log(calendar.getPreset());
+                    console.log(calendar.getSelected());
+                    console.log(calendar.getExcluded());
+                    console.log(calendar.getToday());
+                    console.log(calendar.getCurrent());
+
+                    calendar.setExcluded("10/10/2017, 10/11/2017");
+                    calendar.setPreset("10/14/2017, 10/15/2017, 10/16/2017");
+                    calendar.setShow("01/01/2017");
+                    calendar.setMinDate("05/01/2017");
+                    calendar.setMaxDate("31/01/2017");
+                </code></pre>
+
+                <h3 id="_calendar_observe">Observe</h3>
+                <p>
+                    You can change attributes
+                        <code>data-exclude</code>,
+                        <code>data-preset</code>,
+                        <code>data-show</code>,
+                        <code>data-min-date</code>,
+                        <code>data-max-date</code>
+                    at runtime and calendar will be updated.
+                </p>
+
+                <h3 id="_calendar_customize">Customize</h3>
+                <p>
+                    You can customize any calendar elements with nex options:
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <tbody>
+                    <tr>
+                        <td>clsToday</td>
+                        <td><code>data-cls-today</code></td>
+                        <td>Additional class for today</td>
+                    </tr>
+                    <tr>
+                        <td>clsSelected</td>
+                        <td><code>data-cls-selected</code></td>
+                        <td>Additional class for selected</td>
+                    </tr>
+                    <tr>
+                        <td>clsExclude</td>
+                        <td><code>data-cls-exclude</code></td>
+                        <td>Additional class for excluded</td>
+                    </tr>
+                    <tr>
+                        <td>clsCancelButton</td>
+                        <td><code>data-cls-cancel-button</code></td>
+                        <td>Additional class for cancel button</td>
+                    </tr>
+                    <tr>
+                        <td>clsTodayButton</td>
+                        <td><code>data-cls-today-button</code></td>
+                        <td>Additional class for today button</td>
+                    </tr>
+                    <tr>
+                        <td>clsClearButton</td>
+                        <td><code>data-cls-clear-button</code></td>
+                        <td>Additional class for clear button</td>
+                    </tr>
+                    <tr>
+                        <td>clsDoneButton</td>
+                        <td><code>data-cls-done-button</code></td>
+                        <td>Additional class for done button</td>
+                    </tr>
+                    <tr>
+                        <td>clsCalendar</td>
+                        <td><code>data-cls-calendar</code></td>
+                        <td>Additional class calendar</td>
+                    </tr>
+                    <tr>
+                        <td>clsCalendarHeader</td>
+                        <td><code>data-cls-calendar-header</code></td>
+                        <td>Additional class for calendar header</td>
+                    </tr>
+                    <tr>
+                        <td>clsCalendarContent</td>
+                        <td><code>data-cls-calendar-content</code></td>
+                        <td>Additional class for calendar content</td>
+                    </tr>
+                    <tr>
+                        <td>clsCalendarFooter</td>
+                        <td><code>data-cls-calendar-footer</code></td>
+                        <td>Additional class for calendar footer</td>
+                    </tr>
+                    <tr>
+                        <td>clsCalendarMonths</td>
+                        <td><code>data-cls-calendar-months</code></td>
+                        <td>Additional class for calendar months</td>
+                    </tr>
+                    <tr>
+                        <td>clsCalendarYears</td>
+                        <td><code>data-cls-calendar-years</code></td>
+                        <td>Additional class for calendar years</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="example">
+                    <div class="mx-auto"
+                         data-role="calendar"
+                         data-show="10/15/2017"
+                         data-exclude="10/01/2017, 10/02/2017, 10/03/2017"
+                         data-preset="10/15/2017, 10/16/2017, 10/17/2017"
+                         data-cls-selected="bg-cyan fg-white"
+                         data-cls-excluded="bg-dark fg-white"
+                         data-cls-today="bg-pink fg-white"
+                         data-cls-today-button="success"
+                         data-cls-clear-button="alert"
+                         data-cls-done-button="primary"
+                         data-cls-calendar-header="bg-green"
+                    ></div>
+                </div>
+                <pre><code class="html">
+                    &lt;div class="mx-auto"
+                         data-role="calendar"
+                         data-show="10/15/2017"
+                         data-exclude="10/01/2017, 10/02/2017, 10/03/2017"
+                         data-preset="10/15/2017, 10/16/2017, 10/17/2017"
+                         data-cls-selected="bg-cyan fg-white"
+                         data-cls-excluded="bg-dark fg-white"
+                         data-cls-today="bg-pink fg-white"
+                         data-cls-today-button="success"
+                         data-cls-clear-button="alert"
+                         data-cls-done-button="primary"
+                         data-cls-calendar-header="bg-green"
                     &gt;&lt;/div&gt;
                 </code></pre>
 
@@ -295,23 +703,5 @@
     <script src="js/clipboard.min.js"></script>
     <script src="js/site.js"></script>
     <!-- ads-script -->
-    <script>
-
-        function dayClick(){
-            console.log(arguments);
-        }
-
-        function setExcludedDays(){
-            var exclude_days = [];
-            var day = new Date();
-            day.setDate(10);
-            for (var i = 0; i < 7; i++) {
-                exclude_days.push(Metro.utils.dateToString(day));
-                day.setDate(day.getDate() + 1);
-            }
-            $("#calendar_exclude").data('calendar').setExclude(exclude_days.join(","));
-        }
-
-    </script>
 </body>
 </html>
