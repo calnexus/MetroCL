@@ -44,8 +44,10 @@ String.prototype.capitalize = function() {
 Date.prototype.format = function(format, locale){
 
     if (locale === undefined) {
-        locale = Metro.default_locale['calendar'];
+        locale = "en-US";
     }
+
+    var cal = (Metro.locales[locale] !== undefined ? Metro.locales[locale] : Metro.locales["en-US"])['calendar'];
 
     var date = this;
     var nDay = date.getDay(),
@@ -53,8 +55,8 @@ Date.prototype.format = function(format, locale){
         nMonth = date.getMonth(),
         nYear = date.getFullYear(),
         nHour = date.getHours(),
-        aDays = locale['days'],
-        aMonths = locale['months'],
+        aDays = cal['days'],
+        aMonths = cal['months'],
         aDayCount = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334],
         isLeapYear = function() {
             return (nYear%4===0 && nYear%100!==0) || nYear%400===0;

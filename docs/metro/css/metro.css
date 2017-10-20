@@ -12234,6 +12234,10 @@ figure img {
   padding: 1rem;
   background-color: #004d6f;
   color: #ffffff;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .calendar-header .header-year {
   font-size: .75rem;
@@ -12349,6 +12353,10 @@ figure img {
   cursor: pointer;
   font-size: .85rem;
   position: relative;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .calendar-content .day.selected {
   -webkit-box-shadow: 0 0 0 1px #47b4e9 !important;
@@ -12628,6 +12636,18 @@ figure img {
     width: 100%;
     margin: 2px 0;
   }
+}
+.datepicker {
+  position: relative;
+}
+.datepicker .calendar {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  visibility: hidden;
+}
+.datepicker .calendar.open {
+  visibility: visible;
 }
 .ripple {
   display: block;

@@ -523,6 +523,14 @@ var Utils = {
         var d = val.getDate();
 
         return (m < 10 ? '0'+m:m)+ "/" + (d<10?'0'+d:d)+"/"+y;
+    },
+
+    getLocales: function(){
+        return Object.keys(Metro.locales);
+    },
+
+    addLocale: function(locale){
+        Metro.locales = $.extend( {}, Metro.locales, locale );
     }
 };
 

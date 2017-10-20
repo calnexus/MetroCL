@@ -1,0 +1,20 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+.datepicker {
+    position: relative;
+
+}
+
+.datepicker {
+    .calendar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        visibility: hidden;
+
+        &.open {
+            visibility: visible;
+        }
+    }
+}
