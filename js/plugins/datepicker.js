@@ -17,8 +17,9 @@ var Datepicker = {
         calendarButtonIcon: "<sapn class='mif-calendar'></sapn>",
         clearButtonIcon: "<span class='mif-cross'></span>",
         onDatepickerCreate: Metro.noop,
+        onCalendarShow: Metro.noop,
+        onCalendarHide: Metro.noop,
 
-        show: null,
         locale: METRO_LOCALE,
         weekStart: 0,
         outside: true,
@@ -73,7 +74,8 @@ var Datepicker = {
         cal.appendTo(container);
 
         cal.calendar({
-            show: o.show,
+            pickerMode: true,
+            show: o.value,
             locale: o.locale,
             weekStart: o.weekStart,
             outside: o.outside,
@@ -101,8 +103,22 @@ var Datepicker = {
         });
 
         calendarButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.calendarButtonIcon);
-        calendarButton.on("click", function(){
-            cal.toggleClass("open");
+        calendarButton.on("click", function(e){
+            if (Utils.isDate(element.val()) && cal.hasClass("open") === false) {
+                cal.data('calendar').setPreset(element.val());
+                cal.data('calendar').setShow(element.val());
+                cal.data('calendar').setToday(element.val());
+            }
+            if (cal.hasClass("open") === false) {
+                $(".datepicker .calendar").removeClass("open");
+                cal.addClass("open");
+                Utils.exec(o.onCalendarShow, [cal]);
+            } else {
+                cal.removeClass("open");
+                Utils.exec(o.onCalendarHide, [cal]);
+            }
+            e.preventDefault();
+            e.stopPropagation();
         });
         calendarButton.appendTo(buttons);
 
@@ -129,3 +145,7 @@ var Datepicker = {
 };
 
 Metro.plugin('datepicker', Datepicker);
+
+$(document).on('click', function(e){
+    $(".datepicker .calendar").removeClass("open");
+});

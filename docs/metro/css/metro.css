@@ -12375,8 +12375,9 @@ figure img {
   font-size: .75rem;
 }
 .calendar-content .today {
-  background-color: #60a917;
+  background-color: rgba(27, 161, 226, 0.5);
   color: #ffffff;
+  font-weight: bold;
 }
 .calendar-content .excluded {
   background-color: #f8f8f8;
@@ -12645,6 +12646,7 @@ figure img {
   top: 100%;
   left: 0;
   visibility: hidden;
+  z-index: 500;
 }
 .datepicker .calendar.open {
   visibility: visible;

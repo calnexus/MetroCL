@@ -63,8 +63,23 @@
                 <!-- ads-html -->
 
                 <div class="example">
-                    <input type="text" data-role="datepicker">
+                    <div class="row">
+                        <div class="cell-md-4">
+                            <input type="text" data-role="datepicker">
+                        </div>
+                        <div class="cell-md-4">
+                            <input type="text" data-role="datepicker" value="12/21/1972">
+                        </div>
+                        <div class="cell-md-4">
+                            <input type="text" data-role="datepicker" data-format="%d %B %Y">
+                        </div>
+                    </div>
                 </div>
+                <pre><code class="html">
+                    &lt;input type="text" data-role="datepicker"&gt;
+                    &lt;input type="text" data-role="datepicker" value="12/21/1972"&gt;
+                    &lt;input type="text" data-role="datepicker" data-format="%d %B %Y"&gt;
+                </code></pre>
             </main>
         </div>
 

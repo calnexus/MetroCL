@@ -26,6 +26,7 @@ var Calendar = {
     },
 
     options: {
+        pickerMode: false,
         show: null,
         locale: METRO_LOCALE,
         weekStart: 0,
@@ -259,17 +260,28 @@ var Calendar = {
                 return ;
             }
 
-            if (index === -1) {
-                if (o.multiSelect === false) {
-                    element.find(".days-row .day").removeClass("selected").removeClass(o.clsSelected);
-                    that.selected = [];
-                }
-                that.selected.push(date);
-                day.addClass("selected").addClass(o.clsSelected);
+            if (o.pickerMode === true) {
+                that.selected = [date];
+                that.today = new Date(date);
+                that.current.year = that.today.getFullYear();
+                that.current.month = that.today.getMonth();
+                that.current.day = that.today.getDate();
+                that._drawHeader();
+                that._drawContent();
             } else {
-                day.removeClass("selected").removeClass(o.clsSelected);
-                Utils.arrayDelete(that.selected, date);
+                if (index === -1) {
+                    if (o.multiSelect === false) {
+                        element.find(".days-row .day").removeClass("selected").removeClass(o.clsSelected);
+                        that.selected = [];
+                    }
+                    that.selected.push(date);
+                    day.addClass("selected").addClass(o.clsSelected);
+                } else {
+                    day.removeClass("selected").removeClass(o.clsSelected);
+                    Utils.arrayDelete(that.selected, date);
+                }
             }
+
             Utils.exec(o.onDayClick, [that.selected, day, element]);
         });
 
@@ -639,6 +651,16 @@ var Calendar = {
 
         o.maxDate = date !== null ? date : element.attr("data-max-date");
 
+        this._drawContent();
+    },
+
+    setToday: function(val){
+        if (Utils.isDate(val) === false) {
+            return ;
+        }
+        this.today = new Date(val);
+        this.today.setHours(0,0,0,0);
+        this._drawHeader();
         this._drawContent();
     },
 

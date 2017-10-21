@@ -16,7 +16,7 @@
 + Framework itself monitors components attributes to change
 + Create cool page without knowledge of javascript
 
- Documentation and Demo: [metroui.org.ua](http://metroui.org.ua/).   
+ Documentation and Demo for v4: [metroui.org.ua](http://metroui.org.ua/).   
  Documentation and Demo for V3: [metroui.org.ua/v3](http://metroui.org.ua/v3).   
  Documentation and Demo for V2: [metroui.org.ua/v2](http://metroui.org.ua/v2).   
  Documentation and Demo for V0: [metroui.org.ua/v0](http://metroui.org.ua/v0).   
@@ -27,8 +27,9 @@
 - preCode by Leon Sorokin [preCode](https://github.com/leeoniya/preCode.js)
 - easing functions by George McGinley Smith [easing](http://gsgd.co.uk/sandbox/jquery/easing/)
 - mousewheel.js by Brandon Aaron [mousewheel](http://brandonaaron.net)
+- strftime by Tom Doan [strftime](https://github.com/thdoan/strftime)
 - jQuery Core [jquery](https://jquery.com/)
-- All who have I picked up something good
+- All who brought something good 
 
 ### Browser Compatibility
 IE11+, Chrome, Firefox, Opera, Safari

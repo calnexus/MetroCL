@@ -2283,6 +2283,7 @@ var Calendar = {
     },
 
     options: {
+        pickerMode: false,
         show: null,
         locale: METRO_LOCALE,
         weekStart: 0,
@@ -2516,17 +2517,28 @@ var Calendar = {
                 return ;
             }
 
-            if (index === -1) {
-                if (o.multiSelect === false) {
-                    element.find(".days-row .day").removeClass("selected").removeClass(o.clsSelected);
-                    that.selected = [];
-                }
-                that.selected.push(date);
-                day.addClass("selected").addClass(o.clsSelected);
+            if (o.pickerMode === true) {
+                that.selected = [date];
+                that.today = new Date(date);
+                that.current.year = that.today.getFullYear();
+                that.current.month = that.today.getMonth();
+                that.current.day = that.today.getDate();
+                that._drawHeader();
+                that._drawContent();
             } else {
-                day.removeClass("selected").removeClass(o.clsSelected);
-                Utils.arrayDelete(that.selected, date);
+                if (index === -1) {
+                    if (o.multiSelect === false) {
+                        element.find(".days-row .day").removeClass("selected").removeClass(o.clsSelected);
+                        that.selected = [];
+                    }
+                    that.selected.push(date);
+                    day.addClass("selected").addClass(o.clsSelected);
+                } else {
+                    day.removeClass("selected").removeClass(o.clsSelected);
+                    Utils.arrayDelete(that.selected, date);
+                }
             }
+
             Utils.exec(o.onDayClick, [that.selected, day, element]);
         });
 
@@ -2896,6 +2908,16 @@ var Calendar = {
 
         o.maxDate = date !== null ? date : element.attr("data-max-date");
 
+        this._drawContent();
+    },
+
+    setToday: function(val){
+        if (Utils.isDate(val) === false) {
+            return ;
+        }
+        this.today = new Date(val);
+        this.today.setHours(0,0,0,0);
+        this._drawHeader();
         this._drawContent();
     },
 
@@ -3560,8 +3582,9 @@ var Datepicker = {
         calendarButtonIcon: "<sapn class='mif-calendar'></sapn>",
         clearButtonIcon: "<span class='mif-cross'></span>",
         onDatepickerCreate: Metro.noop,
+        onCalendarShow: Metro.noop,
+        onCalendarHide: Metro.noop,
 
-        show: null,
         locale: METRO_LOCALE,
         weekStart: 0,
         outside: true,
@@ -3616,7 +3639,8 @@ var Datepicker = {
         cal.appendTo(container);
 
         cal.calendar({
-            show: o.show,
+            pickerMode: true,
+            show: o.value,
             locale: o.locale,
             weekStart: o.weekStart,
             outside: o.outside,
@@ -3644,8 +3668,22 @@ var Datepicker = {
         });
 
         calendarButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.calendarButtonIcon);
-        calendarButton.on("click", function(){
-            cal.toggleClass("open");
+        calendarButton.on("click", function(e){
+            if (Utils.isDate(element.val()) && cal.hasClass("open") === false) {
+                cal.data('calendar').setPreset(element.val());
+                cal.data('calendar').setShow(element.val());
+                cal.data('calendar').setToday(element.val());
+            }
+            if (cal.hasClass("open") === false) {
+                $(".datepicker .calendar").removeClass("open");
+                cal.addClass("open");
+                Utils.exec(o.onCalendarShow, [cal]);
+            } else {
+                cal.removeClass("open");
+                Utils.exec(o.onCalendarHide, [cal]);
+            }
+            e.preventDefault();
+            e.stopPropagation();
         });
         calendarButton.appendTo(buttons);
 
@@ -3672,6 +3710,11 @@ var Datepicker = {
 };
 
 Metro.plugin('datepicker', Datepicker);
+
+$(document).on('click', function(e){
+    $(".datepicker .calendar").removeClass("open");
+});
+
 // Source: js/plugins/dialog.js
 var Dialog = {
     init: function( options, elem ) {
