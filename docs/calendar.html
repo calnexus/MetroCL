@@ -103,10 +103,10 @@
                         <code>.calendar-wide-xxl</code>.
                 </p>
                 <div class="example">
-                    <div data-role="calendar" class="calendar-wide mx-auto"></div>
+                    <div data-role="calendar" class="calendar-wide-sm mx-auto"></div>
                 </div>
                 <pre><code>
-                    &lt;div class="calendar-wide" data-role="calendar"&gt;&lt;/div&gt;
+                    &lt;div class="calendar-wide-sm" data-role="calendar"&gt;&lt;/div&gt;
                 </code></pre>
 
                 <h3 id="_calendar_week_start">Week start</h3>
@@ -242,107 +242,107 @@
                 <h3 id="_calendar_exclude">Exclude dates</h3>
                 <p>
                     You can exclude any dates from user selection. To exclude dates add <code>data-exclude="..."</code> attribute and specify dates who can be excluded.
-                    Values for this attributes can be <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">valid string date</a>.
+                    Values for this attributes can be <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">valid string date:</a> <code>YYYY-MM-DDTHH:mm:ss.sssZ</code>.
                 </p>
                 <div class="example">
                     <div id="calendar_exclude" class="mx-auto"
                          data-role="calendar"
-                         data-show="10/15/2017"
+                         data-show="2017/10/15"
                          data-exclude="
-                            10/10/2017,
-                            10/11/2017,
-                            10/12/2017,
-                            10/13/2017,
-                            10/14/2017,
-                            10/15/2017,
-                            10/16/2017"
+                            2017/10/10,
+                            2017/10/11,
+                            2017/10/12,
+                            2017/10/13,
+                            2017/10/14,
+                            2017/10/15,
+                            2017/10/16"
                     ></div>
                 </div>
                 <pre><code class="html">
                     &lt;div
                         data-role="calendar"
                         data-exclude="
-                            10/10/2017,
-                            10/11/2017,
-                            10/12/2017,
-                            10/13/2017,
-                            10/14/2017,
-                            10/15/2017,
-                            10/16/2017"
+                            2017/10/10,
+                            2017/10/11,
+                            2017/10/12,
+                            2017/10/13,
+                            2017/10/14,
+                            2017/10/15,
+                            2017/10/16"
                     &gt;&lt;/div&gt;
                 </code></pre>
 
                 <h3 id="_calendar_preset">Preset dates</h3>
                 <p>
                     You can preselect dates. To preselect dates use <code>data-preset="..."</code> attribute and specify dates who can be preselect.
-                    Values for this attributes can be <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">valid string date</a>.
+                    Values for this attributes can be <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">valid string date:</a> <code>YYYY-MM-DDTHH:mm:ss.sssZ</code>.
                 </p>
                 <div class="example">
                     <div id="calendar_preset"  class="mx-auto"
                          data-role="calendar"
-                         data-show="10/15/2017"
+                         data-show="2017/10/15"
                          data-preset="
-                            10/10/2017,
-                            10/11/2017,
-                            10/12/2017,
-                            10/13/2017,
-                            10/14/2017,
-                            10/15/2017,
-                            10/16/2017"
+                            2017/10/10,
+                            2017/10/11,
+                            2017/10/12,
+                            2017/10/13,
+                            2017/10/14,
+                            2017/10/15,
+                            2017/10/16"
                     ></div>
                 </div>
                 <pre><code class="html">
                     &lt;div
                         data-role="calendar"
-                        data-show="10/15/2017"
+                        data-show="2017/10/15"
                         data-preset="
-                            10/10/2017,
-                            10/11/2017,
-                            10/12/2017,
-                            10/13/2017,
-                            10/14/2017,
-                            10/15/2017,
-                            10/16/2017"
+                            2017/10/10,
+                            2017/10/11,
+                            2017/10/12,
+                            2017/10/13,
+                            2017/10/14,
+                            2017/10/15,
+                            2017/10/16"
                     &gt;&lt;/div&gt;
                 </code></pre>
 
                 <h3 id="_calendar_min_max">Min &amp; max dates</h3>
                 <p>
                     You can limit the set of dates for user selection. To set limit use <code>data-min-date="..."</code> and <code>data-max-date="..."</code> attributes.
-                    Values for this attributes can be <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">valid string date</a>.
+                    Values for this attributes can be <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">valid string date:</a> <code>YYYY-MM-DDTHH:mm:ss.sssZ</code>.
                 </p>
                 <div class="example">
                     <div id="calendar_min_max" class="mx-auto"
                          data-role="calendar"
-                         data-show="10/15/2017"
-                         data-min-date="10/08/2017"
-                         data-max-date="10/25/2017"
+                         data-show="2017/10/15"
+                         data-min-date="2017/10/08"
+                         data-max-date="2017/10/25"
                     ></div>
                 </div>
                 <pre><code class="html">
                     &lt;div
                          data-role="calendar"
-                         data-show="10/15/2017"
-                         data-min-date="10/08/2017"
-                         data-max-date="10/25/2017"
+                         data-show="2017/10/15"
+                         data-min-date="2017/10/08"
+                         data-max-date="2017/10/25"
                     &gt;&lt;/div&gt;
                 </code></pre>
 
                 <h3 id="_calendar_show">Show specific date</h3>
                 <p>
                     You can switch calndar to specific date. To switch calendar use attribute <code>data-show="..."</code>.
-                    Values for this attribute can be <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">valid string date</a>.
+                    Values for this attribute can be <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">valid string date:</a> <code>YYYY-MM-DDTHH:mm:ss.sssZ</code>.
                 </p>
                 <div class="example">
                     <div id="calendar_show" class="mx-auto"
                          data-role="calendar"
-                         data-show="01/01/2017"
+                         data-show="1972/12/21"
                     ></div>
                 </div>
                 <pre><code class="html">
                     &lt;div
                          data-role="calendar"
-                         data-show="01/01/2017"
+                         data-show="1972/12/21"
                     &gt;&lt;/div&gt;
                 </code></pre>
 
@@ -359,8 +359,7 @@
                 <h3 id="_calendar_i18n">Internationalisation</h3>
                 <p>
                     You can use attribute <code>data-locale="..."</code> to setup language for calendar. The default locale is <code>en-US</code>.
-                    All language files stored in <code>i18n</code> folder of library.
-                    To access to i18n files you must set global variable <code>METRO_I18N</code> with files path before include <code>metro library javascript</code>.
+                    More about Metro 4 locales you can read in <a href="i18n.html">this article</a>.
                 </p>
                 <div class="example">
                     <div class="row">
@@ -396,6 +395,12 @@
                         <td><code>data-show</code></td>
                         <td>null</td>
                         <td>Show specific date</td>
+                    </tr>
+                    <tr>
+                        <td>pickerMode</td>
+                        <td><code>data-picker-mode</code></td>
+                        <td>false</td>
+                        <td>Set calendar to picker mode</td>
                     </tr>
                     <tr>
                         <td>locale</td>
@@ -567,6 +572,7 @@
                     <li><strong>getExcluded()</strong></li>
                     <li><strong>getToday()</strong></li>
                     <li><strong>getCurrent()</strong></li>
+                    <li><strong>setToday(today)</strong></li>
                     <li><strong>setExclude(exclude)</strong></li>
                     <li><strong>setPreset(preset)</strong></li>
                     <li><strong>setShow(show)</strong></li>
@@ -676,9 +682,9 @@
                 <div class="example">
                     <div class="mx-auto"
                          data-role="calendar"
-                         data-show="10/15/2017"
-                         data-exclude="10/01/2017, 10/02/2017, 10/03/2017"
-                         data-preset="10/15/2017, 10/16/2017, 10/17/2017"
+                         data-show="2017/10/15"
+                         data-exclude="2017/10/01, 2017/10/02, 2017/10/03"
+                         data-preset="2017/10/15, 2017/10/16, 2017/10/17"
                          data-cls-selected="bg-cyan fg-white"
                          data-cls-excluded="bg-dark fg-white"
                          data-cls-today="bg-pink fg-white"
@@ -686,14 +692,16 @@
                          data-cls-clear-button="alert"
                          data-cls-done-button="primary"
                          data-cls-calendar-header="bg-green"
+                         data-cls-calendar-content="bg-orange fg-white"
+                         data-cls-calendar-footer="bg-teal"
                     ></div>
                 </div>
                 <pre><code class="html">
                     &lt;div class="mx-auto"
                          data-role="calendar"
-                         data-show="10/15/2017"
-                         data-exclude="10/01/2017, 10/02/2017, 10/03/2017"
-                         data-preset="10/15/2017, 10/16/2017, 10/17/2017"
+                         data-show="2017/10/15"
+                         data-exclude="2017/10/01, 2017/10/02, 2017/10/03"
+                         data-preset="2017/10/15, 2017/10/16, 2017/10/17"
                          data-cls-selected="bg-cyan fg-white"
                          data-cls-excluded="bg-dark fg-white"
                          data-cls-today="bg-pink fg-white"
@@ -701,6 +709,8 @@
                          data-cls-clear-button="alert"
                          data-cls-done-button="primary"
                          data-cls-calendar-header="bg-green"
+                         data-cls-calendar-content="bg-orange fg-white"
+                         data-cls-calendar-footer="bg-teal"
                     &gt;&lt;/div&gt;
                 </code></pre>
 

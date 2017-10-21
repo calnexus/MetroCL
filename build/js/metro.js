@@ -1632,6 +1632,18 @@ var d = new Date().getTime();
             return false;
         }
 
+        if (typeof o === 'string' && o.indexOf(" ") !== -1) {
+            return false;
+        }
+
+        if (typeof o === 'string' && o.indexOf("(") !== -1) {
+            return false;
+        }
+
+        if (typeof o === 'string' && o.indexOf("[") !== -1) {
+            return false;
+        }
+
         var ns = o.split(".");
         var i, context = window;
 
@@ -3568,6 +3580,9 @@ var Datepicker = {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
         this.element = $(elem);
+        this.value = null;
+        this.value_date = null;
+        this.calendar = null;
 
         this._setOptionsFromDOM();
         this._create();
@@ -3578,12 +3593,14 @@ var Datepicker = {
     },
 
     options: {
-        format: "%m/%d/%Y",
+        format: "%Y/%m/%d",
+        clearButton: false,
         calendarButtonIcon: "<sapn class='mif-calendar'></sapn>",
         clearButtonIcon: "<span class='mif-cross'></span>",
         onDatepickerCreate: Metro.noop,
         onCalendarShow: Metro.noop,
         onCalendarHide: Metro.noop,
+        onChange: Metro.noop,
 
         locale: METRO_LOCALE,
         weekStart: 0,
@@ -3628,6 +3645,13 @@ var Datepicker = {
         var buttons = $("<div>").addClass("button-group");
         var calendarButton, clearButton, cal = $("<div>").addClass("drop-shadow");
 
+        this.value = element.val();
+        if (Utils.isDate(this.value)) {
+            this.value_date = new Date(this.value);
+            this.value_date.setHours(0,0,0,0);
+            element.val(this.value_date.format(o.format));
+        }
+
         if (prev.length === 0) {
             parent.prepend(container);
         } else {
@@ -3661,18 +3685,22 @@ var Datepicker = {
             maxDate: o.maxDate,
             onDayClick: function(sel, day, el){
                 var date = new Date(sel[0]);
+                that.value = date.format("%Y/%m/%d");
+                that.value_date = date;
                 element.val(date.format(o.format, o.locale));
                 element.trigger("change");
                 cal.removeClass("open");
             }
         });
 
+        this.calendar = cal;
+
         calendarButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.calendarButtonIcon);
         calendarButton.on("click", function(e){
-            if (Utils.isDate(element.val()) && cal.hasClass("open") === false) {
-                cal.data('calendar').setPreset(element.val());
-                cal.data('calendar').setShow(element.val());
-                cal.data('calendar').setToday(element.val());
+            if (Utils.isDate(that.value) && cal.hasClass("open") === false) {
+                cal.data('calendar').setPreset(that.value);
+                cal.data('calendar').setShow(that.value);
+                cal.data('calendar').setToday(that.value);
             }
             if (cal.hasClass("open") === false) {
                 $(".datepicker .calendar").removeClass("open");
@@ -3687,11 +3715,13 @@ var Datepicker = {
         });
         calendarButton.appendTo(buttons);
 
-        clearButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
-        clearButton.on("click", function(){
-            element.val("").trigger('change');
-        });
-        clearButton.appendTo(buttons);
+        if (o.clearButton === true) {
+            clearButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
+            clearButton.on("click", function () {
+                element.val("").trigger('change');
+            });
+            clearButton.appendTo(buttons);
+        }
 
         if (element.attr('dir') === 'rtl' ) {
             container.addClass("rtl");
@@ -3702,10 +3732,35 @@ var Datepicker = {
 
         element.on("blur", function(){container.removeClass("focused");});
         element.on("focus", function(){container.addClass("focused");});
+        element.on("change", function(){
+            Utils.exec(o.onChange, [that.value_date, that.value, element]);
+        });
+    },
+
+    val: function(v){
+        var that = this, element = this.element, o = this.options;
+
+        if (v === undefined) {
+            return this.value_date;
+        }
+
+        if (Utils.isDate(v) === true) {
+            this.value_date = new Date(v);
+            this.value = this.value_date.format(o.format);
+            element.val(this.value_date.format(o.format));
+            element.trigger("change");
+        }
+    },
+
+    changeValue: function(){
+        var that = this, element = this.element, o = this.options;
+        this.val(element.attr("value"));
     },
 
     changeAttribute: function(attributeName){
-
+        switch (attributeName) {
+            case "value": this.changeValue(); break;
+        }
     }
 };
 

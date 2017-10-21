@@ -149,6 +149,18 @@ var Utils = {
             return false;
         }
 
+        if (typeof o === 'string' && o.indexOf(" ") !== -1) {
+            return false;
+        }
+
+        if (typeof o === 'string' && o.indexOf("(") !== -1) {
+            return false;
+        }
+
+        if (typeof o === 'string' && o.indexOf("[") !== -1) {
+            return false;
+        }
+
         var ns = o.split(".");
         var i, context = window;
 
