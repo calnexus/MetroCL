@@ -47,6 +47,12 @@
                 <hr/>
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Datepicker</a></li>
+                    <li class="toc-entry"><a href="#_datepicker_create">Create</a></li>
+                    <li class="toc-entry"><a href="#_datepicker_options">Datepicker options</a></li>
+                    <li class="toc-entry"><a href="#_datepicker_calendar">Calendar options</a></li>
+                    <li class="toc-entry"><a href="#_datepicker_events">Events</a></li>
+                    <li class="toc-entry"><a href="#_datepicker_methods">Methods</a></li>
+                    <li class="toc-entry"><a href="#_datepicker_observe">Observe</a></li>
                 </ul>
             </div>
 
@@ -57,10 +63,21 @@
 
                 <h1>Datepicker</h1>
                 <p class="text-leader">
-
+                    Organize date selection for the user with the datepicker component.
                 </p>
 
                 <!-- ads-html -->
+
+                <h3 id="_datepicker_create">Create datepicker</h3>
+                <p>
+                    To create <code>datepicker</code> component add attribute <code>data-role="datepicker"</code> to form input element.
+                </p>
+                <div class="example">
+                    <input type="text" data-role="datepicker" style="width: 280px" class="mx-auto">
+                </div>
+                <pre><code class="html">
+                    &lt;input type="text" data-role="datepicker"&gt;
+                </code></pre>
 
                 <div class="example">
                     <div class="row">
@@ -95,6 +112,12 @@
                         </div>
                     </div>
                 </div>
+                <pre><code>
+                    &lt;input type="text" data-role="datepicker" id="dp2" data-on-change="$('#dp1').attr('value', (arguments[1]))"&gt;
+                    &lt;input type="text" data-role="datepicker" id="dp1" data-format="%d %b %Y"&gt;
+                </code></pre>
+
+
             </main>
         </div>
 

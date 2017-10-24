@@ -12,6 +12,7 @@ var Select = {
         return this;
     },
     options: {
+        copyInlineStyles: true,
         dropHeight: 200,
         disabled: false,
         onChange: Metro.noop,
@@ -93,6 +94,12 @@ var Select = {
             list.dropdown({
                 toggleElement: "#"+select_id
             });
+        }
+
+        if (o.copyInlineStyles === true) {
+            for (var i = 0, l = element[0].style.length; i < l; i++) {
+                container.css(element[0].style[i], element.css(element[0].style[i]));
+            }
         }
 
         if (o.disabled === true || element.is(':disabled')) {

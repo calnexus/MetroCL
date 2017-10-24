@@ -26,49 +26,8 @@ var Utils = {
         return /youtu\.be|youtube|vimeo/gi.test(val);
     },
 
-    embedObject: function(val){
-        return "<div class='embed-container'>"+val+"</div>";
-    },
-
-    embedUrl: function(val){
-        if (val.indexOf("youtu.be") !== -1) {
-            val = "https://www.youtube.com/embed/" + val.split("/").pop();
-        }
-        return "<div class='embed-container'><iframe src='"+val+"'></iframe></div>";
-    },
-
-    secondsToTime: function(secs) {
-        var hours = Math.floor(secs / (60 * 60));
-
-        var divisor_for_minutes = secs % (60 * 60);
-        var minutes = Math.floor(divisor_for_minutes / 60);
-
-        var divisor_for_seconds = divisor_for_minutes % 60;
-        var seconds = Math.ceil(divisor_for_seconds);
-
-        return {
-            "h": hours,
-            "m": minutes,
-            "s": seconds
-        };
-    },
-
-    hex2rgba: function(hex, alpha){
-        var c;
-        alpha = isNaN(alpha) ? 1 : alpha;
-        if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
-            c= hex.substring(1).split('');
-            if(c.length=== 3){
-                c= [c[0], c[0], c[1], c[1], c[2], c[2]];
-            }
-            c= '0x'+c.join('');
-            return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+','+alpha+')';
-        }
-        throw new Error('Hex2rgba error. Bad Hex value');
-    },
-
-    random: function(from, to){
-        return Math.floor(Math.random()*(to-from+1)+from);
+    isDate: function(val){
+        return (new Date(val) !== "Invalid Date" && !isNaN(new Date(val)));
     },
 
     isInt: function(n){
@@ -79,45 +38,10 @@ var Utils = {
         return Number(n) === n && n % 1 !== 0;
     },
 
-    uniqueId: function () {
-        "use strict";
-        var d = new Date().getTime();
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            var r = (d + Math.random() * 16) % 16 | 0;
-            d = Math.floor(d / 16);
-            return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-        });
-    },
-
     isTouchDevice: function() {
         return (('ontouchstart' in window)
-        || (navigator.MaxTouchPoints > 0)
-        || (navigator.msMaxTouchPoints > 0));
-    },
-
-
-    secondsToFormattedString: function(time){
-        var hours, minutes, seconds;
-
-        hours = parseInt( time / 3600 ) % 24;
-        minutes = parseInt( time / 60 ) % 60;
-        seconds = time % 60;
-
-        return (hours ? (hours) + ":" : "") + (minutes < 10 ? "0"+minutes : minutes) + ":" + (seconds < 10 ? "0"+seconds : seconds);
-    },
-
-    callback: function(f, args, context){
-        return this.exec(f, args, context);
-    },
-
-    exec: function(f, args, context){
-        if (f === undefined || f === null) {return false;}
-        var func = this.isFunc(f);
-        if (func === false) {
-            func = new Function("a", f);
-        }
-
-        return func.apply(context, args);
+            || (navigator.MaxTouchPoints > 0)
+            || (navigator.msMaxTouchPoints > 0));
     },
 
     isFunc: function(f){
@@ -191,6 +115,85 @@ var Utils = {
         return (typeof jQuery === "function" && el instanceof jQuery);
     },
 
+    embedObject: function(val){
+        return "<div class='embed-container'>"+val+"</div>";
+    },
+
+    embedUrl: function(val){
+        if (val.indexOf("youtu.be") !== -1) {
+            val = "https://www.youtube.com/embed/" + val.split("/").pop();
+        }
+        return "<div class='embed-container'><iframe src='"+val+"'></iframe></div>";
+    },
+
+    secondsToTime: function(secs) {
+        var hours = Math.floor(secs / (60 * 60));
+
+        var divisor_for_minutes = secs % (60 * 60);
+        var minutes = Math.floor(divisor_for_minutes / 60);
+
+        var divisor_for_seconds = divisor_for_minutes % 60;
+        var seconds = Math.ceil(divisor_for_seconds);
+
+        return {
+            "h": hours,
+            "m": minutes,
+            "s": seconds
+        };
+    },
+
+    hex2rgba: function(hex, alpha){
+        var c;
+        alpha = isNaN(alpha) ? 1 : alpha;
+        if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+            c= hex.substring(1).split('');
+            if(c.length=== 3){
+                c= [c[0], c[0], c[1], c[1], c[2], c[2]];
+            }
+            c= '0x'+c.join('');
+            return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+','+alpha+')';
+        }
+        throw new Error('Hex2rgba error. Bad Hex value');
+    },
+
+    random: function(from, to){
+        return Math.floor(Math.random()*(to-from+1)+from);
+    },
+
+    uniqueId: function () {
+        "use strict";
+        var d = new Date().getTime();
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = (d + Math.random() * 16) % 16 | 0;
+            d = Math.floor(d / 16);
+            return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+        });
+    },
+
+    secondsToFormattedString: function(time){
+        var hours, minutes, seconds;
+
+        hours = parseInt( time / 3600 ) % 24;
+        minutes = parseInt( time / 60 ) % 60;
+        seconds = time % 60;
+
+        return (hours ? (hours) + ":" : "") + (minutes < 10 ? "0"+minutes : minutes) + ":" + (seconds < 10 ? "0"+seconds : seconds);
+    },
+
+    callback: function(f, args, context){
+        return this.exec(f, args, context);
+    },
+
+    exec: function(f, args, context){
+        if (f === undefined || f === null) {return false;}
+        var func = this.isFunc(f);
+        if (func === false) {
+            func = new Function("a", f);
+        }
+
+        return func.apply(context, args);
+    },
+
     elementInViewport: function(el) {
         if (this.isJQueryObject(el)) {
             el = el[0];
@@ -257,7 +260,7 @@ var Utils = {
             dataType: 'jsonp'
         })
         .done(function(data){
-            that.callback(callback, data.data);
+            that.callback(callback, [data.data]);
         });
     },
 
@@ -308,7 +311,7 @@ var Utils = {
     cleanPreCode: function(selector){
         var els = Array.prototype.slice.call(document.querySelectorAll(selector), 0);
 
-        els.forEach(function(el, idx, arr){
+        els.forEach(function(el){
             var txt = el.textContent
                 .replace(/^[\r\n]+/, "")	// strip leading newline
                 .replace(/\s+$/g, "");
@@ -504,6 +507,19 @@ var Utils = {
         return result;
     },
 
+    getInlineStyles: function(el){
+        var styles = {};
+        if (this.isJQueryObject(el)) {
+            el = el[0];
+        }
+        for (var i = 0, l = el.style.length; i < l; i++) {
+            var s = el.style[i];
+            styles[s] = el.style[s];
+        }
+
+        return styles;
+    },
+
     updateURIParameter: function(uri, key, value) {
         var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
         var separator = uri.indexOf('?') !== -1 ? "&" : "?";
@@ -523,10 +539,6 @@ var Utils = {
         if (!results) return null;
         if (!results[2]) return '';
         return decodeURIComponent(results[2].replace(/\+/g, " "));
-    },
-
-    isDate: function(val){
-        return (new Date(val) !== "Invalid Date" && !isNaN(new Date(val)));
     },
 
     dateToString: function(val){

@@ -30,11 +30,11 @@
         @color: "@{name}Color";
 
         &.@{name} {
-            background-color: @@color;
-            color: @white;
+            background-color: @@color!important;
+            color: @white!important;
 
             &.dropdown-toggle::before {
-                border-color: @white;
+                border-color: @white!important;
             }
         }
 
@@ -42,7 +42,7 @@
     }
 
     &.light, &.yellow {
-        color: @dark;
+        color: @dark!important;
     }
 }
 

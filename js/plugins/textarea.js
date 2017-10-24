@@ -12,6 +12,7 @@ var Textarea = {
         return this;
     },
     options: {
+        copyInlineStyles: true,
         clearButton: true,
         clearButtonIcon: "<span class='mif-cross'></span>",
         autoSize: false,
@@ -81,7 +82,16 @@ var Textarea = {
             element.on('drop', resize);
         }
 
+        if (element.attr('dir') === 'rtl' ) {
+            container.addClass("rtl").attr("dir", "rtl");
+        }
+
         element[0].className = '';
+        if (o.copyInlineStyles === true) {
+            for (var i = 0, l = element[0].style.length; i < l; i++) {
+                container.css(element[0].style[i], element.css(element[0].style[i]));
+            }
+        }
 
         element.on("blur", function(){container.removeClass("focused");});
         element.on("focus", function(){container.addClass("focused");});

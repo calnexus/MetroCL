@@ -12,10 +12,13 @@ var Input = {
         return this;
     },
     options: {
+        prepend: "",
+        copyInlineStyles: true,
         clearButton: true,
         revealButton: true,
         clearButtonIcon: "<span class='mif-cross'></span>",
         revealButtonIcon: "<span class='mif-eye'></span>",
+        customButtons: [],
         disabled: false,
         onInputCreate: Metro.noop
     },
@@ -66,11 +69,36 @@ var Input = {
             revealButton.appendTo(buttons);
         }
 
+        if (o.prepend !== "") {
+            var prepend = Utils.isTag(o.prepend) ? $(o.prepend) : $("<span>"+o.prepend+"</span>");
+            prepend.addClass("prepend").appendTo(container);
+        }
+
+        if (typeof o.customButtons === "string") {
+            o.customButtons = Utils.isObject(o.customButtons);
+        }
+
+        if (typeof o.customButtons === "object" && Utils.objectLength(o.customButtons) > 0) {
+            $.each(o.customButtons, function(){
+                var item = this;
+                var customButton = $("<button>").addClass("button custom-input-button").addClass(item.cls).attr("tabindex", -1).attr("type", "button").html(item.html);
+                customButton.on("click", function(){
+                    Utils.exec(item.onclick, [customButton, element]);
+                });
+                customButton.appendTo(buttons);
+            });
+        }
+
         if (element.attr('dir') === 'rtl' ) {
-            container.addClass("rtl");
+            container.addClass("rtl").attr("dir", "rtl");
         }
 
         element[0].className = '';
+        if (o.copyInlineStyles === true) {
+            for (var i = 0, l = element[0].style.length; i < l; i++) {
+                container.css(element[0].style[i], element.css(element[0].style[i]));
+            }
+        }
 
         element.on("blur", function(){container.removeClass("focused");});
         element.on("focus", function(){container.addClass("focused");});

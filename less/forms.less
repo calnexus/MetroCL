@@ -31,7 +31,6 @@ select, textarea, .file, .input, .textarea, .select {
     line-height: 1.25;
     background: @white none;
     background-clip: padding-box;
-    transition: @transition-base;
 
     &:focus {
         outline: none;
@@ -345,6 +344,7 @@ label {
 
 .input {
     display: flex;
+    flex-flow: row nowrap;
     justify-content: space-between;
     width: 100%;
     padding: 0;
@@ -380,6 +380,7 @@ label {
 
         .button {
             background-color: transparent;
+            color: @dark;
             &:focus {
                 box-shadow: none;
             }
@@ -394,6 +395,21 @@ label {
             background-color: @light;
             color: darken(@light, 10%);
         }
+    }
+
+    .prepend {
+        padding: .5rem .75rem;
+        background-color: @light;
+        color: @dark;
+        line-height: 1.25rem;
+    }
+
+    .prepend {order: 1}
+    input {order: 2;}
+    .button-group {order: 3;}
+
+    &[dir=rtl], &.rtl {
+        flex-flow: row-reverse nowrap;
     }
 }
 
@@ -426,6 +442,13 @@ label {
     &.disabled {
         .clear-button {
             display: none;
+        }
+    }
+
+    &[dir=rtl], &.rtl {
+        .clear-button {
+            right: auto;
+            left: .25rem;
         }
     }
 }

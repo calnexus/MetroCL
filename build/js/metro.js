@@ -1510,49 +1510,8 @@ var Utils = {
         return /youtu\.be|youtube|vimeo/gi.test(val);
     },
 
-    embedObject: function(val){
-        return "<div class='embed-container'>"+val+"</div>";
-    },
-
-    embedUrl: function(val){
-        if (val.indexOf("youtu.be") !== -1) {
-            val = "https://www.youtube.com/embed/" + val.split("/").pop();
-        }
-        return "<div class='embed-container'><iframe src='"+val+"'></iframe></div>";
-    },
-
-    secondsToTime: function(secs) {
-        var hours = Math.floor(secs / (60 * 60));
-
-        var divisor_for_minutes = secs % (60 * 60);
-        var minutes = Math.floor(divisor_for_minutes / 60);
-
-        var divisor_for_seconds = divisor_for_minutes % 60;
-        var seconds = Math.ceil(divisor_for_seconds);
-
-        return {
-            "h": hours,
-            "m": minutes,
-            "s": seconds
-        };
-    },
-
-    hex2rgba: function(hex, alpha){
-        var c;
-        alpha = isNaN(alpha) ? 1 : alpha;
-        if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
-            c= hex.substring(1).split('');
-            if(c.length=== 3){
-                c= [c[0], c[0], c[1], c[1], c[2], c[2]];
-            }
-            c= '0x'+c.join('');
-            return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+','+alpha+')';
-        }
-        throw new Error('Hex2rgba error. Bad Hex value');
-    },
-
-    random: function(from, to){
-        return Math.floor(Math.random()*(to-from+1)+from);
+    isDate: function(val){
+        return (new Date(val) !== "Invalid Date" && !isNaN(new Date(val)));
     },
 
     isInt: function(n){
@@ -1563,44 +1522,10 @@ var Utils = {
         return Number(n) === n && n % 1 !== 0;
     },
 
-    uniqueId: function () {
-var d = new Date().getTime();
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            var r = (d + Math.random() * 16) % 16 | 0;
-            d = Math.floor(d / 16);
-            return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-        });
-    },
-
     isTouchDevice: function() {
         return (('ontouchstart' in window)
-        || (navigator.MaxTouchPoints > 0)
-        || (navigator.msMaxTouchPoints > 0));
-    },
-
-
-    secondsToFormattedString: function(time){
-        var hours, minutes, seconds;
-
-        hours = parseInt( time / 3600 ) % 24;
-        minutes = parseInt( time / 60 ) % 60;
-        seconds = time % 60;
-
-        return (hours ? (hours) + ":" : "") + (minutes < 10 ? "0"+minutes : minutes) + ":" + (seconds < 10 ? "0"+seconds : seconds);
-    },
-
-    callback: function(f, args, context){
-        return this.exec(f, args, context);
-    },
-
-    exec: function(f, args, context){
-        if (f === undefined || f === null) {return false;}
-        var func = this.isFunc(f);
-        if (func === false) {
-            func = new Function("a", f);
-        }
-
-        return func.apply(context, args);
+            || (navigator.MaxTouchPoints > 0)
+            || (navigator.msMaxTouchPoints > 0));
     },
 
     isFunc: function(f){
@@ -1674,6 +1599,84 @@ var d = new Date().getTime();
         return (typeof jQuery === "function" && el instanceof jQuery);
     },
 
+    embedObject: function(val){
+        return "<div class='embed-container'>"+val+"</div>";
+    },
+
+    embedUrl: function(val){
+        if (val.indexOf("youtu.be") !== -1) {
+            val = "https://www.youtube.com/embed/" + val.split("/").pop();
+        }
+        return "<div class='embed-container'><iframe src='"+val+"'></iframe></div>";
+    },
+
+    secondsToTime: function(secs) {
+        var hours = Math.floor(secs / (60 * 60));
+
+        var divisor_for_minutes = secs % (60 * 60);
+        var minutes = Math.floor(divisor_for_minutes / 60);
+
+        var divisor_for_seconds = divisor_for_minutes % 60;
+        var seconds = Math.ceil(divisor_for_seconds);
+
+        return {
+            "h": hours,
+            "m": minutes,
+            "s": seconds
+        };
+    },
+
+    hex2rgba: function(hex, alpha){
+        var c;
+        alpha = isNaN(alpha) ? 1 : alpha;
+        if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+            c= hex.substring(1).split('');
+            if(c.length=== 3){
+                c= [c[0], c[0], c[1], c[1], c[2], c[2]];
+            }
+            c= '0x'+c.join('');
+            return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+','+alpha+')';
+        }
+        throw new Error('Hex2rgba error. Bad Hex value');
+    },
+
+    random: function(from, to){
+        return Math.floor(Math.random()*(to-from+1)+from);
+    },
+
+    uniqueId: function () {
+var d = new Date().getTime();
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = (d + Math.random() * 16) % 16 | 0;
+            d = Math.floor(d / 16);
+            return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+        });
+    },
+
+    secondsToFormattedString: function(time){
+        var hours, minutes, seconds;
+
+        hours = parseInt( time / 3600 ) % 24;
+        minutes = parseInt( time / 60 ) % 60;
+        seconds = time % 60;
+
+        return (hours ? (hours) + ":" : "") + (minutes < 10 ? "0"+minutes : minutes) + ":" + (seconds < 10 ? "0"+seconds : seconds);
+    },
+
+    callback: function(f, args, context){
+        return this.exec(f, args, context);
+    },
+
+    exec: function(f, args, context){
+        if (f === undefined || f === null) {return false;}
+        var func = this.isFunc(f);
+        if (func === false) {
+            func = new Function("a", f);
+        }
+
+        return func.apply(context, args);
+    },
+
     elementInViewport: function(el) {
         if (this.isJQueryObject(el)) {
             el = el[0];
@@ -1740,7 +1743,7 @@ var d = new Date().getTime();
             dataType: 'jsonp'
         })
         .done(function(data){
-            that.callback(callback, data.data);
+            that.callback(callback, [data.data]);
         });
     },
 
@@ -1791,7 +1794,7 @@ var d = new Date().getTime();
     cleanPreCode: function(selector){
         var els = Array.prototype.slice.call(document.querySelectorAll(selector), 0);
 
-        els.forEach(function(el, idx, arr){
+        els.forEach(function(el){
             var txt = el.textContent
                 .replace(/^[\r\n]+/, "")	// strip leading newline
                 .replace(/\s+$/g, "");
@@ -1987,6 +1990,19 @@ var d = new Date().getTime();
         return result;
     },
 
+    getInlineStyles: function(el){
+        var styles = {};
+        if (this.isJQueryObject(el)) {
+            el = el[0];
+        }
+        for (var i = 0, l = el.style.length; i < l; i++) {
+            var s = el.style[i];
+            styles[s] = el.style[s];
+        }
+
+        return styles;
+    },
+
     updateURIParameter: function(uri, key, value) {
         var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
         var separator = uri.indexOf('?') !== -1 ? "&" : "?";
@@ -2006,10 +2022,6 @@ var d = new Date().getTime();
         if (!results) return null;
         if (!results[2]) return '';
         return decodeURIComponent(results[2].replace(/\+/g, " "));
-    },
-
-    isDate: function(val){
-        return (new Date(val) !== "Invalid Date" && !isNaN(new Date(val)));
     },
 
     dateToString: function(val){
@@ -3597,6 +3609,7 @@ var Datepicker = {
         clearButton: false,
         calendarButtonIcon: "<sapn class='mif-calendar'></sapn>",
         clearButtonIcon: "<span class='mif-cross'></span>",
+        copyInlineStyles: true,
         onDatepickerCreate: Metro.noop,
         onCalendarShow: Metro.noop,
         onCalendarHide: Metro.noop,
@@ -3730,6 +3743,12 @@ var Datepicker = {
         element[0].className = '';
         element.attr("readonly", true);
 
+        if (o.copyInlineStyles === true) {
+            $.each(Utils.getInlineStyles(element), function(key, value){
+                container.css(key, value);
+            });
+        }
+
         element.on("blur", function(){container.removeClass("focused");});
         element.on("focus", function(){container.addClass("focused");});
         element.on("change", function(){
@@ -3757,9 +3776,28 @@ var Datepicker = {
         this.val(element.attr("value"));
     },
 
+    disable: function(){
+        this.element.data("disabled", true);
+        this.element.parent().addClass("disabled");
+    },
+
+    enable: function(){
+        this.element.data("disabled", false);
+        this.element.parent().removeClass("disabled");
+    },
+
+    toggleState: function(){
+        if (this.element.data("disabled") === false) {
+            this.disable();
+        } else {
+            this.enable();
+        }
+    },
+
     changeAttribute: function(attributeName){
         switch (attributeName) {
             case "value": this.changeValue(); break;
+            case 'disabled': this.toggleState(); break;
         }
     }
 };
@@ -4764,10 +4802,13 @@ var Input = {
         return this;
     },
     options: {
+        prepend: "",
+        copyInlineStyles: true,
         clearButton: true,
         revealButton: true,
         clearButtonIcon: "<span class='mif-cross'></span>",
         revealButtonIcon: "<span class='mif-eye'></span>",
+        customButtons: [],
         disabled: false,
         onInputCreate: Metro.noop
     },
@@ -4818,11 +4859,36 @@ var Input = {
             revealButton.appendTo(buttons);
         }
 
+        if (o.prepend !== "") {
+            var prepend = Utils.isTag(o.prepend) ? $(o.prepend) : $("<span>"+o.prepend+"</span>");
+            prepend.addClass("prepend").appendTo(container);
+        }
+
+        if (typeof o.customButtons === "string") {
+            o.customButtons = Utils.isObject(o.customButtons);
+        }
+
+        if (typeof o.customButtons === "object" && Utils.objectLength(o.customButtons) > 0) {
+            $.each(o.customButtons, function(){
+                var item = this;
+                var customButton = $("<button>").addClass("button custom-input-button").addClass(item.cls).attr("tabindex", -1).attr("type", "button").html(item.html);
+                customButton.on("click", function(){
+                    Utils.exec(item.onclick, [customButton, element]);
+                });
+                customButton.appendTo(buttons);
+            });
+        }
+
         if (element.attr('dir') === 'rtl' ) {
-            container.addClass("rtl");
+            container.addClass("rtl").attr("dir", "rtl");
         }
 
         element[0].className = '';
+        if (o.copyInlineStyles === true) {
+            for (var i = 0, l = element[0].style.length; i < l; i++) {
+                container.css(element[0].style[i], element.css(element[0].style[i]));
+            }
+        }
 
         element.on("blur", function(){container.removeClass("focused");});
         element.on("focus", function(){container.addClass("focused");});
@@ -5428,6 +5494,7 @@ var Select = {
         return this;
     },
     options: {
+        copyInlineStyles: true,
         dropHeight: 200,
         disabled: false,
         onChange: Metro.noop,
@@ -5509,6 +5576,12 @@ var Select = {
             list.dropdown({
                 toggleElement: "#"+select_id
             });
+        }
+
+        if (o.copyInlineStyles === true) {
+            for (var i = 0, l = element[0].style.length; i < l; i++) {
+                container.css(element[0].style[i], element.css(element[0].style[i]));
+            }
         }
 
         if (o.disabled === true || element.is(':disabled')) {
@@ -6188,6 +6261,7 @@ var Textarea = {
         return this;
     },
     options: {
+        copyInlineStyles: true,
         clearButton: true,
         clearButtonIcon: "<span class='mif-cross'></span>",
         autoSize: false,
@@ -6257,7 +6331,16 @@ var Textarea = {
             element.on('drop', resize);
         }
 
+        if (element.attr('dir') === 'rtl' ) {
+            container.addClass("rtl").attr("dir", "rtl");
+        }
+
         element[0].className = '';
+        if (o.copyInlineStyles === true) {
+            for (var i = 0, l = element[0].style.length; i < l; i++) {
+                container.css(element[0].style[i], element.css(element[0].style[i]));
+            }
+        }
 
         element.on("blur", function(){container.removeClass("focused");});
         element.on("focus", function(){container.addClass("focused");});

@@ -20,6 +20,7 @@ var Datepicker = {
         clearButton: false,
         calendarButtonIcon: "<sapn class='mif-calendar'></sapn>",
         clearButtonIcon: "<span class='mif-cross'></span>",
+        copyInlineStyles: true,
         onDatepickerCreate: Metro.noop,
         onCalendarShow: Metro.noop,
         onCalendarHide: Metro.noop,
@@ -153,6 +154,12 @@ var Datepicker = {
         element[0].className = '';
         element.attr("readonly", true);
 
+        if (o.copyInlineStyles === true) {
+            $.each(Utils.getInlineStyles(element), function(key, value){
+                container.css(key, value);
+            });
+        }
+
         element.on("blur", function(){container.removeClass("focused");});
         element.on("focus", function(){container.addClass("focused");});
         element.on("change", function(){
@@ -180,9 +187,28 @@ var Datepicker = {
         this.val(element.attr("value"));
     },
 
+    disable: function(){
+        this.element.data("disabled", true);
+        this.element.parent().addClass("disabled");
+    },
+
+    enable: function(){
+        this.element.data("disabled", false);
+        this.element.parent().removeClass("disabled");
+    },
+
+    toggleState: function(){
+        if (this.element.data("disabled") === false) {
+            this.disable();
+        } else {
+            this.enable();
+        }
+    },
+
     changeAttribute: function(attributeName){
         switch (attributeName) {
             case "value": this.changeValue(); break;
+            case 'disabled': this.toggleState(); break;
         }
     }
 };

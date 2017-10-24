@@ -1304,8 +1304,8 @@ tbody td.primary,
 .tally.primary,
 code.primary,
 .notify.primary {
-  background-color: #0050ef;
-  color: #ffffff;
+  background-color: #0050ef !important;
+  color: #ffffff !important;
 }
 .button.primary.dropdown-toggle::before,
 .command-button.primary.dropdown-toggle::before,
@@ -1318,7 +1318,7 @@ tbody td.primary.dropdown-toggle::before,
 .tally.primary.dropdown-toggle::before,
 code.primary.dropdown-toggle::before,
 .notify.primary.dropdown-toggle::before {
-  border-color: #ffffff;
+  border-color: #ffffff !important;
 }
 .button.secondary,
 .command-button.secondary,
@@ -1331,8 +1331,8 @@ tbody td.secondary,
 .tally.secondary,
 code.secondary,
 .notify.secondary {
-  background-color: #607d8b;
-  color: #ffffff;
+  background-color: #607d8b !important;
+  color: #ffffff !important;
 }
 .button.secondary.dropdown-toggle::before,
 .command-button.secondary.dropdown-toggle::before,
@@ -1345,7 +1345,7 @@ tbody td.secondary.dropdown-toggle::before,
 .tally.secondary.dropdown-toggle::before,
 code.secondary.dropdown-toggle::before,
 .notify.secondary.dropdown-toggle::before {
-  border-color: #ffffff;
+  border-color: #ffffff !important;
 }
 .button.success,
 .command-button.success,
@@ -1358,8 +1358,8 @@ tbody td.success,
 .tally.success,
 code.success,
 .notify.success {
-  background-color: #60a917;
-  color: #ffffff;
+  background-color: #60a917 !important;
+  color: #ffffff !important;
 }
 .button.success.dropdown-toggle::before,
 .command-button.success.dropdown-toggle::before,
@@ -1372,7 +1372,7 @@ tbody td.success.dropdown-toggle::before,
 .tally.success.dropdown-toggle::before,
 code.success.dropdown-toggle::before,
 .notify.success.dropdown-toggle::before {
-  border-color: #ffffff;
+  border-color: #ffffff !important;
 }
 .button.alert,
 .command-button.alert,
@@ -1385,8 +1385,8 @@ tbody td.alert,
 .tally.alert,
 code.alert,
 .notify.alert {
-  background-color: #CE352C;
-  color: #ffffff;
+  background-color: #CE352C !important;
+  color: #ffffff !important;
 }
 .button.alert.dropdown-toggle::before,
 .command-button.alert.dropdown-toggle::before,
@@ -1399,7 +1399,7 @@ tbody td.alert.dropdown-toggle::before,
 .tally.alert.dropdown-toggle::before,
 code.alert.dropdown-toggle::before,
 .notify.alert.dropdown-toggle::before {
-  border-color: #ffffff;
+  border-color: #ffffff !important;
 }
 .button.warning,
 .command-button.warning,
@@ -1412,8 +1412,8 @@ tbody td.warning,
 .tally.warning,
 code.warning,
 .notify.warning {
-  background-color: #ff852e;
-  color: #ffffff;
+  background-color: #ff852e !important;
+  color: #ffffff !important;
 }
 .button.warning.dropdown-toggle::before,
 .command-button.warning.dropdown-toggle::before,
@@ -1426,7 +1426,7 @@ tbody td.warning.dropdown-toggle::before,
 .tally.warning.dropdown-toggle::before,
 code.warning.dropdown-toggle::before,
 .notify.warning.dropdown-toggle::before {
-  border-color: #ffffff;
+  border-color: #ffffff !important;
 }
 .button.yellow,
 .command-button.yellow,
@@ -1439,8 +1439,8 @@ tbody td.yellow,
 .tally.yellow,
 code.yellow,
 .notify.yellow {
-  background-color: #ffe484;
-  color: #ffffff;
+  background-color: #ffe484 !important;
+  color: #ffffff !important;
 }
 .button.yellow.dropdown-toggle::before,
 .command-button.yellow.dropdown-toggle::before,
@@ -1453,7 +1453,7 @@ tbody td.yellow.dropdown-toggle::before,
 .tally.yellow.dropdown-toggle::before,
 code.yellow.dropdown-toggle::before,
 .notify.yellow.dropdown-toggle::before {
-  border-color: #ffffff;
+  border-color: #ffffff !important;
 }
 .button.info,
 .command-button.info,
@@ -1466,8 +1466,8 @@ tbody td.info,
 .tally.info,
 code.info,
 .notify.info {
-  background-color: #47b4e9;
-  color: #ffffff;
+  background-color: #47b4e9 !important;
+  color: #ffffff !important;
 }
 .button.info.dropdown-toggle::before,
 .command-button.info.dropdown-toggle::before,
@@ -1480,7 +1480,7 @@ tbody td.info.dropdown-toggle::before,
 .tally.info.dropdown-toggle::before,
 code.info.dropdown-toggle::before,
 .notify.info.dropdown-toggle::before {
-  border-color: #ffffff;
+  border-color: #ffffff !important;
 }
 .button.dark,
 .command-button.dark,
@@ -1493,8 +1493,8 @@ tbody td.dark,
 .tally.dark,
 code.dark,
 .notify.dark {
-  background-color: #505050;
-  color: #ffffff;
+  background-color: #505050 !important;
+  color: #ffffff !important;
 }
 .button.dark.dropdown-toggle::before,
 .command-button.dark.dropdown-toggle::before,
@@ -1507,7 +1507,7 @@ tbody td.dark.dropdown-toggle::before,
 .tally.dark.dropdown-toggle::before,
 code.dark.dropdown-toggle::before,
 .notify.dark.dropdown-toggle::before {
-  border-color: #ffffff;
+  border-color: #ffffff !important;
 }
 .button.light,
 .command-button.light,
@@ -1520,8 +1520,8 @@ tbody td.light,
 .tally.light,
 code.light,
 .notify.light {
-  background-color: #f8f8f8;
-  color: #ffffff;
+  background-color: #f8f8f8 !important;
+  color: #ffffff !important;
 }
 .button.light.dropdown-toggle::before,
 .command-button.light.dropdown-toggle::before,
@@ -1534,7 +1534,7 @@ tbody td.light.dropdown-toggle::before,
 .tally.light.dropdown-toggle::before,
 code.light.dropdown-toggle::before,
 .notify.light.dropdown-toggle::before {
-  border-color: #ffffff;
+  border-color: #ffffff !important;
 }
 .button.brand1,
 .command-button.brand1,
@@ -1547,8 +1547,8 @@ tbody td.brand1,
 .tally.brand1,
 code.brand1,
 .notify.brand1 {
-  background-color: #2ac4f4;
-  color: #ffffff;
+  background-color: #2ac4f4 !important;
+  color: #ffffff !important;
 }
 .button.brand1.dropdown-toggle::before,
 .command-button.brand1.dropdown-toggle::before,
@@ -1561,7 +1561,7 @@ tbody td.brand1.dropdown-toggle::before,
 .tally.brand1.dropdown-toggle::before,
 code.brand1.dropdown-toggle::before,
 .notify.brand1.dropdown-toggle::before {
-  border-color: #ffffff;
+  border-color: #ffffff !important;
 }
 .button.brand2,
 .command-button.brand2,
@@ -1574,8 +1574,8 @@ tbody td.brand2,
 .tally.brand2,
 code.brand2,
 .notify.brand2 {
-  background-color: #004d6f;
-  color: #ffffff;
+  background-color: #004d6f !important;
+  color: #ffffff !important;
 }
 .button.brand2.dropdown-toggle::before,
 .command-button.brand2.dropdown-toggle::before,
@@ -1588,7 +1588,7 @@ tbody td.brand2.dropdown-toggle::before,
 .tally.brand2.dropdown-toggle::before,
 code.brand2.dropdown-toggle::before,
 .notify.brand2.dropdown-toggle::before {
-  border-color: #ffffff;
+  border-color: #ffffff !important;
 }
 .button.light,
 .command-button.light,
@@ -1612,7 +1612,7 @@ tbody td.yellow,
 .tally.yellow,
 code.yellow,
 .notify.yellow {
-  color: #1d1d1d;
+  color: #1d1d1d !important;
 }
 .pagination.primary .page-item.active,
 .pagination.primary .page-item.service,
@@ -6546,8 +6546,6 @@ textarea,
   line-height: 1.25;
   background: #ffffff none;
   background-clip: padding-box;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
 }
 input[type=text]:focus,
 input[type=password]:focus,
@@ -6967,6 +6965,10 @@ label {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -7008,6 +7010,7 @@ label {
 }
 .input .button-group .button {
   background-color: transparent;
+  color: #1d1d1d;
 }
 .input .button-group .button:focus {
   -webkit-box-shadow: none;
@@ -7020,6 +7023,34 @@ label {
 .input.disabled .button-group button {
   background-color: #f8f8f8;
   color: #dfdfdf;
+}
+.input .prepend {
+  padding: .5rem .75rem;
+  background-color: #f8f8f8;
+  color: #1d1d1d;
+  line-height: 1.25rem;
+}
+.input .prepend {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+}
+.input input {
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+}
+.input .button-group {
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
+}
+.input[dir=rtl],
+.input.rtl {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-flow: row-reverse nowrap;
+          flex-flow: row-reverse nowrap;
 }
 .textarea {
   padding: 0;
@@ -7048,6 +7079,11 @@ label {
 }
 .textarea.disabled .clear-button {
   display: none;
+}
+.textarea[dir=rtl] .clear-button,
+.textarea.rtl .clear-button {
+  right: auto;
+  left: .25rem;
 }
 .select {
   display: block;

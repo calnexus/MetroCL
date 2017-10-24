@@ -42,7 +42,7 @@
             <ul class="times-list mt-2 mb-4"></ul>
         </div>
 
-        <div id="streamer" class="streamer-expand-sm" data-role="streamer" data-source="../../data/streamer_data2.json" data-on-create="streamerCreate" data-start-from="09:00" data-on-event-select="eventSelect"></div>
+        <div id="streamer" class="streamer-expand-sm" data-role="streamer" data-source="../../data/streamer_data2.json" data-on-streamer-create="streamerCreate" data-start-from="09:00" data-on-event-select="eventSelect"></div>
 
         <div class="actions mt-2">
             <p class="remark alert">
@@ -62,6 +62,7 @@
     <script>
 
         function streamerCreate(){
+            console.log("ku");
             var streamer = $("#streamer").data("streamer");
             var times = streamer.getTimes();
             var times_list = $(".times-list");

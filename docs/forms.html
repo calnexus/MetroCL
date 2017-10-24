@@ -174,17 +174,47 @@
                     &lt;/form&gt;
                 </code></pre>
 
-
                 <h6>Extended input with data-role="input"</h6>
                 <div class="example pb-0">
                     <form class="mb-2">
-                        <input type="text" data-role="input"  class="mt-1">
-                        <input type="password" data-role="input" class="mt-1">
+                        <label>Input</label>
+                        <input type="text" data-role="input"  class="mb-1">
+                        <label>Password</label>
+                        <input type="password" data-role="input" class="mb-1">
+                        <label>Prepend input</label>
+                        <input type="text" data-role="input"  class="mb-1" data-prepend="<span class='mif-user'></span>">
+                        <input type="text" data-role="input"  class="mb-1" data-prepend="Email">
+
+                        <script>
+                            var customButtons = [
+                                {
+                                    html: "<span class='mif-user'></span>",
+                                    cls: "alert",
+                                    onclick: "alert('ku from custom button')"
+                                }
+                            ]
+                        </script>
+
+                        <label>Custom button</label>
+                        <input type="text" data-role="input"  class="mb-1" data-custom-buttons="customButtons">
                     </form>
                 </div>
                 <pre class=""><code>
                     &lt;input type="text" data-role="input" data-clear-button="true"&gt;
                     &lt;input type="password" data-role="input" data-clear-button="true" data-reveal-button="true"&gt;
+                    &lt;input type="text" data-role="input" data-prepend="&lt;span class='mif-user'&gt;&lt;/span&gt;"&gt;
+                    &lt;input type="text" data-role="input" data-prepend="Email"&gt;
+
+                    &lt;script&gt;
+                        var customButtons = [
+                            {
+                                html: "&lt;span class='mif-user'&gt;&lt;/span&gt;",
+                                cls: "alert",
+                                onclick: "alert('ku from custom button')"
+                            }
+                        ]
+                    &lt;/script&gt;
+                    &lt;input type="text" data-role="input" data-custom-buttons="customButtons"&gt;
                 </code></pre>
                 <p>
                     Additional functionality for input is implemented through the plugin <code>input</code>. To activate plugin and additional options add the attribute <code>data-role="input"</code> to element.
