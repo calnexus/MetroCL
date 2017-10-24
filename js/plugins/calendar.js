@@ -18,6 +18,8 @@ var Calendar = {
         this.min = null;
         this.max = null;
         this.locale = null;
+        this.minYear = this.current.year - this.options.yearsBefore;
+        this.maxYear = this.current.year + this.options.yearsAfter;
 
         this._setOptionsFromDOM();
         this._create();
@@ -32,6 +34,8 @@ var Calendar = {
         weekStart: 0,
         outside: true,
         buttons: 'cancel, today, clear, done',
+        yearsBefore: 100,
+        yearsAfter: 100,
         clsCalendar: "",
         clsCalendarHeader: "",
         clsCalendarContent: "",
@@ -165,7 +169,7 @@ var Calendar = {
     _bindEvents: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on("click", ".prev-month, .next-month, .prev-year, .next-year", function(){
+        element.on("click", ".prev-month, .next-month, .prev-year, .next-year", function(e){
             var new_date, el = $(this);
 
             if (el.hasClass("prev-month")) {
@@ -174,10 +178,10 @@ var Calendar = {
             if (el.hasClass("next-month")) {
                 new_date = new Date(that.current.year, that.current.month + 1, 1);
             }
-            if (el.hasClass("prev-year")) {
+            if (el.hasClass("prev-year") && that.current.year - 1 >= that.minYear) {
                 new_date = new Date(that.current.year - 1, that.current.month, 1);
             }
-            if (el.hasClass("next-year")) {
+            if (el.hasClass("next-year") && that.current.year + 1 <= that.maxYear) {
                 new_date = new Date(that.current.year + 1, that.current.month, 1);
             }
 
@@ -195,9 +199,12 @@ var Calendar = {
                     Utils.exec(o.onYearChange, [that.current, element]);
                 }
             }, o.ripple ? 300 : 0);
+
+            e.preventDefault();
+            e.stopPropagation();
         });
 
-        element.on("click", ".button.today", function(){
+        element.on("click", ".button.today", function(e){
             that.today = new Date();
             that.current = {
                 year: that.today.getFullYear(),
@@ -207,25 +214,37 @@ var Calendar = {
             that._drawHeader();
             that._drawContent();
             Utils.exec(o.onToday, [that.today, element]);
+
+            e.preventDefault();
+            e.stopPropagation();
         });
 
-        element.on("click", ".button.clear", function(){
+        element.on("click", ".button.clear", function(e){
             that.selected = [];
             that._drawContent();
             Utils.exec(o.onClear, [element]);
+
+            e.preventDefault();
+            e.stopPropagation();
         });
 
-        element.on("click", ".button.cancel", function(){
+        element.on("click", ".button.cancel", function(e){
             that._drawContent();
             Utils.exec(o.onCancel, [element]);
+
+            e.preventDefault();
+            e.stopPropagation();
         });
 
-        element.on("click", ".button.done", function(){
+        element.on("click", ".button.done", function(e){
             that._drawContent();
             Utils.exec(o.onDone, [that.selected, element]);
+
+            e.preventDefault();
+            e.stopPropagation();
         });
 
-        element.on("click", ".week-days .day", function(){
+        element.on("click", ".week-days .day", function(e){
             if (o.weekDayClick === false || o.multiSelect === false) {
                 return ;
             }
@@ -240,9 +259,12 @@ var Calendar = {
                 d.addClass("selected").addClass(o.clsSelected);
             });
             Utils.exec(o.onWeekDayClick, [that.selected, day, element]);
+
+            e.preventDefault();
+            e.stopPropagation();
         });
 
-        element.on("click", ".days-row .day", function(){
+        element.on("click", ".days-row .day", function(e){
             var day = $(this);
             var index, date;
 
@@ -283,6 +305,9 @@ var Calendar = {
             }
 
             Utils.exec(o.onDayClick, [that.selected, day, element]);
+
+            e.preventDefault();
+            e.stopPropagation();
         });
 
         element.on("click", ".curr-month", function(e){
@@ -291,10 +316,13 @@ var Calendar = {
             e.stopPropagation();
         });
 
-        element.on("click", ".calendar-months li", function(){
+        element.on("click", ".calendar-months li", function(e){
             that.current.month = $(this).index();
             that._drawContent();
             Utils.exec(o.onMonthChange, [that.current, element]);
+            element.find(".calendar-months").removeClass("open");
+            e.preventDefault();
+            e.stopPropagation();
         });
 
         element.on("click", ".curr-year", function(e){
@@ -303,13 +331,16 @@ var Calendar = {
             e.stopPropagation();
         });
 
-        element.on("click", ".calendar-years li", function(){
+        element.on("click", ".calendar-years li", function(e){
             that.current.year = $(this).text();
             that._drawContent();
             Utils.exec(o.onYearChange, [that.current, element]);
+            element.find(".calendar-years").removeClass("open");
+            e.preventDefault();
+            e.stopPropagation();
         });
 
-        element.on("click", function(){
+        element.on("click", function(e){
             var months = element.find(".calendar-months");
             var years = element.find(".calendar-years");
             if (months.hasClass("open")) {
@@ -318,7 +349,9 @@ var Calendar = {
             if (years.hasClass("open")) {
                 years.removeClass("open");
             }
-        })
+            e.preventDefault();
+            e.stopPropagation();
+        });
     },
 
     _drawHeader: function(){
@@ -375,7 +408,7 @@ var Calendar = {
         var years = $("<div>").addClass("calendar-years").addClass(o.clsCalendarYears).appendTo(element);
         var list = $("<ul>").addClass("years-list").appendTo(years);
         var i;
-        for(i = this.current.year - 100; i < this.current.year + 100; i++) {
+        for(i = this.minYear; i <= this.maxYear; i++) {
             $("<li>").html(i).appendTo(list);
         }
     },
