@@ -5580,7 +5580,7 @@ var Select = {
         element.appendTo(container);
 
         if (multiple === false) {
-            var input = $("<input data-role='input'>").attr("type", "text").attr("name", "__" + element.attr("name") + "__").prop("readonly", true);
+            var input = $("<input>").attr("type", "text").attr("name", "__" + element.attr("name") + "__").prop("readonly", true);
             var list = $("<ul>").addClass("d-menu").css({
                 "max-height": o.dropHeight
             });
