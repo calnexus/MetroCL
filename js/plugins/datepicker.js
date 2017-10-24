@@ -216,6 +216,5 @@ var Datepicker = {
 Metro.plugin('datepicker', Datepicker);
 
 $(document).on('click', function(e){
-    console.log(e.target)
     $(".datepicker .calendar").removeClass("open");
 });

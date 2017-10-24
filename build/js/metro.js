@@ -2455,15 +2455,27 @@ var Calendar = {
 
             if (el.hasClass("prev-month")) {
                 new_date = new Date(that.current.year, that.current.month - 1, 1);
+                if (new_date.getFullYear() < that.minYear) {
+                    return ;
+                }
             }
             if (el.hasClass("next-month")) {
                 new_date = new Date(that.current.year, that.current.month + 1, 1);
+                if (new_date.getFullYear() > that.maxYear) {
+                    return ;
+                }
             }
-            if (el.hasClass("prev-year") && that.current.year - 1 >= that.minYear) {
+            if (el.hasClass("prev-year")) {
                 new_date = new Date(that.current.year - 1, that.current.month, 1);
+                if (new_date.getFullYear() < that.minYear) {
+                    return ;
+                }
             }
-            if (el.hasClass("next-year") && that.current.year + 1 <= that.maxYear) {
+            if (el.hasClass("next-year")) {
                 new_date = new Date(that.current.year + 1, that.current.month, 1);
+                if (new_date.getFullYear() > that.maxYear) {
+                    return ;
+                }
             }
 
             that.current = {
@@ -3838,7 +3850,6 @@ var Datepicker = {
 Metro.plugin('datepicker', Datepicker);
 
 $(document).on('click', function(e){
-    console.log(e.target)
     $(".datepicker .calendar").removeClass("open");
 });
 
