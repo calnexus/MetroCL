@@ -12,6 +12,8 @@ var Streamer = {
     },
 
     options: {
+        defaultClosedIcon: "",
+        defaultOpenIcon: "",
         changeUri: true,
         encodeLink: true,
         closed: false,
@@ -173,6 +175,7 @@ var Streamer = {
                 if (stream_item.events !== undefined) {
                     $.each(stream_item.events, function(event_index){
                         var event_item = this;
+                        var _icon;
                         var sid = stream_index+":"+event_index;
                         var event = $("<div>")
                             .data("origin", event_item)
@@ -203,10 +206,16 @@ var Streamer = {
                         }
 
                         if (o.closed === true || event_item.closed === true || parseInt(event_item.closed) === 1) {
-                            $(event_item.closeIcon).addClass("closed-icon").appendTo(slide);
+                            _icon = event_item.closedIcon !== undefined ? Utils.isTag(event_item.closedIcon) ? event_item.closedIcon : "<span>"+event_item.closedIcon+"</span>" : Utils.isTag(o.defaultClosedIcon) ? o.defaultClosedIcon : "<span>"+o.defaultClosedIcon+"</span>";
+                            $(_icon).addClass("state-icon").addClass(event_item.clsClosedIcon).appendTo(slide);
                             event
                                 .data("closed", true)
                                 .data("target", event_item.target);
+                        } else {
+                            _icon = event_item.openIcon !== undefined ? Utils.isTag(event_item.openIcon) ? event_item.openIcon : "<span>"+event_item.openIcon+"</span>"  : Utils.isTag(o.defaultOpenIcon) ? o.defaultOpenIcon : "<span>"+o.defaultOpenIcon+"</span>";
+                            $(_icon).addClass("state-icon").addClass(event_item.clsOpenIcon).appendTo(slide);
+                            event
+                                .data("closed", false);
                         }
                     });
                 }

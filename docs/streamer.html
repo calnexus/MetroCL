@@ -111,6 +111,18 @@
                     </thead>
                     <tbody>
                     <tr>
+                        <td>defaultClosedIcon</td>
+                        <td>data-default-closed-icon</td>
+                        <td></td>
+                        <td>Default icon for closed event</td>
+                    </tr>
+                    <tr>
+                        <td>defaultOpenIcon</td>
+                        <td>data-default-open-icon</td>
+                        <td></td>
+                        <td>Default icon for open event</td>
+                    </tr>
+                    <tr>
                         <td>changeUri</td>
                         <td>data-change-uri</td>
                         <td>true</td>
@@ -172,7 +184,7 @@
                     </tr>
                     <tr>
                         <td>onStreamerCreate</td>
-                        <td>data-on-create</td>
+                        <td>data-on-streamer-create</td>
                         <td>Metro.noop</td>
                         <td>Callback</td>
                     </tr>
@@ -306,7 +318,10 @@
                         <code>shift</code>,
                         <code>selected</code>,
                         <code>closed</code>,
-                        <code>closeIcon</code>,
+                        <code>closedIcon</code>,
+                        <code>openIcon</code>,
+                        <code>clsClosedIcon</code>,
+                        <code>clsOpenIcon</code>,
                         <code>data</code>,
                         <code>cls</code>,
                         <code>target</code>.
@@ -325,7 +340,8 @@
                                 selected: 0,
                                 closed: true,
                                 data: {},
-                                closeIcon: "&lt;span class='mif-video-camera'&gt;&lt;/span&gt;",
+                                closedIcon: "&lt;span class='mif-video-camera'&gt;&lt;/span&gt;",
+                                openIcon: "&lt;span class='mif-apps'&gt;&lt;/span&gt;",
                                 target: "https://2017.iforum.ua/reporter/?id=99#video-365",
                                 cls: ""
                             }
@@ -377,8 +393,12 @@
                         <td>Event mark as close. Can be 1 or 0</td>
                     </tr>
                     <tr>
-                        <td>closeIcon</td>
+                        <td>closedIcon</td>
                         <td>If event is closed, this icon showing on top right corner</td>
+                    </tr>
+                    <tr>
+                        <td>openIcon</td>
+                        <td>If event is open, this icon showing on top right corner</td>
                     </tr>
                     <tr>
                         <td>target</td>
@@ -391,6 +411,14 @@
                     <tr>
                         <td>cls</td>
                         <td>Additional class for event</td>
+                    </tr>
+                    <tr>
+                        <td>clsClosedIcon</td>
+                        <td>Additional class for closed event icon</td>
+                    </tr>
+                    <tr>
+                        <td>clsOpenIcon</td>
+                        <td>Additional class for open event icon</td>
                     </tr>
                     </tbody>
                 </table>

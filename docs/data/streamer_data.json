@@ -40,9 +40,11 @@
                     "shift": 0,
                     "selected": 0,
                     "closed": true,
-                    "closeIcon": "<span class='mif-video-camera'></span>",
+                    "closedIcon": "<span class='mif-video-camera'></span>",
+                    "openIcon": "<span class='mif-apps'></span>",
                     "target": "https://2017.iforum.ua/reporter/?id=99#video-365",
-                    "cls": ""
+                    "cls": "",
+                    "clsClosedIcon": "fg-red"
                 },
                 {
                     "icon": "images/ambass.jpg",
@@ -51,7 +53,9 @@
                     "subtitle": "U.S. Ambassador to Ukraine",
                     "desc": "Greeting speech",
                     "size": 1,
-                    "shift": 0
+                    "shift": 0,
+                    "openIcon": "<span class='mif-apps'></span>",
+                    "clsOpenIcon": "fg-green"
                 },
                 {
                     "icon": "images/ChernodubAr.jpg",

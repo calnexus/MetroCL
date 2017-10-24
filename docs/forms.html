@@ -196,13 +196,17 @@
                         </script>
 
                         <label>Custom button</label>
-                        <input type="text" data-role="input"  class="mb-1" data-custom-buttons="customButtons">
+                        <input type="text" data-role="input"  data-clear-button="false" class="mb-1" data-custom-buttons="customButtons">
                     </form>
                 </div>
                 <pre class=""><code>
-                    &lt;input type="text" data-role="input" data-clear-button="true"&gt;
-                    &lt;input type="password" data-role="input" data-clear-button="true" data-reveal-button="true"&gt;
-                    &lt;input type="text" data-role="input" data-prepend="&lt;span class='mif-user'&gt;&lt;/span&gt;"&gt;
+                    &lt;input type="text" data-role="input"&gt;
+
+                    &lt;input type="password" data-role="input"&gt;
+
+                    &lt;input type="text" data-role="input"
+                        data-prepend="&lt;span class='mif-user'&gt;&lt;/span&gt;"&gt;
+
                     &lt;input type="text" data-role="input" data-prepend="Email"&gt;
 
                     &lt;script&gt;
@@ -214,7 +218,10 @@
                             }
                         ]
                     &lt;/script&gt;
-                    &lt;input type="text" data-role="input" data-custom-buttons="customButtons"&gt;
+                    &lt;input type="text"
+                        data-role="input"
+                        data-clear-button="false"
+                        data-custom-buttons="customButtons"&gt;
                 </code></pre>
                 <p>
                     Additional functionality for input is implemented through the plugin <code>input</code>. To activate plugin and additional options add the attribute <code>data-role="input"</code> to element.
@@ -250,7 +257,7 @@
                         <td>Icon for reveal button</td>
                     </tr>
                     <tr>
-                        <td>data-on-create</td>
+                        <td>data-on-input-create</td>
                         <td>$.noop()</td>
                         <td>Callback triggered when control created</td>
                     </tr>
@@ -297,7 +304,7 @@
                         <td>Max height for drops</td>
                     </tr>
                     <tr>
-                        <td>data-on-create</td>
+                        <td>data-on-select-create</td>
                         <td>$.noop()</td>
                         <td>Callback triggered when control created</td>
                     </tr>
@@ -345,7 +352,7 @@
                         <td>Enabling autosize feature</td>
                     </tr>
                     <tr>
-                        <td>data-on-create</td>
+                        <td>data-on-textarea-create</td>
                         <td>$.noop()</td>
                         <td>Callback triggered when control created</td>
                     </tr>
@@ -403,7 +410,7 @@
                         <td>Caption position: right or left</td>
                     </tr>
                     <tr>
-                        <td>data-on-create</td>
+                        <td>data-on-checkbox-create</td>
                         <td>$.noop()</td>
                         <td>Callback triggered when control created</td>
                     </tr>
@@ -461,7 +468,7 @@
                         <td>Caption position: right or left</td>
                     </tr>
                     <tr>
-                        <td>data-on-create</td>
+                        <td>data-on-radio-create</td>
                         <td>$.noop()</td>
                         <td>Callback triggered when control created</td>
                     </tr>
@@ -511,7 +518,7 @@
                         <td>Caption position: right or left</td>
                     </tr>
                     <tr>
-                        <td>data-on-create</td>
+                        <td>data-on-switch-create</td>
                         <td>$.noop()</td>
                         <td>Callback triggered when control created</td>
                     </tr>
@@ -550,7 +557,7 @@
                         <td>Caption for element button</td>
                     </tr>
                     <tr>
-                        <td>data-on-create</td>
+                        <td>data-on-file-create</td>
                         <td>$.noop()</td>
                         <td>Callback triggered when control created</td>
                     </tr>

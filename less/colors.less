@@ -23,18 +23,27 @@
     .generate-colors(@name, @i + 1);
 }
 
-.button, .command-button, .image-button, .shortcut, .tool-button, .split-button .split, tbody tr, tbody td, .tally, code, .notify {
+.button,
+.command-button,
+.image-button,
+.shortcut,
+.tool-button,
+.split-button .split,
+tbody tr, tbody td,
+.tally, code,
+.notify,
+.input .button-group .button {
     .generate-accent-colors(@buttonPredefinedTypesLength);
     .generate-accent-colors(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
         @name: extract(@buttonPredefinedTypes, @i);
         @color: "@{name}Color";
 
         &.@{name} {
-            background-color: @@color!important;
-            color: @white!important;
+            background-color: @@color;
+            color: @white;
 
             &.dropdown-toggle::before {
-                border-color: @white!important;
+                border-color: @white;
             }
         }
 
@@ -42,7 +51,7 @@
     }
 
     &.light, &.yellow {
-        color: @dark!important;
+        color: @dark;
     }
 }
 
@@ -112,7 +121,7 @@ select, textarea, .file, .input, .select, .textarea {
         &.@{name} {
             border-color: @@color;
 
-            &:focus, &:focus-within, &.focused {
+            &:focus, &.focused {
                 box-shadow: 0 0 0 3px rgba(red(@@color), green(@@color), blue(@@color), 0.45);
             }
         }

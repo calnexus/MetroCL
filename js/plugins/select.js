@@ -61,11 +61,11 @@ var Select = {
                 var opt = this, option = $(this);
                 var l, a;
 
-                l = $("<li>").data('value', opt.value).appendTo(list);
+                l = $("<li>").data("text", opt.text).data('value', opt.value).appendTo(list);
                 a = $("<a>").html(opt.text).appendTo(l).addClass(opt.className);
 
                 if (option.is(":selected")) {
-                    input.val(opt.value).trigger("change");
+                    input.val(opt.text).trigger("change");
                 }
 
                 a.appendTo(l);
@@ -73,8 +73,12 @@ var Select = {
             });
             list.on("click", "li", function(){
                 var val = $(this).data('value');
+                var txt = $(this).data('text');
                 var list_obj = list.data('dropdown');
-                input.val(val).trigger("change");
+
+                console.log(val, txt);
+
+                input.val(txt).trigger("change");
                 element.val(val);
                 element.trigger("change");
                 list_obj.close();
