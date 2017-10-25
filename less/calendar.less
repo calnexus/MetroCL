@@ -2,12 +2,13 @@
 @import (once) "include/mixins";
 
 .calendar {
-    display: flex;
-    flex-flow: column nowrap;
+    display: block;
+    //flex-flow: column nowrap;
     position: relative;
     width: 280px;
     border: 1px solid @borderColor;
     overflow: hidden;
+    user-select: none;
 }
 
 .calendar-header, .calendar-content, .calendar-footer {
@@ -143,22 +144,27 @@
     }
 }
 
-.calendar-months {
+.calendar-months, .calendar-years {
     height: 100%;
     display: block;
     position: absolute;
-    left: -100%;
+    top: 0;
     background-color: @light;
     color: @dark;
-    transition: @transition-left;
-    z-index: @zindex-absolute;
     float: left;
-    width: auto;
+    width: 120px;
     overflow-y: auto;
+    transition: @transition-base;
+    z-index: @zindex-absolute;
+}
+
+.calendar-months {
+    right: 100%;
+    width: 160px;
 
     &.open {
-        transition: @transition-left;
-        left: 0;
+        transition: @transition-base;
+        margin-right: -160px;
         .shadow-right();
     }
 
@@ -178,21 +184,11 @@
 }
 
 .calendar-years {
-    height: 100%;
-    display: block;
-    position: absolute;
-    right: -100%;
-    background-color: @light;
-    color: @dark;
-    transition: @transition-right;
-    z-index: @zindex-absolute;
-    float: left;
-    width: auto;
-    overflow-y: auto;
+    left: 100%;
 
     &.open {
-        transition: @transition-right;
-        right: 0;
+        transition: @transition-base;
+        margin-left: -120px;
         .shadow-left();
     }
 
@@ -231,7 +227,27 @@
 
 .wide-calendar(){
     flex-flow: row nowrap;
-    width: 540px;
+    width: 560px;
+    .clear();
+
+    .calendar-header, .calendar-footer {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        min-height: 100%;
+    }
+
+    .calendar-header {
+        left: 0;
+    }
+
+    .calendar-footer {
+        right: 0;
+    }
+
+    .calendar-header {
+        width: 180px;
+    }
 
     .calendar-footer {
         flex-flow: column nowrap;
@@ -245,6 +261,10 @@
             width: 100%;
             margin: 2px 0;
         }
+    }
+
+    .calendar-content {
+        margin: 0 96px 0 180px;
     }
 }
 

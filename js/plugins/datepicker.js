@@ -16,17 +16,22 @@ var Datepicker = {
     },
 
     options: {
+        locale: METRO_LOCALE,
+        size: "100%",
         format: "%Y/%m/%d",
         clearButton: false,
         calendarButtonIcon: "<sapn class='mif-calendar'></sapn>",
         clearButtonIcon: "<span class='mif-cross'></span>",
-        copyInlineStyles: true,
+        copyInlineStyles: false,
+        clsPicker: "",
+
         onDatepickerCreate: Metro.noop,
         onCalendarShow: Metro.noop,
         onCalendarHide: Metro.noop,
         onChange: Metro.noop,
 
-        locale: METRO_LOCALE,
+        yearsBefore: 100,
+        yearsAfter: 100,
         weekStart: 0,
         outside: true,
         clsCalendar: "",
@@ -44,6 +49,7 @@ var Datepicker = {
         preset: null,
         minDate: null,
         maxDate: null,
+
         onDayClick: Metro.noop
     },
 
@@ -114,25 +120,39 @@ var Datepicker = {
                 element.val(date.format(o.format, o.locale));
                 element.trigger("change");
                 cal.removeClass("open");
+                Utils.exec(o.onChange, [that.value, that.value_date, element]);
+                Utils.exec(o.onDayClick, [sel, day, el]);
             }
         });
+
+        cal.hide();
 
         this.calendar = cal;
 
         calendarButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.calendarButtonIcon);
         calendarButton.on("click", function(e){
             if (Utils.isDate(that.value) && cal.hasClass("open") === false) {
+                cal.css({
+                    visibility: "hidden",
+                    display: "block"
+                });
                 cal.data('calendar').setPreset(that.value);
                 cal.data('calendar').setShow(that.value);
                 cal.data('calendar').setToday(that.value);
+                cal.css({
+                    visibility: "visible",
+                    display: "none"
+                });
             }
             if (cal.hasClass("open") === false) {
-                $(".datepicker .calendar").removeClass("open");
+                $(".datepicker .calendar").removeClass("open").hide();
                 cal.addClass("open");
-                Utils.exec(o.onCalendarShow, [cal]);
+                cal.show();
+                Utils.exec(o.onCalendarShow, [element, cal]);
             } else {
                 cal.removeClass("open");
-                Utils.exec(o.onCalendarHide, [cal]);
+                cal.hide();
+                Utils.exec(o.onCalendarHide, [element, cal]);
             }
             e.preventDefault();
             e.stopPropagation();
@@ -151,6 +171,16 @@ var Datepicker = {
             container.addClass("rtl");
         }
 
+        if (String(o.size).indexOf("%") > -1) {
+            container.css({
+                width: o.size
+            });
+        } else {
+            container.css({
+                width: parseInt(o.size) + "px"
+            });
+        }
+
         element[0].className = '';
         element.attr("readonly", true);
 
@@ -159,6 +189,8 @@ var Datepicker = {
                 container.css(key, value);
             });
         }
+
+        container.addClass(o.clsPicker);
 
         element.on("blur", function(){container.removeClass("focused");});
         element.on("focus", function(){container.addClass("focused");});
@@ -216,5 +248,5 @@ var Datepicker = {
 Metro.plugin('datepicker', Datepicker);
 
 $(document).on('click', function(e){
-    $(".datepicker .calendar").removeClass("open");
+    $(".datepicker .calendar").removeClass("open").hide();
 });

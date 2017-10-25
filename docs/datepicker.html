@@ -73,12 +73,11 @@
                     To create <code>datepicker</code> component add attribute <code>data-role="datepicker"</code> to form input element.
                 </p>
                 <div class="example">
-                    <input type="text" data-role="datepicker" style="width: 280px" class="mx-auto">
+                    <input type="text" data-role="datepicker" data-size="280" class="mx-auto">
                 </div>
                 <pre><code class="html">
                     &lt;input type="text" data-role="datepicker"&gt;
                 </code></pre>
-
                 <div class="example">
                     <div class="row">
                         <div class="cell-md-4">
@@ -98,7 +97,250 @@
                     &lt;input type="text" data-role="datepicker" data-format="%d %B %Y"&gt;
                 </code></pre>
 
+                <h3 id="_datepicker_options">Datepicker options</h3>
+                <p>
+                    Datepicker has several options, who effects to behavior of the component.
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Data-*</th>
+                        <th>Default</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>size</td>
+                        <td><code>data-locale</code></td>
+                        <td>METRO_LOCALE {en-US}</td>
+                        <td>Component language</td>
+                    </tr>
+                    <tr>
+                        <td>size</td>
+                        <td><code>data-size</code></td>
+                        <td>100%</td>
+                        <td>Component size</td>
+                    </tr>
+                    <tr>
+                        <td>format</td>
+                        <td><code>data-format</code></td>
+                        <td>%Y/%m/%d</td>
+                        <td>Output date format</td>
+                    </tr>
+                    <tr>
+                        <td>clearButton</td>
+                        <td><code>data-clear-button</code></td>
+                        <td>false</td>
+                        <td>Show/hide clear button</td>
+                    </tr>
+                    <tr>
+                        <td>clearButtonIcon</td>
+                        <td><code>data-clear-button-icon</code></td>
+                        <td>&lt;span class='mif-cross'&gt;&lt;/span&gt;</td>
+                        <td>Icon for clear button</td>
+                    </tr>
+                    <tr>
+                        <td>calendarButtonIcon</td>
+                        <td><code>data-calendar-button-icon</code></td>
+                        <td>&lt;span class='mif-calendar'&gt;&lt;/span&gt;</td>
+                        <td>Icon for show calendar button</td>
+                    </tr>
+                    <tr>
+                        <td>copyInlineStyles</td>
+                        <td><code>data-copy-inline-styles</code></td>
+                        <td>false</td>
+                        <td>Copy inline styles input to wrapper</td>
+                    </tr>
+                    <tr>
+                        <td>clsPicker</td>
+                        <td><code>data-cls-picker</code></td>
+                        <td></td>
+                        <td>Additional class for datepicker</td>
+                    </tr>
+                    </tbody>
+                </table>
 
+
+                <h3 id="_datepicker_calendar">Calendar options</h3>
+                <p>
+                    Datepicker has several options, who effects to behavior of the datepicker calendar.
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Data-*</th>
+                        <th>Default</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>yearsBefore</td>
+                        <td><code>data-years-before</code></td>
+                        <td>100</td>
+                        <td>Years before today</td>
+                    </tr>
+                    <tr>
+                        <td>yearsAfter</td>
+                        <td><code>data-years-after</code></td>
+                        <td>100</td>
+                        <td>Years after today</td>
+                    </tr>
+                    <tr>
+                        <td>weekStart</td>
+                        <td><code>data-week-start</code></td>
+                        <td>0</td>
+                        <td>Start month from sunday or monday (0 - sunday, 1 - monday)</td>
+                    </tr>
+                    <tr>
+                        <td>outside</td>
+                        <td><code>data-outside</code></td>
+                        <td>true</td>
+                        <td>Show dates outside from month (prev or next month dates)</td>
+                    </tr>
+                    <tr>
+                        <td>ripple</td>
+                        <td><code>data-ripple</code></td>
+                        <td>false</td>
+                        <td>Add ripple effect to click</td>
+                    </tr>
+                    <tr>
+                        <td>rippleColor</td>
+                        <td><code>data-ripple-color</code></td>
+                        <td>#cccccc</td>
+                        <td>Ripple color</td>
+                    </tr>
+                    <tr>
+                        <td>exclude</td>
+                        <td><code>data-exclude</code></td>
+                        <td>null</td>
+                        <td>Dates can be excluded from selection</td>
+                    </tr>
+                    <tr>
+                        <td>preset</td>
+                        <td><code>data-preset</code></td>
+                        <td>null</td>
+                        <td>Dates can be preselect</td>
+                    </tr>
+                    <tr>
+                        <td>minDate</td>
+                        <td><code>data-min-date</code></td>
+                        <td>null</td>
+                        <td>Min date</td>
+                    </tr>
+                    <tr>
+                        <td>maxDate</td>
+                        <td><code>data-max-date</code></td>
+                        <td>null</td>
+                        <td>Max date</td>
+                    </tr>
+                    <tr>
+                        <td>clsToday</td>
+                        <td><code>data-cls-today</code></td>
+                        <td></td>
+                        <td>Additional class for today</td>
+                    </tr>
+                    <tr>
+                        <td>clsSelected</td>
+                        <td><code>data-cls-selected</code></td>
+                        <td></td>
+                        <td>Additional class for selected</td>
+                    </tr>
+                    <tr>
+                        <td>clsExclude</td>
+                        <td><code>data-cls-exclude</code></td>
+                        <td></td>
+                        <td>Additional class for excluded</td>
+                    </tr>
+                    <tr>
+                        <td>clsCalendar</td>
+                        <td><code>data-cls-calendar</code></td>
+                        <td></td>
+                        <td>Additional class calendar</td>
+                    </tr>
+                    <tr>
+                        <td>clsCalendarHeader</td>
+                        <td><code>data-cls-calendar-header</code></td>
+                        <td></td>
+                        <td>Additional class for calendar header</td>
+                    </tr>
+                    <tr>
+                        <td>clsCalendarContent</td>
+                        <td><code>data-cls-calendar-content</code></td>
+                        <td></td>
+                        <td>Additional class for calendar content</td>
+                    </tr>
+                    <tr>
+                        <td>clsCalendarFooter</td>
+                        <td><code>data-cls-calendar-footer</code></td>
+                        <td></td>
+                        <td>Additional class for calendar footer</td>
+                    </tr>
+                    <tr>
+                        <td>clsCalendarMonths</td>
+                        <td><code>data-cls-calendar-months</code></td>
+                        <td></td>
+                        <td>Additional class for calendar months</td>
+                    </tr>
+                    <tr>
+                        <td>clsCalendarYears</td>
+                        <td><code>data-cls-calendar-years</code></td>
+                        <td></td>
+                        <td>Additional class for calendar years</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="_datepicker_events">Events</h3>
+                <p>
+                    When datepicker works, it generated the numbers of events. You can use callback for this event to behavior with datepicker.
+                    Rules for working with events are described on <a href="events.html">this page</a>.
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Data-*</th>
+                        <th>Default</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>onDayClick(sel, day, el)</code></td>
+                        <td><code>data-on-day-click</code></td>
+                        <td>Metro.noop</td>
+                        <td>Callback for day click</td>
+                    </tr>
+                    <tr>
+                        <td><code>onCalendarShow(el, cal)</code></td>
+                        <td><code>data-on-calendar-show</code></td>
+                        <td>Metro.noop</td>
+                        <td>Callback for calendar was showed</td>
+                    </tr>
+                    <tr>
+                        <td><code>onCalendarHide(el, cal)</code></td>
+                        <td><code>data-on-calendar-hide</code></td>
+                        <td>Metro.noop</td>
+                        <td>Callback for calendar was hiding</td>
+                    </tr>
+                    <tr>
+                        <td><code>onChange(val, date, el)</code></td>
+                        <td><code>data-on-change</code></td>
+                        <td>Metro.noop</td>
+                        <td>Callback for datepicker value was changed</td>
+                    </tr>
+                    <tr>
+                        <td><code>onDatepickerCreate(el)</code></td>
+                        <td><code>data-on-datepicker-create</code></td>
+                        <td>Metro.noop</td>
+                        <td>Callback fired when datepicker is created</td>
+                    </tr>
+                    </tbody>
+                </table>
                 <p>
                     Select date in first picker and see change values in second picker
                 </p>
@@ -113,14 +355,40 @@
                     </div>
                 </div>
                 <pre><code>
-                    &lt;input type="text" data-role="datepicker" id="dp2" data-on-change="$('#dp1').attr('value', (arguments[1]))"&gt;
-                    &lt;input type="text" data-role="datepicker" id="dp1" data-format="%d %b %Y"&gt;
+                    &lt;input type="text"
+                        data-role="datepicker" id="dp2"
+                        data-on-change="$('#dp1').attr('value', (arguments[1]))"&gt;
+
+                    &lt;input type="text"
+                        data-role="datepicker" id="dp1" data-format="%d %b %Y"&gt;
                 </code></pre>
 
+                <h3 id="_datepicker_methods">Methods</h3>
+                <p>
+                    You can use datepicker method <code>val()</code> to set or get datepicker value in javascript. Also you can set or get datepicker value with using <code>value</code> attribute.
+                </p>
+                <div class="example">
+                    <input type="text" data-role="datepicker" value="1972/12/21" data-size="280" id="datepicker_val_test" data-format="%d %B %Y" class="">
+                    <br />
+                    <button class="button" onclick="$('#datepicker_val_test').data('datepicker').val('1972/12/21')">Reset</button>
+                    <button class="button" onclick="$('#datepicker_val_test').data('datepicker').val('2017/10/25')">Set 2017/10/25</button>
+                    <button class="button" onclick="alert($('#datepicker_val_test').data('datepicker').val())">Get date</button>
+                </div>
+                <pre><code>
+                    var cal = $(element).data("datepicker");
+                    console.log(cal.val());
+                    cal.val("1972/12/21");
+                </code></pre>
 
+                <h3 id="_datepicker_observe">Observe</h3>
+                <p>
+                    You can change attributes
+                    <code>value</code>,
+                    <code>disabled</code>
+                    at runtime and datepicker will be updated.
+                </p>
             </main>
         </div>
-
     </div>
 
     <script src="docsearch/docsearch.min.js"></script>
