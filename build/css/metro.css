@@ -12676,6 +12676,10 @@ figure img {
   display: block;
   z-index: 500;
 }
+.datepicker .calendar.open-up {
+  top: auto;
+  bottom: 100%;
+}
 .ripple {
   display: block;
   width: 0;

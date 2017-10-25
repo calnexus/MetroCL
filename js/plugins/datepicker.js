@@ -119,7 +119,8 @@ var Datepicker = {
                 that.value_date = date;
                 element.val(date.format(o.format, o.locale));
                 element.trigger("change");
-                cal.removeClass("open");
+                cal.removeClass("open open-up");
+                cal.hide();
                 Utils.exec(o.onChange, [that.value, that.value_date, element]);
                 Utils.exec(o.onDayClick, [sel, day, el]);
             }
@@ -131,7 +132,7 @@ var Datepicker = {
 
         calendarButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.calendarButtonIcon);
         calendarButton.on("click", function(e){
-            if (Utils.isDate(that.value) && cal.hasClass("open") === false) {
+            if (Utils.isDate(that.value) && (cal.hasClass("open") === false && cal.hasClass("open-up") === false)) {
                 cal.css({
                     visibility: "hidden",
                     display: "block"
@@ -144,13 +145,16 @@ var Datepicker = {
                     display: "none"
                 });
             }
-            if (cal.hasClass("open") === false) {
-                $(".datepicker .calendar").removeClass("open").hide();
+            if (cal.hasClass("open") === false && cal.hasClass("open-up") === false) {
+                $(".datepicker .calendar").removeClass("open open-up").hide();
                 cal.addClass("open");
+                if (Utils.isOutsider(cal) === false) {
+                    cal.addClass("open-up");
+                }
                 cal.show();
                 Utils.exec(o.onCalendarShow, [element, cal]);
             } else {
-                cal.removeClass("open");
+                cal.removeClass("open open-up");
                 cal.hide();
                 Utils.exec(o.onCalendarHide, [element, cal]);
             }
@@ -248,5 +252,5 @@ var Datepicker = {
 Metro.plugin('datepicker', Datepicker);
 
 $(document).on('click', function(e){
-    $(".datepicker .calendar").removeClass("open").hide();
+    $(".datepicker .calendar").removeClass("open open-up").hide();
 });

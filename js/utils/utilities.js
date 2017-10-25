@@ -194,8 +194,31 @@ var Utils = {
         return func.apply(context, args);
     },
 
-    elementInViewport: function(el) {
-        if (this.isJQueryObject(el)) {
+    isOutsider: function(el) {
+        el = this.isJQueryObject(el) ? el : $(el);
+        var rect;
+        var clone = el.clone();
+
+        clone.removeAttr("data-role").css({
+            visibility: "hidden",
+            position: "absolute",
+            display: "block"
+        });
+        el.parent().append(clone);
+
+        rect = clone[0].getBoundingClientRect();
+        clone.remove();
+
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    },
+
+    inViewport: function(el){
+        if (typeof jQuery === "function" && el instanceof jQuery) {
             el = el[0];
         }
 
