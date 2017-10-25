@@ -13,6 +13,10 @@ $(function(){
         body.prepend(data);
     });
 
+    $.get('footer.html', function(data){
+        body.append(data);
+    });
+
     $.get('sidenav.html', function(data){
         sidenav.html(data);
 
