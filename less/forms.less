@@ -591,6 +591,16 @@ form, fieldset, .form-group {
     &:focus, &.focused {
         box-shadow: 0 0 0 3px rgba(red(@red), green(@red), blue(@red), 0.45)!important;
     }
+
+    &::before {
+        position: absolute;
+        content: "!";
+        color: @red;
+        left: -16px;
+        top: 0;
+        font-size: 1.625rem;
+        font-weight: bold;
+    }
 }
 
 .valid {

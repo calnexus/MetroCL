@@ -7,8 +7,6 @@ var myObject = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onCreate, [this.element]);
-
         return this;
     },
 
@@ -31,6 +29,9 @@ var myObject = {
     },
 
     _create: function(){
+        var that = this, element = this.element, o = this.options;
+
+        Utils.exec(this.options.onCreate, [this.element]);
     },
 
     changeAttribute: function(attributeName){

@@ -933,11 +933,18 @@
                     </form>
                 </div>
 
-                <h4 id="_validation_plugin">Use the power, Luke!</h4>
+                <h4 id="_validation_plugin" class="fg-red">Use the power, Luke!</h4>
                 <p>
                     To better support form validation, use the plugin <a href="validator.html">Metro 4 Validator</a>.
                     This plugin provides more functionality to validating form with special validation funcs include custom functions and patterns.
                 </p>
+                <div class="example">
+                    <form data-role="validator" action="javascript:">
+                        <label>Label for input</label>
+                        <input type="text" data-role="input" data-validate="required">
+                        <button class="button primary mt-2">Submit</button>
+                    </form>
+                </div>
 
 
                 <h3 id="_forms_rtl">Rtl support</h3>
