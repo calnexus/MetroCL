@@ -405,7 +405,7 @@ var Utils = {
         };
     },
 
-    hiddenElementSize: function(el, inner){
+    hiddenElementSize: function(el, includeMargin){
         var clone = $(el).clone();
         clone.removeAttr("data-role").css({
             visibility: "hidden",
@@ -413,8 +413,13 @@ var Utils = {
             display: "block"
         });
         $("body").append(clone);
-        var width = inner === true ? clone.innerWidth() : clone.outerWidth();
-        var height = inner === true ? clone.innerHeight() : clone.outerHeight();
+
+        if (includeMargin === undefined) {
+            includeMargin = false;
+        }
+
+        var width = clone.outerWidth(includeMargin);
+        var height = clone.outerHeight(includeMargin);
         clone.remove();
         return {
             width: width,

@@ -22,7 +22,7 @@
     <meta property="og:image:height" content="504">
 
     <meta name="author" content="Sergey Pimenov">
-    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="description" content="Need to show slides? There's nothing easier, use the carousel component. The most popular HTML, CSS, and JS library in Metro style.">
     <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
 
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -34,6 +34,13 @@
     <link href="css/site.css" rel="stylesheet">
 
     <title>Carousel - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+    <style>
+        .bullet-big {
+            width: 1rem!important;
+            height: 1rem!important;
+        }
+    </style>
 </head>
 <body>
     <div class="container-fluid">
@@ -47,7 +54,28 @@
                 <hr/>
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Carousel</a></li>
-                    <li class="toc-entry"><a href="#_carousel_create">Create</a></li>
+                    <li class="toc-entry"><a href="#_carousel_about">About</a></li>
+                    <li class="toc-entry">
+                        <a href="#_carousel_controls">Controls</a>
+                        <ul>
+                            <li class="toc-entry"><a href="#_carousel_controls_mouse">Show when mouse</a></li>
+                            <li class="toc-entry"><a href="#_carousel_controls_hide">Hide controls</a></li>
+                            <li class="toc-entry"><a href="#_carousel_controls_symbols">Left and right</a></li>
+                            <li class="toc-entry"><a href="#_carousel_controls_bullets">Bullets</a></li>
+                        </ul>
+                    </li>
+                    <li class="toc-entry"><a href="#_carousel_slides">Slides</a></li>
+                    <li class="toc-entry">
+                        <a href="#_carousel_effects">Effects</a>
+                        <ul>
+                            <li class="toc-entry"><a href="#_carousel_effects_duration">Duration &amp; period</a></li>
+                            <li class="toc-entry"><a href="#_carousel_effects_func">Easing function</a></li>
+                        </ul>
+                    </li>
+                    <li class="toc-entry"><a href="#_carousel_options">Options</a></li>
+                    <li class="toc-entry"><a href="#_carousel_events">Events</a></li>
+                    <li class="toc-entry"><a href="#_carousel_methods">Methods</a></li>
+                    <li class="toc-entry"><a href="#_carousel_methods">Customize</a></li>
                 </ul>
 
             </div>
@@ -59,63 +87,462 @@
 
                 <h1>Carousel</h1>
                 <p class="text-leader">
-
+                    Need to show slides? There's nothing easier, use the carousel component.
                 </p>
 
                 <!-- ads-html -->
 
+                <h3 id="_carousel_about">About</h3>
+                <p>
+                    In Metro 4 the process of the creating <code>carousel</code> it very easy. To create <code>carousel</code> you mus add attribute <code>data-role="carousel"</code> to element and define <code>slides</code>.
+                    Also you can set any options with additional attributes.
+                </p>
                 <div class="example">
+                    <div data-role="carousel"
+                         data-auto-start="true"
+                         data-cls-controls="fg-white"
+                         data-cls-bullet="bullet-big"
+                         data-bullets-position="right"
+                         data-control-next="<span class='mif-chevron-right fg-cyan'></span>"
+                         data-control-prev="<span class='mif-chevron-left fg-cyan'></span>"
 
+                    >
+                        <div class="slide p-2 pl-10 pr-10">
+                            <div class="row flex-align-center h-100">
+                                <div class="cell-md-4 text-center">
+                                    <img src="images/pumba.png" class="img-fluid">
+                                </div>
+                                <div class="cell-md-8">
+                                    <h1 class="text-light">Pumba</h1>
+                                    <p class="mt-4 mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make.</p>
+                                    <button class="button alert">Show more...</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="slide" data-cover="images/pumba-bg.jpg"></div>
+
+                        <div class="slide p-2 pl-10 pr-10" data-cover="images/carousel-bg-4.jpg">
+                            <div class="row flex-align-center h-100">
+                                <div class="cell-md-8">
+                                    <p class="indent-letter">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make.</p>
+                                </div>
+                                <div class="cell-md-4 text-center">
+                                    <div class="img-container drop-shadow">
+                                        <img src="images/timon_pumba.jpg">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;div data-role="carousel"
+                         data-cls-bullet="bullet-big"
+                         data-auto-start="true"
+                         data-cls-controls="fg-white"
+                         data-bullets-position="right"
+                         data-control-next="&lt;span class='mif-chevron-right fg-cyan'&gt;&lt;/span&gt;"
+                         data-control-prev="&lt;span class='mif-chevron-left fg-cyan'&gt;&lt;/span&gt;"
+                    &gt;
+                        &lt;div class="slide p-2 pl-10 pr-10"&gt;
+                            &lt;div class="row flex-align-center h-100"&gt;
+                                &lt;div class="cell-md-4 text-center"&gt;
+                                    &lt;img src="images/pumba.png" class="img-fluid"&gt;
+                                &lt;/div&gt;
+                                &lt;div class="cell-md-8"&gt;
+                                    &lt;h1 class="text-light"&gt;Pumba&lt;/h1&gt;
+                                    &lt;p class="mt-4 mb-4"&gt;Lorem Ipsum is simply dummy text of the printing and typesetting...&lt;/p&gt;
+                                    &lt;button class="button alert"&gt;Show more...&lt;/button&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+
+                        &lt;div class="slide" data-cover="images/pumba-bg.jpg"&gt;&lt;/div&gt;
+
+                        &lt;div class="slide p-2 pl-10 pr-10" data-cover="images/carousel-bg-4.jpg"&gt;
+                            &lt;div class="row flex-align-center h-100"&gt;
+                                &lt;div class="cell-md-8"&gt;
+                                    &lt;p class="indent-letter"&gt;Lorem Ipsum is simply dummy text of the printing and typesetting...&lt;/p&gt;
+                                &lt;/div&gt;
+                                &lt;div class="cell-md-4 text-center"&gt;
+                                    &lt;div class="img-container drop-shadow"&gt;
+                                        &lt;img src="images/timon_pumba.jpg"&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_carousel_controls">Controls</h3>
+                <p>
+                    For sliding the slides user can use carousel <code>controls</code>, such as <code>left</code>, <code>right</code> and <code>bullets</code>.
+                    By default controls placed are inside the carousel slides area. To put <code>controls</code> outside the carousel set attribute <code>data-controls-outside="true"</code>.
+                </p>
+                <div class="example">
                     <div class="row">
                         <div class="cell-md-6">
-                            <div data-role="carousel" data-height="200" data-effect="switch">
+                            <h5 class="text-center">Inside</h5>
+                            <div data-role="carousel" data-height="200" data-cls-controls="fg-white">
                                 <div class="slide" data-cover="images/1.jpg"></div>
                                 <div class="slide" data-cover="images/2.jpg"></div>
                                 <div class="slide" data-cover="images/3.jpg"></div>
                             </div>
                         </div>
                         <div class="cell-md-6">
-                            <div data-role="carousel" data-height="200" data-effect="slide" data-auto-start="true">
+                            <h5 class="text-center">Outside</h5>
+                            <div data-role="carousel" data-height="200" data-controls-outside="true">
                                 <div class="slide" data-cover="images/1.jpg"></div>
                                 <div class="slide" data-cover="images/2.jpg"></div>
                                 <div class="slide" data-cover="images/3.jpg"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-2">
-                        <div class="cell-md-6">
-                            <div data-role="carousel" data-height="200" data-effect="fade">
-                                <div class="slide" data-cover="images/1.jpg"></div>
-                                <div class="slide" data-cover="images/2.jpg"></div>
-                                <div class="slide" data-cover="images/3.jpg"></div>
-                            </div>
-                        </div>
-                        <div class="cell-md-6">
-                            <div data-role="carousel" data-height="200" data-effect="slowdown">
-                                <div class="slide" data-cover="images/1.jpg"></div>
-                                <div class="slide" data-cover="images/2.jpg"></div>
-                                <div class="slide" data-cover="images/3.jpg"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="cell-md-6">
-                            <div data-role="carousel" data-height="200" data-effect="slide" data-effect-func="easeInOutBounce">
-                                <div class="slide" data-cover="images/1.jpg"></div>
-                                <div class="slide" data-cover="images/2.jpg"></div>
-                                <div class="slide" data-cover="images/3.jpg"></div>
-                            </div>
-                        </div>
-                        <div class="cell-md-6">
-                            <div data-role="carousel" data-height="200" data-effect="slide" data-effect-func="easeOutElastic">
-                                <div class="slide" data-cover="images/1.jpg"></div>
-                                <div class="slide" data-cover="images/2.jpg"></div>
-                                <div class="slide" data-cover="images/3.jpg"></div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
+                <pre><code>
+                    &lt;div data-role="carousel" data-height="200"&gt;
+                        &lt;div class="slide" data-cover="images/1.jpg"&gt;&lt;/div&gt;
+                        &lt;div class="slide" data-cover="images/2.jpg"&gt;&lt;/div&gt;
+                        &lt;div class="slide" data-cover="images/3.jpg"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;div data-role="carousel" data-height="200" data-controls-outside="true"&gt;
+                        &lt;div class="slide" data-cover="images/1.jpg"&gt;&lt;/div&gt;
+                        &lt;div class="slide" data-cover="images/2.jpg"&gt;&lt;/div&gt;
+                        &lt;div class="slide" data-cover="images/3.jpg"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h4 id="_carousel_controls_mouse">Show controls when mouse enter</h4>
+                <p>
+                    With attribute <code>data-controls-on-mouse="true"</code> you can set visible controls only if mouse enter to carousel.
+                </p>
+                <div class="example">
+                    <div data-role="carousel" data-height="200" data-controls-on-mouse="true" data-cls-controls="fg-white">
+                        <div class="slide" data-cover="images/1.jpg"></div>
+                        <div class="slide" data-cover="images/2.jpg"></div>
+                        <div class="slide" data-cover="images/3.jpg"></div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="carousel" data-height="200"
+                         data-controls-on-mouse="true" data-cls-controls="fg-white"&gt;
+                        &lt;div class="slide" data-cover="images/1.jpg"&gt;&lt;/div&gt;
+                        &lt;div class="slide" data-cover="images/2.jpg"&gt;&lt;/div&gt;
+                        &lt;div class="slide" data-cover="images/3.jpg"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h4 id="_carousel_controls_hide">Hide controls</h4>
+                <p>
+                    You can hide controls with attributes <code>data-controls="false"</code> and <code>data-bullets="false"</code>.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-6">
+                            <h5 class="text-center">No left, right</h5>
+                            <div data-role="carousel" data-height="200" data-controls="false">
+                                <div class="slide" data-cover="images/1.jpg"></div>
+                                <div class="slide" data-cover="images/2.jpg"></div>
+                                <div class="slide" data-cover="images/3.jpg"></div>
+                            </div>
+                        </div>
+                        <div class="cell-md-6">
+                            <h5 class="text-center">No bullets</h5>
+                            <div data-role="carousel" data-height="200" data-bullets="false" data-cls-controls="fg-white">
+                                <div class="slide" data-cover="images/1.jpg"></div>
+                                <div class="slide" data-cover="images/2.jpg"></div>
+                                <div class="slide" data-cover="images/3.jpg"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="carousel" data-height="200"
+                         data-controls="false"&gt;
+                        &lt;div class="slide" data-cover="images/1.jpg"&gt;&lt;/div&gt;
+                        &lt;div class="slide" data-cover="images/2.jpg"&gt;&lt;/div&gt;
+                        &lt;div class="slide" data-cover="images/3.jpg"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;div data-role="carousel" data-height="200"
+                         data-bullets="false"&gt;
+                        &lt;div class="slide" data-cover="images/1.jpg"&gt;&lt;/div&gt;
+                        &lt;div class="slide" data-cover="images/2.jpg"&gt;&lt;/div&gt;
+                        &lt;div class="slide" data-cover="images/3.jpg"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h4 id="_carousel_controls_symbols">Left and right symbols</h4>
+                <p>
+                    You can change <code>left</code> and <code>right</code> slides switchers symbols with attributes <code>data-control-next</code> and <code>data-control-prev</code>.
+                </p>
+                <div class="example">
+                    <div data-role="carousel" data-height="200"
+                         data-cls-controls="fg-white"
+                         data-control-next="<span class='mif-chevron-right'></span>"
+                         data-control-prev="<span class='mif-chevron-left'></span>">
+                        <div class="slide" data-cover="images/1.jpg"></div>
+                        <div class="slide" data-cover="images/2.jpg"></div>
+                        <div class="slide" data-cover="images/3.jpg"></div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="carousel" data-height="200"
+                         data-cls-controls="fg-white"
+                         data-control-next="&lt;span class='mif-chevron-right'&gt;&lt;/span&gt;"
+                         data-control-prev="&lt;span class='mif-chevron-left'&gt;&lt;/span&gt;"&gt;
+                        &lt;div class="slide" data-cover="images/1.jpg"&gt;&lt;/div&gt;
+                        &lt;div class="slide" data-cover="images/2.jpg"&gt;&lt;/div&gt;
+                        &lt;div class="slide" data-cover="images/3.jpg"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h4 id="_carousel_controls_bullets">Bullets</h4>
+                <p>
+                    You can use one of three predefined variants of <code>bullets</code>.
+                    To set bullet type use attribute <code>data-bullet-style</code> with values: <code>circle</code>, <code>square</code> (default), <code>rect</code> or <code>diamond</code>.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-6">
+                            <div data-role="carousel" data-height="200" data-bullet-style="circle" data-controls="false">
+                                <div class="slide" data-cover="images/1.jpg"></div>
+                                <div class="slide" data-cover="images/2.jpg"></div>
+                                <div class="slide" data-cover="images/3.jpg"></div>
+                            </div>
+                        </div>
+                        <div class="cell-md-6">
+                            <div data-role="carousel" data-height="200" data-bullet-style="square" data-controls="false">
+                                <div class="slide" data-cover="images/1.jpg"></div>
+                                <div class="slide" data-cover="images/2.jpg"></div>
+                                <div class="slide" data-cover="images/3.jpg"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="cell-md-6">
+                            <div data-role="carousel" data-height="200" data-bullet-style="rect" data-controls="false">
+                                <div class="slide" data-cover="images/1.jpg"></div>
+                                <div class="slide" data-cover="images/2.jpg"></div>
+                                <div class="slide" data-cover="images/3.jpg"></div>
+                            </div>
+                        </div>
+                        <div class="cell-md-6">
+                            <div data-role="carousel" data-height="200" data-bullet-style="diamond" data-controls="false">
+                                <div class="slide" data-cover="images/1.jpg"></div>
+                                <div class="slide" data-cover="images/2.jpg"></div>
+                                <div class="slide" data-cover="images/3.jpg"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="carousel" data-height="200" data-bullet-style="circle"&gt;
+                        &lt;div class="slide" data-cover="images/1.jpg"&gt;&lt;/div&gt;
+                        &lt;div class="slide" data-cover="images/2.jpg"&gt;&lt;/div&gt;
+                        &lt;div class="slide" data-cover="images/3.jpg"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div data-role="carousel" data-height="200" data-bullet-style="square"&gt;
+                        &lt;div class="slide" data-cover="images/1.jpg"&gt;&lt;/div&gt;
+                        &lt;div class="slide" data-cover="images/2.jpg"&gt;&lt;/div&gt;
+                        &lt;div class="slide" data-cover="images/3.jpg"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div data-role="carousel" data-height="200" data-bullet-style="rect"&gt;
+                        &lt;div class="slide" data-cover="images/1.jpg"&gt;&lt;/div&gt;
+                        &lt;div class="slide" data-cover="images/2.jpg"&gt;&lt;/div&gt;
+                        &lt;div class="slide" data-cover="images/3.jpg"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div data-role="carousel" data-height="200" data-bullet-style="diamond"&gt;
+                        &lt;div class="slide" data-cover="images/1.jpg"&gt;&lt;/div&gt;
+                        &lt;div class="slide" data-cover="images/2.jpg"&gt;&lt;/div&gt;
+                        &lt;div class="slide" data-cover="images/3.jpg"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_carousel_slides">Slides</h3>
+                <p>
+                    The slide is a block element with class <code>.slide</code>.
+                    For each slide you can set background image.
+                    To set background image for slide, add attribute <code>data-cover="..."</code> to slide.
+                </p>
+                <p class="remark alert">
+                    By default, <code>slide</code> not have <code>margin</code> or <code>padding</code>. You must set it manually if need.
+                </p>
+                <div class="example">
+                    <div data-role="carousel" data-height="200" data-cls-controls="fg-cyan">
+                        <div class="slide" data-cover="images/carousel-bg-1.jpg"></div>
+                        <div class="slide" data-cover="images/carousel-bg-2.jpg"></div>
+                        <div class="slide" data-cover="images/carousel-bg-3.jpg"></div>
+                        <div class="slide" data-cover="images/carousel-bg-4.jpg"></div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="carousel" data-height="200" data-cls-controls="fg-cyan"&gt;
+                        &lt;div class="slide" data-cover="images/carousel-bg-1.jpg"&gt;&lt;/div&gt;
+                        &lt;div class="slide" data-cover="images/carousel-bg-2.jpg"&gt;&lt;/div&gt;
+                        &lt;div class="slide" data-cover="images/carousel-bg-3.jpg"&gt;&lt;/div&gt;
+                        &lt;div class="slide" data-cover="images/carousel-bg-4.jpg"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_carousel_effects">Effects</h3>
+                <p>
+                    Slide change is accompanied by various effects. Currently supports four effects:
+                        <code>slide</code> (default),
+                        <code>switch</code>,
+                        <code>fade</code>,
+                        <code>slowdown</code>.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-6">
+                            <h5>Slide</h5>
+                            <div data-role="carousel" data-height="200" data-cls-controls="fg-cyan" data-effect="slide" data-controls="false" data-bullets="false" data-auto-start="true">
+                                <div class="slide" data-cover="images/carousel-bg-1.jpg"></div>
+                                <div class="slide" data-cover="images/carousel-bg-2.jpg"></div>
+                                <div class="slide" data-cover="images/carousel-bg-3.jpg"></div>
+                                <div class="slide" data-cover="images/carousel-bg-4.jpg"></div>
+                            </div>
+                        </div>
+                        <div class="cell-md-6">
+                            <h5>Switch</h5>
+                            <div data-role="carousel" data-height="200" data-cls-controls="fg-cyan" data-effect="switch" data-controls="false" data-bullets="false" data-auto-start="true">
+                                <div class="slide" data-cover="images/carousel-bg-1.jpg"></div>
+                                <div class="slide" data-cover="images/carousel-bg-2.jpg"></div>
+                                <div class="slide" data-cover="images/carousel-bg-3.jpg"></div>
+                                <div class="slide" data-cover="images/carousel-bg-4.jpg"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="cell-md-6">
+                            <h5>Fade</h5>
+                            <div data-role="carousel" data-height="200" data-cls-controls="fg-cyan" data-effect="fade" data-controls="false" data-bullets="false" data-auto-start="true">
+                                <div class="slide" data-cover="images/carousel-bg-1.jpg"></div>
+                                <div class="slide" data-cover="images/carousel-bg-2.jpg"></div>
+                                <div class="slide" data-cover="images/carousel-bg-3.jpg"></div>
+                                <div class="slide" data-cover="images/carousel-bg-4.jpg"></div>
+                            </div>
+                        </div>
+                        <div class="cell-md-6">
+                            <h5>Slowdown</h5>
+                            <div data-role="carousel" data-height="200" data-cls-controls="fg-cyan" data-effect="slowdown" data-controls="false" data-bullets="false" data-auto-start="true">
+                                <div class="slide" data-cover="images/carousel-bg-1.jpg"></div>
+                                <div class="slide" data-cover="images/carousel-bg-2.jpg"></div>
+                                <div class="slide" data-cover="images/carousel-bg-3.jpg"></div>
+                                <div class="slide" data-cover="images/carousel-bg-4.jpg"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="carousel" data-effect="slide"&gt;
+                    ...
+                    &lt;/div&gt;
+
+                    &lt;div data-role="carousel" data-effect="switch"&gt;
+                    ...
+                    &lt;/div&gt;
+
+                    &lt;div data-role="carousel" data-effect="fade"&gt;
+                    ...
+                    &lt;/div&gt;
+
+                    &lt;div data-role="carousel" data-effect="slowdown"&gt;
+                    ...
+                    &lt;/div&gt;
+                </code></pre>
+
+
+                <h4 id="_carousel_effects_duration">Duration and period</h4>
+                <p>
+                    The speed of applying the effect is determined by the duration parameter, which can be set via the attribute <code>data-duration</code>. The default value for <code>duration</code> is <code>1s</code>.
+                    The interval between slides is determined by the period parameter and can be specified via the attribute <code>data-period</code>. The default value for <code>data-period</code> is <code>5s</code>.
+                </p>
+                <div class="example">
+                    <div data-role="carousel"
+                         data-height="200"
+                         data-cls-controls="fg-cyan"
+                         data-effect="slide"
+                         data-controls="false"
+                         data-bullets="false"
+                         data-auto-start="true"
+                         data-period="3000"
+                         data-duration="500">
+                        <div class="slide" data-cover="images/carousel-bg-1.jpg"></div>
+                        <div class="slide" data-cover="images/carousel-bg-2.jpg"></div>
+                        <div class="slide" data-cover="images/carousel-bg-3.jpg"></div>
+                        <div class="slide" data-cover="images/carousel-bg-4.jpg"></div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="carousel"
+                         data-period="3000"
+                         data-duration="500"&gt;
+                    ...
+                    &lt;/div&gt;
+                </code></pre>
+                <h4 id="_carousel_effects_func">Easing function</h4>
+                <p>
+                    For effect <code>slide</code> you can use additional parameter: <code>effectFunc</code>, which can be set via the <code>data-effect-func="..."</code> attribute.
+                    Value for this parameter can be found on <a href="easing.html">this page</a>
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-6">
+                            <div data-role="carousel"
+                                 data-height="200"
+                                 data-cls-controls="fg-cyan"
+                                 data-effect="slide"
+                                 data-effect-func="easeOutBounce"
+                                 data-controls="false"
+                                 data-bullets="false"
+                                 data-auto-start="true"
+                                 data-period="3000"
+                                 data-duration="1000">
+                                <div class="slide" data-cover="images/carousel-bg-1.jpg"></div>
+                                <div class="slide" data-cover="images/carousel-bg-2.jpg"></div>
+                                <div class="slide" data-cover="images/carousel-bg-3.jpg"></div>
+                                <div class="slide" data-cover="images/carousel-bg-4.jpg"></div>
+                            </div>
+                        </div>
+                        <div class="cell-md-6">
+                            <div data-role="carousel"
+                                 data-height="200"
+                                 data-cls-controls="fg-cyan"
+                                 data-effect="slide"
+                                 data-effect-func="easeInQuart"
+                                 data-controls="false"
+                                 data-bullets="false"
+                                 data-auto-start="true"
+                                 data-period="3000"
+                                 data-duration="1000">
+                                <div class="slide" data-cover="images/carousel-bg-1.jpg"></div>
+                                <div class="slide" data-cover="images/carousel-bg-2.jpg"></div>
+                                <div class="slide" data-cover="images/carousel-bg-3.jpg"></div>
+                                <div class="slide" data-cover="images/carousel-bg-4.jpg"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="carousel"
+                        data-effect="slide"
+                        data-effect-func="easeOutBounce"&gt;
+                    ...
+                    &lt;/div&gt;
+
+                    &lt;div data-role="carousel"
+                        data-effect="slide"
+                        data-effect-func="easeInQuart"&gt;
+                    ...
+                    &lt;/div&gt;
+                </code></pre>
+
+
+
             </main>
         </div>
 

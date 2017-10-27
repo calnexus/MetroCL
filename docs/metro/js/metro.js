@@ -1888,7 +1888,7 @@ var d = new Date().getTime();
         };
     },
 
-    hiddenElementSize: function(el, inner){
+    hiddenElementSize: function(el, includeMargin){
         var clone = $(el).clone();
         clone.removeAttr("data-role").css({
             visibility: "hidden",
@@ -1896,8 +1896,13 @@ var d = new Date().getTime();
             display: "block"
         });
         $("body").append(clone);
-        var width = inner === true ? clone.innerWidth() : clone.outerWidth();
-        var height = inner === true ? clone.innerHeight() : clone.outerHeight();
+
+        if (includeMargin === undefined) {
+            includeMargin = false;
+        }
+
+        var width = clone.outerWidth(includeMargin);
+        var height = clone.outerHeight(includeMargin);
         clone.remove();
         return {
             width: width,
@@ -3032,6 +3037,7 @@ var Carousel = {
         this.elem  = elem;
         this.element = $(elem);
         this.height = 0;
+        this.width = 0;
         this.slides = [];
         this.current = null;
         this.currentIndex = null;
@@ -3054,31 +3060,41 @@ var Carousel = {
         direction: "left", //left, right
         duration: 1000,
         period: 5000,
-        stopOnMouseOver: true,
+        stopOnMouse: true,
 
         controls: true,
-        controlsPosition: "inside", // inside, outside
+        bullets: true,
+        bulletStyle: "square", // square, circle, rect, diamond
+        controlsOnMouse: false,
+        controlsOutside: false,
+        bulletsPosition: "default", // default, left, right
+
         controlPrev: '',
         controlNext: '',
+        clsCarousel: "",
+        clsSlides: "",
+        clsSlide: "",
         clsControls: "",
-        bullets: true,
-        bulletsStyle: "square", // square, circle, rect, diamond
-        bulletsPosition: "inside", // inside, outside
+        clsControlNext: "",
+        clsControlPrev: "",
+        clsBullets: "",
+        clsBullet: "",
+        clsBulletOn: "",
 
-        onChange: Metro.noop,
         onStop: Metro.noop,
         onStart: Metro.noop,
-        onSlideStop: Metro.noop,
-        onSlideStart: Metro.noop,
+        onPlay: Metro.noop,
         onSlideClick: Metro.noop,
         onBulletClick: Metro.noop,
         onMouseEnter: Metro.noop,
         onMouseLeave: Metro.noop,
+        onNextClick: Metro.noop,
+        onPrevClick: Metro.noop,
         onCarouselCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -3092,17 +3108,22 @@ var Carousel = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var slides = element.find(".slide");
         var slides_container = element.find(".slides");
-        var height = 0, maxHeight = 0;
+        var maxHeight = 0;
 
-        element.addClass("carousel");
+        element.addClass("carousel").addClass(o.clsCarousel);
+        if (o.controlsOutside === true) {
+            element.addClass("controls-outside");
+        }
 
         if (slides_container.length === 0) {
             slides_container = $("<div>").addClass("slides").appendTo(element);
             slides.appendTo(slides_container);
         }
+
+        slides.addClass(o.clsSlides);
 
         if (slides.length === 0) {
             Utils.exec(this.options.onCarouselCreate, [this.element]);
@@ -3111,20 +3132,35 @@ var Carousel = {
 
         $.each(slides, function(){
             var slide = $(this);
-            var slideSize = Utils.hiddenElementSize(slide);
-            if (maxHeight < slideSize.height) {
-                maxHeight = slideSize.height;
+            var height = slide.outerHeight(true);
+            if (maxHeight <= height) {
+                maxHeight = height;
             }
         });
 
-        this.height = String(o.height).indexOf("%") > -1 || Utils.isInt(o.height) === true ? o.height : maxHeight;
+        this.height = o.height !== "auto" ? o.height : maxHeight;
+        this.width = o.width;
 
-        element.css("height", this.height);
+        slides.outerHeight(this.height);
+
+        element.css({
+            height: this.height,
+            width: this.width
+        });
+
+        if (o.height !== "auto") {
+            element.addClass("fixed-size");
+        }
 
         this._createSlides();
         this._createControls();
         this._createBullets();
         this._createEvents();
+
+        if (o.controlsOnMouse === true) {
+            element.find("[class*=carousel-switch]").hide();
+            element.find(".carousel-bullets").hide();
+        }
 
         if (o.autoStart === true) {
             this._start();
@@ -3143,6 +3179,8 @@ var Carousel = {
                 that._slideTo('prior');
             }
         }, o.period);
+
+        Utils.exec(o.onStart, [element]);
     },
 
     _createSlides: function(){
@@ -3164,6 +3202,8 @@ var Carousel = {
                 left: "100%"
             });
 
+            slide.addClass(o.clsSlide);
+
             that.slides.push(slide);
         });
 
@@ -3173,11 +3213,15 @@ var Carousel = {
     },
 
     _createControls: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var next, prev;
 
-        next = $('<span/>').addClass('carousel-switch-next').addClass(o.clsControls).html("&gt;");
-        prev = $('<span/>').addClass('carousel-switch-prev').addClass(o.clsControls).html("&lt;");
+        if (o.controls === false) {
+            return ;
+        }
+
+        next = $('<span/>').addClass('carousel-switch-next').addClass(o.clsControls).addClass(o.clsControlNext).html(">");
+        prev = $('<span/>').addClass('carousel-switch-prev').addClass(o.clsControls).addClass(o.clsControlPrev).html("<");
 
         if (o.controlNext) {
             next.html(o.controlNext);
@@ -3192,19 +3236,26 @@ var Carousel = {
     },
 
     _createBullets: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var bullets, i;
 
         if (o.bullets === false) {
             return ;
         }
 
-        bullets = $('<div>').addClass("carousel-bullets");
+        bullets = $('<div>').addClass("carousel-bullets").addClass("bullet-style-"+o.bulletStyle).addClass(o.clsBullets);
+        if (o.bulletsPosition === 'default' || o.bulletsPosition === 'center') {
+            bullets.addClass("flex-justify-center");
+        } else if (o.bulletsPosition === 'left') {
+            bullets.addClass("flex-justify-start");
+        } else {
+            bullets.addClass("flex-justify-end");
+        }
 
         for (i = 0; i < this.slides.length; i++) {
-            var bullet = $('<span class="carousel-bullet"></span>').data("slide", i);
+            var bullet = $('<span>').addClass("carousel-bullet").addClass(o.clsBullet).data("slide", i);
             if (i === 0) {
-                bullet.addClass('bullet-on');
+                bullet.addClass('bullet-on').addClass(o.clsBulletOn);
             }
             bullet.appendTo(bullets);
         }
@@ -3215,33 +3266,66 @@ var Carousel = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on("click", ".carousel-bullet", function(){
-            if (that.isAnimate === false)
-                that._slideToSlide($(this).data('slide'));
+        element.on("click", ".carousel-bullet", function(e){
+            var bullet = $(this);
+            if (that.isAnimate === false) {
+                that._slideToSlide(bullet.data('slide'));
+                Utils.exec(o.onBulletClick, [e, bullet,  element])
+            }
         });
 
-        element.on("click", ".carousel-switch-next", function(){
-            if (that.isAnimate === false)
+        element.on("click", ".carousel-switch-next", function(e){
+            if (that.isAnimate === false) {
                 that._slideTo("next");
+                Utils.exec(o.onNextClick, [e, element])
+            }
         });
 
-        element.on("click", ".carousel-switch-prev", function(){
-            if (that.isAnimate === false)
+        element.on("click", ".carousel-switch-prev", function(e){
+            if (that.isAnimate === false) {
                 that._slideTo("prev");
+                Utils.exec(o.onPrevClick, [e, element])
+            }
         });
 
-        if (o.stopOnMouseOver === true && o.autoStart === true) {
-            element.on(Metro.eventEnter, function () {
+        if (o.stopOnMouse === true && o.autoStart === true) {
+            element.on(Metro.eventEnter, function (e) {
+                if (o.controlsOnMouse === true) {
+                    element.find("[class*=carousel-switch]").fadeIn();
+                    element.find(".carousel-bullets").fadeIn();
+                }
                 clearInterval(that.interval);
+                Utils.exec(o.onMouseEnter, [e, element])
             });
-            element.on(Metro.eventLeave, function () {
+            element.on(Metro.eventLeave, function (e) {
+                if (o.controlsOnMouse === true) {
+                    element.find("[class*=carousel-switch]").fadeOut();
+                    element.find(".carousel-bullets").fadeOut();
+                }
                 that._start();
+                Utils.exec(o.onMouseLeave, [e, element])
             });
         }
+
+        if (o.controlsOnMouse === true) {
+            element.on(Metro.eventEnter, function (e) {
+                element.find("[class*=carousel-switch]").fadeIn();
+                element.find(".carousel-bullets").fadeIn();
+            });
+            element.on(Metro.eventLeave, function (e) {
+                element.find("[class*=carousel-switch]").fadeOut();
+                element.find(".carousel-bullets").fadeOut();
+            });
+        }
+
+        element.on("click", ".slide", function(e){
+            var slide = $(this);
+            Utils.exec(o.onSlideClick, [e, slide, element])
+        })
     },
 
     _slideToSlide: function(index){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var current, next, to;
 
         if (this.slides[index] === undefined) {
@@ -3260,12 +3344,12 @@ var Carousel = {
 
         this._effect(current, next, o.effect, to);
 
-        element.find(".carousel-bullet").removeClass("bullet-on");
-        element.find(".carousel-bullet:nth-child("+(this.currentIndex+1)+")").addClass("bullet-on");
+        element.find(".carousel-bullet").removeClass("bullet-on").removeClass(o.clsBulletOn);
+        element.find(".carousel-bullet:nth-child("+(this.currentIndex+1)+")").addClass("bullet-on").addClass(o.clsBulletOn);
     },
 
     _slideTo: function(to){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var current, next;
 
         if (to === undefined) {
@@ -3275,14 +3359,14 @@ var Carousel = {
         current = this.slides[this.currentIndex];
 
         if (to === "next") {
-            this.currentIndex--;
-            if (this.currentIndex < 0) {
-                this.currentIndex = this.slides.length - 1;
-            }
-        } else {
             this.currentIndex++;
             if (this.currentIndex >= this.slides.length) {
                 this.currentIndex = 0;
+            }
+        } else {
+            this.currentIndex--;
+            if (this.currentIndex < 0) {
+                this.currentIndex = this.slides.length - 1;
             }
         }
 
@@ -3290,8 +3374,8 @@ var Carousel = {
 
         this._effect(current, next, o.effect, to);
 
-        element.find(".carousel-bullet").removeClass("bullet-on");
-        element.find(".carousel-bullet:nth-child("+(this.currentIndex+1)+")").addClass("bullet-on");
+        element.find(".carousel-bullet").removeClass("bullet-on").removeClass(o.clsBulletOn);
+        element.find(".carousel-bullet:nth-child("+(this.currentIndex+1)+")").addClass("bullet-on").addClass(o.clsBulletOn);
     },
 
     _effect: function(current, next, effect, to){
@@ -3368,10 +3452,12 @@ var Carousel = {
 
     stop: function () {
         clearInterval(this.interval);
+        Utils.exec(o.onStop, [element])
     },
 
     play: function(){
         this._start();
+        Utils.exec(o.onPlay, [element])
     },
 
     changeAttribute: function(attributeName){

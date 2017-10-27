@@ -12,6 +12,7 @@ body {
     line-height: 1.5;
     font-style: normal;
     font-weight: 400;
+    color: @bodyColor;
 }
 
 .text {
@@ -114,8 +115,8 @@ body {
 .sub-header, .h4, h4,
 .alt-header, .h5, h5,
 .sub-alt-header, .h6, h6 {
-    color: lighten(@black, 13%);
-    .px2rem(margin-bottom, 8px);
+    color: inherit;
+    margin-bottom: .5rem;
     line-height: 1.1;
 
     & > small, & > .small {
