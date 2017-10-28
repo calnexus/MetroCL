@@ -3080,12 +3080,14 @@ var Carousel = {
         clsBullets: "",
         clsBullet: "",
         clsBulletOn: "",
+        clsThumbOn: "",
 
         onStop: Metro.noop,
         onStart: Metro.noop,
         onPlay: Metro.noop,
         onSlideClick: Metro.noop,
         onBulletClick: Metro.noop,
+        onThumbClick: Metro.noop,
         onMouseEnter: Metro.noop,
         onMouseLeave: Metro.noop,
         onNextClick: Metro.noop,
@@ -3270,21 +3272,21 @@ var Carousel = {
             var bullet = $(this);
             if (that.isAnimate === false) {
                 that._slideToSlide(bullet.data('slide'));
-                Utils.exec(o.onBulletClick, [e, bullet,  element])
+                Utils.exec(o.onBulletClick, [bullet,  element, e])
             }
         });
 
         element.on("click", ".carousel-switch-next", function(e){
             if (that.isAnimate === false) {
                 that._slideTo("next");
-                Utils.exec(o.onNextClick, [e, element])
+                Utils.exec(o.onNextClick, [element, e])
             }
         });
 
         element.on("click", ".carousel-switch-prev", function(e){
             if (that.isAnimate === false) {
                 that._slideTo("prev");
-                Utils.exec(o.onPrevClick, [e, element])
+                Utils.exec(o.onPrevClick, [element, e])
             }
         });
 
@@ -3295,7 +3297,7 @@ var Carousel = {
                     element.find(".carousel-bullets").fadeIn();
                 }
                 clearInterval(that.interval);
-                Utils.exec(o.onMouseEnter, [e, element])
+                Utils.exec(o.onMouseEnter, [element, e])
             });
             element.on(Metro.eventLeave, function (e) {
                 if (o.controlsOnMouse === true) {
@@ -3303,16 +3305,16 @@ var Carousel = {
                     element.find(".carousel-bullets").fadeOut();
                 }
                 that._start();
-                Utils.exec(o.onMouseLeave, [e, element])
+                Utils.exec(o.onMouseLeave, [element, e])
             });
         }
 
         if (o.controlsOnMouse === true) {
-            element.on(Metro.eventEnter, function (e) {
+            element.on(Metro.eventEnter, function () {
                 element.find("[class*=carousel-switch]").fadeIn();
                 element.find(".carousel-bullets").fadeIn();
             });
-            element.on(Metro.eventLeave, function (e) {
+            element.on(Metro.eventLeave, function () {
                 element.find("[class*=carousel-switch]").fadeOut();
                 element.find(".carousel-bullets").fadeOut();
             });
@@ -3320,8 +3322,8 @@ var Carousel = {
 
         element.on("click", ".slide", function(e){
             var slide = $(this);
-            Utils.exec(o.onSlideClick, [e, slide, element])
-        })
+            Utils.exec(o.onSlideClick, [slide, element, e])
+        });
     },
 
     _slideToSlide: function(index){
@@ -3452,12 +3454,12 @@ var Carousel = {
 
     stop: function () {
         clearInterval(this.interval);
-        Utils.exec(o.onStop, [element])
+        Utils.exec(this.options.onStop, [this.element])
     },
 
     play: function(){
         this._start();
-        Utils.exec(o.onPlay, [element])
+        Utils.exec(this.options.onPlay, [this.element])
     },
 
     changeAttribute: function(attributeName){
