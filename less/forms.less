@@ -504,6 +504,20 @@ label {
             }
         }
     }
+
+    .prepend {
+        padding: .5rem .75rem;
+        background-color: @light;
+        color: @dark;
+        line-height: 1.25rem;
+    }
+
+    .prepend {order: 1}
+    input {order: 2;}
+
+    &[dir=rtl], &.rtl {
+        flex-flow: row-reverse nowrap;
+    }
 }
 
 .inline-form {

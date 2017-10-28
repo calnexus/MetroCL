@@ -12,6 +12,12 @@ var Select = {
         return this;
     },
     options: {
+        clsElement: "",
+        clsSelect: "",
+        clsPrepend: "",
+        clsOption: "",
+        clsOptionGroup: "",
+        prepend: "",
         copyInlineStyles: true,
         dropHeight: 200,
         disabled: false,
@@ -38,7 +44,7 @@ var Select = {
 
         var prev = element.prev();
         var parent = element.parent();
-        var container = $("<div>").addClass("select " + element[0].className);
+        var container = $("<div>").addClass("select " + element[0].className).addClass(o.clsElement);
         var multiple = element.prop("multiple");
         var select_id = Utils.uniqueId();
 
@@ -51,6 +57,7 @@ var Select = {
         }
 
         element.appendTo(container);
+        element.addClass(o.clsSelect);
 
         if (multiple === false) {
             var input = $("<input>").attr("type", "text").attr("name", "__" + element.attr("name") + "__").prop("readonly", true);
@@ -61,7 +68,7 @@ var Select = {
                 var opt = this, option = $(this);
                 var l, a;
 
-                l = $("<li>").data("text", opt.text).data('value', opt.value).appendTo(list);
+                l = $("<li>").addClass(o.clsOption).data("text", opt.text).data('value', opt.value).appendTo(list);
                 a = $("<a>").html(opt.text).appendTo(l).addClass(opt.className);
 
                 if (option.is(":selected")) {
@@ -75,15 +82,11 @@ var Select = {
                 var val = $(this).data('value');
                 var txt = $(this).data('text');
                 var list_obj = list.data('dropdown');
-
-                console.log(val, txt);
-
                 input.val(txt).trigger("change");
                 element.val(val);
                 element.trigger("change");
                 list_obj.close();
                 Utils.exec(o.onChange, [val]);
-                //console.log(element.val());
             });
             container.on("click", function(e){
                 e.preventDefault();
@@ -98,6 +101,11 @@ var Select = {
             list.dropdown({
                 toggleElement: "#"+select_id
             });
+        }
+
+        if (o.prepend !== "") {
+            var prepend = Utils.isTag(o.prepend) ? $(o.prepend) : $("<span>"+o.prepend+"</span>");
+            prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
         }
 
         if (o.copyInlineStyles === true) {
