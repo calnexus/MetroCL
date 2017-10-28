@@ -5875,7 +5875,7 @@ var Master = {
         next.stop(true, true);
         this.isAnimate = true;
 
-        pages.css({
+        pages.animate({
             height: next.outerHeight(true)
         });
 
