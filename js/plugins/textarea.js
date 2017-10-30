@@ -12,6 +12,7 @@ var Textarea = {
         return this;
     },
     options: {
+        prepend: "",
         copyInlineStyles: true,
         clearButton: true,
         clearButtonIcon: "<span class='mif-cross'></span>",
@@ -84,6 +85,11 @@ var Textarea = {
 
         if (element.attr('dir') === 'rtl' ) {
             container.addClass("rtl").attr("dir", "rtl");
+        }
+
+        if (o.prepend !== "") {
+            var prepend = Utils.isTag(o.prepend) ? $(o.prepend) : $("<span>"+o.prepend+"</span>");
+            prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
         }
 
         element[0].className = '';

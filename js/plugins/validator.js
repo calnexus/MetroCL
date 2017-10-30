@@ -128,6 +128,8 @@ var ValidatorFuncs = {
 
             if (cb_ok !== undefined) Utils.exec(cb_ok, [input, input.val()]);
         }
+
+        return true;
     }
 };
 

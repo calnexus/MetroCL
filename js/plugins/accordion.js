@@ -45,6 +45,8 @@ var Accordion = {
         var active = element.children(".frame.active");
         var frame_to_open;
 
+        element.addClass("accordion");
+
         if (active.length === 0) {
             frame_to_open = frames[0];
         } else {
@@ -56,6 +58,13 @@ var Accordion = {
         if (o.showActive === true || o.oneFrame === true) {
             this._openFrame(frame_to_open);
         }
+
+        this._createEvents();
+    },
+
+    _createEvents: function(){
+        var that = this, element = this.element, o = this.options;
+        var active = element.children(".frame.active");
 
         element.on("click", ".heading", function(){
             var heading = $(this);

@@ -104,8 +104,8 @@ var Dropdown = {
             el.trigger("onClose", null, el);
             toggle.removeClass('active-toggle').removeClass("active-control");
 
-            Utils.exec(options.onUp, [el]);
         });
+        Utils.exec(options.onUp, [el]);
     },
 
     _open: function(el){
@@ -120,9 +120,8 @@ var Dropdown = {
         el.slideDown(options.duration, function(){
             el.trigger("onOpen", null, el);
             toggle.addClass('active-toggle').addClass("active-control");
-
-            Utils.exec(options.onDrop, [el]);
         });
+        Utils.exec(options.onDrop, [el]);
     },
 
     close: function(){

@@ -272,11 +272,53 @@
                 </p>
                 <div class="example pb-0">
                     <form  class="mb-2">
-                        <select class="mb-1" data-role="select">
-                            <option class="fg-cyan">One</option>
-                            <option class="text-bold fg-red">Two</option>
-                            <option selected class="fg-green">Three</option>
-                        </select>
+                        <div class="row">
+                            <div class="cell-md-6">
+                                <select data-role="select">
+                                    <option class="fg-cyan" value="1">One</option>
+                                    <option selected class="text-bold fg-red" value="2">Two</option>
+                                    <option class="fg-green" value="3">Three</option>
+                                </select>
+                            </div>
+                            <div class="cell-md-6">
+                                <select data-role="select">
+                                    <optgroup label="Физические серверы">
+                                        <option value="dedicated_corei3_hp">Core i3 (hp)</option>
+                                        <option value="dedicated_pentium_hp">Pentium (hp)</option>
+                                        <option value="dedicated_smart_corei3_hp">Smart Core i3 (hp)</option>
+                                        <option value="dedicated_smart_pentium_hp">Smart Pentium (hp)</option>
+                                        <option value="dedicated_smart_xeon_hp">Smart Xeon (hp)</option>
+                                        <option value="dedicated_xeon_hp">Xeon (hp)</option>
+                                        <option value="dedicated_xeon">Xeon</option>
+                                        <option value="dedicated_xeon_sata">Xeon SATA</option>
+                                        <option value="dedicated_dual_xeon">Dual Xeon</option>
+                                        <option value="dedicated_dual_xeon_sata">Dual Xeon SATA</option>
+                                        <option value="dedicated_smart_xeon">Smart Xeon</option>
+                                        <option value="dedicated_smart_xeon_sata">Smart Xeon SATA</option>
+                                        <option value="dedicated_smart_dual_xeon">Smart Dual Xeon</option>
+                                        <option value="dedicated_smart_dual_xeon_sata">Smart Dual Xeon SATA</option>
+                                        <option value="colo_new_2u">Colocation 2U</option>
+                                        <option value="colo_new_4u">Colocation 4U</option>
+                                    </optgroup>
+                                    <optgroup label="Виртуальный хостинг">
+                                        <option value="mini">Mini</option>
+                                        <option value="site">Site</option>
+                                        <option value="portal">Portal</option>
+                                    </optgroup>
+                                    <optgroup label="Виртуальные серверы">
+                                        <option value="evps0">eVPS-TEST (30 дней)</option>
+                                        <option value="evps1" selected="selected">eVPS-1</option>
+                                        <option value="evps2">eVPS-2</option>
+                                        <option value="evps4">eVPS-4</option>
+                                        <option value="evps8">eVPS-8</option>
+                                        <option value="evps16">eVPS-16</option>
+                                        <option value="evps32">eVPS-32</option>
+                                        <option value="evps64">eVPS-64</option>
+                                        <option value="evps128">eVPS-128</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
                     </form>
                 </div>
                 <pre class=""><code>

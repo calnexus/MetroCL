@@ -14,9 +14,9 @@ var Master = {
     },
 
     options: {
-        effect: "switch", // slide, fade, switch, slowdown, custom
+        effect: "slide", // slide, fade, switch, slowdown, custom
         effectFunc: "linear",
-        duration: 1000,
+        duration: METRO_ANIMATION_DURATION,
 
         controlPrev: "<",
         controlNext: ">",
@@ -124,7 +124,7 @@ var Master = {
                 left: "100%"
             });
 
-            p.addClass(o.clsPage);
+            p.addClass(o.clsPage).hide(0);
 
             that.pages.push(p);
         });
@@ -132,7 +132,7 @@ var Master = {
         page.appendTo(pages);
 
         this.currentIndex = 0;
-        this.pages[this.currentIndex].css("left", "0");
+        this.pages[this.currentIndex].css("left", "0").show(0);
 
         setTimeout(function(){
             pages.css({
@@ -145,6 +145,9 @@ var Master = {
         var that = this, element = this.element, o = this.options;
 
         element.on("click", ".controls .prev", function(){
+            if (that.isAnimate === true) {
+                return ;
+            }
             if (
                 Utils.exec(o.onBeforePrev, [that.currentIndex, that.pages[that.currentIndex], element]) === true &&
                 Utils.exec(o.onBeforePage, ["next", that.currentIndex, that.pages[that.currentIndex], element]) === true
@@ -154,6 +157,9 @@ var Master = {
         });
 
         element.on("click", ".controls .next", function(){
+            if (that.isAnimate === true) {
+                return ;
+            }
             if (
                 Utils.exec(o.onBeforeNext, [that.currentIndex, that.pages[that.currentIndex], element]) === true &&
                 Utils.exec(o.onBeforePage, ["next", that.currentIndex, that.pages[that.currentIndex], element]) === true
@@ -228,63 +234,52 @@ var Master = {
             this._enableControl("prev", true);
         }
 
-        current.stop(true, true);
-        next.stop(true, true);
         this.isAnimate = true;
 
-        pages.animate({
-            height: next.outerHeight(true)
-        });
+        setTimeout(function(){
+            pages.animate({
+                height: next.outerHeight(true) + 2
+            });
+        },0);
+
+        pages.css("overflow", "hidden");
 
         function _slide(){
-            setTimeout(function(){that.isAnimate = false;}, o.duration);
-            current.animate({
+            current.stop(true, true).animate({
                 left: to === "next" ? -out : out
-            }, o.duration, o.effectFunc);
-            next.css({
+            }, o.duration, o.effectFunc, function(){
+                current.hide(0);
+            });
+
+            next.stop(true, true).css({
                 left: to === "next" ? out : -out
-            }).animate({
+            }).show(0).animate({
                 left: 0
             }, o.duration, o.effectFunc, function(){
+                pages.css("overflow", "initial");
+                that.isAnimate = false;
             });
         }
 
         function _switch(){
-            setTimeout(function(){that.isAnimate = false;}, 0);
             current.hide(0);
-            next.hide(0).css("left", 0).show(0);
-        }
 
-        function _fade(){
-            setTimeout(function(){that.isAnimate = false;}, o.duration);
-            current.fadeOut(o.duration);
-            next.hide(0).css("left", 0).fadeIn(o.duration, function(){
+            next.hide(0).css("left", 0).show(0, function(){
+                pages.css("overflow", "initial");
+                that.isAnimate = false;
             });
         }
 
-        function _slowdown(){
-            setTimeout(function(){that.isAnimate = false;}, o.duration);
-            var options = {
-                'duration': o.duration,
-                'easing': 'doubleSqrt'
-            };
-            $.easing.doubleSqrt = function(t) {
-                return Math.sqrt(Math.sqrt(t));
-            };
+        function _fade(){
+            current.fadeOut(o.duration);
 
-            current.animate({
-                left: to === "next" ? -out : out
-            }, options);
-            next.css({
-                left: to === "next" ? out : -out
-            }).animate({
-                left: 0
-            }, options, function(){
+            next.hide(0).css("left", 0).fadeIn(o.duration, function(){
+                pages.css("overflow", "initial");
+                that.isAnimate = false;
             });
         }
 
         switch (o.effect) {
-            case "slowdown": _slowdown(); break;
             case "fade": _fade(); break;
             case "switch": _switch(); break;
             default: _slide();
@@ -303,8 +298,24 @@ var Master = {
         this._slideTo("prev");
     },
 
-    changeAttribute: function(attributeName){
+    changeEffect: function(){
+        this.options.effect = this.element.attr("data-effect");
+    },
 
+    changeEffectFunc: function(){
+        this.options.effectFunc = this.element.attr("data-effect-func");
+    },
+
+    changeEffectDuration: function(){
+        this.options.duration = this.element.attr("data-duration");
+    },
+
+    changeAttribute: function(attributeName){
+        switch (attributeName) {
+            case "data-effect": this.changeEffect(); break;
+            case "data-effect-func": this.changeEffectFunc(); break;
+            case "data-duration": this.changeEffectDuration(); break;
+        }
     }
 };
 

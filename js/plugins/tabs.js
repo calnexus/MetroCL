@@ -36,7 +36,7 @@ var Tabs = {
         var that = this, element = this.element, o = this.options;
         var prev = element.prev();
         var parent = element.parent();
-        var container = $("<div>").addClass("tabs-wrapper " + element[0].className);
+        var container = $("<div>").addClass("tabs tabs-wrapper " + element[0].className);
         var expandButton, expandTitle;
 
         element[0].className = "";

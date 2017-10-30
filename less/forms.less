@@ -315,7 +315,7 @@ label {
     display: flex;
     justify-content: space-between;
     margin-bottom: 0;
-    padding: 0 0 0 .5rem;
+    padding: 0;
 
     input[type=file] {
         position: absolute;
@@ -327,17 +327,37 @@ label {
     .caption {
         .px2rem(line-height, 35px);
         display: block;
-        order: 1;
-    }
-
-    button {
-        order: 2;
+        padding: 0 .5rem;
     }
 
     &.disabled {
         button {
             background-color: @light;
             color: darken(@light, 10%);
+        }
+    }
+
+    .prepend {
+        padding: .5rem .75rem;
+        background-color: @light;
+        color: @dark;
+        line-height: 1.25rem;
+    }
+
+    .prepend {order: 1}
+    .caption {order: 2;}
+    button {
+        order: 3;
+        margin-left: auto;
+    }
+
+    &[dir=rtl], &.rtl {
+        .prepend {order: 3}
+        .caption {order: 2;}
+        button {
+            order: 1;
+            margin-left: 0;
+            margin-right: auto;
         }
     }
 }
@@ -414,8 +434,11 @@ label {
 }
 
 .textarea {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    width: 100%;
     padding: 0;
-    position: relative;
 
     textarea {
         min-height: 4rem;
@@ -445,7 +468,18 @@ label {
         }
     }
 
+    .prepend {
+        padding: .5rem .75rem;
+        background-color: @light;
+        color: @dark;
+        line-height: 1.25rem;
+    }
+
+    .prepend {order: 1}
+    textarea {order: 2;}
+
     &[dir=rtl], &.rtl {
+        flex-flow: row-reverse nowrap;
         .clear-button {
             right: auto;
             left: .25rem;
@@ -454,9 +488,13 @@ label {
 }
 
 .select {
-    display: block;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    width: 100%;
     padding: 0;
     cursor: pointer;
+    position: relative;
 
     select {
         position: absolute;
@@ -484,6 +522,7 @@ label {
     .d-menu {
         width: 100%;
         overflow-y: auto;
+        top: 100%;
     }
 
     &.focused {
@@ -517,6 +556,21 @@ label {
 
     &[dir=rtl], &.rtl {
         flex-flow: row-reverse nowrap;
+    }
+
+    .group-title {
+        background-color: #f6f7f8;
+        font-size: .75rem;
+        line-height: .875rem;
+        padding: .25rem .5rem .25rem 1rem;
+        border: 0;
+        color: #646464;
+        font-weight: bold;
+        &:hover {
+            background-color: #f6f7f8;
+            cursor: default;
+            border: 0;
+        }
     }
 }
 

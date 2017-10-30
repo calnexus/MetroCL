@@ -1,0 +1,136 @@
+.scheme-mirohost {
+  line-height: 1.375rem;
+  font-size: 0.875rem;
+  font-family: 'Open Sans', sans-serif;
+  color: #000000;
+  background-color: #ffffff;
+}
+.scheme-mirohost .bg-primary {
+  background-color: #b00015;
+}
+.scheme-mirohost .bg-secondary {
+  background-color: #212121;
+}
+.scheme-mirohost .bg-third {
+  background-color: #000000;
+}
+.scheme-mirohost .bg-primary,
+.scheme-mirohost .bg-secondary,
+.scheme-mirohost .bg-third {
+  color: #ffffff;
+}
+.scheme-mirohost input[type=text],
+.scheme-mirohost input[type=password],
+.scheme-mirohost input[type=tel],
+.scheme-mirohost input[type=datetime-local],
+.scheme-mirohost input[type=email],
+.scheme-mirohost input[type=file],
+.scheme-mirohost input[type=month],
+.scheme-mirohost input[type=number],
+.scheme-mirohost input[type=search],
+.scheme-mirohost input[type=time],
+.scheme-mirohost input[type=url],
+.scheme-mirohost input[type=week],
+.scheme-mirohost input[type=file],
+.scheme-mirohost select,
+.scheme-mirohost textarea,
+.scheme-mirohost .file,
+.scheme-mirohost .input,
+.scheme-mirohost .textarea,
+.scheme-mirohost .select {
+  border-color: #b00015 !important;
+  -webkit-box-shadow: none!important;
+          box-shadow: none!important;
+}
+.scheme-mirohost .input .prepend,
+.scheme-mirohost .select .prepend,
+.scheme-mirohost .textarea .prepend,
+.scheme-mirohost .file .prepend {
+  background-color: #b00015;
+  color: #ffffff;
+}
+.scheme-mirohost .file .button {
+  background-color: #b00015;
+  color: #ffffff;
+}
+.scheme-mirohost .checkbox .check,
+.scheme-mirohost .radio .check {
+  border-color: #6f6f6f;
+}
+.scheme-mirohost .checkbox .check::before,
+.scheme-mirohost .radio .check::before {
+  border-color: #b00015;
+}
+.scheme-mirohost .checkbox input:focus ~ .check,
+.scheme-mirohost .radio input:focus ~ .check {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.scheme-mirohost .checkbox input:checked ~ .check,
+.scheme-mirohost .radio input:checked ~ .check {
+  border-color: #b00015;
+}
+.scheme-mirohost .checkbox input:disabled ~ .check,
+.scheme-mirohost .radio input:disabled ~ .check {
+  border-color: #d5d5d5;
+}
+.scheme-mirohost .radio .check {
+  border-color: #6f6f6f;
+}
+.scheme-mirohost .radio .check::before {
+  border-color: transparent;
+  background-color: #b00015;
+}
+.scheme-mirohost .switch .check {
+  outline-color: #6f6f6f;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.scheme-mirohost .switch .check::after {
+  outline-color: #7d000f;
+  border-color: #7d000f;
+  background-color: #7d000f;
+}
+.scheme-mirohost .switch input:not(:disabled):checked ~ .check {
+  background-color: #b00015;
+}
+.scheme-mirohost .switch input:not(:disabled):not(:checked) ~ .check::after {
+  outline-color: #565656;
+  border-color: #565656;
+  background-color: #565656;
+}
+.scheme-mirohost .topbar {
+  background-color: #b00015;
+}
+.scheme-mirohost .accordion .frame .heading {
+  background-color: #b00015;
+  color: #ffffff;
+}
+.scheme-mirohost .accordion .frame {
+  margin: 0;
+}
+.scheme-mirohost .accordion .frame + .frame {
+  border-top: 1px #7d000f solid;
+}
+.scheme-mirohost .accordion.type2 .frame .content {
+  background-color: #212121;
+  color: #ffffff;
+}
+.scheme-mirohost .accordion.type3 .frame .content {
+  background-color: #000000;
+  color: #ffffff;
+}
+.scheme-mirohost .tabs[class*=tabs-expand] > ul,
+.scheme-mirohost .tabs[class*=tabs-expand] > ul > li {
+  background-color: #000000;
+  color: #ffffff;
+  border-bottom-color: #b00015;
+}
+.scheme-mirohost .tabs[class*=tabs-expand] > ul > li:hover {
+  border: none;
+  background-color: #212121;
+}
+.scheme-mirohost .tabs[class*=tabs-expand] > ul > li.active {
+  border: none;
+  background-color: #b00015;
+}

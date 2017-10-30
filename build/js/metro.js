@@ -2118,6 +2118,8 @@ var Accordion = {
         var active = element.children(".frame.active");
         var frame_to_open;
 
+        element.addClass("accordion");
+
         if (active.length === 0) {
             frame_to_open = frames[0];
         } else {
@@ -2129,6 +2131,13 @@ var Accordion = {
         if (o.showActive === true || o.oneFrame === true) {
             this._openFrame(frame_to_open);
         }
+
+        this._createEvents();
+    },
+
+    _createEvents: function(){
+        var that = this, element = this.element, o = this.options;
+        var active = element.children(".frame.active");
 
         element.on("click", ".heading", function(){
             var heading = $(this);
@@ -5097,8 +5106,8 @@ var Dropdown = {
             el.trigger("onClose", null, el);
             toggle.removeClass('active-toggle').removeClass("active-control");
 
-            Utils.exec(options.onUp, [el]);
         });
+        Utils.exec(options.onUp, [el]);
     },
 
     _open: function(el){
@@ -5113,9 +5122,8 @@ var Dropdown = {
         el.slideDown(options.duration, function(){
             el.trigger("onOpen", null, el);
             toggle.addClass('active-toggle').addClass("active-control");
-
-            Utils.exec(options.onDrop, [el]);
         });
+        Utils.exec(options.onDrop, [el]);
     },
 
     close: function(){
@@ -5158,6 +5166,8 @@ var File = {
         return this;
     },
     options: {
+        copyInlineStyles: true,
+        prepend: "",
         caption: "Choose file",
         disabled: false,
         onSelect: Metro.noop,
@@ -5217,6 +5227,17 @@ var File = {
         }
 
         element[0].className = '';
+
+        if (o.prepend !== "") {
+            var prepend = Utils.isTag(o.prepend) ? $(o.prepend) : $("<span>"+o.prepend+"</span>");
+            prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
+        }
+
+        if (o.copyInlineStyles === true) {
+            for (var i = 0, l = element[0].style.length; i < l; i++) {
+                container.css(element[0].style[i], element.css(element[0].style[i]));
+            }
+        }
 
         if (o.disabled === true || element.is(":disabled")) {
             this.disable();
@@ -5657,9 +5678,9 @@ var Master = {
     },
 
     options: {
-        effect: "switch", // slide, fade, switch, slowdown, custom
+        effect: "slide", // slide, fade, switch, slowdown, custom
         effectFunc: "linear",
-        duration: 1000,
+        duration: METRO_ANIMATION_DURATION,
 
         controlPrev: "<",
         controlNext: ">",
@@ -5767,7 +5788,7 @@ var Master = {
                 left: "100%"
             });
 
-            p.addClass(o.clsPage);
+            p.addClass(o.clsPage).hide(0);
 
             that.pages.push(p);
         });
@@ -5775,7 +5796,7 @@ var Master = {
         page.appendTo(pages);
 
         this.currentIndex = 0;
-        this.pages[this.currentIndex].css("left", "0");
+        this.pages[this.currentIndex].css("left", "0").show(0);
 
         setTimeout(function(){
             pages.css({
@@ -5788,6 +5809,9 @@ var Master = {
         var that = this, element = this.element, o = this.options;
 
         element.on("click", ".controls .prev", function(){
+            if (that.isAnimate === true) {
+                return ;
+            }
             if (
                 Utils.exec(o.onBeforePrev, [that.currentIndex, that.pages[that.currentIndex], element]) === true &&
                 Utils.exec(o.onBeforePage, ["next", that.currentIndex, that.pages[that.currentIndex], element]) === true
@@ -5797,6 +5821,9 @@ var Master = {
         });
 
         element.on("click", ".controls .next", function(){
+            if (that.isAnimate === true) {
+                return ;
+            }
             if (
                 Utils.exec(o.onBeforeNext, [that.currentIndex, that.pages[that.currentIndex], element]) === true &&
                 Utils.exec(o.onBeforePage, ["next", that.currentIndex, that.pages[that.currentIndex], element]) === true
@@ -5871,63 +5898,52 @@ var Master = {
             this._enableControl("prev", true);
         }
 
-        current.stop(true, true);
-        next.stop(true, true);
         this.isAnimate = true;
 
-        pages.animate({
-            height: next.outerHeight(true)
-        });
+        setTimeout(function(){
+            pages.animate({
+                height: next.outerHeight(true) + 2
+            });
+        },0);
+
+        pages.css("overflow", "hidden");
 
         function _slide(){
-            setTimeout(function(){that.isAnimate = false;}, o.duration);
-            current.animate({
+            current.stop(true, true).animate({
                 left: to === "next" ? -out : out
-            }, o.duration, o.effectFunc);
-            next.css({
+            }, o.duration, o.effectFunc, function(){
+                current.hide(0);
+            });
+
+            next.stop(true, true).css({
                 left: to === "next" ? out : -out
-            }).animate({
+            }).show(0).animate({
                 left: 0
             }, o.duration, o.effectFunc, function(){
+                pages.css("overflow", "initial");
+                that.isAnimate = false;
             });
         }
 
         function _switch(){
-            setTimeout(function(){that.isAnimate = false;}, 0);
             current.hide(0);
-            next.hide(0).css("left", 0).show(0);
-        }
 
-        function _fade(){
-            setTimeout(function(){that.isAnimate = false;}, o.duration);
-            current.fadeOut(o.duration);
-            next.hide(0).css("left", 0).fadeIn(o.duration, function(){
+            next.hide(0).css("left", 0).show(0, function(){
+                pages.css("overflow", "initial");
+                that.isAnimate = false;
             });
         }
 
-        function _slowdown(){
-            setTimeout(function(){that.isAnimate = false;}, o.duration);
-            var options = {
-                'duration': o.duration,
-                'easing': 'doubleSqrt'
-            };
-            $.easing.doubleSqrt = function(t) {
-                return Math.sqrt(Math.sqrt(t));
-            };
+        function _fade(){
+            current.fadeOut(o.duration);
 
-            current.animate({
-                left: to === "next" ? -out : out
-            }, options);
-            next.css({
-                left: to === "next" ? out : -out
-            }).animate({
-                left: 0
-            }, options, function(){
+            next.hide(0).css("left", 0).fadeIn(o.duration, function(){
+                pages.css("overflow", "initial");
+                that.isAnimate = false;
             });
         }
 
         switch (o.effect) {
-            case "slowdown": _slowdown(); break;
             case "fade": _fade(); break;
             case "switch": _switch(); break;
             default: _slide();
@@ -5946,8 +5962,24 @@ var Master = {
         this._slideTo("prev");
     },
 
-    changeAttribute: function(attributeName){
+    changeEffect: function(){
+        this.options.effect = this.element.attr("data-effect");
+    },
 
+    changeEffectFunc: function(){
+        this.options.effectFunc = this.element.attr("data-effect-func");
+    },
+
+    changeEffectDuration: function(){
+        this.options.duration = this.element.attr("data-duration");
+    },
+
+    changeAttribute: function(attributeName){
+        switch (attributeName) {
+            case "data-effect": this.changeEffect(); break;
+            case "data-effect-func": this.changeEffectFunc(); break;
+            case "data-duration": this.changeEffectDuration(); break;
+        }
     }
 };
 
@@ -6514,6 +6546,7 @@ var Select = {
         return this;
     },
     options: {
+        duration: METRO_ANIMATION_DURATION,
         clsElement: "",
         clsSelect: "",
         clsPrepend: "",
@@ -6524,7 +6557,9 @@ var Select = {
         dropHeight: 200,
         disabled: false,
         onChange: Metro.noop,
-        onSelectCreate: Metro.noop
+        onSelectCreate: Metro.noop,
+        onUp: Metro.noop,
+        onDrop: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -6542,6 +6577,11 @@ var Select = {
     },
 
     _create: function(){
+        this._createSelect();
+        this._createEvents();
+    },
+
+    _createSelect: function(){
         var that = this, element = this.element, o = this.options;
 
         var prev = element.prev();
@@ -6566,42 +6606,61 @@ var Select = {
             var list = $("<ul>").addClass("d-menu").css({
                 "max-height": o.dropHeight
             });
-            $.each(element.children(), function(){
-                var opt = this, option = $(this);
+
+            function addOption(item, parent){
+                var option = $(item);
                 var l, a;
 
-                l = $("<li>").addClass(o.clsOption).data("text", opt.text).data('value', opt.value).appendTo(list);
-                a = $("<a>").html(opt.text).appendTo(l).addClass(opt.className);
+                l = $("<li>").addClass(o.clsOption).data("text", item.text).data('value', item.value).appendTo(list);
+                a = $("<a>").html(item.text).appendTo(l).addClass(item.className);
 
                 if (option.is(":selected")) {
-                    input.val(opt.text).trigger("change");
+                    element.val(item.value);
+                    input.val(item.text).trigger("change");
+                    element.trigger("change");
                 }
 
                 a.appendTo(l);
-                l.appendTo(list);
-            });
-            list.on("click", "li", function(){
-                var val = $(this).data('value');
-                var txt = $(this).data('text');
-                var list_obj = list.data('dropdown');
-                input.val(txt).trigger("change");
-                element.val(val);
-                element.trigger("change");
-                list_obj.close();
-                Utils.exec(o.onChange, [val]);
-            });
-            container.on("click", function(e){
-                e.preventDefault();
-                e.stopPropagation();
-            });
+                l.appendTo(parent);
+            }
 
-            input.on("blur", function(){container.removeClass("focused");});
-            input.on("focus", function(){container.addClass("focused");});
+            function addOptionGroup(item, parent){
+                var group = $(item);
+                var optgroup = $("<li>").html(item.label).addClass("group-title").appendTo(parent);
+                $.each(group.children(), function(){
+                    addOption(this, parent);
+                })
+            }
+
+            $.each(element.children(), function(){
+                if (this.tagName === "OPTION") {
+                    addOption(this, list);
+                } else if (this.tagName === "OPTGROUP") {
+                    addOptionGroup(this, list);
+                } else {
+
+                }
+            });
 
             container.append(input);
             container.append(list);
             list.dropdown({
-                toggleElement: "#"+select_id
+                duration: o.duration,
+                toggleElement: "#"+select_id,
+                onDrop: function(){
+                    var selects = $(".select ul");
+                    $.each(selects, function(){
+                        var l = $(this);
+                        if (l.is(list)) {
+                            return ;
+                        }
+                        l.data('dropdown').close();
+                    });
+                    Utils.exec(o.onDrop, [list, element]);
+                },
+                onUp: function(){
+                    Utils.exec(o.onUp, [list, element]);
+                }
             });
         }
 
@@ -6623,6 +6682,37 @@ var Select = {
         }
     },
 
+    _createEvents: function(){
+        var that = this, element = this.element, o = this.options;
+        var container = element.closest(".select");
+        var input = element.siblings("input");
+        var list = element.siblings("ul");
+
+        container.on("click", function(e){
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
+        input.on("blur", function(){container.removeClass("focused");});
+        input.on("focus", function(){container.addClass("focused");});
+
+        list.on("click", "li", function(e){
+            if ($(this).hasClass("group-title")) {
+                e.preventDefault();
+                e.stopPropagation();
+                return ;
+            }
+            var val = $(this).data('value');
+            var txt = $(this).data('text');
+            var list_obj = list.data('dropdown');
+            input.val(txt).trigger("change");
+            element.val(val);
+            element.trigger("change");
+            list_obj.close();
+            Utils.exec(o.onChange, [val]);
+        });
+    },
+
     disable: function(){
         this.element.data("disabled", true);
         this.element.parent().addClass("disabled");
@@ -6638,7 +6728,16 @@ var Select = {
     }
 };
 
+$(document).on('click', function(e){
+    var selects = $(".select ul");
+    $.each(selects, function(){
+        $(this).data('dropdown').close();
+    });
+});
+
 Metro.plugin('select', Select);
+
+
 // Source: js/plugins/streamer.js
 var Streamer = {
     init: function( options, elem ) {
@@ -7185,7 +7284,7 @@ var Tabs = {
         var that = this, element = this.element, o = this.options;
         var prev = element.prev();
         var parent = element.parent();
-        var container = $("<div>").addClass("tabs-wrapper " + element[0].className);
+        var container = $("<div>").addClass("tabs tabs-wrapper " + element[0].className);
         var expandButton, expandTitle;
 
         element[0].className = "";
@@ -7302,6 +7401,7 @@ var Textarea = {
         return this;
     },
     options: {
+        prepend: "",
         copyInlineStyles: true,
         clearButton: true,
         clearButtonIcon: "<span class='mif-cross'></span>",
@@ -7374,6 +7474,11 @@ var Textarea = {
 
         if (element.attr('dir') === 'rtl' ) {
             container.addClass("rtl").attr("dir", "rtl");
+        }
+
+        if (o.prepend !== "") {
+            var prepend = Utils.isTag(o.prepend) ? $(o.prepend) : $("<span>"+o.prepend+"</span>");
+            prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
         }
 
         element[0].className = '';
@@ -7572,6 +7677,8 @@ var ValidatorFuncs = {
 
             if (cb_ok !== undefined) Utils.exec(cb_ok, [input, input.val()]);
         }
+
+        return true;
     }
 };
 
