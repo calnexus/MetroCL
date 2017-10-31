@@ -39,8 +39,8 @@ tbody tr, tbody td,
         @color: "@{name}Color";
 
         &.@{name} {
-            background-color: @@color!important;
-            color: @white!important;
+            background-color: @@color;
+            color: @white;
 
             &.dropdown-toggle::before {
                 border-color: @white;
@@ -51,7 +51,7 @@ tbody tr, tbody td,
     }
 
     &.light, &.yellow {
-        color: @dark!important;
+        color: @dark;
     }
 }
 

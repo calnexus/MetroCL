@@ -1292,8 +1292,8 @@ tbody td.primary,
 code.primary,
 .notify.primary,
 .input .button-group .button.primary {
-  background-color: #0050ef !important;
-  color: #ffffff !important;
+  background-color: #0050ef;
+  color: #ffffff;
 }
 .button.primary.dropdown-toggle::before,
 .command-button.primary.dropdown-toggle::before,
@@ -1321,8 +1321,8 @@ tbody td.secondary,
 code.secondary,
 .notify.secondary,
 .input .button-group .button.secondary {
-  background-color: #607d8b !important;
-  color: #ffffff !important;
+  background-color: #607d8b;
+  color: #ffffff;
 }
 .button.secondary.dropdown-toggle::before,
 .command-button.secondary.dropdown-toggle::before,
@@ -1350,8 +1350,8 @@ tbody td.success,
 code.success,
 .notify.success,
 .input .button-group .button.success {
-  background-color: #60a917 !important;
-  color: #ffffff !important;
+  background-color: #60a917;
+  color: #ffffff;
 }
 .button.success.dropdown-toggle::before,
 .command-button.success.dropdown-toggle::before,
@@ -1379,8 +1379,8 @@ tbody td.alert,
 code.alert,
 .notify.alert,
 .input .button-group .button.alert {
-  background-color: #CE352C !important;
-  color: #ffffff !important;
+  background-color: #CE352C;
+  color: #ffffff;
 }
 .button.alert.dropdown-toggle::before,
 .command-button.alert.dropdown-toggle::before,
@@ -1408,8 +1408,8 @@ tbody td.warning,
 code.warning,
 .notify.warning,
 .input .button-group .button.warning {
-  background-color: #ff852e !important;
-  color: #ffffff !important;
+  background-color: #ff852e;
+  color: #ffffff;
 }
 .button.warning.dropdown-toggle::before,
 .command-button.warning.dropdown-toggle::before,
@@ -1437,8 +1437,8 @@ tbody td.yellow,
 code.yellow,
 .notify.yellow,
 .input .button-group .button.yellow {
-  background-color: #ffe484 !important;
-  color: #ffffff !important;
+  background-color: #ffe484;
+  color: #ffffff;
 }
 .button.yellow.dropdown-toggle::before,
 .command-button.yellow.dropdown-toggle::before,
@@ -1466,8 +1466,8 @@ tbody td.info,
 code.info,
 .notify.info,
 .input .button-group .button.info {
-  background-color: #47b4e9 !important;
-  color: #ffffff !important;
+  background-color: #47b4e9;
+  color: #ffffff;
 }
 .button.info.dropdown-toggle::before,
 .command-button.info.dropdown-toggle::before,
@@ -1495,8 +1495,8 @@ tbody td.dark,
 code.dark,
 .notify.dark,
 .input .button-group .button.dark {
-  background-color: #505050 !important;
-  color: #ffffff !important;
+  background-color: #505050;
+  color: #ffffff;
 }
 .button.dark.dropdown-toggle::before,
 .command-button.dark.dropdown-toggle::before,
@@ -1524,8 +1524,8 @@ tbody td.light,
 code.light,
 .notify.light,
 .input .button-group .button.light {
-  background-color: #d9d9d9 !important;
-  color: #ffffff !important;
+  background-color: #d9d9d9;
+  color: #ffffff;
 }
 .button.light.dropdown-toggle::before,
 .command-button.light.dropdown-toggle::before,
@@ -1553,8 +1553,8 @@ tbody td.brand1,
 code.brand1,
 .notify.brand1,
 .input .button-group .button.brand1 {
-  background-color: #2ac4f4 !important;
-  color: #ffffff !important;
+  background-color: #2ac4f4;
+  color: #ffffff;
 }
 .button.brand1.dropdown-toggle::before,
 .command-button.brand1.dropdown-toggle::before,
@@ -1582,8 +1582,8 @@ tbody td.brand2,
 code.brand2,
 .notify.brand2,
 .input .button-group .button.brand2 {
-  background-color: #004d6f !important;
-  color: #ffffff !important;
+  background-color: #004d6f;
+  color: #ffffff;
 }
 .button.brand2.dropdown-toggle::before,
 .command-button.brand2.dropdown-toggle::before,
@@ -1623,7 +1623,7 @@ tbody td.yellow,
 code.yellow,
 .notify.yellow,
 .input .button-group .button.yellow {
-  color: #1d1d1d !important;
+  color: #1d1d1d;
 }
 .pagination.primary .page-item.active,
 .pagination.primary .page-item.service,
