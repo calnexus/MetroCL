@@ -141,6 +141,10 @@ var Select = {
             }
         }
 
+        if (element.attr('dir') === 'rtl' ) {
+            container.addClass("rtl").attr("dir", "rtl");
+        }
+
         if (o.disabled === true || element.is(':disabled')) {
             this.disable();
         } else {

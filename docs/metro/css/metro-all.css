@@ -6783,26 +6783,6 @@ label {
           order: 3;
   margin-left: auto;
 }
-.file[dir=rtl] .prepend,
-.file.rtl .prepend {
-  -webkit-box-ordinal-group: 4;
-      -ms-flex-order: 3;
-          order: 3;
-}
-.file[dir=rtl] .caption,
-.file.rtl .caption {
-  -webkit-box-ordinal-group: 3;
-      -ms-flex-order: 2;
-          order: 2;
-}
-.file[dir=rtl] button,
-.file.rtl button {
-  -webkit-box-ordinal-group: 2;
-      -ms-flex-order: 1;
-          order: 1;
-  margin-left: 0;
-  margin-right: auto;
-}
 .input {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -6887,13 +6867,6 @@ label {
       -ms-flex-order: 3;
           order: 3;
 }
-.input[dir=rtl],
-.input.rtl {
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: reverse;
-      -ms-flex-flow: row-reverse nowrap;
-          flex-flow: row-reverse nowrap;
-}
 .textarea {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -6947,18 +6920,6 @@ label {
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
           order: 2;
-}
-.textarea[dir=rtl],
-.textarea.rtl {
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: reverse;
-      -ms-flex-flow: row-reverse nowrap;
-          flex-flow: row-reverse nowrap;
-}
-.textarea[dir=rtl] .clear-button,
-.textarea.rtl .clear-button {
-  right: auto;
-  left: .25rem;
 }
 .select {
   display: -webkit-box;
@@ -7026,13 +6987,6 @@ label {
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
           order: 2;
-}
-.select[dir=rtl],
-.select.rtl {
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: reverse;
-      -ms-flex-flow: row-reverse nowrap;
-          flex-flow: row-reverse nowrap;
 }
 .select .group-title {
   background-color: #f6f7f8;
@@ -21120,32 +21074,107 @@ input.rtl,
 input[dir=rtl] {
   direction: rtl;
 }
+.input[dir=rtl],
+.input.rtl {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-flow: row-reverse nowrap;
+          flex-flow: row-reverse nowrap;
+}
+.input[dir=rtl] input,
 .input.rtl input {
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
           order: 2;
   direction: rtl;
 }
+.input[dir=rtl] .button-group,
 .input.rtl .button-group {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
 }
-.file.rtl {
-  padding: 0 .5rem 0 0;
+.input[dir=rtl] .prepend,
+.input.rtl .prepend {
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
 }
+.file[dir=rtl] .prepend,
+.file.rtl .prepend {
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
+}
+.file[dir=rtl] .caption,
 .file.rtl .caption {
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
           order: 2;
   text-align: right;
-  padding-right: 1rem;
 }
+.file[dir=rtl] button,
 .file.rtl button {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
+  margin-left: 0;
   margin-right: auto;
+}
+.textarea[dir=rtl],
+.textarea.rtl {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+}
+.textarea[dir=rtl] .prepend,
+.textarea.rtl .prepend {
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+}
+.textarea[dir=rtl] textarea,
+.textarea.rtl textarea {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+}
+.textarea[dir=rtl] .clear-button,
+.textarea.rtl .clear-button {
+  right: auto;
+  left: .25rem;
+}
+.select[dir=rtl],
+.select.rtl {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+}
+.select[dir=rtl] input,
+.select.rtl input {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+}
+.select[dir=rtl] .prepend,
+.select.rtl .prepend {
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+}
+.select.dropdown-toggle {
+  padding-right: 0!important;
+  padding-left: 1.5rem;
+}
+.select.dropdown-toggle::before {
+  margin-left: 1.25rem;
+  left: 0;
+}
+.select ul {
+  right: 0;
+  left: 0;
 }
 
 @font-face {

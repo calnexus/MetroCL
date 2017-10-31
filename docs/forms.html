@@ -998,7 +998,8 @@
                 <div class="example">
                     <form class="mb-2">
                         <input type="text" dir="rtl" class="mb-1">
-                        <input type="text" dir="rtl" data-role="input" data-clear-button="true">
+                        <input type="text" dir="rtl" data-role="input" data-clear-button="true" class="mb-1">
+                        <input type="text" dir="rtl" data-role="input" data-clear-button="true" data-prepend="<span class='mif-user'></span>">
                     </form>
                 </div>
                 <pre class=""><code>
@@ -1019,14 +1020,30 @@
                 <h4>Textarea</h4>
                 <div class="example">
                     <form class="mb-2">
-                        <textarea dir="rtl" class="mb-2"></textarea>
-                        <textarea data-role="textarea" dir="rtl"></textarea>
+                        <textarea dir="rtl" class="mb-1"></textarea>
+                        <textarea data-role="textarea" dir="rtl" class="mb-1"></textarea>
+                        <textarea data-role="textarea" dir="rtl" data-prepend="<span class='mif-bookmark'></span>"></textarea>
                     </form>
                 </div>
                 <pre class=""><code>
                     &lt;textarea dir="rtl"&gt;&lt;/textarea&gt;
                     &lt;textarea data-role="textarea" dir="rtl"&gt;&lt;/textarea&gt;
                 </code></pre>
+
+                <h4>Select</h4>
+                <div class="example">
+                    <select data-role="select" dir="rtl">
+                        <option class="fg-cyan" value="1">One</option>
+                        <option selected class="text-bold fg-red" value="2">Two</option>
+                        <option class="fg-green" value="3">Three</option>
+                    </select>
+                    <select data-role="select" dir="rtl" data-prepend="<span class='mif-apps'></span>">
+                        <option class="fg-cyan" value="1">One</option>
+                        <option selected class="text-bold fg-red" value="2">Two</option>
+                        <option class="fg-green" value="3">Three</option>
+                    </select>
+                </div>
+
             </main>
         </div>
 
