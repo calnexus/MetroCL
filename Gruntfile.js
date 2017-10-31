@@ -46,7 +46,7 @@ module.exports = function(grunt) {
                     'build/css/metro.css',
                     'build/css/metro-colors.css',
                     'build/css/metro-rtl.css',
-                    'build/css/metro-schemes.css',
+                    'build/css/metro-media.css',
                     'build/css/metro-icons.css'
                 ],
                 dest: 'build/css/metro-all.css'
@@ -68,29 +68,23 @@ module.exports = function(grunt) {
 
         less: {
             options: {
-                paths: ['less'],
+                paths: "less/",
                 strictMath: false,
                 sourceMap: true
             },
-            compileCore: {
-                src: 'less/metro.less',
-                dest: 'build/css/metro.css'
+            src: {
+                expand: true,
+                cwd: "less/",
+                src: ["metro.less", "metro-media.less", "metro-rtl.less", "metro-colors.less", "metro-icons.less"],
+                ext: ".css",
+                dest: "build/css"
             },
-            compileColors: {
-                src: 'less/metro-colors.less',
-                dest: 'build/css/metro-colors.css'
-            },
-            compileIcons: {
-                src: 'less/metro-icons.less',
-                dest: 'build/css/metro-icons.css'
-            },
-            compileRtl: {
-                src: 'less/metro-rtl.less',
-                dest: 'build/css/metro-rtl.css'
-            },
-            compileSchemes: {
-                src: 'less/metro-schemes.less',
-                dest: 'build/css/metro-schemes.css'
+            schemes: {
+                expand: true,
+                cwd: "less/schemes/",
+                src: ["*.less"],
+                ext: ".css",
+                dest: "build/css/schemes"
             }
         },
 
@@ -105,33 +99,26 @@ module.exports = function(grunt) {
             },
             dist: {
                 src: 'build/css/*.css'
+            },
+            schemes: {
+                src: 'build/css/schemes/*.css'
             }
         },
 
         cssmin: {
-            minCore: {
-                src: 'build/css/metro.css',
-                dest: 'build/css/metro.min.css'
+            src: {
+                expand: true,
+                cwd: "build/css",
+                src: ['*.css', '!*.min.css'],
+                dest: "build/css",
+                ext: ".min.css"
             },
-            minColors: {
-                src: 'build/css/metro-colors.css',
-                dest: 'build/css/metro-colors.min.css'
-            },
-            minIcons: {
-                src: 'build/css/metro-icons.css',
-                dest: 'build/css/metro-icons.min.css'
-            },
-            minRtl: {
-                src: 'build/css/metro-rtl.css',
-                dest: 'build/css/metro-rtl.min.css'
-            },
-            minSchemes: {
-                src: 'build/css/metro-schemes.css',
-                dest: 'build/css/metro-schemes.min.css'
-            },
-            minAll: {
-                src: 'build/css/metro-all.css',
-                dest: 'build/css/metro-all.min.css'
+            schemes: {
+                expand: true,
+                cwd: "build/css/schemes",
+                src: ['*.css', '!*.min.css'],
+                dest: "build/css/schemes",
+                ext: ".min.css"
             }
         },
 
