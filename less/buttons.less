@@ -26,7 +26,7 @@
 
 .button {
     &:active, &.focus, &:focus {
-        box-shadow: 0 0 0 3px rgba(red(@lightGray), green(@lightGray), blue(@lightGray), 0.45);
+        .focus-show(@lightGray);
     }
 
     &.link {
@@ -127,7 +127,7 @@
     outline: none;
 
     &:active, &.focus, &:focus {
-        box-shadow: 0 0 0 3px rgba(red(@lightGray), green(@lightGray), blue(@lightGray), 0.45);
+        .focus-show(@lightGray);
     }
 
     .icon {
@@ -217,7 +217,7 @@
     outline: none;
 
     &:active, &.focus, &:focus {
-        box-shadow: 0 0 0 3px rgba(red(@lightGray), green(@lightGray), blue(@lightGray), 0.45);
+        .focus-show(@lightGray);
     }
 
     .icon, .caption {
@@ -329,7 +329,7 @@
         background-color: @white;
         color: @dark;
         border: 1px solid darken(@light, 10%);
-        .px2rem(margin, 4px);
+        margin: .25rem;
         transition: @transition-short;
     }
 
@@ -341,17 +341,12 @@
         font-size: 1rem;
         text-decoration: none;
         color: inherit;
-        background-color: transparent;
+        background-color: inherit;
     }
 
     .page-item, .page-item.service {
-        &:hover, &.active {
-            background-color: @gray;
-            border-color: @gray;
-            color: @white;
-            &:hover {
-                background-color: darken(@gray, 10%);
-            }
+        &:hover {
+            background-color: @hoverBackground;
         }
     }
 
@@ -424,18 +419,21 @@
 .breadcrumbs {
 
     margin-bottom: 1rem;
+    margin-left: 0;
     padding: 0;
     list-style: none inside;
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
+    background-color: @white;
+    color: lighten(@dark, 30%);
 
     .page-item {
         position: relative;
         cursor: pointer;
         display: list-item;
-        background-color: @white;
-        color: lighten(@dark, 30%);
+        background-color: inherit;
+        color: inherit;
         transition: @transition-short;
         .px2rem(margin, 4px);
     }
@@ -479,7 +477,7 @@
     }
 
     .page-link:hover {
-        color: @dark!important;
+        color: @dark;
     }
 
     .page-item:last-child {
@@ -578,7 +576,7 @@ a.button, a.command-button, .image-button, .shortcut, .tool-button, .split-butto
                 }
             }
             &:active, &.focus, &:focus {
-                box-shadow: 0 0 0 3px rgba(red(@@color), green(@@color), blue(@@color), 0.45);
+                .focus-show(@@color);
             }
         }
 

@@ -5102,10 +5102,9 @@ var Dropdown = {
         var toggle = dropdown._toggle;
         var options = dropdown.options;
 
+        toggle.removeClass('active-toggle').removeClass("active-control");
         el.slideUp(options.duration, function(){
             el.trigger("onClose", null, el);
-            toggle.removeClass('active-toggle').removeClass("active-control");
-
         });
         Utils.exec(options.onUp, [el]);
     },
@@ -5119,9 +5118,9 @@ var Dropdown = {
         var toggle = dropdown._toggle;
         var options = dropdown.options;
 
+        toggle.addClass('active-toggle').addClass("active-control");
         el.slideDown(options.duration, function(){
             el.trigger("onOpen", null, el);
-            toggle.addClass('active-toggle').addClass("active-control");
         });
         Utils.exec(options.onDrop, [el]);
     },
@@ -5800,7 +5799,7 @@ var Master = {
 
         setTimeout(function(){
             pages.css({
-                height: that.pages[0].outerHeight()
+                height: that.pages[0].outerHeight() + 2
             });
         }, 0);
     },

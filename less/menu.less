@@ -120,7 +120,6 @@
     list-style: none inside none;
     background-color: @white;
     color: @dark;
-    z-index: @zindex-dropdown;
 
     .d-menu, .v-menu {
         left: 100%;
@@ -135,6 +134,10 @@
         left: auto;
         right: 0;
     }
+}
+
+.d-menu {
+    z-index: @zindex-dropdown;
 }
 
 .d-menu, .v-menu {
@@ -232,6 +235,7 @@
         overflow: hidden;
         background-color: lighten(#e5e5e5, 5%);
         cursor: default;
+        pointer-events: none;
         &:hover {
             background-color: lighten(#e5e5e5, 5%);
         }
@@ -294,6 +298,8 @@
         border: 0;
         color: #646464;
         font-weight: bold;
+        pointer-events: none;
+
         &:first-child {
             margin: 0;
             border-top-width: 0;

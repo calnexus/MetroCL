@@ -39,8 +39,8 @@ tbody tr, tbody td,
         @color: "@{name}Color";
 
         &.@{name} {
-            background-color: @@color;
-            color: @white;
+            background-color: @@color!important;
+            color: @white!important;
 
             &.dropdown-toggle::before {
                 border-color: @white;
@@ -51,7 +51,7 @@ tbody tr, tbody td,
     }
 
     &.light, &.yellow {
-        color: @dark;
+        color: @dark!important;
     }
 }
 
@@ -122,7 +122,7 @@ select, textarea, .file, .input, .select, .textarea {
             border-color: @@color;
 
             &:focus, &.focused {
-                box-shadow: 0 0 0 3px rgba(red(@@color), green(@@color), blue(@@color), 0.45);
+                .focus-show(@@color);
             }
         }
 

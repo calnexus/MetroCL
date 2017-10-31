@@ -1,23 +1,88 @@
 .scheme-mirohost {
-  line-height: 1.375rem;
   font-size: 0.875rem;
   font-family: 'Open Sans', sans-serif;
   color: #000000;
   background-color: #ffffff;
 }
 .scheme-mirohost .bg-primary {
-  background-color: #b00015;
+  background-color: #b00015 !important;
+  color: #ffffff !important;
 }
 .scheme-mirohost .bg-secondary {
-  background-color: #212121;
+  background-color: #212121 !important;
+  color: #ffffff !important;
 }
 .scheme-mirohost .bg-third {
-  background-color: #000000;
+  background-color: #000000 !important;
+  color: #ffffff !important;
 }
-.scheme-mirohost .bg-primary,
-.scheme-mirohost .bg-secondary,
-.scheme-mirohost .bg-third {
+.scheme-mirohost .fg-primary {
+  color: #b00015 !important;
+}
+.scheme-mirohost .fg-secondary {
+  color: #212121 !important;
+}
+.scheme-mirohost .fg-third {
+  color: #000000 !important;
+}
+.scheme-mirohost .button {
+  background-color: #b00015;
   color: #ffffff;
+}
+.scheme-mirohost .button:active,
+.scheme-mirohost .button.focus,
+.scheme-mirohost .button:focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(176, 0, 21, 0.45);
+          box-shadow: 0 0 0 3px rgba(176, 0, 21, 0.45);
+}
+.scheme-mirohost .breadcrumbs {
+  background-color: #b00015;
+  color: #ffffff;
+}
+.scheme-mirohost .breadcrumbs .page-item::before,
+.scheme-mirohost .breadcrumbs .page-item::after {
+  background-color: #ffffff;
+}
+.scheme-mirohost .breadcrumbs .page-link:hover {
+  color: #e6e6e6;
+}
+.scheme-mirohost .breadcrumbs.type2 {
+  background-color: #212121;
+  color: #ffffff;
+}
+.scheme-mirohost .breadcrumbs.type2 .page-item::before,
+.scheme-mirohost .breadcrumbs.type2 .page-item::after {
+  background-color: #ffffff;
+}
+.scheme-mirohost .breadcrumbs.type2 .page-link:hover {
+  color: #e6e6e6;
+}
+.scheme-mirohost .breadcrumbs.type3 {
+  background-color: #000000;
+  color: #ffffff;
+}
+.scheme-mirohost .breadcrumbs.type3 .page-item::before,
+.scheme-mirohost .breadcrumbs.type3 .page-item::after {
+  background-color: #ffffff;
+}
+.scheme-mirohost .breadcrumbs.type3 .page-link:hover {
+  color: #e6e6e6;
+}
+.scheme-mirohost .pagination .page-item:not(.no-link) {
+  background-color: #b00015;
+  color: #ffffff;
+  border: 1px #7d000f solid;
+}
+.scheme-mirohost .pagination .page-item:not(.no-link) .page-link:hover,
+.scheme-mirohost .pagination .page-item:not(.no-link) .service:hover {
+  background-color: rgba(29, 29, 29, 0.1) !important;
+}
+.scheme-mirohost .pagination.no-gap .page-item {
+  border: none;
+  margin: 0;
+}
+.scheme-mirohost .pagination .page-item.active {
+  background-color: #e3001b;
 }
 .scheme-mirohost input[type=text],
 .scheme-mirohost input[type=password],
@@ -41,6 +106,12 @@
   border-color: #b00015 !important;
   -webkit-box-shadow: none!important;
           box-shadow: none!important;
+}
+.scheme-mirohost .input,
+.scheme-mirohost .select,
+.scheme-mirohost .textarea,
+.scheme-mirohost .file {
+  border-style: solid!important;
 }
 .scheme-mirohost .input .prepend,
 .scheme-mirohost .select .prepend,
@@ -127,10 +198,109 @@
   border-bottom-color: #b00015;
 }
 .scheme-mirohost .tabs[class*=tabs-expand] > ul > li:hover {
-  border: none;
+  border-color: transparent;
   background-color: #212121;
 }
 .scheme-mirohost .tabs[class*=tabs-expand] > ul > li.active {
   border: none;
   background-color: #b00015;
+  color: #ffffff;
+}
+.scheme-mirohost .tabs[class*=tabs-expand].bottom > ul,
+.scheme-mirohost .tabs[class*=tabs-expand].bottom > ul > li {
+  border-top-color: #b00015;
+}
+.scheme-mirohost .tabs[class*=tabs-expand].vertical > ul,
+.scheme-mirohost .tabs[class*=tabs-expand].vertical > ul > li {
+  border-right-color: #b00015;
+}
+.scheme-mirohost .tabs[class*=tabs-expand].vertical.right > ul,
+.scheme-mirohost .tabs[class*=tabs-expand].vertical.right > ul > li {
+  border-left-color: #b00015;
+}
+.scheme-mirohost .master .controls .next,
+.scheme-mirohost .master .controls .prev {
+  color: #b00015;
+}
+.scheme-mirohost .master .pages {
+  border-color: #b00015;
+}
+.scheme-mirohost .carousel [class*=carousel-switch] {
+  color: #b00015;
+}
+.scheme-mirohost .carousel .carousel-bullets .bullet-on {
+  background-color: #b00015;
+}
+.scheme-mirohost .streamer .stream-event.selected {
+  -webkit-box-shadow: 0 0 0 1px #b00015 !important;
+          box-shadow: 0 0 0 1px #b00015 !important;
+}
+.scheme-mirohost .streamer .stream-event.selected::after {
+  border-top-color: #b00015;
+}
+.scheme-mirohost .calendar .calendar-header {
+  background-color: #b00015;
+  color: #ffffff;
+}
+.scheme-mirohost .calendar .day.today {
+  background-color: rgba(176, 0, 21, 0.5);
+}
+.scheme-mirohost .calendar .day.selected {
+  -webkit-box-shadow: 0 0 0 1px #b00015 !important;
+          box-shadow: 0 0 0 1px #b00015 !important;
+}
+.scheme-mirohost .calendar .day.selected::after {
+  border-top-color: #b00015;
+}
+.scheme-mirohost .countdown {
+  line-height: 1.5;
+}
+.scheme-mirohost .countdown .part {
+  color: #b00015;
+}
+.scheme-mirohost .countdown.type1 {
+  background-color: #b00015;
+}
+.scheme-mirohost .countdown.type1 .part {
+  color: #ffffff;
+}
+.scheme-mirohost .countdown.type2 {
+  background-color: #212121;
+}
+.scheme-mirohost .countdown.type2 .part {
+  color: #ffffff;
+}
+.scheme-mirohost .countdown.type3 {
+  background-color: #000000;
+}
+.scheme-mirohost .countdown.type3 .part {
+  color: #ffffff;
+}
+.scheme-mirohost .h-menu {
+  background-color: #b00015;
+  color: #ffffff;
+}
+.scheme-mirohost .h-menu > li > a.dropdown-toggle::before {
+  border-color: #ffffff;
+}
+.scheme-mirohost .d-menu,
+.scheme-mirohost .v-menu {
+  color: #b00015;
+}
+.scheme-mirohost .d-menu li .dropdown-toggle::before,
+.scheme-mirohost .v-menu li .dropdown-toggle::before {
+  border-color: #b00015;
+}
+.scheme-mirohost .d-menu li:hover,
+.scheme-mirohost .v-menu li:hover {
+  background-color: #b00015;
+  color: #ffffff;
+}
+.scheme-mirohost .d-menu li:hover .dropdown-toggle::before,
+.scheme-mirohost .v-menu li:hover .dropdown-toggle::before {
+  border-color: #ffffff;
+}
+.scheme-mirohost .v-menu .menu-title {
+  background-color: #7d000f;
+  color: #ffffff;
 }

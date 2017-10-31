@@ -136,7 +136,7 @@ var Master = {
 
         setTimeout(function(){
             pages.css({
-                height: that.pages[0].outerHeight()
+                height: that.pages[0].outerHeight() + 2
             });
         }, 0);
     },
