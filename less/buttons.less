@@ -527,9 +527,8 @@ a.button, a.command-button, .image-button, .shortcut, .tool-button, .split-butto
     }
 
     &:active {
-    //&.focus, &:focus {
         outline: 0;
-        box-shadow: 0 0 0 3px rgba(red(@gray), green(@gray), blue(@gray), 0.25);
+        .focus-show(@gray);
     }
 
     &.disabled, &:disabled {
@@ -541,62 +540,6 @@ a.button, a.command-button, .image-button, .shortcut, .tool-button, .split-butto
     &.outline {
         background: transparent none;
         border-width: 1px;
-    }
-}
-
-.button, .command-button, .image-button, .shortcut, .tool-button, .split-button .split {
-    .generate-buttons(@buttonPredefinedTypesLength);
-    .generate-buttons(@name, @i: 1) when (@i =< @buttonPredefinedTypesLength) {
-        @name: extract(@buttonPredefinedTypes, @i);
-        @color: "@{name}Color";
-
-        &.@{name} {
-            outline-color: lighten(@@color, 30%);
-
-            &.outline {
-                color: @@color;
-                border-color: @@color;
-
-                &.dropdown-toggle::before {
-                    border-color: @@color;
-                }
-            }
-            &:hover {
-                background-color: darken(@@color, 10%);
-                border-color: darken(@@color, 20%);
-
-                &.dropdown-toggle::before {
-                    border-color: @white;
-                }
-            }
-            &.same-color {
-                &:hover {
-                    background-color: @@color;
-                    border-color: @@color;
-                }
-            }
-            &:active, &.focus, &:focus {
-                .focus-show(@@color);
-            }
-        }
-
-        .generate-buttons(@name, @i + 1);
-    }
-}
-
-.button, .command-button, .image-button, .shortcut, .tool-button, .split-button .split {
-    &.primary, &.secondary, &.success, &.alert, &.warning, &.info, &.dark, &.brand1, &.brand2 {
-        color: @white;
-        &:hover {
-            color: @white;
-        }
-    }
-
-    &.yellow, &.light {
-        color: @dark;
-        &:hover {
-            color: @dark;
-        }
     }
 }
 

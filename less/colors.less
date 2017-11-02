@@ -39,19 +39,56 @@ tbody tr, tbody td,
         @color: "@{name}Color";
 
         &.@{name} {
+            outline-color: lighten(@@color, 30%);
             background-color: @@color;
             color: @white;
 
+            &.outline {
+                color: @@color;
+                border-color: @@color;
+
+                &.dropdown-toggle::before {
+                    border-color: @@color;
+                }
+
+                &:hover {
+                    color: @white;
+                }
+            }
+
             &.dropdown-toggle::before {
                 border-color: @white;
+            }
+
+            &:hover {
+                color: @white;
+                background-color: darken(@@color, 10%);
+                border-color: darken(@@color, 20%);
+
+                &.dropdown-toggle::before {
+                    border-color: @white;
+                }
+            }
+
+            &.same-color {
+                &:hover {
+                    background-color: @@color;
+                    border-color: @@color;
+                }
+            }
+            &:active, &.focus, &:focus {
+                .focus-show(@@color);
             }
         }
 
         .generate-accent-colors(@name, @i + 1);
     }
 
-    &.light, &.yellow {
+    &.yellow, &.light {
         color: @dark;
+        &:hover, &.outline:hover {
+            color: @dark;
+        }
     }
 }
 

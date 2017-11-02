@@ -46,7 +46,6 @@ module.exports = function(grunt) {
                     'build/css/metro.css',
                     'build/css/metro-colors.css',
                     'build/css/metro-rtl.css',
-                    'build/css/metro-media.css',
                     'build/css/metro-icons.css'
                 ],
                 dest: 'build/css/metro-all.css'
@@ -75,7 +74,7 @@ module.exports = function(grunt) {
             src: {
                 expand: true,
                 cwd: "less/",
-                src: ["metro.less", "metro-media.less", "metro-rtl.less", "metro-colors.less", "metro-icons.less"],
+                src: ["metro.less", "metro-rtl.less", "metro-colors.less", "metro-icons.less"],
                 ext: ".css",
                 dest: "build/css"
             },

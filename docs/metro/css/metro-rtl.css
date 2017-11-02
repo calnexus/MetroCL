@@ -92,15 +92,13 @@ input[dir=rtl] {
       -ms-flex-order: 2;
           order: 2;
 }
-.select.dropdown-toggle {
+.select[dir=rtl].dropdown-toggle,
+.select.rtl.dropdown-toggle {
   padding-right: 0!important;
   padding-left: 1.5rem;
 }
-.select.dropdown-toggle::before {
+.select[dir=rtl].dropdown-toggle::before,
+.select.rtl.dropdown-toggle::before {
   margin-left: 1.25rem;
-  left: 0;
-}
-.select ul {
-  right: 0;
   left: 0;
 }

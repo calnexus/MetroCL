@@ -1,7 +1,6 @@
 @import (once) "include/vars";
 @import (once) "include/mixins";
 
-
 .grid {
     display: flex;
     flex-direction: column;
@@ -99,7 +98,6 @@
         }
     }
 }
-
 
 .generate-grid-media-options(@mediaBreakpointListMobileLength);
 .generate-grid-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {

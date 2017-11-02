@@ -20,7 +20,8 @@ var Master = {
 
         controlPrev: "<",
         controlNext: ">",
-        controlTitle: "Ordering, step $1 / $2",
+        controlTitle: "Master, page $1 of $2",
+        backgroundImage: "",
 
         clsMaster: "",
         clsControls: "",
@@ -54,6 +55,9 @@ var Master = {
         var that = this, element = this.element, o = this.options;
 
         element.addClass("master").addClass(o.clsMaster);
+        element.css({
+            backgroundImage: "url("+o.backgroundImage+")"
+        });
 
         this._createControls();
         this._createPages();
@@ -71,10 +75,10 @@ var Master = {
         title = String(title).replace("$2", pages.length);
 
         $.each(controls_position, function(){
-            controls = $("<div>").addClass("controls controls-"+this).appendTo(element);
-            $("<span>").addClass("prev").html(o.controlPrev).appendTo(controls);
-            $("<span>").addClass("next").html(o.controlNext).appendTo(controls);
-            $("<span>").addClass("title").html(title).appendTo(controls);
+            controls = $("<div>").addClass("controls controls-"+this).addClass(o.clsControls).appendTo(element);
+            $("<span>").addClass("prev").addClass(o.clsControlPrev).html(o.controlPrev).appendTo(controls);
+            $("<span>").addClass("next").addClass(o.clsControlNext).html(o.controlNext).appendTo(controls);
+            $("<span>").addClass("title").addClass(o.clsControlTitle).html(title).appendTo(controls);
         });
 
         this._enableControl("prev", false);
@@ -112,11 +116,12 @@ var Master = {
         $.each(page, function(){
             var p = $(this);
             if (p.data("cover") !== undefined) {
-                p.css({
-                    backgroundImage: "url("+p.data('cover')+")",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat"
+                element.css({
+                    backgroundImage: "url("+p.data('cover')+")"
+                });
+            } else {
+                element.css({
+                    backgroundImage: "url("+o.backgroundImage+")"
                 });
             }
 
@@ -132,13 +137,19 @@ var Master = {
         page.appendTo(pages);
 
         this.currentIndex = 0;
-        this.pages[this.currentIndex].css("left", "0").show(0);
-
-        setTimeout(function(){
-            pages.css({
-                height: that.pages[0].outerHeight() + 2
-            });
-        }, 0);
+        if (this.pages[this.currentIndex] !== undefined) {
+            if (this.pages[this.currentIndex].data("cover") !== undefined ) {
+                element.css({
+                    backgroundImage: "url("+this.pages[this.currentIndex].data('cover')+")"
+                });
+            }
+            this.pages[this.currentIndex].css("left", "0").show(0);
+            setTimeout(function(){
+                pages.css({
+                    height: that.pages[0].outerHeight() + 2
+                });
+            }, 0);
+        }
     },
 
     _createEvents: function(){
@@ -150,7 +161,7 @@ var Master = {
             }
             if (
                 Utils.exec(o.onBeforePrev, [that.currentIndex, that.pages[that.currentIndex], element]) === true &&
-                Utils.exec(o.onBeforePage, ["next", that.currentIndex, that.pages[that.currentIndex], element]) === true
+                Utils.exec(o.onBeforePage, ["prev", that.currentIndex, that.pages[that.currentIndex], element]) === true
             ) {
                 that.prev();
             }
@@ -244,6 +255,20 @@ var Master = {
 
         pages.css("overflow", "hidden");
 
+        function finish(){
+            if (next.data("cover") !== undefined) {
+                element.css({
+                    backgroundImage: "url("+next.data('cover')+")"
+                });
+            } else {
+                element.css({
+                    backgroundImage: "url("+o.backgroundImage+")"
+                });
+            }
+            pages.css("overflow", "initial");
+            that.isAnimate = false;
+        }
+
         function _slide(){
             current.stop(true, true).animate({
                 left: to === "next" ? -out : out
@@ -256,8 +281,7 @@ var Master = {
             }).show(0).animate({
                 left: 0
             }, o.duration, o.effectFunc, function(){
-                pages.css("overflow", "initial");
-                that.isAnimate = false;
+                finish();
             });
         }
 
@@ -265,8 +289,7 @@ var Master = {
             current.hide(0);
 
             next.hide(0).css("left", 0).show(0, function(){
-                pages.css("overflow", "initial");
-                that.isAnimate = false;
+                finish();
             });
         }
 
@@ -274,8 +297,7 @@ var Master = {
             current.fadeOut(o.duration);
 
             next.hide(0).css("left", 0).fadeIn(o.duration, function(){
-                pages.css("overflow", "initial");
-                that.isAnimate = false;
+                finish();
             });
         }
 

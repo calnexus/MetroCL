@@ -225,49 +225,6 @@
     }
 }
 
-.wide-calendar(){
-    flex-flow: row nowrap;
-    width: 560px;
-    .clear();
-
-    .calendar-header, .calendar-footer {
-        position: absolute;
-        top: 0;
-        height: 100%;
-        min-height: 100%;
-    }
-
-    .calendar-header {
-        left: 0;
-    }
-
-    .calendar-footer {
-        right: 0;
-    }
-
-    .calendar-header {
-        width: 180px;
-    }
-
-    .calendar-footer {
-        flex-flow: column nowrap;
-        justify-content: flex-start;
-        align-items: stretch;
-        border-top: none;
-        border-left: 1px solid @borderColor;
-        width: 96px;
-
-        * > {
-            width: 100%;
-            margin: 2px 0;
-        }
-    }
-
-    .calendar-content {
-        margin: 0 96px 0 180px;
-    }
-}
-
 .calendar {
     &.calendar-wide {
         .wide-calendar();

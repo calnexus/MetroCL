@@ -145,7 +145,7 @@
     }
 }
 
-.tabs-expand {
+.tabs-expand() {
     border: none;
 
     & > ul {
@@ -201,6 +201,11 @@
     }
 }
 
+.tabs {
+    &.tabs-expand {
+        .tabs-expand();
+    }
+}
 
 .generate-tabs-media-options(@mediaBreakpointListMobileLength);
 .generate-tabs-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
@@ -208,7 +213,7 @@
 
     @media screen and (min-width: @@m) {
         .tabs-expand-@{m} {
-            .tabs-expand;
+            .tabs-expand();
         }
     }
 

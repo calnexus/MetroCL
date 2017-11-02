@@ -218,6 +218,9 @@ textarea,
 .tabs[class*=tabs-expand].vertical.right > ul > li {
   border-left-color: #b00015;
 }
+.master {
+  background-color: #f9f9f9;
+}
 .master .controls .next,
 .master .controls .prev {
   color: #b00015;
