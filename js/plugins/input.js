@@ -149,13 +149,9 @@ var Input = {
         }
     },
 
-    toggleValid: function(){
-    },
-
     changeAttribute: function(attributeName){
         switch (attributeName) {
             case 'disabled': this.toggleState(); break;
-            case 'data-valid': this.toggleValid(); break;
         }
     }
 };

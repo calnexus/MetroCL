@@ -583,6 +583,12 @@ var Utils = {
 
     addLocale: function(locale){
         Metro.locales = $.extend( {}, Metro.locales, locale );
+    },
+
+    strToArray: function(str, delimiter){
+        return str.split(delimiter).map(function(s){
+            return s.trim();
+        })
     }
 };
 

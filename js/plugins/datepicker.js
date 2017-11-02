@@ -131,7 +131,8 @@ var Datepicker = {
         this.calendar = cal;
 
         calendarButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.calendarButtonIcon);
-        calendarButton.on("click", function(e){
+        calendarButton.appendTo(buttons);
+        container.on("click", "button, input", function(e){
             if (Utils.isDate(that.value) && (cal.hasClass("open") === false && cal.hasClass("open-up") === false)) {
                 cal.css({
                     visibility: "hidden",
@@ -161,7 +162,6 @@ var Datepicker = {
             e.preventDefault();
             e.stopPropagation();
         });
-        calendarButton.appendTo(buttons);
 
         if (o.clearButton === true) {
             clearButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);

@@ -1,0 +1,47 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+.keypad {
+    display: block;
+    position: relative;
+    background-color: @white;
+    color: @dark;
+}
+
+.keypad {
+    .keys {
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: auto;
+        float: left;
+        background-color: inherit;
+        color: inherit;
+        border: 1px solid @borderColor;
+        padding: .625rem;
+        user-select: none;
+    }
+    .key {
+        display: block;
+        position: relative;
+        float: left;
+        background-color: inherit;
+        color: inherit;
+        margin: .125rem;
+        text-align: center;
+        border: 1px solid @borderColor;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: @transition-base;
+
+        &:hover {
+            transition: @transition-base;
+            .focus-show(@lightGray);
+        }
+
+        &.service-key {
+            background-color: @light;
+        }
+    }
+}

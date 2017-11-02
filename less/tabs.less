@@ -201,12 +201,6 @@
     }
 }
 
-.tabs {
-    &.tabs-expand {
-        .tabs-expand();
-    }
-}
-
 .generate-tabs-media-options(@mediaBreakpointListMobileLength);
 .generate-tabs-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
     @m: extract(@mediaBreakpointListMobile, @i);
