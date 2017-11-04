@@ -64,7 +64,19 @@
                 <!-- ads-html -->
 
                 <div class="example">
-                    <input type="text" data-role="keypad" data-key-size="32" data-keys="q, w, e, r, t, y, u, i, o, p, a, s, d, f, g, h, j, k, l, z, x, c, v, b, n, m">
+                    <div class="row">
+                        <div class="cell-md-6">
+                            <input type="text" data-role="keypad" data-key-size="32" data-keys="q, w, e, r, t, y, u, i, o, p, a, s, d, f, g, h, j, k, l, z, x, c, v, b, n, m" data-shuffle="true" data-target="#target" data-show-value="false">
+                            <!--<div data-role="keypad" data-key-size="32" data-shuffle="true" style="height: 32px" data-target="#target"></div>-->
+                        </div>
+                        <div class="cell-md-6">
+                            <div id="target" class="bg-cyan fg-white" style="padding: .5rem .75rem; line-height: 1.25; height: 38px;"></div>
+                        </div>
+                    </div>
+
+
+                    <br/>
+                    <br/>
                 </div>
             </main>
         </div>

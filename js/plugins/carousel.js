@@ -36,8 +36,8 @@ var Carousel = {
         controlsOutside: false,
         bulletsPosition: "default", // default, left, right
 
-        controlPrev: '',
-        controlNext: '',
+        controlPrev: '&#x23F4',
+        controlNext: '&#x23F5',
         clsCarousel: "",
         clsSlides: "",
         clsSlide: "",

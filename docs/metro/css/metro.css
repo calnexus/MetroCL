@@ -207,6 +207,9 @@ img {
   vertical-align: middle;
   border-style: none;
 }
+[hidden] {
+  display: none;
+}
 .clear::after,
 .clear-fix::after,
 .clearfix::after {
@@ -295,6 +298,11 @@ img {
   -webkit-transition-duration: 1s !important;
           transition-duration: 1s !important;
   overflow: visible!important;
+}
+.vertical-center {
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
 }
 .selected {
   -webkit-box-shadow: 0 0 0 4px #47b4e9 !important;
@@ -14073,13 +14081,11 @@ figure img {
           order: 2;
 }
 .keypad {
-  display: block;
-  position: relative;
   background-color: #ffffff;
   color: #1d1d1d;
 }
 .keypad .keys {
-  display: block;
+  display: none;
   position: absolute;
   top: 100%;
   left: 0;
@@ -14093,6 +14099,13 @@ figure img {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.keypad .keys.open {
+  display: block;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .keypad .key {
   display: block;

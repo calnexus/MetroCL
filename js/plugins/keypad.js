@@ -3,10 +3,12 @@ var Keypad = {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
         this.element = $(elem);
+        this.value = "";
 
         this._setOptionsFromDOM();
 
         this.keys = Utils.strToArray(this.options.keys, ",");
+        this.keys_to_work = this.keys;
 
         this._create();
 
@@ -19,6 +21,10 @@ var Keypad = {
         copyInlineStyles: true,
         target: null,
         length: 0,
+        shuffle: false,
+        position: "bottom-center", //top-left, top, top-right, right, bottom-right, bottom, bottom-left, left
+        serviceButtons: true,
+        showValue: true,
 
         clsKeypad: "",
         clsInput: "",
@@ -50,6 +56,9 @@ var Keypad = {
 
     _create: function(){
         this._createKeypad();
+        if (this.options.shuffle === true) {
+            this.shuffle();
+        }
         this._createKeys();
         this._createEvents();
 
@@ -60,7 +69,17 @@ var Keypad = {
         var that = this, element = this.element, o = this.options;
         var prev = element.prev();
         var parent = element.parent();
-        var keypad = $("<div>").addClass("keypad " + element[0].className);
+        var keypad;
+
+        if (parent.hasClass("input")) {
+            keypad = parent;
+        } else {
+            keypad = $("<div>").css({
+                position: "relative"
+            }).addClass(element[0].className);
+        }
+
+        keypad.addClass("keypad");
 
         if (element.attr("type") === undefined) {
             element.attr("type", "text");
@@ -101,14 +120,16 @@ var Keypad = {
         var factor = Math.round(Math.sqrt(this.keys.length + 2));
         var key_size = o.keySize;
         var width = factor * key_size + factor * 4;
-        var key, keys = $("<div>").addClass("keys").addClass("drop-shadow").addClass(o.clsKeys).appendTo(keypad);
+        var key, keys = keypad.find(".keys");
         var i, k = this.keys;
 
-        if (o.shuffle === true) {
-            k.shuffle();
+        if (keys.length === 0) {
+            keys = $("<div>").addClass("keys").addClass("drop-shadow").addClass(o.clsKeys).appendTo(keypad);
         }
 
-        $.each(k, function(){
+        keys.html("");
+
+        $.each(this.keys_to_work, function(){
             key = $("<span>").addClass("key").addClass(o.clsKey).html(this);
             key.data("key", this);
             key.css({
@@ -118,62 +139,113 @@ var Keypad = {
             }).appendTo(keys);
         });
 
-        var service_keys = ['&larr;', '&times;'];
+        if (o.serviceButtons === true) {
 
-        $.each(service_keys, function(){
-            key = $("<span>").addClass("key service-key").addClass(o.clsKey).html(this);
-            if (this === '&larr;') {
-                key.addClass(o.clsBackspace);
-            }
-            if (this === '&times;') {
-                key.addClass(o.clsClear);
-            }
-            key.data("key", this);
-            key.css({
-                width: o.keySize,
-                height: o.keySize,
-                lineHeight: o.keySize - 4 + "px"
-            }).appendTo(keys);
-        });
+            var service_keys = ['&larr;', '&times;'];
+
+            $.each(service_keys, function () {
+                key = $("<span>").addClass("key service-key").addClass(o.clsKey).html(this);
+                if (this === '&larr;') {
+                    key.addClass(o.clsBackspace);
+                }
+                if (this === '&times;') {
+                    key.addClass(o.clsClear);
+                }
+                key.data("key", this);
+                key.css({
+                    width: o.keySize,
+                    height: o.keySize,
+                    lineHeight: o.keySize - 4 + "px"
+                }).appendTo(keys);
+            });
+        }
 
         keys.width(width);
     },
 
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
-        var keys = element.parent().find(".keys");
+        var keypad = element.parent();
+        var keys = keypad.find(".keys");
 
-        keys.on("click", ".key", function(e){
+        keypad.on("click", ".keys", function(e){
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
+        keypad.on("click", function(e){
+            if (keys.hasClass("open") === true) {
+                keys.removeClass("open");
+            } else {
+                keys.addClass("open");
+            }
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
+        keypad.on("click", ".key", function(e){
             var key = $(this);
 
             if (key.data('key') !== '&larr;' && key.data('key') !== '&times;') {
-                if (o.length > 0 && element.val().length === o.length) {
+                if (o.length > 0 && (String(that.value).length === o.length)) {
                     return false;
                 }
-                element.val(element.val() + '' + key.data('key'));
+
+                that.value = that.value + "" + key.data('key');
+
+                if (o.shuffle === true) {
+                    that.shuffle();
+                    that._createKeys();
+                }
             } else {
                 if (key.data('key') === '&times;') {
-                    element.val('');
+                    that.value = "";
                 }
                 if (key.data('key') === '&larr;') {
-                    var val = element.val();
-                    element.val(val.substring(0, val.length - 1));
+                    that.value = (that.value.substring(0, that.value.length - 1));
+                }
+            }
+
+            if (o.showValue === true) {
+                if (element[0].tagName === "INPUT") {
+                    element.val(that.value);
+                } else {
+                    element.text(that.value);
                 }
             }
 
             element.trigger('change');
 
-            if (o.shuffle) {
-                that.shuffle();
-            }
-
             e.preventDefault();
             e.stopPropagation();
         });
+
+        if (o.target !== null) {
+            element.on("change", function(){
+                var t = $(o.target);
+                if (t.length === 0) {
+                    return ;
+                }
+                if (t[0].tagName === "INPUT") {
+                    t.val(that.value);
+                } else {
+                    t.text(that.value);
+                }
+            });
+        }
     },
 
     shuffle: function(){
+        this.keys_to_work = this.keys_to_work.shuffle();
+    },
 
+    val: function(v){
+        if (v !== undefined) {
+            this.value = v;
+            this.element[0].tagName === "INPUT" ? this.element.val(v) : this.element.text(v);
+        } else {
+            return this.value;
+        }
     },
 
     disable: function(){
@@ -202,3 +274,7 @@ var Keypad = {
 };
 
 Metro.plugin('keypad', Keypad);
+
+$(document).on('click', function(e){
+    $(".keypad .keys").removeClass("open");
+});
