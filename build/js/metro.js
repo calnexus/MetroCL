@@ -5697,6 +5697,7 @@ var Keypad = {
         clsInput: "",
         clsKeys: "",
         clsKey: "",
+        clsServiceKey: "",
         clsBackspace: "",
         clsClear: "",
 
@@ -5824,7 +5825,7 @@ var Keypad = {
             var service_keys = ['&larr;', '&times;'];
 
             $.each(service_keys, function () {
-                key = $("<span>").addClass("key service-key").addClass(o.clsKey).html(this);
+                key = $("<span>").addClass("key service-key").addClass(o.clsKey).addClass(o.clsServiceKey).html(this);
                 if (this === '&larr;') {
                     key.addClass(o.clsBackspace);
                 }
@@ -5884,12 +5885,16 @@ var Keypad = {
                     that.shuffle();
                     that._createKeys();
                 }
+
+                Utils.exec(o.onKey, [key.data('key'), that.value, element]);
             } else {
                 if (key.data('key') === '&times;') {
                     that.value = "";
+                    Utils.exec(o.onClear, [element]);
                 }
                 if (key.data('key') === '&larr;') {
                     that.value = (that.value.substring(0, that.value.length - 1));
+                    Utils.exec(o.onBackspace, [that.value, element]);
                 }
             }
 
@@ -5924,6 +5929,7 @@ var Keypad = {
 
     shuffle: function(){
         this.keys_to_work = this.keys_to_work.shuffle();
+        Utils.exec(this.options.onShuffle, [this.keys_to_work, this.keys, this.element]);
     },
 
     val: function(v){
