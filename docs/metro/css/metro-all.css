@@ -299,10 +299,15 @@ img {
           transition-duration: 1s !important;
   overflow: visible!important;
 }
-.vertical-center {
+.v-center {
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
+}
+.h-center {
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 .selected {
   -webkit-box-shadow: 0 0 0 4px #47b4e9 !important;
@@ -910,7 +915,7 @@ img {
   background-color: transparent !important;
 }
 .bd-default {
-  border-color: #c0c0c0;
+  border-color: #c0c0c0 !important;
 }
 .fg-black {
   color: #000000 !important;
@@ -14101,11 +14106,135 @@ figure img {
           user-select: none;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+  z-index: 1000;
+}
+.keypad .keys::before {
+  content: '';
+  position: absolute;
+  background-color: inherit;
+  width: 10px;
+  height: 10px;
+  border: 1px #c0c0c0 solid;
+  z-index: 2;
+  left: -5px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  margin-top: -5px;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
 }
 .keypad .keys.open {
   display: block;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+}
+.keypad .keys.right {
+  left: 100%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  top: 50%;
+  margin-left: -1px;
+}
+.keypad .keys.bottom {
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  top: 100%;
+  margin-top: -1px;
+}
+.keypad .keys.bottom::before {
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+.keypad .keys.top {
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateY(-100%) translateX(-50%);
+          transform: translateY(-100%) translateX(-50%);
+  margin-top: 1px;
+}
+.keypad .keys.top::before {
+  top: 100%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+.keypad .keys.left {
+  left: 0;
+  -webkit-transform: translateY(-50%) translateX(-100%);
+          transform: translateY(-50%) translateX(-100%);
+  top: 50%;
+  margin-left: 1px;
+}
+.keypad .keys.left::before {
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  left: 100%;
+  margin-left: -5px;
+  -webkit-transform: rotate(225deg);
+          transform: rotate(225deg);
+}
+.keypad .keys.bottom-left {
+  top: 100%;
+  left: 0;
+  margin-top: -1px;
+}
+.keypad .keys.bottom-left::before {
+  top: 0;
+  left: .625rem;
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+.keypad .keys.bottom-right {
+  top: 100%;
+  left: 100%;
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+  margin-top: -1px;
+}
+.keypad .keys.bottom-right::before {
+  top: 0;
+  left: 100%;
+  margin-left: -1rem;
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+.keypad .keys.top-left {
+  top: 0;
+  left: 0;
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+  margin-top: 1px;
+}
+.keypad .keys.top-left::before {
+  top: 100%;
+  left: .625rem;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+.keypad .keys.top-right {
+  top: 0;
+  left: 100%;
+  -webkit-transform: translateY(-100%) translateX(-100%);
+          transform: translateY(-100%) translateX(-100%);
+  margin-top: 1px;
+}
+.keypad .keys.top-right::before {
+  top: 100%;
+  left: 100%;
+  margin-left: -1rem;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
 }
 .keypad .key {
   display: block;

@@ -47,6 +47,8 @@
                 <hr/>
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Keypad</a></li>
+                    <li class="toc-entry"><a href="#_keypad_about">About</a></li>
+                    <li class="toc-entry"><a href="#_keypad_options">Options</a></li>
                 </ul>
 
             </div>
@@ -58,29 +60,32 @@
 
                 <h1>Keypad</h1>
                 <p class="text-leader">
-
+                    Component for entering data without a keyboard. Excellent to create the element for pin enter.
                 </p>
 
                 <!-- ads-html -->
 
+                <h3 id="_keypad_about">About</h3>
+                <p>
+                    To create <code>keypad</code> add attribute <code>data-role="keypad"</code> to <code>&lt;input&gt;</code> element.
+                </p>
                 <div class="example">
                     <div class="row">
                         <div class="cell-md-6">
-                            <input type="text" data-role="keypad" data-key-size="32" data-keys="q, w, e, r, t, y, u, i, o, p, a, s, d, f, g, h, j, k, l, z, x, c, v, b, n, m" data-shuffle="true" data-target="#target" data-show-value="false">
-                            <!--<div data-role="keypad" data-key-size="32" data-shuffle="true" style="height: 32px" data-target="#target"></div>-->
+                            <input type="text" data-role="keypad" data-size-as-keys="true" class="mx-auto" placeholder="Enter pin">
                         </div>
                         <div class="cell-md-6">
-                            <div id="target" class="bg-cyan fg-white" style="padding: .5rem .75rem; line-height: 1.25; height: 38px;"></div>
+                            <input type="password" data-role="keypad" data-size-as-keys="true" class="mx-auto" placeholder="Enter pin">
                         </div>
                     </div>
-
-
-                    <br/>
-                    <br/>
                 </div>
+                <pre><code class="html">
+                    &lt;input type="text" data-role="keypad" placeholder="Enter pin"&gt;
+                    &lt;input type="password" data-role="keypad" placeholder="Enter pin"&gt;
+                </code></pre>
+
             </main>
         </div>
-
     </div>
 
     <script src="docsearch/docsearch.min.js"></script>
