@@ -4,6 +4,7 @@ var Keypad = {
         this.elem  = elem;
         this.element = $(elem);
         this.value = "";
+        this.positions = ["top-left", "top", "top-right", "right", "bottom-right", "bottom", "bottom-left", "left"];
 
         this._setOptionsFromDOM();
 
@@ -22,7 +23,9 @@ var Keypad = {
         target: null,
         length: 0,
         shuffle: false,
+        shuffleCount: 3,
         position: "bottom-left", //top-left, top, top-right, right, bottom-right, bottom, bottom-left, left
+        dynamicPosition: false,
         serviceButtons: true,
         showValue: true,
         open: false,
@@ -36,6 +39,7 @@ var Keypad = {
         clsBackspace: "",
         clsClear: "",
 
+        onChange: Metro.noop,
         onClear: Metro.noop,
         onBackspace: Metro.noop,
         onShuffle: Metro.noop,
@@ -108,8 +112,6 @@ var Keypad = {
             keys.addClass("open keep-open");
         }
 
-        element.addClass(o.clsInput);
-        keypad.addClass(o.clsKeypad);
 
         element[0].className = '';
         if (o.copyInlineStyles === true) {
@@ -117,6 +119,9 @@ var Keypad = {
                 keypad.css(element[0].style[i], element.css(element[0].style[i]));
             }
         }
+
+        element.addClass(o.clsInput);
+        keypad.addClass(o.clsKeypad);
 
         element.on("blur", function(){keypad.removeClass("focused");});
         element.on("focus", function(){keypad.addClass("focused");});
@@ -132,7 +137,7 @@ var Keypad = {
         var element = this.element, o = this.options;
         var keypad = element.parent();
         var keys = keypad.find(".keys");
-        keys.removeClass("top-left top top-right right bottom-right bottom bottom-left left").addClass(o.position)
+        keys.removeClass(this.positions.join(" ")).addClass(o.position)
     },
 
     _createKeys: function(){
@@ -221,6 +226,11 @@ var Keypad = {
                     that._createKeys();
                 }
 
+                if (o.dynamicPosition === true) {
+                    o.position = that.positions[Utils.random(0, that.positions.length - 1)];
+                    that._setKeysPosition();
+                }
+
                 Utils.exec(o.onKey, [key.data('key'), that.value, element]);
             } else {
                 if (key.data('key') === '&times;') {
@@ -242,6 +252,7 @@ var Keypad = {
             }
 
             element.trigger('change');
+            Utils.exec(o.onChange, [that.value, element]);
 
             e.preventDefault();
             e.stopPropagation();
@@ -263,8 +274,20 @@ var Keypad = {
     },
 
     shuffle: function(){
-        this.keys_to_work = this.keys_to_work.shuffle();
+        for (var i = 0; i < this.options.shuffleCount; i++) {
+            this.keys_to_work = this.keys_to_work.shuffle();
+        }
         Utils.exec(this.options.onShuffle, [this.keys_to_work, this.keys, this.element]);
+    },
+
+    shuffleKeys: function(count){
+        if (count === undefined) {
+            count = this.options.shuffleCount;
+        }
+        for (var i = 0; i < count; i++) {
+            this.keys_to_work = this.keys_to_work.shuffle();
+        }
+        this._createKeys();
     },
 
     val: function(v){
@@ -310,10 +333,9 @@ var Keypad = {
         }
     },
 
-    setPosition: function(){
-        var positions = ['top-left', 'top', 'top-right', 'right', 'bottom-right', 'bottom', 'bottom-left', 'left'];
-        var new_position = this.element.attr("data-position");
-        if (positions.indexOf(new_position) === -1) {
+    setPosition: function(pos){
+        var new_position = pos !== undefined ? pos : this.element.attr("data-position");
+        if (this.positions.indexOf(new_position) === -1) {
             return ;
         }
         this.options.position = new_position;

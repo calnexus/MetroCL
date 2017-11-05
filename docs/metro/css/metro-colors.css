@@ -191,68 +191,68 @@
   border-color: #1d1d1d;
 }
 .bd-light {
-  border-color: #d9d9d9 !important;
+  border-color: #f8f8f8 !important;
 }
 .ol-light {
-  outline-color: #d9d9d9 !important;
+  outline-color: #f8f8f8 !important;
 }
 .fg-light-active:active {
-  color: #d9d9d9 !important;
+  color: #f8f8f8 !important;
 }
 .fg-light-hover:hover {
-  color: #d9d9d9 !important;
+  color: #f8f8f8 !important;
 }
 .fg-light-focus:focus {
-  color: #d9d9d9 !important;
+  color: #f8f8f8 !important;
 }
 .bg-light-active:active {
-  background-color: #d9d9d9 !important;
+  background-color: #f8f8f8 !important;
 }
 .bg-light-hover:hover {
-  background-color: #d9d9d9 !important;
+  background-color: #f8f8f8 !important;
 }
 .bg-light-focus:focus {
-  background-color: #d9d9d9 !important;
+  background-color: #f8f8f8 !important;
 }
 .bd-light-active:active {
-  border-color: #d9d9d9 !important;
+  border-color: #f8f8f8 !important;
 }
 .bd-light-hover:hover {
-  border-color: #d9d9d9 !important;
+  border-color: #f8f8f8 !important;
 }
 .bd-light-focus:focus {
-  border-color: #d9d9d9 !important;
+  border-color: #f8f8f8 !important;
 }
 .ol-light-active:active {
-  outline-color: #d9d9d9 !important;
+  outline-color: #f8f8f8 !important;
 }
 .ol-light-hover:hover {
-  outline-color: #d9d9d9 !important;
+  outline-color: #f8f8f8 !important;
 }
 .ol-light-focus:focus {
-  outline-color: #d9d9d9 !important;
+  outline-color: #f8f8f8 !important;
 }
 .ribbed-light {
-  background: #d9d9d9 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
+  background: #f8f8f8 linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
   background-size: 20px 20px !important;
 }
 .before-bg-light::before {
-  background: #d9d9d9 !important;
+  background: #f8f8f8 !important;
 }
 .before-fg-light::before {
-  color: #d9d9d9 !important;
+  color: #f8f8f8 !important;
 }
 .after-bg-light::after {
-  background: #d9d9d9 !important;
+  background: #f8f8f8 !important;
 }
 .after-fg-light::after {
-  color: #d9d9d9 !important;
+  color: #f8f8f8 !important;
 }
 .op-light {
-  background-color: rgba(217, 217, 217, 0.7) !important;
+  background-color: rgba(248, 248, 248, 0.7) !important;
 }
 .tg-light::before {
-  border-color: #d9d9d9;
+  border-color: #f8f8f8;
 }
 .bd-grayBlue {
   border-color: #607d8b !important;

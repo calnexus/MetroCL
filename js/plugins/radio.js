@@ -15,6 +15,9 @@ var Radio = {
         caption: "",
         captionPosition: "right",
         disabled: false,
+        clsElement: "",
+        clsCheck: "",
+        clsCaption: "",
         onRadioCreate: Metro.noop
     },
 
@@ -56,6 +59,10 @@ var Radio = {
         }
 
         element[0].className = '';
+
+        container.addClass(o.clsElement);
+        caption.addClass(o.clsCaption);
+        check.addClass(o.clsCheck);
 
         if (o.disabled === true && element.is(':disabled')) {
             this.disable();

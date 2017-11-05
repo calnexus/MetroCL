@@ -64,9 +64,6 @@ var Input = {
         element.appendTo(container);
         buttons.appendTo(container);
 
-        container.addClass(o.clsElement);
-        element.addClass(o.clsInput);
-
         if (o.clearButton !== false) {
             clearButton = $("<button>").addClass("button").addClass(o.clsClearButton).attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
             clearButton.on("click", function(){
@@ -112,6 +109,9 @@ var Input = {
                 container.css(element[0].style[i], element.css(element[0].style[i]));
             }
         }
+
+        container.addClass(o.clsElement);
+        element.addClass(o.clsInput);
 
         if (o.size !== "default") {
             container.css({

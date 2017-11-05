@@ -15,6 +15,9 @@ var Checkbox = {
         caption: "",
         captionPosition: "right",
         disabled: false,
+        clsElement: "",
+        clsCheck: "",
+        clsCaption: "",
         onCheckboxCreate: Metro.noop
     },
 
@@ -57,6 +60,10 @@ var Checkbox = {
         }
 
         element[0].className = '';
+
+        container.addClass(o.clsElement);
+        caption.addClass(o.clsCaption);
+        check.addClass(o.clsCheck);
 
         if (o.disabled === true && element.is(':disabled')) {
             this.disable();

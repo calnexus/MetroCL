@@ -24,6 +24,7 @@ var Datepicker = {
         clearButtonIcon: "<span class='mif-cross'></span>",
         copyInlineStyles: false,
         clsPicker: "",
+        clsInput: "",
 
         onDatepickerCreate: Metro.noop,
         onCalendarShow: Metro.noop,
@@ -195,6 +196,7 @@ var Datepicker = {
         }
 
         container.addClass(o.clsPicker);
+        element.addClass(o.clsInput);
 
         element.on("blur", function(){container.removeClass("focused");});
         element.on("focus", function(){container.addClass("focused");});
