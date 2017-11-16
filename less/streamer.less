@@ -330,19 +330,41 @@
     }
 }
 
-.streamer {
-    .stream {
-        &:hover {
-            transition: @transition-width;
-            width: 200px;
-            .stream-title, .stream-secondary {
-                display: block;
+html.metro-no-touch-device {
+    .streamer {
+        .stream {
+            &:hover {
+                transition: @transition-width;
+                width: 200px;
+                .stream-title, .stream-secondary {
+                    display: block;
+                }
+                .stream-icon {
+                    bottom: 4px;
+                    right: 4px;
+                    top: auto;
+                    left: auto;
+                }
             }
-            .stream-icon {
-                bottom: 4px;
-                right: 4px;
-                top: auto;
-                left: auto;
+        }
+    }
+}
+
+html.metro-touch-device {
+    .streamer {
+        .stream {
+            &.focused {
+                transition: @transition-width;
+                width: 200px;
+                .stream-title, .stream-secondary {
+                    display: block;
+                }
+                .stream-icon {
+                    bottom: 4px;
+                    right: 4px;
+                    top: auto;
+                    left: auto;
+                }
             }
         }
     }

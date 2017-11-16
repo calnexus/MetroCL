@@ -59,6 +59,9 @@ var Streamer = {
             return false;
         }
 
+        $("<div>").addClass("streams").appendTo(element);
+        $("<div>").addClass("events-area").appendTo(element);
+
         if (o.source !== null) {
             $.get(o.source, function(data){
                 that.data = data;
@@ -69,32 +72,18 @@ var Streamer = {
             this.build();
         }
 
+        this._createEvents();
+
         if (o.chromeNotice === true && Utils.detectChrome() === true && Utils.isTouchDevice() === false) {
             $("<p>").addClass("text-small text-muted").html("*) In Chrome browser please press and hold Shift and turn the mouse wheel.").insertAfter(element);
-        }
-
-        if (Utils.isTouchDevice() !== true) {
-            $(element).on("mousewheel", ".events-area", function(e) {
-                var acrollable = $(this);
-
-                if (e.deltaY === undefined || e.deltaFactor === undefined) {
-                    return ;
-                }
-
-                if (e.deltaFactor > 1) {
-                    var scroll = acrollable.scrollLeft() - ( e.deltaY * 30 );
-                    acrollable.scrollLeft(scroll);
-                    e.preventDefault();
-                }
-            });
         }
     },
 
     build: function(){
         var that = this, element = this.element, o = this.options, data = this.data;
-        var streams = $("<div>").addClass("streams").appendTo(element);
-        var events_area = $("<div>").addClass("events-area").appendTo(element);
-        var timeline = $("<ul>").addClass("streamer-timeline").appendTo(events_area);
+        var streams = element.find(".streams").html("");
+        var events_area = element.find(".events-area").html("");
+        var timeline = $("<ul>").addClass("streamer-timeline").html("").appendTo(events_area);
         var streamer_events = $("<div>").addClass("streamer-events").appendTo(events_area);
         var event_group_main = $("<div>").addClass("event-group").appendTo(streamer_events);
         var StreamerIDS = Utils.getURIParameter(null, "StreamerIDS");
@@ -119,6 +108,8 @@ var Streamer = {
         }
 
         // Create timeline
+
+        timeline.html("");
 
         if (data.timeline === undefined) {
             data.timeline = {
@@ -251,12 +242,26 @@ var Streamer = {
             });
         }
 
+        element.data("stream", -1);
+
+        if (o.startFrom !== null && o.slideToStart === true) {
+            setTimeout(function(){
+                that.slideTo(o.startFrom);
+            }, o.startSlideSleep);
+        }
+
+        Utils.exec(o.onStreamerCreate, [element]);
+    },
+
+    _createEvents: function(){
+        var that = this, element = this.element, o = this.options;
+
         element.on("click", ".stream-event", function(e){
             var event = $(this);
             if (o.closed === false && event.data("closed") !== true && o.eventClick === 'select') {
                 event.toggleClass("selected");
                 if (o.changeUri === true) {
-                    that.changeURI();
+                    that._changeURI();
                 }
                 Utils.exec(o.onEventSelect, [event, event.hasClass("selected")]);
             } else {
@@ -292,19 +297,41 @@ var Streamer = {
             Utils.exec(o.onStreamClick, [stream]);
         });
 
-        element.data("stream", -1);
+        if (Utils.isTouchDevice() !== true) {
+            element.on("mousewheel", ".events-area", function(e) {
+                var acrollable = $(this);
 
-        if (o.startFrom !== null && o.slideToStart === true) {
-            setTimeout(function(){
-                that.slideTo(o.startFrom);
-            }, o.startSlideSleep);
+                if (e.deltaY === undefined || e.deltaFactor === undefined) {
+                    return ;
+                }
+
+                if (e.deltaFactor > 1) {
+                    var scroll = acrollable.scrollLeft() - ( e.deltaY * 30 );
+                    acrollable.scrollLeft(scroll);
+                    e.preventDefault();
+                }
+            });
         }
 
-        Utils.exec(o.onStreamerCreate, [element]);
+        if (Utils.isTouchDevice() === true) {
+            element.on("click", ".stream", function(){
+                var stream = $(this);
+                stream.toggleClass("focused");
+                $.each(element.find(".stream"), function () {
+                    if ($(this).is(stream)) return ;
+                    $(this).removeClass("focused");
+                })
+            })
+        }
+    },
+
+    _changeURI: function(){
+        var that = this, element = this.element, o = this.options, data = this.data;
+        var link = this.getLink();
+        history.pushState({}, document.title, link);
     },
 
     slideTo: function(time){
-        console.log(time);
         var that = this, element = this.element, o = this.options, data = this.data;
         var target;
         if (time === undefined) {
@@ -399,14 +426,74 @@ var Streamer = {
         return events;
     },
 
-    changeURI: function(){
+    source: function(s){
+        if (s === undefined) {
+            return this.options.source;
+        }
+
+        this.options.source = s;
+        this.changeSource();
+    },
+
+    data: function(s){
+        if (s === undefined) {
+            return this.options.source;
+        }
+
+        this.options.data = s;
+        this.changeData();
+    },
+
+    getStreamerData: function(){
+        return this.data;
+    },
+
+    changeSource: function(){
         var that = this, element = this.element, o = this.options, data = this.data;
-        var link = this.getLink();
-        history.pushState({}, document.title, link);
+        var new_source = element.attr("data-source");
+
+        if (String(new_source).trim() === "") {
+            return ;
+        }
+
+        o.source = new_source;
+
+        $.get(o.source, function(data){
+            that.data = data;
+            that.build();
+        });
+
+        element.trigger("sourcechanged");
+    },
+
+    changeData: function(){
+        var that = this, element = this.element, o = this.options, data = this.data;
+        var new_data = element.attr("data-data");
+
+        if (String(new_data).trim() === "") {
+            return ;
+        }
+
+        o.data = new_data;
+
+        this.data = new_data;
+        this.build();
+
+        element.trigger("datachanged");
+    },
+
+    changeStreamSelectOption: function(){
+        var that = this, element = this.element, o = this.options, data = this.data;
+
+        o.streamSelect = element.attr("data-stream-select").toLowerCase() === "true";
     },
 
     changeAttribute: function(attributeName){
-
+        switch (attributeName) {
+            case 'data-source': this.changeSource(); break;
+            case 'data-data': this.changeData(); break;
+            case 'data-stream-select': this.changeStreamSelectOption(); break;
+        }
     }
 };
 

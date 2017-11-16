@@ -9424,16 +9424,31 @@ figure img {
 .streamer .stream-event.shift-10x {
   margin-left: 2241px;
 }
-.streamer .stream:hover {
+html.metro-no-touch-device .streamer .stream:hover {
   -webkit-transition: width 0.3s ease;
   transition: width 0.3s ease;
   width: 200px;
 }
-.streamer .stream:hover .stream-title,
-.streamer .stream:hover .stream-secondary {
+html.metro-no-touch-device .streamer .stream:hover .stream-title,
+html.metro-no-touch-device .streamer .stream:hover .stream-secondary {
   display: block;
 }
-.streamer .stream:hover .stream-icon {
+html.metro-no-touch-device .streamer .stream:hover .stream-icon {
+  bottom: 4px;
+  right: 4px;
+  top: auto;
+  left: auto;
+}
+html.metro-touch-device .streamer .stream.focused {
+  -webkit-transition: width 0.3s ease;
+  transition: width 0.3s ease;
+  width: 200px;
+}
+html.metro-touch-device .streamer .stream.focused .stream-title,
+html.metro-touch-device .streamer .stream.focused .stream-secondary {
+  display: block;
+}
+html.metro-touch-device .streamer .stream.focused .stream-icon {
   bottom: 4px;
   right: 4px;
   top: auto;

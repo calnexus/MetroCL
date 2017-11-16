@@ -46,6 +46,14 @@ var Metro = {
         var widgets = $("[data-role]");
         var hotkeys = $("[data-hotkey]");
         var body = $("body")[0];
+        var html = $("html");
+
+        if (isTouch === true) {
+            html.addClass("metro-touch-device");
+        } else {
+            html.addClass("metro-no-touch-device");
+        }
+
         Metro.initHotkeys(hotkeys);
         Metro.initWidgets(widgets);
         var observer, observerOptions, observerCallback;

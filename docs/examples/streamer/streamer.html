@@ -42,7 +42,7 @@
             <ul class="times-list mt-2 mb-4"></ul>
         </div>
 
-        <div id="streamer" class="streamer-expand-sm" data-role="streamer" data-source="../../data/streamer_data2.json" data-on-streamer-create="streamerCreate" data-start-from="09:00" data-on-event-select="eventSelect"></div>
+        <div id="streamer" class="streamer-expand-sm" data-role="streamer" data-source="../../data/streamer_data.json" data-on-streamer-create="streamerCreate" data-start-from="09:00" data-on-event-select="eventSelect"></div>
 
         <div class="actions mt-2">
             <p class="remark alert">
@@ -53,6 +53,8 @@
             <button class="button" onclick="console.log($('#streamer').data('streamer').getEvents('selected'))">Get selected events</button>
             <button class="button" onclick="console.log($('#streamer').data('streamer').getEvents('non-selected'))">Get non-selected events</button>
             <button class="button" onclick="console.log($('#streamer').data('streamer').getEvents('selected', true))">Get selected events, include global</button>
+            <button class="button" onclick="$('#streamer').attr('data-source', '../../data/streamer_data.json')">Source1</button>
+            <button class="button" onclick="$('#streamer').attr('data-source', '../../data/streamer_data2.json')">Source2</button>
         </div>
     </div>
 
@@ -65,7 +67,7 @@
             console.log("ku");
             var streamer = $("#streamer").data("streamer");
             var times = streamer.getTimes();
-            var times_list = $(".times-list");
+            var times_list = $(".times-list").html("");
             var events = streamer.getEvents("selected", true);
 
             $.each(times, function(){
