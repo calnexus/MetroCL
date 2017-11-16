@@ -14323,10 +14323,8 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   display: block;
   position: fixed;
   z-index: 1090;
-  background: #1d1d1d;
+  background-color: #1d1d1d;
   color: #ffffff;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
 }
 .charms.top-side {
   top: 0;
@@ -14334,6 +14332,10 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   width: 100%;
   -webkit-transform: translateY(-100%);
           transform: translateY(-100%);
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
 }
 .charms.top-side.open {
   -webkit-transform: translateY(0);
@@ -14345,6 +14347,10 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   width: 100%;
   -webkit-transform: translateY(100%);
           transform: translateY(100%);
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
 }
 .charms.bottom-side.open {
   -webkit-transform: translateY(0);
@@ -14355,9 +14361,12 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   bottom: 0;
   left: 0;
   width: auto;
-  min-width: 100px;
   -webkit-transform: translateX(-100%);
           transform: translateX(-100%);
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
 }
 .charms.left-side.open {
   -webkit-transform: translateX(0);
@@ -14368,9 +14377,12 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   bottom: 0;
   right: 0;
   width: auto;
-  min-width: 100px;
   -webkit-transform: translateX(100%);
           transform: translateX(100%);
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
 }
 .charms.right-side.open {
   -webkit-transform: translateX(0);

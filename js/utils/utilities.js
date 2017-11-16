@@ -535,6 +535,15 @@ var Utils = {
         return result;
     },
 
+    computedRgbToRgba: function(rgb, alpha){
+        var a = rgb.replace(/[^\d,]/g, '').split(',');
+        if (alpha === undefined) {
+            alpha = 1;
+        }
+        a.push(alpha);
+        return "rgba("+a.join(",")+")";
+    },
+
     getInlineStyles: function(el){
         var styles = {};
         if (this.isJQueryObject(el)) {

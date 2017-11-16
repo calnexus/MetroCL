@@ -34,6 +34,19 @@
     <link href="css/site.css" rel="stylesheet">
 
     <title>Charms - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+    <style>
+        .charms {
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            padding: 5rem;
+        }
+
+        .charms.right-side, .charms.left-side  {
+            flex-direction: column;
+        }
+    </style>
 </head>
 <body>
     <div class="container-fluid">
@@ -48,8 +61,12 @@
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Charms</a></li>
                     <li class="toc-entry"><a href="#_charms_about">About charms</a></li>
+                    <li class="toc-entry"><a href="#_charms_position">Position</a></li>
+                    <li class="toc-entry"><a href="#_charms_opacity">Opacity</a></li>
+                    <li class="toc-entry"><a href="#_charms_events">Events</a></li>
+                    <li class="toc-entry"><a href="#_charms_methods">Methods</a></li>
+                    <li class="toc-entry"><a href="#_charms_methods">Customize</a></li>
                 </ul>
-
             </div>
 
             <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
@@ -59,33 +76,66 @@
 
                 <h1>Charms</h1>
                 <p class="text-leader">
-                    The Charms bars is a systems-wide toolbars that houses for important services. Create additional control area with charm component.
+                    The Charms bars is a systems toolbars that houses for important services. Create additional control area with charm component.
                 </p>
 
                 <!-- ads-html -->
 
                 <h3 id="_charms_about">About charms</h3>
                 <p>
-                    The Charms bars is a systems-wide toolbars that houses for important services.
+                    The Charms bars is a systems toolbars that houses for important services.
                     The Charms bars is a vertical or horizontal toolbar, found on the: <code>right-side</code>, <code>left-side</code>, <code>top-side</code> or <code>bottom-side</code> of the screen.
                 </p>
 
                 <p>
-                    To create <code>charms</code> add attribute <code>data-role="charms"</code> to block element and setup charms position with attribute <code>data-position="right|left|top|bottom"</code>.
+                    To create <code>charms</code> add attribute <code>data-role="charms"</code> to block element. and setup charms position with attribute <code>data-position="right|left|top|bottom"</code>.
                 </p>
                 <pre><code class="html">
                     &lt;div data-role="charms" data-position="right"&gt;&lt;/div&gt;
                 </code></pre>
 
-                <div class="charms top-side" id="top-charms">top</div>
-                <div class="charms bottom-side" id="bottom-charms">bottom</div>
-                <div class="charms left-side" id="left-charms">left</div>
-                <div class="charms right-side" id="right-charms">right</div>
+                <div data-role="charms" id="default-charms"><div>Default charms</div></div>
+                <div class="example text-center">
+                    <button class="button" onclick="$('#default-charms').data('charms').toggle()">Default charms</button>
+                </div>
 
-                <button class="button" onclick="$('#top-charms').toggleClass('open')">top</button>
-                <button class="button" onclick="$('#bottom-charms').toggleClass('open')">bottom</button>
-                <button class="button" onclick="$('#left-charms').toggleClass('open')">left</button>
-                <button class="button" onclick="$('#right-charms').toggleClass('open')">right</button>
+                <h3 id="_charms_position">Position</h3>
+                <p>
+                    You can setup position for <code>charms</code>.
+                    To set <code>position</code> add attribute <code>data-position</code> with one of values: <code>right</code>, <code>left</code>, <code>top</code> or <code>bottom</code>.
+                </p>
+                <pre><code class="html">
+                    &lt;div data-role="charms" data-position="top"&gt;&lt;div&gt;top&lt;/div&gt;&lt;/div&gt;
+                    &lt;div data-role="charms" data-position="bottom"&gt;&lt;div&gt;bottom&lt;/div&gt;&lt;/div&gt;
+                    &lt;div data-role="charms" data-position="left"&gt;&lt;div&gt;left&lt;/div&gt;&lt;/div&gt;
+                    &lt;div data-role="charms" data-position="right"&gt;&lt;div&gt;right&lt;/div&gt;&lt;/div&gt;
+                </code></pre>
+
+                <div data-role="charms" data-position="top" id="top-charms"><div>top</div></div>
+                <div data-role="charms" data-position="bottom" id="bottom-charms"><div>bottom</div></div>
+                <div data-role="charms" data-position="left" id="left-charms"><div>left</div></div>
+                <div data-role="charms" data-position="right" id="right-charms"><div>right</div></div>
+
+                <div class="example text-center">
+                    <button class="button" onclick="$('#top-charms').data('charms').toggle()">Top</button>
+                    <button class="button" onclick="$('#bottom-charms').data('charms').toggle()">Bottom</button>
+                    <button class="button" onclick="$('#left-charms').data('charms').toggle()">Left</button>
+                    <button class="button" onclick="$('#right-charms').data('charms').toggle()">Right</button>
+                </div>
+
+                <h3 id="_charms_opacity">Opacity</h3>
+                <p>
+                    To set <code>opacity</code> for charms use attribute <code>data-opacity</code>. The value can be between <code>0</code> and <code>1</code>.
+                </p>
+                <pre><code class="html">
+                    &lt;div data-role="charms" data-opacity=".5"&gt;&lt;/div&gt;
+                </code></pre>
+
+                <div data-role="charms" data-opacity=".5" id="opacity-charms"><div>opacity</div></div>
+                <div class="example text-center">
+                    <button class="button" onclick="$('#opacity-charms').data('charms').toggle()">opacity</button>
+                </div>
+
             </main>
         </div>
 
