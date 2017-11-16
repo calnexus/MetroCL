@@ -720,4 +720,13 @@ var Calendar = {
     }
 };
 
+$(document).on('click', function(e){
+    $('.calendar .calendar-years').each(function(){
+        $(this).removeClass("open");
+    });
+    $('.calendar .calendar-months').each(function(){
+        $(this).removeClass("open");
+    });
+});
+
 Metro.plugin('calendar', Calendar);

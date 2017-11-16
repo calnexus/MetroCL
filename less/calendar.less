@@ -159,12 +159,13 @@
 }
 
 .calendar-months {
-    right: 100%;
+    left: 0;
+    transform: translateX(-100%);
     width: 160px;
 
     &.open {
         transition: @transition-base;
-        margin-right: -160px;
+        transform: translateX(0);
         .shadow-right();
     }
 
@@ -188,7 +189,7 @@
 
     &.open {
         transition: @transition-base;
-        margin-left: -120px;
+        transform: translateX(-100%);
         .shadow-left();
     }
 

@@ -13438,13 +13438,16 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   z-index: 500;
 }
 .calendar-months {
-  right: 100%;
+  left: 0;
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
   width: 160px;
 }
 .calendar-months.open {
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-  margin-right: -160px;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
   -webkit-box-shadow: 5px 0 7px -6px rgba(0, 0, 0, 0.75);
           box-shadow: 5px 0 7px -6px rgba(0, 0, 0, 0.75);
 }
@@ -13466,7 +13469,8 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 .calendar-years.open {
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-  margin-left: -120px;
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
   -webkit-box-shadow: -5px 0 7px -6px rgba(0, 0, 0, 0.75);
           box-shadow: -5px 0 7px -6px rgba(0, 0, 0, 0.75);
 }
@@ -14314,6 +14318,63 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 }
 .keypad .key.service-key {
   background-color: #f8f8f8;
+}
+.charms {
+  display: block;
+  position: fixed;
+  z-index: 1090;
+  background: #1d1d1d;
+  color: #ffffff;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.charms.top-side {
+  top: 0;
+  left: 0;
+  width: 100%;
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+}
+.charms.top-side.open {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+.charms.bottom-side {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  -webkit-transform: translateY(100%);
+          transform: translateY(100%);
+}
+.charms.bottom-side.open {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+.charms.left-side {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: auto;
+  min-width: 100px;
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+}
+.charms.left-side.open {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+.charms.right-side {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: auto;
+  min-width: 100px;
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+}
+.charms.right-side.open {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
 }
 .ripple {
   display: block;
