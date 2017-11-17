@@ -19,6 +19,7 @@
 ## Current Version 4.0.0
 
 ### Status
+[![Dependency Status](https://david-dm.org/Pro-Club/MetroCL/status.svg)](https://david-dm.org/Pro-Club/MetroCL)
 [![devDependency Status](https://david-dm.org/Pro-Club/MetroCL/dev-status.svg)](https://david-dm.org/Pro-Club/MetroCL?type=dev)
 
 ### Whats new
