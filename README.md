@@ -23,7 +23,7 @@
 [![Dependency Status](https://david-dm.org/Pro-Club/MetroCL/status.svg)](https://david-dm.org/Pro-Club/MetroCL)
 [![devDependency Status](https://david-dm.org/Pro-Club/MetroCL/dev-status.svg)](https://david-dm.org/Pro-Club/MetroCL?type=dev)
 [![CSS gzip size](http://img.badgesize.io/Pro-Club/MetroCL/master/build/css/metro.min.css?compression=gzip&label=CSS+gzip+size)](https://github.com/Pro-Club/MetroCL/blob/master/build/css/metro.min.css)
-[![JS gzip size](http://img.badgesize.io/Pro-Club/MetroCL/master/build/js/metro.min.js?compression=gzip&label=CSS+gzip+size)](https://github.com/Pro-Club/MetroCL/blob/master/build/js/metro.min.js)
+[![JS gzip size](http://img.badgesize.io/Pro-Club/MetroCL/master/build/js/metro.min.js?compression=gzip&label=JS+gzip+size)](https://github.com/Pro-Club/MetroCL/blob/master/build/js/metro.min.js)
 
 ### Whats new
 + Full code refactoring and optimisation
