@@ -7,6 +7,7 @@
 
   <p align="center">
     Sleek, intuitive, and powerful front-end framework for faster and easier web development.
+ Build responsive, mobile-first projects on the web with the first front-end component library in Metro Style.
     <br>
     <a href="https://metroui.org.ua/v4/"><strong>Explore Metro 4 docs »</strong></a>
   </p>
@@ -14,10 +15,6 @@
 
 <br>
 <hr>
-
- Build responsive, mobile-first projects on the web with the first front-end component library in Metro Style.
-
- Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.
  
 ## Current Version 4.0.0
 
