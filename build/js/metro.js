@@ -7478,8 +7478,10 @@ var Streamer = {
             var h = t.getHours(), m = t.getMinutes();
             var v = (h < 10 ? "0"+h : h) + ":" + (m < 10 ? "0"+m : m);
 
-            $("<li>").data("time", v).addClass("js-time-point-" + v.replace(":", "-")).html("<em>"+v+"</em>").appendTo(timeline);
+            var li = $("<li>").data("time", v).addClass("js-time-point-" + v.replace(":", "-")).html("<em>"+v+"</em>").appendTo(timeline);
+            console.log(v + " " + li[0].offsetLeft);
         }
+
 
         // -- End timeline creator
 

@@ -9147,6 +9147,7 @@ figure img {
   padding-left: 40px;
   z-index: 1;
   -webkit-overflow-scrolling: touch;
+  position: relative;
 }
 .streamer .streamer-timeline {
   height: 32px;
@@ -9238,6 +9239,10 @@ figure img {
   background-color: #ffffff;
   color: #1d1d1d;
   overflow: hidden;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   cursor: pointer;
 }
 .streamer .stream-event:hover {
