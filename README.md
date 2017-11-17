@@ -43,7 +43,7 @@
 - All who brought something good 
 
 ### Browser Compatibility
-IE11+, Chrome, Firefox, Opera, Safari
+IE11+, Chrome, Firefox, Opera, Safari, Android, IOS
 
 # License
 Metro UI CSS has [MIT License](http://metroui.org.ua/license.html)
