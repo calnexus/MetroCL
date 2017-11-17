@@ -6292,7 +6292,7 @@ aside::after {
 }
 .topbar-menu li a:hover,
 .topbar-menu li a:active {
-  background: #0070a2;
+  background: rgba(29, 29, 29, 0.1);
 }
 @media screen and (min-width: 576px) {
   .topbar-element,
