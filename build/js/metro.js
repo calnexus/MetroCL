@@ -7479,9 +7479,7 @@ var Streamer = {
             var v = (h < 10 ? "0"+h : h) + ":" + (m < 10 ? "0"+m : m);
 
             var li = $("<li>").data("time", v).addClass("js-time-point-" + v.replace(":", "-")).html("<em>"+v+"</em>").appendTo(timeline);
-            console.log(v + " " + li[0].offsetLeft);
         }
-
 
         // -- End timeline creator
 
@@ -7518,9 +7516,16 @@ var Streamer = {
                             .data("time", event_item.time)
                             .addClass("stream-event")
                             .addClass("size-"+event_item.size+"x")
-                            .addClass("shift-"+event_item.shift+"x")
                             .addClass(event_item.cls)
                             .appendTo(stream_events);
+
+                        var left = timeline.find(".js-time-point-"+this.time.replace(":", "-"))[0].offsetLeft - stream.outerWidth();
+                        event.css({
+                            position: "absolute",
+                            left: left
+                        });
+
+
                         var slide = $("<div>").addClass("stream-event-slide").appendTo(event);
                         var slide_logo = $("<div>").addClass("slide-logo").appendTo(slide);
                         var slide_data = $("<div>").addClass("slide-data").appendTo(slide);
@@ -7552,6 +7557,9 @@ var Streamer = {
                                 .data("closed", false);
                         }
                     });
+
+                    var last_child = stream_events.find(".stream-event:last-child");
+                    stream_events.outerWidth(last_child[0].offsetLeft + last_child.outerWidth());
                 }
             });
         }
@@ -7575,11 +7583,12 @@ var Streamer = {
                         $("<div>").addClass("event-subtitle").html(event_item.subtitle).appendTo(event);
                         $("<div>").addClass("event-html").html(event_item.html).appendTo(event);
 
-                        if (global_item === 'before') {
-                            group.insertBefore(event_group_main);
-                        } else {
-                            group.insertAfter(element.find(".event-group:last-child"));
-                        }
+                        var left = timeline.find(".js-time-point-"+this.time.replace(":", "-"))[0].offsetLeft - streams.find(".stream").outerWidth();
+                        group.css({
+                            position: "absolute",
+                            left: left,
+                            height: "100%"
+                        }).appendTo(streamer_events);
                     });
                 }
             });
