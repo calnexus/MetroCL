@@ -18,6 +18,9 @@
  
 ## Current Version 4.0.0
 
+### Status
+[![devDependency Status](https://david-dm.org/Pro-Club/MetroCL/dev-status.svg)](https://david-dm.org/Pro-Club/MetroCL?type=dev)
+
 ### Whats new
 + Full code refactoring and optimisation
 + New components
