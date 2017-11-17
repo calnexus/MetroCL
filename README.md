@@ -22,8 +22,9 @@
 [![Build Status](https://api.travis-ci.org/Pro-Club/MetroCL.svg?branch=master)](https://travis-ci.org/Pro-Club/MetroCL)
 [![Dependency Status](https://david-dm.org/Pro-Club/MetroCL/status.svg)](https://david-dm.org/Pro-Club/MetroCL)
 [![devDependency Status](https://david-dm.org/Pro-Club/MetroCL/dev-status.svg)](https://david-dm.org/Pro-Club/MetroCL?type=dev)
-[![CSS gzip size](http://img.badgesize.io/Pro-Club/MetroCL/master/build/css/metro.min.css?compression=gzip&label=CSS+gzip+size)](https://github.com/Pro-Club/MetroCL/blob/master/build/css/metro.min.css)
+[![CSS gzip size](http://img.badgesize.io/Pro-Club/MetroCL/master/build/css/metro-all.min.css?compression=gzip&label=CSS+gzip+size)](https://github.com/Pro-Club/MetroCL/blob/master/build/css/metro-all.min.css)
 [![JS gzip size](http://img.badgesize.io/Pro-Club/MetroCL/master/build/js/metro.min.js?compression=gzip&label=JS+gzip+size)](https://github.com/Pro-Club/MetroCL/blob/master/build/js/metro.min.js)
+[![Icons gzip size](http://img.badgesize.io/Pro-Club/MetroCL/master/build/icons/metro.woff?compression=gzip&label=Icons+gzip+size)](https://github.com/Pro-Club/MetroCL/tree/master/build/icons)
 
 ### Whats new
 + Full code refactoring and optimisation
