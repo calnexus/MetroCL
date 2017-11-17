@@ -50,6 +50,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
+    version: "4.0.0-alpha",
     isTouchable: isTouch,
 
     eventStart: isTouch ? 'touchstart.metro' : 'mousedown.metro',
@@ -59,6 +60,10 @@ var Metro = {
     eventLeave: isTouch ? 'touchend.metro' : 'mouseleave.metro',
 
     hotkeys: [],
+
+    about: function(){
+        console.log("Metro 4 Components Library - v"+this.version);
+    },
 
     init: function(){
         var widgets = $("[data-role]");
@@ -3532,7 +3537,7 @@ var Charms = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -3546,7 +3551,7 @@ var Charms = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         element
             .addClass("charms")
@@ -3561,7 +3566,7 @@ var Charms = {
     },
 
     open: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         element.addClass("open");
 
@@ -3569,7 +3574,7 @@ var Charms = {
     },
 
     close: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         element.removeClass("open");
 
@@ -3577,7 +3582,7 @@ var Charms = {
     },
 
     toggle: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         element.toggleClass("open");
 
@@ -3588,8 +3593,32 @@ var Charms = {
         }
     },
 
-    changeAttribute: function(attributeName){
+    opacity: function(v){
+        var element = this.element, o = this.options;
 
+        if (v === undefined) {
+            return o.opacity;
+        }
+
+        var opacity = Math.abs(parseFloat(v));
+        if (opacity < 0 || opacity > 1) {
+            return ;
+        }
+        o.opacity = opacity;
+        element.css({
+            backgroundColor: Utils.computedRgbToRgba(Utils.getStyleOne(element, "background-color"), opacity)
+        });
+    },
+
+    changeOpacity: function(){
+        var element = this.element;
+        this.opacity(element.attr("data-opacity"));
+    },
+
+    changeAttribute: function(attributeName){
+        switch (attributeName) {
+            case "data-opacity": this.changeOpacity(); break;
+        }
     }
 };
 
@@ -3605,7 +3634,7 @@ Metro['charms'] = {
         return true;
     },
 
-    isOpened: function(el){
+    isOpen: function(el){
         if (this.check(el) === false) return ;
 
         var charms = $(el).data("charms");
@@ -3634,10 +3663,17 @@ Metro['charms'] = {
         charms.toggle();
     },
 
-    closeAll: function(el){
+    closeAll: function(){
         $('[data-role*=charms]').each(function() {
             $(this).data('charms').close();
         });
+    },
+
+    opacity: function(el, opacity){
+        if (this.check(el) === false) return ;
+
+        var charms = $(el).data("charms");
+        charms.opacity(opacity);
     }
 };
 // Source: js/plugins/checkbox.js

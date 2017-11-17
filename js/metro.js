@@ -32,6 +32,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
+    version: "4.0.0-alpha",
     isTouchable: isTouch,
 
     eventStart: isTouch ? 'touchstart.metro' : 'mousedown.metro',
@@ -41,6 +42,10 @@ var Metro = {
     eventLeave: isTouch ? 'touchend.metro' : 'mouseleave.metro',
 
     hotkeys: [],
+
+    about: function(){
+        console.log("Metro 4 Components Library - v"+this.version);
+    },
 
     init: function(){
         var widgets = $("[data-role]");

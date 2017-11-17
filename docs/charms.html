@@ -136,6 +136,86 @@
                     <button class="button" onclick="$('#opacity-charms').data('charms').toggle()">opacity</button>
                 </div>
 
+                <h3 id="_charms_events">Events</h3>
+                <p>
+                    When charms works, it generated the numbers of events. You can use callback for this event to behavior with charms.
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Data-*</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>onCharmsCreate(el)</td>
+                        <td><code>data-on-charms-create</code></td>
+                        <td>Fired when charms was created</td>
+                    </tr>
+                    <tr>
+                        <td>onOpen(el)</td>
+                        <td><code>data-on-open</code></td>
+                        <td>Fired when charms open</td>
+                    </tr>
+                    <tr>
+                        <td>onClose(el)</td>
+                        <td><code>data-on-close</code></td>
+                        <td>Fired when charms close</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <pre><code>
+                    &lt;div data-role="charms"
+                        data-on-open="console.log('charms was opened')"
+                        data-on-close="console.log('charms was closed')"
+                    &gt;&lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_charms_methods">Methods</h3>
+                <p>
+                    You can use charms methods ti interact with the charms component.
+                </p>
+                <ul>
+                    <li><strong>open()</strong> - open charms</li>
+                    <li><strong>close()</strong> - close charms</li>
+                    <li><strong>toggle()</strong> - toggle charms</li>
+                    <li><strong>opacity()</strong> - get charms opacity value</li>
+                    <li><strong>opacity(val)</strong> - eet charms opacity</li>
+                </ul>
+                <pre><code>
+                    var charms = $(el).data('charms');
+                    charms.open();
+                    charms.close();
+                    charms.toggle();
+                    charms.opacity(.5);
+                    console.log(charms.opacity());
+                </code></pre>
+                <p>
+                    Also Metro 4 also implements a special object for working with the component <code>Metro.charms</code> with same methods:
+                </p>
+                <ul>
+                    <li><strong>check(el)</strong> - Check element is a charm</li>
+                    <li><strong>isOpen(el)</strong> - Check charms is open</li>
+                    <li><strong>open(el)</strong> - open specific charms</li>
+                    <li><strong>close(el)</strong> - close specific charms</li>
+                    <li><strong>toggle(el)</strong> - toggle specific charms</li>
+                    <li><strong>opacity(el, opacity)</strong> - set opacity for specific charms</li>
+                </ul>
+                <pre><code>
+                    &lt;div data-role="charms" id="specific-charms"&gt;&lt;/div&gt;
+
+                    &lt;script&gt;
+                        Metro.charms.open("#specific-charms");
+                    &lt;/script&gt;
+                </code></pre>
+
+                <h3 id="_charms_customize">Customize</h3>
+                <p>
+                    You can use attribute <code>data-cls-charms="..."</code> to set additional classes for charms.
+                </p>
+
             </main>
         </div>
 
@@ -148,5 +228,8 @@
     <script src="js/clipboard.min.js"></script>
     <script src="js/site.js"></script>
     <!-- ads-script -->
+    <script>
+        Metro.about();
+    </script>
 </body>
 </html>

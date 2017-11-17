@@ -168,7 +168,7 @@ module.exports = function(grunt) {
                     patterns: [
                         {
                             match: /<!-- ads-html -->/g,
-                            replacement: '<div style="margin: 10px 0"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1632668592742327" data-ad-slot="8347181909" data-ad-format="auto"></ins></div>'
+                            replacement: '<div style="margin:10px 0"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1632668592742327" data-ad-slot="8347181909" data-ad-format="auto"></ins></div>'
                         },
                         {
                             match: /<!-- ads-script -->/g,
@@ -189,7 +189,7 @@ module.exports = function(grunt) {
         watch: {
             scripts: {
                 files: ['js/i18n/*.json', 'js/*.js', 'js/utils/*.js', 'js/plugins/*js', 'less/*.less', 'less/include/*.less', 'less/schemes/*.less', 'Gruntfile.js'],
-                tasks: ['clean', 'less', 'concat', 'postcss',  'uglify', 'cssmin', 'compress', 'copy', 'replace']
+                tasks: ['clean',  'less', 'concat', 'postcss',  'uglify', 'cssmin', 'compress', 'copy', 'replace']
             }
         }
     });
