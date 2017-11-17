@@ -13,10 +13,8 @@
 </p>
 
 <br>
+<hr>
 
-# Welcome
-###Are you tired of Bootstrap?
-  
  Build responsive, mobile-first projects on the web with the first front-end component library in Metro Style.
 
  Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.
