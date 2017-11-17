@@ -1,4 +1,4 @@
-<p style="text-align: center">
+<p align="center">
   <a href="https://metroui.org.ua/v4/">
     <img src="https://metroui.org.ua/images/logo4.png" alt="">
   </a>
@@ -15,7 +15,7 @@
 <br>
 
 # Welcome
-####Are you tired of Bootstrap?
+###Are you tired of Bootstrap?
   
  Build responsive, mobile-first projects on the web with the first front-end component library in Metro Style.
 
