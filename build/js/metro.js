@@ -3761,7 +3761,6 @@ var Checkbox = {
         caption.addClass(o.clsCaption);
         check.addClass(o.clsCheck);
 
-        console.log(element.attr("indeterminate"));
         if (element.attr("indeterminate") !== undefined) {
             element[0].indeterminate = true;
         }

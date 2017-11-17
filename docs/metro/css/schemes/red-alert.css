@@ -132,6 +132,14 @@ textarea,
 .radio .check::before {
   border-color: #b00015;
 }
+.checkbox input:indeterminate ~ .check,
+.radio input:indeterminate ~ .check {
+  border-color: #b00015;
+}
+.checkbox input:indeterminate ~ .check::before,
+.radio input:indeterminate ~ .check::before {
+  background-color: #b00015;
+}
 .checkbox input:focus ~ .check,
 .radio input:focus ~ .check {
   -webkit-box-shadow: none;
