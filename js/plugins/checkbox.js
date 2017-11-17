@@ -65,11 +65,20 @@ var Checkbox = {
         caption.addClass(o.clsCaption);
         check.addClass(o.clsCheck);
 
+        console.log(element.attr("indeterminate"));
+        if (element.attr("indeterminate") !== undefined) {
+            element[0].indeterminate = true;
+        }
+
         if (o.disabled === true && element.is(':disabled')) {
             this.disable();
         } else {
             this.enable();
         }
+    },
+
+    indeterminate: function(){
+        this.element[0].indeterminate = true;
     },
 
     disable: function(){
@@ -90,9 +99,14 @@ var Checkbox = {
         }
     },
 
+    toggleIndeterminate: function(){
+        this.element[0].indeterminate = this.element.attr("indeterminate") !== undefined;
+    },
+
     changeAttribute: function(attributeName){
         switch (attributeName) {
             case 'disabled': this.toggleState(); break;
+            case 'indeterminate': this.toggleIndeterminate(); break;
         }
     }
 };

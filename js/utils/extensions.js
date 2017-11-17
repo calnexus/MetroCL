@@ -1,3 +1,20 @@
+$.fn.extend({
+    toggleAttr: function(a, v){
+        return this.each(function(){
+            var el = $(this);
+            if (v !== undefined) {
+                el.attr(a, v);
+            } else {
+                if (el.attr(a) !== undefined) {
+                    el.removeAttr(a);
+                } else {
+                    el.attr(a, true);
+                }
+            }
+        });
+    }
+});
+
 Array.prototype.shuffle = function () {
     var currentIndex = this.length, temporaryValue, randomIndex;
 

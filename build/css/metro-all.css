@@ -7478,8 +7478,8 @@ label {
   background-color: #ffffff;
   border-color: #c0c0c0;
 }
-.checkbox input:checked ~ .check:before,
-.radio input:checked ~ .check:before {
+.checkbox input:checked ~ .check::before,
+.radio input:checked ~ .check::before {
   display: block;
 }
 .checkbox .check + .caption,
@@ -7522,7 +7522,7 @@ label {
   margin-top: -1.5625rem;
   margin-left: -1.5625rem;
 }
-.checkbox .check:before {
+.checkbox .check::before {
   position: absolute;
   vertical-align: middle;
   color: transparent;
@@ -7542,7 +7542,15 @@ label {
   -webkit-transform: rotate(-45deg);
           transform: rotate(-45deg);
 }
-.checkbox input:not(:checked) ~ .check:before {
+.checkbox input:indeterminate ~ .check::before {
+  display: block!important;
+  height: 0.625rem;
+  background-color: #1d1d1d;
+  border: none;
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+}
+.checkbox input:not(:checked) ~ .check::before {
   display: none;
 }
 .radio .check {

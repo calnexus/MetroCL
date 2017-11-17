@@ -352,6 +352,23 @@ $.extend($.easing, {
 });
 
 // Source: js/utils/extensions.js
+$.fn.extend({
+    toggleAttr: function(a, v){
+        return this.each(function(){
+            var el = $(this);
+            if (v !== undefined) {
+                el.attr(a, v);
+            } else {
+                if (el.attr(a) !== undefined) {
+                    el.removeAttr(a);
+                } else {
+                    el.attr(a, true);
+                }
+            }
+        });
+    }
+});
+
 Array.prototype.shuffle = function () {
     var currentIndex = this.length, temporaryValue, randomIndex;
 
@@ -3744,11 +3761,20 @@ var Checkbox = {
         caption.addClass(o.clsCaption);
         check.addClass(o.clsCheck);
 
+        console.log(element.attr("indeterminate"));
+        if (element.attr("indeterminate") !== undefined) {
+            element[0].indeterminate = true;
+        }
+
         if (o.disabled === true && element.is(':disabled')) {
             this.disable();
         } else {
             this.enable();
         }
+    },
+
+    indeterminate: function(){
+        this.element[0].indeterminate = true;
     },
 
     disable: function(){
@@ -3769,9 +3795,14 @@ var Checkbox = {
         }
     },
 
+    toggleIndeterminate: function(){
+        this.element[0].indeterminate = this.element.attr("indeterminate") !== undefined;
+    },
+
     changeAttribute: function(attributeName){
         switch (attributeName) {
             case 'disabled': this.toggleState(); break;
+            case 'indeterminate': this.toggleIndeterminate(); break;
         }
     }
 };

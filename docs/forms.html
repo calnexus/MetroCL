@@ -413,18 +413,20 @@
                     <input type="checkbox" disabled>
                     <input type="checkbox" disabled checked>
                 </div>
-                <h6 class="mt-2">Styled checks</h6>
+                <h6 class="mt-2">Metro 4 checkboxes</h6>
                 <div class="example mb-2">
                     <form>
-                        <input type="checkbox" data-role="checkbox" data-caption="Check">
-                        <input type="checkbox" data-role="checkbox" data-caption="Check" checked>
-                        <input type="checkbox" data-role="checkbox" data-caption="Check" disabled>
-                        <input type="checkbox" data-role="checkbox" data-caption="Check" disabled checked>
+                        <input type="checkbox" data-role="checkbox" data-caption="Unchecked">
+                        <input type="checkbox" data-role="checkbox" data-caption="Checked" checked>
+                        <input type="checkbox" data-role="checkbox" data-caption="Indeterminate" indeterminate>
+                        <input type="checkbox" data-role="checkbox" data-caption="Disabled" disabled>
+                        <input type="checkbox" data-role="checkbox" data-caption="Disabled checked" disabled checked>
                     </form>
                 </div>
                 <pre class=""><code>
                     &lt;input type="checkbox" data-role="checkbox" data-caption="Check"&gt;
                     &lt;input type="checkbox" data-role="checkbox" data-caption="Check" checked&gt;
+                    &lt;input type="checkbox" data-role="checkbox" data-caption="Check" indeterminate&gt;
                     &lt;input type="checkbox" data-role="checkbox" data-caption="Check" disabled&gt;
                     &lt;input type="checkbox" data-role="checkbox" data-caption="Check" disabled checked&gt;
                 </code></pre>
@@ -459,6 +461,33 @@
                     </tr>
                     </tbody>
                 </table>
+
+                <h4>Indeterminate state</h4>
+                <p>
+                    In Metro 4, the checkbox can have an indeterminate state. To set this state add or remove attribute <code>indeterminate</code> for/from input.
+                </p>
+                <div class="example">
+                    <input type="checkbox" data-role="checkbox" data-caption="Indeterminate" indeterminate id="indeterminate-checkbox">
+                    <div class="mt-2">
+                        <button class="button" onclick="$('#indeterminate-checkbox').toggleAttr('indeterminate')">Switch state</button>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;input type="checkbox"
+                        data-role="checkbox"
+                        data-caption="Indeterminate"
+                        indeterminate
+                        id="indeterminate-checkbox"&gt;
+                    &lt;div class="mt-2"&gt;
+                        &lt;button class="button"
+                            onclick="$('#indeterminate-checkbox').toggleAttr('indeterminate')"&gt;
+                            Switch state
+                        &lt;/button&gt;
+                    &lt;/div&gt;
+                </code></pre>
+                <p class="remark warning">
+                    Warning! The <code>toggleAttr()</code> is not a native jQuery function. This is a Metro 4 jQuery extension function.
+                </p>
 
                 <h4 id="_radio">Radio</h4>
                 <p>

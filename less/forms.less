@@ -144,7 +144,7 @@ label {
         background-color: @white;
         border-color: @checkBackground;
 
-        &:before {
+        &::before {
             display: block;
         }
     }
@@ -191,7 +191,7 @@ label {
 
 .checkbox {
     .check {
-        &:before {
+        &::before {
             position: absolute;
             vertical-align: middle;
             color: transparent;
@@ -212,9 +212,19 @@ label {
         }
     }
 
+    input:indeterminate ~ .check {
+        &::before {
+            display: block!important;
+            .px2rem(height, 10px);
+            background-color: @dark;
+            border: none;
+            transform: rotate(0deg);
+        }
+    }
+
     input:not(:checked) {
         & ~ .check {
-            &:before {
+            &::before {
                 display: none;
             }
         }
