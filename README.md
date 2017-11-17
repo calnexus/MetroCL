@@ -1,3 +1,19 @@
+<p style="text-align: center">
+  <a href="https://metroui.org.ua/v4/">
+    <img src="https://metroui.org.ua/images/logo4.png" alt="">
+  </a>
+
+  <h3 align="center">Metro 4 Components Library</h3>
+
+  <p align="center">
+    Sleek, intuitive, and powerful front-end framework for faster and easier web development.
+    <br>
+    <a href="https://metroui.org.ua/v4/"><strong>Explore Metro 4 docs »</strong></a>
+  </p>
+</p>
+
+<br>
+
 # Welcome
 ####Are you tired of Bootstrap?
   
