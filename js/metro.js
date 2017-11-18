@@ -28,6 +28,17 @@ if ( typeof Object.create !== 'function' ) {
     };
 }
 
+window.METRO_POSITION = {
+    TOP: "top",
+    BOTTOM: "bottom",
+    LEFT: "left",
+    RIGHT: "right",
+    TOP_RIGHT: "top-right",
+    TOP_LEFT: "top-left",
+    BOTTOM_LEFT: "bottom-left",
+    BOTTOM_RIGHT: "bottom-right"
+};
+
 var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
 
 var Metro = {

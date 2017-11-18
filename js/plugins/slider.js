@@ -23,8 +23,8 @@ var Slider = {
         buffer: 0,
         hint: true,
         hintAlways: true,
-        hintPosition: top,
-        hintMask: "$1%",
+        hintPosition: METRO_POSITION.TOP,
+        hintMask: "$1",
         vertical: false,
         target: null,
         returnType: "value",
@@ -35,6 +35,7 @@ var Slider = {
         clsComplete: "",
         clsBuffer: "",
         clsMarker: "",
+        clsHint: "",
 
         onStart: Metro.noop,
         onStop: Metro.noop,
@@ -70,6 +71,7 @@ var Slider = {
         setTimeout(function(){
             that.buff(o.buffer);
             that.val(o.value);
+            that._hint();
         }, 100);
 
         Utils.exec(o.onSliderCreate, [element]);
@@ -85,6 +87,7 @@ var Slider = {
         var complete = $("<div>").addClass("complete").addClass(o.clsComplete);
         var buffer = $("<div>").addClass("buffer").addClass(o.clsBuffer);
         var marker = $("<button>").attr("type", "button").addClass("marker").addClass(o.clsMarker);
+        var hint = $("<div>").addClass("hint").addClass(o.hintPosition + "-side").addClass(o.clsHint);
         var id = Utils.uniqueId();
 
         slider.attr("id", id);
@@ -112,6 +115,7 @@ var Slider = {
         complete.appendTo(slider);
         buffer.appendTo(slider);
         marker.appendTo(slider);
+        hint.appendTo(marker);
 
         this.slider = slider;
     },
@@ -232,6 +236,33 @@ var Slider = {
 
         this._marker();
         this._value();
+        this._hint();
+    },
+
+    _hint: function(){
+        var o = this.options, slider = this.slider, marker = slider.find(".marker"), hint = slider.find(".hint");
+        var left, top, value;
+
+        if (o.hint !== true) {
+            return ;
+        }
+
+        value = o.hintMask.replace("$1", this.value).replace("$1", this.percent);
+
+        hint.text(value);
+
+        if (o.vertical === true) {
+
+        } else {
+
+        }
+
+        left = parseInt(marker.css("left")) + marker.outerWidth() / 2;
+        top = parseInt(marker.css("top")) - hint.outerHeight();
+
+        hint.css({
+            display: "block"
+        });
     },
 
     _value: function(){

@@ -67,16 +67,25 @@
                 <h3 id="_slider_about">About slider</h3>
 
                 <div class="example">
-
                     <div class="row flex-justify-center flex-align-center">
                         <div class="cell-md-6">
-                            <input id="s1" data-role="slider" data-buffer="35" data-on-change-value="$('#s2').data('slider').val(arguments[0])">
+                            <input id="s1" data-role="slider">
                         </div>
                         <div class="cell-md-6">
-                            <input id="s2" class="mx-auto" data-role="slider" data-vertical="true" data-size="200"  data-buffer="35">
+                            <input id="s2" class="mx-auto" data-role="slider" data-vertical="true" data-size="200">
                         </div>
                     </div>
+                </div>
 
+                <h3 id="_slider_hint">Hint</h3>
+                <h4 id="_slider_hint_position">Hint position</h4>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-3"><input data-role="slider" data-hint-position="top"></div>
+                        <div class="cell-md-3"><input data-role="slider" data-hint-position="bottom"></div>
+                        <div class="cell-md-3"><input data-role="slider" data-hint-position="left"></div>
+                        <div class="cell-md-3"><input data-role="slider" data-hint-position="right"></div>
+                    </div>
                 </div>
             </main>
         </div>
