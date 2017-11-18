@@ -132,12 +132,11 @@ var Slider = {
         var hint = slider.find(".hint");
 
         marker.on(Metro.eventStart, function(){
-
-            $(document).on(Metro.eventMove, function(e_move){
+            $(document).on(Metro.eventMove, function(e){
                 if (o.hint === true && o.hintAlways !== true) {
                     hint.fadeIn();
                 }
-                that._move(e_move);
+                that._move(e);
                 Utils.exec(o.onMove, [that.value, slider]);
             });
 
@@ -237,7 +236,7 @@ var Slider = {
             length = o.vertical === true ? slider.outerHeight() : slider.outerWidth(),
             cPos, cPix, cStart = 0, cStop = length - marker_size;
 
-        cPos = o.vertical === true ? e.pageY - offset.top : e.pageX - offset.left;
+        cPos = o.vertical === true ? Utils.pageXY(e).y - offset.top : Utils.pageXY(e).x - offset.left;
         cPix = o.vertical === true ? length - cPos - marker_size / 2 : cPos - marker_size / 2;
 
         if (cPix < cStart || cPix > cStop) {
