@@ -21,13 +21,13 @@ var Slider = {
         max: 100,
         value: 0,
         buffer: 0,
-        hint: true,
-        hintAlways: true,
+        hint: false,
+        hintAlways: false,
         hintPosition: METRO_POSITION.TOP,
         hintMask: "$1",
         vertical: false,
         target: null,
-        returnType: "value",
+        returnType: "value", // value or percent
         size: 0,
 
         clsSlider: "",
@@ -110,6 +110,12 @@ var Slider = {
             slider.insertAfter(prev);
         }
 
+        if (o.hintAlways === true) {
+            hint.css({
+                display: "block"
+            });
+        }
+
         element.appendTo(slider);
         backside.appendTo(slider);
         complete.appendTo(slider);
@@ -123,10 +129,14 @@ var Slider = {
     _createEvents: function(){
         var that = this, slider = this.slider, o = this.options;
         var marker = slider.find(".marker");
+        var hint = slider.find(".hint");
 
         marker.on(Metro.eventStart, function(){
 
             $(document).on(Metro.eventMove, function(e_move){
+                if (o.hint === true && o.hintAlways !== true) {
+                    hint.fadeIn();
+                }
                 that._move(e_move);
                 Utils.exec(o.onMove, [that.value, slider]);
             });
@@ -134,6 +144,10 @@ var Slider = {
             $(document).on(Metro.eventStop, function(){
                 $(document).off(Metro.eventMove);
                 $(document).off(Metro.eventStop);
+
+                if (o.hintAlways !== true) {
+                    hint.fadeOut();
+                }
 
                 Utils.exec(o.onStop, [that.value, slider]);
             });
@@ -241,28 +255,11 @@ var Slider = {
 
     _hint: function(){
         var o = this.options, slider = this.slider, marker = slider.find(".marker"), hint = slider.find(".hint");
-        var left, top, value;
-
-        if (o.hint !== true) {
-            return ;
-        }
+        var value;
 
         value = o.hintMask.replace("$1", this.value).replace("$1", this.percent);
 
         hint.text(value);
-
-        if (o.vertical === true) {
-
-        } else {
-
-        }
-
-        left = parseInt(marker.css("left")) + marker.outerWidth() / 2;
-        top = parseInt(marker.css("top")) - hint.outerHeight();
-
-        hint.css({
-            display: "block"
-        });
     },
 
     _value: function(){

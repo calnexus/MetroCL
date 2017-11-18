@@ -65,16 +65,14 @@
     }
 
     .hint {
-        display: block;
+        display: none;
         position: absolute;
         z-index: 5;
         width: auto;
         height: auto;
         padding: .25rem .5rem;
-        background-color: @red;
+        background-color: @darkGray;
         color: @white;
-        //background-color: @hintBackground;
-        //color: @hintColor;
 
         &::before {
             display: block;
@@ -146,6 +144,7 @@
 .slider {
     &.vertical-slider {
         width: 2.125rem;
+        height: 100px;
 
         .backside, .complete, .buffer, .marker {
             top: auto;
