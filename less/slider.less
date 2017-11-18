@@ -1,0 +1,104 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+.slider {
+    display: block;
+    position: relative;
+    height: 2.125rem;
+    background: transparent;
+    cursor: default;
+}
+
+.slider {
+    input {
+        width: 1px;
+        height: 1px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+    }
+}
+
+.slider {
+    .backside, .complete, .buffer, .marker {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .backside {
+        background-color: @gray;
+        width: 100%;
+        z-index: 1;
+        height: .6rem;
+    }
+
+    .buffer {
+        z-index: 2;
+        height: .3rem;
+        background-color: @white;
+    }
+
+    .complete {
+        z-index: 3;
+        height: .6rem;
+        background-color: @green;
+    }
+
+    .marker {
+        .square(1, rem);
+        background-color: @dark;
+        z-index: 4;
+        outline: none;
+        border: 1px solid transparent;
+        cursor: pointer;
+
+        &:focus {
+            .focus-show(@lightGray);
+        }
+
+        &:active {
+            .halo();
+        }
+    }
+}
+
+.slider {
+    &.vertical-slider {
+        width: 2.125rem;
+
+        .backside, .complete, .buffer, .marker {
+            top: auto;
+            left: 50%;
+            transform: translateY(0) translateX(-50%);
+        }
+
+        .backside, .complete, .buffer {
+            width: .5rem;
+            bottom: 0;
+        }
+
+        .backside {
+            height: 100%;
+        }
+
+        .buffer {
+            width: .3rem;
+        }
+
+        .marker {
+            top: 100%;
+            transform: translateY(-100%) translateX(-50%);
+        }
+    }
+}
+
+.slider {
+    &.rounded {
+        .backside, .complete, .buffer, .marker {
+            border-radius: @borderRadius;
+        }
+    }
+}
