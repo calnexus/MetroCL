@@ -46,6 +46,7 @@ var Metro = {
     version: "4.0.0-alpha",
     isTouchable: isTouch,
 
+    eventClick: isTouch ? 'touchstart.metro' : 'click.metro',
     eventStart: isTouch ? 'touchstart.metro' : 'mousedown.metro',
     eventStop: isTouch ? 'touchend.metro' : 'mouseup.metro',
     eventMove: isTouch ? 'touchmove.metro' : 'mousemove.metro',

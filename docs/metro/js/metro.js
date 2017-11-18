@@ -64,6 +64,7 @@ var Metro = {
     version: "4.0.0-alpha",
     isTouchable: isTouch,
 
+    eventClick: isTouch ? 'touchstart.metro' : 'click.metro',
     eventStart: isTouch ? 'touchstart.metro' : 'mousedown.metro',
     eventStop: isTouch ? 'touchend.metro' : 'mouseup.metro',
     eventMove: isTouch ? 'touchmove.metro' : 'mousemove.metro',
@@ -7594,9 +7595,13 @@ var Slider = {
             that.keyInterval = false;
         });
 
-        slider.on("click", function(e){
+        slider.on(Metro.eventClick, function(e){
             that._move(e);
             Utils.exec(o.onClick, [that.value, slider]);
+        });
+
+        $(window).resize(function(e){
+            that.val(that.value);
         });
     },
 

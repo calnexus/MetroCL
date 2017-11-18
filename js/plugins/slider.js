@@ -212,9 +212,13 @@ var Slider = {
             that.keyInterval = false;
         });
 
-        slider.on("click", function(e){
+        slider.on(Metro.eventClick, function(e){
             that._move(e);
             Utils.exec(o.onClick, [that.value, slider]);
+        });
+
+        $(window).resize(function(e){
+            that.val(that.value);
         });
     },
 
