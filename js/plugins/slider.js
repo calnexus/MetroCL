@@ -19,6 +19,7 @@ var Slider = {
     options: {
         min: 0,
         max: 100,
+        accuracy: 0,
         showMinMax: false,
         minMaxPosition: METRO_POSITION.TOP,
         value: 0,
@@ -186,38 +187,36 @@ var Slider = {
                 return;
             }
 
-            var marker = $(this);
-            var length = ( o.vertical === true ? slider.outerHeight() : slider.outerWidth() ) - marker.outerWidth();
-            var step = 1;
+            var step = o.accuracy === 0 ? 1 : o.accuracy;
 
             if (that.keyInterval) {
                 return ;
             }
             that.keyInterval = setInterval(function(){
 
-                var pos = parseInt(o.vertical === true ? marker.css('top') : marker.css('left'));
+                var val = that.value;
 
                 if (e.keyCode === 37 || e.keyCode === 40) { // left, down
-                    if (pos - step <= 0) {
-                        that.pixel = 0;
+                    if (val - step < o.min) {
+                        val = o.min;
                     } else {
-                        that.pixel -= step;
+                        val -= step;
                     }
                 }
 
                 if (e.keyCode === 38 || e.keyCode === 39) { // right, up
-                    if (pos + step >= length) {
-                        that.pixel = length;
+                    if (val + step > o.max) {
+                        val = o.max;
                     } else {
-                        that.pixel += step;
+                        val += step;
                     }
                 }
 
-                that.value = that._convert(that.pixel, 'pix2val');
-                that.percent = that._convert(that.pixel, 'pix2prc');
+                that.value = that._correct(val);
+                that.percent = that._convert(that.value, 'val2prc');
+                that.pixel = that._convert(that.percent, 'prc2pix');
 
-                that._marker();
-                that._value();
+                that._redraw();
             }, 100);
 
             e.preventDefault();
@@ -250,6 +249,27 @@ var Slider = {
         }
     },
 
+    _correct: function(value){
+        var accuracy  = this.options.accuracy;
+        var min = this.options.min, max = this.options.max;
+
+        if (accuracy === 0 || isNaN(accuracy)) {
+            return value;
+        }
+
+        value = Math.floor(value / accuracy) * accuracy + Math.round(value % accuracy / accuracy) * accuracy;
+
+        if (value < min) {
+            value = min;
+        }
+
+        if (value > max) {
+            value = max;
+        }
+
+        return value;
+    },
+
     _move: function(e){
         var slider = this.slider, o = this.options;
         var offset = slider.offset(),
@@ -264,13 +284,11 @@ var Slider = {
             return ;
         }
 
-        this.pixel = cPix;
-        this.value = this._convert(cPix, 'pix2val');
-        this.percent = this._convert(cPix, 'pix2prc');
+        this.value = this._correct(this._convert(cPix, 'pix2val'));
+        this.percent = this._convert(this.value, 'val2prc');
+        this.pixel = this._convert(this.percent, 'prc2pix');
 
-        this._marker();
-        this._value();
-        this._hint();
+        this._redraw();
     },
 
     _hint: function(){
@@ -326,6 +344,12 @@ var Slider = {
         }
     },
 
+    _redraw: function(){
+        this._marker();
+        this._value();
+        this._hint();
+    },
+
     _buffer: function(){
         var o = this.options;
         var buffer = this.slider.find(".buffer");
@@ -354,12 +378,11 @@ var Slider = {
             v = o.max;
         }
 
-        this.value = v;
-        this.percent = this._convert(v, 'val2prc');
+        this.value = this._correct(v);
+        this.percent = this._convert(this.value, 'val2prc');
         this.pixel = this._convert(this.percent, 'prc2pix');
 
-        this._marker();
-        this._value();
+        this._redraw();
     },
 
     buff: function(v){

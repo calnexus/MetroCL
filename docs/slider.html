@@ -56,6 +56,7 @@
                     <li class="toc-entry"><a href="#">Slider</a></li>
                     <li class="toc-entry"><a href="#_slider_about">About slider</a></li>
                     <li class="toc-entry"><a href="#_slider_value">Slider value</a></li>
+                    <li class="toc-entry"><a href="#_slider_accuracy">Accuracy</a></li>
                     <li class="toc-entry"><a href="#_slider_target">Additional target</a></li>
                     <li class="toc-entry"><a href="#_slider_buffer">Buffer</a></li>
                     <li class="toc-entry">
@@ -143,6 +144,17 @@
                 <pre><code class="html">
                     &lt;input data-role="slider" data-return-type="value"&gt;
                     &lt;input data-role="slider" data-return-type="percent"&gt;
+                </code></pre>
+
+                <h3 id="_slider_accuracy">Accuracy</h3>
+                <p>
+                    You can set <code>accuracy</code> for slider with attribute <code>data-accuracy</code>.
+                </p>
+                <div class="example">
+                    <input data-role="slider" data-accuracy="5" data-hint-always="true">
+                </div>
+                <pre><code>
+                    &lt;input data-role="slider" data-accuracy="5" data-hint-always="true"&gt;
                 </code></pre>
 
                 <h3 id="_slider_target">Additional target</h3>
@@ -276,6 +288,12 @@
                         <td><code>data-value</code></td>
                         <td>0</td>
                         <td>Initial slider value</td>
+                    </tr>
+                    <tr>
+                        <td>accuracy</td>
+                        <td><code>data-accuracy</code></td>
+                        <td>0</td>
+                        <td>Slider accuracy</td>
                     </tr>
                     <tr>
                         <td>buffer</td>
@@ -427,6 +445,27 @@
                     <li><strong>buff()</strong> - get buffer value</li>
                     <li><strong>buff(v)</strong> - set buffer value</li>
                 </ul>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-6">
+                            <input type="number" min="0" max="100" oninput="$('#slider-methods').data('slider').val(this.value)">
+                        </div>
+                        <div class="cell-md-6">
+                            <input data-role="slider" data-accuracy="10" id="slider-methods">
+                        </div>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;div class="row"&gt;
+                        &lt;div class="cell-md-6"&gt;
+                            &lt;input type="number" min="0" max="100"
+                            oninput="$('#slider-methods').data('slider').val(this.value)"&gt;
+                        &lt;/div&gt;
+                        &lt;div class="cell-md-6"&gt;
+                            &lt;input data-role="slider" data-accuracy="10" id="slider-methods"&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
 
                 <h3 id="_slider_observe">Observe</h3>
                 <p>
