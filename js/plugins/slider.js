@@ -260,7 +260,7 @@ var Slider = {
         var o = this.options, slider = this.slider, marker = slider.find(".marker"), hint = slider.find(".hint");
         var value;
 
-        value = o.hintMask.replace("$1", this.value).replace("$1", this.percent);
+        value = o.hintMask.replace("$1", this.value).replace("$2", this.percent);
 
         hint.text(value);
     },
@@ -280,11 +280,15 @@ var Slider = {
         if (o.target !== null) {
             var target = $(o.target);
             if (target.length !== 0) {
-                if (target[0].tagName === "INPUT") {
-                    target.val(value);
-                } else {
-                    target.text(value);
-                }
+
+                $.each(target, function(){
+                    var t = $(this);
+                    if (this.tagName === "INPUT") {
+                        t.val(value);
+                    } else {
+                        t.text(value);
+                    }
+                });
             }
         }
 

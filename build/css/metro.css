@@ -14478,6 +14478,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   padding: .25rem .5rem;
   background-color: #858585;
   color: #ffffff;
+  white-space: nowrap;
 }
 .slider .hint::before {
   display: block;
