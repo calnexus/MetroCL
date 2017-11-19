@@ -70,18 +70,21 @@
 .border-radius {border-radius: @borderRadius;}
 .border-radius-half {border-radius: 50%;}
 
-.generate-border-width(10);
+.generate-border-width(20);
 .generate-border-width(@i) when (@i > 0) {
 
-    .border-@{i} {border-width: unit(@i / 16, rem);}
-    .border-size-@{i} {border-width: unit(@i / 16, rem);}
-    .border-radius-@{i} {border-radius: @i * 10 + 0%;}
+    .border-@{i} {border-width: unit(@i, px);}
+    .border-size-@{i} {border-width: unit(@i, px);}
+    .border-radius-@{i} {border-radius: unit(@i, px);}
 
     .generate-border-width(@i - 1);
 }
 
 .rounded {
     border-radius: @borderRadius !important;
+}
+.border-50 {
+    border-radius: 50% !important;
 }
 
 .border-solid {border-style: solid!important;}

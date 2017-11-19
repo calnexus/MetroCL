@@ -315,3 +315,20 @@ textarea,
   background-color: #7d000f;
   color: #ffffff;
 }
+.slider .complete {
+  background-color: #b00015;
+}
+.slider .hint {
+  background-color: #b00015;
+  color: #ffffff;
+}
+.keypad {
+  border-color: #b00015;
+}
+.keypad .keys {
+  background-color: #b00015;
+  color: #ffffff;
+}
+.keypad .keys .service-key {
+  background-color: #970012;
+}

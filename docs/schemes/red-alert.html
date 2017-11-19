@@ -49,7 +49,7 @@
         </ul>
     </header>
 
-    <div class="container pt-2">
+    <div class="container pt-2 pb-10">
         <h1>Mirohost scheme</h1>
 
         <h4>Background colors</h4>
@@ -317,13 +317,19 @@
         </div>
 
         <h4 class="mt-2">Tabs</h4>
-        <ul class="tabs-expand" data-role="tabs">
+        <ul data-role="tabs" class="mb-2">
             <li><a href="#">Home</a></li>
             <li><a href="#">Profile</a></li>
             <li><a href="#">Links</a></li>
             <li class="disabled"><a href="#">Disabled</a></li>
         </ul>
-        <ul class="tabs-expand bottom mt-2" data-role="tabs">
+        <ul class="tabs-expand-fs" data-role="tabs">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Links</a></li>
+            <li class="disabled"><a href="#">Disabled</a></li>
+        </ul>
+        <ul class="tabs-expand-fs bottom mt-2" data-role="tabs">
             <li><a href="#">Home</a></li>
             <li><a href="#">Profile</a></li>
             <li><a href="#">Links</a></li>
@@ -332,7 +338,7 @@
 
         <div class="row mt-2">
             <div class="cell-md-6">
-                <ul class="vertical tabs-expand" data-role="tabs" style="max-width: 120px;">
+                <ul class="vertical tabs-expand-fs" data-role="tabs" style="max-width: 120px;">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Profile</a></li>
                     <li><a href="#">Links</a></li>
@@ -340,7 +346,7 @@
                 </ul>
             </div>
             <div class="cell-md-6">
-                <ul class="vertical right place-right tabs-expand" data-role="tabs" style="max-width: 120px;">
+                <ul class="vertical right place-right tabs-expand-fs" data-role="tabs" style="max-width: 120px;">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Profile</a></li>
                     <li><a href="#">Links</a></li>
@@ -424,7 +430,7 @@
 
             <div class="slide" data-cover="../images/pumba-bg.jpg"></div>
 
-            <div class="slide" data-cover="../images/carousel-bg-4.jpg">
+            <div class="slide" data-cover="../images/bg-4.jpg">
                 <div class=" p-2 pl-10 pr-10 h-100">
                     <div class="row flex-align-center h-100">
                         <div class="cell-md-8">
@@ -482,10 +488,25 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="cell-md-6">
+                <h4 class="mt-2">Slider</h4>
+                <input data-role="slider" data-value="50" data-hint-always="true">
+            </div>
+            <div class="cell-md-6">
+                <h4 class="mt-2">Range</h4>
+                <input data-role="range" data-value-from="50" data-value-to="150" data-hint-always="true" data-min="0" data-max="200">
+            </div>
+        </div>
+
+        <h4 class="mt-2">Keypad</h4>
+        <input data-role="keypad" data-open="true">
+
+
     </div>
 
     <script src="../js/jquery-3.2.1.min.js"></script>
-    <script src="../metro/js/metro.min.js"></script>
+    <script src="../metro/js/metro.js"></script>
     <!-- ads-script -->
 </body>
 </html>

@@ -5464,7 +5464,7 @@ var File = {
             }
         });
 
-        button = $("<button>").attr("type").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.caption);
+        button = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.caption);
         button.appendTo(container);
 
         button.on('click', function(){
@@ -7402,6 +7402,8 @@ var Slider = {
     options: {
         min: 0,
         max: 100,
+        showMinMax: false,
+        minMaxPosition: METRO_POSITION.TOP,
         value: 0,
         buffer: 0,
         hint: false,
@@ -7413,12 +7415,15 @@ var Slider = {
         returnType: "value", // value or percent
         size: 0,
 
-        clsSlider: "",
+        clsSlider: "", 
         clsBackside: "",
         clsComplete: "",
         clsBuffer: "",
         clsMarker: "",
         clsHint: "",
+        clsMinMax: "",
+        clsMin: "",
+        clsMax: "",
 
         onStart: Metro.noop,
         onStop: Metro.noop,
@@ -7506,6 +7511,17 @@ var Slider = {
         marker.appendTo(slider);
         hint.appendTo(marker);
 
+        if (o.showMinMax === true) {
+            var min_max_wrapper = $("<div>").addClass("slider-min-max clear").addClass(o.clsMinMax);
+            $("<span>").addClass("place-left").addClass(o.clsMin).html(o.min).appendTo(min_max_wrapper);
+            $("<span>").addClass("place-right").addClass(o.clsMax).html(o.max).appendTo(min_max_wrapper);
+            if (o.minMaxPosition === METRO_POSITION.TOP) {
+                min_max_wrapper.insertBefore(slider);
+            } else {
+                min_max_wrapper.insertAfter(slider);
+            }
+        }
+
         this.slider = slider;
     },
 
@@ -7520,7 +7536,7 @@ var Slider = {
                     hint.fadeIn();
                 }
                 that._move(e);
-                Utils.exec(o.onMove, [that.value, slider]);
+                Utils.exec(o.onMove, [that.value, that.percent, slider]);
             });
 
             $(document).on(Metro.eventStop, function(){
@@ -7531,18 +7547,18 @@ var Slider = {
                     hint.fadeOut();
                 }
 
-                Utils.exec(o.onStop, [that.value, slider]);
+                Utils.exec(o.onStop, [that.value, that.percent, slider]);
             });
 
-            Utils.exec(o.onStart, [that.value, slider]);
+            Utils.exec(o.onStart, [that.value, that.percent, slider]);
         });
 
         marker.on("focus", function(){
-            Utils.exec(o.onFocus, [that.value, slider]);
+            Utils.exec(o.onFocus, [that.value, that.percent, slider]);
         });
 
         marker.on("blur", function(){
-            Utils.exec(o.onBlur, [that.value, slider]);
+            Utils.exec(o.onBlur, [that.value, that.percent, slider]);
         });
 
         marker.on("keydown", function(e){
@@ -7597,11 +7613,12 @@ var Slider = {
 
         slider.on(Metro.eventClick, function(e){
             that._move(e);
-            Utils.exec(o.onClick, [that.value, slider]);
+            Utils.exec(o.onClick, [that.value, that.percent, slider]);
         });
 
-        $(window).resize(function(e){
+        $(window).resize(function(){
             that.val(that.value);
+            that.buff(that.buffer);
         });
     },
 
@@ -7675,7 +7692,7 @@ var Slider = {
             }
         }
 
-        Utils.exec(o.onChangeValue, [value, slider]);
+        Utils.exec(o.onChangeValue, [value, this.percent, slider]);
     },
 
     _marker: function(){
@@ -7690,6 +7707,19 @@ var Slider = {
             marker.css('left', this.pixel);
             complete.css('width', this.percent+"%");
         }
+    },
+
+    _buffer: function(){
+        var o = this.options;
+        var buffer = this.slider.find(".buffer");
+
+        if (o.vertical === true) {
+            buffer.css("height", this.buffer + "%");
+        } else {
+            buffer.css("width", this.buffer + "%");
+        }
+
+        Utils.exec(o.onChangeBuffer, [this.buffer, this.slider]);
     },
 
     val: function(v){
@@ -7737,17 +7767,39 @@ var Slider = {
             v = 0;
         }
 
-        if (o.vertical === true) {
-            buffer.css("height", v + "%");
-        } else {
-            buffer.css("width", v + "%");
-        }
+        this.buffer = v;
+        this._buffer();
+    },
 
-        Utils.exec(o.onChangeBuffer, [v, slider]);
+    changeValue: function(){
+        var element = this.element, o = this.options;
+        var val = element.attr("data-value");
+        if (val < o.min) {
+            val = o.min
+        }
+        if (val > o.max) {
+            val = o.max
+        }
+        this.val(val);
+    },
+
+    changeBuffer: function(){
+        var element = this.element, o = this.options;
+        var val = parseInt(element.attr("data-buffer"));
+        if (val < 0) {
+            val = 0
+        }
+        if (val > 100) {
+            val = 100
+        }
+        this.buff(val);
     },
 
     changeAttribute: function(attributeName){
-
+        switch (attributeName) {
+            case "data-value": this.changeValue(); break;
+            case "data-buffer": this.changeBuffer(); break;
+        }
     }
 };
 

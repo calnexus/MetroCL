@@ -34,6 +34,13 @@
     <link href="css/site.css" rel="stylesheet">
 
     <title>Slider - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+    <style>
+        .custom-marker {
+            width: 24px!important;
+            height: 24px!important;
+        }
+    </style>
 </head>
 <body>
     <div class="container-fluid">
@@ -47,9 +54,10 @@
                 <hr/>
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Slider</a></li>
-                    <li class="toc-entry"><a href="#">About slider</a></li>
-                    <li class="toc-entry"><a href="#">Slider value</a></li>
-                    <li class="toc-entry"><a href="#">Additional target</a></li>
+                    <li class="toc-entry"><a href="#_slider_about">About slider</a></li>
+                    <li class="toc-entry"><a href="#_slider_value">Slider value</a></li>
+                    <li class="toc-entry"><a href="#_slider_target">Additional target</a></li>
+                    <li class="toc-entry"><a href="#_slider_buffer">Buffer</a></li>
                     <li class="toc-entry">
                         <a href="#_slider_hint">Hint</a>
                         <ul>
@@ -57,8 +65,10 @@
                             <li class="toc-entry"><a href="#_slider_hint_value">Value</a></li>
                         </ul>
                     </li>
+                    <li class="toc-entry"><a href="#_slider_options">Options</a></li>
                     <li class="toc-entry"><a href="#_slider_events">Events</a></li>
                     <li class="toc-entry"><a href="#_slider_methods">Methods</a></li>
+                    <li class="toc-entry"><a href="#_slider_observe">Observe</a></li>
                     <li class="toc-entry"><a href="#_slider_customize">Customize</a></li>
                 </ul>
 
@@ -120,20 +130,12 @@
                     <div class="row">
                         <div class="cell-md-6">
                             <h6>Return actual value</h6>
-                            <div class="clear">
-                                <span class="place-left">-40</span>
-                                <span class="place-right">+40</span>
-                            </div>
-                            <input data-role="slider" data-return-type="value" data-min="-40" data-max="40" onchange="$('#slider-return-value').val(this.value)">
+                            <input data-role="slider" data-show-min-max="true" data-return-type="value" data-min="-40" data-max="40" onchange="$('#slider-return-value').val(this.value)">
                             <input type="text" id="slider-return-value">
                         </div>
                         <div class="cell-md-6">
                             <h6>Return percent</h6>
-                            <div class="clear">
-                                <span class="place-left">-40</span>
-                                <span class="place-right">+40</span>
-                            </div>
-                            <input data-role="slider" data-return-type="percent" data-min="-40" data-max="40" onchange="$('#slider-return-percent').val(this.value+'%')">
+                            <input data-role="slider" data-show-min-max="true" data-return-type="percent" data-min="-40" data-max="40" onchange="$('#slider-return-percent').val(this.value+'%')">
                             <input type="text" id="slider-return-percent">
                         </div>
                     </div>
@@ -165,6 +167,21 @@
                     &lt;div class="p-2 bg-cyan fg-white text-center" id="slider-target"&gt;&lt;/div&gt;
                     &lt;input type="text" id="slider-target2"&gt;
                 </code></pre>
+
+                <h3 id="_slider_buffer">Buffer</h3>
+                <p>
+                    Very often the slider is used to create a control in the media player where it is necessary to show the buffering process. Slider Metro 4 provides such a possibility "out of the box."
+                    To set <code>buffer</code> use attribute <code>data-buffer</code> or special methods (see below).
+                </p>
+                <div class="example">
+                    <input data-role="slider" data-buffer="60" data-value="20">
+                </div>
+                <pre><code>
+                    &lt;input data-role="slider" data-buffer="60" data-value="20"&gt;
+                </code></pre>
+                <p class="remark warning">
+                    Important! For buffer you must use <strong>percent</strong> value!
+                </p>
 
                 <h3 id="_slider_hint">Hint</h3>
                 <p>
@@ -214,21 +231,322 @@
                     First - actual value, second - percent value.
                 </p>
                 <div class="example">
-                    <div class="clear">
-                        <span class="place-left">-40</span>
-                        <span class="place-right">+40</span>
-                    </div>
-                    <input data-role="slider" data-hint-mask="V: $1, $2%" data-hint-always="true" data-value="0" data-min="-40" data-max="40" data-cls-hint="bg-cyan fg-white">
+                    <input data-role="slider" data-show-min-max="true" data-hint-mask="V: $1, $2%" data-hint-always="true" data-value="0" data-min="-40" data-max="40" data-cls-hint="bg-cyan fg-white">
                 </div>
                 <pre><code class="html">
                     &lt;input data-role="slider"
                            data-hint-mask="V: $1, $2%"
                            data-hint-always="true"
                            data-value="0"
+                            data-show-min-max="true"
                            data-min="-40" data-max="40"&gt;
                 </code></pre>
 
+                <h3 id="_slider_options">Options</h3>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Options</th>
+                        <th>Data-*</th>
+                        <th>Default</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>min</td>
+                        <td><code>data-min</code></td>
+                        <td>0</td>
+                        <td>Min slider value</td>
+                    </tr>
+                    <tr>
+                        <td>max</td>
+                        <td><code>data-max</code></td>
+                        <td>100</td>
+                        <td>Max slider value</td>
+                    </tr>
+                    <tr>
+                        <td>showMinMax</td>
+                        <td><code>data-show-min-max</code></td>
+                        <td>false</td>
+                        <td>When true, additional block will be created and inserted before slider</td>
+                    </tr>
+                    <tr>
+                        <td>value</td>
+                        <td><code>data-value</code></td>
+                        <td>0</td>
+                        <td>Initial slider value</td>
+                    </tr>
+                    <tr>
+                        <td>buffer</td>
+                        <td><code>data-buffer</code></td>
+                        <td>0</td>
+                        <td>Initial slider buffer value</td>
+                    </tr>
+                    <tr>
+                        <td>hint</td>
+                        <td><code>data-hint</code></td>
+                        <td>false</td>
+                        <td>Show slider hint</td>
+                    </tr>
+                    <tr>
+                        <td>hintAlways</td>
+                        <td><code>data-hint-always</code></td>
+                        <td>false</td>
+                        <td>Show slider hint permanent</td>
+                    </tr>
+                    <tr>
+                        <td>hintPosition</td>
+                        <td><code>data-hint-position</code></td>
+                        <td>top</td>
+                        <td>Hint position. Can be: top, left, right, bottom</td>
+                    </tr>
+                    <tr>
+                        <td>hintMask</td>
+                        <td><code>data-hint-mask</code></td>
+                        <td>$1</td>
+                        <td>Hint output mask (template)</td>
+                    </tr>
+                    <tr>
+                        <td>vertical</td>
+                        <td><code>data-vertical</code></td>
+                        <td>false</td>
+                        <td>Vertical slider orientation</td>
+                    </tr>
+                    <tr>
+                        <td>target</td>
+                        <td><code>data-target</code></td>
+                        <td></td>
+                        <td>Additional targets for slider value</td>
+                    </tr>
+                    <tr>
+                        <td>returnType</td>
+                        <td><code>data-return-type</code></td>
+                        <td></td>
+                        <td>How value will be returned: value or percent</td>
+                    </tr>
+                    <tr>
+                        <td>size</td>
+                        <td><code>data-size</code></td>
+                        <td>0</td>
+                        <td>Slider specific size</td>
+                    </tr>
+                    </tbody>
+                </table>
 
+                <h3 id="_slider_events">Events</h3>
+                <p>
+                    When slider works, it generated the numbers of events. You can use callback for this event to behavior with slider.
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Data-*</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>onStart(val, percent, slider)</td>
+                        <td><code>data-on-start</code></td>
+                        <td>Fired when start sliding</td>
+                    </tr>
+                    <tr>
+                        <td>onStop(val, percent, slider)</td>
+                        <td><code>data-on-stop</code></td>
+                        <td>Fired when stop sliding</td>
+                    </tr>
+                    <tr>
+                        <td>onMove(val, percent, slider)</td>
+                        <td><code>data-on-move</code></td>
+                        <td>Fired when user move slider marker</td>
+                    </tr>
+                    <tr>
+                        <td>onClick(val, percent, slider)</td>
+                        <td><code>data-on-click</code></td>
+                        <td>Fired when user clicked on slider</td>
+                    </tr>
+                    <tr>
+                        <td>onChangeValue(val, percent, slider)</td>
+                        <td><code>data-on-change-value</code></td>
+                        <td>Fired when slider value was changed</td>
+                    </tr>
+                    <tr>
+                        <td>onChangeBuffer(val, slider)</td>
+                        <td><code>data-on-change-buffer</code></td>
+                        <td>Fired when slider buffer value was changed</td>
+                    </tr>
+                    <tr>
+                        <td>onFocus(val, percent, slider)</td>
+                        <td><code>data-on-focus</code></td>
+                        <td>Fired when slider marker get focus</td>
+                    </tr>
+                    <tr>
+                        <td>onBlur(val, percent, slider)</td>
+                        <td><code>data-on-blur</code></td>
+                        <td>Fired when slider marker loses focus</td>
+                    </tr>
+                    <tr>
+                        <td>onSliderCreate(slider)</td>
+                        <td><code>data-on-slider-create</code></td>
+                        <td>Fired when slider was created</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <p>
+                    Also you can use standard <code>onchage</code> event for <code>input</code> with <code>data-role="slider"</code>.
+                </p>
+                <div class="example">
+                    <div class="row flex-align-center">
+                        <div class="cell-md-6">
+                            <input data-role="slider" data-show-min-max="true" data-min="-100" data-max="100" data-on-change-value="$('#event-receiver').val('Value: '+arguments[0]+', '+arguments[1]+'%')">
+                        </div>
+                        <div class="cell-md-6">
+                            <input type="text" id="event-receiver">
+                        </div>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;input data-role="slider"
+                        data-show-min-max="true"
+                        data-min="-100" data-max="100"
+                        data-on-change-value="$('#event-receiver').val('Value: '+arguments[0]+', '+arguments[1]+'%')"&gt;
+
+                    &lt;input type="text" id="event-receiver"&gt;
+                </code></pre>
+
+                <h3 id="_slider_methods">Methods</h3>
+                <p>
+                    In additional, You can use slider methods to interact with the component.
+                </p>
+                <ul>
+                    <li><strong>val()</strong> - get value</li>
+                    <li><strong>val(v)</strong> - set value</li>
+                    <li><strong>buff()</strong> - get buffer value</li>
+                    <li><strong>buff(v)</strong> - set buffer value</li>
+                </ul>
+
+                <h3 id="_slider_observe">Observe</h3>
+                <p>
+                    You can change attributes <code>data-value</code>, <code>data-buffer</code> at runtime and slider will be updated.
+                </p>
+                <div class="example">
+                    <h6>Change value in input and observe how value changed in slider</h6>
+                    <div class="row">
+                        <div class="cell-md-6">
+                            <input type="number" min="0" max="100" id="inp-obs" value="0">
+                        </div>
+                        <div class="cell-md-6">
+                            <input data-role="slider" id="slider-obs">
+                        </div>
+                    </div>
+                </div>
+                <pre><code>
+                    &lt;div class="row"&gt;
+                        &lt;div class="cell-md-6"&gt;
+                            &lt;input type="number" min="0" max="100" id="inp-obs" value="0"&gt;
+                        &lt;/div&gt;
+                        &lt;div class="cell-md-6"&gt;
+                            &lt;input data-role="slider" id="slider-obs"&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;script&gt;
+                        $("#inp-obs").on("keyup input change paste propertychange", function(){
+                            $('#slider-obs').attr('data-value', this.value);
+                        })
+                    &lt;/script&gt;
+                </code></pre>
+
+                <h3 id="_slider_customize">Customize</h3>
+                <p>
+                    If you need to customize the slider, you can use next options:
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Data-*</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>clsSlider</td>
+                        <td><code>data-cls-slider</code></td>
+                        <td>Additional class for slider</td>
+                    </tr>
+                    <tr>
+                        <td>clsBackside</td>
+                        <td><code>data-cls-backside</code></td>
+                        <td>Additional class for slider backside</td>
+                    </tr>
+                    <tr>
+                        <td>clsComplete</td>
+                        <td><code>data-cls-complete</code></td>
+                        <td>Additional class for slider complete</td>
+                    </tr>
+                    <tr>
+                        <td>clsBuffer</td>
+                        <td><code>data-cls-buffer</code></td>
+                        <td>Additional class for slider buffer</td>
+                    </tr>
+                    <tr>
+                        <td>clsMarker</td>
+                        <td><code>data-cls-marker</code></td>
+                        <td>Additional class for slider marker</td>
+                    </tr>
+                    <tr>
+                        <td>clsHint</td>
+                        <td><code>data-cls-hint</code></td>
+                        <td>Additional class for slider hint</td>
+                    </tr>
+                    <tr>
+                        <td>clsMinMax</td>
+                        <td><code>data-cls-min-max</code></td>
+                        <td>Additional class for min-max info block</td>
+                    </tr>
+                    <tr>
+                        <td>clsMin</td>
+                        <td><code>data-cls-min</code></td>
+                        <td>Additional class for min value for info block</td>
+                    </tr>
+                    <tr>
+                        <td>clsMax</td>
+                        <td><code>data-cls-max</code></td>
+                        <td>Additional class for max value for info block</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="example">
+                    <input data-role="slider"
+                           data-value="50"
+                           data-buffer="75"
+                           data-hint-always="true"
+                           data-hint-position="bottom"
+                           data-show-min-max="true"
+                           data-cls-backside="bg-dark"
+                           data-cls-marker="bg-blue border-50 custom-marker"
+                           data-cls-hint="bg-cyan custom-marker shadow-2"
+                           data-cls-complete="bg-red"
+                           data-cls-buffer="bg-yellow"
+                           data-cls-min-max="bg-green fg-white p-2 mb-3-minus">
+                </div>
+                <pre><code>
+                    &lt;input data-role="slider"
+                           data-value="50"
+                           data-buffer="75"
+                           data-hint-always="true"
+                           data-hint-position="bottom"
+                           data-show-min-max="true"
+                           data-cls-backside="bg-dark"
+                           data-cls-marker="bg-blue border-50 custom-marker"
+                           data-cls-hint="bg-cyan custom-marker shadow-2"
+                           data-cls-complete="bg-red"
+                           data-cls-buffer="bg-yellow"
+                           data-cls-min-max="bg-green fg-white p-2 mb-3-minus"&gt;
+                </code></pre>
             </main>
         </div>
 
@@ -241,5 +559,10 @@
     <script src="js/clipboard.min.js"></script>
     <script src="js/site.js"></script>
     <!-- ads-script -->
+    <script>
+        $("#inp-obs").on("keyup input change paste propertychange", function(){
+            $('#slider-obs').attr('data-value', this.value);
+        })
+    </script>
 </body>
 </html>

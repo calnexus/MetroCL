@@ -61,7 +61,7 @@ var File = {
             }
         });
 
-        button = $("<button>").attr("type").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.caption);
+        button = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.caption);
         button.appendTo(container);
 
         button.on('click', function(){

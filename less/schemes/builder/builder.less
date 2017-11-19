@@ -409,4 +409,27 @@
             color: @schemePrimaryTextColor;
         }
     }
+
+    .slider {
+        .complete {
+            background-color: @schemePrimaryColor;
+        }
+
+        .hint {
+            background-color: @schemePrimaryColor;
+            color: @schemePrimaryTextColor;
+        }
+    }
+
+    .keypad {
+        border-color: @schemePrimaryColor;
+        .keys {
+            background-color: @schemePrimaryColor;
+            color: @schemePrimaryTextColor;
+
+            .service-key {
+                background-color: darken(@schemePrimaryColor, 5%);
+            }
+        }
+    }
 }

@@ -88,21 +88,8 @@
                 </ul>
 
                 <p>
-                    Where <i>sise</i> is one of:
+                    Where <i>sise</i> from <code>0</code> to <code>80px</code> with step <code>4px</code>
                 </p>
-                <ul>
-                    <li><code>0</code> - <code>0</code></li>
-                    <li><code>1</code> - <code>.5rem</code></li>
-                    <li><code>2</code> - <code>1rem</code></li>
-                    <li><code>3</code> - <code>1.5rem</code></li>
-                    <li><code>4</code> - <code>2rem</code></li>
-                    <li><code>5</code> - <code>2.5rem</code></li>
-                    <li><code>6</code> - <code>3rem</code></li>
-                    <li><code>7</code> - <code>3.5rem</code></li>
-                    <li><code>8</code> - <code>4rem</code></li>
-                    <li><code>9</code> - <code>4.5rem</code></li>
-                    <li><code>10</code> - <code>5rem</code></li>
-                </ul>
                 <div class="example">
                     <div class=" bg-pink fg-white p-1 p-3-md p-5-lg p-8-xl text-center">
                         This block with dynamic padding
@@ -111,6 +98,14 @@
                 <pre><code class="html">
                     &lt;div class=" bg-pink fg-white p-1 p-3-md p-5-lg p-8-xl text-center"&gt;
                         This block with dynamic padding
+                    &lt;/div&gt;
+                </code></pre>
+                <p>
+                    Also Metro 4 contains <code>margin</code> with negative value. To use add negative margin, use classes with suffix <code>-minus</code>.
+                </p>
+                <pre><code>
+                    &lt;div class="mb-4-minus"&gt;
+                    ...
                     &lt;/div&gt;
                 </code></pre>
 
