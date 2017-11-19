@@ -7460,7 +7460,6 @@ var Slider = {
         setTimeout(function(){
             that.buff(o.buffer);
             that.val(o.value);
-            that._hint();
         }, 100);
 
         Utils.exec(o.onSliderCreate, [element]);
@@ -7629,6 +7628,7 @@ var Slider = {
             case "pix2val": return Math.round( this._convert(v, 'pix2prc') * ((o.max - o.min) / 100) + o.min );
             case "val2prc": return Math.round( (v - o.min)/( (o.max - o.min) / 100 )  );
             case "prc2pix": return Math.round( v / ( 100 / length ));
+            case "val2pix": return Math.round( this._convert(this._convert(v, 'val2prc'), 'prc2pix') );
         }
     },
 
@@ -7675,7 +7675,7 @@ var Slider = {
     },
 
     _hint: function(){
-        var o = this.options, slider = this.slider, marker = slider.find(".marker"), hint = slider.find(".hint");
+        var o = this.options, slider = this.slider, hint = slider.find(".hint");
         var value;
 
         value = o.hintMask.replace("$1", this.value).replace("$2", this.percent);
@@ -7769,7 +7769,7 @@ var Slider = {
     },
 
     buff: function(v){
-        var slider = this.slider, o = this.options;
+        var slider = this.slider;
         var buffer = slider.find(".buffer");
 
         if (v === undefined || isNaN(v)) {
@@ -7807,7 +7807,7 @@ var Slider = {
     },
 
     changeBuffer: function(){
-        var element = this.element, o = this.options;
+        var element = this.element;
         var val = parseInt(element.attr("data-buffer"));
         if (val < 0) {
             val = 0

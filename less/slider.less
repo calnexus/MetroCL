@@ -138,7 +138,23 @@
                 transform: translateX(-50%) translateY(-50%) rotate(45deg);
             }
         }
+    }
 
+    .marker {
+        &.left-knob {
+            left: 0;
+        }
+
+        &.right-knob {
+            left: auto;
+            right: 0;
+        }
+    }
+
+    &.range {
+        .complete {
+            width: 100%;
+        }
     }
 }
 

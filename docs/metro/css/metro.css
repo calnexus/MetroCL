@@ -14543,6 +14543,16 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   -webkit-transform: translateX(-50%) translateY(-50%) rotate(45deg);
           transform: translateX(-50%) translateY(-50%) rotate(45deg);
 }
+.slider .marker.left-knob {
+  left: 0;
+}
+.slider .marker.right-knob {
+  left: auto;
+  right: 0;
+}
+.slider.range .complete {
+  width: 100%;
+}
 .slider.vertical-slider {
   width: 2.125rem;
   height: 100px;
