@@ -27836,6 +27836,15 @@ input[dir=rtl] {
 .mif-5x {
   font-size: 3em;
 }
+.mif-google-plus:before {
+  content: "\ea8b";
+}
+.mif-facebook:before {
+  content: "\ea90";
+}
+.mif-steam:before {
+  content: "\eaac";
+}
 .mif-copy:before {
   content: "\e92c";
 }
@@ -28637,10 +28646,10 @@ input[dir=rtl] {
 .mif-google:before {
   content: "\ea87";
 }
-.mif-google-plus:before {
+.mif-google-plus2:before {
   content: "\ea88";
 }
-.mif-facebook:before {
+.mif-facebook2:before {
   content: "\ea8d";
 }
 .mif-twitter:before {
@@ -28652,7 +28661,7 @@ input[dir=rtl] {
 .mif-youtube:before {
   content: "\ea99";
 }
-.mif-steam:before {
+.mif-steam2:before {
   content: "\eaae";
 }
 .mif-onedrive:before {
@@ -28702,9 +28711,6 @@ input[dir=rtl] {
 }
 .mif-airplane:before {
   content: "\e6c3";
-}
-.mif-truck2:before {
-  content: "\e6c4";
 }
 .mif-instagram:before {
   content: "\e6c5";
