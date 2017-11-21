@@ -1,7 +1,3 @@
-
-$(function(){
-});
-
 (function() {
     "use strict";
 

@@ -36,7 +36,9 @@ var Resizable = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on();
+        if (o.resizeElement !== "" && $(o.resizeElement).length === 0) {
+            $("<span>").addClass("resize-element").appendTo(element);
+        }
 
         element.on(Metro.eventStart, o.resizeElement, function(e){
 

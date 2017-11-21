@@ -79,6 +79,76 @@
     }
 }
 
+.dropdown-toggle {
+    position: relative;
+    cursor: pointer;
+    padding-right: 1.5rem!important;
+    user-select: none;
+
+    &::before {
+        display: block;
+        position: absolute;
+        vertical-align: middle;
+        color: transparent;
+        font-size: 0;
+        content: "";
+        .px2rem(height, 5px);
+        .px2rem(width, 5px);
+        background-color: @transparent ;
+        border-left: 1px solid;
+        border-bottom: 1px solid;
+        border-color: @dark;
+        top: 50%;
+        left: 100%;
+        margin-left: -1rem;
+        margin-top: -.1625rem;
+        z-index: 2;
+        transform: rotate(-45deg);
+        transition: @transition-short;
+        transform-origin: center center 1px;
+    }
+
+    &.drop-marker-light, &.marker-light  {
+        &::before {
+            border-color: @white;
+        }
+    }
+
+    &.no-marker {
+        &::before {
+            display: none;
+        }
+    }
+
+    &.active-toggle {
+        &::before {
+            .rotate(135deg);
+            transition: @transition-short;
+        }
+    }
+
+    &.marker-center {
+        &::before {
+            left: 50%;
+            top: 50%;
+            margin-left: 0;
+            margin-top: 0;
+            .translateX(-50%);
+            .translateY(-50%);
+            .rotate(-45deg);
+        }
+        &.active-toggle {
+            &::before {
+                .translateX(-50%);
+                .translateY(-50%);
+                .rotate(135deg);
+                transition: @transition-short;
+            }
+        }
+    }
+
+}
+
 .disabled {
     pointer-events: none!important;
     color: @lightGray!important;

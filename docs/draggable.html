@@ -126,17 +126,17 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td><code>onDragStart(el, position)</code></td>
+                        <td><code>onDragStart(position, el)</code></td>
                         <td><code>data-on-drag-start</code></td>
                         <td>Fired when dragging is started</td>
                     </tr>
                     <tr>
-                        <td><code>onDragStop(el, position)</code></td>
+                        <td><code>onDragStop(position, el)</code></td>
                         <td><code>data-on-drag-stop</code></td>
                         <td>Fired when dragging is stopped</td>
                     </tr>
                     <tr>
-                        <td><code>onDragMove(el, position)</code></td>
+                        <td><code>onDragMove(position, el)</code></td>
                         <td><code>data-on-drag-move</code></td>
                         <td>Fired when element is moving</td>
                     </tr>
@@ -152,7 +152,7 @@
                             <div style="width: 50px; height: 50px;" class="bg-cyan" data-role="draggable" data-on-drag-move="demoDragMoveEvent"></div>
                         </div>
                         <script>
-                            function demoDragMoveEvent(el, pos){
+                            function demoDragMoveEvent(pos, el){
                                 $('#-pos-x').text(pos.x);
                                 $('#-pos-y').text(pos.y);
                             }

@@ -63,6 +63,8 @@ var Collapse = {
         var dropdown  = el.data("collapse");
         var options = dropdown.options;
 
+        this.toggle.removeClass("active-toggle");
+
         el.slideUp(options.duration, function(){
             el.trigger("onCollapse", null, el);
             el.data("collapsed", true);
@@ -78,6 +80,8 @@ var Collapse = {
 
         var dropdown  = el.data("collapse");
         var options = dropdown.options;
+
+        this.toggle.addClass("active-toggle");
 
         el.slideDown(options.duration, function(){
             el.trigger("onExpand", null, el);

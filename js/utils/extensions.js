@@ -12,6 +12,11 @@ $.fn.extend({
                 }
             }
         });
+    },
+    clearClasses: function(){
+        return this.each(function(){
+            this.className = "";
+        });
     }
 });
 

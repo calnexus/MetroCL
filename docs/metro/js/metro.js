@@ -378,6 +378,11 @@ $.fn.extend({
                 }
             }
         });
+    },
+    clearClasses: function(){
+        return this.each(function(){
+            this.className = "";
+        });
     }
 });
 
@@ -1623,7 +1628,6 @@ var Utils = {
 
     isMetroObject: function(el, type){
         var $el = $(el), el_obj = $el.data(type);
-
         if ($el.length === 0) {
             console.log(type + ' ' + el + ' not found!');
             return false;
@@ -3997,6 +4001,8 @@ var Collapse = {
         var dropdown  = el.data("collapse");
         var options = dropdown.options;
 
+        this.toggle.removeClass("active-toggle");
+
         el.slideUp(options.duration, function(){
             el.trigger("onCollapse", null, el);
             el.data("collapsed", true);
@@ -4012,6 +4018,8 @@ var Collapse = {
 
         var dropdown  = el.data("collapse");
         var options = dropdown.options;
+
+        this.toggle.addClass("active-toggle");
 
         el.slideDown(options.duration, function(){
             el.trigger("onExpand", null, el);
@@ -5143,7 +5151,6 @@ var Draggable = {
         var offset, position, shift, coords;
         var dragElement  = o.dragElement !== 'self' ? element.find(o.dragElement) : element;
 
-        this.on();
         dragElement[0].ondragstart = function(){return false;};
 
         dragElement.on(Metro.eventStart, function(e){
@@ -5185,7 +5192,7 @@ var Draggable = {
                 pos_y = element.offset().top + drg_h - Utils.pageXY(e).y,
                 pos_x = element.offset().left + drg_w - Utils.pageXY(e).x;
 
-            Utils.exec(o.onDragStart, [element, position]);
+            Utils.exec(o.onDragStart, [position, element]);
 
             $(document).on(Metro.eventMove, function(e){
                 var pageX, pageY;
@@ -5204,18 +5211,15 @@ var Draggable = {
                 var l_delta = dragArea.innerWidth() + dragArea.scrollLeft() - element.outerWidth();
 
                 if(t >= 0 && t <= t_delta) {
+                    position.y = t;
                     element.offset({top: t + offset.top});
                 }
                 if(l >= 0 && l <= l_delta) {
+                    position.x = l;
                     element.offset({left: l + offset.left});
                 }
 
-                position = {
-                    x: l,
-                    y: t
-                };
-
-                Utils.exec(o.onDragMove, [element, position]);
+                Utils.exec(o.onDragMove, [position, element]);
 
                 return false;
             });
@@ -5231,7 +5235,7 @@ var Draggable = {
             position = Utils.pageXY(e);
             $(document).off(Metro.eventMove);
             //console.log(o.onDragStop);
-            Utils.exec(o.onDragStop, [element, position]);
+            Utils.exec(o.onDragStop, [position, element]);
         });
     },
 
@@ -6731,6 +6735,152 @@ var Notify = {
 };
 
 $.Metro['notify'] = Notify.setup();
+// Source: js/plugins/panel.js
+var Panel = {
+    init: function( options, elem ) {
+        this.options = $.extend( {}, this.options, options );
+        this.elem  = elem;
+        this.element = $(elem);
+
+        this._setOptionsFromDOM();
+        this._create();
+
+        return this;
+    },
+
+    options: {
+        titleCaption: "",
+        titleIcon: "",
+        collapsible: false,
+        collapsed: false,
+        collapseDuration: METRO_ANIMATION_DURATION,
+        width: "auto",
+        height: "auto",
+        draggable: false,
+
+        clsPanel: "",
+        clsTitle: "",
+        clsTitleCaption: "",
+        clsTitleIcon: "",
+        clsContent: "",
+        clsCollapseToggle: "",
+
+        onCollapse: Metro.noop,
+        onExpand: Metro.noop,
+        onDragStart: Metro.noop,
+        onDragStop: Metro.noop,
+        onDragMove: Metro.noop,
+        onPanelCreate: Metro.noop
+    },
+
+    _setOptionsFromDOM: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = $.parseJSON(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+    },
+
+    _create: function(){
+        var that = this, element = this.element, o = this.options;
+        var prev = element.prev();
+        var parent = element.parent();
+        var panel = $("<div>").addClass("panel").addClass(o.clsPanel);
+        var id = Utils.uniqueId();
+        var original_classes = element[0].className;
+
+
+        if (prev.length === 0) {
+            parent.prepend(panel);
+        } else {
+            panel.insertAfter(prev);
+        }
+
+        panel.attr("id", id).addClass(original_classes);
+
+        element[0].className = '';
+        element.addClass("panel-content").addClass(o.clsContent).appendTo(panel);
+
+        if (o.titleCaption !== "" || o.titleIcon !== "" || o.collapsible === true) {
+            var title = $("<div>").addClass("panel-title").addClass(o.clsTitle);
+
+            if (o.titleCaption !== "") {
+                $("<span>").addClass("caption").addClass(o.clsTitleCaption).html(o.titleCaption).appendTo(title)
+            }
+
+            if (o.titleIcon !== "") {
+                $(o.titleIcon).addClass("icon").addClass(o.clsTitleIcon).appendTo(title)
+            }
+
+            if (o.collapsible === true) {
+                var collapseToggle = $("<span>").addClass("dropdown-toggle marker-center active-toggle").addClass(o.clsCollapseToggle).appendTo(title);
+                element.collapse({
+                    toggleElement: collapseToggle,
+                    duration: o.collapseDuration,
+                    onCollapse: o.onCollapse,
+                    onExpand: o.onExpand
+                });
+
+                if (o.collapsed === true) {
+                    this.collapse();
+                }
+            }
+
+            title.appendTo(panel);
+        }
+
+        if (o.draggable === true) {
+            panel.draggable({
+                dragElement: title || panel,
+                onDragStart: o.onDragStart,
+                onDragStop: o.onDragStop,
+                onDragMove: o.onDragMove
+            });
+        }
+
+        if (o.width !== "auto" && parseInt(o.width) >= 0) {
+            panel.outerWidth(parseInt(o.width));
+        }
+
+        if (o.height !== "auto" && parseInt(o.height) >= 0) {
+            panel.outerHeight(parseInt(o.height));
+        }
+
+
+        this.panel = panel;
+
+        Utils.exec(o.onPanelCreate, [this.element]);
+    },
+
+    collapse: function(){
+        var element = this.element, o = this.options;
+        if (Utils.isMetroObject(element, 'collapse') === false) {
+            return ;
+        }
+        element.data('collapse').collapse();
+    },
+
+    expand: function(){
+        var element = this.element, o = this.options;
+        if (Utils.isMetroObject(element, 'collapse') === false) {
+            return ;
+        }
+        element.data('collapse').expand();
+    },
+
+    changeAttribute: function(attributeName){
+        switch (attributeName) {
+        }
+    }
+};
+
+Metro.plugin('panel', Panel);
 // Source: js/plugins/progress.js
 var Progress = {
     init: function( options, elem ) {
@@ -7031,7 +7181,9 @@ var Resizable = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on();
+        if (o.resizeElement !== "" && $(o.resizeElement).length === 0) {
+            $("<span>").addClass("resize-element").appendTo(element);
+        }
 
         element.on(Metro.eventStart, o.resizeElement, function(e){
 

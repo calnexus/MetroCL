@@ -48,7 +48,6 @@ var Draggable = {
         var offset, position, shift, coords;
         var dragElement  = o.dragElement !== 'self' ? element.find(o.dragElement) : element;
 
-        this.on();
         dragElement[0].ondragstart = function(){return false;};
 
         dragElement.on(Metro.eventStart, function(e){
@@ -90,7 +89,7 @@ var Draggable = {
                 pos_y = element.offset().top + drg_h - Utils.pageXY(e).y,
                 pos_x = element.offset().left + drg_w - Utils.pageXY(e).x;
 
-            Utils.exec(o.onDragStart, [element, position]);
+            Utils.exec(o.onDragStart, [position, element]);
 
             $(document).on(Metro.eventMove, function(e){
                 var pageX, pageY;
@@ -109,18 +108,15 @@ var Draggable = {
                 var l_delta = dragArea.innerWidth() + dragArea.scrollLeft() - element.outerWidth();
 
                 if(t >= 0 && t <= t_delta) {
+                    position.y = t;
                     element.offset({top: t + offset.top});
                 }
                 if(l >= 0 && l <= l_delta) {
+                    position.x = l;
                     element.offset({left: l + offset.left});
                 }
 
-                position = {
-                    x: l,
-                    y: t
-                };
-
-                Utils.exec(o.onDragMove, [element, position]);
+                Utils.exec(o.onDragMove, [position, element]);
 
                 return false;
             });
@@ -136,7 +132,7 @@ var Draggable = {
             position = Utils.pageXY(e);
             $(document).off(Metro.eventMove);
             //console.log(o.onDragStop);
-            Utils.exec(o.onDragStop, [element, position]);
+            Utils.exec(o.onDragStop, [position, element]);
         });
     },
 

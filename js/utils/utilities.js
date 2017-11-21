@@ -97,7 +97,6 @@ var Utils = {
 
     isMetroObject: function(el, type){
         var $el = $(el), el_obj = $el.data(type);
-
         if ($el.length === 0) {
             console.log(type + ' ' + el + ' not found!');
             return false;
