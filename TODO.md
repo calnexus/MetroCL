@@ -1,6 +1,7 @@
 ####4.0.0
 
 ####4.0.1
+- [ ] Dropdown not only display: block
 - [ ] Datepicker calendar as dialog on phones
 - [ ] Option group for select
 - [ ] Custom classes for select

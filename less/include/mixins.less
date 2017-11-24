@@ -8,7 +8,6 @@
     }
 }
 
-
 .set-relative() {
     display: block;
     position: relative;
@@ -278,3 +277,125 @@
     box-shadow+: 0 0 0 3px rgba(red(@color), green(@color), blue(@color), 0.45);
 }
 
+.neb(@size, @shift) {
+    &::before {
+        display: block;
+        position: absolute;
+        content: "";
+        width: @size;
+        height: @size;
+        background-color: inherit;
+    }
+
+    &.on-top {
+        &::before {
+            top: 100%;
+            left: 50%;
+            .translateX(-50%);
+            .translateY(-50%);
+            .rotate(45deg);
+        }
+    }
+
+    &.on-top-left {
+        &::before {
+            top: 100%;
+            left: @shift;
+            .translateY(-50%);
+            .rotate(45deg);
+        }
+    }
+
+    &.on-top-right {
+        &::before {
+            top: 100%;
+            right: @shift;
+            .translateY(-50%);
+            .rotate(45deg);
+        }
+    }
+
+    &.on-bottom {
+        &::before {
+            top: 0;
+            left: 50%;
+            .translateX(-50%);
+            .translateY(-50%);
+            .rotate(45deg);
+        }
+    }
+
+    &.on-bottom-left {
+        &::before {
+            top: 0;
+            left: @shift;
+            .translateY(-50%);
+            .rotate(45deg);
+        }
+    }
+
+    &.on-bottom-right {
+        &::before {
+            top: 0;
+            right: @shift;
+            .translateY(-50%);
+            .rotate(45deg);
+        }
+    }
+
+    &.on-left-top {
+        &::before {
+            top: @shift;
+            right: 0;
+            .translateX(50%);
+            .rotate(45deg);
+        }
+    }
+
+    &.on-left {
+        &::before {
+            top: 50%;
+            right: 0;
+            .translateX(50%);
+            .translateY(-50%);
+            .rotate(45deg);
+        }
+    }
+
+    &.on-left-bottom {
+        &::before {
+            bottom: @shift;
+            right: 0;
+            .translateX(50%);
+            .rotate(45deg);
+        }
+    }
+
+    &.on-right-top {
+        &::before {
+            top: @shift;
+            left: 0;
+            .translateX(-50%);
+            .rotate(45deg);
+        }
+    }
+
+    &.on-right {
+        &::before {
+            top: 50%;
+            left: 0;
+            .translateX(-50%);
+            .translateY(-50%);
+            .rotate(45deg);
+        }
+    }
+
+    &.on-right-bottom {
+        &::before {
+            bottom: @shift;
+            left: 0;
+            .translateX(-50%);
+            .rotate(45deg);
+        }
+    }
+}

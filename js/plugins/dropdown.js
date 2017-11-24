@@ -4,6 +4,7 @@ var Dropdown = {
         this.elem  = elem;
         this.element = $(elem);
         this._toggle = null;
+        this.displayOrigin = null;
 
         this._setOptionsFromDOM();
         this._create();
@@ -43,15 +44,18 @@ var Dropdown = {
 
         toggle = o.toggleElement !== false ? $(o.toggleElement) : element.siblings('.dropdown-toggle').length > 0 ? element.siblings('.dropdown-toggle') : element.siblings('a:nth-child(1)');
 
+        this.displayOrigin = element.css("display");
+        this.element.css("display", "none");
+
         toggle.on('click', function(e){
             parent.siblings(parent[0].tagName).removeClass("active-container");
             $(".active-container").removeClass("active-container");
 
-            if (element.css('display') === 'block' && !element.hasClass('keep-open')) {
+            if (element.css('display') !== 'none' && !element.hasClass('keep-open')) {
                 that._close(element);
             } else {
                 $('[data-role=dropdown]').each(function(i, el){
-                    if (!element.parents('[data-role=dropdown]').is(el) && !$(el).hasClass('keep-open') && $(el).css('display') === 'block') {
+                    if (!element.parents('[data-role=dropdown]').is(el) && !$(el).hasClass('keep-open') && $(el).css('display') !== 'none') {
                         that._close(el);
                     }
                 });
@@ -61,7 +65,6 @@ var Dropdown = {
                         'display': 'block'
                     });
                     var item_length = $(element.children('li')[0]).outerWidth();
-                    //var item_length2 = $(menu.children('li')[0]).width();
                     element.css({
                         'visibility': 'visible',
                         'display': 'none'

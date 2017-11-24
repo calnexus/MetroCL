@@ -73,11 +73,8 @@ var Slider = {
 
         this._createSlider();
         this._createEvents();
-
-        setTimeout(function(){
-            that.buff(o.buffer);
-            that.val(o.value);
-        }, 100);
+        this.buff(o.buffer);
+        this.val(o.value);
 
         Utils.exec(o.onSliderCreate, [element]);
     },
@@ -229,6 +226,7 @@ var Slider = {
         slider.on(Metro.eventClick, function(e){
             that._move(e);
             Utils.exec(o.onClick, [that.value, that.percent, slider]);
+            Utils.exec(o.onStop, [that.value, that.percent, slider]);
         });
 
         $(window).resize(function(){
@@ -306,8 +304,6 @@ var Slider = {
 
         if (element[0].tagName === "INPUT") {
             element.val(value);
-        } else {
-            element.text(value);
         }
 
         element.trigger("change");

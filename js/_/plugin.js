@@ -31,7 +31,7 @@ var myObject = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(o.onCreate, [element]);
     },
 
     changeAttribute: function(attributeName){
