@@ -49,7 +49,20 @@
                     <li class="toc-entry"><a href="#">Video player</a></li>
                     <li class="toc-entry"><a href="#_video_create">Create player</a></li>
                     <li class="toc-entry"><a href="#_video_poster">Poster &amp; logo</a></li>
-                    <li class="toc-entry"><a href="#_video_controls">Controls</a></li>
+                    <li class="toc-entry">
+                        <a href="#_video_controls">Controls</a>
+                        <ul>
+                            <li class="toc-entry"><a href="#_video_controls_show">Show controls</a></li>
+                            <li class="toc-entry"><a href="#_video_controls_images">Controls images</a></li>
+                            <li class="toc-entry"><a href="#_video_controls_hiding">Hiding controls</a></li>
+                        </ul>
+                    </li>
+                    <li class="toc-entry"><a href="#_video_loop">Looping video</a></li>
+                    <li class="toc-entry"><a href="#_video_autoplay">Auto play</a></li>
+                    <li class="toc-entry"><a href="#_video_volume">Set volume</a></li>
+                    <li class="toc-entry"><a href="#_video_events">Events</a></li>
+                    <li class="toc-entry"><a href="#_video_methods">Methods</a></li>
+                    <li class="toc-entry"><a href="#_video_observe">Observe</a></li>
                 </ul>
 
             </div>
@@ -131,6 +144,10 @@
                 <h3 id="_video_controls">Controls</h3>
                 <p>
                     You can define what controls will be shown and what image contained in it.
+                </p>
+
+                <h4 id="_video_controls_show">Show controls</h4>
+                <p>
                     To define controls shown use attributes:
                         <code>data-show-loop</code>,
                         <code>data-show-play</code>,
@@ -158,7 +175,7 @@
                     &lt;/video&gt;
                 </code></pre>
 
-                <h4>Define controls images</h4>
+                <h4 id="_video_controls_images">Define controls images</h4>
                 <p>
                     To define controls images use next attributes:
                         <code>data-loop-icon</code>,
@@ -191,6 +208,39 @@
                         data-loop-icon="&lt;span class="mif-loop2"&gt;&lt;/span&gt;"
                         data-play-icon="&lt;img src="images/play-icon.png"&gt;"
                         data-src="https://metroui.org.ua/res/oceans.mp4"&gt;
+                    &lt;/video&gt;
+                </code></pre>
+
+                <h4 id="_video_controls_hiding">Hiding controls</h4>
+                <p>
+                    You can use attribute <code>data-controls-hide</code> to auto hiding controls when moude leave player and after <code>...</code> milliseconds.
+                    By default this value is <code>3000</code>. If you set this to <code>0</code> controls never hiding.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-6">
+                            <h6>Hide after 1000 ms</h6>
+                            <video data-role="video"
+                                   data-src="https://metroui.org.ua/res/oceans.mp4"
+                                   data-show-stop="false"
+                                   data-show-volume="false"
+                            ></video>
+                        </div>
+                        <div class="cell-md-6">
+                            <h6>Never hide</h6>
+                            <video data-role="video"
+                                   data-src="https://metroui.org.ua/res/oceans.mp4"
+                                   data-controls-hide="0"
+                                   data-show-stop="false"
+                                   data-show-volume="false"
+                            ></video>
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;video data-role="video"
+                        data-src="https://metroui.org.ua/res/oceans.mp4"
+                        data-controls-hide="1000"&gt;
                     &lt;/video&gt;
                 </code></pre>
 

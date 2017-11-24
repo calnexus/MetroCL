@@ -34,7 +34,7 @@ var Video = {
         fullScreenMode: METRO_FULLSCREEN_MODE.DESKTOP,
         aspectRatio: METRO_ASPECT_RATIO.HD,
 
-        controlsHide: 0,
+        controlsHide: 3000,
 
         showLoop: true,
         showPlay: true,
@@ -166,15 +166,14 @@ var Video = {
         var that = this, element = this.element, o = this.options, video = this.elem, player = this.player;
 
         var controls = $("<div>").addClass("controls").addClass(o.clsControls).insertAfter(element);
-        var buttons = $("<div>").addClass("buttons").appendTo(controls);
 
-        var stream = $("<div>").addClass("stream").appendTo(buttons);
+        var stream = $("<div>").addClass("stream").appendTo(controls);
         var streamSlider = $("<input>").addClass("stream-slider ultra-thin cycle-marker").appendTo(stream);
 
-        var volume = $("<div>").addClass("volume").appendTo(buttons);
+        var volume = $("<div>").addClass("volume").appendTo(controls);
         var volumeSlider = $("<input>").addClass("volume-slider ultra-thin cycle-marker").appendTo(volume);
 
-        var infoBox = $("<div>").addClass("info-box").appendTo(buttons);
+        var infoBox = $("<div>").addClass("info-box").appendTo(controls);
 
         if (o.showInfo !== true) {
             infoBox.hide();
@@ -222,11 +221,11 @@ var Video = {
 
         var loop, play, stop, mute, full;
 
-        if (o.showLoop === true) loop = $("<button>").attr("type", "button").addClass("button loop").html(o.loopIcon).appendTo(buttons);
-        if (o.showPlay === true) play = $("<button>").attr("type", "button").addClass("button play").html(o.playIcon).appendTo(buttons);
-        if (o.showStop === true) stop = $("<button>").attr("type", "button").addClass("button stop").html(o.stopIcon).appendTo(buttons);
-        if (o.showMute === true) mute = $("<button>").attr("type", "button").addClass("button mute").html(o.muteIcon).appendTo(buttons);
-        if (o.showFull === true) full = $("<button>").attr("type", "button").addClass("button full").html(o.screenMoreIcon).appendTo(buttons);
+        if (o.showLoop === true) loop = $("<button>").attr("type", "button").addClass("button loop").html(o.loopIcon).appendTo(controls);
+        if (o.showPlay === true) play = $("<button>").attr("type", "button").addClass("button play").html(o.playIcon).appendTo(controls);
+        if (o.showStop === true) stop = $("<button>").attr("type", "button").addClass("button stop").html(o.stopIcon).appendTo(controls);
+        if (o.showMute === true) mute = $("<button>").attr("type", "button").addClass("button mute").html(o.muteIcon).appendTo(controls);
+        if (o.showFull === true) full = $("<button>").attr("type", "button").addClass("button full").html(o.screenMoreIcon).appendTo(controls);
 
         if (o.loop === true) {
             loop.addClass("active");
@@ -322,25 +321,11 @@ var Video = {
         });
 
         player.on("click", ".mute", function(e){
-            that.muted = !that.muted;
-            if (that.muted === false) {
-                video.volume = that.volumeBackup;
-                that.volume.data('slider').val(that.volumeBackup * 100);
-            } else {
-                that.volumeBackup = video.volume;
-                that.volume.data('slider').val(0);
-                video.volume = 0;
-            }
+            that._toogleMute();
         });
 
         player.on("click", ".loop", function(){
-            var loop = $(this);
-            loop.toggleClass("active");
-            if (loop.hasClass("active")) {
-                element.attr("loop", "loop");
-            } else {
-                element.removeAttr("loop");
-            }
+            that._toggleLoop();
         });
 
         player.on("click", ".full", function(e){
@@ -420,6 +405,29 @@ var Video = {
 
     },
 
+    _toggleLoop: function(){
+        var loop = this.element.find(".loop");
+        if (loop.length === 0) return ;
+        loop.toggleClass("active");
+        if (loop.hasClass("active")) {
+            element.attr("loop", "loop");
+        } else {
+            element.removeAttr("loop");
+        }
+    },
+
+    _toggleMute: function(){
+        this.muted = !this.muted;
+        if (this.muted === false) {
+            this.video.volume = this.volumeBackup;
+            this.volume.data('slider').val(this.volumeBackup * 100);
+        } else {
+            this.volumeBackup = this.video.volume;
+            this.volume.data('slider').val(0);
+            this.video.volume = 0;
+        }
+    },
+
     _setBuffer: function(){
         var buffer = this.video.buffered.length ? Math.round(Math.floor(this.video.buffered.end(0)) / Math.floor(this.video.duration) * 100) : 0;
         this.stream.data('slider').buff(buffer);
@@ -483,8 +491,29 @@ var Video = {
         this.stream.data('slider').val(0);
     },
 
+    volume: function(v){
+        if (v === undefined) {
+            return this.video.volume;
+        }
+
+        if (v > 1) {
+            v /= 100;
+        }
+
+        this.video.volume = v;
+        this.volume.data('slider').val(v*100);
+    },
+
+    loop: function(){
+        this._toggleLoop();
+    },
+
+    mute: function(){
+        this._toggleMute();
+    },
+
     changeAspectRatio: function(){
-        var ratio = this.element.attr("data-aspect-ratio");
+        this.options.aspectRatio = this.element.attr("data-aspect-ratio");
         this._setAspectRatio();
     },
 
@@ -493,10 +522,16 @@ var Video = {
         this.play(src);
     },
 
+    changeVolume: function(){
+        var volume = this.element.attr("data-volume");
+        this.volume(volume);
+    },
+
     changeAttribute: function(attributeName){
         switch (attributeName) {
             case "data-aspect-ratio": this.changeAspectRatio(); break;
             case "data-src": this.changeSource(); break;
+            case "data-volume": this.changeVolume(); break;
         }
     }
 };

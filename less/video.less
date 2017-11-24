@@ -47,11 +47,14 @@
 
 .video {
     .controls {
-        display: block;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        align-items: center;
         position: absolute;
         bottom: 0;
         left: 0;
-        width: 100%;
+        right: 0;
         height: auto;
         z-index: 2147483647;
         background-color: @playerControlsBackground;
@@ -70,15 +73,6 @@
         .slider {
             height: .875rem;
         }
-    }
-
-    .buttons {
-        display: flex;
-        flex-flow: row nowrap;
-        background-color: inherit;
-        width: 100%;
-        justify-content: flex-start;
-        align-items: center;
     }
 
     button {
@@ -173,7 +167,7 @@ video::-webkit-media-controls-enclosure {
     }
 }
 
-.buttons {
+.video .controls {
     & > button {
         [class*=default] {
             display: block;
