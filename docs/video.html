@@ -57,9 +57,15 @@
                             <li class="toc-entry"><a href="#_video_controls_hiding">Hiding controls</a></li>
                         </ul>
                     </li>
-                    <li class="toc-entry"><a href="#_video_loop">Looping video</a></li>
-                    <li class="toc-entry"><a href="#_video_autoplay">Auto play</a></li>
-                    <li class="toc-entry"><a href="#_video_volume">Set volume</a></li>
+                    <li class="toc-entry">
+                        <a href="#_video_options">Options</a>
+                        <ul>
+                            <li class="toc-entry"><a href="#_video_loop">Looping video</a></li>
+                            <li class="toc-entry"><a href="#_video_autoplay">Auto play</a></li>
+                            <li class="toc-entry"><a href="#_video_volume">Set volume</a></li>
+                        </ul>
+                    </li>
+                    <li class="toc-entry"><a href="#_video_aspect_ratio">Aspect ratio</a></li>
                     <li class="toc-entry"><a href="#_video_events">Events</a></li>
                     <li class="toc-entry"><a href="#_video_methods">Methods</a></li>
                     <li class="toc-entry"><a href="#_video_observe">Observe</a></li>
@@ -244,42 +250,164 @@
                     &lt;/video&gt;
                 </code></pre>
 
+                <h3 id="_video_options">Video options</h3>
+                <p>
+                    Use additional options to interact with component.
+                </p>
+
+                <h4 id="_video_loop">Looping video</h4>
+                <p>
+                    You can set <code>looping video</code> with attribute <code>data-loop="true"</code>.
+                </p>
+                <pre><code class="html">
+                    &lt;video data-role="video" data-loop="true"&gt;&lt;/video&gt;
+                </code></pre>
+
+                <h4 id="_video_autoplay">Auto play video</h4>
+                <p>
+                    To <code>auto-play</code> video, you can use attribute <code>data-autoplay="true"</code>.
+                </p>
+                <pre><code class="html">
+                    &lt;video data-role="video" data-autoplay="true"&gt;&lt;/video&gt;
+                </code></pre>
+
+                <h4 id="_video_volume">Volume</h4>
+                <p>
+                    You can setup <code>volume</code> with attribute <code>data-volume</code>. This value must be between <code>0</code> and <code>1</code>.
+                </p>
+                <pre><code class="html">
+                    &lt;video data-role="video" data-volume=".5"&gt;&lt;/video&gt;
+                </code></pre>
 
                 <h3 id="_video_aspect_ratio">Aspect ratio</h3>
+                <p>
+                    Setup video player aspect ratio with attribute <code>data-aspect-ratio="hd|sd|cinema"</code>.
+                </p>
                 <div class="example">
                     <div class="row">
                         <div class="cell-md-4">
                             <h6>HD (16:9)</h6>
                             <video data-role="video"
-                                   data-src="https://metroui.org.ua/res/oceans.mp4"
+                                   data-src="https://metroui.org.ua/res/video-16x9.mp4"
                                    data-aspect-ratio="hd"
                                    data-show-stop="false"
-                                   data-show-stream="false"
                                    data-show-volume="false"
+                                   data-show-loop="false"
+                                   data-show-full="false"
+                                   data-show-info="false"
                             ></video>
                         </div>
                         <div class="cell-md-4">
-                            <h6>SD (3:4)</h6>
+                            <h6>SD (4:3)</h6>
                             <video data-role="video"
-                                   data-src="https://metroui.org.ua/res/oceans.mp4"
+                                   data-src="https://metroui.org.ua/res/video-4x3.mp4"
                                    data-aspect-ratio="sd"
                                    data-show-stop="false"
-                                   data-show-stream="false"
                                    data-show-volume="false"
+                                   data-show-loop="false"
+                                   data-show-full="false"
+                                   data-show-info="false"
                             ></video>
                         </div>
                         <div class="cell-md-4">
                             <h6>CINEMA (21:9)</h6>
                             <video data-role="video"
-                                   data-src="https://metroui.org.ua/res/oceans.mp4"
+                                   data-src="https://metroui.org.ua/res/video-21x9.mp4"
                                    data-aspect-ratio="cinema"
                                    data-show-stop="false"
-                                   data-show-stream="false"
                                    data-show-volume="false"
+                                   data-show-loop="false"
+                                   data-show-full="false"
+                                   data-show-info="false"
                             ></video>
                         </div>
                     </div>
                 </div>
+                <pre><code class="html">
+                    &lt;video data-role="video" data-aspect-ratio="hd"&gt;&lt;/video&gt;
+                    &lt;video data-role="video" data-aspect-ratio="sd"&gt;&lt;/video&gt;
+                    &lt;video data-role="video" data-aspect-ratio="cinema"&gt;&lt;/video&gt;
+                </code></pre>
+
+                <h3 id="_video_events">Events</h3>
+                <p>
+                    When video player works, it generated the numbers of events. You can use callback for this event to behavior with video player.
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Data-*</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>onPlay(video, player)</td>
+                        <td><code>data-on-play</code></td>
+                        <td>Fired when video playing started</td>
+                    </tr>
+                    <tr>
+                        <td>onPause(video, player)</td>
+                        <td><code>data-on-pause</code></td>
+                        <td>Fired when video paused</td>
+                    </tr>
+                    <tr>
+                        <td>onStop(video, player)</td>
+                        <td><code>data-on-stop</code></td>
+                        <td>Fired when video stopped</td>
+                    </tr>
+                    <tr>
+                        <td>onEnd(video, player)</td>
+                        <td><code>data-on-end</code></td>
+                        <td>Fired when video ended</td>
+                    </tr>
+                    <tr>
+                        <td>onMetadata(video, player)</td>
+                        <td><code>data-on-metadata</code></td>
+                        <td>Fired when player get metadata</td>
+                    </tr>
+                    <tr>
+                        <td>onTime(currTime, duration, video, player)</td>
+                        <td><code>data-on-time</code></td>
+                        <td>Fired when player play video</td>
+                    </tr>
+                    <tr>
+                        <td>onVideoCreate(video, player)</td>
+                        <td><code>data-on-video-create</code></td>
+                        <td>Fired when player created</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="_video_methods">Methods</h3>
+                <p>
+                    You can use video player methods to interact with the component.
+                </p>
+                <ul>
+                    <li><strong>aspectRatio(ratio)</strong> - set aspect ratio</li>
+                    <li><strong>play()</strong> - play current video</li>
+                    <li><strong>play(src)</strong> - play video from src</li>
+                    <li><strong>pause()</strong> - pause playing</li>
+                    <li><strong>resume()</strong> - resume playing</li>
+                    <li><strong>stop()</strong> - stop playing</li>
+                    <li><strong>volume()</strong> - get current volume</li>
+                    <li><strong>volume(vol)</strong> - set volume</li>
+                    <li><strong>loop()</strong> - toggle looping video</li>
+                    <li><strong>mute()</strong> - mute video</li>
+                </ul>
+                <pre><code class="javascript">
+                    var player = $(el).data('video');
+                    player.play("https://metroui.org.ua/res/oceans.mp4");
+                    player.pause();
+                    player.resume();
+                </code></pre>
+
+                <h3 id="_video_observe">Observe</h3>
+                <p>
+                    You can change attributes <code>data-aspect-ratio</code>, <code>data-src</code> and <code>data-volume</code> at runtime.
+                </p>
+
 
             </main>
         </div>

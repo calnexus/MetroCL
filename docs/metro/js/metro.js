@@ -9303,7 +9303,7 @@ var Video = {
             this.play();
         }
 
-        Utils.exec(o.onVideoCreate, [element]);
+        Utils.exec(o.onVideoCreate, [element, this.player]);
     },
 
     _createPlayer: function(){
@@ -9533,7 +9533,7 @@ var Video = {
         });
 
         player.on("click", ".mute", function(e){
-            that._toogleMute();
+            that._toggleMute();
         });
 
         player.on("click", ".loop", function(){
