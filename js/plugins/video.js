@@ -82,6 +82,10 @@ var Video = {
     _create: function(){
         var that = this, element = this.element, o = this.options, video = this.video;
 
+        if (Metro.isFullscreenEnabled === false) {
+            o.fullScreenMode = METRO_FULLSCREEN_MODE.WINDOW;
+        }
+
         this._createPlayer();
         this._createControls();
         this._createEvents();
@@ -99,7 +103,7 @@ var Video = {
 
         var prev = element.prev();
         var parent = element.parent();
-        var player = $("<div>").addClass("video " + element[0].className);
+        var player = $("<div>").addClass("media-player " + element[0].className);
         var preloader = $("<div>").addClass("preloader").appendTo(player);
         var logo = $("<a>").attr("href", o.logoTarget).addClass("logo").appendTo(player);
 
@@ -245,7 +249,6 @@ var Video = {
 
     _createEvents: function(){
         var that = this, element = this.element, o = this.options, video = this.elem, player = this.player;
-        var infobox = player.find(".info-box");
 
         element.on("loadstart", function(){
             that.preloader.fadeIn();
@@ -253,7 +256,7 @@ var Video = {
 
         element.on("loadedmetadata", function(){
             that.duration = video.duration.toFixed(0);
-            infobox.html("00:00 / " + Utils.secondsToFormattedString(that.duration));
+            that._setInfo(0, that.duration);
             Utils.exec(o.onMetadata, [video, player]);
         });
 
@@ -267,11 +270,10 @@ var Video = {
         });
 
         element.on("timeupdate", function(){
-            var currentTime = Math.round(video.currentTime);
             var position = Math.round(video.currentTime * 100 / that.duration);
-            infobox.html(Utils.secondsToFormattedString(currentTime) + " / " + Utils.secondsToFormattedString(that.duration));
+            that._setInfo(video.currentTime, that.duration);
             that.stream.data('slider').val(position);
-            Utils.exec(o.onTime, [currentTime, that.duration, video, player]);
+            Utils.exec(o.onTime, [video.currentTime, that.duration, video, player]);
         });
 
         element.on("waiting", function(){
@@ -339,19 +341,11 @@ var Video = {
                 }
             } else {
                 if (that.fullscreen === true) {
-                    if (video.requestFullscreen) {
-                        video.requestFullscreen();
-                    } else if (video.mozRequestFullScreen) {
-                        video.mozRequestFullScreen();
-                    } else if (video.webkitRequestFullScreen) {
-                        video.webkitRequestFullScreen();
-                    } else if (video.msRequestFullscreen) {
-                        video.msRequestFullscreen();
-                    }
-                    if (that.fullScreenInterval === false) that.fullScreenInterval = setInterval(function(){
-                        var fsm = (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
 
-                        if (fsm === undefined) {
+                    Metro.requestFullScreen(video);
+
+                    if (that.fullScreenInterval === false) that.fullScreenInterval = setInterval(function(){
+                        if (Metro.inFullScreen() === false) {
                             that.fullscreen = false;
                             clearInterval(that.fullScreenInterval);
                             that.fullScreenInterval = false;
@@ -360,25 +354,13 @@ var Video = {
 
                     }, 1000);
                 } else {
-                    if (document.exitFullscreen) {
-                        document.exitFullscreen();
-                    }
-                    else if (document.mozCancelFullScreen) {
-                        document.mozCancelFullScreen();
-                    }
-                    else if (document.webkitCancelFullScreen) {
-                        document.webkitCancelFullScreen();
-                    }
-                    else if (document.msExitFullscreen) {
-                        document.msExitFullscreen();
-                    }
+                    Metro.exitFullScreen();
                 }
             }
 
             if (that.fullscreen === true) {
                 $(document).on("keyup.METRO_VIDEO", function(e){
                     if (e.keyCode === 27) {
-                        console.log("ku");
                         player.find(".full").click();
                     }
                 });
@@ -402,7 +384,6 @@ var Video = {
         $(window).resize(function(){
             that._setAspectRatio();
         });
-
     },
 
     _toggleLoop: function(){
@@ -426,6 +407,10 @@ var Video = {
             this.volume.data('slider').val(0);
             this.video.volume = 0;
         }
+    },
+
+    _setInfo: function(a, b){
+        this.player.find(".info-box").html(Utils.secondsToFormattedString(Math.round(a)) + " / " + Utils.secondsToFormattedString(Math.round(b)));
     },
 
     _setBuffer: function(){

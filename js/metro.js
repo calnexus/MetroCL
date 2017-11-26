@@ -65,6 +65,7 @@ var Metro = {
 
     version: "4.0.0-alpha",
     isTouchable: isTouch,
+    isFullscreenEnabled: document.fullscreenEnabled,
 
     eventClick: isTouch ? 'touchstart.metro' : 'click.metro',
     eventStart: isTouch ? 'touchstart.metro' : 'mousedown.metro',
@@ -204,7 +205,39 @@ var Metro = {
 
     noop: function(){},
     noop_true: function(){return true;},
-    noop_false: function(){return false;}
+    noop_false: function(){return false;},
+
+    requestFullScreen: function(element){
+        if (element.mozRequestFullScreen) {
+            element.mozRequestFullScreen();
+        } else if (element.webkitRequestFullScreen) {
+            element.webkitRequestFullScreen();
+        } else if (element.msRequestFullscreen) {
+            element.msRequestFullscreen();
+        } else {
+            element.requestFullscreen();
+        }
+    },
+
+    exitFullScreen: function(){
+        if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        }
+        else if (document.webkitCancelFullScreen) {
+            document.webkitCancelFullScreen();
+        }
+        else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        } else {
+            document.exitFullscreen();
+        }
+    },
+
+    inFullScreen: function(){
+        var fsm = (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
+        return fsm !== undefined;
+    }
 };
 
 $.Metro = window['Metro'] = Metro;
+

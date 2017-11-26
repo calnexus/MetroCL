@@ -8,3 +8,4 @@
 - [ ] Carousel, for each slide own effect
 - [ ] Carousel, add custom effect 
 - [ ] Carousel, add thumbs
+- [ ] Inheritance for video and audio players from media-player class
