@@ -9532,21 +9532,25 @@ var Video = {
         element.on("play", function(){
             player.find(".play").html(o.pauseIcon);
             Utils.exec(o.onPlay, [video, player]);
+            that._onMouse();
         });
 
         element.on("pause", function(){
             player.find(".play").html(o.playIcon);
             Utils.exec(o.onPause, [video, player]);
+            that._offMouse();
         });
 
         element.on("stop", function(){
             that.stream.data('slider').val(0);
             Utils.exec(o.onStop, [video, player]);
+            that._offMouse();
         });
 
         element.on("ended", function(){
             that.stream.data('slider').val(0);
             Utils.exec(o.onEnd, [video, player]);
+            that._offMouse();
         });
 
         element.on("volumechange", function(){
@@ -9563,8 +9567,6 @@ var Video = {
 
         player.on("click", ".stop", function(e){
             that.stop();
-            e.preventDefault();
-            e.stopPropagation();
         });
 
         player.on("click", ".mute", function(e){
@@ -9614,6 +9616,14 @@ var Video = {
             }
         });
 
+        $(window).resize(function(){
+            that._setAspectRatio();
+        });
+    },
+
+    _onMouse: function(){
+        var player = this.player, o = this.options;
+
         if (o.controlsHide > 0) {
             player.on(Metro.eventEnter, function(){
                 player.find(".controls").fadeIn();
@@ -9625,10 +9635,12 @@ var Video = {
                 }, o.controlsHide);
             });
         }
+    },
 
-        $(window).resize(function(){
-            that._setAspectRatio();
-        });
+    _offMouse: function(){
+        this.player.off(Metro.eventEnter);
+        this.player.off(Metro.eventLeave);
+        this.player.find(".controls").fadeIn();
     },
 
     _toggleLoop: function(){
@@ -9719,6 +9731,7 @@ var Video = {
         this.video.pause();
         this.video.currentTime = 0;
         this.stream.data('slider').val(0);
+        this._offMouse();
     },
 
     volume: function(v){
