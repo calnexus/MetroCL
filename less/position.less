@@ -20,6 +20,15 @@
 .pos-static {position: static!important;}
 .pos-fixed {position: fixed!important;}
 
+.put-left {left: 0!important; right: auto!important;}
+.put-right {left: auto!important; right: 0!important;}
+.put-top {top: 0!important; bottom: auto!important;}
+.put-bottom {top: auto!important; bottom: 0!important;}
+.put-top-left {left: 0!important; top: 0!important; bottom: auto!important; right: auto!important;}
+.put-top-right {left: auto!important; top: 0!important; bottom: auto!important; right: 0!important;}
+.put-bottom-left {left: 0!important; top: auto!important; bottom: 0!important; right: auto!important;}
+.put-bottom-right {left: auto!important; top: auto!important; bottom: 0!important; right: 0!important;}
+
 .generate-position-media-options(@mediaBreakpointListMobileLength);
 .generate-position-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
     @m: extract(@mediaBreakpointListMobile, @i);
@@ -29,6 +38,14 @@
         .pos-absolute-@{m} {position: absolute!important;}
         .pos-static-@{m} {position: static!important;}
         .pos-fixed-@{m} {position: fixed!important;}
+        .put-left-@{m} {left: 0!important; right: auto!important;}
+        .put-right-@{m} {left: auto!important; right: 0!important;}
+        .put-top-@{m} {top: 0!important; bottom: auto!important;}
+        .put-bottom-@{m} {top: auto!important; bottom: 0!important;}
+        .put-top-left-@{m} {left: 0!important; top: 0!important; bottom: auto!important; right: auto!important;}
+        .put-top-right-@{m} {left: auto!important; top: 0!important; bottom: auto!important; right: 0!important;}
+        .put-bottom-left-@{m} {left: 0!important; top: auto!important; bottom: 0!important; right: auto!important;}
+        .put-bottom-right-@{m} {left: auto!important; top: auto!important; bottom: 0!important; right: 0!important;}
     }
 
     .generate-position-media-options(@name, @i + 1);
