@@ -146,7 +146,7 @@ module.exports = function(grunt) {
                 expand: true,
                 cwd: 'icons',
                 src: '**/*',
-                dest: 'build/icons'
+                dest: 'build/mif'
             },
             docs: {
                 expand: true,

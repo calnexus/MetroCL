@@ -28045,7 +28045,7 @@ input[dir=rtl] {
 }
 @font-face {
   font-family: 'icons';
-  src: url('../icons/metro.woff') format('woff');
+  src: url('../mif/metro.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -28087,6 +28087,9 @@ input[dir=rtl] {
 }
 .mif-facebook:before {
   content: "\ea90";
+}
+.mif-instagram2:before {
+  content: "\ea92";
 }
 .mif-steam:before {
   content: "\eaac";

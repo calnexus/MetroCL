@@ -196,9 +196,7 @@ var Metro = {
     plugin: function(name, object){
         $.fn[name] = function( options ) {
             return this.each(function() {
-                $.data( this, name, Object.create(object).init(
-                    options, this )
-                );
+                $.data( this, name, Object.create(object).init(options, this ));
             });
         };
     },
