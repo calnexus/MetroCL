@@ -20,14 +20,105 @@
 .pos-static {position: static!important;}
 .pos-fixed {position: fixed!important;}
 
+.put-n {
+    right: auto;
+    bottom: auto;
+    left: 50%;
+    top: 0;
+    .translateX(-50%);
+    .translateY(-100%);
+}
+
+.put-nw {
+    right: auto;
+    bottom: auto;
+    left: 0;
+    top: 0;
+    .translateY(-100%);
+}
+
+.put-ne {
+    left: auto;
+    bottom: auto;
+    top: 0;
+    right: 0;
+    .translateY(-100%);
+}
+
+.put-wn {
+    bottom: auto;
+    right: auto;
+    top: 0;
+    left: 0;
+    .translateX(-100%);
+}
+
+.put-w {
+    bottom: auto;
+    right: auto;
+    top: 50%;
+    left: 0;
+    .translateX(-100%);
+    .translateY(-50%);
+}
+
+.put-ws {
+    top: auto;
+    right: auto;
+    bottom: 0;
+    left: 0;
+    .translateX(-100%);
+}
+
+.put-en {
+    bottom: auto;
+    left: auto;
+    top: 0;
+    right: 0;
+    .translateX(100%);
+}
+
+.put-e {
+    bottom: auto;
+    left: auto;
+    top: 50%;
+    right: 0;
+    .translateX(100%);
+    .translateY(-50%);
+}
+
+.put-es {
+    top: auto;
+    left: auto;
+    bottom: 0;
+    right: 0;
+    .translateX(100%);
+}
+
+.put-s {
+    bottom: auto;
+    right: auto;
+    top: 100%;
+    left: 0;
+}
+
+.put-sw {
+    bottom: auto;
+    right: auto;
+    top: 100%;
+    left: 50%;
+    .translateX(-50%);
+}
+
+.put-se {
+    bottom: auto;
+    left: auto;
+    top: 100%;
+    right: 0;
+}
+
 .put-left {left: 0!important; right: auto!important;}
 .put-right {left: auto!important; right: 0!important;}
-.put-top {top: 0!important; bottom: auto!important;}
-.put-bottom {top: auto!important; bottom: 0!important;}
-.put-top-left {left: 0!important; top: 0!important; bottom: auto!important; right: auto!important;}
-.put-top-right {left: auto!important; top: 0!important; bottom: auto!important; right: 0!important;}
-.put-bottom-left {left: 0!important; top: auto!important; bottom: 0!important; right: auto!important;}
-.put-bottom-right {left: auto!important; top: auto!important; bottom: 0!important; right: 0!important;}
 
 .generate-position-media-options(@mediaBreakpointListMobileLength);
 .generate-position-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
@@ -40,12 +131,103 @@
         .pos-fixed-@{m} {position: fixed!important;}
         .put-left-@{m} {left: 0!important; right: auto!important;}
         .put-right-@{m} {left: auto!important; right: 0!important;}
-        .put-top-@{m} {top: 0!important; bottom: auto!important;}
-        .put-bottom-@{m} {top: auto!important; bottom: 0!important;}
-        .put-top-left-@{m} {left: 0!important; top: 0!important; bottom: auto!important; right: auto!important;}
-        .put-top-right-@{m} {left: auto!important; top: 0!important; bottom: auto!important; right: 0!important;}
-        .put-bottom-left-@{m} {left: 0!important; top: auto!important; bottom: 0!important; right: auto!important;}
-        .put-bottom-right-@{m} {left: auto!important; top: auto!important; bottom: 0!important; right: 0!important;}
+
+        .put-n-@{m} {
+            right: auto;
+            bottom: auto;
+            left: 50%;
+            top: 0;
+            .translateX(-50%);
+            .translateY(-100%);
+        }
+
+        .put-nw-@{m} {
+            right: auto;
+            bottom: auto;
+            left: 0;
+            top: 0;
+            .translateY(-100%);
+        }
+
+        .put-ne-@{m} {
+            left: auto;
+            bottom: auto;
+            top: 0;
+            right: 0;
+            .translateY(-100%);
+        }
+
+        .put-wn-@{m} {
+            bottom: auto;
+            right: auto;
+            top: 0;
+            left: 0;
+            .translateX(-100%);
+        }
+
+        .put-w-@{m} {
+            bottom: auto;
+            right: auto;
+            top: 50%;
+            left: 0;
+            .translateX(-100%);
+            .translateY(-50%);
+        }
+
+        .put-ws-@{m} {
+            top: auto;
+            right: auto;
+            bottom: 0;
+            left: 0;
+            .translateX(-100%);
+        }
+
+        .put-en-@{m} {
+            bottom: auto;
+            left: auto;
+            top: 0;
+            right: 0;
+            .translateX(100%);
+        }
+
+        .put-e-@{m} {
+            bottom: auto;
+            left: auto;
+            top: 50%;
+            right: 0;
+            .translateX(100%);
+            .translateY(-50%);
+        }
+
+        .put-es-@{m} {
+            top: auto;
+            left: auto;
+            bottom: 0;
+            right: 0;
+            .translateX(100%);
+        }
+
+        .put-s-@{m} {
+            bottom: auto;
+            right: auto;
+            top: 100%;
+            left: 0;
+        }
+
+        .put-sw-@{m} {
+            bottom: auto;
+            right: auto;
+            top: 100%;
+            left: 50%;
+            .translateX(-50%);
+        }
+
+        .put-se-@{m} {
+            bottom: auto;
+            left: auto;
+            top: 100%;
+            right: 0;
+        }
     }
 
     .generate-position-media-options(@name, @i + 1);

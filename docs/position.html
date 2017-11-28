@@ -50,6 +50,8 @@
                     <li class="toc-entry"><a href="#_pos_fixed_top">Fixed top</a></li>
                     <li class="toc-entry"><a href="#_pos_fixed_bottom">Fixed bottom</a></li>
                     <li class="toc-entry"><a href="#_pos_utils">Utilities</a></li>
+                    <li class="toc-entry"><a href="#_pos_rose">Rose of the wind</a></li>
+                    <li class="toc-entry"><a href="#_pos_dropdown">Dropdown</a></li>
                 </ul>
 
             </div>
@@ -92,6 +94,81 @@
                     Change asterisk to <code>sm</code>, <code>md</code>, <code>lg</code>, <code>xl</code> or <code>xxl</code>.
                 </p>
 
+                <h3 id="_pos_rose">Rose of the wind</h3>
+                <p>
+                    Metro 4 contains classes to place object on sides of rose of the wind. To place use classes:
+                        <code>.put-nw</code>,
+                        <code>.put-n</code>,
+                        <code>.put-ne</code>,
+                        <code>.put-sw</code>,
+                        <code>.put-s</code>,
+                        <code>.put-se</code>,
+                        <code>.put-wn</code>,
+                        <code>.put-w</code>,
+                        <code>.put-ws</code>,
+                        <code>.put-en</code>,
+                        <code>.put-e</code>,
+                        <code>.put-es</code>.
+                </p>
+                <p>
+                    In example below red squares placed on sides of the rose.
+                </p>
+                <div class="example" style="height: 300px;">
+                    <div class="row h-100">
+                        <div class="cell-md-6 text-center">
+                            <img src="images/wind-rose.png" class="h-100">
+                        </div>
+                        <div class="cell-md-6">
+                            <div style="width: 100px; height: 100px; top: 50%; transform: translateY(-50%) translateX(-50%); left: 50%;" class="pos-absolute mx-auto bg-gray">
+                                <div class="bg-red p-2 pos-absolute put-nw"></div>
+                                <div class="bg-red p-2 pos-absolute put-n"></div>
+                                <div class="bg-red p-2 pos-absolute put-ne"></div>
+                                <div class="bg-red p-2 pos-absolute put-sw"></div>
+                                <div class="bg-red p-2 pos-absolute put-s"></div>
+                                <div class="bg-red p-2 pos-absolute put-se"></div>
+                                <div class="bg-red p-2 pos-absolute put-wn"></div>
+                                <div class="bg-red p-2 pos-absolute put-w"></div>
+                                <div class="bg-red p-2 pos-absolute put-ws"></div>
+                                <div class="bg-red p-2 pos-absolute put-en"></div>
+                                <div class="bg-red p-2 pos-absolute put-e"></div>
+                                <div class="bg-red p-2 pos-absolute put-es"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div class="put-nw"&gt;&lt;/div&gt;
+                    &lt;div class="put-n"&gt;&lt;/div&gt;
+                    &lt;div class="put-ne"&gt;&lt;/div&gt;
+                    &lt;div class="put-sw"&gt;&lt;/div&gt;
+                    &lt;div class="put-s"&gt;&lt;/div&gt;
+                    &lt;div class="put-se"&gt;&lt;/div&gt;
+                    &lt;div class="put-wn"&gt;&lt;/div&gt;
+                    &lt;div class="put-w"&gt;&lt;/div&gt;
+                    &lt;div class="put-ws"&gt;&lt;/div&gt;
+                    &lt;div class="put-en"&gt;&lt;/div&gt;
+                    &lt;div class="put-e"&gt;&lt;/div&gt;
+                    &lt;div class="put-es"&gt;&lt;/div&gt;
+                </code></pre>
+                <p class="remark alert">
+                    Rose of the wind classes required <code>position: absolute</code> for element.
+                </p>
+
+                <h3 id="_pos_dropdown">Position for dropdown</h3>
+                <p>
+                    In additional, Metro 4 contains two classes for dropdown positioning: <code>.put-left</code> and <code>.put-right</code>.
+                </p>
+                <pre><code class="css">
+                    .put-left {
+                        left: 0;
+                        right: auto;
+                    }
+
+                    .put-right {
+                        left: auto;
+                        right: 0;
+                    }
+                </code></pre>
             </main>
         </div>
 
