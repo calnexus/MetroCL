@@ -9,8 +9,8 @@
 
 
 // Colors
-@lightenValue: 10%;
-@darkenValue: 10%;
+@lightenValue: 15%;
+@darkenValue: 15%;
 
 @transparent:			transparent;
 
@@ -21,7 +21,7 @@
 @white:                 #ffffff;
 @dark:                  #1d1d1d;
 @light:                 #f8f8f8;
-@gray:                  #9e9e9e;
+@gray:                  #bebebe;
 @grayBlue:              #607d8b;
 @grayWhite:             #f5f5f5;
 @grayMouse:             #455a64;
@@ -255,13 +255,48 @@
 @playerHoverColor: @white;
 @playerControlsBackground: rgba(34, 34, 34, 0.5);
 
-@playImage: data-uri('image/svg+xml;charset=UTF-8', 'less/images/play.svg');
-@loopImage: data-uri('image/svg+xml;charset=UTF-8', 'less/images/loop.svg');
-@stopImage: data-uri('image/svg+xml;charset=UTF-8', 'less/images/stop.svg');
-@pauseImage: data-uri('image/svg+xml;charset=UTF-8', 'less/images/pause.svg');
-@muteImage: data-uri('image/svg+xml;charset=UTF-8', 'less/images/volume-mute.svg');
-@volumeLowImage: data-uri('image/svg+xml;charset=UTF-8', 'less/images/volume-low.svg');
-@volumeMediumImage: data-uri('image/svg+xml;charset=UTF-8', 'less/images/volume-medium.svg');
-@volumeHighImage: data-uri('image/svg+xml;charset=UTF-8', 'less/images/volume-high.svg');
-@enlargeImage: data-uri('image/svg+xml;charset=UTF-8', 'less/images/enlarge.svg');
-@shrinkImage: data-uri('image/svg+xml;charset=UTF-8', 'less/images/shrink.svg');
+@playIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/light/play.svg');
+@loopIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/light/loop.svg');
+@stopIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/light/stop.svg');
+@pauseIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/light/pause.svg');
+@muteIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/light/volume-mute.svg');
+@volumeLowIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/light/volume-low.svg');
+@volumeMediumIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/light/volume-medium.svg');
+@volumeHighIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/light/volume-high.svg');
+@enlargeIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/light/enlarge.svg');
+@shrinkIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/light/shrink.svg');
+@playlistIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/light/list.svg');
+@nextIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/light/next.svg');
+@prevIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/light/prev.svg');
+@firstIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/light/first.svg');
+@lastIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/light/last.svg');
+@forwardIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/light/forward.svg');
+@backwardIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/light/backward.svg');
+@shareIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/light/share.svg');
+@equalizerIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/light/equalizer.svg');
+@ejectIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/light/eject.svg');
+@shuffleIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/light/shuffle.svg');
+@randomIconLight: data-uri('image/svg+xml;charset=UTF-8', 'less/images/light/dice.svg');
+
+@playIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/dark/play.svg');
+@loopIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/dark/loop.svg');
+@stopIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/dark/stop.svg');
+@pauseIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/dark/pause.svg');
+@muteIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/dark/volume-mute.svg');
+@volumeLowIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/dark/volume-low.svg');
+@volumeMediumIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/dark/volume-medium.svg');
+@volumeHighIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/dark/volume-high.svg');
+@enlargeIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/dark/enlarge.svg');
+@shrinkIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/dark/shrink.svg');
+@playlistIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/dark/list.svg');
+@nextIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/dark/next.svg');
+@prevIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/dark/prev.svg');
+@firstIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/dark/first.svg');
+@lastIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/dark/last.svg');
+@forwardIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/dark/forward.svg');
+@backwardIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/dark/backward.svg');
+@shareIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/dark/share.svg');
+@equalizerIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/dark/equalizer.svg');
+@ejectIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/dark/eject.svg');
+@shuffleIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/dark/shuffle.svg');
+@randomIconDark: data-uri('image/svg+xml;charset=UTF-8', 'less/images/dark/dice.svg');
