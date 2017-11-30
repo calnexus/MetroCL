@@ -69,10 +69,21 @@
         padding: .625rem;
         order: 5;
         width: 100%;
+        position: relative;
+        overflow: hidden;
 
         .slider {
             height: .875rem;
         }
+    }
+
+    .load-audio {
+        padding: 0;
+        display: block;
+        position: absolute;
+        bottom: 4px;
+        left: .625rem;
+        width: ~"calc(100% - 1.25rem)";
     }
 
     button {
@@ -213,7 +224,7 @@ video:-webkit-full-screen {
     .default-shuffle {background-image: @shuffleIconLight;}
     .default-random {background-image: @randomIconLight;}
 
-    &.dark {
+    &.light {
 
         background-color: @light;
 

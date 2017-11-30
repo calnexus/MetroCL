@@ -133,6 +133,8 @@ var Video = {
             style: "color"
         });
 
+        preloader.hide(0);
+
         this.preloader = preloader;
 
         if (o.logo !== "") {
@@ -472,6 +474,11 @@ var Video = {
         if (src !== undefined) {
             this._setSource(src);
         }
+
+        if (this.element.attr("src") === undefined && this.element.find("source").length === 0) {
+            return ;
+        }
+
         this.video.play();
     },
 

@@ -110,7 +110,6 @@ var Audio = {
         var prev = element.prev();
         var parent = element.parent();
         var player = $("<div>").addClass("media-player audio-player " + element[0].className);
-        var preloader = $("<div>").addClass("preloader").appendTo(player);
 
         if (prev.length === 0) {
             parent.prepend(player);
@@ -127,13 +126,6 @@ var Audio = {
         element.attr("preload", "auto");
 
         audio.volume = o.volume;
-
-        preloader.activity({
-            type: "cycle",
-            style: "color"
-        });
-
-        this.preloader = preloader;
 
         if (o.src !== null) {
             this._setSource(o.src);
@@ -165,8 +157,10 @@ var Audio = {
 
         var controls = $("<div>").addClass("controls").addClass(o.clsControls).insertAfter(element);
 
+
         var stream = $("<div>").addClass("stream").appendTo(controls);
         var streamSlider = $("<input>").addClass("stream-slider ultra-thin cycle-marker").appendTo(stream);
+        var preloader = $("<div>").addClass("load-audio").appendTo(stream);
 
         var volume = $("<div>").addClass("volume").appendTo(controls);
         var volumeSlider = $("<input>").addClass("volume-slider ultra-thin cycle-marker").appendTo(volume);
@@ -176,6 +170,15 @@ var Audio = {
         if (o.showInfo !== true) {
             infoBox.hide();
         }
+
+        preloader.activity({
+            type: "metro",
+            style: "color"
+        });
+
+        preloader.hide(0);
+
+        this.preloader = preloader;
 
         streamSlider.slider({
             clsMarker: "bg-red",
@@ -244,7 +247,7 @@ var Audio = {
         var that = this, element = this.element, o = this.options, audio = this.elem, player = this.player;
 
         element.on("loadstart", function(){
-            //that.preloader.fadeIn();
+            that.preloader.fadeIn();
         });
 
         element.on("loadedmetadata", function(){
@@ -255,7 +258,7 @@ var Audio = {
 
         element.on("canplay", function(){
             that._setBuffer();
-            //that.preloader.fadeOut();
+            that.preloader.fadeOut();
         });
 
         element.on("progress", function(){
@@ -270,7 +273,7 @@ var Audio = {
         });
 
         element.on("waiting", function(){
-            //that.preloader.fadeIn();
+            that.preloader.fadeIn();
         });
 
         element.on("loadeddata", function(){
@@ -374,6 +377,11 @@ var Audio = {
         if (src !== undefined) {
             this._setSource(src);
         }
+
+        if (this.element.attr("src") === undefined && this.element.find("source").length === 0) {
+            return ;
+        }
+
         this.audio.play();
     },
 
