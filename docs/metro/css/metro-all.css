@@ -14644,7 +14644,6 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   position: relative;
   background-color: #ffffff;
   border: 1px solid #dfdfdf;
-  border-radius: 0.25rem;
 }
 .panel .panel-title,
 .panel .panel-content {
@@ -14710,7 +14709,6 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
           order: 2;
   height: auto;
   padding: .5rem;
-  overflow: auto;
 }
 .popover {
   display: block;

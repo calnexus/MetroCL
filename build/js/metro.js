@@ -7348,8 +7348,8 @@ var Panel = {
 
         if (o.height !== "auto" && parseInt(o.height) >= 0) {
             panel.outerHeight(parseInt(o.height));
+            element.css({overflow: "auto"});
         }
-
 
         this.panel = panel;
 
