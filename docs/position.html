@@ -158,6 +158,53 @@
                 <p>
                     In additional, Metro 4 contains two classes for dropdown positioning: <code>.put-left</code> and <code>.put-right</code>.
                 </p>
+                <div class="example">
+                    <div class="dropdown-button">
+                        <button class="button dropdown-toggle">Button</button>
+                        <ul class="d-menu put-left" data-role="dropdown">
+                            <li><a href="#">Reply</a></li>
+                            <li><a href="#">Reply All</a></li>
+                            <li><a href="#">Forward</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Delete</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown-button place-right">
+                        <button class="button dropdown-toggle">Button</button>
+                        <ul class="d-menu put-right" data-role="dropdown">
+                            <li><a href="#">Reply</a></li>
+                            <li><a href="#">Reply All</a></li>
+                            <li><a href="#">Forward</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Delete</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div class="dropdown-button"&gt;
+                        &lt;button class="button dropdown-toggle"&gt;Button&lt;/button&gt;
+                        &lt;ul class="d-menu put-left" data-role="dropdown"&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Reply&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Reply All&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Forward&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class="divider"&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Delete&lt;/a&gt;&lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class="dropdown-button place-right"&gt;
+                        &lt;button class="button dropdown-toggle"&gt;Button&lt;/button&gt;
+                        &lt;ul class="d-menu put-right" data-role="dropdown"&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Reply&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Reply All&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Forward&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class="divider"&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Delete&lt;/a&gt;&lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
                 <pre><code class="css">
                     .put-left {
                         left: 0;
@@ -169,6 +216,9 @@
                         right: 0;
                     }
                 </code></pre>
+                <p class="remark">
+                    Also you can use media equivalent for <code>.put-*</code> classes with media suffixes. <a href="media.html">More information about it</a>.
+                </p>
             </main>
         </div>
 
