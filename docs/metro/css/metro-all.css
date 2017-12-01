@@ -4913,24 +4913,29 @@ aside::after {
 .hero {
   padding: 5rem 1rem;
 }
-@media screen and (min-width: 768px) {
+@media (min-width: 576px) {
   .container {
-    max-width: 100%;
+    max-width: 540px;
   }
 }
-@media screen and (min-width: 992px) {
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px) {
   .container {
     max-width: 960px;
   }
 }
-@media screen and (min-width: 1200px) {
+@media (min-width: 1200px) {
   .container {
-    max-width: 1152px;
+    max-width: 1140px;
   }
 }
-@media screen and (min-width: 1452px) {
+@media (min-width: 1452px) {
   .container {
-    max-width: 1344px;
+    max-width: 1360px;
   }
 }
 .grid {
