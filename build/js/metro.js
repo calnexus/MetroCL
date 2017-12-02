@@ -7575,7 +7575,7 @@ var Popover = {
             }
         });
 
-        if (o.hideOnLeave === true) {
+        if (o.hideOnLeave === true && o.popoverHide > 0) {
             element.on(Metro.eventLeave, function(){
                 that.removePopover();
             });
