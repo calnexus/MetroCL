@@ -37,6 +37,7 @@ if (window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS === undefined) {window.
 if (window.METRO_HOTKEYS_FILTER_TEXT_INPUTS === undefined) {window.METRO_HOTKEYS_FILTER_TEXT_INPUTS = true;}
 if (window.METRO_HOTKEYS_BUBBLE_UP === undefined) {window.METRO_HOTKEYS_BUBBLE_UP = false;}
 if (window.METRO_I18N === undefined) {window.METRO_I18N = "metro/js/i18n/";}
+if (window.METRO_THROWS === undefined) {window.METRO_THROWS = true;}
 
 if ( typeof Object.create !== 'function' ) {
     Object.create = function (o) {
@@ -75,6 +76,11 @@ window.METRO_ASPECT_RATIO = {
     HD: "hd",
     SD: "sd",
     CINEMA: "cinema"
+};
+
+window.METRO_GROUP_MODE = {
+    ONE: "one",
+    MULTI: "multi"
 };
 
 var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
@@ -1765,13 +1771,22 @@ var d = new Date().getTime();
     },
 
     exec: function(f, args, context){
+        var result;
         if (f === undefined || f === null) {return false;}
         var func = this.isFunc(f);
         if (func === false) {
             func = new Function("a", f);
         }
 
-        return func.apply(context, args);
+        try {
+            result = func.apply(context, args);
+        } catch (err) {
+            result = null;
+            if (METRO_THROWS === true) {
+                throw err;
+            }
+        }
+        return result;
     },
 
     isOutsider: function(el) {
@@ -2871,6 +2886,87 @@ var Audio = {
 };
 
 Metro.plugin('audio', Audio);
+// Source: js/plugins/buttons-group.js
+var ButtonsGroup = {
+    init: function( options, elem ) {
+        this.options = $.extend( {}, this.options, options );
+        this.elem  = elem;
+        this.element = $(elem);
+        this.active = null;
+
+        this._setOptionsFromDOM();
+        this._create();
+
+        return this;
+    },
+
+    options: {
+        targets: "button",
+        clsActive: "bg-gray",
+        mode: METRO_GROUP_MODE.ONE,
+        onButtonClick: Metro.noop,
+        onButtonsGroupCreate: Metro.noop
+    },
+
+    _setOptionsFromDOM: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = $.parseJSON(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+    },
+
+    _create: function(){
+        var that = this, element = this.element, o = this.options;
+
+        this._createGroup();
+        this._createEvents();
+
+        Utils.exec(o.onButtonsGroupCreate, [element]);
+    },
+
+    _createGroup: function(){
+        var that = this, element = this.element, o = this.options;
+
+        if (o.mode === METRO_GROUP_MODE.ONE && element.find(o.clsActive).length === 0) {
+            $(element.find(o.targets)[0]).addClass(o.clsActive);
+        }
+    },
+
+    _createEvents: function(){
+        var that = this, element = this.element, o = this.options;
+
+        element.on("click", o.targets, function(){
+            var el = $(this);
+
+            Utils.exec(o.onButtonClick, [el]);
+
+            if (o.mode === METRO_GROUP_MODE.ONE && el.hasClass(o.clsActive)) {
+                return ;
+            }
+
+            if (o.mode === METRO_GROUP_MODE.ONE) {
+                element.find(o.targets).removeClass(o.clsActive);
+                el.addClass(o.clsActive);
+            } else {
+                el.toggleClass(o.clsActive);
+            }
+
+        });
+    },
+
+    changeAttribute: function(attributeName){
+
+    }
+};
+
+Metro.plugin('buttonsGroup', ButtonsGroup);
 // Source: js/plugins/calendar.js
 var Calendar = {
     init: function( options, elem ) {

@@ -184,13 +184,22 @@ var Utils = {
     },
 
     exec: function(f, args, context){
+        var result;
         if (f === undefined || f === null) {return false;}
         var func = this.isFunc(f);
         if (func === false) {
             func = new Function("a", f);
         }
 
-        return func.apply(context, args);
+        try {
+            result = func.apply(context, args);
+        } catch (err) {
+            result = null;
+            if (METRO_THROWS === true) {
+                throw err;
+            }
+        }
+        return result;
     },
 
     isOutsider: function(el) {

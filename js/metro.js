@@ -19,6 +19,7 @@ if (window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS === undefined) {window.
 if (window.METRO_HOTKEYS_FILTER_TEXT_INPUTS === undefined) {window.METRO_HOTKEYS_FILTER_TEXT_INPUTS = true;}
 if (window.METRO_HOTKEYS_BUBBLE_UP === undefined) {window.METRO_HOTKEYS_BUBBLE_UP = false;}
 if (window.METRO_I18N === undefined) {window.METRO_I18N = "metro/js/i18n/";}
+if (window.METRO_THROWS === undefined) {window.METRO_THROWS = true;}
 
 if ( typeof Object.create !== 'function' ) {
     Object.create = function (o) {
@@ -57,6 +58,11 @@ window.METRO_ASPECT_RATIO = {
     HD: "hd",
     SD: "sd",
     CINEMA: "cinema"
+};
+
+window.METRO_GROUP_MODE = {
+    ONE: "one",
+    MULTI: "multi"
 };
 
 var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
