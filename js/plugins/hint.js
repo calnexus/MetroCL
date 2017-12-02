@@ -4,8 +4,10 @@ var Hint = {
         this.elem  = elem;
         this.element = $(elem);
         this.hint = null;
-        this.hint_size = 0;
-        this.interval = null;
+        this.hint_size = {
+            width: 0,
+            height: 0
+        };
 
         this._setOptionsFromDOM();
         this._create();
@@ -19,7 +21,7 @@ var Hint = {
         hintHide: 5000,
         clsHint: "",
         hintText: "",
-        hintPosition: "top",
+        hintPosition: METRO_POSITION.TOP,
         hintOffset: 4,
         onHintCreate: Metro.noop,
         onHintShow: Metro.noop,
@@ -46,7 +48,7 @@ var Hint = {
         element.on(Metro.eventEnter, function(){
             that.createHint();
             if (o.hintHide > 0) {
-                that.interval = setTimeout(function(){
+                setTimeout(function(){
                     that.removeHint();
                 }, o.hintHide);
             }
@@ -85,28 +87,28 @@ var Hint = {
     setPosition: function(){
         var hint = this.hint, hint_size = this.hint_size, o = this.options, element = this.element;
 
-        if (o.hintPosition === 'top') {
-            hint.addClass('top');
+        if (o.hintPosition === METRO_POSITION.BOTTOM) {
+            hint.addClass('bottom');
             hint.css({
-                top: element.offset().top - $(window).scrollTop() - hint_size.height - o.hintOffset,
+                top: element.offset().top - $(window).scrollTop() + element.outerHeight() + o.hintOffset,
                 left: element.offset().left + element.outerWidth()/2 - hint_size.width/2  - $(window).scrollLeft()
             });
-        } else if (o.hintPosition === 'right') {
+        } else if (o.hintPosition === METRO_POSITION.RIGHT) {
             hint.addClass('right');
             hint.css({
                 top: element.offset().top + element.outerHeight()/2 - hint_size.height/2 - $(window).scrollTop(),
                 left: element.offset().left + element.outerWidth() - $(window).scrollLeft() + o.hintOffset
             });
-        } else if (o.hintPosition === 'left') {
+        } else if (o.hintPosition === METRO_POSITION.LEFT) {
             hint.addClass('left');
             hint.css({
                 top: element.offset().top + element.outerHeight()/2 - hint_size.height/2 - $(window).scrollTop(),
                 left: element.offset().left - hint_size.width - $(window).scrollLeft() - o.hintOffset
             });
         } else {
-            hint.addClass('bottom');
+            hint.addClass('top');
             hint.css({
-                top: element.offset().top - $(window).scrollTop() + element.outerHeight() + o.hintOffset,
+                top: element.offset().top - $(window).scrollTop() - hint_size.height - o.hintOffset,
                 left: element.offset().left + element.outerWidth()/2 - hint_size.width/2  - $(window).scrollLeft()
             });
         }
@@ -120,7 +122,6 @@ var Hint = {
 
         if (hint !== null) {
             Utils.exec(options.onHintHide, [hint, element]);
-            clearInterval(this.interval);
             setTimeout(function(){
                 hint.hide(0, function(){
                     hint.remove();
@@ -129,8 +130,14 @@ var Hint = {
         }
     },
 
-    changeAttribute: function(attributeName){
+    changeText: function(){
+        this.options.hintText = this.element.attr("data-hint-text");
+    },
 
+    changeAttribute: function(attributeName){
+        switch (attributeName) {
+            case "data-hint-text": this.changeText(); break;
+        }
     }
 };
 

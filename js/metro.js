@@ -67,7 +67,8 @@ window.METRO_GROUP_MODE = {
 
 window.METRO_POPOVER_MODE = {
     CLICK: "click",
-    HOVER: "hover"
+    HOVER: "hover",
+    FOCUS: "focus"
 };
 
 var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
@@ -84,6 +85,8 @@ var Metro = {
     eventMove: isTouch ? 'touchmove.metro' : 'mousemove.metro',
     eventEnter: isTouch ? 'touchstart.metro' : 'mouseenter.metro',
     eventLeave: isTouch ? 'touchend.metro' : 'mouseleave.metro',
+    eventFocus: 'focus.metro',
+    eventBlur: 'blur.metro',
 
     hotkeys: [],
 

@@ -14543,11 +14543,12 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   min-width: 12.5rem;
   height: auto;
   position: fixed;
-  padding: 1.25rem;
   background-color: #ffffff;
   color: #1d1d1d;
   z-index: 1070;
   border: 1px solid #dfdfdf;
+  cursor: default;
+  padding: 0.8125rem;
 }
 .media-player {
   display: block;
