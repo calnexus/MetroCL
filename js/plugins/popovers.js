@@ -21,7 +21,7 @@ var Popover = {
         popoverOffset: 10,
         popoverTrigger: METRO_POPOVER_MODE.HOVER,
         popoverPosition: METRO_POSITION.TOP,
-        hideOnLeave: true,
+        hideOnLeave: false,
         clsPopover: "",
         onPopoverShow: Metro.noop,
         onPopoverHide: Metro.noop
@@ -70,7 +70,7 @@ var Popover = {
             }
         });
 
-        if (o.hideOnLeave === true && o.popoverHide > 0) {
+        if (o.hideOnLeave === true) {
             element.on(Metro.eventLeave, function(){
                 that.removePopover();
             });
