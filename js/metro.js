@@ -65,6 +65,11 @@ window.METRO_GROUP_MODE = {
     MULTI: "multi"
 };
 
+window.METRO_POPOVER_MODE = {
+    CLICK: "click",
+    HOVER: "hover"
+};
+
 var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
 
 var Metro = {

@@ -83,6 +83,11 @@ window.METRO_GROUP_MODE = {
     MULTI: "multi"
 };
 
+window.METRO_POPOVER_MODE = {
+    CLICK: "click",
+    HOVER: "hover"
+};
+
 var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
 
 var Metro = {
@@ -6225,6 +6230,7 @@ var Hint = {
         this.elem  = elem;
         this.element = $(elem);
         this.hint = null;
+        this.hint_size = 0;
         this.interval = null;
 
         this._setOptionsFromDOM();
@@ -6275,12 +6281,18 @@ var Hint = {
         element.on(Metro.eventLeave, function(){
             that.removeHint();
         });
+
+        $(window).on("scroll", function(){
+            if (that.hint !== null) that.setPosition();
+        });
     },
 
     createHint: function(){
         var that = this, elem = this.elem, element = this.element, o = this.options;
         var hint = $("<div>").addClass("hint").addClass(o.clsHint).html(o.hintText);
-        var hint_size = Utils.hiddenElementSize(hint);
+
+        this.hint = hint;
+        this.hint_size = Utils.hiddenElementSize(hint);
 
         $(".hint").remove();
 
@@ -6289,6 +6301,15 @@ var Hint = {
             element.html(wrp);
             element = wrp;
         }
+
+        this.setPosition();
+
+        hint.appendTo($('body'));
+        Utils.exec(o.onHintShow, [hint, element]);
+    },
+
+    setPosition: function(){
+        var hint = this.hint, hint_size = this.hint_size, o = this.options, element = this.element;
 
         if (o.hintPosition === 'top') {
             hint.addClass('top');
@@ -6315,10 +6336,6 @@ var Hint = {
                 left: element.offset().left + element.outerWidth()/2 - hint_size.width/2  - $(window).scrollLeft()
             });
         }
-
-        hint.appendTo($('body'));
-        this.hint = hint;
-        Utils.exec(o.onHintShow, [hint, element]);
     },
 
     removeHint: function(){
@@ -7489,6 +7506,7 @@ var Popover = {
     },
 
     options: {
+        mode: METRO_POPOVER_MODE.CLICK,
         onPopoverCreate: Metro.noop
     },
 
@@ -7509,7 +7527,7 @@ var Popover = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(o.onPopoverCreate, [element]);
     },
 
     changeAttribute: function(attributeName){

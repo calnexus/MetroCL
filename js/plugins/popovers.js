@@ -11,6 +11,7 @@ var Popover = {
     },
 
     options: {
+        mode: METRO_POPOVER_MODE.CLICK,
         onPopoverCreate: Metro.noop
     },
 
@@ -31,7 +32,7 @@ var Popover = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        Utils.exec(this.options.onCreate, [this.element]);
+        Utils.exec(o.onPopoverCreate, [element]);
     },
 
     changeAttribute: function(attributeName){

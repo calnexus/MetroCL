@@ -1,0 +1,33 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+.visible {visibility: visible !important;}
+.no-visible {visibility: hidden !important;}
+
+.d-none {display: none!important;}
+.d-block {display: block!important;}
+.d-inline {display: inline!important;}
+.d-inline-block {display: inline-block!important;}
+.d-table {display: table!important;}
+.d-table-row {display: table-row!important;}
+.d-table-cell {display: table-cell!important;}
+
+.generate-display-media-options(@mediaBreakpointListMobileLength);
+.generate-display-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
+    @m: extract(@mediaBreakpointListMobile, @i);
+
+    @media screen and (min-width: @@m) {
+        .visible-@{m} {visibility: visible !important;}
+        .no-visible-@{m} {visibility: hidden !important;}
+
+        .d-none-@{m} {display: none!important;}
+        .d-block-@{m} {display: block!important;}
+        .d-inline-@{m} {display: inline!important;}
+        .d-inline-block-@{m} {display: inline-block!important;}
+        .d-table-@{m} {display: table!important;}
+        .d-table-row-@{m} {display: table-row!important;}
+        .d-table-cell-@{m} {display: table-cell!important;}
+    }
+
+    .generate-display-media-options(@name, @i + 1);
+}
