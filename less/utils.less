@@ -1,6 +1,22 @@
 @import (once) "include/vars";
 @import (once) "include/mixins";
 
+[class*=default-icon] {
+    display: block;
+    height: 16px;
+    width: 16px;
+    border: none!important;
+    background-size: cover;
+    background-color: transparent;
+    opacity: .5;
+    transition: @transition-base;
+    margin: auto;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
 .clear, .clear-fix, .clearfix {
     .clear()
 }

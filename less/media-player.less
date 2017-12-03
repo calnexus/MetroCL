@@ -180,49 +180,29 @@ video:-webkit-full-screen {
     }
 }
 
-.media-player .controls {
-    & > button {
-        [class*=default] {
-            display: block;
-            height: 16px;
-            width: 16px;
-            border: none!important;
-            background-size: cover;
-            background-color: transparent;
-            opacity: .5;
-            transition: @transition-base;
-            margin: auto;
-
-            &:hover {
-                opacity: 1;
-            }
-        }
-    }
-}
-
 .media-player {
-    .default-loop {background-image: @loopIconLight;}
-    .default-play {background-image: @playIconLight;}
-    .default-pause {background-image: @pauseIconLight;}
-    .default-stop {background-image: @stopIconLight;}
-    .default-mute {background-image: @muteIconLight;}
-    .default-low-volume {background-image: @volumeLowIconLight;}
-    .default-medium-volume {background-image: @volumeMediumIconLight;}
-    .default-high-volume {background-image: @volumeHighIconLight;}
-    .default-enlarge {background-image: @enlargeIconLight;}
-    .default-shrink {background-image: @shrinkIconLight;}
-    .default-playlist {background-image: @playlistIconLight;}
-    .default-next {background-image: @nextIconLight;}
-    .default-prev {background-image: @prevIconLight;}
-    .default-first {background-image: @firstIconLight;}
-    .default-last {background-image: @lastIconLight;}
-    .default-forward {background-image: @forwardIconLight;}
-    .default-backward {background-image: @backwardIconLight;}
-    .default-share {background-image: @shareIconLight;}
-    .default-equalizer {background-image: @equalizerIconLight;}
-    .default-eject {background-image: @ejectIconLight;}
-    .default-shuffle {background-image: @shuffleIconLight;}
-    .default-random {background-image: @randomIconLight;}
+    .default-icon-loop {background-image: @loopIconLight;}
+    .default-icon-play {background-image: @playIconLight;}
+    .default-icon-pause {background-image: @pauseIconLight;}
+    .default-icon-stop {background-image: @stopIconLight;}
+    .default-icon-mute {background-image: @muteIconLight;}
+    .default-icon-low-volume {background-image: @volumeLowIconLight;}
+    .default-icon-medium-volume {background-image: @volumeMediumIconLight;}
+    .default-icon-high-volume {background-image: @volumeHighIconLight;}
+    .default-icon-enlarge {background-image: @enlargeIconLight;}
+    .default-icon-shrink {background-image: @shrinkIconLight;}
+    .default-icon-playlist {background-image: @playlistIconLight;}
+    .default-icon-next {background-image: @nextIconLight;}
+    .default-icon-prev {background-image: @prevIconLight;}
+    .default-icon-first {background-image: @firstIconLight;}
+    .default-icon-last {background-image: @lastIconLight;}
+    .default-icon-forward {background-image: @forwardIconLight;}
+    .default-icon-backward {background-image: @backwardIconLight;}
+    .default-icon-share {background-image: @shareIconLight;}
+    .default-icon-equalizer {background-image: @equalizerIconLight;}
+    .default-icon-eject {background-image: @ejectIconLight;}
+    .default-icon-shuffle {background-image: @shuffleIconLight;}
+    .default-icon-random {background-image: @randomIconLight;}
 
     &.light {
 
@@ -244,28 +224,28 @@ video:-webkit-full-screen {
             }
         }
 
-        .default-loop {background-image: @loopIconDark;}
-        .default-play {background-image: @playIconDark;}
-        .default-pause {background-image: @pauseIconDark;}
-        .default-stop {background-image: @stopIconDark;}
-        .default-mute {background-image: @muteIconDark;}
-        .default-low-volume {background-image: @volumeLowIconDark;}
-        .default-medium-volume {background-image: @volumeMediumIconDark;}
-        .default-high-volume {background-image: @volumeHighIconDark;}
-        .default-enlarge {background-image: @enlargeIconDark;}
-        .default-shrink {background-image: @shrinkIconDark;}
-        .default-playlist {background-image: @playlistIconDark;}
-        .default-next {background-image: @nextIconDark;}
-        .default-prev {background-image: @prevIconDark;}
-        .default-first {background-image: @firstIconDark;}
-        .default-last {background-image: @lastIconDark;}
-        .default-forward {background-image: @forwardIconDark;}
-        .default-backward {background-image: @backwardIconDark;}
-        .default-share {background-image: @shareIconDark;}
-        .default-equalizer {background-image: @equalizerIconDark;}
-        .default-eject {background-image: @ejectIconDark;}
-        .default-shuffle {background-image: @shuffleIconDark;}
-        .default-random {background-image: @randomIconDark;}
+        .default-icon-loop {background-image: @loopIconDark;}
+        .default-icon-play {background-image: @playIconDark;}
+        .default-icon-pause {background-image: @pauseIconDark;}
+        .default-icon-stop {background-image: @stopIconDark;}
+        .default-icon-mute {background-image: @muteIconDark;}
+        .default-icon-low-volume {background-image: @volumeLowIconDark;}
+        .default-icon-medium-volume {background-image: @volumeMediumIconDark;}
+        .default-icon-high-volume {background-image: @volumeHighIconDark;}
+        .default-icon-enlarge {background-image: @enlargeIconDark;}
+        .default-icon-shrink {background-image: @shrinkIconDark;}
+        .default-icon-playlist {background-image: @playlistIconDark;}
+        .default-icon-next {background-image: @nextIconDark;}
+        .default-icon-prev {background-image: @prevIconDark;}
+        .default-icon-first {background-image: @firstIconDark;}
+        .default-icon-last {background-image: @lastIconDark;}
+        .default-icon-forward {background-image: @forwardIconDark;}
+        .default-icon-backward {background-image: @backwardIconDark;}
+        .default-icon-share {background-image: @shareIconDark;}
+        .default-icon-equalizer {background-image: @equalizerIconDark;}
+        .default-icon-eject {background-image: @ejectIconDark;}
+        .default-icon-shuffle {background-image: @shuffleIconDark;}
+        .default-icon-random {background-image: @randomIconDark;}
 
         .controls > button {
             &.active {

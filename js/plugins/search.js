@@ -1,4 +1,4 @@
-var Input = {
+var Search = {
     init: function( options, elem ) {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
@@ -16,16 +16,18 @@ var Input = {
         clsInput: "",
         clsPrepend: "",
         clsClearButton: "",
-        clsRevealButton: "",
+        clsSearchButton: "",
         size: "default",
         prepend: "",
         copyInlineStyles: true,
         clearButton: true,
-        revealButton: true,
+        searchButton: true,
+        searchButtonClick: "submit",
         clearButtonIcon: "<span class='default-icon-cross'></span>",
-        revealButtonIcon: "<span class='default-icon-eye'></span>",
+        searchButtonIcon: "<span class='default-icon-search'></span>",
         customButtons: [],
         disabled: false,
+        onSearchButtonClick: Metro.noop,
         onInputCreate: Metro.noop
     },
 
@@ -49,7 +51,7 @@ var Input = {
         var parent = element.parent();
         var container = $("<div>").addClass("input " + element[0].className);
         var buttons = $("<div>").addClass("button-group");
-        var clearButton, revealButton;
+        var clearButton, searchButton;
 
         if (element.attr("type") === undefined) {
             element.attr("type", "text");
@@ -71,12 +73,16 @@ var Input = {
             });
             clearButton.appendTo(buttons);
         }
-        if (element.attr('type') === 'password' && o.revealButton !== false) {
-            revealButton = $("<button>").addClass("button").addClass(o.clsRevealButton).attr("tabindex", -1).attr("type", "button").html(o.revealButtonIcon);
-            revealButton
-                .on('mousedown', function(){element.attr('type', 'text');})
-                .on('mouseup', function(){element.attr('type', 'password').focus();});
-            revealButton.appendTo(buttons);
+        if (o.searchButton !== false) {
+            searchButton = $("<button>").addClass("button").addClass(o.clsSearchButton).attr("tabindex", -1).attr("type", o.searchButtonClick === 'submit' ? "submit" : "button").html(o.searchButtonIcon);
+            searchButton.on("click", function(){
+                if (o.searchButtonClick === 'submit') {
+                    Utils.exec(o.onSearchButtonClick, [this.value, this, this.form]);
+                } else {
+                    this.form.submit();
+                }
+            });
+            searchButton.appendTo(buttons);
         }
 
         if (o.prepend !== "") {
@@ -156,4 +162,4 @@ var Input = {
     }
 };
 
-Metro.plugin('input', Input);
+Metro.plugin('search', Search);

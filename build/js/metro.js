@@ -2497,24 +2497,24 @@ var Audio = {
         showShuffle: true,
         showRandom: true,
 
-        loopIcon: "<span class='default-loop'></span>",
-        stopIcon: "<span class='default-stop'></span>",
-        playIcon: "<span class='default-play'></span>",
-        pauseIcon: "<span class='default-pause'></span>",
-        muteIcon: "<span class='default-mute'></span>",
-        volumeLowIcon: "<span class='default-low-volume'></span>",
-        volumeMediumIcon: "<span class='default-medium-volume'></span>",
-        volumeHighIcon: "<span class='default-high-volume'></span>",
+        loopIcon: "<span class='default-icon-loop'></span>",
+        stopIcon: "<span class='default-icon-stop'></span>",
+        playIcon: "<span class='default-icon-play'></span>",
+        pauseIcon: "<span class='default-icon-pause'></span>",
+        muteIcon: "<span class='default-icon-mute'></span>",
+        volumeLowIcon: "<span class='default-icon-low-volume'></span>",
+        volumeMediumIcon: "<span class='default-icon-medium-volume'></span>",
+        volumeHighIcon: "<span class='default-icon-high-volume'></span>",
 
-        playlistIcon: "<span class='default-playlist'></span>",
-        nextIcon: "<span class='default-next'></span>",
-        prevIcon: "<span class='default-prev'></span>",
-        firstIcon: "<span class='default-first'></span>",
-        lastIcon: "<span class='default-last'></span>",
-        forwardIcon: "<span class='default-forward'></span>",
-        backwardIcon: "<span class='default-backward'></span>",
-        shuffleIcon: "<span class='default-shuffle'></span>",
-        randomIcon: "<span class='default-random'></span>",
+        playlistIcon: "<span class='default-icon-playlist'></span>",
+        nextIcon: "<span class='default-icon-next'></span>",
+        prevIcon: "<span class='default-icon-prev'></span>",
+        firstIcon: "<span class='default-icon-first'></span>",
+        lastIcon: "<span class='default-icon-last'></span>",
+        forwardIcon: "<span class='default-icon-forward'></span>",
+        backwardIcon: "<span class='default-icon-backward'></span>",
+        shuffleIcon: "<span class='default-icon-shuffle'></span>",
+        randomIcon: "<span class='default-icon-random'></span>",
 
         onPlay: Metro.noop,
         onPause: Metro.noop,
@@ -6396,8 +6396,8 @@ var Input = {
         copyInlineStyles: true,
         clearButton: true,
         revealButton: true,
-        clearButtonIcon: "<span class='mif-cross'></span>",
-        revealButtonIcon: "<span class='mif-eye'></span>",
+        clearButtonIcon: "<span class='default-icon-cross'></span>",
+        revealButtonIcon: "<span class='default-icon-eye'></span>",
         customButtons: [],
         disabled: false,
         onInputCreate: Metro.noop
@@ -8137,6 +8137,172 @@ var Ripple = {
 };
 
 Metro.plugin('ripple', Ripple);
+// Source: js/plugins/search.js
+var Search = {
+    init: function( options, elem ) {
+        this.options = $.extend( {}, this.options, options );
+        this.elem  = elem;
+        this.element = $(elem);
+
+        this._setOptionsFromDOM();
+        this._create();
+
+        Utils.exec(this.options.onInputCreate, [this.element]);
+
+        return this;
+    },
+    options: {
+        clsElement: "",
+        clsInput: "",
+        clsPrepend: "",
+        clsClearButton: "",
+        clsSearchButton: "",
+        size: "default",
+        prepend: "",
+        copyInlineStyles: true,
+        clearButton: true,
+        searchButton: true,
+        searchButtonClick: "submit",
+        clearButtonIcon: "<span class='default-icon-cross'></span>",
+        searchButtonIcon: "<span class='default-icon-search'></span>",
+        customButtons: [],
+        disabled: false,
+        onSearchButtonClick: Metro.noop,
+        onInputCreate: Metro.noop
+    },
+
+    _setOptionsFromDOM: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = $.parseJSON(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+    },
+
+    _create: function(){
+        var that = this, element = this.element, o = this.options;
+        var prev = element.prev();
+        var parent = element.parent();
+        var container = $("<div>").addClass("input " + element[0].className);
+        var buttons = $("<div>").addClass("button-group");
+        var clearButton, searchButton;
+
+        if (element.attr("type") === undefined) {
+            element.attr("type", "text");
+        }
+
+        if (prev.length === 0) {
+            parent.prepend(container);
+        } else {
+            container.insertAfter(prev);
+        }
+
+        element.appendTo(container);
+        buttons.appendTo(container);
+
+        if (o.clearButton !== false) {
+            clearButton = $("<button>").addClass("button").addClass(o.clsClearButton).attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
+            clearButton.on("click", function(){
+                element.val("").trigger('change').trigger('keyup').focus();
+            });
+            clearButton.appendTo(buttons);
+        }
+        if (o.searchButton !== false) {
+            searchButton = $("<button>").addClass("button").addClass(o.clsSearchButton).attr("tabindex", -1).attr("type", o.searchButtonClick === 'submit' ? "submit" : "button").html(o.searchButtonIcon);
+            searchButton.on("click", function(){
+                if (o.searchButtonClick === 'submit') {
+                    Utils.exec(o.onSearchButtonClick, [this.value, this, this.form]);
+                } else {
+                    this.form.submit();
+                }
+            });
+            searchButton.appendTo(buttons);
+        }
+
+        if (o.prepend !== "") {
+            var prepend = Utils.isTag(o.prepend) ? $(o.prepend) : $("<span>"+o.prepend+"</span>");
+            prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
+        }
+
+        if (typeof o.customButtons === "string") {
+            o.customButtons = Utils.isObject(o.customButtons);
+        }
+
+        if (typeof o.customButtons === "object" && Utils.objectLength(o.customButtons) > 0) {
+            $.each(o.customButtons, function(){
+                var item = this;
+                var customButton = $("<button>").addClass("button custom-input-button").addClass(item.cls).attr("tabindex", -1).attr("type", "button").html(item.html);
+                customButton.on("click", function(){
+                    Utils.exec(item.onclick, [customButton, element]);
+                });
+                customButton.appendTo(buttons);
+            });
+        }
+
+        if (element.attr('dir') === 'rtl' ) {
+            container.addClass("rtl").attr("dir", "rtl");
+        }
+
+        element[0].className = '';
+        if (o.copyInlineStyles === true) {
+            for (var i = 0, l = element[0].style.length; i < l; i++) {
+                container.css(element[0].style[i], element.css(element[0].style[i]));
+            }
+        }
+
+        container.addClass(o.clsElement);
+        element.addClass(o.clsInput);
+
+        if (o.size !== "default") {
+            container.css({
+                width: o.size
+            });
+        }
+
+        element.on("blur", function(){container.removeClass("focused");});
+        element.on("focus", function(){container.addClass("focused");});
+
+        if (o.disabled === true || element.is(":disabled")) {
+            this.disable();
+        } else {
+            this.enable();
+        }
+    },
+
+    disable: function(){
+        //this.element.attr("disabled", true);
+        this.element.data("disabled", true);
+        this.element.parent().addClass("disabled");
+    },
+
+    enable: function(){
+        //this.element.attr("disabled", false);
+        this.element.data("disabled", false);
+        this.element.parent().removeClass("disabled");
+    },
+
+    toggleState: function(){
+        if (this.element.data("disabled") === false) {
+            this.disable();
+        } else {
+            this.enable();
+        }
+    },
+
+    changeAttribute: function(attributeName){
+        switch (attributeName) {
+            case 'disabled': this.toggleState(); break;
+        }
+    }
+};
+
+Metro.plugin('search', Search);
 // Source: js/plugins/select.js
 var Select = {
     init: function( options, elem ) {
@@ -10051,16 +10217,16 @@ var Video = {
         showVolume: true,
         showInfo: true,
 
-        loopIcon: "<span class='default-loop'></span>",
-        stopIcon: "<span class='default-stop'></span>",
-        playIcon: "<span class='default-play'></span>",
-        pauseIcon: "<span class='default-pause'></span>",
-        muteIcon: "<span class='default-mute'></span>",
-        volumeLowIcon: "<span class='default-low-volume'></span>",
-        volumeMediumIcon: "<span class='default-medium-volume'></span>",
-        volumeHighIcon: "<span class='default-high-volume'></span>",
-        screenMoreIcon: "<span class='default-enlarge'></span>",
-        screenLessIcon: "<span class='default-shrink'></span>",
+        loopIcon: "<span class='default-icon-loop'></span>",
+        stopIcon: "<span class='default-icon-stop'></span>",
+        playIcon: "<span class='default-icon-play'></span>",
+        pauseIcon: "<span class='default-icon-pause'></span>",
+        muteIcon: "<span class='default-icon-mute'></span>",
+        volumeLowIcon: "<span class='default-icon-low-volume'></span>",
+        volumeMediumIcon: "<span class='default-icon-medium-volume'></span>",
+        volumeHighIcon: "<span class='default-icon-high-volume'></span>",
+        screenMoreIcon: "<span class='default-icon-enlarge'></span>",
+        screenLessIcon: "<span class='default-icon-shrink'></span>",
 
         onPlay: Metro.noop,
         onPause: Metro.noop,
