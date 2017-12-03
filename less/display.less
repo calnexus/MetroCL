@@ -12,6 +12,26 @@
 .d-table-row {display: table-row!important;}
 .d-table-cell {display: table-cell!important;}
 
+html.metro-touch-device {
+    .d-none-touch {display: none!important;}
+    .d-block-touch {display: block!important;}
+    .d-inline-touch {display: inline!important;}
+    .d-inline-block-touch {display: inline-block!important;}
+    .d-table-touch {display: table!important;}
+    .d-table-row-touch {display: table-row!important;}
+    .d-table-cell-touch {display: table-cell!important;}
+}
+
+html.metro-no-touch-device {
+    .d-none-no-touch {display: none!important;}
+    .d-block-no-touch {display: block!important;}
+    .d-inline-no-touch {display: inline!important;}
+    .d-inline-block-no-touch {display: inline-block!important;}
+    .d-table-no-touch {display: table!important;}
+    .d-table-row-no-touch {display: table-row!important;}
+    .d-table-cell-no-touch {display: table-cell!important;}
+}
+
 .generate-display-media-options(@mediaBreakpointListMobileLength);
 .generate-display-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
     @m: extract(@mediaBreakpointListMobile, @i);
@@ -27,6 +47,26 @@
         .d-table-@{m} {display: table!important;}
         .d-table-row-@{m} {display: table-row!important;}
         .d-table-cell-@{m} {display: table-cell!important;}
+
+        html.metro-touch-device {
+            .d-none-touch-@{m} {display: none!important;}
+            .d-block-touch-@{m} {display: block!important;}
+            .d-inline-touch-@{m} {display: inline!important;}
+            .d-inline-block-touch-@{m} {display: inline-block!important;}
+            .d-table-touch-@{m} {display: table!important;}
+            .d-table-row-touch-@{m} {display: table-row!important;}
+            .d-table-cell-touch-@{m} {display: table-cell!important;}
+        }
+
+        html.metro-no-touch-device {
+            .d-none-no-touch-@{m} {display: none!important;}
+            .d-block-no-touch-@{m} {display: block!important;}
+            .d-inline-no-touch-@{m} {display: inline!important;}
+            .d-inline-block-no-touch-@{m} {display: inline-block!important;}
+            .d-table-no-touch-@{m} {display: table!important;}
+            .d-table-row-no-touch-@{m} {display: table-row!important;}
+            .d-table-cell-no-touch-@{m} {display: table-cell!important;}
+        }
     }
 
     .generate-display-media-options(@name, @i + 1);

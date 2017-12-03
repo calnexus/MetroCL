@@ -70,7 +70,7 @@ var Popover = {
             }
         });
 
-        if (o.hideOnLeave === true) {
+        if (o.hideOnLeave === true && !Utils.isTouchDevice()) {
             element.on(Metro.eventLeave, function(){
                 that.removePopover();
             });
