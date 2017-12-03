@@ -1,36 +1,119 @@
 @import (once) "include/vars";
 @import (once) "include/mixins";
 
-.tile-container {
-    display: flex;
-    flex-wrap: wrap;
-    padding-bottom: @tileMargin;
+.tiles-group {
+    display: block;
 }
 
-.tile {
+[class*=tile-] {
     display: block;
+    float: left;
     margin: @tileMargin;
-    background: @cyan;
+    background-color: @cyan;
     color: @white;
     width: extract(@tileMedium, 1);
     height: extract(@tileMedium, 2);
     box-shadow: inset 0 0 1px #FFFFCC;
+    cursor: pointer;
 }
 
 .tile {
-    &.small {
+    &-small {
         width: extract(@tileSmall, 1);
         height: extract(@tileSmall, 2);
     }
-    &.medium {
-        // default
+    &-medium {
+        width: extract(@tileMedium, 1);
+        height: extract(@tileMedium, 2);
     }
-    &.wide {
+    &-wide {
         width: extract(@tileWide, 1);
         height: extract(@tileWide, 2);
     }
-    &.large {
+    &-large {
         width: extract(@tileLarge, 1);
         height: extract(@tileLarge, 2);
+    }
+}
+
+[class*=tile-] {
+    &.group {
+        background-color: transparent;
+        box-shadow: none;
+        cursor: default;
+    }
+}
+
+.tile-medium.group {
+    .tile-small:nth-child(1) {
+        margin-top: 0;
+        margin-left: 0;
+    }
+
+    .tile-small:nth-child(2) {
+        margin-top: 0;
+        margin-right: 0;
+    }
+
+    .tile-small:nth-child(3) {
+        margin-bottom: 0;
+        margin-left: 0;
+    }
+
+    .tile-small:nth-child(4) {
+        margin-bottom: 0;
+        margin-right: 0;
+    }
+
+    .tile-medium, .tile-wide, .tile-large {
+        display: none;
+    }
+    .tile-medium:nth-child(1):last-child {
+        margin: 0;
+    }
+}
+
+.tile-large.group {
+    [class*=tile-]:nth-child(1) {
+        margin-left: 0;
+        margin-top: 0;
+    }
+
+    .tile-medium:nth-child(1) + .tile-medium {
+        margin-top: 0;
+        margin-right: 0;
+    }
+
+    .tile-wide:nth-child(2), .tile-wide:nth-child(3):last-child {
+        margin-bottom: 0;
+        margin-left: 0;
+    }
+
+    .tile-wide:nth-child(1) + .tile-medium {
+        margin-bottom: 0;
+        margin-left: 0;
+    }
+
+    .tile-wide:nth-child(1) ~ .tile-medium:nth-child(3) {
+        margin-bottom: 0;
+        margin-right: 0;
+        margin-top: @tileMargin;
+    }
+
+    .tile-medium:nth-child(3):not(:last-child) {
+        margin-left: 0;
+        margin-bottom: 0;
+        margin-top: @tileMargin;
+    }
+
+    .tile-medium:nth-child(4):last-child {
+        margin: @tileMargin 0 0 @tileMargin;
+    }
+
+    .tile-large {
+        display: none;
+    }
+    .tile-large:nth-child(1):last-child {
+        margin: 0;
     }
 }

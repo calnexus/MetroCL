@@ -1,14 +1,47 @@
-.set-relative {
-  display: block;
-  position: relative;
-}
-.set-absolute {
-  position: absolute;
-}
-.set-flex {
-  display: flex;
-}
-/* transform functions */
+Skipped data-uri embedding of less/images/light/play.svg because file not found
+Skipped data-uri embedding of less/images/light/loop.svg because file not found
+Skipped data-uri embedding of less/images/light/stop.svg because file not found
+Skipped data-uri embedding of less/images/light/pause.svg because file not found
+Skipped data-uri embedding of less/images/light/volume-mute.svg because file not found
+Skipped data-uri embedding of less/images/light/volume-low.svg because file not found
+Skipped data-uri embedding of less/images/light/volume-medium.svg because file not found
+Skipped data-uri embedding of less/images/light/volume-high.svg because file not found
+Skipped data-uri embedding of less/images/light/enlarge.svg because file not found
+Skipped data-uri embedding of less/images/light/shrink.svg because file not found
+Skipped data-uri embedding of less/images/light/list.svg because file not found
+Skipped data-uri embedding of less/images/light/next.svg because file not found
+Skipped data-uri embedding of less/images/light/prev.svg because file not found
+Skipped data-uri embedding of less/images/light/first.svg because file not found
+Skipped data-uri embedding of less/images/light/last.svg because file not found
+Skipped data-uri embedding of less/images/light/forward.svg because file not found
+Skipped data-uri embedding of less/images/light/backward.svg because file not found
+Skipped data-uri embedding of less/images/light/share.svg because file not found
+Skipped data-uri embedding of less/images/light/equalizer.svg because file not found
+Skipped data-uri embedding of less/images/light/eject.svg because file not found
+Skipped data-uri embedding of less/images/light/shuffle.svg because file not found
+Skipped data-uri embedding of less/images/light/dice.svg because file not found
+Skipped data-uri embedding of less/images/dark/play.svg because file not found
+Skipped data-uri embedding of less/images/dark/loop.svg because file not found
+Skipped data-uri embedding of less/images/dark/stop.svg because file not found
+Skipped data-uri embedding of less/images/dark/pause.svg because file not found
+Skipped data-uri embedding of less/images/dark/volume-mute.svg because file not found
+Skipped data-uri embedding of less/images/dark/volume-low.svg because file not found
+Skipped data-uri embedding of less/images/dark/volume-medium.svg because file not found
+Skipped data-uri embedding of less/images/dark/volume-high.svg because file not found
+Skipped data-uri embedding of less/images/dark/enlarge.svg because file not found
+Skipped data-uri embedding of less/images/dark/shrink.svg because file not found
+Skipped data-uri embedding of less/images/dark/list.svg because file not found
+Skipped data-uri embedding of less/images/dark/next.svg because file not found
+Skipped data-uri embedding of less/images/dark/prev.svg because file not found
+Skipped data-uri embedding of less/images/dark/first.svg because file not found
+Skipped data-uri embedding of less/images/dark/last.svg because file not found
+Skipped data-uri embedding of less/images/dark/forward.svg because file not found
+Skipped data-uri embedding of less/images/dark/backward.svg because file not found
+Skipped data-uri embedding of less/images/dark/share.svg because file not found
+Skipped data-uri embedding of less/images/dark/equalizer.svg because file not found
+Skipped data-uri embedding of less/images/dark/eject.svg because file not found
+Skipped data-uri embedding of less/images/dark/shuffle.svg because file not found
+Skipped data-uri embedding of less/images/dark/dice.svg because file not found
 .demo-grid [class^=cell] {
   padding-top: 12px;
   padding-bottom: 12px;
@@ -24,6 +57,9 @@
   padding-bottom: 12px;
   background-color: #ccc;
   text-align: center;
+}
+.demo-cell {
+  padding: .75rem;
 }
 .gaps-demo [class^=cell] {
   border: none !important;
@@ -57,7 +93,7 @@ pre {
 }
 .toc-wrapper > h5,
 #sidenav > h5 {
-  color: #858585;
+  color: #989898;
 }
 .toc-wrapper .toc-nav,
 #sidenav .toc-nav {
@@ -70,7 +106,7 @@ pre {
 }
 .toc-wrapper .toc-nav li a,
 #sidenav .toc-nav li a {
-  color: #b8b8b8;
+  color: #e4e4e4;
 }
 .toc-wrapper .toc-nav li a:hover,
 #sidenav .toc-nav li a:hover {
@@ -130,7 +166,7 @@ pre {
 .toc-wrapper .toc-nav-title,
 #sidenav .toc-nav-title {
   font-size: .9em;
-  color: #9e9e9e;
+  color: #bebebe;
   position: relative;
   margin: 0.5rem 1rem 0.2rem -0.5rem;
 }
@@ -270,7 +306,7 @@ footer p a {
 .icon-list li {
   width: 100%;
   font-size: .8em;
-  color: #9e9e9e;
+  color: #bebebe;
   padding: .5rem 1rem;
   cursor: pointer;
 }
