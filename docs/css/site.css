@@ -42,7 +42,7 @@ Skipped data-uri embedding of less/images/dark/equalizer.svg because file not fo
 Skipped data-uri embedding of less/images/dark/eject.svg because file not found
 Skipped data-uri embedding of less/images/dark/shuffle.svg because file not found
 Skipped data-uri embedding of less/images/dark/dice.svg because file not found
-.demo-grid [class^=cell] {
+.demo-grid [class*=cell] {
   padding-top: 12px;
   padding-bottom: 12px;
   border: 1px solid rgba(86, 61, 124, 0.2);
@@ -106,7 +106,7 @@ pre {
 }
 .toc-wrapper .toc-nav li a,
 #sidenav .toc-nav li a {
-  color: #e4e4e4;
+  color: #bebebe;
 }
 .toc-wrapper .toc-nav li a:hover,
 #sidenav .toc-nav li a:hover {

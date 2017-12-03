@@ -3,6 +3,19 @@
 
 .tiles-group {
     display: block;
+    .clear();
+    .debug();
+}
+
+.tiles-group {
+    .create-tiles-group-size(@i: 1, @k: 1) when (@k <= @i) {
+            &.size-@{k} {
+                width: (@tileCellSize + @tileMargin * 2) * @k;
+            }
+
+        .create-tiles-group-size(@i; @k + 1);
+    }
+    .create-tiles-group-size(10);
 }
 
 [class*=tile-] {

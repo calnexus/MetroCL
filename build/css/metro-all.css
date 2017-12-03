@@ -7022,6 +7022,49 @@ a.command-button,
 }
 .tiles-group {
   display: block;
+  outline: 1px dotted red;
+  min-width: 1px;
+  min-height: 1px;
+}
+.tiles-group::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+.tiles-group::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+.tiles-group.size-1 {
+  width: 160px;
+}
+.tiles-group.size-2 {
+  width: 320px;
+}
+.tiles-group.size-3 {
+  width: 480px;
+}
+.tiles-group.size-4 {
+  width: 640px;
+}
+.tiles-group.size-5 {
+  width: 800px;
+}
+.tiles-group.size-6 {
+  width: 960px;
+}
+.tiles-group.size-7 {
+  width: 1120px;
+}
+.tiles-group.size-8 {
+  width: 1280px;
+}
+.tiles-group.size-9 {
+  width: 1440px;
+}
+.tiles-group.size-10 {
+  width: 1600px;
 }
 [class*=tile-] {
   display: block;
@@ -24203,9 +24246,9 @@ html.metro-no-touch-device .d-table-cell-no-touch {
   }
 }
 .debug {
-  outline: 1px red dotted!important;
-  min-height: 1rem;
-  min-width: 1rem;
+  outline: 1px dotted red;
+  min-width: 1px;
+  min-height: 1px;
 }
 @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
   .img-fluid {
