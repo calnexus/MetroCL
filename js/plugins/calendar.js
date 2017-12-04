@@ -147,6 +147,7 @@ var Calendar = {
         }
 
         this.locale = Metro.locales[o.locale] !== undefined ? Metro.locales[o.locale] : Metro.locales["en-US"];
+
         this._build();
     },
 
@@ -158,7 +159,7 @@ var Calendar = {
         if (this.options.ripple === true) {
             element.ripple({
                 rippleTarget: ".button, .prev-month, .next-month, .prev-year, .next-year, .day",
-                rippleColor: o.rippleColor
+                rippleColor: this.options.rippleColor
             });
         }
 

@@ -26,17 +26,36 @@ if (window.canObserveMutation === false) {
     throw new Error('Metro 4 requires MutationObserver. Your browser is not support MutationObserver. Please use polyfill, example: //cdn.jsdelivr.net/g/mutationobserver/ or other.');
 }
 
+window.METRO_META_INIT = $("meta[name='metro4:init']").attr("content");
+window.METRO_META_LOCALE = $("meta[name='metro4:locale']").attr("content");
+window.METRO_META_WEEK_START = $("meta[name='metro4:week_start']").attr("content");
+window.METRO_META_ANIMATION_DURATION = $("meta[name='metro4:animation_duration']").attr("content");
+window.METRO_META_CALLBACK_TIMEOUT = $("meta[name='metro4:callback_timeout']").attr("content");
+window.METRO_META_TIMEOUT = $("meta[name='metro4:timeout']").attr("content");
+
+if (window.METRO_INIT === undefined) {
+    window.METRO_INIT = METRO_META_INIT !== undefined ? $.parseJSON(METRO_META_INIT) : true;
+}
 if (window.METRO_DEBUG === undefined) {window.METRO_DEBUG = true;}
-if (window.METRO_CALENDAR_WEEK_START === undefined) {window.METRO_CALENDAR_WEEK_START = 1;}
-if (window.METRO_LOCALE === undefined) {window.METRO_LOCALE = 'en-US';}
-if (window.METRO_ANIMATION_DURATION === undefined) {window.METRO_ANIMATION_DURATION = 300;}
-if (window.METRO_CALLBACK_TIMEOUT === undefined) {window.METRO_CALLBACK_TIMEOUT = 500;}
-if (window.METRO_TIMEOUT === undefined) {window.METRO_TIMEOUT = 2000;}
+if (window.METRO_CALENDAR_WEEK_START === undefined) {
+    window.METRO_CALENDAR_WEEK_START = METRO_META_WEEK_START !== undefined ? parseInt(METRO_META_WEEK_START) : 1;
+}
+if (window.METRO_LOCALE === undefined) {
+    window.METRO_LOCALE = METRO_META_LOCALE !== undefined ? METRO_META_LOCALE : 'en-US';
+}
+if (window.METRO_ANIMATION_DURATION === undefined) {
+    window.METRO_ANIMATION_DURATION = METRO_META_ANIMATION_DURATION !== undefined ? parseInt(METRO_META_ANIMATION_DURATION) : 300;
+}
+if (window.METRO_CALLBACK_TIMEOUT === undefined) {
+    window.METRO_CALLBACK_TIMEOUT = METRO_META_CALLBACK_TIMEOUT !== undefined ? parseInt(METRO_META_CALLBACK_TIMEOUT) : 500;
+}
+if (window.METRO_TIMEOUT === undefined) {
+    window.METRO_TIMEOUT = METRO_META_TIMEOUT !== undefined ? parseInt(METRO_META_TIMEOUT) : 2000;
+}
 if (window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE === undefined) {window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE = true;}
 if (window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS === undefined) {window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS = true;}
 if (window.METRO_HOTKEYS_FILTER_TEXT_INPUTS === undefined) {window.METRO_HOTKEYS_FILTER_TEXT_INPUTS = true;}
 if (window.METRO_HOTKEYS_BUBBLE_UP === undefined) {window.METRO_HOTKEYS_BUBBLE_UP = false;}
-if (window.METRO_I18N === undefined) {window.METRO_I18N = "metro/js/i18n/";}
 if (window.METRO_THROWS === undefined) {window.METRO_THROWS = true;}
 
 if ( typeof Object.create !== 'function' ) {
@@ -3125,6 +3144,7 @@ var Calendar = {
         }
 
         this.locale = Metro.locales[o.locale] !== undefined ? Metro.locales[o.locale] : Metro.locales["en-US"];
+
         this._build();
     },
 
@@ -3136,7 +3156,7 @@ var Calendar = {
         if (this.options.ripple === true) {
             element.ripple({
                 rippleTarget: ".button, .prev-month, .next-month, .prev-year, .next-year, .day",
-                rippleColor: o.rippleColor
+                rippleColor: this.options.rippleColor
             });
         }
 
@@ -11172,6 +11192,6 @@ var Window = {
 
 Metro.plugin('window', Window);
 
- return Metro.init();
+ return METRO_INIT === true ? Metro.init() : Metro;
 
 }));

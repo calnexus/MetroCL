@@ -27,7 +27,7 @@ module.exports = function(grunt) {
             js: {
                 options: {
                     banner: '<%= banner %>' + '<%= requirejs_banner%>',
-                    footer: "\n\n return Metro.init();\n\n}));",
+                    footer: "\n\n return METRO_INIT === true ? Metro.init() : Metro;\n\n}));",
                     stripBanners: true,
                     process: function(src, filepath) {
                         return '// Source: ' + filepath + '\n' +
