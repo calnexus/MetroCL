@@ -446,6 +446,20 @@ pre code {
     margin: 1rem 0;
 }
 
+.reduce-1 {font-size: .9em!important;}
+.reduce-2 {font-size: .8em!important;}
+.reduce-3 {font-size: .7em!important;}
+.reduce-4 {font-size: .6em!important;}
+.reduce-5 {font-size: .5em!important;}
+
+.enlarge-1 {font-size: 1.1em!important;}
+.enlarge-2 {font-size: 1.2em!important;}
+.enlarge-3 {font-size: 1.3em!important;}
+.enlarge-4 {font-size: 1.4em!important;}
+.enlarge-5 {font-size: 1.5em!important;}
+
+.align-size {font-size: 1em!important;}
+
 .generate-text-media-options(@mediaBreakpointListMobileLength);
 .generate-text-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
     @m: extract(@mediaBreakpointListMobile, @i);
@@ -468,6 +482,18 @@ pre code {
         .va-super-@{m} {vertical-align: super !important;}
         .va-text-top-@{m} {vertical-align: text-top !important;}
         .va-text-bottom-@{m} {vertical-align: text-bottom !important;}
+
+        .reduce-1-@{m} {font-size: .9em!important;}
+        .reduce-2-@{m} {font-size: .8em!important;}
+        .reduce-3-@{m} {font-size: .7em!important;}
+        .reduce-4-@{m} {font-size: .6em!important;}
+        .reduce-5-@{m} {font-size: .5em!important;}
+
+        .enlarge-1-@{m} {font-size: 1.1em!important;}
+        .enlarge-2-@{m} {font-size: 1.2em!important;}
+        .enlarge-3-@{m} {font-size: 1.3em!important;}
+        .enlarge-4-@{m} {font-size: 1.4em!important;}
+        .enlarge-5-@{m} {font-size: 1.5em!important;}
     }
 
     .generate-text-media-options(@name, @i + 1);

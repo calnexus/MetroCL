@@ -46,8 +46,9 @@
                 <h5>Table of contents</h5>
                 <hr/>
                 <ul class="toc-nav">
-                    <li class="toc-entry"><a href="#">Internationalization</a></li>
+                    <li class="toc-entry"><a href="#">i18n</a></li>
                     <li class="toc-entry"><a href="#_i18n_about">About</a></li>
+                    <li class="toc-entry"><a href="#_i18n_meta">Meta tag</a></li>
                     <li class="toc-entry"><a href="#_i18n_locales">Locales</a></li>
                     <li class="toc-entry"><a href="#_i18n_add_locale">Add Locale</a></li>
                 </ul>
@@ -59,13 +60,116 @@
                     <img src="images/logo.png" class="w-100">
                 </div>
 
-                <h1>Title</h1>
+                <h1>i18n</h1>
                 <p class="text-leader">
-
+                    Metro 4 ready for internationalization and localisation.
                 </p>
 
                 <!-- ads-html -->
 
+                <h3 id="_i18n_about">About</h3>
+                <p>
+                    Some components in Metro 4 use text labels, example <code>calendar</code> component.
+                    Metro 4 supports i18n mechanism to display text labels.
+                </p>
+                <p>
+                    By default components use value of <code>METRO_LOCALE</code> variable. This ia a global variable and can be modified before <code>Metro 4 js</code> loaded.
+                    You can set <code>locale</code> for component with special attribute <code>data-locale</code>.
+                </p>
+                <pre><code class="javascript">
+                    &lt;script&gt;
+                        window.METRO_LOCALE = "de-DE";
+                    &lt;/script&gt;
+                    &lt;script src="metro.js"&gt;&lt;/script&gt;
+                </code></pre>
+
+                <h3 id="_i18n_meta">Meta tag</h3>
+                <p>
+                    You can set global locale with <code>&lt;meta&gt;</code> tag. To set it use meta tag with name <code>metro4:locale</code>.
+                </p>
+                <pre><code class="html">
+                    &lt;meta name="metro4:locale" content="uk-UA"&gt;
+                </code></pre>
+
+                <h3 id="_i18n_locales">Locales</h3>
+                <p>
+                    You can get hard stored locales with method <code>Metro.utils.getLocales()</code>.
+                </p>
+                <pre><code class="javascript">
+                    var locales = Metro.utils.getLocales();
+                    console.log(locales);
+                </code></pre>
+
+                <h3 id="_i18n_add_locale">Add locale</h3>
+                <p>
+                    You can add own locale at runtime. To add locale you must use method <code>Metro.utils.addLocale()</code>.
+                </p>
+                <pre><code>
+                    &lt;script&gt;
+                        Metro.utils.addLocale({
+                            'de-DE': {
+                                "calendar": {
+                                    "months": [
+                                        "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember",
+                                        "Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"
+                                    ],
+                                    "days": [
+                                        "Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag",
+                                        "Sn", "Mn", "Di", "Mi", "Do", "Fr", "Sa",
+                                        "Son", "Mon", "Die", "Mit", "Don", "Fre", "Sam"
+                                    ],
+                                    "time": {
+                                        "days": "TAGE",
+                                        "hours": "UHR",
+                                        "minutes": "MIN",
+                                        "seconds": "SEK"
+                                    }
+                                },
+                                "buttons": {
+                                    "ok": "OK",
+                                    "cancel": "Abbrechen",
+                                    "done": "Fertig",
+                                    "today": "Heute",
+                                    "now": "Jetzt",
+                                    "clear": "Reinigen",
+                                    "help": "Hilfe",
+                                    "yes": "Ja",
+                                    "no": "Nein",
+                                    "random": "Zufällig"
+                                }
+                            }
+                        });
+                    &lt;/script&gt;
+                </code></pre>
+                <p>
+                    if you put your javascript in <code>&lt;head&gt;</code>, you must use method after <code>Metro 4 js</code> loaded.
+                    If you put javascript in bottom of page, you must set <code>&lt;meta&gt;</code> tag <code>metro4:init</code> to false and manually initialise Metro 4, after locale is added.
+                </p>
+
+                <h6>For head</h6>
+                <pre><code>
+                    &lt;head&gt;
+                        &lt;script src="metro.js"&gt;&lt;/script&gt;
+                        &lt;script&gt;
+                            Metro.utils.addLocale(...);
+                        &lt;/script&gt;
+                    &lt;/head&gt;
+                </code></pre>
+
+                <h6>For bottom of page</h6>
+                <pre><code>
+                    &lt;head&gt;
+                        &lt;meta name="metro4:init" content="false"&gt;
+                    &lt;/head&gt;
+                    &lt;body&gt;
+                        ...
+                        &lt;script src="metro.js"&gt;&lt;/script&gt;
+                        &lt;script&gt;
+                            Metro.utils.addLocale(...);
+                            Metro.init();
+                        &lt;/script&gt;
+                    &lt;/body&gt;
+                </code></pre>
             </main>
         </div>
 
