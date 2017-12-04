@@ -2027,6 +2027,10 @@ var d = new Date().getTime();
         };
     },
 
+    isRightMouse: function(e){
+        return "which" in e ? e.which === 3 : "button" in e ? e.button === 2 : undefined;
+    },
+
     hiddenElementSize: function(el, includeMargin){
         var clone = $(el).clone();
         clone.removeAttr("data-role").css({
@@ -9902,7 +9906,44 @@ var Tile = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        Utils.exec(o.onCreate, [element]);
+        this._createEvents();
+
+        Utils.exec(o.onTileCreate, [element]);
+    },
+
+    _createEvents: function(){
+        var that = this, element = this.element, o = this.options;
+
+        element.on(Metro.eventStart, function(e){
+            var tile = $(this);
+            var dim = {w: element.width(), h: element.height()};
+            var X = Utils.pageXY(e).x - tile.offset().left,
+                Y = Utils.pageXY(e).y - tile.offset().top;
+            var side;
+
+            if (Utils.isRightMouse(e) === false) {
+
+                if (X < dim.w * 1 / 3 && (Y < dim.h * 1 / 2 || Y > dim.h * 1 / 2)) {
+                    side = 'left';
+                } else if (X > dim.w * 2 / 3 && (Y < dim.h * 1 / 2 || Y > dim.h * 1 / 2)) {
+                    side = 'right';
+                } else if (X > dim.w * 1 / 3 && X < dim.w * 2 / 3 && Y > dim.h / 2) {
+                    side = 'bottom';
+                } else {
+                    side = "top";
+                }
+
+                tile.addClass("transform-" + side);
+            }
+        });
+
+        element.on([Metro.eventStop, Metro.eventLeave].join(" "), function(e){
+            $(this)
+                .removeClass("transform-left")
+                .removeClass("transform-right")
+                .removeClass("transform-top")
+                .removeClass("transform-bottom");
+        });
     },
 
     changeAttribute: function(attributeName){

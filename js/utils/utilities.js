@@ -413,6 +413,10 @@ var Utils = {
         };
     },
 
+    isRightMouse: function(e){
+        return "which" in e ? e.which === 3 : "button" in e ? e.button === 2 : undefined;
+    },
+
     hiddenElementSize: function(el, includeMargin){
         var clone = $(el).clone();
         clone.removeAttr("data-role").css({

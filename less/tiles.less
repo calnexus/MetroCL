@@ -4,7 +4,6 @@
 .tiles-group {
     display: block;
     .clear();
-    .debug();
 }
 
 .tiles-group {
@@ -28,6 +27,9 @@
     height: extract(@tileMedium, 2);
     box-shadow: inset 0 0 1px #FFFFCC;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
 }
 
 .tile {
@@ -46,6 +48,10 @@
     &-large {
         width: extract(@tileLarge, 1);
         height: extract(@tileLarge, 2);
+    }
+    &-app {
+        width: extract(@tileApp, 1);
+        height: extract(@tileApp, 2);
     }
 }
 
@@ -128,5 +134,177 @@
     }
     .tile-large:nth-child(1):last-child {
         margin: 0;
+    }
+}
+
+[class*=tile-] {
+
+    .icon {
+        max-width: 33%;
+        height: 33%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        .translateY(-50%);
+        .translateX(-50%);
+        font-size: 50px;
+        line-height: 50px;
+    }
+
+    .branding-bar {
+        height: 32px;
+        line-height: 32px;
+        position: absolute;
+        left: 10px;
+        bottom: 5px;
+        width: 100%;
+        .text-ellipsis();
+    }
+
+    .badge-top, .badge-bottom {
+        position: absolute;
+        display: block;
+        padding: 4px 8px;
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .badge-bottom {
+        right: 10px;
+        bottom: 0;
+    }
+
+    .badge-top {
+        top: 10px;
+        right: 10px;
+    }
+
+    &:hover {
+        outline: @tileOutlineColor solid 4px;
+    }
+}
+
+.tile {
+    &-small {
+        .icon {
+            max-width: 50%;
+            height: 50%;
+            font-size: 35px;
+            line-height: 35px;
+        }
+    }
+    &-large {
+        .icon {
+            font-size: 102px;
+            line-height: 102px;
+        }
+    }
+    &-app {
+        .icon {
+            max-width: 75%;
+            height: 75%;
+        }
+    }
+}
+
+[class*=tile-] {
+    &.image-set {
+        img {
+            width: 25%;
+            height: 50%;
+            display: block;
+            float: left;
+
+            &:nth-child(1) {
+                width: 50%;
+                height: 100%;
+            }
+        }
+    }
+}
+
+[class*=tile-] {
+    &.transform-right {
+        .transformOrigin(left 50%);
+        .perspective(@tileTransformPerspective);
+        .rotateY(@tileTransformRotate);
+
+        &.tile-small {
+            .perspective(@tileTransformPerspective);
+            .rotateY(@tileTransformRotate * 2);
+        }
+
+        &.tile-wide {
+            .perspective(@tileTransformPerspective);
+            .rotateY(@tileTransformRotate / 2);
+        }
+
+        &.tile-large {
+            .perspective(@tileTransformPerspective);
+            .rotateY(@tileTransformRotate / 3);
+        }
+    }
+
+    &.transform-left {
+        .transformOrigin(right 50%);
+        .perspective(@tileTransformPerspective);
+        .rotateY(-@tileTransformRotate);
+
+        &.tile-small {
+            .perspective(@tileTransformPerspective);
+            .rotateY(-@tileTransformRotate * 2);
+        }
+
+        &.tile-wide {
+            .perspective(@tileTransformPerspective);
+            .rotateY(-@tileTransformRotate / 2);
+        }
+
+        &.tile-large {
+            .perspective(@tileTransformPerspective);
+            .rotateY(-@tileTransformRotate / 3);
+        }
+    }
+
+    &.transform-top {
+        .transformOrigin(50% bottom);
+        .perspective(@tileTransformPerspective);
+        .rotateX(@tileTransformRotate);
+
+        &.tile-small {
+            .perspective(@tileTransformPerspective);
+            .rotateX(@tileTransformRotate * 2);
+        }
+
+        &.tile-wide {
+            .perspective(@tileTransformPerspective);
+            .rotateX(@tileTransformRotate / 2);
+        }
+
+        &.tile-large {
+            .perspective(@tileTransformPerspective);
+            .rotateX(@tileTransformRotate / 3);
+        }
+    }
+
+    &.transform-bottom {
+        .transformOrigin(50% top);
+        .perspective(@tileTransformPerspective);
+        .rotateX(-@tileTransformRotate);
+
+        &.tile-small {
+            .perspective(@tileTransformPerspective);
+            .rotateX(-@tileTransformRotate * 2);
+        }
+
+        &.tile-wide {
+            .perspective(@tileTransformPerspective);
+            .rotateX(-@tileTransformRotate / 2);
+        }
+
+        &.tile-large {
+            .perspective(@tileTransformPerspective);
+            .rotateX(-@tileTransformRotate / 3);
+        }
     }
 }

@@ -3,14 +3,17 @@
 
 .h-menu {
     list-style: none inside;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: flex-start;
+    display: block;
     margin: 0;
     padding: 0;
     background-color: @white;
     color: @dark;
+    .clear();
+
+    & > li {
+        display: block;
+        float: left;
+    }
 
     & > li, & > li > a {
         display: block;

@@ -7250,9 +7250,6 @@ a.command-button,
 }
 .tiles-group {
   display: block;
-  outline: 1px dotted red;
-  min-width: 1px;
-  min-height: 1px;
 }
 .tiles-group::after {
   display: block;
@@ -7305,6 +7302,12 @@ a.command-button,
   -webkit-box-shadow: inset 0 0 1px #FFFFCC;
           box-shadow: inset 0 0 1px #FFFFCC;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .tile-small {
   width: 70px;
@@ -7321,6 +7324,10 @@ a.command-button,
 .tile-large {
   width: 310px;
   height: 310px;
+}
+.tile-app {
+  width: 44px;
+  height: 44px;
 }
 [class*=tile-].group {
   background-color: transparent;
@@ -7387,6 +7394,143 @@ a.command-button,
 }
 .tile-large.group .tile-large:nth-child(1):last-child {
   margin: 0;
+}
+[class*=tile-] .icon {
+  max-width: 33%;
+  height: 33%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateY(-50%) translateX(-50%);
+          transform: translateY(-50%) translateX(-50%);
+  font-size: 50px;
+  line-height: 50px;
+}
+[class*=tile-] .branding-bar {
+  height: 32px;
+  line-height: 32px;
+  position: absolute;
+  left: 10px;
+  bottom: 5px;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+[class*=tile-] .badge-top,
+[class*=tile-] .badge-bottom {
+  position: absolute;
+  display: block;
+  padding: 4px 8px;
+  font-size: 12px;
+  text-align: center;
+}
+[class*=tile-] .badge-bottom {
+  right: 10px;
+  bottom: 0;
+}
+[class*=tile-] .badge-top {
+  top: 10px;
+  right: 10px;
+}
+[class*=tile-]:hover {
+  outline: rgba(29, 29, 29, 0.1) solid 4px;
+}
+.tile-small .icon {
+  max-width: 50%;
+  height: 50%;
+  font-size: 35px;
+  line-height: 35px;
+}
+.tile-large .icon {
+  font-size: 102px;
+  line-height: 102px;
+}
+.tile-app .icon {
+  max-width: 75%;
+  height: 75%;
+}
+[class*=tile-].image-set img {
+  width: 25%;
+  height: 50%;
+  display: block;
+  float: left;
+}
+[class*=tile-].image-set img:nth-child(1) {
+  width: 50%;
+  height: 100%;
+}
+[class*=tile-].transform-right {
+  -webkit-transform-origin: left 50%;
+          transform-origin: left 50%;
+  -webkit-transform: perspective(500px) rotateY(0.138372rad);
+          transform: perspective(500px) rotateY(0.138372rad);
+}
+[class*=tile-].transform-right.tile-small {
+  -webkit-transform: perspective(500px) rotateY(0.276744rad);
+          transform: perspective(500px) rotateY(0.276744rad);
+}
+[class*=tile-].transform-right.tile-wide {
+  -webkit-transform: perspective(500px) rotateY(0.069186rad);
+          transform: perspective(500px) rotateY(0.069186rad);
+}
+[class*=tile-].transform-right.tile-large {
+  -webkit-transform: perspective(500px) rotateY(0.046124rad);
+          transform: perspective(500px) rotateY(0.046124rad);
+}
+[class*=tile-].transform-left {
+  -webkit-transform-origin: right 50%;
+          transform-origin: right 50%;
+  -webkit-transform: perspective(500px) rotateY(-0.138372rad);
+          transform: perspective(500px) rotateY(-0.138372rad);
+}
+[class*=tile-].transform-left.tile-small {
+  -webkit-transform: perspective(500px) rotateY(-0.276744rad);
+          transform: perspective(500px) rotateY(-0.276744rad);
+}
+[class*=tile-].transform-left.tile-wide {
+  -webkit-transform: perspective(500px) rotateY(-0.069186rad);
+          transform: perspective(500px) rotateY(-0.069186rad);
+}
+[class*=tile-].transform-left.tile-large {
+  -webkit-transform: perspective(500px) rotateY(-0.046124rad);
+          transform: perspective(500px) rotateY(-0.046124rad);
+}
+[class*=tile-].transform-top {
+  -webkit-transform-origin: 50% bottom;
+          transform-origin: 50% bottom;
+  -webkit-transform: perspective(500px) rotateX(0.138372rad);
+          transform: perspective(500px) rotateX(0.138372rad);
+}
+[class*=tile-].transform-top.tile-small {
+  -webkit-transform: perspective(500px) rotateX(0.276744rad);
+          transform: perspective(500px) rotateX(0.276744rad);
+}
+[class*=tile-].transform-top.tile-wide {
+  -webkit-transform: perspective(500px) rotateX(0.069186rad);
+          transform: perspective(500px) rotateX(0.069186rad);
+}
+[class*=tile-].transform-top.tile-large {
+  -webkit-transform: perspective(500px) rotateX(0.046124rad);
+          transform: perspective(500px) rotateX(0.046124rad);
+}
+[class*=tile-].transform-bottom {
+  -webkit-transform-origin: 50% top;
+          transform-origin: 50% top;
+  -webkit-transform: perspective(500px) rotateX(-0.138372rad);
+          transform: perspective(500px) rotateX(-0.138372rad);
+}
+[class*=tile-].transform-bottom.tile-small {
+  -webkit-transform: perspective(500px) rotateX(-0.276744rad);
+          transform: perspective(500px) rotateX(-0.276744rad);
+}
+[class*=tile-].transform-bottom.tile-wide {
+  -webkit-transform: perspective(500px) rotateX(-0.069186rad);
+          transform: perspective(500px) rotateX(-0.069186rad);
+}
+[class*=tile-].transform-bottom.tile-large {
+  -webkit-transform: perspective(500px) rotateX(-0.046124rad);
+          transform: perspective(500px) rotateX(-0.046124rad);
 }
 form {
   display: block;
@@ -8260,22 +8404,25 @@ form[data-role*=validator] .invalid_feedback {
 }
 .h-menu {
   list-style: none inside;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  display: block;
   margin: 0;
   padding: 0;
   background-color: #ffffff;
   color: #1d1d1d;
+}
+.h-menu::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+.h-menu::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+.h-menu > li {
+  display: block;
+  float: left;
 }
 .h-menu > li,
 .h-menu > li > a {
