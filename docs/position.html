@@ -74,15 +74,6 @@
                 </p>
 
                 <!-- ads-html -->
-                <div class="p-10 bg-red pos-fixed pos-top-left z-top pos-demo"></div>
-                <div class="p-10 bg-red pos-fixed pos-top-center z-top pos-demo"></div>
-                <div class="p-10 bg-red pos-fixed pos-top-right z-top pos-demo"></div>
-                <div class="p-10 bg-red pos-fixed pos-bottom-right z-top pos-demo"></div>
-                <div class="p-10 bg-red pos-fixed pos-bottom-left z-top pos-demo"></div>
-                <div class="p-10 bg-red pos-fixed pos-bottom-center z-top pos-demo"></div>
-                <div class="p-10 bg-red pos-fixed pos-left-center z-top pos-demo"></div>
-                <div class="p-10 bg-red pos-fixed pos-right-center z-top pos-demo"></div>
-                <div class="p-10 bg-red pos-fixed pos-center z-top pos-demo"></div>
 
                 <h3 id="_pos_fixed_top">Fixed top</h3>
                 <p>
@@ -249,9 +240,34 @@
                         <code>.pos-left-center</code> and
                         <code>.pos-center</code>.
                 </p>
+
                 <div class="example d-flex flex-justify-center">
+                    <div class="p-10 bg-red pos-fixed pos-top-left z-top pos-demo"></div>
+                    <div class="p-10 bg-red pos-fixed pos-top-center z-top pos-demo"></div>
+                    <div class="p-10 bg-red pos-fixed pos-top-right z-top pos-demo"></div>
+                    <div class="p-10 bg-red pos-fixed pos-bottom-right z-top pos-demo"></div>
+                    <div class="p-10 bg-red pos-fixed pos-bottom-left z-top pos-demo"></div>
+                    <div class="p-10 bg-red pos-fixed pos-bottom-center z-top pos-demo"></div>
+                    <div class="p-10 bg-red pos-fixed pos-left-center z-top pos-demo"></div>
+                    <div class="p-10 bg-red pos-fixed pos-right-center z-top pos-demo"></div>
+                    <div class="p-10 bg-red pos-fixed pos-center z-top pos-demo"></div>
+
                     <input type="checkbox" data-role="switch" data-caption="Show elements" onclick="$(this).is(':checked') ? $('.pos-demo').show() : $('.pos-demo').hide()">
                 </div>
+                <pre><code class="html">
+                    &lt;div class="pos-fixed pos-top-left"&gt;&lt;/div&gt;
+                    &lt;div class="pos-fixed pos-top-center"&gt;&lt;/div&gt;
+                    &lt;div class="pos-fixed pos-top-right"&gt;&lt;/div&gt;
+                    &lt;div class="pos-fixed pos-bottom-right"&gt;&lt;/div&gt;
+                    &lt;div class="pos-fixed pos-bottom-left"&gt;&lt;/div&gt;
+                    &lt;div class="pos-fixed pos-bottom-center"&gt;&lt;/div&gt;
+                    &lt;div class="pos-fixed pos-left-center"&gt;&lt;/div&gt;
+                    &lt;div class="pos-fixed pos-right-center"&gt;&lt;/div&gt;
+                    &lt;div class="pos-fixed pos-center"&gt;&lt;/div&gt;
+                </code></pre>
+                <p class="remark warning">
+                    Important! Element property <code>display</code> must be set in one of two values: <code>absolute</code> or <code>fixed</code>.
+                </p>
 
             </main>
         </div>
