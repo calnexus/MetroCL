@@ -7715,11 +7715,14 @@ img {
   position: fixed;
   left: 0;
   right: 0;
+  width: 100%;
 }
 .fixed-top {
   top: 0;
+  bottom: auto;
 }
 .fixed-bottom {
+  top: auto;
   bottom: 0;
 }
 .pos-relative {
@@ -7833,6 +7836,103 @@ img {
 .put-right {
   left: auto!important;
   right: 0!important;
+}
+.pos-top-left {
+  top: 0;
+  left: 0;
+  right: auto;
+  bottom: auto;
+}
+.pos-top-center {
+  top: 0;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+.pos-top-right {
+  right: 0;
+  top: 0;
+  left: auto;
+  bottom: auto;
+}
+.pos-bottom-left {
+  top: auto;
+  right: auto;
+  left: 0;
+  bottom: 0;
+}
+.pos-bottom-center {
+  top: auto;
+  left: 50%;
+  bottom: 0;
+  right: auto;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+.pos-bottom-right {
+  bottom: 0;
+  right: 0;
+  top: auto;
+  left: auto;
+}
+.pos-left-center {
+  left: 0;
+  top: 50%;
+  bottom: auto;
+  right: auto;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+.pos-right-center {
+  right: 0;
+  top: 50%;
+  bottom: auto;
+  left: auto;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+.pos-center {
+  top: 50%;
+  left: 50%;
+  bottom: auto;
+  right: auto;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+}
+.z-absolute {
+  z-index: 500;
+}
+.z-dropdown {
+  z-index: 1000;
+}
+.z-sticky {
+  z-index: 1020;
+}
+.z-fixed {
+  z-index: 1030;
+}
+.z-modal-backdrop {
+  z-index: 1040;
+}
+.z-modal {
+  z-index: 1050;
+}
+.z-popover {
+  z-index: 1060;
+}
+.z-tooltip {
+  z-index: 1070;
+}
+.z-top {
+  z-index: 1080;
+}
+.z-charms {
+  z-index: 1090;
+}
+.z-fullscreen {
+  z-index: 2147483647;
 }
 @media screen and (min-width: 0) {
   .pos-relative-fs {
@@ -24099,7 +24199,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   position: fixed;
   background-color: #ffffff;
   color: #1d1d1d;
-  z-index: 1070;
+  z-index: 1060;
   border: 1px solid #dfdfdf;
   cursor: default;
   padding: .8125rem;

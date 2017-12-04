@@ -34,6 +34,12 @@
     <link href="css/site.css" rel="stylesheet">
 
     <title>Position - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+    <style>
+        .pos-demo {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <div class="container-fluid">
@@ -52,6 +58,7 @@
                     <li class="toc-entry"><a href="#_pos_utils">Utilities</a></li>
                     <li class="toc-entry"><a href="#_pos_rose">Rose of the wind</a></li>
                     <li class="toc-entry"><a href="#_pos_dropdown">Dropdown</a></li>
+                    <li class="toc-entry"><a href="#_pos_positions">Positions</a></li>
                 </ul>
 
             </div>
@@ -67,6 +74,15 @@
                 </p>
 
                 <!-- ads-html -->
+                <div class="p-10 bg-red pos-fixed pos-top-left z-top pos-demo"></div>
+                <div class="p-10 bg-red pos-fixed pos-top-center z-top pos-demo"></div>
+                <div class="p-10 bg-red pos-fixed pos-top-right z-top pos-demo"></div>
+                <div class="p-10 bg-red pos-fixed pos-bottom-right z-top pos-demo"></div>
+                <div class="p-10 bg-red pos-fixed pos-bottom-left z-top pos-demo"></div>
+                <div class="p-10 bg-red pos-fixed pos-bottom-center z-top pos-demo"></div>
+                <div class="p-10 bg-red pos-fixed pos-left-center z-top pos-demo"></div>
+                <div class="p-10 bg-red pos-fixed pos-right-center z-top pos-demo"></div>
+                <div class="p-10 bg-red pos-fixed pos-center z-top pos-demo"></div>
 
                 <h3 id="_pos_fixed_top">Fixed top</h3>
                 <p>
@@ -219,6 +235,24 @@
                 <p class="remark">
                     Also you can use media equivalent for <code>.put-*</code> classes with media suffixes. <a href="media.html">More information about it</a>.
                 </p>
+
+                <h3 id="_pos_positions">Positions</h3>
+                <p>
+                    Metro 4 contains position classes to simple positioning element inside parent. You can use next classes to set element position inside parent:
+                        <code>.pos-top-left</code>,
+                        <code>.pos-top-center</code>,
+                        <code>.pos-top-right</code>,
+                        <code>.pos-bottom-left</code>,
+                        <code>.pos-bottom-center</code>,
+                        <code>.pos-bottom-right</code>,
+                        <code>.pos-right-center</code>,
+                        <code>.pos-left-center</code> and
+                        <code>.pos-center</code>.
+                </p>
+                <div class="example d-flex flex-justify-center">
+                    <input type="checkbox" data-role="switch" data-caption="Show elements" onclick="$(this).is(':checked') ? $('.pos-demo').show() : $('.pos-demo').hide()">
+                </div>
+
             </main>
         </div>
 
