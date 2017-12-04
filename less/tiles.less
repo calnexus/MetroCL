@@ -155,9 +155,12 @@
         height: 32px;
         line-height: 32px;
         position: absolute;
-        left: 10px;
-        bottom: 5px;
+        left: 0;
+        bottom: 0;
         width: 100%;
+        padding: 0 10px 5px;
+        font-size: .875rem;
+        font-weight: 500;
         .text-ellipsis();
     }
 
@@ -203,22 +206,6 @@
         .icon {
             max-width: 75%;
             height: 75%;
-        }
-    }
-}
-
-[class*=tile-] {
-    &.image-set {
-        img {
-            width: 25%;
-            height: 50%;
-            display: block;
-            float: left;
-
-            &:nth-child(1) {
-                width: 50%;
-                height: 100%;
-            }
         }
     }
 }

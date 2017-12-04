@@ -11,6 +11,10 @@ var Tile = {
     },
 
     options: {
+        size: "medium",
+        cover: "",
+        coverPosition: "center",
+        effect: "",
         onTileCreate: Metro.noop
     },
 
@@ -31,9 +35,25 @@ var Tile = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
+        this._createTile();
         this._createEvents();
 
         Utils.exec(o.onTileCreate, [element]);
+    },
+
+    _createTile: function(){
+        var that = this, element = this.element, o = this.options;
+
+        element.addClass("tile-" + o.size).addClass("effect-" + o.effect);
+
+        if (o.cover !== "") {
+            element.css({
+                backgroundImage: "url("+o.cover+")",
+                backgroundSize: "cover",
+                backgroundPosition: o.coverPosition,
+                backgroundRepeat: "no-repeat"
+            });
+        }
     },
 
     _createEvents: function(){

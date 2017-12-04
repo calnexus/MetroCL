@@ -65,40 +65,154 @@
 
                 <div class="example">
                     <div class="tiles-group">
-                        <div class="tile-small" data-role="tile"><img src="images/github.png" class="icon"></div>
-                        <div class="tile-medium" data-role="tile"><img src="images/github.png" class="icon"></div>
-                        <div class="tile-wide" data-role="tile"><img src="images/github.png" class="icon"></div>
-                        <div class="tile-large" data-role="tile"><img src="images/github.png" class="icon"></div>
+                        <div data-size="small" data-role="tile"><img src="images/github.png" class="icon"></div>
+                        <div data-size="medium" data-role="tile"><img src="images/github.png" class="icon"></div>
+                        <div data-size="wide" data-role="tile"><img src="images/github.png" class="icon"></div>
+                        <div data-size="large" data-role="tile"><img src="images/github.png" class="icon"></div>
                     </div>
                 </div>
 
                 <div class="example bg-darkCyan">
-                    <div class="tiles-group">
-                        <div class="tile-medium bg-red">
+                    <div class="tiles-group d-flex flex-justify-center flex-no-shrink flex-wrap">
+                        <div data-role="tile" class="bg-red">
                             <span class="icon mif-apps"></span>
                             <span class="branding-bar">Applications</span>
                         </div>
-                        <div class="tile-medium">
+                        <div data-role="tile">
                             <span class="icon mif-apps"></span>
                             <span class="branding-bar">Applications</span>
                             <span class="badge-bottom bg-yellow fg-dark">10</span>
                         </div>
-                        <div class="tile-medium">
+                        <div data-role="tile" class="bg-orange">
                             <span class="icon mif-apps"></span>
                             <span class="branding-bar">Applications</span>
                             <span class="badge-top bg-red fg-white">10</span>
+                        </div>
+                        <div data-role="tile" class="bg-green selected">
+                            <span class="icon mif-apps"></span>
+                            <span class="branding-bar">Applications</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="example">
                     <div class="tiles-group">
-                        <div class="tile-wide image-set">
+                        <div data-role="tile" data-size="large" data-cover="images/me.jpg">
+                            <span class="branding-bar">Sergey Pimenov</span>
+                        </div>
+
+                        <div data-role="tile" data-size="wide" class="image-set">
                             <img src="images/1.jpg">
                             <img src="images/2.jpg">
                             <img src="images/3.jpg">
                             <img src="images/4.jpg">
                             <img src="images/5.jpg">
+                            <span class="branding-bar">Image set</span>
+                        </div>
+
+                        <div data-role="tile" data-cover="images/me_civil.jpg">
+                            <span class="branding-bar">Author</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="example">
+                    <div class="tiles-group">
+                        <div data-role="tile" data-size="wide" data-effect="slide-up">
+                            <div class="slide-front">
+                                <img src="images/pumba-bg.jpg" class="h-100 w-100">
+                            </div>
+                            <div class="slide-back d-flex flex-justify-center flex-align-center p-4 op-red">
+                                <p class="text-center">
+                                    Bubos mori in moscua! Tumultumque de brevis historia, aperto heuretes!
+                                </p>
+                            </div>
+                            <span class="branding-bar fg-dark">Slide-Up</span>
+                        </div>
+
+                        <div data-role="tile" data-size="wide" data-effect="slide-down">
+                            <div class="slide-front">
+                                <img src="images/pumba-bg.jpg" class="h-100 w-100">
+                            </div>
+                            <div class="slide-back d-flex flex-justify-center flex-align-center p-4 op-cyan">
+                                <p class="text-center">
+                                    Bubos mori in moscua! Tumultumque de brevis historia, aperto heuretes!
+                                </p>
+                            </div>
+                            <span class="branding-bar fg-dark">Slide-Down</span>
+                        </div>
+
+                        <div data-role="tile" data-size="wide" data-effect="slide-left">
+                            <div class="slide-front">
+                                <img src="images/pumba-bg.jpg" class="h-100 w-100">
+                            </div>
+                            <div class="slide-back d-flex flex-justify-center flex-align-center p-4 op-cyan">
+                                <p class="text-center">
+                                    Bubos mori in moscua! Tumultumque de brevis historia, aperto heuretes!
+                                </p>
+                            </div>
+                            <span class="branding-bar fg-dark">Slide-Left</span>
+                        </div>
+
+                        <div data-role="tile" data-size="wide" data-effect="slide-right">
+                            <div class="slide-front">
+                                <img src="images/pumba-bg.jpg" class="h-100 w-100">
+                            </div>
+                            <div class="slide-back d-flex flex-justify-center flex-align-center p-4 op-cyan">
+                                <p class="text-center">
+                                    Bubos mori in moscua! Tumultumque de brevis historia, aperto heuretes!
+                                </p>
+                            </div>
+                            <span class="branding-bar fg-dark">Slide-Right</span>
+                        </div>
+
+                        <div data-role="tile" data-size="wide" data-effect="zoom-up">
+                            <div class="slide-front">
+                                <img src="images/pumba-bg.jpg" class="h-100 w-100">
+                            </div>
+                            <div class="slide-back d-flex flex-justify-center flex-align-center p-4 op-cyan">
+                                <p class="text-center">
+                                    Bubos mori in moscua! Tumultumque de brevis historia, aperto heuretes!
+                                </p>
+                            </div>
+                            <span class="branding-bar fg-dark">Zoom-Up</span>
+                        </div>
+
+                        <div data-role="tile" data-size="wide" data-effect="zoom-down">
+                            <div class="slide-front">
+                                <img src="images/pumba-bg.jpg" class="h-100 w-100">
+                            </div>
+                            <div class="slide-back d-flex flex-justify-center flex-align-center p-4 op-cyan">
+                                <p class="text-center">
+                                    Bubos mori in moscua! Tumultumque de brevis historia, aperto heuretes!
+                                </p>
+                            </div>
+                            <span class="branding-bar fg-dark">Zoom-Down</span>
+                        </div>
+
+                        <div data-role="tile" data-size="wide" data-effect="zoom-left">
+                            <div class="slide-front">
+                                <img src="images/pumba-bg.jpg" class="h-100 w-100">
+                            </div>
+                            <div class="slide-back d-flex flex-justify-center flex-align-center p-4 op-cyan">
+                                <p class="text-center">
+                                    Bubos mori in moscua! Tumultumque de brevis historia, aperto heuretes!
+                                </p>
+                            </div>
+                            <span class="branding-bar fg-dark">Zoom-Left</span>
+                        </div>
+
+                        <div data-role="tile" data-size="wide" data-effect="zoom-right">
+                            <div class="slide-front">
+                                <img src="images/pumba-bg.jpg" class="h-100 w-100">
+                            </div>
+                            <div class="slide-back d-flex flex-justify-center flex-align-center p-4 op-cyan">
+                                <p class="text-center">
+                                    Bubos mori in moscua! Tumultumque de brevis historia, aperto heuretes!
+                                </p>
+                            </div>
+                            <span class="branding-bar fg-dark">Zoom-Right</span>
                         </div>
                     </div>
                 </div>

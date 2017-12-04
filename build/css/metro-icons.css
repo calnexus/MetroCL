@@ -15,7 +15,6 @@
   vertical-align: middle;
   text-align: center;
   position: relative;
-  z-index: 1;
 }
 [class*=mif-]::before {
   text-align: center;
