@@ -119,7 +119,7 @@ var Dialog = {
             height: o.height,
             visibility: "hidden",
             top: '100%',
-            left: Utils.placeElement(element, "center").left
+            left: ( $(window).width() - element.outerWidth() ) / 2
         });
 
         element.addClass(o.clsDialog);
@@ -180,7 +180,10 @@ var Dialog = {
 
     setPosition: function(){
         var element = this.element;
-        element.css(Utils.placeElement(element, "center"));
+        element.css({
+            top: ( $(window).height() - element.outerHeight() ) / 2,
+            left: ( $(window).width() - element.outerWidth() ) / 2
+        });
     },
 
     setContent: function(c){
@@ -220,6 +223,9 @@ var Dialog = {
         this.hide(function(){
             element.data("open", false);
             Utils.exec(o.onClose, [element]);
+            if (o.removeOnClose === true) {
+                element.remove();
+            }
         });
     },
 

@@ -1642,7 +1642,7 @@ var Utils = {
     },
 
     isDate: function(val){
-        return (new Date(val) !== "Invalid Date" && !isNaN(new Date(val)));
+        return (String(new Date(val)) !== "Invalid Date");
     },
 
     isInt: function(n){
@@ -1785,9 +1785,9 @@ var d = new Date().getTime();
 
     secondsToFormattedString: function(time){
         var hours, minutes, seconds;
-
-        hours = parseInt( time / 3600 ) % 24;
-        minutes = parseInt( time / 60 ) % 60;
+        time = parseInt(time);
+        hours = time / 3600 % 24;
+        minutes = time / 60 % 60;
         seconds = time % 60;
 
         return (hours ? (hours) + ":" : "") + (minutes < 10 ? "0"+minutes : minutes) + ":" + (seconds < 10 ? "0"+seconds : seconds);
@@ -1999,9 +1999,9 @@ var d = new Date().getTime();
 
     positionXY: function(e, t){
         switch (t) {
-            case 'client': return this.clientXY(e); break;
-            case 'screen': return this.screenXY(e); break;
-            case 'page': return this.pageXY(e); break;
+            case 'client': return this.clientXY(e);
+            case 'screen': return this.screenXY(e);
+            case 'page': return this.pageXY(e);
             default: return {left: o, top: 0}
         }
     },
@@ -2053,93 +2053,6 @@ var d = new Date().getTime();
         }
     },
 
-    placeElement: function(el, place){
-
-        var elementSize = Utils.hiddenElementSize(el);
-        var windowWidth = $(window).width();
-        var windowHeight = $(window).height();
-
-        if (place === 'center' || place === 'center-center') {
-            return {
-                left: ( windowWidth - elementSize.width ) / 2,
-                top: ( windowHeight - elementSize.height ) / 2,
-                right: "auto",
-                bottom: "auto"
-            };
-        }
-        if (place === 'top-left') {
-            return {
-                left: 0,
-                top: 0,
-                right: "auto",
-                bottom: "auto"
-            };
-        }
-        if (place === 'top-right') {
-            return {
-                right: 0,
-                top: 0,
-                left: "auto",
-                bottom: "auto"
-            };
-        }
-        if (place === 'top-center') {
-            return {
-                left: ( windowWidth - elementSize.width ) / 2,
-                top: 0,
-                right: "auto",
-                bottom: "auto"
-            };
-        }
-        if (place === 'bottom-right') {
-            return {
-                right: 0,
-                bottom: 0,
-                top: "auto",
-                left: "auto"
-            };
-        }
-        if (place === 'bottom-left') {
-            return {
-                left: 0,
-                bottom: 0,
-                top: "auto",
-                right: "auto"
-            };
-        }
-        if (place === 'bottom-center') {
-            return {
-                left: ( windowWidth - elementSize.width ) / 2,
-                bottom: 0,
-                top: "auto",
-                right: "auto"
-            };
-        }
-        if (place === 'left-center') {
-            return {
-                top: ( windowHeight - elementSize.height ) / 2,
-                left: 0,
-                right: "auto",
-                bottom: "auto"
-            };
-        }
-        if (place === 'right-center') {
-            return {
-                top: ( windowHeight - elementSize.height ) / 2,
-                right: 0,
-                left: "auto",
-                bottom: "auto"
-            };
-        }
-
-        return {
-            top: "auto",
-            right: "auto",
-            left: "auto",
-            bottom: "auto"
-        };
-    },
-
     getStyle: function(el, pseudo){
         if (Utils.isJQueryObject(el) === true) {
             el  = el[0];
@@ -2168,6 +2081,48 @@ var d = new Date().getTime();
         }
         a.push(alpha);
         return "rgba("+a.join(",")+")";
+    },
+
+    computedRgbToArray: function(rgb){
+        return rgb.replace(/[^\d,]/g, '').split(',');
+    },
+
+    isDarkColor: function (color) {
+        var a;
+
+        if (this.isColor(color) === false) {
+            a = this.hexColorToArray(color);
+        } else {
+            this.computedRgbToArray(color);
+        }
+
+        return (2 * a[0] + 5 * a[1] + a[2]) <= 8 * 128;
+    },
+
+    hexColorToArray: function(hex){
+        var c;
+        if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+            c= hex.substring(1).split('');
+            if(c.length === 3){
+                c= [c[0], c[0], c[1], c[1], c[2], c[2]];
+            }
+            c= '0x'+c.join('');
+            return [(c>>16)&255, (c>>8)&255, c&255];
+        }
+        return [0,0,0];
+    },
+
+    hexColorToRgbA: function(hex, alpha){
+        var c;
+        if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+            c= hex.substring(1).split('');
+            if(c.length === 3){
+                c= [c[0], c[0], c[1], c[1], c[2], c[2]];
+            }
+            c= '0x'+c.join('');
+            return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255, alpha ? alpha : 1].join(',')+')';
+        }
+        return 'rgba(0,0,0,1)';
     },
 
     getInlineStyles: function(el){
@@ -5367,7 +5322,7 @@ var Dialog = {
             height: o.height,
             visibility: "hidden",
             top: '100%',
-            left: Utils.placeElement(element, "center").left
+            left: ( $(window).width() - element.outerWidth() ) / 2
         });
 
         element.addClass(o.clsDialog);
@@ -5428,7 +5383,10 @@ var Dialog = {
 
     setPosition: function(){
         var element = this.element;
-        element.css(Utils.placeElement(element, "center"));
+        element.css({
+            top: ( $(window).height() - element.outerHeight() ) / 2,
+            left: ( $(window).width() - element.outerWidth() ) / 2
+        });
     },
 
     setContent: function(c){
@@ -5468,6 +5426,9 @@ var Dialog = {
         this.hide(function(){
             element.data("open", false);
             Utils.exec(o.onClose, [element]);
+            if (o.removeOnClose === true) {
+                element.remove();
+            }
         });
     },
 
@@ -11026,7 +10987,7 @@ var Window = {
 
 
         if (o.place !== 'auto') {
-            win.css(Utils.placeElement(win, o.place));
+            win.addClass("pos-" + o.place);
         }
 
         win.addClass(o.clsWindow);
@@ -11226,7 +11187,7 @@ var Window = {
     changePlace: function (a) {
         var that = this, element = this.element, win = this.win, o = this.options;
         var place = element.attr("data-place");
-        Utils.placeElement(win, place);
+        win.addClass(place);
     },
 
     changeAttribute: function(attributeName){
@@ -11246,7 +11207,7 @@ var Window = {
             case "data-resizable": this.toggleResizable(); break;
             case "data-top":
             case "data-left": this.changeTopLeft(attributeName); break;
-            case "data-place": this.changePlace(attributeName); break;
+            case "data-place": this.changePlace(); break;
         }
     }
 };

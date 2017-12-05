@@ -226,7 +226,7 @@ var Window = {
 
 
         if (o.place !== 'auto') {
-            win.css(Utils.placeElement(win, o.place));
+            win.addClass("pos-" + o.place);
         }
 
         win.addClass(o.clsWindow);
@@ -426,7 +426,7 @@ var Window = {
     changePlace: function (a) {
         var that = this, element = this.element, win = this.win, o = this.options;
         var place = element.attr("data-place");
-        Utils.placeElement(win, place);
+        win.addClass(place);
     },
 
     changeAttribute: function(attributeName){
@@ -446,7 +446,7 @@ var Window = {
             case "data-resizable": this.toggleResizable(); break;
             case "data-top":
             case "data-left": this.changeTopLeft(attributeName); break;
-            case "data-place": this.changePlace(attributeName); break;
+            case "data-place": this.changePlace(); break;
         }
     }
 };
