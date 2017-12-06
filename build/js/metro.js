@@ -291,6 +291,89 @@ var Metro = {
 $.Metro = window['Metro'] = Metro;
 
 
+// Source: js/utils/animation.js
+var Animation = {
+
+    duration: METRO_ANIMATION_DURATION,
+    func: "swing",
+
+    slideUp: function(current, next, duration, func){
+        var h = current.parent().outerHeight(true);
+        if (duration === undefined) {duration = this.duration;}
+        if (func === undefined) {func = this.func;}
+        current.css("z-index", 1).animate({
+            top: -h
+        }, duration, func);
+
+        next.css({
+            top: h,
+            zIndex: 2
+        }).animate({
+            top: 0
+        }, duration, func);
+    },
+
+    slideDown: function(current, next, duration, func){
+        var h = current.parent().outerHeight(true);
+        if (duration === undefined) {duration = this.duration;}
+        if (func === undefined) {func = this.func;}
+        current.css("z-index", 1).animate({
+            top: h
+        }, duration, func);
+
+        next.css({
+            top: -h,
+            zIndex: 2
+        }).animate({
+            top: 0
+        }, duration, func);
+    },
+
+    slideLeft: function(current, next, duration, func){
+        var w = current.parent().outerWidth(true);
+        if (duration === undefined) {duration = this.duration;}
+        if (func === undefined) {func = this.func;}
+        current.css("z-index", 1).animate({
+            left: -w
+        }, duration, func);
+
+        next.css({
+            left: w,
+            zIndex: 2
+        }).animate({
+            left: 0
+        }, duration, func);
+    },
+
+    slideRight: function(current, next, duration, func){
+        var w = current.parent().outerWidth(true);
+        if (duration === undefined) {duration = this.duration;}
+        if (func === undefined) {func = this.func;}
+        current.css("z-index", 1).animate({
+            left: w
+        }, duration, func);
+
+        next.css({
+            left: -w,
+            zIndex: 2
+        }).animate({
+            left: 0
+        }, duration, func);
+    },
+
+    fade: function(current, next, duration){
+        if (duration === undefined) {duration = this.duration;}
+        current.animate({
+            opacity: 0
+        }, duration);
+        next.animate({
+            opacity: 1
+        }, duration);
+    }
+
+};
+
+Metro['animation'] = Animation;
 // Source: js/utils/easing.js
 $.easing['jswing'] = $.easing['swing'];
 
@@ -3852,7 +3935,7 @@ var Carousel = {
                 slide.css({
                     backgroundImage: "url("+slide.data('cover')+")",
                     backgroundSize: "cover",
-                    backgroundPosition: "center",
+                    // backgroundPosition: "center",
                     backgroundRepeat: "no-repeat"
                 });
             }
@@ -9839,6 +9922,10 @@ var Tile = {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
         this.element = $(elem);
+        this.effectInterval = false;
+        this.images = [];
+        this.slides = [];
+        this.currentSlide = -1;
 
         this._setOptionsFromDOM();
         this._create();
@@ -9849,8 +9936,10 @@ var Tile = {
     options: {
         size: "medium",
         cover: "",
-        coverPosition: "center",
         effect: "",
+        effectInterval: 3000,
+        target: null,
+        onClick: Metro.noop,
         onTileCreate: Metro.noop
     },
 
@@ -9879,17 +9968,103 @@ var Tile = {
 
     _createTile: function(){
         var that = this, element = this.element, o = this.options;
+        var slides = element.find(".slide");
 
-        element.addClass("tile-" + o.size).addClass("effect-" + o.effect);
+        element.addClass("tile-" + o.size);
+
+        if (o.effect.indexOf("hover-") > -1) {
+            element.addClass("effect-" + o.effect);
+        }
+
+        if (o.effect.indexOf("animate-") > -1 && slides.length > 1) {
+            $.each(slides, function(i){
+                var slide = $(this);
+
+                that.slides.push(this);
+
+                if (slide.data("cover") !== undefined) {
+                    that._setCover(slide, slide.data("cover"));
+                }
+
+                if (i > 0) {
+                    if (["animate-slide-up", "animate-slide-down"].indexOf(o.effect) > -1) slide.css("top", "100%");
+                    if (["animate-slide-left", "animate-slide-right"].indexOf(o.effect) > -1) slide.css("left", "100%");
+                    if (["animate-fade"].indexOf(o.effect) > -1) slide.css("opacity", 0);
+                }
+            });
+
+            this.currentSlide = 0;
+
+            this.effectInterval = setInterval(function(){
+                var current, next;
+
+                current = $(that.slides[that.currentSlide]);
+
+                that.currentSlide++;
+                if (that.currentSlide === that.slides.length) {
+                    that.currentSlide = 0;
+                }
+
+                next = that.slides[that.currentSlide];
+
+                if (o.effect === "animate-slide-up") Animation.slideUp($(current), $(next));
+                if (o.effect === "animate-slide-down") Animation.slideDown($(current), $(next));
+                if (o.effect === "animate-slide-left") Animation.slideLeft($(current), $(next));
+                if (o.effect === "animate-slide-right") Animation.slideRight($(current), $(next));
+                if (o.effect === "animate-fade") Animation.fade($(current), $(next));
+
+            }, o.effectInterval);
+        }
 
         if (o.cover !== "") {
-            element.css({
-                backgroundImage: "url("+o.cover+")",
-                backgroundSize: "cover",
-                backgroundPosition: o.coverPosition,
-                backgroundRepeat: "no-repeat"
-            });
+            this._setCover(element, o.cover);
         }
+
+        if (o.effect === "image-set") {
+            element.addClass("image-set");
+            $.each(element.children("img"), function(){
+                var img = $(this);
+                var src = this.src;
+                var div = $("<div>").addClass("img");
+
+                if (img.hasClass("icon")) {
+                    return ;
+                }
+
+                that.images.push(this);
+
+                div.css("background-image", "url("+src+")");
+                element.prepend(div);
+                img.remove();
+            });
+
+            function switchImage(el, img_src){
+                setTimeout(function(){
+                    el.fadeOut(500, function(){
+                        el.css("background-image", "url(" + img_src + ")");
+                        el.fadeIn();
+                    });
+                }, Utils.random(0,1000));
+            }
+
+            setInterval(function(){
+                var temp = that.images.slice();
+                for(var i = 0; i < element.find(".img").length; i++) {
+                    var rnd_index = Utils.random(0, temp.length - 1);
+                    var div = $(element.find(".img").get(i));
+                    switchImage(div, temp[rnd_index].src);
+                    temp.splice(rnd_index, 1);
+                }
+            }, 3000);
+        }
+    },
+
+    _setCover: function(to, src){
+        to.css({
+            backgroundImage: "url("+src+")",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat"
+        });
     },
 
     _createEvents: function(){
@@ -9915,6 +10090,14 @@ var Tile = {
                 }
 
                 tile.addClass("transform-" + side);
+
+                if (o.target !== null) {
+                    setTimeout(function(){
+                        document.location.href = o.target;
+                    }, 100);
+                }
+
+                Utils.exec(o.onClick, [tile]);
             }
         });
 

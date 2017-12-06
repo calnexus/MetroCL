@@ -162,7 +162,7 @@ var Carousel = {
                 slide.css({
                     backgroundImage: "url("+slide.data('cover')+")",
                     backgroundSize: "cover",
-                    backgroundPosition: "center",
+                    // backgroundPosition: "center",
                     backgroundRepeat: "no-repeat"
                 });
             }

@@ -64,6 +64,21 @@
                 <!-- ads-html -->
 
                 <div class="example">
+                    <div class="tiles-grid">
+                        <div data-role="tile" data-size="small"></div>
+                        <div data-role="tile" data-size="small"></div>
+                        <div data-role="tile" data-size="small" style="grid-column-start: 1; grid-row: 2"></div>
+                        <div data-role="tile" data-size="small" style="grid-column-start: 2; grid-row: 2"></div>
+                        <div data-role="tile" data-size="medium"></div>
+                        <div data-role="tile" data-size="wide"></div>
+                        <div data-role="tile" data-size="large"></div>
+                        <div data-role="tile" data-size="medium"></div>
+                        <div data-role="tile" data-size="medium"></div>
+                    </div>
+                </div>
+
+
+                <div class="example">
                     <div class="tiles-group">
                         <div data-size="small" data-role="tile"><img src="images/github.png" class="icon"></div>
                         <div data-size="medium" data-role="tile"><img src="images/github.png" class="icon"></div>
@@ -101,7 +116,7 @@
                             <span class="branding-bar">Sergey Pimenov</span>
                         </div>
 
-                        <div data-role="tile" data-size="wide" class="image-set">
+                        <div data-role="tile" data-size="wide" data-effect="image-set" class="bg-transparent">
                             <img src="images/1.jpg">
                             <img src="images/2.jpg">
                             <img src="images/3.jpg">
@@ -114,12 +129,17 @@
                             <span class="branding-bar">Author</span>
                         </div>
 
+                        <div data-role="tile" data-effect="animate-fade">
+                            <div class="slide" data-cover="images/me.jpg"></div>
+                            <div class="slide" data-cover="images/me_civil.jpg"></div>
+                            <span class="branding-bar">Author</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="example">
                     <div class="tiles-group">
-                        <div data-role="tile" data-size="wide" data-effect="slide-up">
+                        <div data-role="tile" data-size="wide" data-effect="hover-slide-up">
                             <div class="slide-front">
                                 <img src="images/pumba-bg.jpg" class="h-100 w-100">
                             </div>
@@ -128,10 +148,10 @@
                                     Bubos mori in moscua! Tumultumque de brevis historia, aperto heuretes!
                                 </p>
                             </div>
-                            <span class="branding-bar fg-dark">Slide-Up</span>
+                            <span class="branding-bar fg-dark">hover-slide-up</span>
                         </div>
 
-                        <div data-role="tile" data-size="wide" data-effect="slide-down">
+                        <div data-role="tile" data-size="wide" data-effect="hover-slide-down">
                             <div class="slide-front">
                                 <img src="images/pumba-bg.jpg" class="h-100 w-100">
                             </div>
@@ -140,10 +160,10 @@
                                     Bubos mori in moscua! Tumultumque de brevis historia, aperto heuretes!
                                 </p>
                             </div>
-                            <span class="branding-bar fg-dark">Slide-Down</span>
+                            <span class="branding-bar fg-dark">hover-slide-down</span>
                         </div>
 
-                        <div data-role="tile" data-size="wide" data-effect="slide-left">
+                        <div data-role="tile" data-size="wide" data-effect="hover-slide-left">
                             <div class="slide-front">
                                 <img src="images/pumba-bg.jpg" class="h-100 w-100">
                             </div>
@@ -152,10 +172,10 @@
                                     Bubos mori in moscua! Tumultumque de brevis historia, aperto heuretes!
                                 </p>
                             </div>
-                            <span class="branding-bar fg-dark">Slide-Left</span>
+                            <span class="branding-bar fg-dark">hover-slide-left</span>
                         </div>
 
-                        <div data-role="tile" data-size="wide" data-effect="slide-right">
+                        <div data-role="tile" data-size="wide" data-effect="hover-slide-right">
                             <div class="slide-front">
                                 <img src="images/pumba-bg.jpg" class="h-100 w-100">
                             </div>
@@ -164,10 +184,10 @@
                                     Bubos mori in moscua! Tumultumque de brevis historia, aperto heuretes!
                                 </p>
                             </div>
-                            <span class="branding-bar fg-dark">Slide-Right</span>
+                            <span class="branding-bar fg-dark">hover-slide-right</span>
                         </div>
 
-                        <div data-role="tile" data-size="wide" data-effect="zoom-up">
+                        <div data-role="tile" data-size="wide" data-effect="hover-zoom-up">
                             <div class="slide-front">
                                 <img src="images/pumba-bg.jpg" class="h-100 w-100">
                             </div>
@@ -176,10 +196,10 @@
                                     Bubos mori in moscua! Tumultumque de brevis historia, aperto heuretes!
                                 </p>
                             </div>
-                            <span class="branding-bar fg-dark">Zoom-Up</span>
+                            <span class="branding-bar fg-dark">hover-zoom-up</span>
                         </div>
 
-                        <div data-role="tile" data-size="wide" data-effect="zoom-down">
+                        <div data-role="tile" data-size="wide" data-effect="hover-zoom-down">
                             <div class="slide-front">
                                 <img src="images/pumba-bg.jpg" class="h-100 w-100">
                             </div>
@@ -188,10 +208,10 @@
                                     Bubos mori in moscua! Tumultumque de brevis historia, aperto heuretes!
                                 </p>
                             </div>
-                            <span class="branding-bar fg-dark">Zoom-Down</span>
+                            <span class="branding-bar fg-dark">hover-zoom-down</span>
                         </div>
 
-                        <div data-role="tile" data-size="wide" data-effect="zoom-left">
+                        <div data-role="tile" data-size="wide" data-effect="hover-zoom-left">
                             <div class="slide-front">
                                 <img src="images/pumba-bg.jpg" class="h-100 w-100">
                             </div>
@@ -200,10 +220,10 @@
                                     Bubos mori in moscua! Tumultumque de brevis historia, aperto heuretes!
                                 </p>
                             </div>
-                            <span class="branding-bar fg-dark">Zoom-Left</span>
+                            <span class="branding-bar fg-dark">hover-zoom-left</span>
                         </div>
 
-                        <div data-role="tile" data-size="wide" data-effect="zoom-right">
+                        <div data-role="tile" data-size="wide" data-effect="hover-zoom-right">
                             <div class="slide-front">
                                 <img src="images/pumba-bg.jpg" class="h-100 w-100">
                             </div>
@@ -212,11 +232,50 @@
                                     Bubos mori in moscua! Tumultumque de brevis historia, aperto heuretes!
                                 </p>
                             </div>
-                            <span class="branding-bar fg-dark">Zoom-Right</span>
+                            <span class="branding-bar fg-dark">hover-zoom-right</span>
                         </div>
                     </div>
                 </div>
 
+                <div class="example">
+                    <div class="tiles-group">
+                        <div data-role="tile" data-size="wide" data-effect="animate-slide-up">
+                            <div class="slide d-flex flex-justify-center flex-align-center"><h1>1</h1></div>
+                            <div class="slide d-flex flex-justify-center flex-align-center"><h1>2</h1></div>
+                            <div class="slide d-flex flex-justify-center flex-align-center"><h1>3</h1></div>
+                            <div class="slide d-flex flex-justify-center flex-align-center"><h1>4</h1></div>
+                            <div class="slide d-flex flex-justify-center flex-align-center"><h1>5</h1></div>
+                        </div>
+                        <div data-role="tile" data-size="wide" data-effect="animate-slide-down">
+                            <div class="slide d-flex flex-justify-center flex-align-center"><h1>1</h1></div>
+                            <div class="slide d-flex flex-justify-center flex-align-center"><h1>2</h1></div>
+                            <div class="slide d-flex flex-justify-center flex-align-center"><h1>3</h1></div>
+                            <div class="slide d-flex flex-justify-center flex-align-center"><h1>4</h1></div>
+                            <div class="slide d-flex flex-justify-center flex-align-center"><h1>5</h1></div>
+                        </div>
+                        <div data-role="tile" data-size="wide" data-effect="animate-slide-left">
+                            <div class="slide d-flex flex-justify-center flex-align-center"><h1>1</h1></div>
+                            <div class="slide d-flex flex-justify-center flex-align-center"><h1>2</h1></div>
+                            <div class="slide d-flex flex-justify-center flex-align-center"><h1>3</h1></div>
+                            <div class="slide d-flex flex-justify-center flex-align-center"><h1>4</h1></div>
+                            <div class="slide d-flex flex-justify-center flex-align-center"><h1>5</h1></div>
+                        </div>
+                        <div data-role="tile" data-size="wide" data-effect="animate-slide-right">
+                            <div class="slide d-flex flex-justify-center flex-align-center"><h1>1</h1></div>
+                            <div class="slide d-flex flex-justify-center flex-align-center"><h1>2</h1></div>
+                            <div class="slide d-flex flex-justify-center flex-align-center"><h1>3</h1></div>
+                            <div class="slide d-flex flex-justify-center flex-align-center"><h1>4</h1></div>
+                            <div class="slide d-flex flex-justify-center flex-align-center"><h1>5</h1></div>
+                        </div>
+                        <div data-role="tile" data-size="wide" data-effect="animate-fade">
+                            <div class="slide d-flex flex-justify-center flex-align-center"><h1>1</h1></div>
+                            <div class="slide d-flex flex-justify-center flex-align-center"><h1>2</h1></div>
+                            <div class="slide d-flex flex-justify-center flex-align-center"><h1>3</h1></div>
+                            <div class="slide d-flex flex-justify-center flex-align-center"><h1>4</h1></div>
+                            <div class="slide d-flex flex-justify-center flex-align-center"><h1>5</h1></div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="tiles-group d-none">
                     <div class="tile-medium group">
@@ -273,7 +332,7 @@
 
     <script src="docsearch/docsearch.min.js"></script>
     <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="metro/js/metro.min.js"></script>
+    <script src="metro/js/metro.js"></script>
     <script src="highlight/highlight.pack.js"></script>
     <script src="js/clipboard.min.js"></script>
     <script src="js/site.js"></script>
