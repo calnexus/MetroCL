@@ -50,11 +50,19 @@ var Tile = {
     _createTile: function(){
         var that = this, element = this.element, o = this.options;
         var slides = element.find(".slide");
+        var slides2 = element.find(".slide-front, .slide-back");
 
         element.addClass("tile-" + o.size);
 
         if (o.effect.indexOf("hover-") > -1) {
             element.addClass("effect-" + o.effect);
+            $.each(slides2, function(){
+                var slide = $(this);
+
+                if (slide.data("cover") !== undefined) {
+                    that._setCover(slide, slide.data("cover"));
+                }
+            })
         }
 
         if (o.effect.indexOf("animate-") > -1 && slides.length > 1) {
