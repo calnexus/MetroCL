@@ -226,9 +226,16 @@
 }
 
 .tiles-grid {
-    .grid-cell {
-
+    .create-tiles-cells(@i: 1, @k: 1) when (@k <= @i) {
+        .cell-col-@{k} {
+            grid-column: @k;
+        }
+        .cell-row-@{k} {
+            grid-row: @k;
+        }
+        .create-tiles-cells(@i; @k + 1);
     }
+    .create-tiles-cells(12);
 }
 
 .tiles-grid {

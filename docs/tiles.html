@@ -47,16 +47,16 @@
                 <hr/>
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Tiles</a></li>
-                    <li class="toc-entry"><a href="#">About</a></li>
-                    <li class="toc-entry"><a href="#">Sizes</a></li>
-                    <li class="toc-entry"><a href="#">Icon &amp; Branding bar</a></li>
-                    <li class="toc-entry"><a href="#">Badges</a></li>
-                    <li class="toc-entry"><a href="#">Colors</a></li>
-                    <li class="toc-entry"><a href="#">Selected tile</a></li>
-                    <li class="toc-entry"><a href="#">Cover</a></li>
-                    <li class="toc-entry"><a href="#">Tiles effects</a></li>
-                    <li class="toc-entry"><a href="#">Grid for tiles</a></li>
-                    <li class="toc-entry"><a href="#">Tiles position</a></li>
+                    <li class="toc-entry"><a href="#_tiles_about">About</a></li>
+                    <li class="toc-entry"><a href="#_tiles_sizes">Sizes</a></li>
+                    <li class="toc-entry"><a href="#_tiles_icon">Icon &amp; Branding bar</a></li>
+                    <li class="toc-entry"><a href="#_tiles_badges">Badges</a></li>
+                    <li class="toc-entry"><a href="#_tiles_color">Colors</a></li>
+                    <li class="toc-entry"><a href="#_tiles_selected">Selected tile</a></li>
+                    <li class="toc-entry"><a href="#_tiles_cover">Cover</a></li>
+                    <li class="toc-entry"><a href="#_tiles_effects">Tiles effects</a></li>
+                    <li class="toc-entry"><a href="#_tiles_grid">Grid for tiles</a></li>
+                    <li class="toc-entry"><a href="#_tiles_position">Tiles position</a></li>
                 </ul>
             </div>
 
@@ -493,14 +493,16 @@
 
                 <p>
                     With <code>tiles grid</code> you can easy place tiles as you wish.
+                    The grid is divided into cells of size <code>70x70</code> with an interval of <code>10</code> px without limitation to height or width.
+                    You can limit the size of the grid with subclasses <code>.size-*</code> from <code>1</code> to <code>10</code>. One size is equivalent of small tile. Sizes include gap.
                 </p>
 
                 <div class="example">
                     <div class="tiles-grid">
                         <div data-role="tile" data-size="small"></div>
                         <div data-role="tile" data-size="small"></div>
-                        <div data-role="tile" data-size="small" style="grid-column-start: 1; grid-row: 2"></div>
-                        <div data-role="tile" data-size="small" style="grid-column-start: 2; grid-row: 2"></div>
+                        <div data-role="tile" data-size="small" class="cell-col-1 cell-row-2"></div>
+                        <div data-role="tile" data-size="small" class="cell-col-2 cell-row-2"></div>
                         <div data-role="tile" data-size="medium"></div>
                         <div data-role="tile" data-size="wide"></div>
                         <div data-role="tile" data-size="large"></div>
@@ -512,8 +514,23 @@
 
                 <h3 id="_tiles_position">Tiles position in grid</h3>
                 <p>
-                    ...
+                    You can place a tile to a specified position in grid with special classes <code>.cell-col-*</code> and <code>.cell-row-*</code>.
+                    This classes defined from <code>1</code> to <code>12</code> and allow you to place the tile in the specified column and row.
                 </p>
+                <pre><code class="html">
+                    &lt;div class="tiles-grid"&gt;
+                        &lt;div data-role="tile" data-size="small"&gt;&lt;/div&gt;
+                        &lt;div data-role="tile" data-size="small"&gt;&lt;/div&gt;
+                        &lt;div data-role="tile" data-size="small" class="cell-col-1 cell-row-2"&gt;&lt;/div&gt;
+                        &lt;div data-role="tile" data-size="small" class="cell-col-2 cell-row-2"&gt;&lt;/div&gt;
+                        &lt;div data-role="tile" data-size="medium"&gt;&lt;/div&gt;
+                        &lt;div data-role="tile" data-size="wide"&gt;&lt;/div&gt;
+                        &lt;div data-role="tile" data-size="large"&gt;&lt;/div&gt;
+                        &lt;div data-role="tile" data-size="medium"&gt;&lt;/div&gt;
+                        &lt;div data-role="tile" data-size="medium"&gt;&lt;/div&gt;
+                        &lt;div data-role="tile" data-size="wide"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
 
             </main>
         </div>

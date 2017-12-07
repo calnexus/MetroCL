@@ -69,7 +69,7 @@ module.exports = function(grunt) {
             options: {
                 paths: "less/",
                 strictMath: false,
-                sourceMap: true
+                sourceMap: false
             },
             src: {
                 expand: true,
@@ -89,7 +89,10 @@ module.exports = function(grunt) {
 
         postcss: {
             options: {
-                map: false,
+                map: {
+                    inline: false,
+                    annotation: 'build/css/maps/'
+                },
                 processors: [
                     require('autoprefixer')({
                         browsers: ['last 2 versions']
