@@ -16,7 +16,7 @@ var Dropdown = {
 
     options: {
         effect: 'slide',
-        toggleElement: false,
+        toggleElement: null,
         noClose: false,
         duration: METRO_ANIMATION_DURATION,
         onDrop: Metro.noop,
@@ -82,7 +82,7 @@ var Dropdown = {
         this._toggle = toggle;
 
         if (o.noClose === true) {
-            element.on('click', function (e) {
+            element.addClass("keep-open").on('click', function (e) {
                 //e.preventDefault();
                 e.stopPropagation();
             });
@@ -102,9 +102,10 @@ var Dropdown = {
         var dropdown  = el.data("dropdown");
         var toggle = dropdown._toggle;
         var options = dropdown.options;
+        var func = options.effect === "slide" ? "slideUp" : "fadeOut";
 
         toggle.removeClass('active-toggle').removeClass("active-control");
-        el.slideUp(options.duration, function(){
+        el[func](options.duration, function(){
             el.trigger("onClose", null, el);
         });
         Utils.exec(options.onUp, [el]);
@@ -118,9 +119,10 @@ var Dropdown = {
         var dropdown  = el.data("dropdown");
         var toggle = dropdown._toggle;
         var options = dropdown.options;
+        var func = options.effect === "slide" ? "slideDown" : "fadeIn";
 
         toggle.addClass('active-toggle').addClass("active-control");
-        el.slideDown(options.duration, function(){
+        el[func](options.duration, function(){
             el.trigger("onOpen", null, el);
         });
         Utils.exec(options.onDrop, [el]);

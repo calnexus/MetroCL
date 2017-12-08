@@ -252,8 +252,8 @@
 .tiles-grid {
 
     .generate-tiles-media-options(@mediaBreakpointListMobileLength);
-    .generate-tiles-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
-        @m: extract(@mediaBreakpointListMobile, @i);
+    .generate-tiles-media-options(@name, @j: 1) when (@j <= @mediaBreakpointListMobileLength) {
+        @m: extract(@mediaBreakpointListMobile, @j);
 
         @media screen and (min-width: @@m) {
             .create-tiles-cells(@i: 1, @k: 1) when (@k <= @i) {
@@ -277,6 +277,6 @@
             .create-tiles-grid-size(10);
         }
 
-        .generate-tiles-media-options(@name, @i + 1);
+        .generate-tiles-media-options(@name, @j + 1);
     }
 }
