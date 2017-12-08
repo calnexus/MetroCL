@@ -9926,6 +9926,7 @@ var Tile = {
         this.images = [];
         this.slides = [];
         this.currentSlide = -1;
+        this.unload = false;
 
         this._setOptionsFromDOM();
         this._create();
@@ -10003,25 +10004,7 @@ var Tile = {
 
             this.currentSlide = 0;
 
-            this.effectInterval = setInterval(function(){
-                var current, next;
-
-                current = $(that.slides[that.currentSlide]);
-
-                that.currentSlide++;
-                if (that.currentSlide === that.slides.length) {
-                    that.currentSlide = 0;
-                }
-
-                next = that.slides[that.currentSlide];
-
-                if (o.effect === "animate-slide-up") Animation.slideUp($(current), $(next));
-                if (o.effect === "animate-slide-down") Animation.slideDown($(current), $(next));
-                if (o.effect === "animate-slide-left") Animation.slideLeft($(current), $(next));
-                if (o.effect === "animate-slide-right") Animation.slideRight($(current), $(next));
-                if (o.effect === "animate-fade") Animation.fade($(current), $(next));
-
-            }, o.effectInterval);
+            this._runEffects();
         }
 
         if (o.cover !== "") {
@@ -10065,6 +10048,35 @@ var Tile = {
                 }
             }, 3000);
         }
+    },
+
+    _runEffects: function(){
+        var that = this, o = this.options;
+
+        if (this.effectInterval === false) this.effectInterval = setInterval(function(){
+            var current, next;
+
+            current = $(that.slides[that.currentSlide]);
+
+            that.currentSlide++;
+            if (that.currentSlide === that.slides.length) {
+                that.currentSlide = 0;
+            }
+
+            next = that.slides[that.currentSlide];
+
+            if (o.effect === "animate-slide-up") Animation.slideUp($(current), $(next));
+            if (o.effect === "animate-slide-down") Animation.slideDown($(current), $(next));
+            if (o.effect === "animate-slide-left") Animation.slideLeft($(current), $(next));
+            if (o.effect === "animate-slide-right") Animation.slideRight($(current), $(next));
+            if (o.effect === "animate-fade") Animation.fade($(current), $(next));
+
+        }, o.effectInterval);
+    },
+
+    _stopEffects: function(){
+        clearInterval(this.effectInterval);
+        this.effectInterval = false;
     },
 
     _setCover: function(to, src){
@@ -10115,6 +10127,13 @@ var Tile = {
                 .removeClass("transform-right")
                 .removeClass("transform-top")
                 .removeClass("transform-bottom");
+        });
+
+        $(window).on(Metro.eventBlur, function(){
+            that._stopEffects();
+        });
+        $(window).on(Metro.eventFocus, function(){
+            that._runEffects();
         });
     },
 
