@@ -227,10 +227,10 @@
 
 .tiles-grid {
     .create-tiles-cells(@i: 1, @k: 1) when (@k <= @i) {
-        .cell-col-@{k} {
+        .col-@{k} {
             grid-column: @k;
         }
-        .cell-row-@{k} {
+        .row-@{k} {
             grid-row: @k;
         }
         .create-tiles-cells(@i; @k + 1);
@@ -247,4 +247,36 @@
         .create-tiles-grid-size(@i; @k + 1);
     }
     .create-tiles-grid-size(10);
+}
+
+.tiles-grid {
+
+    .generate-tiles-media-options(@mediaBreakpointListMobileLength);
+    .generate-tiles-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
+        @m: extract(@mediaBreakpointListMobile, @i);
+
+        @media screen and (min-width: @@m) {
+            .create-tiles-cells(@i: 1, @k: 1) when (@k <= @i) {
+                .col-@{m}-@{k} {
+                    grid-column: @k;
+                }
+                .row-@{m}-@{k} {
+                    grid-row: @k;
+                }
+                .create-tiles-cells(@i; @k + 1);
+            }
+            .create-tiles-cells(12);
+
+            .create-tiles-grid-size(@i: 1, @k: 1) when (@k <= @i) {
+                &.size-@{m}-@{k} {
+                    width: (@tileCellSize + @tileMargin * 2) * @k;
+                }
+
+                .create-tiles-grid-size(@i; @k + 1);
+            }
+            .create-tiles-grid-size(10);
+        }
+
+        .generate-tiles-media-options(@name, @i + 1);
+    }
 }

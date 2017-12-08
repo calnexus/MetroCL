@@ -176,11 +176,21 @@
                 </p>
                 <div class="example">
                     <div class="tiles-grid">
-                        <div data-role="tile">
+                        <div data-role="tile" class="bg-red">
                             <span class="badge-top">10</span>
                         </div>
-                        <div data-role="tile">
+                        <div data-role="tile" class="bg-green">
                             <span class="badge-bottom">10</span>
+                        </div>
+                        <div data-role="tile">
+                            <span class="mif-facebook icon"></span>
+                            <span class="branding-bar">Facebook</span>
+                            <span class="badge-bottom">10</span>
+                        </div>
+                        <div data-role="tile" class="bg-pink">
+                            <span class="mif-cart icon"></span>
+                            <span class="branding-bar">Store</span>
+                            <span class="badge-top">10</span>
                         </div>
                     </div>
                 </div>
@@ -501,8 +511,8 @@
                     <div class="tiles-grid">
                         <div data-role="tile" data-size="small"></div>
                         <div data-role="tile" data-size="small"></div>
-                        <div data-role="tile" data-size="small" class="cell-col-1 cell-row-2"></div>
-                        <div data-role="tile" data-size="small" class="cell-col-2 cell-row-2"></div>
+                        <div data-role="tile" data-size="small" class="col-1 row-2"></div>
+                        <div data-role="tile" data-size="small" class="col-2 row-2"></div>
                         <div data-role="tile" data-size="medium"></div>
                         <div data-role="tile" data-size="wide"></div>
                         <div data-role="tile" data-size="large"></div>
@@ -514,15 +524,15 @@
 
                 <h3 id="_tiles_position">Tiles position in grid</h3>
                 <p>
-                    You can place a tile to a specified position in grid with special classes <code>.cell-col-*</code> and <code>.cell-row-*</code>.
+                    You can place a tile to a specified position in grid with special classes <code>.col-*</code> and <code>.row-*</code>.
                     This classes defined from <code>1</code> to <code>12</code> and allow you to place the tile in the specified column and row.
                 </p>
                 <pre><code class="html">
                     &lt;div class="tiles-grid"&gt;
                         &lt;div data-role="tile" data-size="small"&gt;&lt;/div&gt;
                         &lt;div data-role="tile" data-size="small"&gt;&lt;/div&gt;
-                        &lt;div data-role="tile" data-size="small" class="cell-col-1 cell-row-2"&gt;&lt;/div&gt;
-                        &lt;div data-role="tile" data-size="small" class="cell-col-2 cell-row-2"&gt;&lt;/div&gt;
+                        &lt;div data-role="tile" data-size="small" class="col-1 row-2"&gt;&lt;/div&gt;
+                        &lt;div data-role="tile" data-size="small" class="col-2 row-2"&gt;&lt;/div&gt;
                         &lt;div data-role="tile" data-size="medium"&gt;&lt;/div&gt;
                         &lt;div data-role="tile" data-size="wide"&gt;&lt;/div&gt;
                         &lt;div data-role="tile" data-size="large"&gt;&lt;/div&gt;
