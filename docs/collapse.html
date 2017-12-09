@@ -33,7 +33,7 @@
     <link href="docsearch/docsearch.min.css" rel="stylesheet">
     <link href="css/site.css" rel="stylesheet">
 
-    <title>Dropdown - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <title>Collapse - Metro 4 :: Popular HTML, CSS and JS library</title>
 </head>
 <body>
     <div class="container-fluid">
@@ -46,7 +46,7 @@
                 <h5>Table of contents</h5>
                 <hr/>
                 <ul class="toc-nav">
-                    <li class="toc-entry"><a href="#">Dropdown</a></li>
+                    <li class="toc-entry"><a href="#">Collapse</a></li>
                     <li class="toc-entry"><a href="#_dropdown_about">About</a></li>
                     <li class="toc-entry"><a href="#_dropdown_options">Options</a></li>
                 </ul>
@@ -58,36 +58,61 @@
                     <img src="images/logo.png" class="w-100">
                 </div>
 
-                <h1>Dropdown</h1>
+                <h1>Collapse</h1>
                 <p class="text-leader">
-                    Easy creating dropdown elements with special role.
+                    Easy creating collapsible elements with special role.
                 </p>
 
                 <!-- ads-html -->
 
                 <h3 id="_dropdown_about">About</h3>
                 <p>
-                    Quite often you have to create elements that <code>dropdown</code> at the user's request. For example, drop-down menus.
-                    In Metro 4 you can transform any element to <code>dropdown</code>. Element must have <code>display: block</code> css property.
-                    To create <code>dropdown</code> element you can add role <code>data-role="dropdown"</code> and define <code>toggle</code> for it with attribute <code>data-toggle-element="..."</code>.
-                    At the same time, only one dropdown element can be opened.
+                    Quite often you have to create elements that <code>collapse</code> at the user's request. For example, any collapsible panels.
+                    In Metro 4 you can transform any element to <code>collapsible</code>. Element must have <code>display: block</code> css property.
+                    To create <code>collapse</code> element you can add role <code>data-role="collapse"</code> and define <code>toggle</code> for it with attribute <code>data-toggle-element="..."</code>.
+                    <strong>In contrast to the dropdown, the collapsible elements can be a lot open at the same time</strong>.
                 </p>
                 <div class="example">
-                    <button class="button" id="dropdown_toggle_1">Drop block</button>
+                    <button class="button" id="collapse_toggle_1">Collapse block</button>
                     <div class="pos-relative">
-                        <div class="bg-red fg-white" data-role="dropdown" data-toggle-element="#dropdown_toggle_1">
-                            <p class="p-10 text-center">In Metro 4 you can transform any element to dropdown.</p>
+                        <div class="bg-red fg-white" data-role="collapse" data-toggle-element="#collapse_toggle_1">
+                            <p class="p-10 text-center">In Metro 4 you can transform any element to collapsible.</p>
                         </div>
                     </div>
                 </div>
                 <pre><code class="html">
-                    &lt;button class="button" id="dropdown_toggle_1"&gt;Drop block&lt;/button&gt;
+                    &lt;button class="button" id="collapse_toggle_1"&gt;Collapse block&lt;/button&gt;
                     &lt;div class="pos-relative"&gt;
                         &lt;div class="bg-red fg-white"
-                                data-role="dropdown"
-                                data-toggle-element="#dropdown_toggle_1"&gt;
+                                data-role="collapse"
+                                data-toggle-element="#collapse_toggle_1"&gt;
                             &lt;p class="p-10 text-center"&gt;
-                                In Metro 4 you can transform any element to dropdown.
+                                In Metro 4 you can transform any element to collapsible.
+                            &lt;/p&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+                <p>
+                    By default, the collapsible element is open. If you need to create an element with collapsing state at start, add attribute <code>data-collapsed="true"</code>.
+                </p>
+                <div class="example">
+                    <button class="button" id="collapse_toggle_2">Collapse block</button>
+                    <div class="pos-relative">
+                        <div class="bg-red fg-white" data-role="collapse"
+                             data-toggle-element="#collapse_toggle_2" data-collapsed="true">
+                            <p class="p-10 text-center">
+                                In Metro 4 you can transform any element to collapsible.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;button class="button" id="collapse_toggle_2"&gt;Collapse block&lt;/button&gt;
+                    &lt;div class="pos-relative"&gt;
+                        &lt;div class="bg-red fg-white" data-role="collapse"
+                             data-toggle-element="#collapse_toggle_2" data-collapsed="true"&gt;
+                            &lt;p class="p-10 text-center"&gt;
+                                In Metro 4 you can transform any element to collapsible.
                             &lt;/p&gt;
                         &lt;/div&gt;
                     &lt;/div&gt;
@@ -108,6 +133,12 @@
                     </thead>
                     <tbody>
                     <tr>
+                        <td>collapsed</td>
+                        <td><code>data-collapsed</code></td>
+                        <td>false</td>
+                        <td>Initial state for element. Values: true, false</td>
+                    </tr>
+                    <tr>
                         <td>effect</td>
                         <td><code>data-effect</code></td>
                         <td>slide</td>
@@ -126,25 +157,19 @@
                         <td>Effect duration in milliseconds</td>
                     </tr>
                     <tr>
-                        <td>noClose</td>
-                        <td><code>data-no-close</code></td>
-                        <td>false</td>
-                        <td>If true, dropped element can't be close</td>
-                    </tr>
-                    <tr>
-                        <td>onDrop</td>
+                        <td>onExpand</td>
                         <td><code>data-on-drop</code></td>
                         <td>Metro.noop</td>
                         <td>Event fired when element dropped</td>
                     </tr>
                     <tr>
-                        <td>onUp</td>
+                        <td>onCollapse</td>
                         <td><code>data-on-up</code></td>
                         <td>Metro.noop</td>
                         <td>Event fired when element close</td>
                     </tr>
                     <tr>
-                        <td>onDropdownCreate</td>
+                        <td>onCollapseCreate</td>
                         <td><code>data-on-dropdown-create</code></td>
                         <td>Metro.noop</td>
                         <td>Event fired when element created</td>
@@ -152,21 +177,24 @@
                     </tbody>
                 </table>
 
-                <p class="remark warning">
-                    Important! One dropdown element is open, other dropdown elements are closed!
-                </p>
-
                 <h3 id="_dropdown_methods">Methods</h3>
                 <p>
-                    Each dropdown component has next methods: <code>open()</code>, <code>close()</code>. You can use this methods to interact with component.
+                    Each collapse component has next methods: <code>collapse()</code>, <code>expand()</code>, <code>isCollapsed()</code>. You can use this methods to interact with component.
                 </p>
                 <pre><code class="javascript">
-                    el = $('#el').data('dropdown');
-                    el.open();
+                    el = $('#el').data('collapse');
+                    var collapsed = el.isCollapsed();
+                    var f1 = collapsed === true ? "expand" : "collapse";
+                    var f2 = collapsed === true ? "collapse" : "expand";
+                    el[f1]();
                     setTimeout(function(){
-                        el.close();
+                        el[f2]();
                     }, 2000);
                 </code></pre>
+
+                <p class="mb-4">
+                    You can change attribute <code>data-collapsed</code> at runtime to change element state.
+                </p>
             </main>
         </div>
 

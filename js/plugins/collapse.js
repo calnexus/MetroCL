@@ -14,6 +14,7 @@ var Collapse = {
     },
 
     options: {
+        collapsed: false,
         toggleElement: false,
         duration: METRO_ANIMATION_DURATION,
         onExpand: Metro.noop,
@@ -40,6 +41,10 @@ var Collapse = {
         var toggle;
 
         toggle = o.toggleElement !== false ? $(o.toggleElement) : element.siblings('.collapse-toggle').length > 0 ? element.siblings('.collapse-toggle') : element.siblings('a:nth-child(1)');
+
+        if (o.collapsed === true || element.attr("collapsed") === true) {
+            element.hide(0);
+        }
 
         toggle.on('click', function(e){
             if (element.css('display') === 'block' && !element.hasClass('keep-open')) {
@@ -106,9 +111,9 @@ var Collapse = {
     toggleState: function(){
         var element = this.element;
         if (element.attr("collapsed") === true || element.data("collapsed") === true) {
-            this.expand();
-        } else {
             this.collapse();
+        } else {
+            this.expand();
         }
     },
 
