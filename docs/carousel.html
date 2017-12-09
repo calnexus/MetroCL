@@ -69,6 +69,7 @@
                         <a href="#_carousel_effects">Effects</a>
                         <ul>
                             <li class="toc-entry"><a href="#_carousel_effects_duration">Duration &amp; period</a></li>
+                            <li class="toc-entry"><a href="#_carousel_effects_duration_slide">Slide timings</a></li>
                             <li class="toc-entry"><a href="#_carousel_effects_func">Easing function</a></li>
                         </ul>
                     </li>
@@ -398,10 +399,10 @@
                 <h3 id="_carousel_effects">Effects</h3>
                 <p>
                     Slide change is accompanied by various effects. Currently supports four effects:
-                        <code>slide</code> (default),
-                        <code>switch</code>,
-                        <code>fade</code>,
-                        <code>slowdown</code>.
+                        <code>slide</code>,
+                        <code>slide-v</code>,
+                        <code>switch</code> and
+                        <code>fade</code>.
                 </p>
                 <div class="example">
                     <div class="row">
@@ -488,6 +489,45 @@
                     ...
                     &lt;/div&gt;
                 </code></pre>
+
+                <h4 id="_carousel_effects_duration_slide">Slide timings</h4>
+                <p>
+                    Also, you can set <code>duration</code> and <code>period</code> option individual for each slide in carousel.
+                </p>
+                <div class="example">
+                    <div data-role="carousel"
+                         data-height="200"
+                         data-cls-controls="fg-cyan"
+                         data-effect="slide"
+                         data-controls="false"
+                         data-bullets="false"
+                         data-auto-start="true">
+                        <div class="slide fg-white d-flex flex-align-center flex-justify-center" data-cover="images/bg-1.jpg" data-period="3000">This slide showing 3sec</div>
+                        <div class="slide d-flex flex-align-center flex-justify-center" data-cover="images/bg-2.jpg" data-period="5000">This slide showing 5sec</div>
+                        <div class="slide d-flex flex-align-center flex-justify-center" data-cover="images/bg-3.jpg" data-period="1000">This slide showing 1sec</div>
+                        <div class="slide d-flex flex-align-center flex-justify-center" data-cover="images/bg-4.jpg" data-period="10000">This slide showing 10sec</div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="carousel"
+                         data-height="200"
+                         data-cls-controls="fg-cyan"
+                         data-effect="slide"
+                         data-controls="false"
+                         data-bullets="false"
+                         data-auto-start="true"&gt;
+                        &lt;div class="slide" data-cover="images/bg-1.jpg"
+                             data-period="3000"&gt;This slide showing 3sec&lt;/div&gt;
+                        &lt;div class="slide" data-cover="images/bg-2.jpg"
+                             data-period="5000"&gt;This slide showing 5sec&lt;/div&gt;
+                        &lt;div class="slide" data-cover="images/bg-3.jpg"
+                             data-period="1000"&gt;This slide showing 1sec&lt;/div&gt;
+                        &lt;div class="slide" data-cover="images/bg-4.jpg"
+                             data-period="10000"&gt;This slide showing 10sec&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+
                 <h4 id="_carousel_effects_func">Easing function</h4>
                 <p>
                     For effect <code>slide</code> you can use additional parameter: <code>effectFunc</code>, which can be set via the <code>data-effect-func="..."</code> attribute.
