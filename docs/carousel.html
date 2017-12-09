@@ -406,8 +406,8 @@
                 <div class="example">
                     <div class="row">
                         <div class="cell-md-6">
-                            <h5>Slide</h5>
-                            <div data-role="carousel" data-height="200" data-cls-controls="fg-cyan" data-effect="slide" data-controls="false" data-bullets="false" data-auto-start="true">
+                            <h5>switch</h5>
+                            <div data-role="carousel" data-height="200" data-cls-controls="fg-cyan" data-effect="switch" data-controls="false" data-bullets="false" data-auto-start="true">
                                 <div class="slide" data-cover="images/bg-1.jpg"></div>
                                 <div class="slide" data-cover="images/bg-2.jpg"></div>
                                 <div class="slide" data-cover="images/bg-3.jpg"></div>
@@ -415,8 +415,8 @@
                             </div>
                         </div>
                         <div class="cell-md-6">
-                            <h5>Switch</h5>
-                            <div data-role="carousel" data-height="200" data-cls-controls="fg-cyan" data-effect="switch" data-controls="false" data-bullets="false" data-auto-start="true">
+                            <h5>fade</h5>
+                            <div data-role="carousel" data-height="200" data-cls-controls="fg-cyan" data-effect="fade" data-controls="false" data-bullets="false" data-auto-start="true">
                                 <div class="slide" data-cover="images/bg-1.jpg"></div>
                                 <div class="slide" data-cover="images/bg-2.jpg"></div>
                                 <div class="slide" data-cover="images/bg-3.jpg"></div>
@@ -426,8 +426,8 @@
                     </div>
                     <div class="row mt-2">
                         <div class="cell-md-6">
-                            <h5>Fade</h5>
-                            <div data-role="carousel" data-height="200" data-cls-controls="fg-cyan" data-effect="fade" data-controls="false" data-bullets="false" data-auto-start="true">
+                            <h5>slide</h5>
+                            <div data-role="carousel" data-height="200" data-cls-controls="fg-cyan" data-effect="slide" data-controls="false" data-bullets="false" data-auto-start="true">
                                 <div class="slide" data-cover="images/bg-1.jpg"></div>
                                 <div class="slide" data-cover="images/bg-2.jpg"></div>
                                 <div class="slide" data-cover="images/bg-3.jpg"></div>
@@ -435,8 +435,8 @@
                             </div>
                         </div>
                         <div class="cell-md-6">
-                            <h5>Slowdown</h5>
-                            <div data-role="carousel" data-height="200" data-cls-controls="fg-cyan" data-effect="slowdown" data-controls="false" data-bullets="false" data-auto-start="true">
+                            <h5>slide-v</h5>
+                            <div data-role="carousel" data-height="200" data-cls-controls="fg-cyan" data-effect="slide-v" data-controls="false" data-bullets="false" data-auto-start="true">
                                 <div class="slide" data-cover="images/bg-1.jpg"></div>
                                 <div class="slide" data-cover="images/bg-2.jpg"></div>
                                 <div class="slide" data-cover="images/bg-3.jpg"></div>
@@ -455,10 +455,6 @@
                     &lt;/div&gt;
 
                     &lt;div data-role="carousel" data-effect="fade"&gt;
-                    ...
-                    &lt;/div&gt;
-
-                    &lt;div data-role="carousel" data-effect="slowdown"&gt;
                     ...
                     &lt;/div&gt;
                 </code></pre>
@@ -585,7 +581,7 @@
                         <td>effect</td>
                         <td><code>data-effect</code></td>
                         <td>slide</td>
-                        <td>The effect for carousel, can be slide, switch, fade or slowdown</td>
+                        <td>The effect for carousel, can be slide, slide-v, switch or fade</td>
                     </tr>
                     <tr>
                         <td>effectFunc</td>
@@ -655,6 +651,12 @@
                     </tr>
                     </tbody>
                 </table>
+                <p>
+                    You can set a number of option for each slide:
+                        <code>period</code>,
+                        <code>duration</code>,
+                        <code>cover</code>.
+                </p>
 
                 <h3 id="_carousel_events">Events</h3>
                 <p>

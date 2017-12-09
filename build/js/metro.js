@@ -297,6 +297,11 @@ var Animation = {
     duration: METRO_ANIMATION_DURATION,
     func: "swing",
 
+    switch: function(current, next){
+        current.hide();
+        next.css({top: 0, left: 0}).show();
+    },
+
     slideUp: function(current, next, duration, func){
         var h = current.parent().outerHeight(true);
         if (duration === undefined) {duration = this.duration;}
@@ -307,6 +312,7 @@ var Animation = {
 
         next.css({
             top: h,
+            left: 0,
             zIndex: 2
         }).animate({
             top: 0
@@ -322,6 +328,7 @@ var Animation = {
         }, duration, func);
 
         next.css({
+            left: 0,
             top: -h,
             zIndex: 2
         }).animate({
@@ -366,7 +373,10 @@ var Animation = {
         current.animate({
             opacity: 0
         }, duration);
-        next.animate({
+        next.css({
+            top: 0,
+            left: 0
+        }).animate({
             opacity: 1
         }, duration);
     }
@@ -3798,7 +3808,7 @@ var Carousel = {
         effect: "slide", // slide, fade, switch, slowdown, custom
         effectFunc: "linear",
         direction: "left", //left, right
-        duration: 1000,
+        duration: METRO_ANIMATION_DURATION,
         period: 5000,
         stopOnMouse: true,
 
@@ -3913,36 +3923,58 @@ var Carousel = {
 
     _start: function(){
         var that = this, element = this.element, o = this.options;
-
-        this.interval = setInterval(function () {
-            if (o.direction === 'left') {
-                that._slideTo('next');
-            } else {
-                that._slideTo('prior');
-            }
-        }, o.period);
-
+        this._run();
         Utils.exec(o.onStart, [element]);
+    },
+
+    _run: function(){
+        var that = this, element = this.element, o = this.options;
+        var period = o.period;
+        var current = this.slides[this.currentIndex];
+
+        if (current.data("period") !== undefined) {
+            period = current.data("period");
+        }
+
+        this.interval = setTimeout(function run() {
+            var t = o.direction === 'left' ? 'next' : 'prior';
+            that._slideTo(t, true);
+        }, period);
+    },
+
+    _stop: function(){
+        clearInterval(this.interval);
+        this.interval = false;
     },
 
     _createSlides: function(){
         var that = this, element = this.element, o = this.options;
         var slides = element.find(".slide");
 
-        $.each(slides, function(){
+        $.each(slides, function(i){
             var slide = $(this);
             if (slide.data("cover") !== undefined) {
                 slide.css({
                     backgroundImage: "url("+slide.data('cover')+")",
                     backgroundSize: "cover",
-                    // backgroundPosition: "center",
                     backgroundRepeat: "no-repeat"
                 });
             }
 
-            slide.css({
-                left: "100%"
-            });
+            if (i !== 0) {
+                switch (o.effect) {
+                    case "switch":
+                    case "slide":
+                        slide.css("left", "100%");
+                        break;
+                    case "slide-v":
+                        slide.css("top", "100%");
+                        break;
+                    case "fade":
+                        slide.css("opacity", "0");
+                        break;
+                }
+            }
 
             slide.addClass(o.clsSlide);
 
@@ -3950,7 +3982,6 @@ var Carousel = {
         });
 
         this.currentIndex = 0;
-        this.slides[this.currentIndex].css("left", "0");
         this.current = this.slides[this.currentIndex];
     },
 
@@ -4018,14 +4049,14 @@ var Carousel = {
 
         element.on("click", ".carousel-switch-next", function(e){
             if (that.isAnimate === false) {
-                that._slideTo("next");
+                that._slideTo("next", false);
                 Utils.exec(o.onNextClick, [element, e])
             }
         });
 
         element.on("click", ".carousel-switch-prev", function(e){
             if (that.isAnimate === false) {
-                that._slideTo("prev");
+                that._slideTo("prev", false);
                 Utils.exec(o.onPrevClick, [element, e])
             }
         });
@@ -4036,7 +4067,7 @@ var Carousel = {
                     element.find("[class*=carousel-switch]").fadeIn();
                     element.find(".carousel-bullets").fadeIn();
                 }
-                clearInterval(that.interval);
+                that._stop();
                 Utils.exec(o.onMouseEnter, [element, e])
             });
             element.on(Metro.eventLeave, function (e) {
@@ -4090,8 +4121,8 @@ var Carousel = {
         element.find(".carousel-bullet:nth-child("+(this.currentIndex+1)+")").addClass("bullet-on").addClass(o.clsBulletOn);
     },
 
-    _slideTo: function(to){
-        var element = this.element, o = this.options;
+    _slideTo: function(to, interval){
+        var that = this, element = this.element, o = this.options;
         var current, next;
 
         if (to === undefined) {
@@ -4114,69 +4145,62 @@ var Carousel = {
 
         next = this.slides[this.currentIndex];
 
-        this._effect(current, next, o.effect, to);
+        this._effect(current, next, o.effect, to, interval);
 
         element.find(".carousel-bullet").removeClass("bullet-on").removeClass(o.clsBulletOn);
         element.find(".carousel-bullet:nth-child("+(this.currentIndex+1)+")").addClass("bullet-on").addClass(o.clsBulletOn);
+
     },
 
-    _effect: function(current, next, effect, to){
+    _effect: function(current, next, effect, to, interval){
         var that = this, element = this.element, o = this.options;
-        var out = element.width();
+        var duration = o.duration;
+        var func, effectFunc = o.effectFunc;
+        var period = o.period;
+
+        if (next.data('duration') !== undefined) {
+            duration = next.data('duration');
+        }
+
+        if (next.data('effectFunc') !== undefined) {
+            effectFunc = next.data('effectFunc');
+        }
+
+        if (effect === 'switch') {
+            duration = 0;
+        }
 
         current.stop(true, true);
         next.stop(true, true);
         this.isAnimate = true;
 
-        function _slide(){
-            setTimeout(function(){that.isAnimate = false;}, o.duration);
-            current.animate({
-                left: to === "next" ? -out : out
-            }, o.duration, o.effectFunc);
-            next.css({
-                left: to === "next" ? out : -out
-            }).animate({
-                left: 0
-            }, o.duration, o.effectFunc);
+        setTimeout(function(){that.isAnimate = false;}, duration);
+
+        if (effect === 'slide') {
+            func = to === 'next' ? 'slideLeft': 'slideRight';
         }
 
-        function _switch(){
-            setTimeout(function(){that.isAnimate = false;}, 0);
-            current.hide();
-            next.hide().css("left", 0).show();
-        }
-
-        function _fade(){
-            setTimeout(function(){that.isAnimate = false;}, o.duration);
-            current.fadeOut(o.duration);
-            next.hide().css("left", 0).fadeIn(o.duration);
-        }
-
-        function _slowdown(){
-            setTimeout(function(){that.isAnimate = false;}, o.duration);
-            var options = {
-                'duration': o.duration,
-                'easing': 'doubleSqrt'
-            };
-            $.easing.doubleSqrt = function(t) {
-                return Math.sqrt(Math.sqrt(t));
-            };
-
-            current.animate({
-                left: to === "next" ? -out : out
-            }, options);
-            next.css({
-                left: to === "next" ? out : -out
-            }).animate({
-                left: 0
-            }, options);
+        if (effect === 'slide-v') {
+            func = to === 'next' ? 'slideUp': 'slideDown';
         }
 
         switch (effect) {
-            case "slowdown": _slowdown(); break;
-            case "fade": _fade(); break;
-            case "switch": _switch(); break;
-            default: _slide();
+            case 'slide': Animation[func](current, next, duration, effectFunc); break;
+            case 'slide-v': Animation[func](current, next, duration, effectFunc); break;
+            case 'fade': Animation['fade'](current, next, duration, effectFunc); break;
+            default: Animation['switch'](current, next);
+        }
+
+        if (interval === true) {
+
+            if (next.data('period') !== undefined) {
+                period = next.data('period');
+            }
+
+            this.interval = setTimeout(function run() {
+                var t = o.direction === 'left' ? 'next' : 'prior';
+                that._slideTo(t, true);
+            }, period);
         }
     },
 

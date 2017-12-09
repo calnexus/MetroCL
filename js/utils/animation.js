@@ -3,6 +3,11 @@ var Animation = {
     duration: METRO_ANIMATION_DURATION,
     func: "swing",
 
+    switch: function(current, next){
+        current.hide();
+        next.css({top: 0, left: 0}).show();
+    },
+
     slideUp: function(current, next, duration, func){
         var h = current.parent().outerHeight(true);
         if (duration === undefined) {duration = this.duration;}
@@ -13,6 +18,7 @@ var Animation = {
 
         next.css({
             top: h,
+            left: 0,
             zIndex: 2
         }).animate({
             top: 0
@@ -28,6 +34,7 @@ var Animation = {
         }, duration, func);
 
         next.css({
+            left: 0,
             top: -h,
             zIndex: 2
         }).animate({
@@ -72,7 +79,10 @@ var Animation = {
         current.animate({
             opacity: 0
         }, duration);
-        next.animate({
+        next.css({
+            top: 0,
+            left: 0
+        }).animate({
             opacity: 1
         }, duration);
     }
