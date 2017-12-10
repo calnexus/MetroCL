@@ -43,6 +43,8 @@ var Switch = {
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
 
+        element.attr("type", "checkbox");
+
         if (prev.length === 0) {
             parent.prepend(container);
         } else {

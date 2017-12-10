@@ -1,0 +1,66 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+.treeview {
+    margin: 0 0 0 8px;
+    padding: 0;
+    font-size: .8125rem;
+    list-style: none inside;
+    display: block;
+    position: relative;
+    user-select: none;
+}
+
+.treeview {
+    li {
+        display: block;
+        position: relative;
+        padding: 2px 0 2px 0;
+        cursor: pointer;
+
+        .icon {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            font-size: 16px;
+            left: 0;
+            top: 4px;
+            line-height: 16px;
+        }
+
+        .caption {
+            position: relative;
+        }
+
+        .icon ~ .caption {
+            margin-left: 20px;
+        }
+
+        .dropdown-toggle {
+            position: absolute;
+            left: 0;
+            .translateX(-100%);
+            .square(24, px);
+
+            &::before {
+                .rotate(-135deg);
+            }
+        }
+
+        &.expanded {
+            .dropdown-toggle {
+                &::before {
+                    .rotate(-45deg);
+                }
+            }
+        }
+    }
+
+    ul {
+        margin: 0 0 0 8px;
+        padding: 0;
+        list-style: none inside;
+        display: block;
+        position: relative;
+    }
+}

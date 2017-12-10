@@ -8,14 +8,13 @@ special.scrollstart = {
         var timer,
             handler =  function(evt) {
 
-                var _self = this,
-                    _args = arguments;
+                var _self = this;
 
                 if (timer) {
                     clearTimeout(timer);
                 } else {
                     evt.type = 'scrollstart';
-                    jQuery.event.dispatch.apply(_self, _args);
+                    jQuery.event.dispatch.apply(_self, arguments);
                 }
 
                 timer = setTimeout( function(){
@@ -39,8 +38,7 @@ special.scrollstop = {
         var timer,
             handler = function(evt) {
 
-                var _self = this,
-                    _args = arguments;
+                var _self = this;
 
                 if (timer) {
                     clearTimeout(timer);
@@ -50,7 +48,7 @@ special.scrollstop = {
 
                     timer = null;
                     evt.type = 'scrollstop';
-                    jQuery.event.dispatch.apply(_self, _args);
+                    jQuery.event.dispatch.apply(_self, arguments);
 
                 }, special.scrollstop.latency);
 

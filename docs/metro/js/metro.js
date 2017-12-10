@@ -1550,14 +1550,13 @@ special.scrollstart = {
         var timer,
             handler =  function(evt) {
 
-                var _self = this,
-                    _args = arguments;
+                var _self = this;
 
                 if (timer) {
                     clearTimeout(timer);
                 } else {
                     evt.type = 'scrollstart';
-                    jQuery.event.dispatch.apply(_self, _args);
+                    jQuery.event.dispatch.apply(_self, arguments);
                 }
 
                 timer = setTimeout( function(){
@@ -1581,8 +1580,7 @@ special.scrollstop = {
         var timer,
             handler = function(evt) {
 
-                var _self = this,
-                    _args = arguments;
+                var _self = this;
 
                 if (timer) {
                     clearTimeout(timer);
@@ -1592,7 +1590,7 @@ special.scrollstop = {
 
                     timer = null;
                     evt.type = 'scrollstop';
-                    jQuery.event.dispatch.apply(_self, _args);
+                    jQuery.event.dispatch.apply(_self, arguments);
 
                 }, special.scrollstop.latency);
 
@@ -4459,6 +4457,7 @@ var Checkbox = {
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
 
+        element.attr("type", "checkbox");
         element.appendTo(container);
 
         if (prev.length === 0) {
@@ -8022,6 +8021,8 @@ var Radio = {
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
 
+        element.attr("type", "radio");
+
         if (prev.length === 0) {
             parent.prepend(container);
         } else {
@@ -9633,6 +9634,8 @@ var Switch = {
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
 
+        element.attr("type", "checkbox");
+
         if (prev.length === 0) {
             parent.prepend(container);
         } else {
@@ -10215,6 +10218,100 @@ var Toast = {
 };
 
 $.Metro['toast'] = Toast;
+// Source: js/plugins/treeview.js
+var Treeview = {
+    init: function( options, elem ) {
+        this.options = $.extend( {}, this.options, options );
+        this.elem  = elem;
+        this.element = $(elem);
+
+        this._setOptionsFromDOM();
+        this._create();
+
+        return this;
+    },
+
+    options: {
+        effect: "slide",
+        duration: 100,
+        onTreeviewCreate: Metro.noop
+    },
+
+    _setOptionsFromDOM: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = $.parseJSON(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+    },
+
+    _create: function(){
+        var that = this, element = this.element, o = this.options;
+
+        this._createTree();
+        this._createEvents();
+
+        Utils.exec(o.onTreeviewCreate, [element]);
+    },
+
+    _createTree: function(){
+        var that = this, element = this.element, o = this.options;
+
+        element.addClass("treeview");
+    },
+
+    _createEvents: function(){
+        var that = this, element = this.element, o = this.options;
+
+        element.on("click", ".dropdown-toggle", function(e){
+            var toggle = $(this);
+            var node = toggle.parent();
+
+            that.toggleNode(node);
+
+            e.preventDefault();
+        });
+
+        element.on("dblclick", ".caption", function(e){
+            var node = $(this).parent();
+            var toggle = node.children(".dropdown-toggle");
+            var subtree = node.children("ul");
+
+            if (toggle.length > 0 || subtree.length > 0) {
+                that.toggleNode(node);
+            }
+
+            e.preventDefault();
+        })
+    },
+
+    toggleNode: function(node){
+        var o = this.options;
+        var func;
+
+        node.toggleClass("expanded");
+
+        if (o.effect === "slide") {
+            func = node.hasClass("expanded") !== true ? "slideUp" : "slideDown";
+        } else {
+            func = node.hasClass("expanded") !== true ? "fadeOut" : "fadeIn";
+        }
+
+        node.children("ul")[func](o.duration);
+    },
+
+    changeAttribute: function(attributeName){
+
+    }
+};
+
+Metro.plugin('treeview', Treeview);
 // Source: js/plugins/validator.js
 var ValidatorFuncs = {
     required: function(val){
@@ -10930,9 +11027,9 @@ var Video = {
         var height;
 
         switch (o.aspectRatio) {
-            case METRO_ASPECT_RATIO.SD: height = width * 3 / 4; break;
-            case METRO_ASPECT_RATIO.CINEMA: height = width * 9 / 21; break;
-            default: height = 9 * width / 16;
+            case METRO_ASPECT_RATIO.SD: height = Utils.aspectRatio(width, "4/3"); break;
+            case METRO_ASPECT_RATIO.CINEMA: height = Utils.aspectRatio(width, "21/9"); break;
+            default: height = Utils.aspectRatio(width, "16/9");
         }
 
         player.outerHeight(height);
