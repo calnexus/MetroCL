@@ -3940,12 +3940,11 @@ var Carousel = {
         if (["16/9", "21/9", "4/3"].indexOf(o.height) > -1) {
             height = Utils.aspectRatio(width, o.height);
         } else {
-            if (o.height.indexOf("@") > -1) {
+            if (String(o.height).indexOf("@") > -1) {
                 medias = Utils.strToArray(o.height.substr(1), "|");
                 $.each(medias, function(){
                     var media = Utils.strToArray(this, ",");
                     if (window.matchMedia(media[0]).matches) {
-
                         if (["16/9", "21/9", "4/3"].indexOf(media[1]) > -1) {
                             height = Utils.aspectRatio(width, media[1]);
                         } else {

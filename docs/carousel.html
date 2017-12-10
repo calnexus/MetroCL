@@ -221,6 +221,25 @@
                         </div>
                     </div>
                 </div>
+                <p>
+                    Also you can set <code>media</code> values for carousel height. Value can be in format:
+                    <strong>@ (media_query), value | (media_query), value | ...</strong>.
+                </p>
+                <pre><code class="html">
+                    &lt;div data-role="carousel"
+                         data-height="@ (max-width: 992px),500 | (max-width: 768px),350 | (max-width: 576px),100"&gt;
+                        &lt;div class="slide d-flex flex-justify-center flex-align-center"&gt;
+                            &lt;span class="h3"&gt;Slide&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+
+                    &lt;div data-role="carousel"
+                         data-height="@ (max-width: 992px),21/9 | (max-width: 768px),16/9 | (max-width: 576px),4/3"&gt;
+                        &lt;div class="slide d-flex flex-justify-center flex-align-center"&gt;
+                            &lt;span class="h3"&gt;Slide&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
 
                 <h3 id="_carousel_controls">Controls</h3>
                 <p>
