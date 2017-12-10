@@ -23176,8 +23176,8 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   top: 0;
   left: 0;
   width: 100%;
-  height: auto;
-  overflow: auto;
+  height: 100%;
+  overflow: hidden;
 }
 .carousel.fixed-size .slide {
   overflow: hidden;

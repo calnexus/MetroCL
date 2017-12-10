@@ -3804,7 +3804,7 @@ var Carousel = {
     options: {
         autoStart: false,
         width: "100%",
-        height: "auto", // auto, px, %
+        height: "16/9", // 3/4, 21/9
         effect: "slide", // slide, fade, switch, slowdown, custom
         effectFunc: "linear",
         direction: "left", //left, right
@@ -3882,32 +3882,11 @@ var Carousel = {
             return ;
         }
 
-        $.each(slides, function(){
-            var slide = $(this);
-            var height = slide.outerHeight(true);
-            if (maxHeight <= height) {
-                maxHeight = height;
-            }
-        });
-
-        this.height = o.height !== "auto" ? o.height : maxHeight;
-        this.width = o.width;
-
-        slides.outerHeight(this.height);
-
-        element.css({
-            height: this.height,
-            width: this.width
-        });
-
-        if (o.height !== "auto") {
-            element.addClass("fixed-size");
-        }
-
         this._createSlides();
         this._createControls();
         this._createBullets();
         this._createEvents();
+        this._resize();
 
         if (o.controlsOnMouse === true) {
             element.find("[class*=carousel-switch]").hide();
@@ -3923,12 +3902,6 @@ var Carousel = {
 
     _start: function(){
         var that = this, element = this.element, o = this.options;
-        this._run();
-        Utils.exec(o.onStart, [element]);
-    },
-
-    _run: function(){
-        var that = this, element = this.element, o = this.options;
         var period = o.period;
         var current = this.slides[this.currentIndex];
 
@@ -3940,11 +3913,30 @@ var Carousel = {
             var t = o.direction === 'left' ? 'next' : 'prior';
             that._slideTo(t, true);
         }, period);
+        Utils.exec(o.onStart, [element]);
     },
 
     _stop: function(){
         clearInterval(this.interval);
         this.interval = false;
+    },
+
+    _resize: function(){
+        var that = this, element = this.element, o = this.options;
+        var width = element.outerWidth();
+        var height;
+
+        if (o.height === "16/9") {
+            height = width * 9 / 16;
+        } else if (o.height === "4/3") {
+            height = width * 3 / 4;
+        } else if (o.height === "21/9") {
+            height = width * 9 / 21;
+        } else {
+            height = parseInt(o.height);
+        }
+
+        element.outerHeight(height);
     },
 
     _createSlides: function(){
@@ -4094,6 +4086,10 @@ var Carousel = {
         element.on("click", ".slide", function(e){
             var slide = $(this);
             Utils.exec(o.onSlideClick, [slide, element, e])
+        });
+
+        $(window).on("resize", function(){
+            that._resize();
         });
     },
 

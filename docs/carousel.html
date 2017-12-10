@@ -55,6 +55,7 @@
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Carousel</a></li>
                     <li class="toc-entry"><a href="#_carousel_about">About</a></li>
+                    <li class="toc-entry"><a href="#_carousel_size">Carousel size</a></li>
                     <li class="toc-entry">
                         <a href="#_carousel_controls">Controls</a>
                         <ul>
@@ -76,7 +77,7 @@
                     <li class="toc-entry"><a href="#_carousel_options">Options</a></li>
                     <li class="toc-entry"><a href="#_carousel_events">Events</a></li>
                     <li class="toc-entry"><a href="#_carousel_methods">Methods</a></li>
-                    <li class="toc-entry"><a href="#_carousel_methods">Customize</a></li>
+                    <li class="toc-entry"><a href="#_carousel_customize">Customize</a></li>
                 </ul>
 
             </div>
@@ -180,6 +181,47 @@
                     &lt;/div&gt;
                 </code></pre>
 
+                <h3 id="_carousel_size">Carousel size</h3>
+                <p>
+                    You can set <code>carousel size</code> with attributes <code>data-width</code> (default: 100%) and <code>data-height</code> (default: 16/9).
+                    For <code>data-width</code> you can set <code>% value</code> or <code>px value</code>.
+                    For height you can set: <code>16/9</code> (default), <code>21/9</code>, <code>4/3</code> or <code>px value</code>.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-6">
+                            <div data-role="carousel" data-height="16/9" data-controls="false" data-bullets="false" class="border bd-gray border-4">
+                                <div class="slide d-flex flex-justify-center flex-align-center">
+                                    <span class="h3">16/9</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cell-md-6">
+                            <div data-role="carousel" data-height="21/9" data-controls="false" data-bullets="false" class="border bd-gray border-4">
+                                <div class="slide d-flex flex-justify-center flex-align-center">
+                                    <span class="h3">21/9</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="cell-md-6">
+                            <div data-role="carousel" data-height="4/3" data-controls="false" data-bullets="false" class="border bd-gray border-4">
+                                <div class="slide d-flex flex-justify-center flex-align-center">
+                                    <span class="h3">4/3</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cell-md-6">
+                            <div data-role="carousel" data-height="200" data-controls="false" data-bullets="false" class="border bd-gray border-4">
+                                <div class="slide d-flex flex-justify-center flex-align-center">
+                                    <span class="h3">Height 200px</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <h3 id="_carousel_controls">Controls</h3>
                 <p>
                     For sliding the slides user can use carousel <code>controls</code>, such as <code>left</code>, <code>right</code> and <code>bullets</code>.
@@ -189,7 +231,7 @@
                     <div class="row">
                         <div class="cell-md-6">
                             <h5 class="text-center">Inside</h5>
-                            <div data-role="carousel" data-height="200" data-cls-controls="fg-white">
+                            <div data-role="carousel" data-cls-controls="fg-white">
                                 <div class="slide" data-cover="images/1.jpg"></div>
                                 <div class="slide" data-cover="images/2.jpg"></div>
                                 <div class="slide" data-cover="images/3.jpg"></div>
@@ -197,7 +239,7 @@
                         </div>
                         <div class="cell-md-6">
                             <h5 class="text-center">Outside</h5>
-                            <div data-role="carousel" data-height="200" data-controls-outside="true">
+                            <div data-role="carousel" data-controls-outside="true">
                                 <div class="slide" data-cover="images/1.jpg"></div>
                                 <div class="slide" data-cover="images/2.jpg"></div>
                                 <div class="slide" data-cover="images/3.jpg"></div>
@@ -206,13 +248,13 @@
                     </div>
                 </div>
                 <pre><code>
-                    &lt;div data-role="carousel" data-height="200"&gt;
+                    &lt;div data-role="carousel"&gt;
                         &lt;div class="slide" data-cover="images/1.jpg"&gt;&lt;/div&gt;
                         &lt;div class="slide" data-cover="images/2.jpg"&gt;&lt;/div&gt;
                         &lt;div class="slide" data-cover="images/3.jpg"&gt;&lt;/div&gt;
                     &lt;/div&gt;
 
-                    &lt;div data-role="carousel" data-height="200" data-controls-outside="true"&gt;
+                    &lt;div data-role="carousel" data-controls-outside="true"&gt;
                         &lt;div class="slide" data-cover="images/1.jpg"&gt;&lt;/div&gt;
                         &lt;div class="slide" data-cover="images/2.jpg"&gt;&lt;/div&gt;
                         &lt;div class="slide" data-cover="images/3.jpg"&gt;&lt;/div&gt;
@@ -224,14 +266,14 @@
                     With attribute <code>data-controls-on-mouse="true"</code> you can set visible controls only if mouse enter to carousel.
                 </p>
                 <div class="example">
-                    <div data-role="carousel" data-height="200" data-controls-on-mouse="true" data-cls-controls="fg-white">
+                    <div data-role="carousel" data-controls-on-mouse="true" data-cls-controls="fg-white">
                         <div class="slide" data-cover="images/1.jpg"></div>
                         <div class="slide" data-cover="images/2.jpg"></div>
                         <div class="slide" data-cover="images/3.jpg"></div>
                     </div>
                 </div>
                 <pre><code class="html">
-                    &lt;div data-role="carousel" data-height="200"
+                    &lt;div data-role="carousel"
                          data-controls-on-mouse="true" data-cls-controls="fg-white"&gt;
                         &lt;div class="slide" data-cover="images/1.jpg"&gt;&lt;/div&gt;
                         &lt;div class="slide" data-cover="images/2.jpg"&gt;&lt;/div&gt;
@@ -247,7 +289,7 @@
                     <div class="row">
                         <div class="cell-md-6">
                             <h5 class="text-center">No left, right</h5>
-                            <div data-role="carousel" data-height="200" data-controls="false">
+                            <div data-role="carousel" data-controls="false">
                                 <div class="slide" data-cover="images/1.jpg"></div>
                                 <div class="slide" data-cover="images/2.jpg"></div>
                                 <div class="slide" data-cover="images/3.jpg"></div>
@@ -255,7 +297,7 @@
                         </div>
                         <div class="cell-md-6">
                             <h5 class="text-center">No bullets</h5>
-                            <div data-role="carousel" data-height="200" data-bullets="false" data-cls-controls="fg-white">
+                            <div data-role="carousel" data-bullets="false" data-cls-controls="fg-white">
                                 <div class="slide" data-cover="images/1.jpg"></div>
                                 <div class="slide" data-cover="images/2.jpg"></div>
                                 <div class="slide" data-cover="images/3.jpg"></div>
@@ -264,14 +306,14 @@
                     </div>
                 </div>
                 <pre><code class="html">
-                    &lt;div data-role="carousel" data-height="200"
+                    &lt;div data-role="carousel"
                          data-controls="false"&gt;
                         &lt;div class="slide" data-cover="images/1.jpg"&gt;&lt;/div&gt;
                         &lt;div class="slide" data-cover="images/2.jpg"&gt;&lt;/div&gt;
                         &lt;div class="slide" data-cover="images/3.jpg"&gt;&lt;/div&gt;
                     &lt;/div&gt;
 
-                    &lt;div data-role="carousel" data-height="200"
+                    &lt;div data-role="carousel"
                          data-bullets="false"&gt;
                         &lt;div class="slide" data-cover="images/1.jpg"&gt;&lt;/div&gt;
                         &lt;div class="slide" data-cover="images/2.jpg"&gt;&lt;/div&gt;
@@ -284,7 +326,7 @@
                     You can change <code>left</code> and <code>right</code> slides switchers symbols with attributes <code>data-control-next</code> and <code>data-control-prev</code>.
                 </p>
                 <div class="example">
-                    <div data-role="carousel" data-height="200"
+                    <div data-role="carousel"
                          data-cls-controls="fg-white"
                          data-control-next="<span class='mif-chevron-right'></span>"
                          data-control-prev="<span class='mif-chevron-left'></span>">
@@ -294,7 +336,7 @@
                     </div>
                 </div>
                 <pre><code class="html">
-                    &lt;div data-role="carousel" data-height="200"
+                    &lt;div data-role="carousel"
                          data-cls-controls="fg-white"
                          data-control-next="&lt;span class='mif-chevron-right'&gt;&lt;/span&gt;"
                          data-control-prev="&lt;span class='mif-chevron-left'&gt;&lt;/span&gt;"&gt;
@@ -314,14 +356,14 @@
                 <div class="example">
                     <div class="row">
                         <div class="cell-md-6">
-                            <div data-role="carousel" data-height="200" data-bullet-style="circle" data-controls="false">
+                            <div data-role="carousel" data-bullet-style="circle" data-controls="false">
                                 <div class="slide" data-cover="images/1.jpg"></div>
                                 <div class="slide" data-cover="images/2.jpg"></div>
                                 <div class="slide" data-cover="images/3.jpg"></div>
                             </div>
                         </div>
                         <div class="cell-md-6">
-                            <div data-role="carousel" data-height="200" data-bullet-style="square" data-controls="false">
+                            <div data-role="carousel" data-bullet-style="square" data-controls="false">
                                 <div class="slide" data-cover="images/1.jpg"></div>
                                 <div class="slide" data-cover="images/2.jpg"></div>
                                 <div class="slide" data-cover="images/3.jpg"></div>
@@ -330,14 +372,14 @@
                     </div>
                     <div class="row mt-2">
                         <div class="cell-md-6">
-                            <div data-role="carousel" data-height="200" data-bullet-style="rect" data-controls="false" data-bullets-position="left">
+                            <div data-role="carousel" data-bullet-style="rect" data-controls="false" data-bullets-position="left">
                                 <div class="slide" data-cover="images/1.jpg"></div>
                                 <div class="slide" data-cover="images/2.jpg"></div>
                                 <div class="slide" data-cover="images/3.jpg"></div>
                             </div>
                         </div>
                         <div class="cell-md-6">
-                            <div data-role="carousel" data-height="200" data-bullet-style="diamond" data-controls="false" data-bullets-position="right">
+                            <div data-role="carousel" data-bullet-style="diamond" data-controls="false" data-bullets-position="right">
                                 <div class="slide" data-cover="images/1.jpg"></div>
                                 <div class="slide" data-cover="images/2.jpg"></div>
                                 <div class="slide" data-cover="images/3.jpg"></div>
@@ -346,23 +388,23 @@
                     </div>
                 </div>
                 <pre><code class="html">
-                    &lt;div data-role="carousel" data-height="200" data-bullet-style="circle"&gt;
+                    &lt;div data-role="carousel" data-bullet-style="circle"&gt;
                         &lt;div class="slide" data-cover="images/1.jpg"&gt;&lt;/div&gt;
                         &lt;div class="slide" data-cover="images/2.jpg"&gt;&lt;/div&gt;
                         &lt;div class="slide" data-cover="images/3.jpg"&gt;&lt;/div&gt;
                     &lt;/div&gt;
-                    &lt;div data-role="carousel" data-height="200" data-bullet-style="square"&gt;
+                    &lt;div data-role="carousel" data-bullet-style="square"&gt;
                         &lt;div class="slide" data-cover="images/1.jpg"&gt;&lt;/div&gt;
                         &lt;div class="slide" data-cover="images/2.jpg"&gt;&lt;/div&gt;
                         &lt;div class="slide" data-cover="images/3.jpg"&gt;&lt;/div&gt;
                     &lt;/div&gt;
-                    &lt;div data-role="carousel" data-height="200"
+                    &lt;div data-role="carousel"
                         data-bullet-style="rect" data-bullets-position="left"&gt;
                         &lt;div class="slide" data-cover="images/1.jpg"&gt;&lt;/div&gt;
                         &lt;div class="slide" data-cover="images/2.jpg"&gt;&lt;/div&gt;
                         &lt;div class="slide" data-cover="images/3.jpg"&gt;&lt;/div&gt;
                     &lt;/div&gt;
-                    &lt;div data-role="carousel" data-height="200"
+                    &lt;div data-role="carousel"
                         data-bullet-style="diamond" data-bullets-position="right"&gt;
                         &lt;div class="slide" data-cover="images/1.jpg"&gt;&lt;/div&gt;
                         &lt;div class="slide" data-cover="images/2.jpg"&gt;&lt;/div&gt;
@@ -380,7 +422,7 @@
                     By default, <code>slide</code> not have <code>margin</code> or <code>padding</code>. You must set it manually if need.
                 </p>
                 <div class="example">
-                    <div data-role="carousel" data-height="200" data-cls-controls="fg-cyan">
+                    <div data-role="carousel" data-cls-controls="fg-cyan">
                         <div class="slide" data-cover="images/bg-1.jpg"></div>
                         <div class="slide" data-cover="images/bg-2.jpg"></div>
                         <div class="slide" data-cover="images/bg-3.jpg"></div>
@@ -388,7 +430,7 @@
                     </div>
                 </div>
                 <pre><code class="html">
-                    &lt;div data-role="carousel" data-height="200" data-cls-controls="fg-cyan"&gt;
+                    &lt;div data-role="carousel" data-cls-controls="fg-cyan"&gt;
                         &lt;div class="slide" data-cover="images/bg-1.jpg"&gt;&lt;/div&gt;
                         &lt;div class="slide" data-cover="images/bg-2.jpg"&gt;&lt;/div&gt;
                         &lt;div class="slide" data-cover="images/bg-3.jpg"&gt;&lt;/div&gt;
@@ -408,7 +450,7 @@
                     <div class="row">
                         <div class="cell-md-6">
                             <h5>switch</h5>
-                            <div data-role="carousel" data-height="200" data-cls-controls="fg-cyan" data-effect="switch" data-controls="false" data-bullets="false" data-auto-start="true">
+                            <div data-role="carousel" data-cls-controls="fg-cyan" data-effect="switch" data-controls="false" data-bullets="false" data-auto-start="true">
                                 <div class="slide" data-cover="images/bg-1.jpg"></div>
                                 <div class="slide" data-cover="images/bg-2.jpg"></div>
                                 <div class="slide" data-cover="images/bg-3.jpg"></div>
@@ -417,7 +459,7 @@
                         </div>
                         <div class="cell-md-6">
                             <h5>fade</h5>
-                            <div data-role="carousel" data-height="200" data-cls-controls="fg-cyan" data-effect="fade" data-controls="false" data-bullets="false" data-auto-start="true">
+                            <div data-role="carousel" data-cls-controls="fg-cyan" data-effect="fade" data-controls="false" data-bullets="false" data-auto-start="true">
                                 <div class="slide" data-cover="images/bg-1.jpg"></div>
                                 <div class="slide" data-cover="images/bg-2.jpg"></div>
                                 <div class="slide" data-cover="images/bg-3.jpg"></div>
@@ -428,7 +470,7 @@
                     <div class="row mt-2">
                         <div class="cell-md-6">
                             <h5>slide</h5>
-                            <div data-role="carousel" data-height="200" data-cls-controls="fg-cyan" data-effect="slide" data-controls="false" data-bullets="false" data-auto-start="true">
+                            <div data-role="carousel" data-cls-controls="fg-cyan" data-effect="slide" data-controls="false" data-bullets="false" data-auto-start="true">
                                 <div class="slide" data-cover="images/bg-1.jpg"></div>
                                 <div class="slide" data-cover="images/bg-2.jpg"></div>
                                 <div class="slide" data-cover="images/bg-3.jpg"></div>
@@ -437,7 +479,7 @@
                         </div>
                         <div class="cell-md-6">
                             <h5>slide-v</h5>
-                            <div data-role="carousel" data-height="200" data-cls-controls="fg-cyan" data-effect="slide-v" data-controls="false" data-bullets="false" data-auto-start="true">
+                            <div data-role="carousel" data-cls-controls="fg-cyan" data-effect="slide-v" data-controls="false" data-bullets="false" data-auto-start="true">
                                 <div class="slide" data-cover="images/bg-1.jpg"></div>
                                 <div class="slide" data-cover="images/bg-2.jpg"></div>
                                 <div class="slide" data-cover="images/bg-3.jpg"></div>
@@ -468,7 +510,6 @@
                 </p>
                 <div class="example">
                     <div data-role="carousel"
-                         data-height="200"
                          data-cls-controls="fg-cyan"
                          data-effect="slide"
                          data-controls="false"
@@ -496,7 +537,6 @@
                 </p>
                 <div class="example">
                     <div data-role="carousel"
-                         data-height="200"
                          data-cls-controls="fg-cyan"
                          data-effect="slide"
                          data-controls="false"
@@ -510,7 +550,6 @@
                 </div>
                 <pre><code class="html">
                     &lt;div data-role="carousel"
-                         data-height="200"
                          data-cls-controls="fg-cyan"
                          data-effect="slide"
                          data-controls="false"
@@ -537,7 +576,6 @@
                     <div class="row">
                         <div class="cell-md-6">
                             <div data-role="carousel"
-                                 data-height="200"
                                  data-cls-controls="fg-cyan"
                                  data-effect="slide"
                                  data-effect-func="easeOutBounce"
@@ -554,7 +592,6 @@
                         </div>
                         <div class="cell-md-6">
                             <div data-role="carousel"
-                                 data-height="200"
                                  data-cls-controls="fg-cyan"
                                  data-effect="slide"
                                  data-effect-func="easeInQuart"
@@ -614,8 +651,8 @@
                     <tr>
                         <td>height</td>
                         <td><code>data-height</code></td>
-                        <td>auto</td>
-                        <td>The height of carousel, can be auto, percent or int value</td>
+                        <td>16/9</td>
+                        <td>The height of carousel, can be: 16/9, 21/9, 4/3 or pixel value</td>
                     </tr>
                     <tr>
                         <td>effect</td>
@@ -800,7 +837,6 @@
                 </table>
                 <div class="example">
                     <div data-role="carousel" id="carousel_methods"
-                         data-height="200"
                          data-period="3000"
                          data-duration="1000">
                         <div class="slide" data-cover="images/bg-1.jpg"></div>
@@ -898,7 +934,7 @@
                 </table>
                 <div class="example">
                     <div data-role="carousel"
-                         data-height="300"
+                         data-height="21/9"
                          data-cls-controls="fg-red"
                          data-cls-bullet="bullet-big"
                          data-cls-bullet-on="bg-red drop-shadow"
@@ -916,7 +952,7 @@
                 </div>
                 <pre><code class="html">
                     &lt;div data-role="carousel"
-                         data-height="300"
+                         data-height="21/9"
                          data-cls-controls="fg-red"
                          data-cls-bullet="bullet-big"
                          data-cls-bullet-on="bg-red drop-shadow"
