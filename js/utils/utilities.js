@@ -565,6 +565,12 @@ var Utils = {
         return str.split(delimiter).map(function(s){
             return s.trim();
         })
+    },
+
+    aspectRatio: function(width, a){
+        if (a === "16/9") return width * 9 / 16;
+        if (a === "21/9") return width * 9 / 21;
+        if (a === "4/3") return width * 3 / 4;
     }
 };
 

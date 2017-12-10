@@ -2272,6 +2272,12 @@ var d = new Date().getTime();
         return str.split(delimiter).map(function(s){
             return s.trim();
         })
+    },
+
+    aspectRatio: function(width, a){
+        if (a === "16/9") return width * 9 / 16;
+        if (a === "21/9") return width * 9 / 21;
+        if (a === "4/3") return width * 3 / 4;
     }
 };
 
@@ -3909,6 +3915,10 @@ var Carousel = {
             period = current.data("period");
         }
 
+        if (this.slides.length <= 1) {
+            return ;
+        }
+
         this.interval = setTimeout(function run() {
             var t = o.direction === 'left' ? 'next' : 'prior';
             that._slideTo(t, true);
@@ -3925,18 +3935,32 @@ var Carousel = {
         var that = this, element = this.element, o = this.options;
         var width = element.outerWidth();
         var height;
+        var medias = [];
 
-        if (o.height === "16/9") {
-            height = width * 9 / 16;
-        } else if (o.height === "4/3") {
-            height = width * 3 / 4;
-        } else if (o.height === "21/9") {
-            height = width * 9 / 21;
+        if (["16/9", "21/9", "4/3"].indexOf(o.height) > -1) {
+            height = Utils.aspectRatio(width, o.height);
         } else {
-            height = parseInt(o.height);
+            if (o.height.indexOf("@") > -1) {
+                medias = Utils.strToArray(o.height.substr(1), "|");
+                $.each(medias, function(){
+                    var media = Utils.strToArray(this, ",");
+                    if (window.matchMedia(media[0]).matches) {
+
+                        if (["16/9", "21/9", "4/3"].indexOf(media[1]) > -1) {
+                            height = Utils.aspectRatio(width, media[1]);
+                        } else {
+                            height = parseInt(media[1]);
+                        }
+                    }
+                });
+            } else {
+                height = parseInt(o.height);
+            }
         }
 
-        element.outerHeight(height);
+        element.css({
+            height: height
+        });
     },
 
     _createSlides: function(){
