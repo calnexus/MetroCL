@@ -10288,7 +10288,7 @@ var Treeview = {
             }
 
             e.preventDefault();
-        })
+        });
     },
 
     toggleNode: function(node){

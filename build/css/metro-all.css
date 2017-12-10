@@ -25444,6 +25444,7 @@ video:-webkit-full-screen {
   list-style: none inside;
   display: block;
   position: relative;
+  font-weight: normal;
 }
 .ripple {
   display: block;
