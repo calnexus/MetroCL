@@ -15,7 +15,7 @@ var Textarea = {
         prepend: "",
         copyInlineStyles: true,
         clearButton: true,
-        clearButtonIcon: "<span class='mif-cross'></span>",
+        clearButtonIcon: "<span class='default-icon-cross'></span>",
         autoSize: false,
         disabled: false,
         onTextareaCreate: Metro.noop

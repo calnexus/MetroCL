@@ -25404,8 +25404,9 @@ video:-webkit-full-screen {
 .treeview li {
   display: block;
   position: relative;
-  padding: 2px 0 2px 0;
+  padding: 2px 0;
   cursor: pointer;
+  line-height: 1.25rem;
 }
 .treeview li .icon {
   position: absolute;
@@ -25422,29 +25423,73 @@ video:-webkit-full-screen {
 .treeview li .icon ~ .caption {
   margin-left: 20px;
 }
-.treeview li .dropdown-toggle {
+.treeview li .node-toggle {
+  position: relative;
+  cursor: pointer;
+  padding-right: 1.5rem!important;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.treeview li .node-toggle::before {
+  display: block;
+  position: absolute;
+  vertical-align: middle;
+  color: transparent;
+  font-size: 0;
+  content: "";
+  height: 0.3125rem;
+  width: 0.3125rem;
+  background-color: transparent;
+  border-left: 1px solid;
+  border-bottom: 1px solid;
+  border-color: #1d1d1d;
+  top: 50%;
+  left: 100%;
+  margin-left: -1rem;
+  margin-top: -0.1625rem;
+  z-index: 2;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  -webkit-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+  -webkit-transform-origin: center center 1px;
+          transform-origin: center center 1px;
+}
+.treeview li .node-toggle {
   position: absolute;
   left: 0;
+  top: 0;
   -webkit-transform: translateX(-100%);
           transform: translateX(-100%);
   width: 24px;
   height: 24px;
 }
-.treeview li .dropdown-toggle::before {
+.treeview li .node-toggle::before {
   -webkit-transform: rotate(-135deg);
           transform: rotate(-135deg);
 }
-.treeview li.expanded .dropdown-toggle::before {
+.treeview li.expanded > .node-toggle::before {
   -webkit-transform: rotate(-45deg);
           transform: rotate(-45deg);
 }
+.treeview li.current > .caption {
+  color: #000000;
+}
 .treeview ul {
-  margin: 0 0 0 8px;
+  margin: 0 0 0 1rem;
   padding: 0;
   list-style: none inside;
   display: block;
   position: relative;
   font-weight: normal;
+}
+.treeview .select .d-menu {
+  position: absolute;
+  left: 0;
+  margin: 0;
+  width: auto;
 }
 .ripple {
   display: block;
