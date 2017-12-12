@@ -10240,6 +10240,12 @@ var Treeview = {
     options: {
         effect: "slide",
         duration: 100,
+        onNodeClick: Metro.noop,
+        onNodeDblClick: Metro.noop,
+        onCheckClick: Metro.noop,
+        onRadioClick: Metro.noop,
+        onExpandNode: Metro.noop,
+        onCollapseNode: Metro.noop,
         onTreeviewCreate: Metro.noop
     },
 
@@ -10328,6 +10334,8 @@ var Treeview = {
                 node.append(that._createToggle());
                 if (node.data("closed") !== true) {
                     node.addClass("expanded");
+                } else {
+                    node.children("ul").hide();
                 }
             }
 
@@ -10352,11 +10360,13 @@ var Treeview = {
             element.find("li").removeClass("current");
             node.addClass("current");
 
+            Utils.exec(o.onNodeClick, [node, element]);
+
             e.preventDefault();
         });
 
         element.on("dblclick", "li > .caption", function(e){
-            var node = $(this).parent();
+            var node = $(this).closest("li");
             var toggle = node.children(".node-toggle");
             var subtree = node.children("ul");
 
@@ -10364,12 +10374,23 @@ var Treeview = {
                 that.toggleNode(node);
             }
 
+            Utils.exec(o.onNodeDblClick, [node, element]);
+
             e.preventDefault();
+        });
+
+        element.on("click", "input[type=radio]", function(e){
+            var check = $(this);
+            var checked = check.is(":checked");
+            var node = check.closest("li");
+
+            Utils.exec(o.onRadioClick, [checked, check, node, element]);
         });
 
         element.on("click", "input[type=checkbox]", function(e){
             var check = $(this);
             var checked = check.is(":checked");
+            var node = check.closest("li");
             var checks;
 
             // down
@@ -10404,19 +10425,24 @@ var Treeview = {
                     }
                 }
             });
+
+            Utils.exec(o.onCheckClick, [checked, check, node, element]);
+
         });
     },
 
     toggleNode: function(node){
-        var o = this.options;
+        var element = this.element, o = this.options;
         var func;
 
         node.toggleClass("expanded");
 
         if (o.effect === "slide") {
             func = node.hasClass("expanded") !== true ? "slideUp" : "slideDown";
+            Utils.exec(o.onCollapseNode, [node, element]);
         } else {
             func = node.hasClass("expanded") !== true ? "fadeOut" : "fadeIn";
+            Utils.exec(o.onExpandNode, [node, element]);
         }
 
         node.children("ul")[func](o.duration);
