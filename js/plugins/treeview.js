@@ -140,12 +140,43 @@ var Treeview = {
             e.preventDefault();
         });
 
-        element.on("click", ".checkbox > input, .switch > input", function(e){
+        element.on("click", "input[type=checkbox]", function(e){
             var check = $(this);
             var checked = check.is(":checked");
-            var li = check.closest("li");
+            var checks;
 
+            // down
+            checks = check.closest("li").find("ul input[type=checkbox]");
+            checks.prop("indeterminate", false);
+            checks.prop("checked", checked);
 
+            checks = [];
+
+            $.each(element.find("input[type=checkbox]"), function(){
+                checks.push(this);
+            });
+
+            $.each(checks.reverse(), function(){
+                var ch = $(this);
+                var children = ch.closest("li").children("ul").find("input[type=checkbox]").length;
+                var children_checked = ch.closest("li").children("ul").find("input[type=checkbox]:checked").length;
+
+                if (children > 0 && children_checked === 0) {
+                    ch.prop("indeterminate", false);
+                    ch.prop("checked", false);
+                }
+
+                if (children_checked === 0) {
+                    ch.prop("indeterminate", false);
+                } else {
+                    if (children_checked > 0 && children > children_checked) {
+                        ch.prop("indeterminate", true);
+                    } else if (children === children_checked) {
+                        ch.prop("indeterminate", false);
+                        ch.prop("checked", true);
+                    }
+                }
+            });
         });
     },
 

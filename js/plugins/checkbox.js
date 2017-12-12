@@ -43,6 +43,12 @@ var Checkbox = {
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
 
+        if (element.attr('id') === undefined) {
+            element.attr('id', Utils.uniqueId());
+        }
+
+        container.attr('for', element.attr('id'));
+
         element.attr("type", "checkbox");
         element.appendTo(container);
 
