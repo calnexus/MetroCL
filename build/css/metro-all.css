@@ -25491,6 +25491,58 @@ video:-webkit-full-screen {
   margin: 0;
   width: auto;
 }
+.listview {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+.listview.view-list,
+.listview.view-content {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+}
+.listview.view-small-icons,
+.listview.view-icons,
+.listview.view-tiles {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row;
+          flex-flow: row;
+}
+.listview li {
+  display: block;
+  cursor: pointer;
+}
+.listview li:hover {
+  background-color: #e5f3ff;
+}
+.listview.view-list {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  overflow: auto;
+}
+.listview.view-list li {
+  min-width: 160px;
+  line-height: 20px;
+  font-size: 14px;
+  padding: 1px 8px;
+}
+.listview.view-list .icon {
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+  font-size: 20px;
+}
+.listview.view-list .caption {
+  line-height: 20px;
+}
 .ripple {
   display: block;
   width: 0;

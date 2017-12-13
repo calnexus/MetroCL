@@ -90,6 +90,14 @@ window.METRO_POPOVER_MODE = {
     FOCUS: "focus"
 };
 
+window.METRO_LISTVIEW_MODE = {
+    LIST: "list",
+    CONTENT: "content",
+    ICONS: "icons",
+    SMALL_ICONS: "small-icons",
+    TILES: "tiles"
+};
+
 var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
 
 var Metro = {

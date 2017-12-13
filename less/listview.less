@@ -1,0 +1,53 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+.listview {
+    display: flex;
+    position: relative;
+    margin: 0;
+    padding: 0;
+
+    &.view-list, &.view-content {
+        flex-flow: column;
+    }
+
+    &.view-small-icons, &.view-icons, &.view-tiles {
+        flex-flow: row;
+    }
+}
+
+.listview {
+    li {
+        display: block;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #e5f3ff;
+        }
+    }
+}
+
+.listview {
+    &.view-list {
+
+        flex-flow: column nowrap;
+        overflow: auto;
+
+        li {
+            min-width: 160px;
+            line-height: 20px;
+            font-size: 14px;
+            padding: 1px 8px;
+        }
+
+        .icon {
+            .square(20, px);
+            padding: 2px;
+            font-size: 20px;
+        }
+
+        .caption {
+            line-height: 20px;
+        }
+    }
+}

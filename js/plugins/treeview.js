@@ -48,7 +48,7 @@ var Treeview = {
     _createIcon: function(data){
         var icon;
 
-        icon = Utils.isTag(data) ? $(data) : $("<span>").html(data);
+        icon = Utils.isTag(data) ? $(data) : $("<img>").attr("src", data);
         icon.addClass("icon");
 
         return icon;
