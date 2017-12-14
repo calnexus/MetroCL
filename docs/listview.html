@@ -73,25 +73,29 @@
                 <p>
                     To creating <code>listview</code> we use <code>&lt;ul&gt;</code> element with role <code>data-role="listview"</code>.
                     The items are defined with <code>&lt;li&gt;</code> element.
-                    A list can have multiple views: <code>list</code>, <code>content</code>,  <code>icons</code>,  <code>small-icons</code> and  <code>tiles</code>.
+                    A list can have multiple views: <code>list</code>, <code>content</code>, <code>icons</code>,  <code>icons-small</code>, <code>icons-large</code> and <code>tiles</code>.
                 </p>
                 <div class="example">
                     <div class="p-4 bg-light d-flex flex-justify-between">
-                        <input name="r1" data-role="radio" data-caption="List" checked>
-                        <input name="r1" data-role="radio" data-caption="Content">
-                        <input name="r1" data-role="radio" data-caption="Small icons">
-                        <input name="r1" data-role="radio" data-caption="Icons">
-                        <input name="r1" data-role="radio" data-caption="Tiles">
+                        <input name="r1" value="list" data-role="radio" data-caption="List" checked>
+                        <input name="r1" value="content" data-role="radio" data-caption="Content">
+                        <input name="r1" value="tiles" data-role="radio" data-caption="Tiles">
+                        <input name="r1" value="icons" data-role="radio" data-caption="Icons">
+                        <input name="r1" value="icons-medium" data-role="radio" data-caption="Medium icons">
+                        <input name="r1" value="icons-large" data-role="radio" data-caption="Large icons">
                     </div>
-                    <ul data-role="listview" data-mode="list" class="border bd-light p-4">
-                        <li data-icon="images/folder-icon.png" data-caption="Video"></li>
-                        <li data-icon="images/folder-icon.png" data-caption="Images"></li>
-                        <li data-icon="images/folder-icon.png" data-caption="Documents"></li>
-                        <li data-icon="images/folder-icon.png" data-caption="Downloads"></li>
-                        <li data-icon="images/folder-icon.png" data-caption="Desktop"></li>
-                        <li data-icon="images/document-icon.png" data-caption="desktop.ini"></li>
-                        <li data-icon="images/document-icon.png" data-caption="setup.exe"></li>
-                    </ul>
+                    <div class="border bd-light p-4">
+                        <ul data-role="listview" data-mode="list" id="listview-1">
+                            <li data-icon="<span class='mif-folder fg-orange'>" data-caption="Video"></li>
+                            <li data-icon="<span class='mif-folder fg-cyan'>" data-caption="Images"></li>
+                            <li data-icon="<span class='mif-folder fg-green'>" data-caption="Documents"></li>
+                            <li data-icon="<span class='mif-folder-download fg-blue'>" data-caption="Downloads"></li>
+                            <li data-icon="<span class='mif-folder'>" data-caption="Desktop"></li>
+                            <li data-icon="<span class='mif-file-empty'>" data-caption="desktop.ini"></li>
+                            <li data-icon="images/setup.png" data-caption="setup.exe"></li>
+                            <li data-icon="<span class='mif-file-empty'>" data-caption="file1.dat"></li>
+                        </ul>
+                    </div>
                 </div>
 
             </main>
@@ -106,5 +110,13 @@
     <script src="js/clipboard.min.js"></script>
     <script src="js/site.js"></script>
     <!-- ads-script -->
+    <script>
+        $("input[name=r1]").on("click", function(){
+            var checked = $(this).is(":checked");
+            if (checked) {
+                $("#listview-1").data("listview").view(this.value);
+            }
+        });
+    </script>
 </body>
 </html>

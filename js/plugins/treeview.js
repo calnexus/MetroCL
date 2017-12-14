@@ -15,6 +15,9 @@ var Treeview = {
         duration: 100,
         onNodeClick: Metro.noop,
         onNodeDblClick: Metro.noop,
+        onNodeDelete: Metro.noop,
+        onNodeInsert: Metro.noop,
+        onNodeClean: Metro.noop,
         onCheckClick: Metro.noop,
         onRadioClick: Metro.noop,
         onExpandNode: Metro.noop,
@@ -46,10 +49,11 @@ var Treeview = {
     },
 
     _createIcon: function(data){
-        var icon;
+        var icon, src;
 
-        icon = Utils.isTag(data) ? $(data) : $("<img>").attr("src", data);
-        icon.addClass("icon");
+        src = Utils.isTag(data) ? $(data) : $("<img>").attr("src", data);
+        icon = $("<span>").addClass("icon");
+        icon.html(src);
 
         return icon;
     },
@@ -242,16 +246,20 @@ var Treeview = {
         new_node = this._createNode(data);
 
         new_node.appendTo(target);
+
+        Utils.exec(o.onNodeInsert, [node, element]);
     },
 
     insertBefore: function(node, data){
         var new_node = this._createNode(data);
         new_node.insertBefore(node);
+        Utils.exec(this.options.onNodeInsert, [new_node, element]);
     },
 
     insertAfter: function(node, data){
         var new_node = this._createNode(data);
         new_node.insertAfter(node);
+        Utils.exec(this.options.onNodeInsert, [new_node, element]);
     },
 
     del: function(node){
@@ -264,12 +272,14 @@ var Treeview = {
             parent_node.removeClass("expanded");
             parent_node.children(".node-toggle").remove();
         }
+        Utils.exec(this.options.onNodeDelete, [node, element]);
     },
 
     clean: function(node){
         node.children("ul").remove();
         node.removeClass("expanded");
         node.children(".node-toggle").remove();
+        Utils.exec(this.options.onNodeClean, [node, element]);
     },
 
     changeAttribute: function(attributeName){

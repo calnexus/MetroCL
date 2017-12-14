@@ -94,7 +94,8 @@ window.METRO_LISTVIEW_MODE = {
     LIST: "list",
     CONTENT: "content",
     ICONS: "icons",
-    SMALL_ICONS: "small-icons",
+    ICONS_MEDIUM: "icons-medium",
+    ICONS_LARGE: "icons-large",
     TILES: "tiles"
 };
 

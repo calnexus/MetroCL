@@ -1,53 +1,221 @@
 @import (once) "include/vars";
 @import (once) "include/mixins";
 
+@listviewItemSelectedBorder: #84bcea;
+@listviewItemSelectedBackground: #cce8ff;
+@listviewItemHoverBackground: #e5f3ff;
+
 .listview {
     display: flex;
     position: relative;
     margin: 0;
     padding: 0;
+    max-height: 100%;
+    overflow: auto;
 
     &.view-list, &.view-content {
-        flex-flow: column;
+        flex-flow: column wrap;
     }
 
-    &.view-small-icons, &.view-icons, &.view-tiles {
-        flex-flow: row;
+    &.view-icons-medium, &.view-icons-large, &.view-icons, &.view-tiles {
+        flex-flow: row wrap;
     }
 }
 
 .listview {
     li {
-        display: block;
+        display: flex;
         cursor: pointer;
+        position: relative;
+        font-size: 13px;
+        border: 1px solid transparent;
 
         &:hover {
-            background-color: #e5f3ff;
+            background-color: @listviewItemHoverBackground;
         }
+    }
+
+    .icon {
+        text-align: center;
+        img {
+            max-width: 100%;
+            height: 100%;
+        }
+    }
+
+    [class*=mif-], img {
+        vertical-align: initial;
     }
 }
 
 .listview {
     &.view-list {
-
-        flex-flow: column nowrap;
-        overflow: auto;
-
         li {
             min-width: 160px;
-            line-height: 20px;
-            font-size: 14px;
+            line-height: 24px;
+            height: 24px;
             padding: 1px 8px;
+            flex-flow: row nowrap;
         }
 
         .icon {
-            .square(20, px);
-            padding: 2px;
-            font-size: 20px;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            font-size: 18px;
         }
 
         .caption {
             line-height: 20px;
+            .text-ellipsis();
+            padding-left: 24px;
+        }
+
+        .icon + .caption {
+            padding-left: 4px;
+        }
+    }
+
+    &.view-content {
+        li {
+            width: 100%;
+            height: 50px;
+            padding: 10px 16px;
+            flex-flow: row nowrap;
+        }
+
+        .icon {
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            font-size: 28px;
+        }
+
+        .caption {
+            padding-left: 64px;
+            font-size: 16px;
+            line-height: 32px;
+        }
+
+        .icon + .caption {
+            padding-left: 16px;
+        }
+
+        li + li {
+            border-top: 1px solid @borderColor;
+        }
+    }
+
+    &.view-tiles {
+        li {
+            width: 250px;
+            height: 56px;
+            padding: 5px 16px;
+            flex-flow: row nowrap;
+        }
+
+        .icon {
+            width: 46px;
+            height: 46px;
+            line-height: 46px;
+            font-size: 42px;
+        }
+
+        .caption {
+            padding-left: 78px;
+            font-size: 16px;
+            line-height: 46px;
+        }
+
+        .icon + .caption {
+            padding-left: 16px;
+        }
+    }
+
+    &.view-icons, &.view-icons-medium, &.view-icons-large {
+        li {
+            width: 74px;
+            height: auto;
+            padding: 8px;
+            flex-flow: column nowrap;
+            align-items: center;
+            margin: 2px;
+
+            .icon {
+                width: 44px;
+                height: 44px;
+                line-height: 44px;
+                font-size: 42px;
+            }
+
+            .caption {
+                line-height: 1.5;
+                .text-ellipsis();
+            }
+        }
+    }
+
+    &.view-icons-medium {
+        li {
+            width: 104px;
+            margin: 1px;
+
+            .icon {
+                width: 74px;
+                height: 74px;
+                line-height: 74px;
+                font-size: 70px;
+            }
+        }
+    }
+
+    &.view-icons-large {
+        li {
+            width: 270px;
+            margin: 2px;
+            padding: 30px;
+
+            .icon {
+                width: 162px;
+                height: 162px;
+                line-height: 162px;
+                font-size: 140px;
+            }
+        }
+    }
+}
+
+.listview {
+    li {
+        &.current {
+            background-color: @listviewItemSelectedBackground;
+            border-color: @listviewItemSelectedBorder!important;
+        }
+    }
+
+    li {
+        .node-toggle {
+            .toggle();
+        }
+
+        .node-toggle {
+            position: absolute;
+            left: 0;
+            top: 0;
+            .translateX(-100%);
+            .square(24, px);
+
+            &::before {
+                .rotate(-135deg);
+            }
+        }
+
+        &.expanded {
+            & > .node-toggle {
+                &::before {
+                    .rotate(-45deg);
+                }
+            }
         }
     }
 }

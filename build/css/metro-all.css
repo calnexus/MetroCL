@@ -25414,8 +25414,12 @@ video:-webkit-full-screen {
   height: 16px;
   font-size: 16px;
   left: 0;
-  top: 4px;
+  top: 2px;
   line-height: 16px;
+}
+.treeview li .icon img {
+  max-width: 100%;
+  height: 100%;
 }
 .treeview li .caption {
   position: relative;
@@ -25498,50 +25502,229 @@ video:-webkit-full-screen {
   position: relative;
   margin: 0;
   padding: 0;
+  max-height: 100%;
+  overflow: auto;
 }
 .listview.view-list,
 .listview.view-content {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-flow: column;
-          flex-flow: column;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
 }
-.listview.view-small-icons,
+.listview.view-icons-medium,
+.listview.view-icons-large,
 .listview.view-icons,
 .listview.view-tiles {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-flow: row;
-          flex-flow: row;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
 }
 .listview li {
-  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   cursor: pointer;
+  position: relative;
+  font-size: 13px;
+  border: 1px solid transparent;
 }
 .listview li:hover {
   background-color: #e5f3ff;
 }
-.listview.view-list {
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: column nowrap;
-          flex-flow: column nowrap;
-  overflow: auto;
+.listview .icon {
+  text-align: center;
+}
+.listview .icon img {
+  max-width: 100%;
+  height: 100%;
+}
+.listview [class*=mif-],
+.listview img {
+  vertical-align: initial;
 }
 .listview.view-list li {
   min-width: 160px;
-  line-height: 20px;
-  font-size: 14px;
+  line-height: 24px;
+  height: 24px;
   padding: 1px 8px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
 }
 .listview.view-list .icon {
   width: 20px;
   height: 20px;
-  padding: 2px;
-  font-size: 20px;
+  line-height: 20px;
+  font-size: 18px;
 }
 .listview.view-list .caption {
   line-height: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-left: 24px;
+}
+.listview.view-list .icon + .caption {
+  padding-left: 4px;
+}
+.listview.view-content li {
+  width: 100%;
+  height: 50px;
+  padding: 10px 16px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+}
+.listview.view-content .icon {
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  font-size: 28px;
+}
+.listview.view-content .caption {
+  padding-left: 64px;
+  font-size: 16px;
+  line-height: 32px;
+}
+.listview.view-content .icon + .caption {
+  padding-left: 16px;
+}
+.listview.view-content li + li {
+  border-top: 1px solid #dfdfdf;
+}
+.listview.view-tiles li {
+  width: 250px;
+  height: 56px;
+  padding: 5px 16px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+}
+.listview.view-tiles .icon {
+  width: 46px;
+  height: 46px;
+  line-height: 46px;
+  font-size: 42px;
+}
+.listview.view-tiles .caption {
+  padding-left: 78px;
+  font-size: 16px;
+  line-height: 46px;
+}
+.listview.view-tiles .icon + .caption {
+  padding-left: 16px;
+}
+.listview.view-icons li,
+.listview.view-icons-medium li,
+.listview.view-icons-large li {
+  width: 74px;
+  height: auto;
+  padding: 8px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 2px;
+}
+.listview.view-icons li .icon,
+.listview.view-icons-medium li .icon,
+.listview.view-icons-large li .icon {
+  width: 44px;
+  height: 44px;
+  line-height: 44px;
+  font-size: 42px;
+}
+.listview.view-icons li .caption,
+.listview.view-icons-medium li .caption,
+.listview.view-icons-large li .caption {
+  line-height: 1.5;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.listview.view-icons-medium li {
+  width: 104px;
+  margin: 1px;
+}
+.listview.view-icons-medium li .icon {
+  width: 74px;
+  height: 74px;
+  line-height: 74px;
+  font-size: 70px;
+}
+.listview.view-icons-large li {
+  width: 270px;
+  margin: 2px;
+  padding: 30px;
+}
+.listview.view-icons-large li .icon {
+  width: 162px;
+  height: 162px;
+  line-height: 162px;
+  font-size: 140px;
+}
+.listview li.current {
+  background-color: #cce8ff;
+  border-color: #84bcea !important;
+}
+.listview li .node-toggle {
+  position: relative;
+  cursor: pointer;
+  padding-right: 1.5rem!important;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.listview li .node-toggle::before {
+  display: block;
+  position: absolute;
+  vertical-align: middle;
+  color: transparent;
+  font-size: 0;
+  content: "";
+  height: 0.3125rem;
+  width: 0.3125rem;
+  background-color: transparent;
+  border-left: 1px solid;
+  border-bottom: 1px solid;
+  border-color: #1d1d1d;
+  top: 50%;
+  left: 100%;
+  margin-left: -1rem;
+  margin-top: -0.1625rem;
+  z-index: 2;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  -webkit-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+  -webkit-transform-origin: center center 1px;
+          transform-origin: center center 1px;
+}
+.listview li .node-toggle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+  width: 24px;
+  height: 24px;
+}
+.listview li .node-toggle::before {
+  -webkit-transform: rotate(-135deg);
+          transform: rotate(-135deg);
+}
+.listview li.expanded > .node-toggle::before {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
 }
 .ripple {
   display: block;
