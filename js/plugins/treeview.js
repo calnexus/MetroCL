@@ -109,7 +109,7 @@ var Treeview = {
 
             if (node.children("ul").length > 0) {
                 node.append(that._createToggle());
-                if (node.data("closed") !== true) {
+                if (node.data("collapsed") !== true) {
                     node.addClass("expanded");
                 } else {
                     node.children("ul").hide();

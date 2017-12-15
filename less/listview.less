@@ -6,29 +6,35 @@
 @listviewItemHoverBackground: #e5f3ff;
 
 .listview {
-    display: flex;
+    display: block;
     position: relative;
     margin: 0;
     padding: 0;
     max-height: 100%;
-    overflow: auto;
+    background-color: @white;
+    color: @dark;
+    //overflow: auto;
 
     &.view-list, &.view-content {
+        display: flex;
         flex-flow: column wrap;
     }
 
     &.view-icons-medium, &.view-icons-large, &.view-icons, &.view-tiles {
+        display: flex;
         flex-flow: row wrap;
     }
 }
 
 .listview {
-    li {
+    .node {
         display: flex;
         cursor: pointer;
         position: relative;
         font-size: 13px;
         border: 1px solid transparent;
+        //flex: 1;
+        //flex-grow: 0;
 
         &:hover {
             background-color: @listviewItemHoverBackground;
@@ -46,11 +52,18 @@
     [class*=mif-], img {
         vertical-align: initial;
     }
+
+    ul {
+        width: 100%;
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
 }
 
 .listview {
     &.view-list {
-        li {
+        .node {
             min-width: 160px;
             line-height: 24px;
             height: 24px;
@@ -77,7 +90,7 @@
     }
 
     &.view-content {
-        li {
+        .node {
             width: 100%;
             height: 50px;
             padding: 10px 16px;
@@ -101,13 +114,13 @@
             padding-left: 16px;
         }
 
-        li + li {
+        .node + .node {
             border-top: 1px solid @borderColor;
         }
     }
 
     &.view-tiles {
-        li {
+        .node {
             width: 250px;
             height: 56px;
             padding: 5px 16px;
@@ -133,10 +146,10 @@
     }
 
     &.view-icons, &.view-icons-medium, &.view-icons-large {
-        li {
+        .node {
             width: 74px;
             height: auto;
-            padding: 8px;
+            padding: 8px 8px 2px;
             flex-flow: column nowrap;
             align-items: center;
             margin: 2px;
@@ -150,13 +163,14 @@
 
             .caption {
                 line-height: 1.5;
-                .text-ellipsis();
+                white-space: normal;
+                text-align: center;
             }
         }
     }
 
     &.view-icons-medium {
-        li {
+        .node {
             width: 104px;
             margin: 1px;
 
@@ -170,7 +184,7 @@
     }
 
     &.view-icons-large {
-        li {
+        .node {
             width: 270px;
             margin: 2px;
             padding: 30px;
@@ -186,14 +200,30 @@
 }
 
 .listview {
-    li {
+    .node {
         &.current {
             background-color: @listviewItemSelectedBackground;
             border-color: @listviewItemSelectedBorder!important;
         }
     }
 
-    li {
+    .node-group {
+        display: block;
+        width: 100%;
+        position: relative;
+        line-height: 24px;
+        flex-shrink: 0;
+        cursor: pointer;
+        user-select: none;
+
+        & > .caption {
+            padding-left: 24px;
+            line-height: 24px;
+            font-size: 18px;
+        }
+    }
+
+    .node-group {
         .node-toggle {
             .toggle();
         }
@@ -202,7 +232,7 @@
             position: absolute;
             left: 0;
             top: 0;
-            .translateX(-100%);
+            //.translateX(-100%);
             .square(24, px);
 
             &::before {
@@ -217,5 +247,13 @@
                 }
             }
         }
+    }
+
+    .node-group + .node-group {
+        margin-top: .5rem;
+    }
+
+    .node-group + .listview {
+        margin-top: .5rem;
     }
 }

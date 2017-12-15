@@ -13,7 +13,9 @@ var Listview = {
 
     options: {
         effect: "slide",
+        duration: 100,
         view: METRO_LISTVIEW_MODE.LIST,
+        selectNode: true,
         onNodeInsert: Metro.noop,
         onNodeDelete: Metro.noop,
         onNodeClean: Metro.noop,
@@ -88,6 +90,7 @@ var Listview = {
         var nodes = element.find("li");
 
         element.addClass("listview");
+        element.find("ul").addClass("listview");
 
         $.each(nodes, function(){
             var node = $(this);
@@ -100,7 +103,13 @@ var Listview = {
                 node.prepend(that._createIcon(node.data('icon')));
             }
 
-            node.addClass("node");
+            if (node.children("ul").length > 0) {
+                node.addClass("node-group");
+                node.append(that._createToggle());
+                if (node.data("collapsed") !== true) node.addClass("expanded");
+            } else {
+                node.addClass("node");
+            }
         });
 
         this.view(o.view);
@@ -112,6 +121,21 @@ var Listview = {
         element.on("click", ".node", function(){
             element.find(".node").removeClass("current");
             $(this).toggleClass("current");
+        });
+
+        element.on("click", ".node-toggle", function(){
+            var node = $(this).closest("li");
+            that.toggleNode(node);
+        });
+
+        element.on("click", ".node-group > .caption", function(){
+            var node = $(this).closest("li");
+            node.find("li").addClass("current");
+        });
+
+        element.on("dblclick", ".node-group > .caption", function(){
+            var node = $(this).closest("li");
+            that.toggleNode(node);
         });
     },
 
@@ -130,10 +154,12 @@ var Listview = {
         o.view = v;
 
         $.each(this.views, function(){
-            element.removeClass("view-"+this)
+            element.removeClass("view-"+this);
+            element.find("ul").removeClass("view-"+this);
         });
 
-        element.addClass("view-" + o.view)
+        element.addClass("view-" + o.view);
+        element.find("ul").addClass("view-" + o.view);
     },
 
     toggleNode: function(node){

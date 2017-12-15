@@ -48,8 +48,9 @@
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">ListView</a></li>
                     <li class="toc-entry"><a href="#">About</a></li>
+                    <li class="toc-entry"><a href="#">Add item</a></li>
                     <li class="toc-entry"><a href="#">View types</a></li>
-                    <li class="toc-entry"><a href="#">Create item</a></li>
+                    <li class="toc-entry"><a href="#">Grouping</a></li>
                     <li class="toc-entry"><a href="#">Events</a></li>
                     <li class="toc-entry"><a href="#">Methods</a></li>
                     <li class="toc-entry"><a href="#">Observe</a></li>
@@ -76,6 +77,46 @@
                     A list can have multiple views: <code>list</code>, <code>content</code>, <code>icons</code>,  <code>icons-small</code>, <code>icons-large</code> and <code>tiles</code>.
                 </p>
                 <div class="example">
+                    <ul data-role="listview" data-mode="list">
+                        <li data-icon="<span class='mif-folder fg-orange'>" data-caption="Video"></li>
+                        <li data-icon="<span class='mif-folder fg-cyan'>" data-caption="Images"></li>
+                        <li data-icon="<span class='mif-folder fg-green'>" data-caption="Documents"></li>
+                        <li data-icon="<span class='mif-folder-download fg-blue'>" data-caption="Downloads"></li>
+                        <li data-icon="<span class='mif-folder'>" data-caption="Desktop"></li>
+                        <li data-icon="<span class='mif-file-empty'>" data-caption="desktop.ini"></li>
+                        <li data-icon="images/setup.png" data-caption="setup.exe"></li>
+                        <li data-icon="<span class='mif-file-empty'>" data-caption="file1.dat"></li>
+                    </ul>
+                </div>
+                <pre><code class="html">
+                    &lt;ul data-role="listview"&gt;
+                    ...
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <h3 id="_listview_node">Add item</h3>
+                <p>
+                    Each listview <code>item</code> are defined with <code>&lt;li&gt;</code> element and special attributes for it: <code>data-icon</code>, <code>data-caption</code>.
+                </p>
+                <pre><code class="html">
+                    &lt;li data-icon="&lt;span class='mif-file-empty'&gt;" data-caption="desktop.ini"&gt;&lt;/li&gt;
+                    &lt;li data-icon="images/setup.png" data-caption="setup.exe"&gt;&lt;/li&gt;
+                </code></pre>
+                <p>
+                    To create <code>icon</code> you can define <code>tag</code> (for font icons) or path to image for <code>&lt;img&gt;</code>.
+                </p>
+
+                <h3 id="_listview_view">View types</h3>
+                <p>
+                    A <code>listview</code> can have multiple views. To set view type use attribute <code>data-view="..."</code> with values:
+                        <code>list</code> (default),
+                        <code>content</code>,
+                        <code>tiles</code>,
+                        <code>icons</code>,
+                        <code>icons-medium</code> or
+                        <code>icons-large</code>. You can change this attribute at runtime to change listview view.
+                </p>
+                <div class="example">
                     <div class="p-4 bg-light d-flex flex-justify-between">
                         <input name="r1" value="list" data-role="radio" data-caption="List" checked>
                         <input name="r1" value="content" data-role="radio" data-caption="Content">
@@ -97,6 +138,74 @@
                         </ul>
                     </div>
                 </div>
+                <pre><code class="html">
+                    &lt;ul data-role="listview" data-view="tiles"&gt;
+                    ...
+                    &lt;ul&gt;
+                </code></pre>
+
+                <h3 id="_listview_grouping">Grouping</h3>
+                <p>
+                    Component <code>listview</code> is supports a <strong>one level grouping</strong> of items.
+                    To create <code>grouping</code> you must place list of items to second level. It's all.
+                </p>
+                <div class="example">
+                    <div class="p-4 bg-light d-flex flex-justify-between">
+                        <input name="r2" value="list" data-role="radio" data-caption="List" >
+                        <input name="r2" value="content" data-role="radio" data-caption="Content">
+                        <input name="r2" value="tiles" data-role="radio" data-caption="Tiles">
+                        <input name="r2" value="icons" data-role="radio" data-caption="Icons">
+                        <input name="r2" value="icons-medium" data-role="radio" data-caption="Medium icons" checked>
+                        <input name="r2" value="icons-large" data-role="radio" data-caption="Large icons">
+                    </div>
+                    <div class="border bd-light p-4">
+                        <ul data-role="listview" id="listview-2" data-view="icons-medium">
+                            <li data-caption="Folders">
+                                <ul>
+                                    <li data-icon="<span class='mif-folder fg-orange'>" data-caption="Video"></li>
+                                    <li data-icon="<span class='mif-folder fg-cyan'>" data-caption="Images"></li>
+                                    <li data-icon="<span class='mif-folder fg-green'>" data-caption="Documents"></li>
+                                    <li data-icon="<span class='mif-folder-download fg-blue'>" data-caption="Downloads"></li>
+                                    <li data-icon="<span class='mif-folder'>" data-caption="Desktop"></li>
+                                </ul>
+                            </li>
+                            <li data-caption="Devices and disks">
+                                <ul>
+                                    <li data-icon="images/disk-os.png" data-caption="System (C:)"></li>
+                                    <li data-icon="images/disk.png" data-caption="DS1 (D:)"></li>
+                                    <li data-icon="images/disk.png" data-caption="DS2 (E:)"></li>
+                                    <li data-icon="images/disk.png" data-caption="FreeAgent (G:)"></li>
+                                    <li data-icon="images/disk-network.png" data-caption="Network"></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;ul data-role="listview" data-view="icons-medium"&gt;
+                        &lt;li data-caption="Folders"&gt;
+                            &lt;ul&gt;
+                                &lt;li data-icon="&lt;span class='mif-folder fg-orange'&gt;" data-caption="Video"&gt;&lt;/li&gt;
+                                &lt;li data-icon="&lt;span class='mif-folder fg-cyan'&gt;" data-caption="Images"&gt;&lt;/li&gt;
+                                &lt;li data-icon="&lt;span class='mif-folder fg-green'&gt;" data-caption="Documents"&gt;&lt;/li&gt;
+                                &lt;li data-icon="&lt;span class='mif-folder-download fg-blue'&gt;" data-caption="Downloads"&gt;&lt;/li&gt;
+                                &lt;li data-icon="&lt;span class='mif-folder'&gt;" data-caption="Desktop"&gt;&lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                        &lt;li data-caption="Devices and disks"&gt;
+                            &lt;ul&gt;
+                                &lt;li data-icon="images/disk-os.png" data-caption="System (C:)"&gt;&lt;/li&gt;
+                                &lt;li data-icon="images/disk.png" data-caption="DS1 (D:)"&gt;&lt;/li&gt;
+                                &lt;li data-icon="images/disk.png" data-caption="DS2 (E:)"&gt;&lt;/li&gt;
+                                &lt;li data-icon="images/disk.png" data-caption="FreeAgent (G:)"&gt;&lt;/li&gt;
+                                &lt;li data-icon="images/disk-network.png" data-caption="Network"&gt;&lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <p>
+                    If you need to create collapsing node, add attribute <code>data-collapsed="true"</code> to item definition.
+                </p>
 
             </main>
         </div>
@@ -115,6 +224,12 @@
             var checked = $(this).is(":checked");
             if (checked) {
                 $("#listview-1").data("listview").view(this.value);
+            }
+        });
+        $("input[name=r2]").on("click", function(){
+            var checked = $(this).is(":checked");
+            if (checked) {
+                $("#listview-2").data("listview").view(this.value);
             }
         });
     </script>
