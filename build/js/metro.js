@@ -7045,12 +7045,14 @@ var Listview = {
         effect: "slide",
         duration: 100,
         view: METRO_LISTVIEW_MODE.LIST,
-        selectNode: true,
+        selectNode: false,
         onNodeInsert: Metro.noop,
         onNodeDelete: Metro.noop,
         onNodeClean: Metro.noop,
         onCollapseNode: Metro.noop,
         onExpandNode: Metro.noop,
+        onGroupNodeClick: Metro.noop,
+        onNodeClick: Metro.noop,
         onListviewCreate: Metro.noop
     },
 
@@ -7149,8 +7151,12 @@ var Listview = {
         var that = this, element = this.element, o = this.options;
 
         element.on("click", ".node", function(){
-            element.find(".node").removeClass("current");
-            $(this).toggleClass("current");
+            var node = $(this);
+            if (o.selectNode === true) {
+                element.find(".node").removeClass("current");
+                node.toggleClass("current");
+            }
+            Utils.exec(o.onNodeClick, [node, element])
         });
 
         element.on("click", ".node-toggle", function(){
@@ -7160,7 +7166,9 @@ var Listview = {
 
         element.on("click", ".node-group > .caption", function(){
             var node = $(this).closest("li");
-            node.find("li").addClass("current");
+            element.find(".node-group").removeClass("current-group");
+            node.addClass("current-group");
+            Utils.exec(o.onGroupNodeClick, [node, element])
         });
 
         element.on("dblclick", ".node-group > .caption", function(){
@@ -7218,9 +7226,14 @@ var Listview = {
         if (node === null) {
             target = element;
         } else {
+
+            if (!node.hasClass("node-group")) {
+                return ;
+            }
+
             target = node.children("ul");
             if (target.length === 0) {
-                target = $("<ul>").appendTo(node);
+                target = $("<ul>").addClass("listview").addClass("view-"+o.view).appendTo(node);
                 toggle = this._createToggle();
                 toggle.appendTo(node);
                 node.addClass("expanded");
@@ -7229,25 +7242,48 @@ var Listview = {
 
         new_node = this._createNode(data);
 
-        new_node.appendTo(target);
+        new_node.addClass("node").appendTo(target);
+
+        Utils.exec(o.onNodeInsert, [new_node, element]);
+
+        return new_node;
+    },
+
+    addGroup: function(data){
+        var that = this, element = this.element, o = this.options;
+        var node;
+
+        delete data['icon'];
+
+        node = this._createNode(data);
+        node.addClass("node-group").appendTo(element);
+        node.append(this._createToggle());
+        node.addClass("expanded");
+        node.append($("<ul>").addClass("listview").addClass("view-"+o.view));
 
         Utils.exec(o.onNodeInsert, [node, element]);
+
+        return node;
     },
 
     insertBefore: function(node, data){
+        var element = this.element, o = this.options;
         var new_node = this._createNode(data);
         new_node.insertBefore(node);
-        Utils.exec(this.options.onNodeInsert, [new_node, element]);
+        Utils.exec(o.onNodeInsert, [new_node, element]);
+        return new_node;
     },
 
     insertAfter: function(node, data){
+        var element = this.element, o = this.options;
         var new_node = this._createNode(data);
         new_node.insertAfter(node);
-        Utils.exec(this.options.onNodeInsert, [new_node, element]);
+        Utils.exec(o.onNodeInsert, [new_node, element]);
+        return new_node;
     },
 
     del: function(node){
-        var element = this.element;
+        var element = this.element, o = this.options;
         var parent_list = node.closest("ul");
         var parent_node = parent_list.closest("li");
         node.remove();
@@ -7256,14 +7292,15 @@ var Listview = {
             parent_node.removeClass("expanded");
             parent_node.children(".node-toggle").remove();
         }
-        Utils.exec(this.options.onNodeDelete, [node, element]);
+        Utils.exec(o.onNodeDelete, [node, element]);
     },
 
     clean: function(node){
+        var element = this.element, o = this.options;
         node.children("ul").remove();
         node.removeClass("expanded");
         node.children(".node-toggle").remove();
-        Utils.exec(this.options.onNodeClean, [node, element]);
+        Utils.exec(o.onNodeClean, [node, element]);
     },
 
     changeView: function(){
@@ -10740,23 +10777,29 @@ var Treeview = {
 
         new_node.appendTo(target);
 
-        Utils.exec(o.onNodeInsert, [node, element]);
+        Utils.exec(o.onNodeInsert, [new_node, element]);
+
+        return new_node;
     },
 
     insertBefore: function(node, data){
+        var element = this.element, o = this.options;
         var new_node = this._createNode(data);
         new_node.insertBefore(node);
-        Utils.exec(this.options.onNodeInsert, [new_node, element]);
+        Utils.exec(o.onNodeInsert, [new_node, element]);
+        return new_node;
     },
 
     insertAfter: function(node, data){
+        var element = this.element, o = this.options;
         var new_node = this._createNode(data);
         new_node.insertAfter(node);
-        Utils.exec(this.options.onNodeInsert, [new_node, element]);
+        Utils.exec(o.onNodeInsert, [new_node, element]);
+        return new_node;
     },
 
     del: function(node){
-        var element = this.element;
+        var element = this.element, o = this.options;
         var parent_list = node.closest("ul");
         var parent_node = parent_list.closest("li");
         node.remove();
@@ -10765,14 +10808,15 @@ var Treeview = {
             parent_node.removeClass("expanded");
             parent_node.children(".node-toggle").remove();
         }
-        Utils.exec(this.options.onNodeDelete, [node, element]);
+        Utils.exec(o.onNodeDelete, [node, element]);
     },
 
     clean: function(node){
+        var element = this.element, o = this.options;
         node.children("ul").remove();
         node.removeClass("expanded");
         node.children(".node-toggle").remove();
-        Utils.exec(this.options.onNodeClean, [node, element]);
+        Utils.exec(o.onNodeClean, [node, element]);
     },
 
     changeAttribute: function(attributeName){

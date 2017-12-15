@@ -77,7 +77,7 @@
                     A list can have multiple views: <code>list</code>, <code>content</code>, <code>icons</code>,  <code>icons-small</code>, <code>icons-large</code> and <code>tiles</code>.
                 </p>
                 <div class="example">
-                    <ul data-role="listview" data-mode="list">
+                    <ul data-role="listview" data-mode="list" data-select-node="true">
                         <li data-icon="<span class='mif-folder fg-orange'>" data-caption="Video"></li>
                         <li data-icon="<span class='mif-folder fg-cyan'>" data-caption="Images"></li>
                         <li data-icon="<span class='mif-folder fg-green'>" data-caption="Documents"></li>
@@ -126,7 +126,7 @@
                         <input name="r1" value="icons-large" data-role="radio" data-caption="Large icons">
                     </div>
                     <div class="border bd-light p-4">
-                        <ul data-role="listview" data-mode="list" id="listview-1">
+                        <ul data-role="listview" data-mode="list" id="listview-1" data-select-node="true">
                             <li data-icon="<span class='mif-folder fg-orange'>" data-caption="Video"></li>
                             <li data-icon="<span class='mif-folder fg-cyan'>" data-caption="Images"></li>
                             <li data-icon="<span class='mif-folder fg-green'>" data-caption="Documents"></li>
@@ -159,7 +159,7 @@
                         <input name="r2" value="icons-large" data-role="radio" data-caption="Large icons">
                     </div>
                     <div class="border bd-light p-4">
-                        <ul data-role="listview" id="listview-2" data-view="icons-medium">
+                        <ul data-role="listview" id="listview-2" data-view="icons-medium" data-select-node="true">
                             <li data-caption="Folders">
                                 <ul>
                                     <li data-icon="<span class='mif-folder fg-orange'>" data-caption="Video"></li>
@@ -206,6 +206,133 @@
                 <p>
                     If you need to create collapsing node, add attribute <code>data-collapsed="true"</code> to item definition.
                 </p>
+
+                <h3 id="_listview_events">Events</h3>
+                <p>
+                    When <code>listview</code> works, it generated the numbers of events. You can use callback for this events to behavior with <code>listview</code>.
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Data-*</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>onNodeClick(node, listview)</td>
+                        <td><code>data-on-node-click</code></td>
+                        <td>Fired when user click on node caption</td>
+                    </tr>
+                    <tr>
+                        <td>onNodeDblClick(node, listview)</td>
+                        <td><code>data-on-node-dblclick</code></td>
+                        <td>Fired when user dblclick on node caption</td>
+                    </tr>
+                    <tr>
+                        <td>onNodeInsert(node, listview)</td>
+                        <td><code>data-on-node-insert</code></td>
+                        <td>Fired when node was inserted</td>
+                    </tr>
+                    <tr>
+                        <td>onNodeDelete(node, listview)</td>
+                        <td><code>data-on-node-delete</code></td>
+                        <td>Fired when node was deleted</td>
+                    </tr>
+                    <tr>
+                        <td>onNodeClean(node, listview)</td>
+                        <td><code>data-on-node-clean</code></td>
+                        <td>Fired when node was cleaned</td>
+                    </tr>
+                    <tr>
+                        <td>onGroupNodeClick(state, check, node, listview)</td>
+                        <td><code>data-on-radio-click</code></td>
+                        <td>Fired when user click on radio input</td>
+                    </tr>
+                    <tr>
+                        <td>onExpandNode(node, listview)</td>
+                        <td><code>data-on-expand-node</code></td>
+                        <td>Fired when node was expanded</td>
+                    </tr>
+                    <tr>
+                        <td>onCollapseNode(node, listview)</td>
+                        <td><code>data-on-collapse-node</code></td>
+                        <td>Fired when node was collapsed</td>
+                    </tr>
+                    <tr>
+                        <td>onListviewCreate(listview)</td>
+                        <td><code>data-on-collapse-node</code></td>
+                        <td>Fired when node was collapsed</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="_listview_methods">Methods</h3>
+                <p>
+                    You can use <code>listview</code> methods to interact with the component.
+                </p>
+                <ul>
+                    <li><strong>toggleNode(node)</strong> - toggle node state</li>
+                    <li><strong>add(parent, data)</strong> - add node</li>
+                    <li><strong>addGroup(data)</strong> - add group</li>
+                    <li><strong>insertBefore(node, data)</strong> - add new node before specified node</li>
+                    <li><strong>insertAfter(node, data)</strong> - add new node after specified node</li>
+                    <li><strong>del(node)</strong> - delete node from tree</li>
+                    <li><strong>clean(node)</strong> - clean node</li>
+                </ul>
+                <div class="example">
+                    <button class="button" onclick="
+                        $('#lv_1').data('listview').addGroup({
+                            caption: 'Group'
+                        })
+                    ">Add group</button>
+
+                    <button class="button" onclick="
+                        $('#lv_1').data('listview').add(null, {
+                            caption: 'New node',
+                            icon: '<span class=\'mif-air\'>'
+                        })
+                    ">Add node</button>
+
+                    <button class="button" onclick="
+                        var t = $('#lv_1').find('.current-group').length > 0 ? $('#lv_1').find('.current-group') : $($('#lv_1').find('.node-group')[0]);
+                        $('#lv_1').data('listview').add(t, {
+                            caption: 'Sub item',
+                            icon: '<span class=\'mif-folder\'>'
+                        })
+                    ">Add SubItem</button>
+
+                    <button class="button" onclick="
+                        $('#lv_1').data('listview').insertBefore($($('#lv_1').find('.current')[0]), {
+                            caption: 'Before node',
+                            icon: '<span class=\'mif-folder\'>'
+                        })
+                    ">Insert before</button>
+
+                    <button class="button" onclick="
+                        $('#lv_1').data('listview').insertAfter($($('#lv_1').find('.current')[0]), {
+                            caption: 'After node',
+                            icon: '<span class=\'mif-folder\'>'
+                        })
+                    ">Insert after</button>
+
+                    <button class="button" onclick="
+                        $('#lv_1').data('listview').del($('#lv_1').find('.current'))
+                    ">Delete item</button>
+
+                    <button class="button" onclick="
+                        $('#lv_1').data('listview').del($('#lv_1').find('.current-group'))
+                    ">Delete group</button>
+
+                    <button class="button" onclick="
+                        $('#lv_1').data('listview').clean($('#lv_1').find('.current-group'))
+                    ">Clean</button>
+
+                    <hr>
+
+                    <ul data-role="listview" id="lv_1" data-select-node="true" data-view="icons-medium"></ul>
+                </div>
 
             </main>
         </div>

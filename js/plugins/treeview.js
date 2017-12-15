@@ -247,23 +247,29 @@ var Treeview = {
 
         new_node.appendTo(target);
 
-        Utils.exec(o.onNodeInsert, [node, element]);
+        Utils.exec(o.onNodeInsert, [new_node, element]);
+
+        return new_node;
     },
 
     insertBefore: function(node, data){
+        var element = this.element, o = this.options;
         var new_node = this._createNode(data);
         new_node.insertBefore(node);
-        Utils.exec(this.options.onNodeInsert, [new_node, element]);
+        Utils.exec(o.onNodeInsert, [new_node, element]);
+        return new_node;
     },
 
     insertAfter: function(node, data){
+        var element = this.element, o = this.options;
         var new_node = this._createNode(data);
         new_node.insertAfter(node);
-        Utils.exec(this.options.onNodeInsert, [new_node, element]);
+        Utils.exec(o.onNodeInsert, [new_node, element]);
+        return new_node;
     },
 
     del: function(node){
-        var element = this.element;
+        var element = this.element, o = this.options;
         var parent_list = node.closest("ul");
         var parent_node = parent_list.closest("li");
         node.remove();
@@ -272,14 +278,15 @@ var Treeview = {
             parent_node.removeClass("expanded");
             parent_node.children(".node-toggle").remove();
         }
-        Utils.exec(this.options.onNodeDelete, [node, element]);
+        Utils.exec(o.onNodeDelete, [node, element]);
     },
 
     clean: function(node){
+        var element = this.element, o = this.options;
         node.children("ul").remove();
         node.removeClass("expanded");
         node.children(".node-toggle").remove();
-        Utils.exec(this.options.onNodeClean, [node, element]);
+        Utils.exec(o.onNodeClean, [node, element]);
     },
 
     changeAttribute: function(attributeName){
