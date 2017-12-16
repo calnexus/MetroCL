@@ -7204,6 +7204,10 @@ var Listview = {
         var element = this.element, o = this.options;
         var func;
 
+        if (!node.hasClass("node-group")) {
+            return ;
+        }
+
         node.toggleClass("expanded");
 
         if (o.effect === "slide") {
