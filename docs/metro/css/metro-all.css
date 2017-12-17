@@ -25555,6 +25555,11 @@ video:-webkit-full-screen {
   margin: 0;
   padding: 0;
 }
+.listview .node > .subtitle,
+.listview .node > .content,
+.listview .node > .data {
+  display: none;
+}
 .listview.view-list .node {
   min-width: 160px;
   line-height: 24px;
@@ -25601,7 +25606,7 @@ video:-webkit-full-screen {
   font-size: 16px;
   line-height: 32px;
 }
-.listview.view-content .icon + .caption {
+.listview.view-content .icon ~ .caption {
   padding-left: 16px;
 }
 .listview.view-content .node + .node {

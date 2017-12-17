@@ -195,39 +195,39 @@
                     <ul data-role="treeview">
                         <li class="expanded" data-caption="Checkboxes">
                             <ul>
-                                <li><input data-role="checkbox" data-caption="Play animation"></li>
-                                <li><input data-role="checkbox" data-caption="Play sound" checked></li>
-                                <li><input data-role="checkbox" data-caption="Disabled" disabled></li>
-                                <li><input data-role="checkbox" data-caption="Disabled checked" checked disabled></li>
+                                <li><input data-role="checkbox" data-caption="Play animation" title=""></li>
+                                <li><input data-role="checkbox" data-caption="Play sound" checked title=""></li>
+                                <li><input data-role="checkbox" data-caption="Disabled" disabled title=""></li>
+                                <li><input data-role="checkbox" data-caption="Disabled checked" checked disabled title=""></li>
                             </ul>
                         </li>
                         <li class="expanded" data-caption="Radios">
                             <ul>
-                                <li><input name="r1" data-role="radio" data-caption="Play animation"></li>
-                                <li><input name="r1" data-role="radio" data-caption="Play sound" checked></li>
-                                <li><input data-role="radio" data-caption="Disabled" disabled></li>
-                                <li><input data-role="radio" data-caption="Disabled checked" checked disabled></li>
+                                <li><input name="r1" data-role="radio" data-caption="Play animation" title=""></li>
+                                <li><input name="r1" data-role="radio" data-caption="Play sound" checked title=""></li>
+                                <li><input data-role="radio" data-caption="Disabled" disabled title=""></li>
+                                <li><input data-role="radio" data-caption="Disabled checked" checked disabled title=""></li>
                             </ul>
                         </li>
                         <li class="expanded" data-caption="Switches">
                             <ul>
-                                <li><input data-role="switch" data-caption="Play animation"></li>
-                                <li><input data-role="switch" data-caption="Play sound" checked></li>
-                                <li><input data-role="switch" data-caption="Disabled" disabled></li>
-                                <li><input data-role="switch" data-caption="Disabled checked" checked disabled></li>
+                                <li><input data-role="switch" data-caption="Play animation" title=""></li>
+                                <li><input data-role="switch" data-caption="Play sound" checked title=""></li>
+                                <li><input data-role="switch" data-caption="Disabled" disabled title=""></li>
+                                <li><input data-role="switch" data-caption="Disabled checked" checked disabled title=""></li>
                             </ul>
                         </li>
                         <li class="expanded" data-caption="Inputs">
                             <ul>
-                                <li style="width: 220px"><input data-role="input"></li>
+                                <li style="width: 220px"><input data-role="input" title=""></li>
                                 <li style="width: 220px">
-                                    <select data-role="select">
+                                    <select data-role="select" title="">
                                         <option>Value 1</option>
                                         <option>Value 2</option>
                                         <option>Value 3</option>
                                     </select>
                                 </li>
-                                <li style="width: 220px"><textarea data-role="textarea"></textarea></li>
+                                <li style="width: 220px"><textarea data-role="textarea" title=""></textarea></li>
                             </ul>
                         </li>
                     </ul>
@@ -282,28 +282,28 @@
                 <div class="example">
                     <ul data-role="treeview">
                         <li>
-                            <input data-role="checkbox" data-caption="Player options">
+                            <input data-role="checkbox" data-caption="Player options" title="">
                             <ul class="expanded">
                                 <li>
-                                    <input data-role="checkbox" data-caption="Play video">
+                                    <input data-role="checkbox" data-caption="Play video" title="">
                                     <ul>
-                                        <li><input data-role="checkbox" data-caption="AVI"></li>
-                                        <li><input data-role="checkbox" data-caption="MPEG"></li>
-                                        <li><input data-role="checkbox" data-caption="VIDX"></li>
-                                        <li><input data-role="checkbox" data-caption="MP4"></li>
-                                        <li><input data-role="checkbox" data-caption="XVID"></li>
+                                        <li><input data-role="checkbox" data-caption="AVI" title=""></li>
+                                        <li><input data-role="checkbox" data-caption="MPEG" title=""></li>
+                                        <li><input data-role="checkbox" data-caption="VIDX" title=""></li>
+                                        <li><input data-role="checkbox" data-caption="MP4" title=""></li>
+                                        <li><input data-role="checkbox" data-caption="XVID" title=""></li>
                                     </ul>
                                 </li>
-                                <li><input data-role="checkbox" data-caption="Play audio"></li>
+                                <li><input data-role="checkbox" data-caption="Play audio" title=""></li>
                                 <li>
-                                    <input data-role="checkbox" data-caption="Subtitles">
+                                    <input data-role="checkbox" data-caption="Subtitles" title="">
                                     <ul>
                                         <li>
-                                            <input data-role="checkbox" data-caption="Languages">
+                                            <input data-role="checkbox" data-caption="Languages" title="">
                                             <ul>
-                                                <li><input data-role="checkbox" data-caption="English"></li>
-                                                <li><input data-role="checkbox" data-caption="Ukrainian"></li>
-                                                <li><input data-role="checkbox" data-caption="Dutch"></li>
+                                                <li><input data-role="checkbox" data-caption="English" title=""></li>
+                                                <li><input data-role="checkbox" data-caption="Ukrainian" title=""></li>
+                                                <li><input data-role="checkbox" data-caption="Dutch" title=""></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -404,6 +404,11 @@
                         <td><code>data-on-collapse-node</code></td>
                         <td>Fired when node was collapsed</td>
                     </tr>
+                    <tr>
+                        <td>onTreeviewCreate(node, tree)</td>
+                        <td><code>data-on-treeview-create</code></td>
+                        <td>Fired when tree was created</td>
+                    </tr>
                     </tbody>
                 </table>
 
@@ -429,29 +434,34 @@
                     ">Add node</button>
 
                     <button class="button" onclick="
-                        $('#tv_1').data('treeview').addTo($($('#tv_1').find('.current')[0]), {
+                        var tv = $('#tv_1');
+                        tv.data('treeview').addTo(tv.find('.current'), {
                             caption: 'New node'
                         })
                     ">Add subnode</button>
 
                     <button class="button" onclick="
-                        $('#tv_1').data('treeview').insertBefore($($('#tv_1').find('.current')[0]), {
+                        var tv = $('#tv_1');
+                        tv.data('treeview').insertBefore(tv.find('.current'), {
                             caption: 'Before node'
                         })
                     ">Insert before</button>
 
                     <button class="button" onclick="
-                        $('#tv_1').data('treeview').insertAfter($($('#tv_1').find('.current')[0]), {
+                        var tv = $('#tv_1');
+                        tv.data('treeview').insertAfter(tv.find('.current'), {
                             caption: 'After node'
                         })
                     ">Insert after</button>
 
                     <button class="button" onclick="
-                        $('#tv_1').data('treeview').del($($('#tv_1').find('.current')[0]))
+                        var tv = $('#tv_1');
+                        tv.data('treeview').del(tv.find('.current'))
                     ">Delete</button>
 
                     <button class="button" onclick="
-                        $('#tv_1').data('treeview').clean($($('#tv_1').find('.current')[0]))
+                        var tv = $('#tv_1');
+                        tv.data('treeview').clean(tv.find('.current'))
                     ">Clear</button>
 
                     <hr>

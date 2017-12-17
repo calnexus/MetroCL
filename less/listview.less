@@ -59,6 +59,12 @@
         margin: 0;
         padding: 0;
     }
+
+    .node {
+        & > .subtitle, & > .content, & > .data {
+            display: none;
+        }
+    }
 }
 
 .listview {
@@ -110,7 +116,7 @@
             line-height: 32px;
         }
 
-        .icon + .caption {
+        .icon ~ .caption {
             padding-left: 16px;
         }
 

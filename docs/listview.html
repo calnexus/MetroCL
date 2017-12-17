@@ -117,16 +117,16 @@
                 </p>
                 <div class="example">
                     <div class="p-4 bg-light d-flex flex-justify-between">
-                        <input name="r1" value="list" data-role="radio" data-caption="List" checked>
-                        <input name="r1" value="content" data-role="radio" data-caption="Content">
-                        <input name="r1" value="tiles" data-role="radio" data-caption="Tiles">
-                        <input name="r1" value="icons" data-role="radio" data-caption="Icons">
-                        <input name="r1" value="icons-medium" data-role="radio" data-caption="Medium icons">
-                        <input name="r1" value="icons-large" data-role="radio" data-caption="Large icons">
+                        <input name="r1" value="list" data-role="radio" data-caption="List" checked title="">
+                        <input name="r1" value="content" data-role="radio" data-caption="Content" title="">
+                        <input name="r1" value="tiles" data-role="radio" data-caption="Tiles" title="">
+                        <input name="r1" value="icons" data-role="radio" data-caption="Icons" title="">
+                        <input name="r1" value="icons-medium" data-role="radio" data-caption="Medium icons" title="">
+                        <input name="r1" value="icons-large" data-role="radio" data-caption="Large icons" title="">
                     </div>
                     <div class="border bd-light p-4">
                         <ul data-role="listview" data-mode="list" id="listview-1" data-select-node="true">
-                            <li data-icon="<span class='mif-folder fg-orange'>" data-caption="Video"></li>
+                            <li data-icon="<span class='mif-folder fg-orange'>" data-caption="Video" data-content="<div data-role='progress' data-value='35'>"></li>
                             <li data-icon="<span class='mif-folder fg-cyan'>" data-caption="Images"></li>
                             <li data-icon="<span class='mif-folder fg-green'>" data-caption="Documents"></li>
                             <li data-icon="<span class='mif-folder-download fg-blue'>" data-caption="Downloads"></li>
@@ -150,12 +150,12 @@
                 </p>
                 <div class="example">
                     <div class="p-4 bg-light d-flex flex-justify-between">
-                        <input name="r2" value="list" data-role="radio" data-caption="List" >
-                        <input name="r2" value="content" data-role="radio" data-caption="Content">
-                        <input name="r2" value="tiles" data-role="radio" data-caption="Tiles">
-                        <input name="r2" value="icons" data-role="radio" data-caption="Icons">
-                        <input name="r2" value="icons-medium" data-role="radio" data-caption="Medium icons" checked>
-                        <input name="r2" value="icons-large" data-role="radio" data-caption="Large icons">
+                        <input name="r2" value="list" data-role="radio" data-caption="List" title="">
+                        <input name="r2" value="content" data-role="radio" data-caption="Content" title="">
+                        <input name="r2" value="tiles" data-role="radio" data-caption="Tiles" title="">
+                        <input name="r2" value="icons" data-role="radio" data-caption="Icons" title="">
+                        <input name="r2" value="icons-medium" data-role="radio" data-caption="Medium icons" checked title="">
+                        <input name="r2" value="icons-large" data-role="radio" data-caption="Large icons" title="">
                     </div>
                     <div class="border bd-light p-4">
                         <ul data-role="listview" id="listview-2" data-view="icons-medium" data-select-node="true">
@@ -261,15 +261,15 @@
                     </tr>
                     <tr>
                         <td>onListviewCreate(listview)</td>
-                        <td><code>data-on-collapse-node</code></td>
-                        <td>Fired when node was collapsed</td>
+                        <td><code>data-on-listview-create</code></td>
+                        <td>Fired when node was created</td>
                     </tr>
                     </tbody>
                 </table>
 
                 <h3 id="_listview_methods">Methods</h3>
                 <p>
-                    You can use <code>listview</code> methods to interact with the component.
+                    You can use <code>listview</code> methods to interact with the component at runtime.
                 </p>
                 <ul>
                     <li><strong>toggleNode(node)</strong> - toggle node state</li>
@@ -282,50 +282,58 @@
                 </ul>
                 <div class="example">
                     <button class="button" onclick="
-                        $('#lv_1').data('listview').addGroup({
+                        var lv = $('#lv_1');
+                        lv.data('listview').addGroup({
                             caption: 'Group'
                         })
                     ">Add group</button>
 
                     <button class="button" onclick="
-                        $('#lv_1').data('listview').add(null, {
+                        var lv = $('#lv_1');
+                        lv.data('listview').add(null, {
                             caption: 'New node',
                             icon: '<span class=\'mif-air\'>'
                         })
                     ">Add node</button>
 
                     <button class="button" onclick="
-                        var t = $('#lv_1').find('.current-group').length > 0 ? $('#lv_1').find('.current-group') : $($('#lv_1').find('.node-group')[0]);
-                        $('#lv_1').data('listview').add(t, {
+                        var lv = $('#lv_1');
+                        var t = lv.find('.current-group').length > 0 ? lv.find('.current-group') : $(lv.find('.node-group')[0]);
+                        lv.data('listview').add(t, {
                             caption: 'Sub item',
                             icon: '<span class=\'mif-folder\'>'
                         })
                     ">Add SubItem</button>
 
                     <button class="button" onclick="
-                        $('#lv_1').data('listview').insertBefore($($('#lv_1').find('.current')[0]), {
+                        var lv = $('#lv_1');
+                        lv.data('listview').insertBefore(lv.find('.current'), {
                             caption: 'Before node',
                             icon: '<span class=\'mif-folder\'>'
                         })
                     ">Insert before</button>
 
                     <button class="button" onclick="
-                        $('#lv_1').data('listview').insertAfter($($('#lv_1').find('.current')[0]), {
+                        var lv = $('#lv_1');
+                        lv.data('listview').insertAfter(lv.find('.current'), {
                             caption: 'After node',
                             icon: '<span class=\'mif-folder\'>'
                         })
                     ">Insert after</button>
 
                     <button class="button" onclick="
-                        $('#lv_1').data('listview').del($('#lv_1').find('.current'))
+                        var lv = $('#lv_1');
+                        lv.data('listview').del(lv.find('.current'))
                     ">Delete item</button>
 
                     <button class="button" onclick="
-                        $('#lv_1').data('listview').del($('#lv_1').find('.current-group'))
+                        var lv = $('#lv_1');
+                        lv.data('listview').del(lv.find('.current-group'))
                     ">Delete group</button>
 
                     <button class="button" onclick="
-                        $('#lv_1').data('listview').clean($('#lv_1').find('.current-group'))
+                        var lv = $('#lv_1');
+                        lv.data('listview').clean(lv.find('.current-group'))
                     ">Clean</button>
 
                     <hr>

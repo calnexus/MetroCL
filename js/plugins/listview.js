@@ -80,8 +80,8 @@ var Listview = {
             node.prepend(this._createIcon(data.icon));
         }
 
-        if (data.html !== undefined) {
-            node.append(data.html);
+        if (data.content !== undefined) {
+            node.append(data.content);
         }
 
         return node;
