@@ -12,10 +12,11 @@ var Listview = {
     },
 
     options: {
+        selectable: false,
         effect: "slide",
         duration: 100,
         view: METRO_LISTVIEW_MODE.LIST,
-        selectNode: false,
+        showCurrent: true,
         onNodeInsert: Metro.noop,
         onNodeDelete: Metro.noop,
         onNodeClean: Metro.noop,
@@ -112,7 +113,17 @@ var Listview = {
             } else {
                 node.addClass("node");
             }
+
+            if (node.hasClass("node")) {
+                var cb = $("<input>");
+                cb.data("node", node);
+                node.prepend(cb);
+                cb.checkbox();
+            }
+
         });
+
+        this.toggleSelectable();
 
         this.view(o.view);
     },
@@ -122,9 +133,11 @@ var Listview = {
 
         element.on("click", ".node", function(){
             var node = $(this);
-            if (o.selectNode === true) {
-                element.find(".node").removeClass("current");
-                node.toggleClass("current");
+            element.find(".node").removeClass("current");
+            node.toggleClass("current");
+            if (o.showCurrent === true) {
+                element.find(".node").removeClass("current-select");
+                node.toggleClass("current-select");
             }
             Utils.exec(o.onNodeClick, [node, element])
         });
@@ -191,6 +204,13 @@ var Listview = {
         node.children("ul")[func](o.duration);
     },
 
+    toggleSelectable: function(){
+        var that = this, element = this.element, o = this.options;
+        var func = o.selectable === true ? "addClass" : "removeClass";
+        element[func]("selectable");
+        element.find("ul")[func]("selectable");
+    },
+
     add: function(node, data){
         var that = this, element = this.element, o = this.options;
         var target;
@@ -217,6 +237,11 @@ var Listview = {
         new_node = this._createNode(data);
 
         new_node.addClass("node").appendTo(target);
+
+        var cb = $("<input>");
+        cb.data("node", new_node);
+        new_node.prepend(cb);
+        cb.checkbox();
 
         Utils.exec(o.onNodeInsert, [new_node, element]);
 
@@ -287,9 +312,16 @@ var Listview = {
         this.view();
     },
 
+    changeSelectable: function(){
+        var element = this.element, o = this.options;
+        o.selectable = $.parseJSON(element.attr("data-selectable")) === true;
+        this.toggleSelectable();
+    },
+
     changeAttribute: function(attributeName){
         switch (attributeName) {
             case "data-view": this.changeView(); break;
+            case "data-selectable": this.changeSelectable(); break;
         }
     }
 };

@@ -21,7 +21,7 @@
     .check, .caption {
         display: inline-block;
         vertical-align: middle;
-        .px2rem(line-height, 18px);
+        .px2rem(line-height, 20px);
         .px2rem(font-size, 14px);
     }
 
@@ -30,9 +30,14 @@
     }
 }
 
+
 .checkbox, .radio {
 
     display: inline-flex;
+
+    .caption {
+        margin-top: 2px;
+    }
 
     .check {
         display: inline-block;
@@ -44,6 +49,7 @@
         box-sizing: content-box;
         color: @white;
         background-color: @transparent;
+        top: 2px;
     }
 
     .check {
@@ -199,7 +205,7 @@
 
 .switch {
     .caption {
-        margin: 0 5px;
+        margin: -4px 5px 0;
     }
 
     .check {
@@ -213,6 +219,7 @@
         display: inline-block;
         vertical-align: middle;
         border-radius: 1.125rem / 2;
+        top: -2px;
     }
 
     .check:after {

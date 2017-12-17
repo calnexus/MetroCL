@@ -51,6 +51,7 @@
                     <li class="toc-entry"><a href="#_listview_node">Add item</a></li>
                     <li class="toc-entry"><a href="#_listview_view">View types</a></li>
                     <li class="toc-entry"><a href="#_listview_grouping">Grouping</a></li>
+                    <li class="toc-entry"><a href="#_listview_selectable">Selectable</a></li>
                     <li class="toc-entry"><a href="#_listview_events">Events</a></li>
                     <li class="toc-entry"><a href="#_listview_methods">Methods</a></li>
                 </ul>
@@ -205,6 +206,47 @@
                 <p>
                     If you need to create collapsing node, add attribute <code>data-collapsed="true"</code> to item definition.
                 </p>
+
+                <h3 id="_listview_selectable">Selectable</h3>
+                <p>
+                    Attribute <code>data-selectable</code> enable or disable <code>selectable</code> mode for <code>listview</code>.
+                    You can change this attribute at runtime.
+                    Each checkbox linked with listview item on data attribute <code>node</code>.
+                </p>
+                <div class="example">
+                    <div class="p-4 bg-light d-flex flex-justify-between">
+                        <input data-role="switch" data-caption="Enable selectable" title="" onclick="$(this).is(':checked') ? $('#listview-3').attr('data-selectable', true) : $('#listview-3').attr('data-selectable', false)">
+                        <input name="r3" value="list" data-role="radio" data-caption="List" checked title="">
+                        <input name="r3" value="content" data-role="radio" data-caption="Content" title="">
+                        <input name="r3" value="tiles" data-role="radio" data-caption="Tiles" title="">
+                        <input name="r3" value="icons" data-role="radio" data-caption="Icons" title="">
+                        <input name="r3" value="icons-medium" data-role="radio" data-caption="Medium icons"  title="">
+                        <input name="r3" value="icons-large" data-role="radio" data-caption="Large icons" title="">
+                    </div>
+                    <div class="border bd-light p-4">
+                        <ul data-role="listview" id="listview-3" data-view="list" data-select-node="true" data-selectable="false" data-show-current="false">
+                            <li data-icon="<span class='mif-folder fg-orange'>" data-caption="Video"></li>
+                            <li data-icon="<span class='mif-folder fg-cyan'>" data-caption="Images"></li>
+                            <li data-icon="<span class='mif-folder fg-green'>" data-caption="Documents"></li>
+                            <li data-icon="<span class='mif-folder-download fg-blue'>" data-caption="Downloads"></li>
+                            <li data-icon="<span class='mif-folder'>" data-caption="Desktop"></li>
+                            <li data-caption="Devices and disks">
+                                <ul>
+                                    <li data-icon="images/disk-os.png" data-caption="System (C:)"></li>
+                                    <li data-icon="images/disk.png" data-caption="DS1 (D:)"></li>
+                                    <li data-icon="images/disk.png" data-caption="DS2 (E:)"></li>
+                                    <li data-icon="images/disk.png" data-caption="FreeAgent (G:)"></li>
+                                    <li data-icon="images/disk-network.png" data-caption="Network"></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;ul data-role="listview" data-selectable="true"&gt;
+                    ...
+                    &lt;/ul&gt;
+                </code></pre>
 
                 <h3 id="_listview_events">Events</h3>
                 <p>
@@ -364,6 +406,12 @@
             var checked = $(this).is(":checked");
             if (checked) {
                 $("#listview-2").data("listview").view(this.value);
+            }
+        });
+        $("input[name=r3]").on("click", function(){
+            var checked = $(this).is(":checked");
+            if (checked) {
+                $("#listview-3").data("listview").view(this.value);
             }
         });
     </script>
