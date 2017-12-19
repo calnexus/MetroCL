@@ -16,7 +16,8 @@ var Listview = {
         effect: "slide",
         duration: 100,
         view: METRO_LISTVIEW_MODE.LIST,
-        showCurrent: true,
+        selectCurrent: true,
+        dataStructure: {},
         onNodeInsert: Metro.noop,
         onNodeDelete: Metro.noop,
         onNodeClean: Metro.noop,
@@ -61,7 +62,12 @@ var Listview = {
     },
 
     _createCaption: function(data){
-        return $("<span>").addClass("caption").html(data);
+        return $("<div>").addClass("caption").html(data);
+    },
+
+    _createContent: function(data){
+        return $("<div>").addClass("content").html(data);
+        // return $("<div>").addClass("content").append($.parseHTML(data));
     },
 
     _createToggle: function(){
@@ -69,6 +75,7 @@ var Listview = {
     },
 
     _createNode: function(data){
+        var that = this, element = this.element, o = this.options;
         var node;
 
         node = $("<li>");
@@ -81,9 +88,11 @@ var Listview = {
             node.prepend(this._createIcon(data.icon));
         }
 
-        if (data.content !== undefined) {
-            node.append(data.content);
-        }
+        if (Utils.objectLength(o.dataStructure > 0)) $.each(o.dataStructure, function(key, val){
+            if (data[key] !== undefined) {
+                $("<div>").addClass("node-data data-"+key).addClass(data[val]).html(data[key]).appendTo(node);
+            }
+        });
 
         return node;
     },
@@ -98,8 +107,11 @@ var Listview = {
         $.each(nodes, function(){
             var node = $(this);
 
-            if (node.data("caption") !== undefined) {
-                node.prepend(that._createCaption(node.data("caption")));
+            if (node.data("caption") !== undefined || node.data("content") !== undefined) {
+                var data = $("<div>").addClass("data");
+                node.prepend(data);
+                if (node.data("caption") !== undefined) data.append(that._createCaption(node.data("caption")));
+                if (node.data("content") !== undefined) data.append(that._createContent(node.data("content")));
             }
 
             if (node.data('icon') !== undefined) {
@@ -115,12 +127,16 @@ var Listview = {
             }
 
             if (node.hasClass("node")) {
-                var cb = $("<input>");
+                var cb = $("<input data-role='checkbox'>");
                 cb.data("node", node);
                 node.prepend(cb);
-                cb.checkbox();
             }
 
+            if (Utils.objectLength(o.dataStructure > 0)) $.each(o.dataStructure, function(key, val){
+                if (data[key] !== undefined) {
+                    $("<div>").addClass("node-data data-"+key).addClass(data[val]).html(data[key]).appendTo(node);
+                }
+            });
         });
 
         this.toggleSelectable();
@@ -135,7 +151,7 @@ var Listview = {
             var node = $(this);
             element.find(".node").removeClass("current");
             node.toggleClass("current");
-            if (o.showCurrent === true) {
+            if (o.selectCurrent === true) {
                 element.find(".node").removeClass("current-select");
                 node.toggleClass("current-select");
             }
@@ -147,14 +163,14 @@ var Listview = {
             that.toggleNode(node);
         });
 
-        element.on("click", ".node-group > .caption", function(){
+        element.on("click", ".node-group > .data > .caption", function(){
             var node = $(this).closest("li");
             element.find(".node-group").removeClass("current-group");
             node.addClass("current-group");
             Utils.exec(o.onGroupNodeClick, [node, element])
         });
 
-        element.on("dblclick", ".node-group > .caption", function(){
+        element.on("dblclick", ".node-group > .data > .caption", function(){
             var node = $(this).closest("li");
             that.toggleNode(node);
         });

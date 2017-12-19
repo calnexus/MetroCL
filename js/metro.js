@@ -134,13 +134,12 @@ var Metro = {
             html.addClass("metro-no-touch-device");
         }
 
-        Metro.initHotkeys(hotkeys);
-        Metro.initWidgets(widgets);
-        var observer, observerOptions, observerCallback;
-        observerOptions = {
-            'childList': true,
-            'subtree': true,
-            'attributes': true
+        var observer, observerCallback;
+        var observerConfig = {
+            childList: true,
+            attributes: true,
+            characterData: true,
+            subtree: true
         };
         observerCallback = function(mutations){
             mutations.map(function(mutation){
@@ -151,12 +150,13 @@ var Metro = {
                         var plug = element.data(element.data('metroComponent'));
                         plug.changeAttribute(mutation.attributeName);
                     }
-                }
+                } else
 
-                if (mutation.addedNodes && mutation.addedNodes.length > 0) {
+                if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
                     var i, obj, widgets = {}, plugins = {};
+                    var nodes = mutation.addedNodes;
 
-                    for(i = 0; i < mutation.addedNodes.length; i++) {
+                    for(i = 0; i < nodes.length; i++) {
 
                         var node = mutation.addedNodes[i];
 
@@ -164,6 +164,7 @@ var Metro = {
                             return;
                         }
                         obj = $(mutation.addedNodes[i]);
+
                         plugins = obj.find("[data-role]");
                         if (obj.data('role') !== undefined) {
                             widgets = $.merge(plugins, obj);
@@ -175,11 +176,18 @@ var Metro = {
                         }
                     }
 
+                } else  {
+                    //console.log(mutation);
                 }
             });
         };
         observer = new MutationObserver(observerCallback);
-        observer.observe(body, observerOptions);
+        observer.observe(body, observerConfig);
+
+        setTimeout(function(){
+            Metro.initHotkeys(hotkeys);
+            Metro.initWidgets(widgets);
+        }, 0);
 
         return this;
     },
@@ -224,6 +232,7 @@ var Metro = {
             roles.map(function (func) {
                 try {
                     if ($.fn[func] !== undefined && $this.data(func + '-initiated') !== true) {
+                        console.log(func);
                         $.fn[func].call($this);
                         $this.data(func + '-initiated', true);
                         $this.data('metroComponent', func);

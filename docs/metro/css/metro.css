@@ -25561,9 +25561,8 @@ video:-webkit-full-screen {
   margin: 0;
   padding: 0;
 }
-.listview .node > .subtitle,
-.listview .node > .content,
-.listview .node > .data {
+.listview .node > .data > .content,
+.listview .node > .node-data {
   display: none;
 }
 .listview:not(.selectable) .checkbox {
@@ -25585,11 +25584,11 @@ video:-webkit-full-screen {
   line-height: 20px;
   font-size: 18px;
 }
-.listview.view-list .node > .caption {
+.listview.view-list .node > .data {
   line-height: 20px;
   padding-left: 24px;
 }
-.listview.view-list .node > .icon ~ .caption {
+.listview.view-list .node > .icon ~ .data {
   padding-left: 4px;
 }
 .listview.view-content .node {
@@ -25607,12 +25606,22 @@ video:-webkit-full-screen {
   line-height: 32px;
   font-size: 28px;
 }
-.listview.view-content .node > .caption {
+.listview.view-content .node > .data {
   padding-left: 64px;
   font-size: 16px;
   line-height: 32px;
+  width: 100%;
 }
-.listview.view-content .node > .icon ~ .caption {
+.listview.view-content .node > .data .caption,
+.listview.view-content .node > .data .content {
+  display: block;
+  line-height: 16px;
+  height: 16px;
+}
+.listview.view-content .node > .data .content {
+  font-size: .8em;
+}
+.listview.view-content .node > .icon ~ .data {
   padding-left: 16px;
 }
 .listview.view-content .node .checkbox {
@@ -25636,12 +25645,12 @@ video:-webkit-full-screen {
   line-height: 46px;
   font-size: 42px;
 }
-.listview.view-tiles .node > .caption {
+.listview.view-tiles .node > .data {
   padding-left: 78px;
   font-size: 16px;
   line-height: 46px;
 }
-.listview.view-tiles .node > .icon + .caption {
+.listview.view-tiles .node > .icon + .data {
   padding-left: 16px;
 }
 .listview.view-tiles .node .checkbox {
@@ -25670,9 +25679,9 @@ video:-webkit-full-screen {
   line-height: 44px;
   font-size: 42px;
 }
-.listview.view-icons .node > .caption,
-.listview.view-icons-medium .node > .caption,
-.listview.view-icons-large .node > .caption {
+.listview.view-icons .node > .data,
+.listview.view-icons-medium .node > .data,
+.listview.view-icons-large .node > .data {
   line-height: 1.5;
   white-space: normal;
   text-align: center;
@@ -25722,7 +25731,7 @@ video:-webkit-full-screen {
       -ms-user-select: none;
           user-select: none;
 }
-.listview .node-group > .caption {
+.listview .node-group > .data {
   padding-left: 24px;
   line-height: 24px;
   font-size: 18px;

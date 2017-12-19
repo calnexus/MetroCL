@@ -77,7 +77,7 @@
                     A list can have multiple views: <code>list</code>, <code>content</code>, <code>icons</code>,  <code>icons-small</code>, <code>icons-large</code> and <code>tiles</code>.
                 </p>
                 <div class="example">
-                    <ul data-role="listview" data-mode="list" data-select-node="true">
+                    <ul data-role="listview" data-view="list" data-select-node="true">
                         <li data-icon="<span class='mif-folder fg-orange'>" data-caption="Video"></li>
                         <li data-icon="<span class='mif-folder fg-cyan'>" data-caption="Images"></li>
                         <li data-icon="<span class='mif-folder fg-green'>" data-caption="Documents"></li>
@@ -126,7 +126,7 @@
                         <input name="r1" value="icons-large" data-role="radio" data-caption="Large icons" title="">
                     </div>
                     <div class="border bd-light p-4">
-                        <ul data-role="listview" data-mode="list" id="listview-1" data-select-node="true">
+                        <ul data-role="listview" data-view="content" id="listview-1" data-select-node="true">
                             <li data-icon="<span class='mif-folder fg-orange'>" data-caption="Video" data-content="<div data-role='progress' data-value='35'>"></li>
                             <li data-icon="<span class='mif-folder fg-cyan'>" data-caption="Images"></li>
                             <li data-icon="<span class='mif-folder fg-green'>" data-caption="Documents"></li>
@@ -215,7 +215,7 @@
                 </p>
                 <div class="example">
                     <div class="p-4 bg-light d-flex flex-justify-between">
-                        <input data-role="switch" data-caption="Enable selectable" title="" onclick="$(this).is(':checked') ? $('#listview-3').attr('data-selectable', true) : $('#listview-3').attr('data-selectable', false)">
+                        <input data-role="switch" data-caption="Enable selectable" title="" onclick="var lv = $('#listview-3'); $(this).is(':checked') ? lv.attr('data-selectable', true) : lv.attr('data-selectable', false)">
                         <input name="r3" value="list" data-role="radio" data-caption="List" checked title="">
                         <input name="r3" value="content" data-role="radio" data-caption="Content" title="">
                         <input name="r3" value="tiles" data-role="radio" data-caption="Tiles" title="">
@@ -224,7 +224,7 @@
                         <input name="r3" value="icons-large" data-role="radio" data-caption="Large icons" title="">
                     </div>
                     <div class="border bd-light p-4">
-                        <ul data-role="listview" id="listview-3" data-view="list" data-select-node="true" data-selectable="false" data-show-current="false">
+                        <ul data-role="listview" id="listview-3" data-view="list" data-select-node="true" data-selectable="false" data-select-current="false">
                             <li data-icon="<span class='mif-folder fg-orange'>" data-caption="Video"></li>
                             <li data-icon="<span class='mif-folder fg-cyan'>" data-caption="Images"></li>
                             <li data-icon="<span class='mif-folder fg-green'>" data-caption="Documents"></li>

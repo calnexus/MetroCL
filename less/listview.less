@@ -59,7 +59,7 @@
     }
 
     .node {
-        & > .subtitle, & > .content, & > .data {
+        & > .data > .content, & > .node-data {
             display: none;
         }
     }
@@ -87,12 +87,12 @@
                 font-size: 18px;
             }
 
-            & > .caption {
+            & > .data {
                 line-height: 20px;
                 padding-left: 24px;
             }
 
-            & > .icon ~ .caption {
+            & > .icon ~ .data {
                 padding-left: 4px;
             }
         }
@@ -112,13 +112,24 @@
                 font-size: 28px;
             }
 
-            & > .caption {
+            & > .data {
                 padding-left: 64px;
                 font-size: 16px;
                 line-height: 32px;
+                width: 100%;
+
+                .caption, .content {
+                    display: block;
+                    line-height: 16px;
+                    height: 16px;
+                }
+
+                .content {
+                    font-size: .8em;
+                }
             }
 
-            & > .icon ~ .caption {
+            & > .icon ~ .data {
                 padding-left: 16px;
             }
 
@@ -146,13 +157,13 @@
                 font-size: 42px;
             }
 
-            & > .caption {
+            & > .data {
                 padding-left: 78px;
                 font-size: 16px;
                 line-height: 46px;
             }
 
-            & > .icon + .caption {
+            & > .icon + .data {
                 padding-left: 16px;
             }
 
@@ -178,7 +189,7 @@
                 font-size: 42px;
             }
 
-            & > .caption {
+            & > .data {
                 line-height: 1.5;
                 white-space: normal;
                 text-align: center;
@@ -239,7 +250,7 @@
         cursor: pointer;
         user-select: none;
 
-        & > .caption {
+        & > .data {
             padding-left: 24px;
             line-height: 24px;
             font-size: 18px;
