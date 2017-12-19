@@ -138,7 +138,6 @@ var Metro = {
         var observerConfig = {
             childList: true,
             attributes: true,
-            characterData: true,
             subtree: true
         };
         observerCallback = function(mutations){
