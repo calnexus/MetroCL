@@ -13232,7 +13232,7 @@ h6 {
   font-weight: 300;
 }
 .text-muted {
-  color: #e4e4e4;
+  color: #bebebe;
 }
 .leader,
 .h1,
@@ -25502,19 +25502,19 @@ video:-webkit-full-screen {
   width: auto;
 }
 .listview {
-  display: block;
   position: relative;
   margin: 0;
   padding: 0;
   max-height: 100%;
   background-color: #ffffff;
   color: #1d1d1d;
-}
-.listview.view-list,
-.listview.view-content {
+  list-style: none inside;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+.listview.view-list,
+.listview.view-content {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-flow: column wrap;
@@ -25524,13 +25524,16 @@ video:-webkit-full-screen {
 .listview.view-icons-large,
 .listview.view-icons,
 .listview.view-tiles {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-flow: row wrap;
           flex-flow: row wrap;
+}
+.listview.view-table {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
 }
 .listview .node {
   display: -webkit-box;
@@ -25557,9 +25560,9 @@ video:-webkit-full-screen {
 }
 .listview ul {
   width: 100%;
-  display: block;
   margin: 0;
   padding: 0;
+  list-style: none inside;
 }
 .listview .node > .data > .content,
 .listview .node > .node-data {
@@ -25568,7 +25571,8 @@ video:-webkit-full-screen {
 .listview:not(.selectable) .checkbox {
   display: none;
 }
-.listview.view-list .node {
+.listview.view-list .node,
+.listview.view-table .node {
   min-width: 160px;
   line-height: 24px;
   height: 24px;
@@ -25578,18 +25582,27 @@ video:-webkit-full-screen {
       -ms-flex-flow: row nowrap;
           flex-flow: row nowrap;
 }
-.listview.view-list .node > .icon {
+.listview.view-list .node > .icon,
+.listview.view-table .node > .icon {
   width: 20px;
   height: 20px;
   line-height: 20px;
   font-size: 18px;
 }
-.listview.view-list .node > .data {
+.listview.view-list .node > .data,
+.listview.view-table .node > .data {
   line-height: 20px;
   padding-left: 24px;
 }
-.listview.view-list .node > .icon ~ .data {
+.listview.view-list .node > .icon ~ .data,
+.listview.view-table .node > .icon ~ .data {
   padding-left: 4px;
+}
+.listview.view-table .node-data {
+  display: inline-block;
+  width: auto;
+  margin-left: auto;
+  line-height: 20px;
 }
 .listview.view-content .node {
   width: 100%;

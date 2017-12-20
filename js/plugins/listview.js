@@ -3,7 +3,7 @@ var Listview = {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
         this.element = $(elem);
-        this.views = ['list', 'content', 'icons', 'icons-medium', 'icons-large', 'tiles'];
+        this.views = ['list', 'content', 'icons', 'icons-medium', 'icons-large', 'tiles', 'table'];
 
         this._setOptionsFromDOM();
         this._create();
@@ -17,7 +17,7 @@ var Listview = {
         duration: 100,
         view: METRO_LISTVIEW_MODE.LIST,
         selectCurrent: true,
-        dataStructure: {},
+        structure: {},
         onNodeInsert: Metro.noop,
         onNodeDelete: Metro.noop,
         onNodeClean: Metro.noop,
@@ -67,7 +67,6 @@ var Listview = {
 
     _createContent: function(data){
         return $("<div>").addClass("content").html(data);
-        // return $("<div>").addClass("content").append($.parseHTML(data));
     },
 
     _createToggle: function(){
@@ -80,17 +79,20 @@ var Listview = {
 
         node = $("<li>");
 
-        if (data.caption !== undefined) {
-            node.prepend(this._createCaption(data.caption));
+        if (data.caption !== undefined || data.content !== undefined ) {
+            var d = $("<div>").addClass("data");
+            node.prepend(d);
+            if (node.data("caption") !== undefined) data.append(that._createCaption(node.data("caption")));
+            if (node.data("content") !== undefined) data.append(that._createContent(node.data("content")));
         }
 
         if (data.icon !== undefined) {
             node.prepend(this._createIcon(data.icon));
         }
 
-        if (Utils.objectLength(o.dataStructure > 0)) $.each(o.dataStructure, function(key, val){
+        if (Utils.objectLength(o.structure > 0)) $.each(o.structure, function(key, val){
             if (data[key] !== undefined) {
-                $("<div>").addClass("node-data data-"+key).addClass(data[val]).html(data[key]).appendTo(node);
+                $("<div>").addClass("node-data item-data-"+key).addClass(data[val]).html(data[key]).appendTo(node);
             }
         });
 
@@ -100,6 +102,7 @@ var Listview = {
     _createView: function(){
         var that = this, element = this.element, o = this.options;
         var nodes = element.find("li");
+        var struct_length = Utils.objectLength(o.structure);
 
         element.addClass("listview");
         element.find("ul").addClass("listview");
@@ -132,9 +135,9 @@ var Listview = {
                 node.prepend(cb);
             }
 
-            if (Utils.objectLength(o.dataStructure > 0)) $.each(o.dataStructure, function(key, val){
-                if (data[key] !== undefined) {
-                    $("<div>").addClass("node-data data-"+key).addClass(data[val]).html(data[key]).appendTo(node);
+            if (struct_length > 0) $.each(o.structure, function(key, val){
+                if (node.data(key) !== undefined) {
+                    $("<div>").addClass("node-data item-data-"+key).addClass(node.data(key)).html(node.data(key)).appendTo(node);
                 }
             });
         });

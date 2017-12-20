@@ -96,7 +96,8 @@ window.METRO_LISTVIEW_MODE = {
     ICONS: "icons",
     ICONS_MEDIUM: "icons-medium",
     ICONS_LARGE: "icons-large",
-    TILES: "tiles"
+    TILES: "tiles",
+    TABLE: "table"
 };
 
 var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
@@ -125,7 +126,6 @@ var Metro = {
     init: function(){
         var widgets = $("[data-role]");
         var hotkeys = $("[data-hotkey]");
-        var body = $("body")[0];
         var html = $("html");
 
         if (isTouch === true) {
@@ -181,7 +181,7 @@ var Metro = {
             });
         };
         observer = new MutationObserver(observerCallback);
-        observer.observe(body, observerConfig);
+        observer.observe(html[0], observerConfig);
 
         setTimeout(function(){
             Metro.initHotkeys(hotkeys);
@@ -231,7 +231,6 @@ var Metro = {
             roles.map(function (func) {
                 try {
                     if ($.fn[func] !== undefined && $this.data(func + '-initiated') !== true) {
-                        console.log(func);
                         $.fn[func].call($this);
                         $this.data(func + '-initiated', true);
                         $this.data('metroComponent', func);
@@ -284,6 +283,11 @@ var Metro = {
     inFullScreen: function(){
         var fsm = (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
         return fsm !== undefined;
+    },
+
+    about: function(){
+        console.log(this.version);
+        console.log("Metro 4 Components library, Copyright 2012-2018 by Sergey Pimenov");
     }
 };
 

@@ -34,6 +34,18 @@
     <link href="css/site.css" rel="stylesheet">
 
     <title>ListView - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+    <style>
+        .node > .data {
+            width: 240px!important;
+        }
+        .node-data.item-data-date {
+            width: 120px!important;
+        }
+        .node-data.item-data-name {
+            width: 200px!important;
+        }
+    </style>
 </head>
 <body>
     <div class="container-fluid">
@@ -119,6 +131,7 @@
                 <div class="example">
                     <div class="p-4 bg-light d-flex flex-justify-between">
                         <input name="r1" value="list" data-role="radio" data-caption="List" checked title="">
+                        <input name="r1" value="table" data-role="radio" data-caption="Table" title="">
                         <input name="r1" value="content" data-role="radio" data-caption="Content" title="">
                         <input name="r1" value="tiles" data-role="radio" data-caption="Tiles" title="">
                         <input name="r1" value="icons" data-role="radio" data-caption="Icons" title="">
@@ -126,15 +139,15 @@
                         <input name="r1" value="icons-large" data-role="radio" data-caption="Large icons" title="">
                     </div>
                     <div class="border bd-light p-4">
-                        <ul data-role="listview" data-view="content" id="listview-1" data-select-node="true">
-                            <li data-icon="<span class='mif-folder fg-orange'>" data-caption="Video" data-content="<div data-role='progress' data-value='35'>"></li>
-                            <li data-icon="<span class='mif-folder fg-cyan'>" data-caption="Images"></li>
-                            <li data-icon="<span class='mif-folder fg-green'>" data-caption="Documents"></li>
-                            <li data-icon="<span class='mif-folder-download fg-blue'>" data-caption="Downloads"></li>
-                            <li data-icon="<span class='mif-folder'>" data-caption="Desktop"></li>
-                            <li data-icon="<span class='mif-file-empty'>" data-caption="desktop.ini"></li>
-                            <li data-icon="images/setup.png" data-caption="setup.exe"></li>
-                            <li data-icon="<span class='mif-file-empty'>" data-caption="file1.dat"></li>
+                        <ul data-role="listview" data-view="list" id="listview-1" data-select-node="true" data-structure='{"date": true, "name": true}'>
+                            <li data-icon="<span class='mif-folder fg-orange'>" data-caption="Video" data-content="<div class='mt-1' data-role='progress' data-value='35' data-small='true'>" data-date="12/21/2017" data-name="Video library"></li>
+                            <li data-icon="<span class='mif-folder fg-cyan'>" data-caption="Images" data-content="<div class='mt-1' data-role='progress' data-value='78' data-small='true'>" data-date="12/21/2017" data-name="My images"></li>
+                            <li data-icon="<span class='mif-folder fg-green'>" data-caption="Documents" data-content="<div class='mt-1' data-role='progress' data-value='24' data-small='true'>" data-date="12/21/2017" data-name="My documents"></li>
+                            <li data-icon="<span class='mif-folder-download fg-blue'>" data-caption="Downloads" data-content="<div class='mt-1' data-role='progress' data-value='85' data-small='true'>" data-date="12/21/2017" data-name="System folder"></li>
+                            <li data-icon="<span class='mif-folder'>" data-caption="Desktop" data-content="<div class='mt-1' data-role='progress' data-value='10' data-small='true'>" data-date="12/21/2017" data-name="System folder"></li>
+                            <li data-icon="<span class='mif-file-empty'>" data-caption="desktop.ini" data-content="<span class='text-muted'>Created: 12.21.2017</span>"></li>
+                            <li data-icon="images/setup.png" data-caption="setup.exe" data-content="<span class='text-muted'>Executable</span>"></li>
+                            <li data-icon="<span class='mif-file-empty'>" data-caption="file1.dat" data-content="<span class='text-muted'>Data file</span>"></li>
                         </ul>
                     </div>
                 </div>
@@ -143,6 +156,92 @@
                     ...
                     &lt;ul&gt;
                 </code></pre>
+
+                <h4 id="_listview_view_content">View as content</h4>
+                <p>
+                    For <code>content</code> view, you can define additional data with attribute <code>data-content="..."</code>.
+                    Value for this attribute must be simple string or valid html. Also supports Metro 4 components definition.
+                </p>
+                <div class="example">
+                    <ul data-role="listview" data-view="content" data-select-node="true">
+                        <li data-icon="<span class='mif-folder fg-orange'>"
+                            data-caption="Video"
+                            data-content="<div class='mt-1' data-role='progress' data-value='35' data-small='true'>"></li>
+                        <li data-icon="<span class='mif-folder fg-cyan'>"
+                            data-caption="Images"
+                            data-content="<div class='mt-1' data-role='progress' data-value='78' data-small='true'>"></li>
+                        <li data-icon="<span class='mif-file-empty'>"
+                            data-caption="desktop.ini"
+                            data-content="<span class='text-muted'>Created: 12.21.2017</span>"></li>
+                        <li data-icon="images/setup.png"
+                            data-caption="setup.exe"
+                            data-content="<span class='text-muted'>Executable</span>"></li>
+                        <li data-icon="<span class='mif-file-empty'>"
+                            data-caption="file1.dat"
+                            data-content="<span class='text-muted'>Data file</span>"></li>
+                    </ul>
+                </div>
+                <pre><code class="html">
+                    &lt;ul data-role="listview" data-view="content" data-select-node="true"&gt;
+                        &lt;li data-icon="&lt;span class='mif-folder fg-orange'&gt;"
+                            data-caption="Video"
+                            data-content="&lt;div class='mt-1' data-role='progress' data-value='35' data-small='true'&gt;"&gt;&lt;/li&gt;
+                        &lt;li data-icon="&lt;span class='mif-folder fg-cyan'&gt;"
+                            data-caption="Images"
+                            data-content="&lt;div class='mt-1' data-role='progress' data-value='78' data-small='true'&gt;"&gt;&lt;/li&gt;
+                        &lt;li data-icon="&lt;span class='mif-file-empty'&gt;"
+                            data-caption="desktop.ini"
+                            data-content="&lt;span class='text-muted'&gt;Created: 12.21.2017&lt;/span&gt;"&gt;&lt;/li&gt;
+                        &lt;li data-icon="images/setup.png"
+                            data-caption="setup.exe"
+                            data-content="&lt;span class='text-muted'&gt;Executable&lt;/span&gt;"&gt;&lt;/li&gt;
+                        &lt;li data-icon="&lt;span class='mif-file-empty'&gt;"
+                            data-caption="file1.dat"
+                            data-content="&lt;span class='text-muted'&gt;Data file&lt;/span&gt;"&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+
+                <h4 id="_listview_view_table">View as table</h4>
+                <p>
+                    For <code>table</code> view, you must define additional structure for items with attribute <code>data-structure="{...}"</code>.
+                    Value for this attribute must be valid json object stored as string.
+                    This structure define additional columns. Each item in structure writes as key/value, where key is a name for additional field and value can be true or false.
+                    True - field displayed, false - filed not displayed.
+                    Now for each listview item you can set additional fields with data attribute <code>data-key_name="..."</code> where key is a key from structure data.
+                </p>
+                <div class="example">
+                    <ul data-role="listview" data-view="table" data-select-node="true" data-structure='{"date": true, "name": true}'>
+                        <li data-icon="<span class='mif-folder fg-orange'>" data-caption="Video" data-content="<div class='mt-1' data-role='progress' data-value='35' data-small='true'>" data-date="12/21/2017" data-name="Video library"></li>
+                        <li data-icon="<span class='mif-folder fg-cyan'>" data-caption="Images" data-content="<div class='mt-1' data-role='progress' data-value='78' data-small='true'>" data-date="12/21/2017" data-name="My images"></li>
+                        <li data-icon="<span class='mif-folder fg-green'>" data-caption="Documents" data-content="<div class='mt-1' data-role='progress' data-value='24' data-small='true'>" data-date="12/21/2017" data-name="My documents"></li>
+                        <li data-icon="<span class='mif-folder-download fg-blue'>" data-caption="Downloads" data-content="<div class='mt-1' data-role='progress' data-value='85' data-small='true'>" data-date="12/21/2017" data-name="System folder"></li>
+                        <li data-icon="<span class='mif-folder'>" data-caption="Desktop" data-content="<div class='mt-1' data-role='progress' data-value='10' data-small='true'>" data-date="12/21/2017" data-name="System folder"></li>
+                        <li data-icon="<span class='mif-file-empty'>" data-caption="desktop.ini" data-content="<span class='text-muted'>Created: 12.21.2017</span>"></li>
+                        <li data-icon="images/setup.png" data-caption="setup.exe" data-content="<span class='text-muted'>Executable</span>"></li>
+                        <li data-icon="<span class='mif-file-empty'>" data-caption="file1.dat" data-content="<span class='text-muted'>Data file</span>"></li>
+                    </ul>
+                </div>
+                <pre><code class="html">
+                    &lt;ul data-role="listview"
+                        data-view="table"
+                        data-select-node="true"
+                        data-structure='{"date": true, "name": true}'&gt;
+
+                        &lt;li data-icon="&lt;span class='mif-folder fg-orange'&gt;"
+                            data-caption="Video"
+                            data-date="12/21/2017"
+                            data-name="Video library"&gt;&lt;/li&gt;
+
+                        &lt;li data-icon="&lt;span class='mif-folder fg-cyan'&gt;"
+                            data-caption="Images"
+                            data-date="12/21/2017"
+                            data-name="My images"&gt;&lt;/li&gt;
+
+                    &lt;/ul&gt;
+                </code></pre>
+                <p class="remark">
+                    You can set styles for additional items. Each additional item stored in element with classes <code>.node-data</code> + <code>.item-data-key_name</code>.
+                </p>
 
                 <h3 id="_listview_grouping">Grouping</h3>
                 <p>

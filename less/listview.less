@@ -6,22 +6,25 @@
 @listviewItemHoverBackground: #e5f3ff;
 
 .listview {
-    display: block;
     position: relative;
     margin: 0;
     padding: 0;
     max-height: 100%;
     background-color: @white;
     color: @dark;
+    list-style: none inside;
+    display: flex;
 
     &.view-list, &.view-content {
-        display: flex;
         flex-flow: column wrap;
     }
 
     &.view-icons-medium, &.view-icons-large, &.view-icons, &.view-tiles {
-        display: flex;
         flex-flow: row wrap;
+    }
+
+    &.view-table {
+        flex-flow: column nowrap;
     }
 }
 
@@ -53,9 +56,9 @@
 
     ul {
         width: 100%;
-        display: block;
         margin: 0;
         padding: 0;
+        list-style: none inside;
     }
 
     .node {
@@ -72,7 +75,8 @@
 }
 
 .listview {
-    &.view-list {
+
+    &.view-list, &.view-table {
         .node {
             min-width: 160px;
             line-height: 24px;
@@ -95,6 +99,15 @@
             & > .icon ~ .data {
                 padding-left: 4px;
             }
+        }
+    }
+
+    &.view-table {
+        .node-data {
+            display: inline-block;
+            width: auto;
+            margin-left: auto;
+            line-height: 20px;
         }
     }
 
