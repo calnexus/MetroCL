@@ -25804,6 +25804,71 @@ video:-webkit-full-screen {
 .listview .node-group + .listview {
   margin-top: .5rem;
 }
+.stepper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  position: relative;
+  margin: .5rem 0;
+}
+.stepper::before {
+  content: "";
+  display: block;
+  width: 100%;
+  position: absolute;
+  height: 1px;
+  background-color: #bebebe;
+  top: 50%;
+  left: 0;
+  z-index: 0;
+}
+.stepper.vertical {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+}
+.stepper .step {
+  display: block;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  z-index: 1;
+  background-color: #989898;
+  color: #ffffff;
+  cursor: pointer;
+  position: relative;
+}
+.stepper .step span {
+  display: block;
+}
+.stepper .step.complete {
+  background-color: #60a917;
+  color: #ffffff;
+}
+.stepper .step.current {
+  background-color: #1ba1e2;
+  color: #ffffff;
+}
+.stepper.cycle .step {
+  border-radius: 50%;
+}
+.stepper.diamond .step {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+.stepper.diamond .step span {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
 .ripple {
   display: block;
   width: 0;

@@ -100,6 +100,12 @@ window.METRO_LISTVIEW_MODE = {
     TABLE: "table"
 };
 
+window.METRO_STEPPER_VIEW = {
+    SQUARE: "square",
+    CYCLE: "cycle",
+    DIAMOND: "diamond"
+};
+
 var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
 
 var Metro = {
