@@ -51,6 +51,10 @@
 - jQuery Core [jquery](https://jquery.com/)
 - All who brought something good 
 
+### Testing
+- Main testing by [Prabakar Decipher](https://www.facebook.com/itz.prabakar)
+- Testing by [Chaoswriter96](https://github.com/Chaoswriter96)
+
 ### Browser Compatibility
 IE11+, Chrome, Firefox, Opera, Safari, Android, IOS
 
