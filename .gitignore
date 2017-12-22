@@ -58,3 +58,5 @@ validation-status.json
 bower_components
 node_modules
 .adsense
+adsense
+deploy.yaml

@@ -1,0 +1,100 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+.wizard {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: stretch;
+    background-color: @white;
+    color: @dark;
+    min-height: 200px;
+    border: 1px solid @borderColor;
+    counter-reset: wizard-step;
+    position: relative;
+}
+
+.wizard {
+    & > section {
+
+        counter-increment: wizard-step;
+        display: block;
+        position: relative;
+        border-left: 25px @gray solid;
+        width: 0;
+        transition: @transition-width;
+
+        &::before {
+            display: block;
+            content: counter(wizard-step);
+            position: absolute;
+            bottom: 20px;
+            width: 25px;
+            text-align: center;
+            left: -25px;
+            z-index: 1;
+            color: @white;
+        }
+
+        .page-content {
+            padding: 1rem 1rem 4.25rem;
+            display: none;
+        }
+
+        &.current {
+            width: 100%;
+            border: 0!important;
+            transition: @transition-width;
+
+            .page-content {
+                display: block;
+            }
+
+            &::before {
+                //border: 1px solid @borderColor;
+                //border-left: none;
+                left: 0;
+                color: @white;
+                background-color: @cyan;
+            }
+        }
+
+    }
+
+    .action-bar {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: right;
+        position: absolute;
+        bottom: 1rem;
+        left: 41px;
+        .clear();
+    }
+}
+
+.wizard {
+    & > section {
+        &:nth-child(1) {border-color: @cyan;}
+        &:nth-child(2) {border-color: darken(@cyan, 5%);}
+        &:nth-child(3) {border-color: darken(@cyan, 10%);}
+        &:nth-child(4) {border-color: darken(@cyan, 15%);}
+        &:nth-child(5) {border-color: darken(@cyan, 20%);}
+        &:nth-child(6) {border-color: darken(@cyan, 25%);}
+        &:nth-child(7) {border-color: darken(@cyan, 30%);}
+        &:nth-child(8) {border-color: darken(@cyan, 35%);}
+        &:nth-child(9) {border-color: darken(@cyan, 40%);}
+        &:nth-child(10) {border-color: darken(@cyan, 50%);}
+
+        &.complete {
+            &:nth-child(1) {border-color: @lightGray;}
+            &:nth-child(2) {border-color: darken(@lightGray, 5%);}
+            &:nth-child(3) {border-color: darken(@lightGray, 10%);}
+            &:nth-child(4) {border-color: darken(@lightGray, 15%);}
+            &:nth-child(5) {border-color: darken(@lightGray, 20%);}
+            &:nth-child(6) {border-color: darken(@lightGray, 25%);}
+            &:nth-child(7) {border-color: darken(@lightGray, 30%);}
+            &:nth-child(8) {border-color: darken(@lightGray, 35%);}
+            &:nth-child(9) {border-color: darken(@lightGray, 40%);}
+            &:nth-child(10) {border-color: darken(@lightGray, 50%);}
+        }
+    }
+}

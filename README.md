@@ -53,7 +53,7 @@
 
 ### Testing
 - Main testing by [Prabakar Decipher](https://www.facebook.com/itz.prabakar)
-- Testing by [Chaoswriter96](https://github.com/Chaoswriter96)
+- Testing by [Steve Egger](https://github.com/Chaoswriter96)
 
 ### Browser Compatibility
 IE11+, Chrome, Firefox, Opera, Safari, Android, IOS
@@ -68,6 +68,4 @@ Metro UI CSS 0.x you can find in a branch [metrouicss-0.95](https://github.com/o
 
 ### Thanks
 Thanks to all. Special thanks to all those who financially supported the project.    
-    
-        
-         
+

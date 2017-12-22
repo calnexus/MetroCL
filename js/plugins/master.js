@@ -18,8 +18,8 @@ var Master = {
         effectFunc: "linear",
         duration: METRO_ANIMATION_DURATION,
 
-        controlPrev: "<",
-        controlNext: ">",
+        controlPrev: "<span class='default-icon-left-arrow'></span>",
+        controlNext: "<span class='default-icon-right-arrow'></span>",
         controlTitle: "Master, page $1 of $2",
         backgroundImage: "",
 

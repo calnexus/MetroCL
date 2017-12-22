@@ -205,7 +205,7 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         flatten: true,
-                        src: ['docs/*.html'], dest: '.adsense/'
+                        src: ['docs/*.html'], dest: 'adsense/'
                     }
                 ]
             }
