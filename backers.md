@@ -17,7 +17,7 @@ If you'd like to join them, please consider:
 <h2 align="center">Generous Backers via Patreon ($50+)</h2>
 
 <!--50 start-->
-- Riku Ayanokoji
+- Riku Ayanokoji (The first backer for Metro 4!)
 <!--50 end-->
 
 <h2 align="center">Backers via Patreon</h2>
