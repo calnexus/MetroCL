@@ -26001,6 +26001,9 @@ video:-webkit-full-screen {
 .wizard > section.complete:nth-child(10) {
   border-color: #656565;
 }
+.wizard [class*=wizard-btn].disabled {
+  opacity: .1;
+}
 .ripple {
   display: block;
   width: 0;

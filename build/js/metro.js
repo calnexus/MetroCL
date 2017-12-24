@@ -12432,12 +12432,15 @@ var Wizard = {
     toPage: function(page){
         var that = this, element = this.element, o = this.options;
         var target = $(element.children("section").get(page - 1));
+        var sections = element.children("section");
 
         if (target.length === 0) {
             return ;
         }
 
-        element.find(".wizard-btn-finish").addClass("disabled");
+        var finish = element.find(".wizard-btn-finish").addClass("disabled");
+        var next = element.find(".wizard-btn-next").addClass("disabled");
+        var prev = element.find(".wizard-btn-prev").addClass("disabled");
 
         this.current = page;
 
@@ -12454,9 +12457,17 @@ var Wizard = {
         });
 
         if (
-            (this.current === element.children("section").length) || (o.finish > 0 && this.current >= o.finish)
+            (this.current === sections.length) || (o.finish > 0 && this.current >= o.finish)
         ) {
-            element.find(".wizard-btn-finish").removeClass("disabled");
+            finish.removeClass("disabled");
+        }
+
+        if (this.current < sections.length) {
+            next.removeClass("disabled");
+        }
+
+        if (this.current > 1) {
+            prev.removeClass("disabled");
         }
 
         Utils.exec(o.onPage, [this.current, element]);
