@@ -13,6 +13,12 @@
   </p>
 </p>
 
+<p align="center">
+Metro 4 is an MIT-licensed open source project. 
+It's an independent project with its ongoing development made possible entirely thanks to the support by these
+<a href="https://github.com/Pro-Club/MetroCL/blob/master/backers.md"><strong>awesome Backers</strong></a>.
+</p>
+
 <br>
 <hr>
  
