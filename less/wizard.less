@@ -8,6 +8,7 @@
     background-color: @white;
     color: @dark;
     min-height: 200px;
+    height: auto;
     border: 1px solid @borderColor;
     counter-reset: wizard-step;
     position: relative;
@@ -38,20 +39,18 @@
         .page-content {
             padding: 1rem 1rem 4.25rem;
             display: none;
+            overflow: hidden;
         }
 
         &.current {
             width: 100%;
             border: 0!important;
-            transition: @transition-width;
 
             .page-content {
                 display: block;
             }
 
             &::before {
-                //border: 1px solid @borderColor;
-                //border-left: none;
                 left: 0;
                 color: @white;
                 background-color: @cyan;

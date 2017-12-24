@@ -47,6 +47,10 @@
                 <hr/>
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Wizard</a></li>
+                    <li class="toc-entry"><a href="#">About</a></li>
+                    <li class="toc-entry"><a href="#">Controls</a></li>
+                    <li class="toc-entry"><a href="#">Events</a></li>
+                    <li class="toc-entry"><a href="#">Methods</a></li>
                 </ul>
 
             </div>
@@ -65,10 +69,11 @@
 
                 <h3 id="_wizard_about">About</h3>
                 <p>
-
+                    With the <code>wizard</code> control, you can easily generate <code>multi-step</code> wizard dialogs.
+                    To create <code>wizard</code>  create wizard structure and add role <code>wizard</code> with attribute <code>data-role="wizard"</code> to element.
+                    Each page a <code>section</code> element with sub block element with class <code>.page-content</code>.
                 </p>
-
-                <div class="example1">
+                <div class="example">
                     <div data-role="wizard">
                         <section><div class="page-content">Page 1</div></section>
                         <section><div class="page-content">Page 2</div></section>
@@ -77,6 +82,24 @@
                         <section><div class="page-content">Page 5</div></section>
                     </div>
                 </div>
+                <pre><code class="html">
+                    &lt;div data-role="wizard"&gt;
+                        &lt;section&gt;&lt;div class="page-content"&gt;Page 1&lt;/div&gt;&lt;/section&gt;
+                        &lt;section&gt;&lt;div class="page-content"&gt;Page 2&lt;/div&gt;&lt;/section&gt;
+                        &lt;section&gt;&lt;div class="page-content"&gt;Page 3&lt;/div&gt;&lt;/section&gt;
+                        &lt;section&gt;&lt;div class="page-content"&gt;Page 4&lt;/div&gt;&lt;/section&gt;
+                        &lt;section&gt;&lt;div class="page-content"&gt;Page 5&lt;/div&gt;&lt;/section&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_wizard_controls">Controls</h3>
+                <p>
+                    When Metro 4 create a <code>wizard</code> component, it adds controls to a wizard to navigate on steps:
+                        <code>help</code>,
+                        <code>prev</code>,
+                        <code>next</code> and
+                        <code>finish</code>.
+                </p>
 
             </main>
         </div>

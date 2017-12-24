@@ -12370,13 +12370,29 @@ var Wizard = {
         $("<button>").addClass("button cycle outline wizard-btn-finish").html(o.iconFinish).appendTo(bar);
 
         this.toPage(o.start);
+
+        this._setHeight();
+    },
+
+    _setHeight: function(){
+        var that = this, element = this.element, o = this.options;
+        var pages = element.children("section");
+
+        pages.children(".page-content").css("max-height", "none");
+
+        $.each(pages, function(){
+            var c = $(this).children(".page-content");
+            c.css("max-height", c.outerHeight(true));
+        });
     },
 
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
         element.on("click", ".wizard-btn-help", function(){
-            Utils.exec(o.onHelpClick, [that.current, element])
+            var pages = element.children("section");
+            var page = pages.get(that.current - 1);
+            Utils.exec(o.onHelpClick, [that.current, page, element])
         });
 
         element.on("click", ".wizard-btn-prev", function(){
@@ -12391,6 +12407,10 @@ var Wizard = {
 
         element.on("click", ".wizard-btn-finish", function(){
             Utils.exec(o.onFinishClick, [that.current, element])
+        });
+
+        $(window).on("resize", function(){
+            that._setHeight();
         });
     },
 
@@ -12470,6 +12490,7 @@ var Wizard = {
             prev.removeClass("disabled");
         }
 
+        element.trigger("onpage", [this.current, element]);
         Utils.exec(o.onPage, [this.current, element]);
     },
 

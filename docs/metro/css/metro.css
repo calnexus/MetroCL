@@ -25874,6 +25874,7 @@ video:-webkit-full-screen {
   background-color: #ffffff;
   color: #1d1d1d;
   min-height: 200px;
+  height: auto;
   border: 1px solid #dfdfdf;
   counter-reset: wizard-step;
   position: relative;
@@ -25901,12 +25902,11 @@ video:-webkit-full-screen {
 .wizard > section .page-content {
   padding: 1rem 1rem 4.25rem;
   display: none;
+  overflow: hidden;
 }
 .wizard > section.current {
   width: 100%;
   border: 0!important;
-  -webkit-transition: width 0.3s ease;
-  transition: width 0.3s ease;
 }
 .wizard > section.current .page-content {
   display: block;
