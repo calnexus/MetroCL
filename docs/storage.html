@@ -70,7 +70,7 @@
 
                 <h3 id="_storage_about">About</h3>
                 <p>
-                    Object fro work with <code>storage</code> defined in <code>$.Metro.storage</code> and contains next methods:
+                    Object fro work with <code>storage</code> defined in <code>Metro.storage</code> and contains next methods:
                 </p>
                 <ul>
                     <li><strong>setKey(key)</strong> - define main storage key (default: "METRO:APP")</li>
@@ -86,8 +86,8 @@
                     To init storage execute method <code>setKey</code>. This method sets key for your app data in storage. This is a prefix for all your stored data. Method <code>getKey</code> return main key.
                 </p>
                 <pre><code class="html">
-                    $.Metro.storage.setKey('MY_APP');
-                    $.Metro.storage.getKey();
+                    Metro.storage.setKey('MY_APP');
+                    Metro.storage.getKey();
                 </code></pre>
 
                 <h3 id="_storage_set">Store data</h3>
@@ -109,7 +109,7 @@
                             }
                         };
 
-                    $.Metro.storage.setItem(key, data);
+                    Metro.storage.setItem(key, data);
                 </code></pre>
 
                 <h3 id="_storage_get">Get data</h3>
@@ -128,7 +128,7 @@
                     var key = 'user',
                         default_value = {};
 
-                    $.Metro.storage.getItem(key, default_value);
+                    Metro.storage.getItem(key, default_value);
                 </code></pre>
 
                 <h4>getItemPart</h4>
@@ -144,8 +144,8 @@
                         subkey2 = 'Bill->LastName',
                         default_value = {};
 
-                    $.Metro.storage.getItemPart(key, subkey, default_value);
-                    $.Metro.storage.getItemPart(key, subkey2, default_value);
+                    Metro.storage.getItemPart(key, subkey, default_value);
+                    Metro.storage.getItemPart(key, subkey2, default_value);
                 </code></pre>
 
                 <h3 id="_storage_del">Delete data</h3>
@@ -155,7 +155,7 @@
                 <pre><code class="javascript">
                     var key = 'user';
 
-                    $.Metro.storage.delItem(key);
+                    Metro.storage.delItem(key);
                 </code></pre>
             </main>
         </div>

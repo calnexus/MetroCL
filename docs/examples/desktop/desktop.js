@@ -55,7 +55,7 @@ var Desktop = {
         var w = $("<div>").appendTo($(this.options.windowArea));
         var wnd = w.window(o).data("window");
         var win = wnd.win;
-        var shift = $.Metro.utils.objectLength(this.wins) * 16;
+        var shift = Metro.utils.objectLength(this.wins) * 16;
 
         if (wnd.options.place === "auto" && wnd.options.top === "auto" && wnd.options.left === "auto") {
             win.css({

@@ -228,7 +228,7 @@ var Metro = {
                 return;
             }
 
-            $.Metro.hotkeys.push(hotkey);
+            Metro.hotkeys.push(hotkey);
 
             $(document).on('keyup', null, hotkey, function(e){
                 if (element === undefined) return;
@@ -307,15 +307,10 @@ var Metro = {
     inFullScreen: function(){
         var fsm = (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
         return fsm !== undefined;
-    },
-
-    about: function(){
-        console.log(this.version);
-        console.log("Metro 4 Components library, Copyright 2012-2018 by Sergey Pimenov");
     }
 };
 
-$.Metro = window['Metro'] = Metro;
+window['Metro'] = Metro;
 
 
 // Source: js/utils/animation.js
@@ -1703,7 +1698,7 @@ var Storage = {
     }
 };
 
-$.Metro['storage'] = Storage.init();
+Metro['storage'] = Storage.init();
 // Source: js/utils/tpl.js
 var TemplateEngine = function(html, options) {
     var re = /<%(.+?)%>/g,
@@ -1728,7 +1723,7 @@ var TemplateEngine = function(html, options) {
     return result;
 };
 
-$.Metro['template'] = Metro['template'] = TemplateEngine;
+Metro['template'] = TemplateEngine;
 
 // Source: js/utils/utilities.js
 var Utils = {
@@ -2309,7 +2304,7 @@ var d = new Date().getTime();
     }
 };
 
-$.Metro['utils'] = Metro['utils'] = Utils;
+Metro['utils'] = Utils;
 // Source: js/plugins/accordion.js
 var Accordion = {
     init: function( options, elem ) {
@@ -10745,7 +10740,7 @@ var Toast = {
     }
 };
 
-$.Metro['toast'] = Toast;
+Metro['toast'] = Toast;
 // Source: js/plugins/treeview.js
 var Treeview = {
     init: function( options, elem ) {

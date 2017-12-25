@@ -18,4 +18,4 @@ var Toast = {
     }
 };
 
-$.Metro['toast'] = Toast;
+Metro['toast'] = Toast;

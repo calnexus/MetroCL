@@ -70,4 +70,4 @@ var Storage = {
     }
 };
 
-$.Metro['storage'] = Storage.init();
+Metro['storage'] = Storage.init();

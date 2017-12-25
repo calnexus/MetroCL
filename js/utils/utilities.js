@@ -577,4 +577,4 @@ var Utils = {
     }
 };
 
-$.Metro['utils'] = Metro['utils'] = Utils;
+Metro['utils'] = Utils;

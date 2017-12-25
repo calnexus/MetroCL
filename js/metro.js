@@ -210,7 +210,7 @@ var Metro = {
                 return;
             }
 
-            $.Metro.hotkeys.push(hotkey);
+            Metro.hotkeys.push(hotkey);
 
             $(document).on('keyup', null, hotkey, function(e){
                 if (element === undefined) return;
@@ -289,13 +289,8 @@ var Metro = {
     inFullScreen: function(){
         var fsm = (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
         return fsm !== undefined;
-    },
-
-    about: function(){
-        console.log(this.version);
-        console.log("Metro 4 Components library, Copyright 2012-2018 by Sergey Pimenov");
     }
 };
 
-$.Metro = window['Metro'] = Metro;
+window['Metro'] = Metro;
 

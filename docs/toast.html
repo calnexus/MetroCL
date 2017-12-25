@@ -69,7 +69,7 @@
 
                 <h3 id="_toast_create">Create toast</h3>
                 <p>
-                    To create <code>toast</code> you must call method <code>$.Metro.toast.create</code>. Method contains next parameters:
+                    To create <code>toast</code> you must call method <code>Metro.toast.create</code>. Method contains next parameters:
                 </p>
                 <ul>
                     <li><strong>message</strong>: Toast message</li>
@@ -78,7 +78,7 @@
                     <li><strong>cls</strong>: Classes to customize toast</li>
                 </ul>
                 <pre class=""><code>
-                    $.Metro.toast.create(message, callback, timeout, cls);
+                    Metro.toast.create(message, callback, timeout, cls);
                 </code></pre>
 
                 <h4>Quick example</h4>
@@ -96,7 +96,7 @@
 
                     &lt;script&gt;
                         function runToast(mode) {
-                            var toast = $.Metro.toast.create;
+                            var toast = Metro.toast.create;
                             switch (mode) {
                                 case 'callback': toast("This is a toast with callback", function(){
                                     alert('Toast callback executed!');
@@ -114,7 +114,7 @@
                     If you need execute code after toast showing, add <code>callback function</code> to call toast.
                 </p>
                 <pre class=""><code>
-                    $.Metro.toast.create("Toast message", function(){
+                    Metro.toast.create("Toast message", function(){
                         ...callback function...
                     });
                 </code></pre>
@@ -124,7 +124,7 @@
                     Want to show the toast a certain time? Add a <code>timeout</code> parameter.
                 </p>
                 <pre class=""><code>
-                    $.Metro.toast.create("Toast message", null, 5000);
+                    Metro.toast.create("Toast message", null, 5000);
                 </code></pre>
 
                 <h3 id="_toast_custom">Custom toast</h3>
@@ -132,7 +132,7 @@
                     If you want to display a toast in your own style, add a <code>cls</code> parameter.
                 </p>
                 <pre class=""><code>
-                    $.Metro.toast.create("Toast message", null, null, cls);
+                    Metro.toast.create("Toast message", null, null, cls);
                 </code></pre>
             </main>
         </div>
@@ -148,7 +148,7 @@
 
     <script>
         function runToast(mode) {
-            var toast = $.Metro.toast.create;
+            var toast = Metro.toast.create;
             switch (mode) {
                 case 'callback': toast("This is a toast with callback", function(){alert('Toast callback executed!');}); break;
                 case 'timeout': toast("This is a toast with timeout 5s", null, 5000); break;

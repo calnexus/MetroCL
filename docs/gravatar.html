@@ -190,7 +190,7 @@
                     &lt;script&gt;
                         function getGravatar(f){
                             var val = Number(f.elements['gravatar_size'].value);
-                            var size = val !== "" && $.Metro.utils.isInt(val) ? val : 0;
+                            var size = val !== "" && Metro.utils.isInt(val) ? val : 0;
                             console.log(size);
                             $('#gravatar_runtime_demo_1').attr('data-size', size);
                         }
@@ -212,7 +212,7 @@
     <script>
         function getGravatar(f){
             var val = Number(f.elements['gravatar_size'].value);
-            var size = val !== "" && $.Metro.utils.isInt(val) ? val : 0;
+            var size = val !== "" && Metro.utils.isInt(val) ? val : 0;
             $('#gravatar_runtime_demo_1').attr('data-size', size);
         }
     </script>

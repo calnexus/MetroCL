@@ -45,7 +45,7 @@
         }
     });
 
-    $.Metro.utils.cleanPreCode("pre code, textarea");
+    Metro.utils.cleanPreCode("pre code, textarea");
 }());
 
 
