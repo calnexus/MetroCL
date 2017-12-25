@@ -32,7 +32,7 @@ It's an independent project with its ongoing development made possible entirely 
 [![CSS gzip size](http://img.badgesize.io/Pro-Club/MetroCL/master/build/css/metro-all.min.css?compression=gzip&label=CSS+gzip+size)](https://github.com/Pro-Club/MetroCL/blob/master/build/css/metro-all.min.css)
 [![JS gzip size](http://img.badgesize.io/Pro-Club/MetroCL/master/build/js/metro.min.js?compression=gzip&label=JS+gzip+size)](https://github.com/Pro-Club/MetroCL/blob/master/build/js/metro.min.js)
 [![Icons gzip size](http://img.badgesize.io/Pro-Club/MetroCL/master/build/mif/metro.woff?compression=gzip&label=Icons+gzip+size)](https://github.com/Pro-Club/MetroCL/tree/master/build/mif)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 
 ### Whats new
 + Full code refactoring and optimisation
