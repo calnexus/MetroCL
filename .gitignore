@@ -57,6 +57,9 @@ validation-status.json
 # Folders to ignore
 bower_components
 node_modules
-.adsense
 adsense
+
+# Special files
 deploy.yaml
+deploy.bat
+Postprocess.js
