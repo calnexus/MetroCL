@@ -63,4 +63,5 @@ adsense
 dploy.yaml
 deploy.bat
 Postprocess.js
-.ftpauth
+*.ftpauth
+
