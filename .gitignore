@@ -64,3 +64,4 @@ dploy.yaml
 deploy.bat
 Postprocess.js
 *.ftpauth
+/package-lock.json
