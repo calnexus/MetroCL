@@ -112,4 +112,4 @@ var Notify = {
     }
 };
 
-$.Metro['notify'] = Notify.setup();
+Metro['notify'] = Notify.setup();

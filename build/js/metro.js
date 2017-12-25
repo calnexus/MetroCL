@@ -7857,7 +7857,7 @@ var Notify = {
     }
 };
 
-$.Metro['notify'] = Notify.setup();
+Metro['notify'] = Notify.setup();
 // Source: js/plugins/panel.js
 var Panel = {
     init: function( options, elem ) {

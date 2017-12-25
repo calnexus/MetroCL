@@ -83,7 +83,7 @@
                     <button class="button primary" onclick="showNotify()">Notify Me</button>
                     <script>
                         function showNotify(){
-                            $.Metro.notify.create("This is a notify", "Title", {});
+                            Metro.notify.create("This is a notify", "Title", {});
                         }
                     </script>
                 </div>
@@ -91,7 +91,7 @@
                     &lt;button class="button" onclick="showNotify();"&gt;Notify Me&lt;/button&gt;
                     &lt;script&gt;
                         function showNotify(){
-                            $.Metro.notify.create("This is a notify", "Title", {});
+                            Metro.notify.create("This is a notify", "Title", {});
                         }
                     &lt;/script&gt;
                 </code></pre>
@@ -116,7 +116,7 @@
                     <button class="button secondary" onclick="showSetupDemo()">Setup demo</button>
                     <script>
                         function showSetupDemo(){
-                            var notify = $.Metro.notify;
+                            var notify = Metro.notify;
                             notify.setup({
                                 width: 300,
                                 duration: 1000,
@@ -131,7 +131,7 @@
                     &lt;button class="button secondary" onclick="showSetupDemo()"&gt;Setup demo&lt;/button&gt;
                     &lt;script&gt;
                         function showSetupDemo(){
-                            var notify = $.Metro.notify;
+                            var notify = Metro.notify;
                             notify.setup({
                                 width: 300,
                                 duration: 1000,
@@ -160,19 +160,19 @@
                     <button class="button alert" onclick="showClassDemo()">Class demo</button>
                     <script>
                         function showClassDemo(){
-                            var notify = $.Metro.notify;
+                            var notify = Metro.notify;
                             notify.create("This is a notify with additional class.", null, {
                                 cls: "alert"
                             });
                         }
                         function showKeepOpenDemo(){
-                            var notify = $.Metro.notify;
+                            var notify = Metro.notify;
                             notify.create("This is a notify. Click me to close.", null, {
                                 keepOpen: true
                             });
                         }
                         function showCallbackDemo(){
-                            var notify = $.Metro.notify;
+                            var notify = Metro.notify;
                             notify.create("This is a notify.", null, {
                                 onClose: function(){
                                     alert('Hi from notification callback');
@@ -186,19 +186,19 @@
                     &lt;button class="button dark" onclick="showCallbackDemo()"&gt;Callback demo&lt;/button&gt;
                     &lt;script&gt;
                         function showClassDemo(){
-                            var notify = $.Metro.notify;
+                            var notify = Metro.notify;
                             notify.create("This is a notify with additional class.", "Alert", {
                                 cls: "alert"
                             });
                         }
                         function showKeepOpenDemo(){
-                            var notify = $.Metro.notify;
+                            var notify = Metro.notify;
                             notify.create("This is a notify. Click me to close", null, {
                                 keepOpen: true
                             });
                         }
                         function showCallbackDemo(){
-                            var notify = $.Metro.notify;
+                            var notify = Metro.notify;
                             notify.create("This is a notify", null, {
                                 onClose: function(){
                                     alert('Hi from notification callback');
