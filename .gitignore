@@ -60,6 +60,6 @@ node_modules
 adsense
 
 # Special files
-deploy.yaml
+dploy.yaml
 deploy.bat
 Postprocess.js
