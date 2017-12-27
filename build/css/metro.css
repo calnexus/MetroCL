@@ -26120,6 +26120,12 @@ video:-webkit-full-screen {
 .default-icon-random {
   background-image: url("data:image/svg+xml;charset=UTF-8,%3C!--%20Generated%20by%20IcoMoon.io%20--%3E%0A%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%0A%3Ctitle%3Edice%3C%2Ftitle%3E%0A%3Cpath%20d%3D%22M27%206h-16c-2.75%200-5%202.25-5%205v16c0%202.75%202.25%205%205%205h16c2.75%200%205-2.25%205-5v-16c0-2.75-2.25-5-5-5zM13%2028c-1.657%200-3-1.343-3-3s1.343-3%203-3%203%201.343%203%203-1.343%203-3%203zM13%2016c-1.657%200-3-1.343-3-3s1.343-3%203-3%203%201.343%203%203-1.343%203-3%203zM19%2022c-1.657%200-3-1.343-3-3s1.343-3%203-3%203%201.343%203%203-1.343%203-3%203zM25%2028c-1.657%200-3-1.343-3-3s1.343-3%203-3%203%201.343%203%203-1.343%203-3%203zM25%2016c-1.657%200-3-1.343-3-3s1.343-3%203-3%203%201.343%203%203-1.343%203-3%203zM25.899%204c-0.467-2.275-2.491-4-4.899-4h-16c-2.75%200-5%202.25-5%205v16c0%202.408%201.725%204.432%204%204.899v-19.899c0-1.1%200.9-2%202-2h19.899z%22%3E%3C%2Fpath%3E%0A%3C%2Fsvg%3E%0A");
 }
+.default-icon-calendar {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3C!--%20Generated%20by%20IcoMoon.io%20--%3E%0A%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%0A%3Ctitle%3Ecalendar%3C%2Ftitle%3E%0A%3Cpath%20d%3D%22M10%2012h4v4h-4zM16%2012h4v4h-4zM22%2012h4v4h-4zM4%2024h4v4h-4zM10%2024h4v4h-4zM16%2024h4v4h-4zM10%2018h4v4h-4zM16%2018h4v4h-4zM22%2018h4v4h-4zM4%2018h4v4h-4zM26%200v2h-4v-2h-14v2h-4v-2h-4v32h30v-32h-4zM28%2030h-26v-22h26v22z%22%3E%3C%2Fpath%3E%0A%3C%2Fsvg%3E%0A");
+}
+.default-icon-clock {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3C!--%20Generated%20by%20IcoMoon.io%20--%3E%0A%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%0A%3Ctitle%3Eclock%3C%2Ftitle%3E%0A%3Cpath%20d%3D%22M20.586%2023.414l-6.586-6.586v-8.828h4v7.172l5.414%205.414zM16%200c-8.837%200-16%207.163-16%2016s7.163%2016%2016%2016%2016-7.163%2016-16-7.163-16-16-16zM16%2028c-6.627%200-12-5.373-12-12s5.373-12%2012-12c6.627%200%2012%205.373%2012%2012s-5.373%2012-12%2012z%22%3E%3C%2Fpath%3E%0A%3C%2Fsvg%3E%0A");
+}
 @media print {
   .d-none-print {
     display: none!important;
