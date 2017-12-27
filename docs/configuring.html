@@ -47,8 +47,9 @@
                 <hr/>
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Configuring</a></li>
-                    <li class="toc-entry"><a href="#">About</a></li>
-                    <li class="toc-entry"><a href="#">Meta options</a></li>
+                    <li class="toc-entry"><a href="#_meta_about">About</a></li>
+                    <li class="toc-entry"><a href="#_meta_options">Meta options</a></li>
+                    <li class="toc-entry"><a href="#_metro_init">Initialization</a></li>
                 </ul>
 
             </div>
@@ -117,6 +118,16 @@
                     </tr>
                     </tbody>
                 </table>
+
+                <h3 id="_metro_init">Metro 4 initialization</h3>
+                <p>
+                    By default Metro 4 init immediately after loading, without waiting for all DOM content is load. If you need wait for all DOM content is load, you must:
+                </p>
+                <ol class="decimal mt-4">
+                    <li>Set <code>&lt;meta name="metro4:init" content="false"&gt;</code></li>
+                    <li>Manually init Metro 4 with method: <code>Metro.init()</code></li>
+                </ol>
+
             </main>
         </div>
 
