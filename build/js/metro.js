@@ -3832,6 +3832,14 @@ var Calendar = {
         this._drawContent();
     },
 
+    setLocale: function(){
+        var that = this, element = this.element, o = this.options;
+
+        o.locale = element.attr("data-locale");
+        this.locale = Metro.locales[o.locale] !== undefined ? Metro.locales[o.locale] : Metro.locales["en-US"];
+        this._drawCalendar();
+    },
+
     changeAttribute: function(attributeName){
         switch (attributeName) {
             case 'data-exclude': this.setExclude(); break;
@@ -3839,6 +3847,7 @@ var Calendar = {
             case 'data-show': this.setShow(); break;
             case 'data-min-date': this.setMinDate(); break;
             case 'data-max-date': this.setMaxDate(); break;
+            case 'data-locale': this.setLocale(); break;
         }
     }
 };

@@ -376,6 +376,31 @@
                     &lt;div data-role="calendar" data-locale="de-DE"&gt;&lt;/div&gt;
                     &lt;div data-role="calendar" data-locale="uk-UA"&gt;&lt;/div&gt;
                 </code></pre>
+                <p>
+                    You can change locale in runtime. To change locale, update value for attribute <code>data-locale</code>.
+                </p>
+                <div class="example">
+                    <div class="d-flex flex-justify-center mb-4">
+                        <button class="button m-1" onclick="$('#cal_locale').attr('data-locale', $(this).text())">en-US</button>
+                        <button class="button m-1" onclick="$('#cal_locale').attr('data-locale', $(this).text())">de-DE</button>
+                        <button class="button m-1" onclick="$('#cal_locale').attr('data-locale', $(this).text())">hu-HU</button>
+                        <button class="button m-1" onclick="$('#cal_locale').attr('data-locale', $(this).text())">uk-UA</button>
+                        <button class="button m-1" onclick="$('#cal_locale').attr('data-locale', $(this).text())">ru-RU</button>
+                    </div>
+
+                    <div data-role="calendar" data-locale="en-US" class="mx-auto" id="cal_locale"></div>
+                </div>
+                <pre><code class="html">
+                    &lt;div class="d-flex flex-justify-center mb-4"&gt;
+                        &lt;button class="button m-1" onclick="$('#cal_locale').attr('data-locale', $(this).text())"&gt;en-US&lt;/button&gt;
+                        &lt;button class="button m-1" onclick="$('#cal_locale').attr('data-locale', $(this).text())"&gt;de-DE&lt;/button&gt;
+                        &lt;button class="button m-1" onclick="$('#cal_locale').attr('data-locale', $(this).text())"&gt;hu-HU&lt;/button&gt;
+                        &lt;button class="button m-1" onclick="$('#cal_locale').attr('data-locale', $(this).text())"&gt;uk-UA&lt;/button&gt;
+                        &lt;button class="button m-1" onclick="$('#cal_locale').attr('data-locale', $(this).text())"&gt;ru-RU&lt;/button&gt;
+                    &lt;/div&gt;
+
+                    &lt;div data-role="calendar" data-locale="en-US" class="mx-auto" id="cal_locale"&gt;&lt;/div&gt;
+                </code></pre>
 
                 <h3 id="_calendar_options">Options</h3>
                 <p>
