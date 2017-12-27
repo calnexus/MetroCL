@@ -265,7 +265,7 @@ var Carousel = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on("click", ".carousel-bullet", function(e){
+        element.on(Metro.events.click, ".carousel-bullet", function(e){
             var bullet = $(this);
             if (that.isAnimate === false) {
                 that._slideToSlide(bullet.data('slide'));
@@ -273,14 +273,14 @@ var Carousel = {
             }
         });
 
-        element.on("click", ".carousel-switch-next", function(e){
+        element.on(Metro.events.click, ".carousel-switch-next", function(e){
             if (that.isAnimate === false) {
                 that._slideTo("next", false);
                 Utils.exec(o.onNextClick, [element, e])
             }
         });
 
-        element.on("click", ".carousel-switch-prev", function(e){
+        element.on(Metro.events.click, ".carousel-switch-prev", function(e){
             if (that.isAnimate === false) {
                 that._slideTo("prev", false);
                 Utils.exec(o.onPrevClick, [element, e])
@@ -288,7 +288,7 @@ var Carousel = {
         });
 
         if (o.stopOnMouse === true && o.autoStart === true) {
-            element.on(Metro.eventEnter, function (e) {
+            element.on(Metro.events.enter, function (e) {
                 if (o.controlsOnMouse === true) {
                     element.find("[class*=carousel-switch]").fadeIn();
                     element.find(".carousel-bullets").fadeIn();
@@ -296,7 +296,7 @@ var Carousel = {
                 that._stop();
                 Utils.exec(o.onMouseEnter, [element, e])
             });
-            element.on(Metro.eventLeave, function (e) {
+            element.on(Metro.events.leave, function (e) {
                 if (o.controlsOnMouse === true) {
                     element.find("[class*=carousel-switch]").fadeOut();
                     element.find(".carousel-bullets").fadeOut();
@@ -307,22 +307,22 @@ var Carousel = {
         }
 
         if (o.controlsOnMouse === true) {
-            element.on(Metro.eventEnter, function () {
+            element.on(Metro.events.enter, function () {
                 element.find("[class*=carousel-switch]").fadeIn();
                 element.find(".carousel-bullets").fadeIn();
             });
-            element.on(Metro.eventLeave, function () {
+            element.on(Metro.events.leave, function () {
                 element.find("[class*=carousel-switch]").fadeOut();
                 element.find(".carousel-bullets").fadeOut();
             });
         }
 
-        element.on("click", ".slide", function(e){
+        element.on(Metro.events.click, ".slide", function(e){
             var slide = $(this);
             Utils.exec(o.onSlideClick, [slide, element, e])
         });
 
-        $(window).on("resize", function(){
+        $(window).on(Metro.events.resize, function(){
             that._resize();
         });
     },

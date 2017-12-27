@@ -68,14 +68,14 @@ var Search = {
 
         if (o.clearButton !== false) {
             clearButton = $("<button>").addClass("button").addClass(o.clsClearButton).attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
-            clearButton.on("click", function(){
+            clearButton.on(Metro.events.click, function(){
                 element.val("").trigger('change').trigger('keyup').focus();
             });
             clearButton.appendTo(buttons);
         }
         if (o.searchButton !== false) {
             searchButton = $("<button>").addClass("button").addClass(o.clsSearchButton).attr("tabindex", -1).attr("type", o.searchButtonClick === 'submit' ? "submit" : "button").html(o.searchButtonIcon);
-            searchButton.on("click", function(){
+            searchButton.on(Metro.events.click, function(){
                 if (o.searchButtonClick === 'submit') {
                     Utils.exec(o.onSearchButtonClick, [this.value, this, this.form]);
                 } else {
@@ -98,7 +98,7 @@ var Search = {
             $.each(o.customButtons, function(){
                 var item = this;
                 var customButton = $("<button>").addClass("button custom-input-button").addClass(item.cls).attr("tabindex", -1).attr("type", "button").html(item.html);
-                customButton.on("click", function(){
+                customButton.on(Metro.events.click, function(){
                     Utils.exec(item.onclick, [customButton, element]);
                 });
                 customButton.appendTo(buttons);
@@ -125,8 +125,8 @@ var Search = {
             });
         }
 
-        element.on("blur", function(){container.removeClass("focused");});
-        element.on("focus", function(){container.addClass("focused");});
+        element.on(Metro.events.blur, function(){container.removeClass("focused");});
+        element.on(Metro.events.focus, function(){container.addClass("focused");});
 
         if (o.disabled === true || element.is(":disabled")) {
             this.disable();

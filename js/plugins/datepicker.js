@@ -133,7 +133,7 @@ var Datepicker = {
 
         calendarButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.calendarButtonIcon);
         calendarButton.appendTo(buttons);
-        container.on("click", "button, input", function(e){
+        container.on(Metro.events.click, "button, input", function(e){
             if (Utils.isDate(that.value) && (cal.hasClass("open") === false && cal.hasClass("open-up") === false)) {
                 cal.css({
                     visibility: "hidden",
@@ -166,7 +166,7 @@ var Datepicker = {
 
         if (o.clearButton === true) {
             clearButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
-            clearButton.on("click", function () {
+            clearButton.on(Metro.events.click, function () {
                 element.val("").trigger('change');
             });
             clearButton.appendTo(buttons);
@@ -198,9 +198,9 @@ var Datepicker = {
         container.addClass(o.clsPicker);
         element.addClass(o.clsInput);
 
-        element.on("blur", function(){container.removeClass("focused");});
-        element.on("focus", function(){container.addClass("focused");});
-        element.on("change", function(){
+        element.on(Metro.events.blur, function(){container.removeClass("focused");});
+        element.on(Metro.events.focus, function(){container.addClass("focused");});
+        element.on(Metro.events.change, function(){
             Utils.exec(o.onChange, [that.value_date, that.value, element]);
         });
     },
@@ -253,6 +253,6 @@ var Datepicker = {
 
 Metro.plugin('datepicker', Datepicker);
 
-$(document).on('click', function(e){
+$(document).on(Metro.events.click, function(e){
     $(".datepicker .calendar").removeClass("open open-up").hide();
 });

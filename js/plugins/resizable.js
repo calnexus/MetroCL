@@ -40,7 +40,7 @@ var Resizable = {
             $("<span>").addClass("resize-element").appendTo(element);
         }
 
-        element.on(Metro.eventStart, o.resizeElement, function(e){
+        element.on(Metro.events.start, o.resizeElement, function(e){
 
             if (element.data("canResize") === false) {
                 return ;
@@ -53,7 +53,7 @@ var Resizable = {
 
             Utils.exec(o.onResizeStart, [element, size]);
 
-            $(document).on(Metro.eventMove, function(e){
+            $(document).on(Metro.events.move, function(e){
                 var moveXY = Utils.clientXY(e);
                 var size = {
                     width: startWidth + moveXY.x - startXY.x,
@@ -64,8 +64,8 @@ var Resizable = {
             });
         });
 
-        element.on(Metro.eventStop, o.resizeElement, function(){
-            $(document).off(Metro.eventMove);
+        element.on(Metro.events.stop, o.resizeElement, function(){
+            $(document).off(Metro.events.move);
 
             var size = {
                 width: parseInt(element.outerWidth()),

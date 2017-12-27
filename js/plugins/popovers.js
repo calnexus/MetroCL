@@ -53,9 +53,9 @@ var Popover = {
         var event;
 
         switch (o.popoverTrigger) {
-            case METRO_POPOVER_MODE.CLICK: event = Metro.eventClick; break;
-            case METRO_POPOVER_MODE.FOCUS: event = Metro.eventFocus; break;
-            default: event = Metro.eventEnter;
+            case METRO_POPOVER_MODE.CLICK: event = Metro.events.click; break;
+            case METRO_POPOVER_MODE.FOCUS: event = Metro.events.focus; break;
+            default: event = Metro.events.enter;
         }
 
         element.on(event, function(){
@@ -71,12 +71,12 @@ var Popover = {
         });
 
         if (o.hideOnLeave === true && !Utils.isTouchDevice()) {
-            element.on(Metro.eventLeave, function(){
+            element.on(Metro.events.leave, function(){
                 that.removePopover();
             });
         }
 
-        $(window).on("scroll", function(){
+        $(window).on(Metro.events.scroll, function(){
             if (that.popover !== null) that.setPosition();
         });
 
@@ -128,7 +128,7 @@ var Popover = {
         }
 
         popover.addClass(neb_pos);
-        popover.on("click", function(){
+        popover.on(Metro.events.click, function(){
             that.removePopover();
         });
 

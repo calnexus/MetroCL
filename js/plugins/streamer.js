@@ -100,7 +100,7 @@ var Streamer = {
             $.each(data.actions, function(){
                 var item = this;
                 var button = $("<button>").addClass("streamer-action").addClass(item.cls).html(item.html);
-                if (item.onclick !== undefined) button.on("click", function(){
+                if (item.onclick !== undefined) button.on(Metro.events.click, function(){
                     Utils.exec(item.onclick, [element]);
                 });
                 button.appendTo(actions);
@@ -267,7 +267,7 @@ var Streamer = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on("click", ".stream-event", function(e){
+        element.on(Metro.events.click, ".stream-event", function(e){
             var event = $(this);
             if (o.closed === false && event.data("closed") !== true && o.eventClick === 'select') {
                 event.toggleClass("selected");
@@ -287,7 +287,7 @@ var Streamer = {
             }
         });
 
-        element.on("click", ".stream", function(e){
+        element.on(Metro.events.click, ".stream", function(e){
             var stream = $(this);
             var index = stream.index();
 
@@ -309,7 +309,7 @@ var Streamer = {
         });
 
         if (Utils.isTouchDevice() !== true) {
-            element.on("mousewheel", ".events-area", function(e) {
+            element.on(Metro.events.mousewheel, ".events-area", function(e) {
                 var acrollable = $(this);
 
                 if (e.deltaY === undefined || e.deltaFactor === undefined) {
@@ -325,7 +325,7 @@ var Streamer = {
         }
 
         if (Utils.isTouchDevice() === true) {
-            element.on("click", ".stream", function(){
+            element.on(Metro.events.click, ".stream", function(){
                 var stream = $(this);
                 stream.toggleClass("focused");
                 $.each(element.find(".stream"), function () {

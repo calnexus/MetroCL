@@ -70,7 +70,7 @@ var Notify = {
             }
         }
 
-        notify.on("click", function(){
+        notify.on(Metro.events.click, function(){
             that.kill($(this));
         });
 

@@ -51,7 +51,7 @@ var Textarea = {
 
         if (o.clearButton !== false) {
             clearButton = $("<button>").addClass("button clear-button").attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
-            clearButton.on("click", function(){
+            clearButton.on(Metro.events.click, function(){
                 element.val("").trigger('change').trigger('keyup').focus();
             });
             clearButton.appendTo(container);
@@ -74,13 +74,13 @@ var Textarea = {
                 resize();
             }, 0);
 
-            element.on('keyup', resize);
-            element.on('keydown', resize);
-            element.on('change', resize);
-            element.on('focus', resize);
-            element.on('cut', resize);
-            element.on('paste', resize);
-            element.on('drop', resize);
+            element.on(Metro.events.keyup, resize);
+            element.on(Metro.events.keydown, resize);
+            element.on(Metro.events.change, resize);
+            element.on(Metro.events.focus, resize);
+            element.on(Metro.events.cut, resize);
+            element.on(Metro.events.paste, resize);
+            element.on(Metro.events.drop, resize);
         }
 
         if (element.attr('dir') === 'rtl' ) {
@@ -99,8 +99,8 @@ var Textarea = {
             }
         }
 
-        element.on("blur", function(){container.removeClass("focused");});
-        element.on("focus", function(){container.addClass("focused");});
+        element.on(Metro.events.blur, function(){container.removeClass("focused");});
+        element.on(Metro.events.focus, function(){container.addClass("focused");});
 
         if (o.disabled === true || element.is(':disabled')) {
             this.disable();

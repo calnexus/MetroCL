@@ -84,27 +84,27 @@ var Wizard = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on("click", ".wizard-btn-help", function(){
+        element.on(Metro.events.click, ".wizard-btn-help", function(){
             var pages = element.children("section");
             var page = pages.get(that.current - 1);
             Utils.exec(o.onHelpClick, [that.current, page, element])
         });
 
-        element.on("click", ".wizard-btn-prev", function(){
+        element.on(Metro.events.click, ".wizard-btn-prev", function(){
             that.prev();
             Utils.exec(o.onPrevClick, [that.current, element])
         });
 
-        element.on("click", ".wizard-btn-next", function(){
+        element.on(Metro.events.click, ".wizard-btn-next", function(){
             that.next();
             Utils.exec(o.onNextClick, [that.current, element])
         });
 
-        element.on("click", ".wizard-btn-finish", function(){
+        element.on(Metro.events.click, ".wizard-btn-finish", function(){
             Utils.exec(o.onFinishClick, [that.current, element])
         });
 
-        $(window).on("resize", function(){
+        $(window).on(Metro.events.resize, function(){
             that._setHeight();
         });
     },

@@ -304,7 +304,7 @@ var Audio = {
             that._setVolume();
         });
 
-        player.on("click", ".play", function(e){
+        player.on(Metro.events.click, ".play", function(e){
             if (audio.paused) {
                 that.play();
             } else {
@@ -312,15 +312,15 @@ var Audio = {
             }
         });
 
-        player.on("click", ".stop", function(e){
+        player.on(Metro.events.click, ".stop", function(e){
             that.stop();
         });
 
-        player.on("click", ".mute", function(e){
+        player.on(Metro.events.click, ".mute", function(e){
             that._toggleMute();
         });
 
-        player.on("click", ".loop", function(){
+        player.on(Metro.events.click, ".loop", function(){
             that._toggleLoop();
         });
     },

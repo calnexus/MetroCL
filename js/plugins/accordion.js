@@ -66,7 +66,7 @@ var Accordion = {
         var that = this, element = this.element, o = this.options;
         var active = element.children(".frame.active");
 
-        element.on("click", ".heading", function(){
+        element.on(Metro.events.click, ".heading", function(){
             var heading = $(this);
             var frame = heading.parent();
 

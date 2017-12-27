@@ -155,7 +155,7 @@ var Master = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on("click", ".controls .prev", function(){
+        element.on(Metro.events.click, ".controls .prev", function(){
             if (that.isAnimate === true) {
                 return ;
             }
@@ -167,7 +167,7 @@ var Master = {
             }
         });
 
-        element.on("click", ".controls .next", function(){
+        element.on(Metro.events.click, ".controls .next", function(){
             if (that.isAnimate === true) {
                 return ;
             }

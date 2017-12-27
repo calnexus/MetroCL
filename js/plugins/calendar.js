@@ -170,7 +170,7 @@ var Calendar = {
     _bindEvents: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on("click", ".prev-month, .next-month, .prev-year, .next-year", function(e){
+        element.on(Metro.events.click, ".prev-month, .next-month, .prev-year, .next-year", function(e){
             var new_date, el = $(this);
 
             if (el.hasClass("prev-month")) {
@@ -217,7 +217,7 @@ var Calendar = {
             e.stopPropagation();
         });
 
-        element.on("click", ".button.today", function(e){
+        element.on(Metro.events.click, ".button.today", function(e){
             that.today = new Date();
             that.current = {
                 year: that.today.getFullYear(),
@@ -232,7 +232,7 @@ var Calendar = {
             e.stopPropagation();
         });
 
-        element.on("click", ".button.clear", function(e){
+        element.on(Metro.events.click, ".button.clear", function(e){
             that.selected = [];
             that._drawContent();
             Utils.exec(o.onClear, [element]);
@@ -241,7 +241,7 @@ var Calendar = {
             e.stopPropagation();
         });
 
-        element.on("click", ".button.cancel", function(e){
+        element.on(Metro.events.click, ".button.cancel", function(e){
             that._drawContent();
             Utils.exec(o.onCancel, [element]);
 
@@ -249,7 +249,7 @@ var Calendar = {
             e.stopPropagation();
         });
 
-        element.on("click", ".button.done", function(e){
+        element.on(Metro.events.click, ".button.done", function(e){
             that._drawContent();
             Utils.exec(o.onDone, [that.selected, element]);
 
@@ -257,7 +257,7 @@ var Calendar = {
             e.stopPropagation();
         });
 
-        element.on("click", ".week-days .day", function(e){
+        element.on(Metro.events.click, ".week-days .day", function(e){
             if (o.weekDayClick === false || o.multiSelect === false) {
                 return ;
             }
@@ -277,7 +277,7 @@ var Calendar = {
             e.stopPropagation();
         });
 
-        element.on("click", ".days-row .day", function(e){
+        element.on(Metro.events.click, ".days-row .day", function(e){
             var day = $(this);
             var index, date;
 
@@ -323,13 +323,13 @@ var Calendar = {
             e.stopPropagation();
         });
 
-        element.on("click", ".curr-month", function(e){
+        element.on(Metro.events.click, ".curr-month", function(e){
             element.find(".calendar-months").addClass("open");
             e.preventDefault();
             e.stopPropagation();
         });
 
-        element.on("click", ".calendar-months li", function(e){
+        element.on(Metro.events.click, ".calendar-months li", function(e){
             that.current.month = $(this).index();
             that._drawContent();
             Utils.exec(o.onMonthChange, [that.current, element]);
@@ -338,13 +338,13 @@ var Calendar = {
             e.stopPropagation();
         });
 
-        element.on("click", ".curr-year", function(e){
+        element.on(Metro.events.click, ".curr-year", function(e){
             element.find(".calendar-years").addClass("open");
             e.preventDefault();
             e.stopPropagation();
         });
 
-        element.on("click", ".calendar-years li", function(e){
+        element.on(Metro.events.click, ".calendar-years li", function(e){
             that.current.year = $(this).text();
             that._drawContent();
             Utils.exec(o.onYearChange, [that.current, element]);
@@ -353,7 +353,7 @@ var Calendar = {
             e.stopPropagation();
         });
 
-        element.on("click", function(e){
+        element.on(Metro.events.click, function(e){
             var months = element.find(".calendar-months");
             var years = element.find(".calendar-years");
             if (months.hasClass("open")) {
@@ -721,7 +721,7 @@ var Calendar = {
     }
 };
 
-$(document).on('click', function(e){
+$(document).on(Metro.events.click, function(e){
     $('.calendar .calendar-years').each(function(){
         $(this).removeClass("open");
     });

@@ -317,7 +317,7 @@ var Video = {
             that._setVolume();
         });
 
-        player.on("click", ".play", function(e){
+        player.on(Metro.events.click, ".play", function(e){
             if (video.paused) {
                 that.play();
             } else {
@@ -325,19 +325,19 @@ var Video = {
             }
         });
 
-        player.on("click", ".stop", function(e){
+        player.on(Metro.events.click, ".stop", function(e){
             that.stop();
         });
 
-        player.on("click", ".mute", function(e){
+        player.on(Metro.events.click, ".mute", function(e){
             that._toggleMute();
         });
 
-        player.on("click", ".loop", function(){
+        player.on(Metro.events.click, ".loop", function(){
             that._toggleLoop();
         });
 
-        player.on("click", ".full", function(e){
+        player.on(Metro.events.click, ".full", function(e){
             that.fullscreen = !that.fullscreen;
             player.find(".full").html(that.fullscreen === true ? o.screenLessIcon : o.screenMoreIcon);
             if (o.fullScreenMode === METRO_FULLSCREEN_MODE.WINDOW) {
@@ -366,13 +366,13 @@ var Video = {
             }
 
             if (that.fullscreen === true) {
-                $(document).on("keyup.METRO_VIDEO", function(e){
+                $(document).on(Metro.events.keyup + "_video", function(e){
                     if (e.keyCode === 27) {
                         player.find(".full").click();
                     }
                 });
             } else {
-                $(document).off("keyup.METRO_VIDEO");
+                $(document).off(Metro.events.keyup + "_video");
             }
         });
 
@@ -385,11 +385,11 @@ var Video = {
         var player = this.player, o = this.options;
 
         if (o.controlsHide > 0) {
-            player.on(Metro.eventEnter, function(){
+            player.on(Metro.events.enter, function(){
                 player.find(".controls").fadeIn();
             });
 
-            player.on(Metro.eventLeave, function(){
+            player.on(Metro.events.leave, function(){
                 setTimeout(function(){
                     player.find(".controls").fadeOut();
                 }, o.controlsHide);
@@ -398,8 +398,8 @@ var Video = {
     },
 
     _offMouse: function(){
-        this.player.off(Metro.eventEnter);
-        this.player.off(Metro.eventLeave);
+        this.player.off(Metro.events.enter);
+        this.player.off(Metro.events.leave);
         this.player.find(".controls").fadeIn();
     },
 

@@ -47,7 +47,7 @@ var Dropdown = {
         this.displayOrigin = element.css("display");
         this.element.css("display", "none");
 
-        toggle.on('click', function(e){
+        toggle.on(Metro.events.click, function(e){
             parent.siblings(parent[0].tagName).removeClass("active-container");
             $(".active-container").removeClass("active-container");
 
@@ -82,13 +82,13 @@ var Dropdown = {
         this._toggle = toggle;
 
         if (o.noClose === true) {
-            element.addClass("keep-open").on('click', function (e) {
+            element.addClass("keep-open").on(Metro.events.click, function (e) {
                 //e.preventDefault();
                 e.stopPropagation();
             });
         }
 
-        $(element).find('li.disabled a').on('click', function(e){
+        $(element).find('li.disabled a').on(Metro.events.click, function(e){
             e.preventDefault();
         });
     },
@@ -141,7 +141,7 @@ var Dropdown = {
     }
 };
 
-$(document).on('click', function(e){
+$(document).on(Metro.events.click, function(e){
     $('[data-role*=dropdown]').each(function(){
         var el = $(this);
 

@@ -144,8 +144,8 @@ var Slider = {
         var marker = slider.find(".marker");
         var hint = slider.find(".hint");
 
-        marker.on(Metro.eventStart, function(){
-            $(document).on(Metro.eventMove, function(e){
+        marker.on(Metro.events.start, function(){
+            $(document).on(Metro.events.move, function(e){
                 if (o.hint === true && o.hintAlways !== true) {
                     hint.fadeIn();
                 }
@@ -153,9 +153,9 @@ var Slider = {
                 Utils.exec(o.onMove, [that.value, that.percent, slider]);
             });
 
-            $(document).on(Metro.eventStop, function(){
-                $(document).off(Metro.eventMove);
-                $(document).off(Metro.eventStop);
+            $(document).on(Metro.events.stop, function(){
+                $(document).off(Metro.events.move);
+                $(document).off(Metro.events.stop);
 
                 if (o.hintAlways !== true) {
                     hint.fadeOut();
@@ -167,15 +167,15 @@ var Slider = {
             Utils.exec(o.onStart, [that.value, that.percent, slider]);
         });
 
-        marker.on("focus", function(){
+        marker.on(Metro.events.focus, function(){
             Utils.exec(o.onFocus, [that.value, that.percent, slider]);
         });
 
-        marker.on("blur", function(){
+        marker.on(Metro.events.blur, function(){
             Utils.exec(o.onBlur, [that.value, that.percent, slider]);
         });
 
-        marker.on("keydown", function(e){
+        marker.on(Metro.events.keydown, function(e){
 
             var key = e.keyCode ? e.keyCode : e.which;
 
@@ -218,12 +218,12 @@ var Slider = {
             e.preventDefault();
         });
 
-        marker.on("keyup", function(){
+        marker.on(Metro.events.keyup, function(){
             clearInterval(that.keyInterval);
             that.keyInterval = false;
         });
 
-        slider.on(Metro.eventClick, function(e){
+        slider.on(Metro.events.click, function(e){
             that._move(e);
             Utils.exec(o.onClick, [that.value, that.percent, slider]);
             Utils.exec(o.onStop, [that.value, that.percent, slider]);

@@ -69,7 +69,7 @@ var Stepper = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on("click", ".step", function(){
+        element.on(Metro.events.click, ".step", function(){
             var step = $(this).data("step");
             if (o.stepClick === true) {
                 that.toStep(step);

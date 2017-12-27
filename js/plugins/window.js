@@ -192,16 +192,16 @@ var Window = {
             win.addClass("resizable");
         }
 
-        win.on("dblclick", ".window-caption", function(e){
+        win.on(Metro.events.dblclick, ".window-caption", function(e){
             that.maximized(e);
         });
-        win.on("click", ".btn-max", function(e){
+        win.on(Metro.events.click, ".btn-max", function(e){
             that.maximized(e);
         });
-        win.on("click", ".btn-min", function(e){
+        win.on(Metro.events.click, ".btn-min", function(e){
             that.minimized(e);
         });
-        win.on("click", ".btn-close", function(e){
+        win.on(Metro.events.click, ".btn-close", function(e){
             that.close(e);
         });
 

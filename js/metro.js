@@ -114,14 +114,26 @@ var Metro = {
     isTouchable: isTouch,
     isFullscreenEnabled: document.fullscreenEnabled,
 
-    eventClick: isTouch ? 'touchstart.metro' : 'click.metro',
-    eventStart: isTouch ? 'touchstart.metro' : 'mousedown.metro',
-    eventStop: isTouch ? 'touchend.metro' : 'mouseup.metro',
-    eventMove: isTouch ? 'touchmove.metro' : 'mousemove.metro',
-    eventEnter: isTouch ? 'touchstart.metro' : 'mouseenter.metro',
-    eventLeave: isTouch ? 'touchend.metro' : 'mouseleave.metro',
-    eventFocus: 'focus.metro',
-    eventBlur: 'blur.metro',
+    events: {
+        click: isTouch ? 'touchstart.metro' : 'click.metro',
+        start: isTouch ? 'touchstart.metro' : 'mousedown.metro',
+        stop: isTouch ? 'touchend.metro' : 'mouseup.metro',
+        move: isTouch ? 'touchmove.metro' : 'mousemove.metro',
+        enter: isTouch ? 'touchstart.metro' : 'mouseenter.metro',
+        leave: isTouch ? 'touchend.metro' : 'mouseleave.metro',
+        focus: 'focus.metro',
+        blur: 'blur.metro',
+        resize: 'resize.metro',
+        keyup: 'keyup.metro',
+        keydown: 'keydown.metro',
+        dblclick: 'dblclick.metro',
+        change: 'change.metro',
+        cut: 'cut.metro',
+        paste: 'paste.metro',
+        drop: 'drop.metro',
+        scroll: 'scroll.metro',
+        mousewheel: 'mousewheel.metro'
+    },
 
     hotkeys: [],
 
@@ -212,7 +224,7 @@ var Metro = {
 
             Metro.hotkeys.push(hotkey);
 
-            $(document).on('keyup', null, hotkey, function(e){
+            $(document).on(Metro.events.keyup, null, hotkey, function(e){
                 if (element === undefined) return;
 
                 if (element[0].tagName === 'A' &&

@@ -51,7 +51,7 @@ var File = {
         element.appendTo(container);
         caption.insertBefore(element);
 
-        element.on('change', function(){
+        element.on(Metro.events.change, function(){
             var val = $(this).val();
             if (val !== '') {
                 val = val.replace(/.+[\\\/]/, "");
@@ -64,7 +64,7 @@ var File = {
         button = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.caption);
         button.appendTo(container);
 
-        button.on('click', function(){
+        button.on(Metro.events.click, function(){
             element.trigger("click");
         });
 

@@ -158,15 +158,15 @@ var Select = {
         var input = element.siblings("input");
         var list = element.siblings("ul");
 
-        container.on("click", function(e){
+        container.on(Metro.events.click, function(e){
             e.preventDefault();
             e.stopPropagation();
         });
 
-        input.on("blur", function(){container.removeClass("focused");});
-        input.on("focus", function(){container.addClass("focused");});
+        input.on(Metro.events.blur, function(){container.removeClass("focused");});
+        input.on(Metro.events.focus, function(){container.addClass("focused");});
 
-        list.on("click", "li", function(e){
+        list.on(Metro.events.click, "li", function(e){
             if ($(this).hasClass("group-title")) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -198,7 +198,7 @@ var Select = {
     }
 };
 
-$(document).on('click', function(e){
+$(document).on(Metro.events.click, function(e){
     var selects = $(".select ul");
     $.each(selects, function(){
         $(this).data('dropdown').close();

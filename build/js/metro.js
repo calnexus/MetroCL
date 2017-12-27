@@ -23,7 +23,7 @@ if (typeof jQuery === 'undefined') {
 window.canObserveMutation = 'MutationObserver' in window;
 
 if (window.canObserveMutation === false) {
-    throw new Error('Metro 4 requires MutationObserver. Your browser is not support MutationObserver. Please use polyfill, example: //cdn.jsdelivr.net/g/mutationobserver/ or other.');
+    throw new Error('Metro 4 requires MutationObserver. Your browser does not support MutationObserver. Please use polyfill, example: //cdn.jsdelivr.net/g/mutationobserver/ or other.');
 }
 
 window.METRO_META_INIT = $("meta[name='metro4:init']").attr("content");
@@ -132,14 +132,26 @@ var Metro = {
     isTouchable: isTouch,
     isFullscreenEnabled: document.fullscreenEnabled,
 
-    eventClick: isTouch ? 'touchstart.metro' : 'click.metro',
-    eventStart: isTouch ? 'touchstart.metro' : 'mousedown.metro',
-    eventStop: isTouch ? 'touchend.metro' : 'mouseup.metro',
-    eventMove: isTouch ? 'touchmove.metro' : 'mousemove.metro',
-    eventEnter: isTouch ? 'touchstart.metro' : 'mouseenter.metro',
-    eventLeave: isTouch ? 'touchend.metro' : 'mouseleave.metro',
-    eventFocus: 'focus.metro',
-    eventBlur: 'blur.metro',
+    events: {
+        click: isTouch ? 'touchstart.metro' : 'click.metro',
+        start: isTouch ? 'touchstart.metro' : 'mousedown.metro',
+        stop: isTouch ? 'touchend.metro' : 'mouseup.metro',
+        move: isTouch ? 'touchmove.metro' : 'mousemove.metro',
+        enter: isTouch ? 'touchstart.metro' : 'mouseenter.metro',
+        leave: isTouch ? 'touchend.metro' : 'mouseleave.metro',
+        focus: 'focus.metro',
+        blur: 'blur.metro',
+        resize: 'resize.metro',
+        keyup: 'keyup.metro',
+        keydown: 'keydown.metro',
+        dblclick: 'dblclick.metro',
+        change: 'change.metro',
+        cut: 'cut.metro',
+        paste: 'paste.metro',
+        drop: 'drop.metro',
+        scroll: 'scroll.metro',
+        mousewheel: 'mousewheel.metro'
+    },
 
     hotkeys: [],
 
@@ -230,7 +242,7 @@ var Metro = {
 
             Metro.hotkeys.push(hotkey);
 
-            $(document).on('keyup', null, hotkey, function(e){
+            $(document).on(Metro.events.keyup, null, hotkey, function(e){
                 if (element === undefined) return;
 
                 if (element[0].tagName === 'A' &&
@@ -943,6 +955,38 @@ var Locales = {
             "yes": "Ja",
             "no": "Nein",
             "random": "Zufällig"
+        }
+    },
+
+    'hu-HU': {
+        "calendar": {
+            "months": [
+                'Január', 'Február', 'Március', 'Április', 'Május', 'Június', 'Július', 'Augusztus', 'Szeptember', 'Október', 'November', 'December',
+                'Jan', 'Feb', 'Már', 'Ápr', 'Máj', 'Jún', 'Júl', 'Aug', 'Szep', 'Okt', 'Nov', 'Dec'
+            ],
+            "days": [
+                'Vasárnap', 'Hétfő', 'Kedd', 'Szerda', 'Csütörtök', 'Péntek', 'Szombat',
+                'V', 'H', 'K', 'Sz', 'Cs', 'P', 'Sz',
+                'Vas', 'Hét', 'Ke', 'Sze', 'Csü', 'Pén', 'Szom'
+            ],
+            "time": {
+                "days": "NAP",
+                "hours": "ÓRA",
+                "minutes": "PERC",
+                "seconds": "MP"
+            }
+        },
+        "buttons": {
+            "ok": "OK",
+            "cancel": "Mégse",
+            "done": "Kész",
+            "today": "Ma",
+            "now": "Most",
+            "clear": "Törlés",
+            "help": "Segítség",
+            "yes": "Igen",
+            "no": "Nem",
+            "random": "Véletlen"
         }
     },
 
@@ -2374,7 +2418,7 @@ var Accordion = {
         var that = this, element = this.element, o = this.options;
         var active = element.children(".frame.active");
 
-        element.on("click", ".heading", function(){
+        element.on(Metro.events.click, ".heading", function(){
             var heading = $(this);
             var frame = heading.parent();
 
@@ -2857,7 +2901,7 @@ var Audio = {
             that._setVolume();
         });
 
-        player.on("click", ".play", function(e){
+        player.on(Metro.events.click, ".play", function(e){
             if (audio.paused) {
                 that.play();
             } else {
@@ -2865,15 +2909,15 @@ var Audio = {
             }
         });
 
-        player.on("click", ".stop", function(e){
+        player.on(Metro.events.click, ".stop", function(e){
             that.stop();
         });
 
-        player.on("click", ".mute", function(e){
+        player.on(Metro.events.click, ".mute", function(e){
             that._toggleMute();
         });
 
-        player.on("click", ".loop", function(){
+        player.on(Metro.events.click, ".loop", function(){
             that._toggleLoop();
         });
     },
@@ -3050,7 +3094,7 @@ var ButtonsGroup = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on("click", o.targets, function(){
+        element.on(Metro.events.click, o.targets, function(){
             var el = $(this);
 
             Utils.exec(o.onButtonClick, [el]);
@@ -3248,7 +3292,7 @@ var Calendar = {
     _bindEvents: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on("click", ".prev-month, .next-month, .prev-year, .next-year", function(e){
+        element.on(Metro.events.click, ".prev-month, .next-month, .prev-year, .next-year", function(e){
             var new_date, el = $(this);
 
             if (el.hasClass("prev-month")) {
@@ -3295,7 +3339,7 @@ var Calendar = {
             e.stopPropagation();
         });
 
-        element.on("click", ".button.today", function(e){
+        element.on(Metro.events.click, ".button.today", function(e){
             that.today = new Date();
             that.current = {
                 year: that.today.getFullYear(),
@@ -3310,7 +3354,7 @@ var Calendar = {
             e.stopPropagation();
         });
 
-        element.on("click", ".button.clear", function(e){
+        element.on(Metro.events.click, ".button.clear", function(e){
             that.selected = [];
             that._drawContent();
             Utils.exec(o.onClear, [element]);
@@ -3319,7 +3363,7 @@ var Calendar = {
             e.stopPropagation();
         });
 
-        element.on("click", ".button.cancel", function(e){
+        element.on(Metro.events.click, ".button.cancel", function(e){
             that._drawContent();
             Utils.exec(o.onCancel, [element]);
 
@@ -3327,7 +3371,7 @@ var Calendar = {
             e.stopPropagation();
         });
 
-        element.on("click", ".button.done", function(e){
+        element.on(Metro.events.click, ".button.done", function(e){
             that._drawContent();
             Utils.exec(o.onDone, [that.selected, element]);
 
@@ -3335,7 +3379,7 @@ var Calendar = {
             e.stopPropagation();
         });
 
-        element.on("click", ".week-days .day", function(e){
+        element.on(Metro.events.click, ".week-days .day", function(e){
             if (o.weekDayClick === false || o.multiSelect === false) {
                 return ;
             }
@@ -3355,7 +3399,7 @@ var Calendar = {
             e.stopPropagation();
         });
 
-        element.on("click", ".days-row .day", function(e){
+        element.on(Metro.events.click, ".days-row .day", function(e){
             var day = $(this);
             var index, date;
 
@@ -3401,13 +3445,13 @@ var Calendar = {
             e.stopPropagation();
         });
 
-        element.on("click", ".curr-month", function(e){
+        element.on(Metro.events.click, ".curr-month", function(e){
             element.find(".calendar-months").addClass("open");
             e.preventDefault();
             e.stopPropagation();
         });
 
-        element.on("click", ".calendar-months li", function(e){
+        element.on(Metro.events.click, ".calendar-months li", function(e){
             that.current.month = $(this).index();
             that._drawContent();
             Utils.exec(o.onMonthChange, [that.current, element]);
@@ -3416,13 +3460,13 @@ var Calendar = {
             e.stopPropagation();
         });
 
-        element.on("click", ".curr-year", function(e){
+        element.on(Metro.events.click, ".curr-year", function(e){
             element.find(".calendar-years").addClass("open");
             e.preventDefault();
             e.stopPropagation();
         });
 
-        element.on("click", ".calendar-years li", function(e){
+        element.on(Metro.events.click, ".calendar-years li", function(e){
             that.current.year = $(this).text();
             that._drawContent();
             Utils.exec(o.onYearChange, [that.current, element]);
@@ -3431,7 +3475,7 @@ var Calendar = {
             e.stopPropagation();
         });
 
-        element.on("click", function(e){
+        element.on(Metro.events.click, function(e){
             var months = element.find(".calendar-months");
             var years = element.find(".calendar-years");
             if (months.hasClass("open")) {
@@ -3799,7 +3843,7 @@ var Calendar = {
     }
 };
 
-$(document).on('click', function(e){
+$(document).on(Metro.events.click, function(e){
     $('.calendar .calendar-years').each(function(){
         $(this).removeClass("open");
     });
@@ -4077,7 +4121,7 @@ var Carousel = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on("click", ".carousel-bullet", function(e){
+        element.on(Metro.events.click, ".carousel-bullet", function(e){
             var bullet = $(this);
             if (that.isAnimate === false) {
                 that._slideToSlide(bullet.data('slide'));
@@ -4085,14 +4129,14 @@ var Carousel = {
             }
         });
 
-        element.on("click", ".carousel-switch-next", function(e){
+        element.on(Metro.events.click, ".carousel-switch-next", function(e){
             if (that.isAnimate === false) {
                 that._slideTo("next", false);
                 Utils.exec(o.onNextClick, [element, e])
             }
         });
 
-        element.on("click", ".carousel-switch-prev", function(e){
+        element.on(Metro.events.click, ".carousel-switch-prev", function(e){
             if (that.isAnimate === false) {
                 that._slideTo("prev", false);
                 Utils.exec(o.onPrevClick, [element, e])
@@ -4100,7 +4144,7 @@ var Carousel = {
         });
 
         if (o.stopOnMouse === true && o.autoStart === true) {
-            element.on(Metro.eventEnter, function (e) {
+            element.on(Metro.events.enter, function (e) {
                 if (o.controlsOnMouse === true) {
                     element.find("[class*=carousel-switch]").fadeIn();
                     element.find(".carousel-bullets").fadeIn();
@@ -4108,7 +4152,7 @@ var Carousel = {
                 that._stop();
                 Utils.exec(o.onMouseEnter, [element, e])
             });
-            element.on(Metro.eventLeave, function (e) {
+            element.on(Metro.events.leave, function (e) {
                 if (o.controlsOnMouse === true) {
                     element.find("[class*=carousel-switch]").fadeOut();
                     element.find(".carousel-bullets").fadeOut();
@@ -4119,22 +4163,22 @@ var Carousel = {
         }
 
         if (o.controlsOnMouse === true) {
-            element.on(Metro.eventEnter, function () {
+            element.on(Metro.events.enter, function () {
                 element.find("[class*=carousel-switch]").fadeIn();
                 element.find(".carousel-bullets").fadeIn();
             });
-            element.on(Metro.eventLeave, function () {
+            element.on(Metro.events.leave, function () {
                 element.find("[class*=carousel-switch]").fadeOut();
                 element.find(".carousel-bullets").fadeOut();
             });
         }
 
-        element.on("click", ".slide", function(e){
+        element.on(Metro.events.click, ".slide", function(e){
             var slide = $(this);
             Utils.exec(o.onSlideClick, [slide, element, e])
         });
 
-        $(window).on("resize", function(){
+        $(window).on(Metro.events.resize, function(){
             that._resize();
         });
     },
@@ -4718,7 +4762,7 @@ var Collapse = {
             element.hide(0);
         }
 
-        toggle.on('click', function(e){
+        toggle.on(Metro.events.click, function(e){
             if (element.css('display') === 'block' && !element.hasClass('keep-open')) {
                 that._close(element);
             } else {
@@ -5124,7 +5168,7 @@ var Datepicker = {
         size: "100%",
         format: "%Y/%m/%d",
         clearButton: false,
-        calendarButtonIcon: "<sapn class='mif-calendar'></sapn>",
+        calendarButtonIcon: "<span class='mif-calendar'></span>",
         clearButtonIcon: "<span class='mif-cross'></span>",
         copyInlineStyles: false,
         clsPicker: "",
@@ -5237,7 +5281,7 @@ var Datepicker = {
 
         calendarButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.calendarButtonIcon);
         calendarButton.appendTo(buttons);
-        container.on("click", "button, input", function(e){
+        container.on(Metro.events.click, "button, input", function(e){
             if (Utils.isDate(that.value) && (cal.hasClass("open") === false && cal.hasClass("open-up") === false)) {
                 cal.css({
                     visibility: "hidden",
@@ -5270,7 +5314,7 @@ var Datepicker = {
 
         if (o.clearButton === true) {
             clearButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
-            clearButton.on("click", function () {
+            clearButton.on(Metro.events.click, function () {
                 element.val("").trigger('change');
             });
             clearButton.appendTo(buttons);
@@ -5302,9 +5346,9 @@ var Datepicker = {
         container.addClass(o.clsPicker);
         element.addClass(o.clsInput);
 
-        element.on("blur", function(){container.removeClass("focused");});
-        element.on("focus", function(){container.addClass("focused");});
-        element.on("change", function(){
+        element.on(Metro.events.blur, function(){container.removeClass("focused");});
+        element.on(Metro.events.focus, function(){container.addClass("focused");});
+        element.on(Metro.events.change, function(){
             Utils.exec(o.onChange, [that.value_date, that.value, element]);
         });
     },
@@ -5357,7 +5401,7 @@ var Datepicker = {
 
 Metro.plugin('datepicker', Datepicker);
 
-$(document).on('click', function(e){
+$(document).on(Metro.events.click, function(e){
     $(".datepicker .calendar").removeClass("open open-up").hide();
 });
 
@@ -5460,7 +5504,7 @@ var Dialog = {
             $.each(o.actions, function(){
                 var item = this;
                 button = $("<button>").addClass("button").addClass(item.cls).html(item.caption);
-                if (item.onclick !== undefined) button.on("click", function(){
+                if (item.onclick !== undefined) button.on(Metro.events.click, function(){
                     Utils.exec(item.onclick, [element]);
                 });
                 button.appendTo(buttons);
@@ -5473,7 +5517,7 @@ var Dialog = {
         }
 
         if (o.closeAction === true) {
-            element.on("click", ".js-dialog-close", function(){
+            element.on(Metro.events.click, ".js-dialog-close", function(){
                 that.close();
             });
         }
@@ -5599,7 +5643,7 @@ var Dialog = {
         if (o.overlay === true) {
             this.overlay.appendTo($("body"));
             if (o.overlayClickClose === true) {
-                this.overlay.on("click", function(){
+                this.overlay.on(Metro.events.click, function(){
                     that.close();
                 });
             }
@@ -5899,7 +5943,7 @@ var Draggable = {
 
         dragElement[0].ondragstart = function(){return false;};
 
-        dragElement.on(Metro.eventStart, function(e){
+        dragElement.on(Metro.events.start, function(e){
 
             if (element.data("canDrag") === false || Utils.exec(o.onCanDrag, [element]) !== true) {
                 return ;
@@ -5940,7 +5984,7 @@ var Draggable = {
 
             Utils.exec(o.onDragStart, [position, element]);
 
-            $(document).on(Metro.eventMove, function(e){
+            $(document).on(Metro.events.move, function(e){
                 var pageX, pageY;
 
                 if (that.drag === false) {
@@ -5971,7 +6015,7 @@ var Draggable = {
             });
         });
 
-        dragElement.on(Metro.eventStop, function(e){
+        dragElement.on(Metro.events.stop, function(e){
             element.css({
                 cursor: that.backup.cursor,
                 zIndex: that.backup.zIndex
@@ -5979,7 +6023,7 @@ var Draggable = {
             that.drag = false;
             that.move = false;
             position = Utils.pageXY(e);
-            $(document).off(Metro.eventMove);
+            $(document).off(Metro.events.move);
             //console.log(o.onDragStop);
             Utils.exec(o.onDragStop, [position, element]);
         });
@@ -6049,7 +6093,7 @@ var Dropdown = {
         this.displayOrigin = element.css("display");
         this.element.css("display", "none");
 
-        toggle.on('click', function(e){
+        toggle.on(Metro.events.click, function(e){
             parent.siblings(parent[0].tagName).removeClass("active-container");
             $(".active-container").removeClass("active-container");
 
@@ -6084,13 +6128,13 @@ var Dropdown = {
         this._toggle = toggle;
 
         if (o.noClose === true) {
-            element.addClass("keep-open").on('click', function (e) {
+            element.addClass("keep-open").on(Metro.events.click, function (e) {
                 //e.preventDefault();
                 e.stopPropagation();
             });
         }
 
-        $(element).find('li.disabled a').on('click', function(e){
+        $(element).find('li.disabled a').on(Metro.events.click, function(e){
             e.preventDefault();
         });
     },
@@ -6143,7 +6187,7 @@ var Dropdown = {
     }
 };
 
-$(document).on('click', function(e){
+$(document).on(Metro.events.click, function(e){
     $('[data-role*=dropdown]').each(function(){
         var el = $(this);
 
@@ -6209,7 +6253,7 @@ var File = {
         element.appendTo(container);
         caption.insertBefore(element);
 
-        element.on('change', function(){
+        element.on(Metro.events.change, function(){
             var val = $(this).val();
             if (val !== '') {
                 val = val.replace(/.+[\\\/]/, "");
@@ -6222,7 +6266,7 @@ var File = {
         button = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.caption);
         button.appendTo(container);
 
-        button.on('click', function(){
+        button.on(Metro.events.click, function(){
             element.trigger("click");
         });
 
@@ -6423,7 +6467,7 @@ var Hint = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on(Metro.eventEnter, function(){
+        element.on(Metro.events.enter, function(){
             that.createHint();
             if (o.hintHide > 0) {
                 setTimeout(function(){
@@ -6432,11 +6476,11 @@ var Hint = {
             }
         });
 
-        element.on(Metro.eventLeave, function(){
+        element.on(Metro.events.leave, function(){
             that.removeHint();
         });
 
-        $(window).on("scroll", function(){
+        $(window).on(Metro.events.scroll, function(){
             if (that.hint !== null) that.setPosition();
         });
     },
@@ -6589,7 +6633,7 @@ var Input = {
 
         if (o.clearButton !== false) {
             clearButton = $("<button>").addClass("button").addClass(o.clsClearButton).attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
-            clearButton.on("click", function(){
+            clearButton.on(Metro.events.click, function(){
                 element.val("").trigger('change').trigger('keyup').focus();
             });
             clearButton.appendTo(buttons);
@@ -6597,8 +6641,8 @@ var Input = {
         if (element.attr('type') === 'password' && o.revealButton !== false) {
             revealButton = $("<button>").addClass("button").addClass(o.clsRevealButton).attr("tabindex", -1).attr("type", "button").html(o.revealButtonIcon);
             revealButton
-                .on('mousedown', function(){element.attr('type', 'text');})
-                .on('mouseup', function(){element.attr('type', 'password').focus();});
+                .on(Metro.events.start, function(){element.attr('type', 'text');})
+                .on(Metro.events.stop, function(){element.attr('type', 'password').focus();});
             revealButton.appendTo(buttons);
         }
 
@@ -6615,7 +6659,7 @@ var Input = {
             $.each(o.customButtons, function(){
                 var item = this;
                 var customButton = $("<button>").addClass("button custom-input-button").addClass(item.cls).attr("tabindex", -1).attr("type", "button").html(item.html);
-                customButton.on("click", function(){
+                customButton.on(Metro.events.click, function(){
                     Utils.exec(item.onclick, [customButton, element]);
                 });
                 customButton.appendTo(buttons);
@@ -6642,8 +6686,8 @@ var Input = {
             });
         }
 
-        element.on("blur", function(){container.removeClass("focused");});
-        element.on("focus", function(){container.addClass("focused");});
+        element.on(Metro.events.blur, function(){container.removeClass("focused");});
+        element.on(Metro.events.focus, function(){container.addClass("focused");});
 
         if (o.disabled === true || element.is(":disabled")) {
             this.disable();
@@ -6806,8 +6850,8 @@ var Keypad = {
         element.addClass(o.clsInput);
         keypad.addClass(o.clsKeypad);
 
-        element.on("blur", function(){keypad.removeClass("focused");});
-        element.on("focus", function(){keypad.addClass("focused");});
+        element.on(Metro.events.blur, function(){keypad.removeClass("focused");});
+        element.on(Metro.events.focus, function(){keypad.addClass("focused");});
 
         if (o.disabled === true || element.is(":disabled")) {
             this.disable();
@@ -6876,12 +6920,12 @@ var Keypad = {
         var keypad = element.parent();
         var keys = keypad.find(".keys");
 
-        keypad.on("click", ".keys", function(e){
+        keypad.on(Metro.events.click, ".keys", function(e){
             e.preventDefault();
             e.stopPropagation();
         });
 
-        keypad.on("click", function(e){
+        keypad.on(Metro.events.click, function(e){
             if (o.open === true) {
                 return ;
             }
@@ -6894,7 +6938,7 @@ var Keypad = {
             e.stopPropagation();
         });
 
-        keypad.on("click", ".key", function(e){
+        keypad.on(Metro.events.click, ".key", function(e){
             var key = $(this);
 
             if (key.data('key') !== '&larr;' && key.data('key') !== '&times;') {
@@ -6942,7 +6986,7 @@ var Keypad = {
         });
 
         if (o.target !== null) {
-            element.on("change", function(){
+            element.on(Metro.events.change, function(){
                 var t = $(o.target);
                 if (t.length === 0) {
                     return ;
@@ -7035,7 +7079,7 @@ var Keypad = {
 
 Metro.plugin('keypad', Keypad);
 
-$(document).on('click', function(){
+$(document).on(Metro.events.click, function(){
     var keypads = $(".keypad .keys");
     $.each(keypads, function(){
         if (!$(this).hasClass("keep-open")) {
@@ -7197,7 +7241,7 @@ var Listview = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on("click", ".node", function(){
+        element.on(Metro.events.click, ".node", function(){
             var node = $(this);
             element.find(".node").removeClass("current");
             node.toggleClass("current");
@@ -7208,19 +7252,19 @@ var Listview = {
             Utils.exec(o.onNodeClick, [node, element])
         });
 
-        element.on("click", ".node-toggle", function(){
+        element.on(Metro.events.click, ".node-toggle", function(){
             var node = $(this).closest("li");
             that.toggleNode(node);
         });
 
-        element.on("click", ".node-group > .data > .caption", function(){
+        element.on(Metro.events.click, ".node-group > .data > .caption", function(){
             var node = $(this).closest("li");
             element.find(".node-group").removeClass("current-group");
             node.addClass("current-group");
             Utils.exec(o.onGroupNodeClick, [node, element])
         });
 
-        element.on("dblclick", ".node-group > .data > .caption", function(){
+        element.on(Metro.events.dblclick, ".node-group > .data > .caption", function(){
             var node = $(this).closest("li");
             that.toggleNode(node);
         });
@@ -7551,7 +7595,7 @@ var Master = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on("click", ".controls .prev", function(){
+        element.on(Metro.events.click, ".controls .prev", function(){
             if (that.isAnimate === true) {
                 return ;
             }
@@ -7563,7 +7607,7 @@ var Master = {
             }
         });
 
-        element.on("click", ".controls .next", function(){
+        element.on(Metro.events.click, ".controls .next", function(){
             if (that.isAnimate === true) {
                 return ;
             }
@@ -7811,7 +7855,7 @@ var Notify = {
             }
         }
 
-        notify.on("click", function(){
+        notify.on(Metro.events.click, function(){
             that.kill($(this));
         });
 
@@ -8056,9 +8100,9 @@ var Popover = {
         var event;
 
         switch (o.popoverTrigger) {
-            case METRO_POPOVER_MODE.CLICK: event = Metro.eventClick; break;
-            case METRO_POPOVER_MODE.FOCUS: event = Metro.eventFocus; break;
-            default: event = Metro.eventEnter;
+            case METRO_POPOVER_MODE.CLICK: event = Metro.events.click; break;
+            case METRO_POPOVER_MODE.FOCUS: event = Metro.events.focus; break;
+            default: event = Metro.events.enter;
         }
 
         element.on(event, function(){
@@ -8074,12 +8118,12 @@ var Popover = {
         });
 
         if (o.hideOnLeave === true && !Utils.isTouchDevice()) {
-            element.on(Metro.eventLeave, function(){
+            element.on(Metro.events.leave, function(){
                 that.removePopover();
             });
         }
 
-        $(window).on("scroll", function(){
+        $(window).on(Metro.events.scroll, function(){
             if (that.popover !== null) that.setPosition();
         });
 
@@ -8131,7 +8175,7 @@ var Popover = {
         }
 
         popover.addClass(neb_pos);
-        popover.on("click", function(){
+        popover.on(Metro.events.click, function(){
             that.removePopover();
         });
 
@@ -8501,7 +8545,7 @@ var Resizable = {
             $("<span>").addClass("resize-element").appendTo(element);
         }
 
-        element.on(Metro.eventStart, o.resizeElement, function(e){
+        element.on(Metro.events.start, o.resizeElement, function(e){
 
             if (element.data("canResize") === false) {
                 return ;
@@ -8514,7 +8558,7 @@ var Resizable = {
 
             Utils.exec(o.onResizeStart, [element, size]);
 
-            $(document).on(Metro.eventMove, function(e){
+            $(document).on(Metro.events.move, function(e){
                 var moveXY = Utils.clientXY(e);
                 var size = {
                     width: startWidth + moveXY.x - startXY.x,
@@ -8525,8 +8569,8 @@ var Resizable = {
             });
         });
 
-        element.on(Metro.eventStop, o.resizeElement, function(){
-            $(document).off(Metro.eventMove);
+        element.on(Metro.events.stop, o.resizeElement, function(){
+            $(document).off(Metro.events.move);
 
             var size = {
                 width: parseInt(element.outerWidth()),
@@ -8590,7 +8634,7 @@ var Ripple = {
 
         var target = o.rippleTarget === 'default' ? null : o.rippleTarget;
 
-        element.on("click", target, function(e){
+        element.on(Metro.events.click, target, function(e){
             var el = $(this);
 
             if (el.css('position') === 'static') {
@@ -8708,14 +8752,14 @@ var Search = {
 
         if (o.clearButton !== false) {
             clearButton = $("<button>").addClass("button").addClass(o.clsClearButton).attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
-            clearButton.on("click", function(){
+            clearButton.on(Metro.events.click, function(){
                 element.val("").trigger('change').trigger('keyup').focus();
             });
             clearButton.appendTo(buttons);
         }
         if (o.searchButton !== false) {
             searchButton = $("<button>").addClass("button").addClass(o.clsSearchButton).attr("tabindex", -1).attr("type", o.searchButtonClick === 'submit' ? "submit" : "button").html(o.searchButtonIcon);
-            searchButton.on("click", function(){
+            searchButton.on(Metro.events.click, function(){
                 if (o.searchButtonClick === 'submit') {
                     Utils.exec(o.onSearchButtonClick, [this.value, this, this.form]);
                 } else {
@@ -8738,7 +8782,7 @@ var Search = {
             $.each(o.customButtons, function(){
                 var item = this;
                 var customButton = $("<button>").addClass("button custom-input-button").addClass(item.cls).attr("tabindex", -1).attr("type", "button").html(item.html);
-                customButton.on("click", function(){
+                customButton.on(Metro.events.click, function(){
                     Utils.exec(item.onclick, [customButton, element]);
                 });
                 customButton.appendTo(buttons);
@@ -8765,8 +8809,8 @@ var Search = {
             });
         }
 
-        element.on("blur", function(){container.removeClass("focused");});
-        element.on("focus", function(){container.addClass("focused");});
+        element.on(Metro.events.blur, function(){container.removeClass("focused");});
+        element.on(Metro.events.focus, function(){container.addClass("focused");});
 
         if (o.disabled === true || element.is(":disabled")) {
             this.disable();
@@ -8964,15 +9008,15 @@ var Select = {
         var input = element.siblings("input");
         var list = element.siblings("ul");
 
-        container.on("click", function(e){
+        container.on(Metro.events.click, function(e){
             e.preventDefault();
             e.stopPropagation();
         });
 
-        input.on("blur", function(){container.removeClass("focused");});
-        input.on("focus", function(){container.addClass("focused");});
+        input.on(Metro.events.blur, function(){container.removeClass("focused");});
+        input.on(Metro.events.focus, function(){container.addClass("focused");});
 
-        list.on("click", "li", function(e){
+        list.on(Metro.events.click, "li", function(e){
             if ($(this).hasClass("group-title")) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -9004,7 +9048,7 @@ var Select = {
     }
 };
 
-$(document).on('click', function(e){
+$(document).on(Metro.events.click, function(e){
     var selects = $(".select ul");
     $.each(selects, function(){
         $(this).data('dropdown').close();
@@ -9161,8 +9205,8 @@ var Slider = {
         var marker = slider.find(".marker");
         var hint = slider.find(".hint");
 
-        marker.on(Metro.eventStart, function(){
-            $(document).on(Metro.eventMove, function(e){
+        marker.on(Metro.events.start, function(){
+            $(document).on(Metro.events.move, function(e){
                 if (o.hint === true && o.hintAlways !== true) {
                     hint.fadeIn();
                 }
@@ -9170,9 +9214,9 @@ var Slider = {
                 Utils.exec(o.onMove, [that.value, that.percent, slider]);
             });
 
-            $(document).on(Metro.eventStop, function(){
-                $(document).off(Metro.eventMove);
-                $(document).off(Metro.eventStop);
+            $(document).on(Metro.events.stop, function(){
+                $(document).off(Metro.events.move);
+                $(document).off(Metro.events.stop);
 
                 if (o.hintAlways !== true) {
                     hint.fadeOut();
@@ -9184,15 +9228,15 @@ var Slider = {
             Utils.exec(o.onStart, [that.value, that.percent, slider]);
         });
 
-        marker.on("focus", function(){
+        marker.on(Metro.events.focus, function(){
             Utils.exec(o.onFocus, [that.value, that.percent, slider]);
         });
 
-        marker.on("blur", function(){
+        marker.on(Metro.events.blur, function(){
             Utils.exec(o.onBlur, [that.value, that.percent, slider]);
         });
 
-        marker.on("keydown", function(e){
+        marker.on(Metro.events.keydown, function(e){
 
             var key = e.keyCode ? e.keyCode : e.which;
 
@@ -9235,12 +9279,12 @@ var Slider = {
             e.preventDefault();
         });
 
-        marker.on("keyup", function(){
+        marker.on(Metro.events.keyup, function(){
             clearInterval(that.keyInterval);
             that.keyInterval = false;
         });
 
-        slider.on(Metro.eventClick, function(e){
+        slider.on(Metro.events.click, function(e){
             that._move(e);
             Utils.exec(o.onClick, [that.value, that.percent, slider]);
             Utils.exec(o.onStop, [that.value, that.percent, slider]);
@@ -9529,7 +9573,7 @@ var Stepper = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on("click", ".step", function(){
+        element.on(Metro.events.click, ".step", function(){
             var step = $(this).data("step");
             if (o.stepClick === true) {
                 that.toStep(step);
@@ -9703,7 +9747,7 @@ var Streamer = {
             $.each(data.actions, function(){
                 var item = this;
                 var button = $("<button>").addClass("streamer-action").addClass(item.cls).html(item.html);
-                if (item.onclick !== undefined) button.on("click", function(){
+                if (item.onclick !== undefined) button.on(Metro.events.click, function(){
                     Utils.exec(item.onclick, [element]);
                 });
                 button.appendTo(actions);
@@ -9870,7 +9914,7 @@ var Streamer = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on("click", ".stream-event", function(e){
+        element.on(Metro.events.click, ".stream-event", function(e){
             var event = $(this);
             if (o.closed === false && event.data("closed") !== true && o.eventClick === 'select') {
                 event.toggleClass("selected");
@@ -9890,7 +9934,7 @@ var Streamer = {
             }
         });
 
-        element.on("click", ".stream", function(e){
+        element.on(Metro.events.click, ".stream", function(e){
             var stream = $(this);
             var index = stream.index();
 
@@ -9912,7 +9956,7 @@ var Streamer = {
         });
 
         if (Utils.isTouchDevice() !== true) {
-            element.on("mousewheel", ".events-area", function(e) {
+            element.on(Metro.events.mousewheel, ".events-area", function(e) {
                 var acrollable = $(this);
 
                 if (e.deltaY === undefined || e.deltaFactor === undefined) {
@@ -9928,7 +9972,7 @@ var Streamer = {
         }
 
         if (Utils.isTouchDevice() === true) {
-            element.on("click", ".stream", function(){
+            element.on(Metro.events.click, ".stream", function(){
                 var stream = $(this);
                 stream.toggleClass("focused");
                 $.each(element.find(".stream"), function () {
@@ -10271,7 +10315,7 @@ var Tabs = {
         expandTitle = $("<div>").addClass("expand-title"); container.prepend(expandTitle);
         expandButton = $("<span>").addClass("expand-button").html("<span></span>"); container.append(expandButton);
 
-        container.on("click", ".expand-button, .expand-title", function(){
+        container.on(Metro.events.click, ".expand-button, .expand-title", function(){
             if (element.data('expanded') === false) {
                 element.addClass("expand");
                 element.data('expanded', true);
@@ -10281,7 +10325,7 @@ var Tabs = {
             }
         });
 
-        element.on("click", "a", function(e){
+        element.on(Metro.events.click, "a", function(e){
             var link = $(this);
             var tab = link.parent("li");
 
@@ -10409,7 +10453,7 @@ var Textarea = {
 
         if (o.clearButton !== false) {
             clearButton = $("<button>").addClass("button clear-button").attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
-            clearButton.on("click", function(){
+            clearButton.on(Metro.events.click, function(){
                 element.val("").trigger('change').trigger('keyup').focus();
             });
             clearButton.appendTo(container);
@@ -10432,13 +10476,13 @@ var Textarea = {
                 resize();
             }, 0);
 
-            element.on('keyup', resize);
-            element.on('keydown', resize);
-            element.on('change', resize);
-            element.on('focus', resize);
-            element.on('cut', resize);
-            element.on('paste', resize);
-            element.on('drop', resize);
+            element.on(Metro.events.keyup, resize);
+            element.on(Metro.events.keydown, resize);
+            element.on(Metro.events.change, resize);
+            element.on(Metro.events.focus, resize);
+            element.on(Metro.events.cut, resize);
+            element.on(Metro.events.paste, resize);
+            element.on(Metro.events.drop, resize);
         }
 
         if (element.attr('dir') === 'rtl' ) {
@@ -10457,8 +10501,8 @@ var Textarea = {
             }
         }
 
-        element.on("blur", function(){container.removeClass("focused");});
-        element.on("focus", function(){container.addClass("focused");});
+        element.on(Metro.events.blur, function(){container.removeClass("focused");});
+        element.on(Metro.events.focus, function(){container.addClass("focused");});
 
         if (o.disabled === true || element.is(':disabled')) {
             this.disable();
@@ -10667,7 +10711,7 @@ var Tile = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on(Metro.eventStart, function(e){
+        element.on(Metro.events.start, function(e){
             var tile = $(this);
             var dim = {w: element.width(), h: element.height()};
             var X = Utils.pageXY(e).x - tile.offset().left,
@@ -10698,7 +10742,7 @@ var Tile = {
             }
         });
 
-        element.on([Metro.eventStop, Metro.eventLeave].join(" "), function(e){
+        element.on([Metro.events.stop, Metro.events.leave].join(" "), function(e){
             $(this)
                 .removeClass("transform-left")
                 .removeClass("transform-right")
@@ -10706,10 +10750,10 @@ var Tile = {
                 .removeClass("transform-bottom");
         });
 
-        $(window).on(Metro.eventBlur, function(){
+        $(window).on(Metro.events.blur, function(){
             that._stopEffects();
         });
-        $(window).on(Metro.eventFocus, function(){
+        $(window).on(Metro.events.focus, function(){
             that._runEffects();
         });
     },
@@ -10867,7 +10911,7 @@ var Treeview = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on("click", ".node-toggle", function(e){
+        element.on(Metro.events.click, ".node-toggle", function(e){
             var toggle = $(this);
             var node = toggle.parent();
 
@@ -10876,7 +10920,7 @@ var Treeview = {
             e.preventDefault();
         });
 
-        element.on("click", "li > .caption", function(e){
+        element.on(Metro.events.click, "li > .caption", function(e){
             var node = $(this).parent();
 
             element.find("li").removeClass("current");
@@ -10887,7 +10931,7 @@ var Treeview = {
             e.preventDefault();
         });
 
-        element.on("dblclick", "li > .caption", function(e){
+        element.on(Metro.events.dblclick, "li > .caption", function(e){
             var node = $(this).closest("li");
             var toggle = node.children(".node-toggle");
             var subtree = node.children("ul");
@@ -10901,7 +10945,7 @@ var Treeview = {
             e.preventDefault();
         });
 
-        element.on("click", "input[type=radio]", function(e){
+        element.on(Metro.events.click, "input[type=radio]", function(e){
             var check = $(this);
             var checked = check.is(":checked");
             var node = check.closest("li");
@@ -10909,7 +10953,7 @@ var Treeview = {
             Utils.exec(o.onRadioClick, [checked, check, node, element]);
         });
 
-        element.on("click", "input[type=checkbox]", function(e){
+        element.on(Metro.events.click, "input[type=checkbox]", function(e){
             var check = $(this);
             var checked = check.is(":checked");
             var node = check.closest("li");
@@ -11615,7 +11659,7 @@ var Video = {
             that._setVolume();
         });
 
-        player.on("click", ".play", function(e){
+        player.on(Metro.events.click, ".play", function(e){
             if (video.paused) {
                 that.play();
             } else {
@@ -11623,19 +11667,19 @@ var Video = {
             }
         });
 
-        player.on("click", ".stop", function(e){
+        player.on(Metro.events.click, ".stop", function(e){
             that.stop();
         });
 
-        player.on("click", ".mute", function(e){
+        player.on(Metro.events.click, ".mute", function(e){
             that._toggleMute();
         });
 
-        player.on("click", ".loop", function(){
+        player.on(Metro.events.click, ".loop", function(){
             that._toggleLoop();
         });
 
-        player.on("click", ".full", function(e){
+        player.on(Metro.events.click, ".full", function(e){
             that.fullscreen = !that.fullscreen;
             player.find(".full").html(that.fullscreen === true ? o.screenLessIcon : o.screenMoreIcon);
             if (o.fullScreenMode === METRO_FULLSCREEN_MODE.WINDOW) {
@@ -11664,13 +11708,13 @@ var Video = {
             }
 
             if (that.fullscreen === true) {
-                $(document).on("keyup.METRO_VIDEO", function(e){
+                $(document).on(Metro.events.keyup + "_video", function(e){
                     if (e.keyCode === 27) {
                         player.find(".full").click();
                     }
                 });
             } else {
-                $(document).off("keyup.METRO_VIDEO");
+                $(document).off(Metro.events.keyup + "_video");
             }
         });
 
@@ -11683,11 +11727,11 @@ var Video = {
         var player = this.player, o = this.options;
 
         if (o.controlsHide > 0) {
-            player.on(Metro.eventEnter, function(){
+            player.on(Metro.events.enter, function(){
                 player.find(".controls").fadeIn();
             });
 
-            player.on(Metro.eventLeave, function(){
+            player.on(Metro.events.leave, function(){
                 setTimeout(function(){
                     player.find(".controls").fadeOut();
                 }, o.controlsHide);
@@ -11696,8 +11740,8 @@ var Video = {
     },
 
     _offMouse: function(){
-        this.player.off(Metro.eventEnter);
-        this.player.off(Metro.eventLeave);
+        this.player.off(Metro.events.enter);
+        this.player.off(Metro.events.leave);
         this.player.find(".controls").fadeIn();
     },
 
@@ -12038,16 +12082,16 @@ var Window = {
             win.addClass("resizable");
         }
 
-        win.on("dblclick", ".window-caption", function(e){
+        win.on(Metro.events.dblclick, ".window-caption", function(e){
             that.maximized(e);
         });
-        win.on("click", ".btn-max", function(e){
+        win.on(Metro.events.click, ".btn-max", function(e){
             that.maximized(e);
         });
-        win.on("click", ".btn-min", function(e){
+        win.on(Metro.events.click, ".btn-min", function(e){
             that.minimized(e);
         });
-        win.on("click", ".btn-close", function(e){
+        win.on(Metro.events.click, ".btn-close", function(e){
             that.close(e);
         });
 
@@ -12385,27 +12429,27 @@ var Wizard = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on("click", ".wizard-btn-help", function(){
+        element.on(Metro.events.click, ".wizard-btn-help", function(){
             var pages = element.children("section");
             var page = pages.get(that.current - 1);
             Utils.exec(o.onHelpClick, [that.current, page, element])
         });
 
-        element.on("click", ".wizard-btn-prev", function(){
+        element.on(Metro.events.click, ".wizard-btn-prev", function(){
             that.prev();
             Utils.exec(o.onPrevClick, [that.current, element])
         });
 
-        element.on("click", ".wizard-btn-next", function(){
+        element.on(Metro.events.click, ".wizard-btn-next", function(){
             that.next();
             Utils.exec(o.onNextClick, [that.current, element])
         });
 
-        element.on("click", ".wizard-btn-finish", function(){
+        element.on(Metro.events.click, ".wizard-btn-finish", function(){
             Utils.exec(o.onFinishClick, [that.current, element])
         });
 
-        $(window).on("resize", function(){
+        $(window).on(Metro.events.resize, function(){
             that._setHeight();
         });
     },

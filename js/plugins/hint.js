@@ -45,7 +45,7 @@ var Hint = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on(Metro.eventEnter, function(){
+        element.on(Metro.events.enter, function(){
             that.createHint();
             if (o.hintHide > 0) {
                 setTimeout(function(){
@@ -54,11 +54,11 @@ var Hint = {
             }
         });
 
-        element.on(Metro.eventLeave, function(){
+        element.on(Metro.events.leave, function(){
             that.removeHint();
         });
 
-        $(window).on("scroll", function(){
+        $(window).on(Metro.events.scroll, function(){
             if (that.hint !== null) that.setPosition();
         });
     },

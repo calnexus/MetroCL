@@ -123,8 +123,8 @@ var Keypad = {
         element.addClass(o.clsInput);
         keypad.addClass(o.clsKeypad);
 
-        element.on("blur", function(){keypad.removeClass("focused");});
-        element.on("focus", function(){keypad.addClass("focused");});
+        element.on(Metro.events.blur, function(){keypad.removeClass("focused");});
+        element.on(Metro.events.focus, function(){keypad.addClass("focused");});
 
         if (o.disabled === true || element.is(":disabled")) {
             this.disable();
@@ -193,12 +193,12 @@ var Keypad = {
         var keypad = element.parent();
         var keys = keypad.find(".keys");
 
-        keypad.on("click", ".keys", function(e){
+        keypad.on(Metro.events.click, ".keys", function(e){
             e.preventDefault();
             e.stopPropagation();
         });
 
-        keypad.on("click", function(e){
+        keypad.on(Metro.events.click, function(e){
             if (o.open === true) {
                 return ;
             }
@@ -211,7 +211,7 @@ var Keypad = {
             e.stopPropagation();
         });
 
-        keypad.on("click", ".key", function(e){
+        keypad.on(Metro.events.click, ".key", function(e){
             var key = $(this);
 
             if (key.data('key') !== '&larr;' && key.data('key') !== '&times;') {
@@ -259,7 +259,7 @@ var Keypad = {
         });
 
         if (o.target !== null) {
-            element.on("change", function(){
+            element.on(Metro.events.change, function(){
                 var t = $(o.target);
                 if (t.length === 0) {
                     return ;
@@ -352,7 +352,7 @@ var Keypad = {
 
 Metro.plugin('keypad', Keypad);
 
-$(document).on('click', function(){
+$(document).on(Metro.events.click, function(){
     var keypads = $(".keypad .keys");
     $.each(keypads, function(){
         if (!$(this).hasClass("keep-open")) {

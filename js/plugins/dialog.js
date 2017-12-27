@@ -96,7 +96,7 @@ var Dialog = {
             $.each(o.actions, function(){
                 var item = this;
                 button = $("<button>").addClass("button").addClass(item.cls).html(item.caption);
-                if (item.onclick !== undefined) button.on("click", function(){
+                if (item.onclick !== undefined) button.on(Metro.events.click, function(){
                     Utils.exec(item.onclick, [element]);
                 });
                 button.appendTo(buttons);
@@ -109,7 +109,7 @@ var Dialog = {
         }
 
         if (o.closeAction === true) {
-            element.on("click", ".js-dialog-close", function(){
+            element.on(Metro.events.click, ".js-dialog-close", function(){
                 that.close();
             });
         }
@@ -235,7 +235,7 @@ var Dialog = {
         if (o.overlay === true) {
             this.overlay.appendTo($("body"));
             if (o.overlayClickClose === true) {
-                this.overlay.on("click", function(){
+                this.overlay.on(Metro.events.click, function(){
                     that.close();
                 });
             }

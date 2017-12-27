@@ -50,7 +50,7 @@ var Draggable = {
 
         dragElement[0].ondragstart = function(){return false;};
 
-        dragElement.on(Metro.eventStart, function(e){
+        dragElement.on(Metro.events.start, function(e){
 
             if (element.data("canDrag") === false || Utils.exec(o.onCanDrag, [element]) !== true) {
                 return ;
@@ -91,7 +91,7 @@ var Draggable = {
 
             Utils.exec(o.onDragStart, [position, element]);
 
-            $(document).on(Metro.eventMove, function(e){
+            $(document).on(Metro.events.move, function(e){
                 var pageX, pageY;
 
                 if (that.drag === false) {
@@ -122,7 +122,7 @@ var Draggable = {
             });
         });
 
-        dragElement.on(Metro.eventStop, function(e){
+        dragElement.on(Metro.events.stop, function(e){
             element.css({
                 cursor: that.backup.cursor,
                 zIndex: that.backup.zIndex
@@ -130,7 +130,7 @@ var Draggable = {
             that.drag = false;
             that.move = false;
             position = Utils.pageXY(e);
-            $(document).off(Metro.eventMove);
+            $(document).off(Metro.events.move);
             //console.log(o.onDragStop);
             Utils.exec(o.onDragStop, [position, element]);
         });

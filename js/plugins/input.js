@@ -66,7 +66,7 @@ var Input = {
 
         if (o.clearButton !== false) {
             clearButton = $("<button>").addClass("button").addClass(o.clsClearButton).attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
-            clearButton.on("click", function(){
+            clearButton.on(Metro.events.click, function(){
                 element.val("").trigger('change').trigger('keyup').focus();
             });
             clearButton.appendTo(buttons);
@@ -74,8 +74,8 @@ var Input = {
         if (element.attr('type') === 'password' && o.revealButton !== false) {
             revealButton = $("<button>").addClass("button").addClass(o.clsRevealButton).attr("tabindex", -1).attr("type", "button").html(o.revealButtonIcon);
             revealButton
-                .on('mousedown', function(){element.attr('type', 'text');})
-                .on('mouseup', function(){element.attr('type', 'password').focus();});
+                .on(Metro.events.start, function(){element.attr('type', 'text');})
+                .on(Metro.events.stop, function(){element.attr('type', 'password').focus();});
             revealButton.appendTo(buttons);
         }
 
@@ -92,7 +92,7 @@ var Input = {
             $.each(o.customButtons, function(){
                 var item = this;
                 var customButton = $("<button>").addClass("button custom-input-button").addClass(item.cls).attr("tabindex", -1).attr("type", "button").html(item.html);
-                customButton.on("click", function(){
+                customButton.on(Metro.events.click, function(){
                     Utils.exec(item.onclick, [customButton, element]);
                 });
                 customButton.appendTo(buttons);
@@ -119,8 +119,8 @@ var Input = {
             });
         }
 
-        element.on("blur", function(){container.removeClass("focused");});
-        element.on("focus", function(){container.addClass("focused");});
+        element.on(Metro.events.blur, function(){container.removeClass("focused");});
+        element.on(Metro.events.focus, function(){container.addClass("focused");});
 
         if (o.disabled === true || element.is(":disabled")) {
             this.disable();

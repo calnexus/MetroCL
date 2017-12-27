@@ -150,7 +150,7 @@ var Listview = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on("click", ".node", function(){
+        element.on(Metro.events.click, ".node", function(){
             var node = $(this);
             element.find(".node").removeClass("current");
             node.toggleClass("current");
@@ -161,19 +161,19 @@ var Listview = {
             Utils.exec(o.onNodeClick, [node, element])
         });
 
-        element.on("click", ".node-toggle", function(){
+        element.on(Metro.events.click, ".node-toggle", function(){
             var node = $(this).closest("li");
             that.toggleNode(node);
         });
 
-        element.on("click", ".node-group > .data > .caption", function(){
+        element.on(Metro.events.click, ".node-group > .data > .caption", function(){
             var node = $(this).closest("li");
             element.find(".node-group").removeClass("current-group");
             node.addClass("current-group");
             Utils.exec(o.onGroupNodeClick, [node, element])
         });
 
-        element.on("dblclick", ".node-group > .data > .caption", function(){
+        element.on(Metro.events.dblclick, ".node-group > .data > .caption", function(){
             var node = $(this).closest("li");
             that.toggleNode(node);
         });

@@ -171,7 +171,7 @@ var Tile = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on(Metro.eventStart, function(e){
+        element.on(Metro.events.start, function(e){
             var tile = $(this);
             var dim = {w: element.width(), h: element.height()};
             var X = Utils.pageXY(e).x - tile.offset().left,
@@ -202,7 +202,7 @@ var Tile = {
             }
         });
 
-        element.on([Metro.eventStop, Metro.eventLeave].join(" "), function(e){
+        element.on([Metro.events.stop, Metro.events.leave].join(" "), function(e){
             $(this)
                 .removeClass("transform-left")
                 .removeClass("transform-right")
@@ -210,10 +210,10 @@ var Tile = {
                 .removeClass("transform-bottom");
         });
 
-        $(window).on(Metro.eventBlur, function(){
+        $(window).on(Metro.events.blur, function(){
             that._stopEffects();
         });
-        $(window).on(Metro.eventFocus, function(){
+        $(window).on(Metro.events.focus, function(){
             that._runEffects();
         });
     },

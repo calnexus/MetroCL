@@ -122,7 +122,7 @@ var Treeview = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on("click", ".node-toggle", function(e){
+        element.on(Metro.events.click, ".node-toggle", function(e){
             var toggle = $(this);
             var node = toggle.parent();
 
@@ -131,7 +131,7 @@ var Treeview = {
             e.preventDefault();
         });
 
-        element.on("click", "li > .caption", function(e){
+        element.on(Metro.events.click, "li > .caption", function(e){
             var node = $(this).parent();
 
             element.find("li").removeClass("current");
@@ -142,7 +142,7 @@ var Treeview = {
             e.preventDefault();
         });
 
-        element.on("dblclick", "li > .caption", function(e){
+        element.on(Metro.events.dblclick, "li > .caption", function(e){
             var node = $(this).closest("li");
             var toggle = node.children(".node-toggle");
             var subtree = node.children("ul");
@@ -156,7 +156,7 @@ var Treeview = {
             e.preventDefault();
         });
 
-        element.on("click", "input[type=radio]", function(e){
+        element.on(Metro.events.click, "input[type=radio]", function(e){
             var check = $(this);
             var checked = check.is(":checked");
             var node = check.closest("li");
@@ -164,7 +164,7 @@ var Treeview = {
             Utils.exec(o.onRadioClick, [checked, check, node, element]);
         });
 
-        element.on("click", "input[type=checkbox]", function(e){
+        element.on(Metro.events.click, "input[type=checkbox]", function(e){
             var check = $(this);
             var checked = check.is(":checked");
             var node = check.closest("li");

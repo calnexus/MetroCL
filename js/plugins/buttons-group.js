@@ -53,7 +53,7 @@ var ButtonsGroup = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on("click", o.targets, function(){
+        element.on(Metro.events.click, o.targets, function(){
             var el = $(this);
 
             Utils.exec(o.onButtonClick, [el]);

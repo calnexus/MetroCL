@@ -54,7 +54,7 @@ var Tabs = {
         expandTitle = $("<div>").addClass("expand-title"); container.prepend(expandTitle);
         expandButton = $("<span>").addClass("expand-button").html("<span></span>"); container.append(expandButton);
 
-        container.on("click", ".expand-button, .expand-title", function(){
+        container.on(Metro.events.click, ".expand-button, .expand-title", function(){
             if (element.data('expanded') === false) {
                 element.addClass("expand");
                 element.data('expanded', true);
@@ -64,7 +64,7 @@ var Tabs = {
             }
         });
 
-        element.on("click", "a", function(e){
+        element.on(Metro.events.click, "a", function(e){
             var link = $(this);
             var tab = link.parent("li");
 
