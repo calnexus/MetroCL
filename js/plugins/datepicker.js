@@ -20,7 +20,7 @@ var Datepicker = {
         size: "100%",
         format: "%Y/%m/%d",
         clearButton: false,
-        calendarButtonIcon: "<sapn class='mif-calendar'></sapn>",
+        calendarButtonIcon: "<span class='mif-calendar'></span>",
         clearButtonIcon: "<span class='mif-cross'></span>",
         copyInlineStyles: false,
         clsPicker: "",
