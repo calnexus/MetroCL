@@ -1,4 +1,5 @@
 ####4.0.0
+- [ ] Tracking data-locale attribute
 
 ####4.0.1
 - [ ] Dropdown not only display: block
@@ -8,3 +9,7 @@
 - [ ] Carousel, add thumbs
 - [ ] Inheritance for video and audio players from media-player class
 - [ ] Responsive drop left, right
+
+####4.1.0
+
+- [ ] Remove jQuery dependency 
