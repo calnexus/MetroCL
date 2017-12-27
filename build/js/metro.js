@@ -3832,12 +3832,22 @@ var Calendar = {
         this._drawContent();
     },
 
-    setLocale: function(){
+    i18n: function(val){
         var that = this, element = this.element, o = this.options;
-
-        o.locale = element.attr("data-locale");
-        this.locale = Metro.locales[o.locale] !== undefined ? Metro.locales[o.locale] : Metro.locales["en-US"];
+        if (val === undefined) {
+            return o.locale;
+        }
+        if (Metro.locales[val] === undefined) {
+            return false;
+        }
+        o.locale = val;
+        this.locale = Metro.locales[o.locale];
         this._drawCalendar();
+    },
+
+    changeAttrLocale: function(){
+        var that = this, element = this.element, o = this.options;
+        this.i18n(element.attr("data-locale"));
     },
 
     changeAttribute: function(attributeName){
@@ -3847,7 +3857,7 @@ var Calendar = {
             case 'data-show': this.setShow(); break;
             case 'data-min-date': this.setMinDate(); break;
             case 'data-max-date': this.setMaxDate(); break;
-            case 'data-locale': this.setLocale(); break;
+            case 'data-locale': this.changeAttrLocale(); break;
         }
     }
 };
@@ -5400,10 +5410,43 @@ var Datepicker = {
         }
     },
 
+    i18n: function(val){
+        var that = this, element = this.element, o = this.options;
+        var hidden = false;
+        var cal = this.calendar;
+        if (val === undefined) {
+            return o.locale;
+        }
+        if (Metro.locales[val] === undefined) {
+            return false;
+        }
+
+        hidden = cal.is(':hidden');
+        if (hidden) {
+            cal.css({
+                visibility: "hidden",
+                display: "block"
+            });
+        }
+        cal.data('calendar').i18n(val);
+        if (hidden) {
+            cal.css({
+                visibility: "visible",
+                display: "none"
+            });
+        }
+    },
+
+    changeAttrLocale: function(){
+        var that = this, element = this.element, o = this.options;
+        this.i18n(element.attr("data-locale"));
+    },
+
     changeAttribute: function(attributeName){
         switch (attributeName) {
             case "value": this.changeValue(); break;
             case 'disabled': this.toggleState(); break;
+            case 'data-locale': this.changeAttrLocale(); break;
         }
     }
 };

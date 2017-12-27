@@ -243,10 +243,43 @@ var Datepicker = {
         }
     },
 
+    i18n: function(val){
+        var that = this, element = this.element, o = this.options;
+        var hidden = false;
+        var cal = this.calendar;
+        if (val === undefined) {
+            return o.locale;
+        }
+        if (Metro.locales[val] === undefined) {
+            return false;
+        }
+
+        hidden = cal.is(':hidden');
+        if (hidden) {
+            cal.css({
+                visibility: "hidden",
+                display: "block"
+            });
+        }
+        cal.data('calendar').i18n(val);
+        if (hidden) {
+            cal.css({
+                visibility: "visible",
+                display: "none"
+            });
+        }
+    },
+
+    changeAttrLocale: function(){
+        var that = this, element = this.element, o = this.options;
+        this.i18n(element.attr("data-locale"));
+    },
+
     changeAttribute: function(attributeName){
         switch (attributeName) {
             case "value": this.changeValue(); break;
             case 'disabled': this.toggleState(); break;
+            case 'data-locale': this.changeAttrLocale(); break;
         }
     }
 };
