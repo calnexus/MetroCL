@@ -5156,9 +5156,37 @@ var Countdown = {
         };
     },
 
+    i18n: function(val){
+        var that = this, element = this.element, o = this.options;
+        var parts = ["days", "hours", "minutes", "seconds"];
+
+
+        if (val === undefined) {
+            return o.locale;
+        }
+        if (Metro.locales[val] === undefined) {
+            return false;
+        }
+        o.locale = val;
+        this.locale = Metro.locales[o.locale];
+
+        $.each(parts, function(){
+            var cls = ".part." + this;
+            var part = element.find(cls);
+            part.attr("data-label", that.locale["calendar"]["time"][this]);
+        });
+    },
+
+    changeAttrLocale: function(){
+        var element = this.element;
+        var locale = element.attr('data-locale');
+        this.i18n(locale);
+    },
+
     changeAttribute: function(attributeName){
         switch (attributeName) {
             case "data-pause": this.togglePlay(); break;
+            case "data-locale": this.changeAttrLocale(); break;
         }
     }
 };

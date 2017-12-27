@@ -365,7 +365,46 @@
                 <pre><code class="html">
                     &lt;div data-role="countdown" data-hours="90" data-locale="de-DE"&gt;&lt;/div&gt;
                 </code></pre>
+                <p>
+                    You can change locale in runtime. To change locale,  update value for attribute <code>data-locale</code>.
+                </p>
+                <div class="example">
+                    <div class="d-flex flex-justify-center mb-4">
+                        <button class="button m-1" onclick="changeLocale($(this).text())">en-US</button>
+                        <button class="button m-1" onclick="changeLocale($(this).text())">de-DE</button>
+                        <button class="button m-1" onclick="changeLocale($(this).text())">hu-HU</button>
+                        <button class="button m-1" onclick="changeLocale($(this).text())">uk-UA</button>
+                        <button class="button m-1" onclick="changeLocale($(this).text())">ru-RU</button>
+                    </div>
 
+                    <div id="countdown_locale" data-role="countdown" data-hours="90" style="font-size: 36px"></div>
+
+                    <script>
+                        function changeLocale(locale){
+                            $('#countdown_locale').attr('data-locale', locale);
+                        }
+                    </script>
+                </div>
+                <pre><code class="html">
+                    &lt;div class="d-flex flex-justify-center mb-4"&gt;
+                        &lt;button class="button m-1" onclick="changeLocale($(this).text())"&gt;en-US&lt;/button&gt;
+                        &lt;button class="button m-1" onclick="changeLocale($(this).text())"&gt;de-DE&lt;/button&gt;
+                        &lt;button class="button m-1" onclick="changeLocale($(this).text())"&gt;hu-HU&lt;/button&gt;
+                        &lt;button class="button m-1" onclick="changeLocale($(this).text())"&gt;uk-UA&lt;/button&gt;
+                        &lt;button class="button m-1" onclick="changeLocale($(this).text())"&gt;ru-RU&lt;/button&gt;
+                    &lt;/div&gt;
+
+                    &lt;div id="countdown_locale"
+                        data-role="countdown"
+                        data-hours="90"
+                        style="font-size: 36px"&gt;&lt;/div&gt;
+
+                    &lt;script&gt;
+                        function changeLocale(locale){
+                            $('#countdown_locale').attr('data-locale', locale);
+                        }
+                    &lt;/script&gt;
+                </code></pre>
             </main>
         </div>
 
