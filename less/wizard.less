@@ -105,3 +105,22 @@
         }
     }
 }
+
+.wide-wizard() {
+    flex-flow: row nowrap;
+}
+
+.generate-wizard-media-options(@mediaBreakpointListMobileLength);
+.generate-wizard-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
+    @m: extract(@mediaBreakpointListMobile, @i);
+
+    @media screen and (min-width: @@m) {
+        .wizard {
+            &.wizard-wide-@{m} {
+                .wide-wizard();
+            }
+        }
+    }
+
+    .generate-wizard-media-options(@name, @i + 1);
+}

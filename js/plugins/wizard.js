@@ -58,10 +58,10 @@ var Wizard = {
 
         bar = $("<div>").addClass("action-bar").appendTo(element);
 
-        $("<button>").addClass("button cycle outline wizard-btn-help").html(o.iconHelp).appendTo(bar);
-        $("<button>").addClass("button cycle outline wizard-btn-prev").html(o.iconPrev).appendTo(bar);
-        $("<button>").addClass("button cycle outline wizard-btn-next").html(o.iconNext).appendTo(bar);
-        $("<button>").addClass("button cycle outline wizard-btn-finish").html(o.iconFinish).appendTo(bar);
+        $("<button>").addClass("button cycle outline wizard-btn-help").html(Utils.isTag(o.iconHelp) ? o.iconHelp : $("<img>").attr('src', o.iconHelp)).appendTo(bar);
+        $("<button>").addClass("button cycle outline wizard-btn-prev").html(Utils.isTag(o.iconPrev) ? o.iconPrev : $("<img>").attr('src', o.iconPrev)).appendTo(bar);
+        $("<button>").addClass("button cycle outline wizard-btn-next").html(Utils.isTag(o.iconNext) ? o.iconNext : $("<img>").attr('src', o.iconNext)).appendTo(bar);
+        $("<button>").addClass("button cycle outline wizard-btn-finish").html(Utils.isTag(o.iconFinish) ? o.iconFinish : $("<img>").attr('src', o.iconFinish)).appendTo(bar);
 
         this.toPage(o.start);
 
@@ -149,6 +149,7 @@ var Wizard = {
         var that = this, element = this.element, o = this.options;
         var target = $(element.children("section").get(page - 1));
         var sections = element.children("section");
+        var actions = element.find(".action-bar");
 
         if (target.length === 0) {
             return ;
@@ -168,7 +169,7 @@ var Wizard = {
         target.addClass("current").addClass(o.clsCurrent);
         target.prevAll().addClass("complete").addClass(o.clsComplete);
 
-        $(".action-bar").animate({
+        actions.animate({
             left: element.children("section.complete").length * 25 + 41
         });
 

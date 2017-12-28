@@ -103,6 +103,40 @@
                         <code>finish</code>.
                     For each button you can use callback to interact with wizard.
                 </p>
+
+                <h4>Controls icons</h4>
+                <p>
+                    You can change controls icons with attributes:
+                        <code>data-icon-help</code>,
+                        <code>data-icon-prev</code>,
+                        <code>data-icon-next</code> and
+                        <code>data-icon-finish</code>.
+                    Value for these attributes must be valid <strong>html tag</strong> or <strong>path to image</strong>.
+                </p>
+                <div class="example">
+                    <div data-role="wizard"
+                         data-icon-help="images/help.png"
+                         data-icon-prev="<span class='mif-arrow-left'></span>"
+                         data-icon-next="<span class='mif-arrow-right'></span>"
+                         data-icon-finish="images/checkmark.png">
+                        <section><div class="page-content">Page 1</div></section>
+                        <section><div class="page-content">Page 2</div></section>
+                        <section><div class="page-content">Page 3</div></section>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="wizard"
+                         data-icon-help="images/help.png"
+                         data-icon-prev="&lt;span class='mif-arrow-left'&gt;&lt;/span&gt;"
+                         data-icon-next="&lt;span class='mif-arrow-right'&gt;&lt;/span&gt;"
+                         data-icon-finish="images/checkmark.png"&gt;
+                        &lt;section&gt;&lt;div class="page-content"&gt;Page 1&lt;/div&gt;&lt;/section&gt;
+                        &lt;section&gt;&lt;div class="page-content"&gt;Page 2&lt;/div&gt;&lt;/section&gt;
+                        &lt;section&gt;&lt;div class="page-content"&gt;Page 3&lt;/div&gt;&lt;/section&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h4>Controls events</h4>
                 <table class="table cell-border table-border options-table mt-4">
                     <thead>
                     <tr>

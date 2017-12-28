@@ -26006,6 +26006,54 @@ video:-webkit-full-screen {
 .wizard [class*=wizard-btn].disabled {
   opacity: .1;
 }
+@media screen and (min-width: 0) {
+  .wizard.wizard-wide-fs {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+  }
+}
+@media screen and (min-width: 576px) {
+  .wizard.wizard-wide-sm {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+  }
+}
+@media screen and (min-width: 768px) {
+  .wizard.wizard-wide-md {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+  }
+}
+@media screen and (min-width: 992px) {
+  .wizard.wizard-wide-lg {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .wizard.wizard-wide-xl {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+  }
+}
+@media screen and (min-width: 1452px) {
+  .wizard.wizard-wide-xxl {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+  }
+}
 .ripple {
   display: block;
   width: 0;
