@@ -24,7 +24,6 @@ var Wizard = {
         onFinishClick: Metro.noop,
         onBeforePrev: Metro.noop_true,
         onBeforeNext: Metro.noop_true,
-        onBeforeFinish: Metro.noop_true,
         onWizardCreate: Metro.noop
     },
 
@@ -112,8 +111,9 @@ var Wizard = {
     next: function(){
         var that = this, element = this.element, o = this.options;
         var pages = element.children("section");
+        var page = $(element.children("section").get(this.current - 1));
 
-        if (this.current + 1 > pages.length || Utils.exec(o.onBeforeNext) === false) {
+        if (this.current + 1 > pages.length || Utils.exec(o.onBeforeNext, [this.current, page, element]) === false) {
             return ;
         }
 
@@ -124,8 +124,9 @@ var Wizard = {
 
     prev: function(){
         var that = this, element = this.element, o = this.options;
+        var page = $(element.children("section").get(this.current - 1));
 
-        if (this.current - 1 === 0 || Utils.exec(o.onBeforePrev) === false) {
+        if (this.current - 1 === 0 || Utils.exec(o.onBeforePrev, [this.current, page, element]) === false) {
             return ;
         }
 
@@ -185,8 +186,8 @@ var Wizard = {
             prev.removeClass("disabled");
         }
 
-        element.trigger("onpage", [this.current, element]);
-        Utils.exec(o.onPage, [this.current, element]);
+        element.trigger("onpage", [this.current, target, element]);
+        Utils.exec(o.onPage, [this.current, target, element]);
     },
 
     changeAttribute: function(attributeName){
