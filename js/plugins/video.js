@@ -32,8 +32,8 @@ var Video = {
         loop: false,
         autoplay: false,
 
-        fullScreenMode: METRO_FULLSCREEN_MODE.DESKTOP,
-        aspectRatio: METRO_ASPECT_RATIO.HD,
+        fullScreenMode: Metro.fullScreenMode.DESKTOP,
+        aspectRatio: Metro.aspectRatio.HD,
 
         controlsHide: 3000,
 
@@ -84,7 +84,7 @@ var Video = {
         var that = this, element = this.element, o = this.options, video = this.video;
 
         if (Metro.isFullscreenEnabled === false) {
-            o.fullScreenMode = METRO_FULLSCREEN_MODE.WINDOW;
+            o.fullScreenMode = Metro.fullScreenMode.WINDOW;
         }
 
         this._createPlayer();
@@ -340,7 +340,7 @@ var Video = {
         player.on(Metro.events.click, ".full", function(e){
             that.fullscreen = !that.fullscreen;
             player.find(".full").html(that.fullscreen === true ? o.screenLessIcon : o.screenMoreIcon);
-            if (o.fullScreenMode === METRO_FULLSCREEN_MODE.WINDOW) {
+            if (o.fullScreenMode === Metro.fullScreenMode.WINDOW) {
                 if (that.fullscreen === true) {
                     player.addClass("full-screen");
                 } else {
@@ -457,8 +457,8 @@ var Video = {
         var height;
 
         switch (o.aspectRatio) {
-            case METRO_ASPECT_RATIO.SD: height = Utils.aspectRatio(width, "4/3"); break;
-            case METRO_ASPECT_RATIO.CINEMA: height = Utils.aspectRatio(width, "21/9"); break;
+            case Metro.aspectRatio.SD: height = Utils.aspectRatio(width, "4/3"); break;
+            case Metro.aspectRatio.CINEMA: height = Utils.aspectRatio(width, "21/9"); break;
             default: height = Utils.aspectRatio(width, "16/9");
         }
 

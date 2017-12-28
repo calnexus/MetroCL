@@ -89,10 +89,6 @@ var Audio = {
     _create: function(){
         var that = this, element = this.element, o = this.options, audio = this.audio;
 
-        if (Metro.isFullscreenEnabled === false) {
-            o.fullScreenMode = METRO_FULLSCREEN_MODE.WINDOW;
-        }
-
         this._createPlayer();
         this._createControls();
         this._createEvents();

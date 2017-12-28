@@ -48,20 +48,9 @@ if ( typeof Object.create !== 'function' ) {
     };
 }
 
-window.METRO_FULLSCREEN_MODE = {
-    WINDOW: "window",
-    DESKTOP: "desktop"
-};
-
 window.METRO_CONTROLS_POSITION = {
     INSIDE: "inside",
     OUTSIDE: "outside"
-};
-
-window.METRO_ASPECT_RATIO = {
-    HD: "hd",
-    SD: "sd",
-    CINEMA: "cinema"
 };
 
 window.METRO_GROUP_MODE = {
@@ -76,6 +65,17 @@ var Metro = {
     version: "4.0.0-alpha",
     isTouchable: isTouch,
     isFullscreenEnabled: document.fullscreenEnabled,
+
+    aspectRatio: {
+        HD: "hd",
+        SD: "sd",
+        CINEMA: "cinema"
+    },
+
+    fullScreenMode: {
+        WINDOW: "window",
+        DESKTOP: "desktop"
+    },
 
     position: {
         TOP: "top",
