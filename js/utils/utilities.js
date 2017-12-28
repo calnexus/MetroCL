@@ -574,6 +574,14 @@ var Utils = {
         if (a === "16/9") return width * 9 / 16;
         if (a === "21/9") return width * 9 / 21;
         if (a === "4/3") return width * 3 / 4;
+    },
+
+    valueInObject: function(obj, value){
+        return Object.values(obj).indexOf(value) > -1;
+    },
+
+    keyInObject: function(){
+        return Object.keys(obj).indexOf(value) > -1;
     }
 };
 
