@@ -21,12 +21,12 @@ var Slider = {
         max: 100,
         accuracy: 0,
         showMinMax: false,
-        minMaxPosition: METRO_POSITION.TOP,
+        minMaxPosition: Metro.position.TOP,
         value: 0,
         buffer: 0,
         hint: false,
         hintAlways: false,
-        hintPosition: METRO_POSITION.TOP,
+        hintPosition: Metro.position.TOP,
         hintMask: "$1",
         vertical: false,
         target: null,
@@ -129,7 +129,7 @@ var Slider = {
             var min_max_wrapper = $("<div>").addClass("slider-min-max clear").addClass(o.clsMinMax);
             $("<span>").addClass("place-left").addClass(o.clsMin).html(o.min).appendTo(min_max_wrapper);
             $("<span>").addClass("place-right").addClass(o.clsMax).html(o.max).appendTo(min_max_wrapper);
-            if (o.minMaxPosition === METRO_POSITION.TOP) {
+            if (o.minMaxPosition === Metro.position.TOP) {
                 min_max_wrapper.insertBefore(slider);
             } else {
                 min_max_wrapper.insertAfter(slider);

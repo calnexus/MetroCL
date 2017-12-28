@@ -24,7 +24,7 @@ var Keypad = {
         length: 0,
         shuffle: false,
         shuffleCount: 3,
-        position: METRO_POSITION.BOTTOM_LEFT, //top-left, top, top-right, right, bottom-right, bottom, bottom-left, left
+        position: Metro.position.BOTTOM_LEFT, //top-left, top, top-right, right, bottom-right, bottom, bottom-left, left
         dynamicPosition: false,
         serviceButtons: true,
         showValue: true,

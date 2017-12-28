@@ -8,6 +8,7 @@
 - [ ] Carousel, add thumbs
 - [ ] Inheritance for video and audio players from media-player class
 - [ ] Responsive drop left, right
+- [ ] Keypad: extends positions to all
 
 ####4.1.0
 

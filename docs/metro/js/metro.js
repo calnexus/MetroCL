@@ -66,21 +66,6 @@ if ( typeof Object.create !== 'function' ) {
     };
 }
 
-window.METRO_POSITION = {
-    TOP: "top",
-    BOTTOM: "bottom",
-    LEFT: "left",
-    RIGHT: "right",
-    TOP_RIGHT: "top-right",
-    TOP_LEFT: "top-left",
-    BOTTOM_LEFT: "bottom-left",
-    BOTTOM_RIGHT: "bottom-right",
-    LEFT_BOTTOM: "left-bottom",
-    LEFT_TOP: "left-top",
-    RIGHT_TOP: "right-top",
-    RIGHT_BOTTOM: "right-bottom"
-};
-
 window.METRO_FULLSCREEN_MODE = {
     WINDOW: "window",
     DESKTOP: "desktop"
@@ -6538,7 +6523,7 @@ var Hint = {
         hintHide: 5000,
         clsHint: "",
         hintText: "",
-        hintPosition: METRO_POSITION.TOP,
+        hintPosition: Metro.position.TOP,
         hintOffset: 4,
         onHintCreate: Metro.noop,
         onHintShow: Metro.noop,
@@ -6604,19 +6589,19 @@ var Hint = {
     setPosition: function(){
         var hint = this.hint, hint_size = this.hint_size, o = this.options, element = this.element;
 
-        if (o.hintPosition === METRO_POSITION.BOTTOM) {
+        if (o.hintPosition === Metro.position.BOTTOM) {
             hint.addClass('bottom');
             hint.css({
                 top: element.offset().top - $(window).scrollTop() + element.outerHeight() + o.hintOffset,
                 left: element.offset().left + element.outerWidth()/2 - hint_size.width/2  - $(window).scrollLeft()
             });
-        } else if (o.hintPosition === METRO_POSITION.RIGHT) {
+        } else if (o.hintPosition === Metro.position.RIGHT) {
             hint.addClass('right');
             hint.css({
                 top: element.offset().top + element.outerHeight()/2 - hint_size.height/2 - $(window).scrollTop(),
                 left: element.offset().left + element.outerWidth() - $(window).scrollLeft() + o.hintOffset
             });
-        } else if (o.hintPosition === METRO_POSITION.LEFT) {
+        } else if (o.hintPosition === Metro.position.LEFT) {
             hint.addClass('left');
             hint.css({
                 top: element.offset().top + element.outerHeight()/2 - hint_size.height/2 - $(window).scrollTop(),
@@ -6846,7 +6831,7 @@ var Keypad = {
         length: 0,
         shuffle: false,
         shuffleCount: 3,
-        position: METRO_POSITION.BOTTOM_LEFT, //top-left, top, top-right, right, bottom-right, bottom, bottom-left, left
+        position: Metro.position.BOTTOM_LEFT, //top-left, top, top-right, right, bottom-right, bottom, bottom-left, left
         dynamicPosition: false,
         serviceButtons: true,
         showValue: true,
@@ -9171,12 +9156,12 @@ var Slider = {
         max: 100,
         accuracy: 0,
         showMinMax: false,
-        minMaxPosition: METRO_POSITION.TOP,
+        minMaxPosition: Metro.position.TOP,
         value: 0,
         buffer: 0,
         hint: false,
         hintAlways: false,
-        hintPosition: METRO_POSITION.TOP,
+        hintPosition: Metro.position.TOP,
         hintMask: "$1",
         vertical: false,
         target: null,
@@ -9279,7 +9264,7 @@ var Slider = {
             var min_max_wrapper = $("<div>").addClass("slider-min-max clear").addClass(o.clsMinMax);
             $("<span>").addClass("place-left").addClass(o.clsMin).html(o.min).appendTo(min_max_wrapper);
             $("<span>").addClass("place-right").addClass(o.clsMax).html(o.max).appendTo(min_max_wrapper);
-            if (o.minMaxPosition === METRO_POSITION.TOP) {
+            if (o.minMaxPosition === Metro.position.TOP) {
                 min_max_wrapper.insertBefore(slider);
             } else {
                 min_max_wrapper.insertAfter(slider);

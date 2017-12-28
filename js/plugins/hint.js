@@ -21,7 +21,7 @@ var Hint = {
         hintHide: 5000,
         clsHint: "",
         hintText: "",
-        hintPosition: METRO_POSITION.TOP,
+        hintPosition: Metro.position.TOP,
         hintOffset: 4,
         onHintCreate: Metro.noop,
         onHintShow: Metro.noop,
@@ -87,19 +87,19 @@ var Hint = {
     setPosition: function(){
         var hint = this.hint, hint_size = this.hint_size, o = this.options, element = this.element;
 
-        if (o.hintPosition === METRO_POSITION.BOTTOM) {
+        if (o.hintPosition === Metro.position.BOTTOM) {
             hint.addClass('bottom');
             hint.css({
                 top: element.offset().top - $(window).scrollTop() + element.outerHeight() + o.hintOffset,
                 left: element.offset().left + element.outerWidth()/2 - hint_size.width/2  - $(window).scrollLeft()
             });
-        } else if (o.hintPosition === METRO_POSITION.RIGHT) {
+        } else if (o.hintPosition === Metro.position.RIGHT) {
             hint.addClass('right');
             hint.css({
                 top: element.offset().top + element.outerHeight()/2 - hint_size.height/2 - $(window).scrollTop(),
                 left: element.offset().left + element.outerWidth() - $(window).scrollLeft() + o.hintOffset
             });
-        } else if (o.hintPosition === METRO_POSITION.LEFT) {
+        } else if (o.hintPosition === Metro.position.LEFT) {
             hint.addClass('left');
             hint.css({
                 top: element.offset().top + element.outerHeight()/2 - hint_size.height/2 - $(window).scrollTop(),

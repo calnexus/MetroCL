@@ -48,21 +48,6 @@ if ( typeof Object.create !== 'function' ) {
     };
 }
 
-window.METRO_POSITION = {
-    TOP: "top",
-    BOTTOM: "bottom",
-    LEFT: "left",
-    RIGHT: "right",
-    TOP_RIGHT: "top-right",
-    TOP_LEFT: "top-left",
-    BOTTOM_LEFT: "bottom-left",
-    BOTTOM_RIGHT: "bottom-right",
-    LEFT_BOTTOM: "left-bottom",
-    LEFT_TOP: "left-top",
-    RIGHT_TOP: "right-top",
-    RIGHT_BOTTOM: "right-bottom"
-};
-
 window.METRO_FULLSCREEN_MODE = {
     WINDOW: "window",
     DESKTOP: "desktop"
