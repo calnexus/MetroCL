@@ -19,8 +19,8 @@ if (window.METRO_INIT === undefined) {
     window.METRO_INIT = METRO_META_INIT !== undefined ? $.parseJSON(METRO_META_INIT) : true;
 }
 if (window.METRO_DEBUG === undefined) {window.METRO_DEBUG = true;}
-if (window.METRO_CALENDAR_WEEK_START === undefined) {
-    window.METRO_CALENDAR_WEEK_START = METRO_META_WEEK_START !== undefined ? parseInt(METRO_META_WEEK_START) : 1;
+if (window.METRO_WEEK_START === undefined) {
+    window.METRO_WEEK_START = METRO_META_WEEK_START !== undefined ? parseInt(METRO_META_WEEK_START) : 1;
 }
 if (window.METRO_LOCALE === undefined) {
     window.METRO_LOCALE = METRO_META_LOCALE !== undefined ? METRO_META_LOCALE : 'en-US';
@@ -90,22 +90,6 @@ window.METRO_POPOVER_MODE = {
     FOCUS: "focus"
 };
 
-window.METRO_LISTVIEW_MODE = {
-    LIST: "list",
-    CONTENT: "content",
-    ICONS: "icons",
-    ICONS_MEDIUM: "icons-medium",
-    ICONS_LARGE: "icons-large",
-    TILES: "tiles",
-    TABLE: "table"
-};
-
-window.METRO_STEPPER_VIEW = {
-    SQUARE: "square",
-    CYCLE: "cycle",
-    DIAMOND: "diamond"
-};
-
 var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
 
 var Metro = {
@@ -113,6 +97,22 @@ var Metro = {
     version: "4.0.0-alpha",
     isTouchable: isTouch,
     isFullscreenEnabled: document.fullscreenEnabled,
+
+    stepperView: {
+        SQUARE: "square",
+        CYCLE: "cycle",
+        DIAMOND: "diamond"
+    },
+
+    listView: {
+        LIST: "list",
+        CONTENT: "content",
+        ICONS: "icons",
+        ICONS_MEDIUM: "icons-medium",
+        ICONS_LARGE: "icons-large",
+        TILES: "tiles",
+        TABLE: "table"
+    },
 
     events: {
         click: isTouch ? 'touchstart.metro' : 'click.metro',

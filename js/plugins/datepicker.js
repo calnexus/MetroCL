@@ -33,7 +33,7 @@ var Datepicker = {
 
         yearsBefore: 100,
         yearsAfter: 100,
-        weekStart: 0,
+        weekStart: METRO_WEEK_START,
         outside: true,
         clsCalendar: "",
         clsCalendarHeader: "",

@@ -3,7 +3,6 @@ var Listview = {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
         this.element = $(elem);
-        this.views = ['list', 'content', 'icons', 'icons-medium', 'icons-large', 'tiles', 'table'];
 
         this._setOptionsFromDOM();
         this._create();
@@ -15,7 +14,7 @@ var Listview = {
         selectable: false,
         effect: "slide",
         duration: 100,
-        view: METRO_LISTVIEW_MODE.LIST,
+        view: Metro.listView.LIST,
         selectCurrent: true,
         structure: {},
         onNodeInsert: Metro.noop,
@@ -82,8 +81,8 @@ var Listview = {
         if (data.caption !== undefined || data.content !== undefined ) {
             var d = $("<div>").addClass("data");
             node.prepend(d);
-            if (node.data("caption") !== undefined) data.append(that._createCaption(node.data("caption")));
-            if (node.data("content") !== undefined) data.append(that._createContent(node.data("content")));
+            if (data.caption !== undefined) d.append(that._createCaption(data.caption));
+            if (data.content !== undefined) d.append(that._createContent(data.content));
         }
 
         if (data.icon !== undefined) {
@@ -181,21 +180,20 @@ var Listview = {
 
     view: function(v){
         var element = this.element, o = this.options;
-        var views = this.views;
 
         if (v === undefined) {
             return o.view;
         }
 
-        if (views.indexOf(v) === -1) {
+        if (Object.values(Metro.listView).indexOf(v) === -1) {
             return ;
         }
 
         o.view = v;
 
-        $.each(this.views, function(){
-            element.removeClass("view-"+this);
-            element.find("ul").removeClass("view-"+this);
+        $.each(Metro.listView, function(i, v){
+            element.removeClass("view-"+v);
+            element.find("ul").removeClass("view-"+v);
         });
 
         element.addClass("view-" + o.view);
@@ -324,11 +322,7 @@ var Listview = {
     changeView: function(){
         var element = this.element, o = this.options;
         var new_view = "view-"+element.attr("data-view");
-        if (this.views.indexOf(new_view) === -1) {
-            return ;
-        }
-        o.view = new_view;
-        this.view();
+        this.view(new_view);
     },
 
     changeSelectable: function(){

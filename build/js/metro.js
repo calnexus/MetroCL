@@ -37,8 +37,8 @@ if (window.METRO_INIT === undefined) {
     window.METRO_INIT = METRO_META_INIT !== undefined ? $.parseJSON(METRO_META_INIT) : true;
 }
 if (window.METRO_DEBUG === undefined) {window.METRO_DEBUG = true;}
-if (window.METRO_CALENDAR_WEEK_START === undefined) {
-    window.METRO_CALENDAR_WEEK_START = METRO_META_WEEK_START !== undefined ? parseInt(METRO_META_WEEK_START) : 1;
+if (window.METRO_WEEK_START === undefined) {
+    window.METRO_WEEK_START = METRO_META_WEEK_START !== undefined ? parseInt(METRO_META_WEEK_START) : 1;
 }
 if (window.METRO_LOCALE === undefined) {
     window.METRO_LOCALE = METRO_META_LOCALE !== undefined ? METRO_META_LOCALE : 'en-US';
@@ -108,22 +108,6 @@ window.METRO_POPOVER_MODE = {
     FOCUS: "focus"
 };
 
-window.METRO_LISTVIEW_MODE = {
-    LIST: "list",
-    CONTENT: "content",
-    ICONS: "icons",
-    ICONS_MEDIUM: "icons-medium",
-    ICONS_LARGE: "icons-large",
-    TILES: "tiles",
-    TABLE: "table"
-};
-
-window.METRO_STEPPER_VIEW = {
-    SQUARE: "square",
-    CYCLE: "cycle",
-    DIAMOND: "diamond"
-};
-
 var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
 
 var Metro = {
@@ -131,6 +115,22 @@ var Metro = {
     version: "4.0.0-alpha",
     isTouchable: isTouch,
     isFullscreenEnabled: document.fullscreenEnabled,
+
+    stepperView: {
+        SQUARE: "square",
+        CYCLE: "cycle",
+        DIAMOND: "diamond"
+    },
+
+    listView: {
+        LIST: "list",
+        CONTENT: "content",
+        ICONS: "icons",
+        ICONS_MEDIUM: "icons-medium",
+        ICONS_LARGE: "icons-large",
+        TILES: "tiles",
+        TABLE: "table"
+    },
 
     events: {
         click: isTouch ? 'touchstart.metro' : 'click.metro',
@@ -3153,7 +3153,7 @@ var Calendar = {
         pickerMode: false,
         show: null,
         locale: METRO_LOCALE,
-        weekStart: 0,
+        weekStart: METRO_WEEK_START,
         outside: true,
         buttons: 'cancel, today, clear, done',
         yearsBefore: 100,
@@ -5228,7 +5228,7 @@ var Datepicker = {
 
         yearsBefore: 100,
         yearsAfter: 100,
-        weekStart: 0,
+        weekStart: METRO_WEEK_START,
         outside: true,
         clsCalendar: "",
         clsCalendarHeader: "",
@@ -7174,7 +7174,6 @@ var Listview = {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
         this.element = $(elem);
-        this.views = ['list', 'content', 'icons', 'icons-medium', 'icons-large', 'tiles', 'table'];
 
         this._setOptionsFromDOM();
         this._create();
@@ -7186,7 +7185,7 @@ var Listview = {
         selectable: false,
         effect: "slide",
         duration: 100,
-        view: METRO_LISTVIEW_MODE.LIST,
+        view: Metro.listView.LIST,
         selectCurrent: true,
         structure: {},
         onNodeInsert: Metro.noop,
@@ -7253,8 +7252,8 @@ var Listview = {
         if (data.caption !== undefined || data.content !== undefined ) {
             var d = $("<div>").addClass("data");
             node.prepend(d);
-            if (node.data("caption") !== undefined) data.append(that._createCaption(node.data("caption")));
-            if (node.data("content") !== undefined) data.append(that._createContent(node.data("content")));
+            if (data.caption !== undefined) d.append(that._createCaption(data.caption));
+            if (data.content !== undefined) d.append(that._createContent(data.content));
         }
 
         if (data.icon !== undefined) {
@@ -7352,21 +7351,20 @@ var Listview = {
 
     view: function(v){
         var element = this.element, o = this.options;
-        var views = this.views;
 
         if (v === undefined) {
             return o.view;
         }
 
-        if (views.indexOf(v) === -1) {
+        if (Object.values(Metro.listView).indexOf(v) === -1) {
             return ;
         }
 
         o.view = v;
 
-        $.each(this.views, function(){
-            element.removeClass("view-"+this);
-            element.find("ul").removeClass("view-"+this);
+        $.each(Metro.listView, function(i, v){
+            element.removeClass("view-"+v);
+            element.find("ul").removeClass("view-"+v);
         });
 
         element.addClass("view-" + o.view);
@@ -7495,11 +7493,7 @@ var Listview = {
     changeView: function(){
         var element = this.element, o = this.options;
         var new_view = "view-"+element.attr("data-view");
-        if (this.views.indexOf(new_view) === -1) {
-            return ;
-        }
-        o.view = new_view;
-        this.view();
+        this.view(new_view);
     },
 
     changeSelectable: function(){
@@ -9596,7 +9590,7 @@ var Stepper = {
     },
 
     options: {
-        view: METRO_STEPPER_VIEW.SQUARE, // square, cycle, diamond
+        view: Metro.stepperView.SQUARE, // square, cycle, diamond
         steps: 3,
         step: 1,
         stepClick: false,

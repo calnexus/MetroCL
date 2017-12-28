@@ -31,7 +31,7 @@ var Calendar = {
         pickerMode: false,
         show: null,
         locale: METRO_LOCALE,
-        weekStart: 0,
+        weekStart: METRO_WEEK_START,
         outside: true,
         buttons: 'cancel, today, clear, done',
         yearsBefore: 100,

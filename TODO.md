@@ -1,5 +1,4 @@
 ####4.0.0
-- [ ] Tracking data-locale attribute
 
 ####4.0.1
 - [ ] Dropdown not only display: block

@@ -12,7 +12,7 @@ var Stepper = {
     },
 
     options: {
-        view: METRO_STEPPER_VIEW.SQUARE, // square, cycle, diamond
+        view: Metro.stepperView.SQUARE, // square, cycle, diamond
         steps: 3,
         step: 1,
         stepClick: false,
