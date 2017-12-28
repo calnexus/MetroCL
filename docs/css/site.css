@@ -46,6 +46,11 @@ Skipped data-uri embedding of less/images/inputs/checkmark.svg because file not 
 Skipped data-uri embedding of less/images/inputs/cross.svg because file not found
 Skipped data-uri embedding of less/images/inputs/search.svg because file not found
 Skipped data-uri embedding of less/images/inputs/eye.svg because file not found
+Skipped data-uri embedding of less/images/wizard/help.svg because file not found
+Skipped data-uri embedding of less/images/wizard/arrow-left.svg because file not found
+Skipped data-uri embedding of less/images/wizard/arrow-right.svg because file not found
+Skipped data-uri embedding of less/images/inputs/calendar.svg because file not found
+Skipped data-uri embedding of less/images/inputs/clock.svg because file not found
 .demo-grid .cell-auto {
   padding-left: 12px;
   padding-right: 12px;
@@ -477,4 +482,16 @@ pre .copy-button {
 }
 .options-table {
   font-size: 14px;
+}
+#special-thanks {
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+}
+#special-thanks [class*=cell-] {
+  text-align: center;
+}
+#special-thanks img {
+  max-height: 64px;
+  width: 75%;
 }
