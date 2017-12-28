@@ -8,31 +8,32 @@ if (window.canObserveMutation === false) {
     throw new Error('Metro 4 requires MutationObserver. Your browser does not support MutationObserver. Please use polyfill, example: //cdn.jsdelivr.net/g/mutationobserver/ or other.');
 }
 
-window.METRO_META_INIT = $("meta[name='metro4:init']").attr("content");
-window.METRO_META_LOCALE = $("meta[name='metro4:locale']").attr("content");
-window.METRO_META_WEEK_START = $("meta[name='metro4:week_start']").attr("content");
-window.METRO_META_ANIMATION_DURATION = $("meta[name='metro4:animation_duration']").attr("content");
-window.METRO_META_CALLBACK_TIMEOUT = $("meta[name='metro4:callback_timeout']").attr("content");
-window.METRO_META_TIMEOUT = $("meta[name='metro4:timeout']").attr("content");
+var meta_init = $("meta[name='metro4:init']").attr("content");
+var meta_locale = $("meta[name='metro4:locale']").attr("content");
+var meta_week_start = $("meta[name='metro4:week_start']").attr("content");
+var meta_animation_duration = $("meta[name='metro4:animation_duration']").attr("content");
+var meta_callback_timeout = $("meta[name='metro4:callback_timeout']").attr("content");
+var meta_timeout = $("meta[name='metro4:timeout']").attr("content");
 
 if (window.METRO_INIT === undefined) {
-    window.METRO_INIT = METRO_META_INIT !== undefined ? $.parseJSON(METRO_META_INIT) : true;
+    window.METRO_INIT = meta_init !== undefined ? $.parseJSON(meta_init) : true;
 }
 if (window.METRO_DEBUG === undefined) {window.METRO_DEBUG = true;}
+
 if (window.METRO_WEEK_START === undefined) {
-    window.METRO_WEEK_START = METRO_META_WEEK_START !== undefined ? parseInt(METRO_META_WEEK_START) : 1;
+    window.METRO_WEEK_START = meta_week_start !== undefined ? parseInt(meta_week_start) : 1;
 }
 if (window.METRO_LOCALE === undefined) {
-    window.METRO_LOCALE = METRO_META_LOCALE !== undefined ? METRO_META_LOCALE : 'en-US';
+    window.METRO_LOCALE = meta_locale !== undefined ? meta_locale : 'en-US';
 }
 if (window.METRO_ANIMATION_DURATION === undefined) {
-    window.METRO_ANIMATION_DURATION = METRO_META_ANIMATION_DURATION !== undefined ? parseInt(METRO_META_ANIMATION_DURATION) : 300;
+    window.METRO_ANIMATION_DURATION = meta_animation_duration !== undefined ? parseInt(meta_animation_duration) : 300;
 }
 if (window.METRO_CALLBACK_TIMEOUT === undefined) {
-    window.METRO_CALLBACK_TIMEOUT = METRO_META_CALLBACK_TIMEOUT !== undefined ? parseInt(METRO_META_CALLBACK_TIMEOUT) : 500;
+    window.METRO_CALLBACK_TIMEOUT = meta_callback_timeout !== undefined ? parseInt(meta_callback_timeout) : 500;
 }
 if (window.METRO_TIMEOUT === undefined) {
-    window.METRO_TIMEOUT = METRO_META_TIMEOUT !== undefined ? parseInt(METRO_META_TIMEOUT) : 2000;
+    window.METRO_TIMEOUT = meta_timeout !== undefined ? parseInt(meta_timeout) : 2000;
 }
 if (window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE === undefined) {window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE = true;}
 if (window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS === undefined) {window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS = true;}
@@ -141,17 +142,7 @@ var Metro = {
         console.log("Metro 4 Components Library - v"+this.version);
     },
 
-    init: function(){
-        var widgets = $("[data-role]");
-        var hotkeys = $("[data-hotkey]");
-        var html = $("html");
-
-        if (isTouch === true) {
-            html.addClass("metro-touch-device");
-        } else {
-            html.addClass("metro-no-touch-device");
-        }
-
+    observe: function(){
         var observer, observerCallback;
         var observerConfig = {
             childList: true,
@@ -199,7 +190,21 @@ var Metro = {
             });
         };
         observer = new MutationObserver(observerCallback);
-        observer.observe(html[0], observerConfig);
+        observer.observe($("html")[0], observerConfig);
+    },
+
+    init: function(){
+        var widgets = $("[data-role]");
+        var hotkeys = $("[data-hotkey]");
+        var html = $("html");
+
+        if (isTouch === true) {
+            html.addClass("metro-touch-device");
+        } else {
+            html.addClass("metro-no-touch-device");
+        }
+
+        this.observe();
 
         setTimeout(function(){
             Metro.initHotkeys(hotkeys);
