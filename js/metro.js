@@ -48,16 +48,6 @@ if ( typeof Object.create !== 'function' ) {
     };
 }
 
-window.METRO_CONTROLS_POSITION = {
-    INSIDE: "inside",
-    OUTSIDE: "outside"
-};
-
-window.METRO_GROUP_MODE = {
-    ONE: "one",
-    MULTI: "multi"
-};
-
 var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
 
 var Metro = {
@@ -65,6 +55,16 @@ var Metro = {
     version: "4.0.0-alpha",
     isTouchable: isTouch,
     isFullscreenEnabled: document.fullscreenEnabled,
+
+    controlsPosition: {
+        INSIDE: "inside",
+        OUTSIDE: "outside"
+    },
+
+    groupMode: {
+        ONE: "one",
+        MULTI: "multi"
+    },
 
     aspectRatio: {
         HD: "hd",

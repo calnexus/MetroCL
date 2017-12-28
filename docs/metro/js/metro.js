@@ -66,16 +66,6 @@ if ( typeof Object.create !== 'function' ) {
     };
 }
 
-window.METRO_CONTROLS_POSITION = {
-    INSIDE: "inside",
-    OUTSIDE: "outside"
-};
-
-window.METRO_GROUP_MODE = {
-    ONE: "one",
-    MULTI: "multi"
-};
-
 var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
 
 var Metro = {
@@ -83,6 +73,16 @@ var Metro = {
     version: "4.0.0-alpha",
     isTouchable: isTouch,
     isFullscreenEnabled: document.fullscreenEnabled,
+
+    controlsPosition: {
+        INSIDE: "inside",
+        OUTSIDE: "outside"
+    },
+
+    groupMode: {
+        ONE: "one",
+        MULTI: "multi"
+    },
 
     aspectRatio: {
         HD: "hd",
@@ -3051,7 +3051,7 @@ var ButtonsGroup = {
     options: {
         targets: "button",
         clsActive: "bg-gray",
-        mode: METRO_GROUP_MODE.ONE,
+        mode: Metro.groupMode.ONE,
         onButtonClick: Metro.noop,
         onButtonsGroupCreate: Metro.noop
     },
@@ -3082,7 +3082,7 @@ var ButtonsGroup = {
     _createGroup: function(){
         var that = this, element = this.element, o = this.options;
 
-        if (o.mode === METRO_GROUP_MODE.ONE && element.find(o.clsActive).length === 0) {
+        if (o.mode === Metro.groupMode.ONE && element.find(o.clsActive).length === 0) {
             $(element.find(o.targets)[0]).addClass(o.clsActive);
         }
     },
@@ -3095,11 +3095,11 @@ var ButtonsGroup = {
 
             Utils.exec(o.onButtonClick, [el]);
 
-            if (o.mode === METRO_GROUP_MODE.ONE && el.hasClass(o.clsActive)) {
+            if (o.mode === Metro.groupMode.ONE && el.hasClass(o.clsActive)) {
                 return ;
             }
 
-            if (o.mode === METRO_GROUP_MODE.ONE) {
+            if (o.mode === Metro.groupMode.ONE) {
                 element.find(o.targets).removeClass(o.clsActive);
                 el.addClass(o.clsActive);
             } else {
