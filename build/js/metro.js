@@ -102,12 +102,6 @@ window.METRO_GROUP_MODE = {
     MULTI: "multi"
 };
 
-window.METRO_POPOVER_MODE = {
-    CLICK: "click",
-    HOVER: "hover",
-    FOCUS: "focus"
-};
-
 var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
 
 var Metro = {
@@ -115,6 +109,27 @@ var Metro = {
     version: "4.0.0-alpha",
     isTouchable: isTouch,
     isFullscreenEnabled: document.fullscreenEnabled,
+
+    position: {
+        TOP: "top",
+        BOTTOM: "bottom",
+        LEFT: "left",
+        RIGHT: "right",
+        TOP_RIGHT: "top-right",
+        TOP_LEFT: "top-left",
+        BOTTOM_LEFT: "bottom-left",
+        BOTTOM_RIGHT: "bottom-right",
+        LEFT_BOTTOM: "left-bottom",
+        LEFT_TOP: "left-top",
+        RIGHT_TOP: "right-top",
+        RIGHT_BOTTOM: "right-bottom"
+    },
+
+    popoverEvents: {
+        CLICK: "click",
+        HOVER: "hover",
+        FOCUS: "focus"
+    },
 
     stepperView: {
         SQUARE: "square",
@@ -8140,8 +8155,8 @@ var Popover = {
         popoverText: "",
         popoverHide: 3000,
         popoverOffset: 10,
-        popoverTrigger: METRO_POPOVER_MODE.HOVER,
-        popoverPosition: METRO_POSITION.TOP,
+        popoverTrigger: Metro.popoverEvents.HOVER,
+        popoverPosition: Metro.position.TOP,
         hideOnLeave: false,
         clsPopover: "",
         onPopoverShow: Metro.noop,
@@ -8174,8 +8189,8 @@ var Popover = {
         var event;
 
         switch (o.popoverTrigger) {
-            case METRO_POPOVER_MODE.CLICK: event = Metro.events.click; break;
-            case METRO_POPOVER_MODE.FOCUS: event = Metro.events.focus; break;
+            case Metro.popoverEvents.CLICK: event = Metro.events.click; break;
+            case Metro.popoverEvents.FOCUS: event = Metro.events.focus; break;
             default: event = Metro.events.enter;
         }
 
@@ -8206,19 +8221,19 @@ var Popover = {
     setPosition: function(){
         var popover = this.popover, size = this.size, o = this.options, element = this.element;
 
-        if (o.popoverPosition === METRO_POSITION.BOTTOM) {
+        if (o.popoverPosition === Metro.position.BOTTOM) {
             popover.addClass('bottom');
             popover.css({
                 top: element.offset().top - $(window).scrollTop() + element.outerHeight() + o.popoverOffset,
                 left: element.offset().left + element.outerWidth()/2 - size.width/2  - $(window).scrollLeft()
             });
-        } else if (o.popoverPosition === METRO_POSITION.RIGHT) {
+        } else if (o.popoverPosition === Metro.position.RIGHT) {
             popover.addClass('right');
             popover.css({
                 top: element.offset().top + element.outerHeight()/2 - size.height/2 - $(window).scrollTop(),
                 left: element.offset().left + element.outerWidth() - $(window).scrollLeft() + o.popoverOffset
             });
-        } else if (o.popoverPosition === METRO_POSITION.LEFT) {
+        } else if (o.popoverPosition === Metro.position.LEFT) {
             popover.addClass('left');
             popover.css({
                 top: element.offset().top + element.outerHeight()/2 - size.height/2 - $(window).scrollTop(),
@@ -8242,10 +8257,10 @@ var Popover = {
         popover.attr("id", id);
 
         switch (o.popoverPosition) {
-            case METRO_POSITION.TOP: neb_pos = "neb-s"; break;
-            case METRO_POSITION.BOTTOM: neb_pos = "neb-n"; break;
-            case METRO_POSITION.RIGHT: neb_pos = "neb-w"; break;
-            case METRO_POSITION.LEFT: neb_pos = "neb-e"; break;
+            case Metro.position.TOP: neb_pos = "neb-s"; break;
+            case Metro.position.BOTTOM: neb_pos = "neb-n"; break;
+            case Metro.position.RIGHT: neb_pos = "neb-w"; break;
+            case Metro.position.LEFT: neb_pos = "neb-e"; break;
         }
 
         popover.addClass(neb_pos);

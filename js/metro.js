@@ -84,12 +84,6 @@ window.METRO_GROUP_MODE = {
     MULTI: "multi"
 };
 
-window.METRO_POPOVER_MODE = {
-    CLICK: "click",
-    HOVER: "hover",
-    FOCUS: "focus"
-};
-
 var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
 
 var Metro = {
@@ -97,6 +91,27 @@ var Metro = {
     version: "4.0.0-alpha",
     isTouchable: isTouch,
     isFullscreenEnabled: document.fullscreenEnabled,
+
+    position: {
+        TOP: "top",
+        BOTTOM: "bottom",
+        LEFT: "left",
+        RIGHT: "right",
+        TOP_RIGHT: "top-right",
+        TOP_LEFT: "top-left",
+        BOTTOM_LEFT: "bottom-left",
+        BOTTOM_RIGHT: "bottom-right",
+        LEFT_BOTTOM: "left-bottom",
+        LEFT_TOP: "left-top",
+        RIGHT_TOP: "right-top",
+        RIGHT_BOTTOM: "right-bottom"
+    },
+
+    popoverEvents: {
+        CLICK: "click",
+        HOVER: "hover",
+        FOCUS: "focus"
+    },
 
     stepperView: {
         SQUARE: "square",
