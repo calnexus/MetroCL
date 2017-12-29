@@ -6,18 +6,28 @@ If you'd like to join them, please consider:
 
 - [Become a backer or sponsor on Patreon](https://www.patreon.com/metroui).
 
+<!--
 <h2 align="center">Platinum via Patreon</h2>
+-->
 
+<!--
 <h2 align="center">Gold via Patreon</h2>
+-->
 
+<!--
 <h2 align="center">Silver via Patreon</h2>
+-->
 
+<!--
 <h2 align="center">Bronze via Patreon</h2>
+-->
 
 <h2 align="center">Generous Backers via Patreon ($50+)</h2>
-
-<!--50 start-->
 - **Riku** (The first backer for Metro 4!)
-<!--50 end-->
 
+<!--
 <h2 align="center">Backers via Patreon</h2>
+-->
+
+<h2 align="center">Project donors</h2>
+- **Chaoswriter96**
