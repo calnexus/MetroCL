@@ -23,11 +23,11 @@ If you'd like to join them, please consider:
 -->
 
 <h2 align="center">Generous Backers via Patreon ($50+)</h2>
-- **Riku** (The first backer for Metro 4!)
+- Riku <small>(The first backer for Metro 4!)</small>
 
 <!--
 <h2 align="center">Backers via Patreon</h2>
 -->
 
 <h2 align="center">Project donors</h2>
-- **Chaoswriter96**
+- Chaoswriter96
