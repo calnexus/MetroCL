@@ -12613,8 +12613,10 @@ var Wizard = {
         target.addClass("current").addClass(o.clsCurrent);
         target.prevAll().addClass("complete").addClass(o.clsComplete);
 
+        var border_size = element.children("section.complete").length === 0 ? 0 : parseInt(Utils.getStyleOne(element.children("section.complete")[0], "border-left-width"));
+
         actions.animate({
-            left: element.children("section.complete").length * 25 + 41
+            left: element.children("section.complete").length * border_size + 41
         });
 
         if (

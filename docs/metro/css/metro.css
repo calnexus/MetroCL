@@ -25886,13 +25886,14 @@ video:-webkit-full-screen {
   counter-increment: wizard-step;
   display: block;
   position: relative;
-  border-left: 25px #bebebe solid;
+  border-left: #bebebe solid;
+  border-left-width: 4px;
   width: 0;
   -webkit-transition: width 0.3s ease;
   transition: width 0.3s ease;
 }
 .wizard > section::before {
-  display: block;
+  display: none;
   content: counter(wizard-step);
   position: absolute;
   bottom: 20px;
@@ -25915,9 +25916,15 @@ video:-webkit-full-screen {
   display: block;
 }
 .wizard > section.current::before {
+  display: block;
   left: 0;
   color: #ffffff;
   background-color: #1ba1e2;
+}
+.wizard > section.current,
+.wizard > section.complete {
+  -webkit-transition: width 0.3s ease;
+  transition: width 0.3s ease;
 }
 .wizard .action-bar {
   display: -webkit-box;
@@ -26017,6 +26024,12 @@ video:-webkit-full-screen {
         -ms-flex-flow: row nowrap;
             flex-flow: row nowrap;
   }
+  .wizard.wizard-wide-fs > section {
+    border-left-width: 25px;
+  }
+  .wizard.wizard-wide-fs > section::before {
+    display: block;
+  }
 }
 @media screen and (min-width: 576px) {
   .wizard.wizard-wide-sm {
@@ -26024,6 +26037,12 @@ video:-webkit-full-screen {
     -webkit-box-direction: normal;
         -ms-flex-flow: row nowrap;
             flex-flow: row nowrap;
+  }
+  .wizard.wizard-wide-sm > section {
+    border-left-width: 25px;
+  }
+  .wizard.wizard-wide-sm > section::before {
+    display: block;
   }
 }
 @media screen and (min-width: 768px) {
@@ -26033,6 +26052,12 @@ video:-webkit-full-screen {
         -ms-flex-flow: row nowrap;
             flex-flow: row nowrap;
   }
+  .wizard.wizard-wide-md > section {
+    border-left-width: 25px;
+  }
+  .wizard.wizard-wide-md > section::before {
+    display: block;
+  }
 }
 @media screen and (min-width: 992px) {
   .wizard.wizard-wide-lg {
@@ -26040,6 +26065,12 @@ video:-webkit-full-screen {
     -webkit-box-direction: normal;
         -ms-flex-flow: row nowrap;
             flex-flow: row nowrap;
+  }
+  .wizard.wizard-wide-lg > section {
+    border-left-width: 25px;
+  }
+  .wizard.wizard-wide-lg > section::before {
+    display: block;
   }
 }
 @media screen and (min-width: 1200px) {
@@ -26049,6 +26080,12 @@ video:-webkit-full-screen {
         -ms-flex-flow: row nowrap;
             flex-flow: row nowrap;
   }
+  .wizard.wizard-wide-xl > section {
+    border-left-width: 25px;
+  }
+  .wizard.wizard-wide-xl > section::before {
+    display: block;
+  }
 }
 @media screen and (min-width: 1452px) {
   .wizard.wizard-wide-xxl {
@@ -26056,6 +26093,12 @@ video:-webkit-full-screen {
     -webkit-box-direction: normal;
         -ms-flex-flow: row nowrap;
             flex-flow: row nowrap;
+  }
+  .wizard.wizard-wide-xxl > section {
+    border-left-width: 25px;
+  }
+  .wizard.wizard-wide-xxl > section::before {
+    display: block;
   }
 }
 .ripple {

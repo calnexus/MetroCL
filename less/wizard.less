@@ -20,12 +20,13 @@
         counter-increment: wizard-step;
         display: block;
         position: relative;
-        border-left: 25px @gray solid;
+        border-left: @gray solid;
+        border-left-width: 4px;
         width: 0;
         transition: @transition-width;
 
         &::before {
-            display: block;
+            display: none;
             content: counter(wizard-step);
             position: absolute;
             bottom: 20px;
@@ -51,12 +52,16 @@
             }
 
             &::before {
+                display: block;
                 left: 0;
                 color: @white;
                 background-color: @cyan;
             }
         }
 
+        &.current, &.complete {
+            transition: @transition-width;
+        }
     }
 
     .action-bar {
@@ -112,6 +117,14 @@
 
 .wide-wizard() {
     flex-flow: row nowrap;
+
+    & > section {
+        border-left-width: 25px;
+
+        &::before {
+            display: block;
+        }
+    }
 }
 
 .generate-wizard-media-options(@mediaBreakpointListMobileLength);
