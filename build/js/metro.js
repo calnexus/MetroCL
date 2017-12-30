@@ -6177,7 +6177,7 @@ var Dropdown = {
         var that = this, element = this.element, o = this.options;
         var toggle, parent = element.parent();
 
-        toggle = o.toggleElement !== false ? $(o.toggleElement) : element.siblings('.dropdown-toggle').length > 0 ? element.siblings('.dropdown-toggle') : element.siblings('a:nth-child(1)');
+        toggle = o.toggleElement !== null ? $(o.toggleElement) : element.siblings('.dropdown-toggle').length > 0 ? element.siblings('.dropdown-toggle') : element.prev();
 
         this.displayOrigin = element.css("display");
         this.element.css("display", "none");

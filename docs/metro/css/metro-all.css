@@ -16304,10 +16304,10 @@ aside::after {
 }
 a.button,
 a.command-button,
-.image-button,
-.shortcut,
-.tool-button,
-.split-button .split {
+a.image-button,
+a.shortcut,
+a.tool-button,
+a.split-button a.split {
   color: #1d1d1d;
 }
 .button:focus,
