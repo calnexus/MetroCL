@@ -17,6 +17,17 @@ var Wizard = {
         iconPrev: "<span class='default-icon-left-arrow'></span>",
         iconNext: "<span class='default-icon-right-arrow'></span>",
         iconFinish: "<span class='default-icon-check'></span>",
+
+        buttonMode: "cycle", // default, cycle, square
+        buttonOutline: true,
+
+        clsWizard: "",
+        clsActions: "",
+        clsHelp: "",
+        clsPrev: "",
+        clsNext: "",
+        clsFinish: "",
+
         onPage: Metro.noop,
         onHelpClick: Metro.noop,
         onPrevClick: Metro.noop,
@@ -54,14 +65,19 @@ var Wizard = {
         var that = this, element = this.element, o = this.options;
         var bar;
 
-        element.addClass("wizard").addClass(o.view);
+        element.addClass("wizard").addClass(o.view).addClass(o.clsWizard);
 
-        bar = $("<div>").addClass("action-bar").appendTo(element);
+        bar = $("<div>").addClass("action-bar").addClass(o.clsActions).appendTo(element);
 
-        $("<button>").addClass("button cycle outline wizard-btn-help").html(Utils.isTag(o.iconHelp) ? o.iconHelp : $("<img>").attr('src', o.iconHelp)).appendTo(bar);
-        $("<button>").addClass("button cycle outline wizard-btn-prev").html(Utils.isTag(o.iconPrev) ? o.iconPrev : $("<img>").attr('src', o.iconPrev)).appendTo(bar);
-        $("<button>").addClass("button cycle outline wizard-btn-next").html(Utils.isTag(o.iconNext) ? o.iconNext : $("<img>").attr('src', o.iconNext)).appendTo(bar);
-        $("<button>").addClass("button cycle outline wizard-btn-finish").html(Utils.isTag(o.iconFinish) ? o.iconFinish : $("<img>").attr('src', o.iconFinish)).appendTo(bar);
+        var buttonMode = o.buttonMode === "default" ? "" : o.buttonMode;
+        if (o.buttonOutline === true) {
+            buttonMode += " outline";
+        }
+
+        if (o.iconHelp !== false) $("<button>").addClass("button wizard-btn-help").addClass(buttonMode).addClass(o.clsHelp).html(Utils.isTag(o.iconHelp) ? o.iconHelp : $("<img>").attr('src', o.iconHelp)).appendTo(bar);
+        if (o.iconPrev !== false) $("<button>").addClass("button wizard-btn-prev").addClass(buttonMode).addClass(o.clsPrev).html(Utils.isTag(o.iconPrev) ? o.iconPrev : $("<img>").attr('src', o.iconPrev)).appendTo(bar);
+        if (o.iconNext !== false) $("<button>").addClass("button wizard-btn-next").addClass(buttonMode).addClass(o.clsNext).html(Utils.isTag(o.iconNext) ? o.iconNext : $("<img>").attr('src', o.iconNext)).appendTo(bar);
+        if (o.iconFinish !== false) $("<button>").addClass("button wizard-btn-finish").addClass(buttonMode).addClass(o.clsFinish).html(Utils.isTag(o.iconFinish) ? o.iconFinish : $("<img>").attr('src', o.iconFinish)).appendTo(bar);
 
         this.toPage(o.start);
 

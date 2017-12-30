@@ -16356,6 +16356,7 @@ a.command-button,
 .split-button .split.outline {
   background: transparent none;
   border-width: 1px;
+  border-color: #dfdfdf;
 }
 .button:active,
 .command-button:active,
@@ -25942,6 +25943,9 @@ video:-webkit-full-screen {
   display: block;
   clear: both;
   content: "";
+}
+.wizard .action-bar > * {
+  margin: 1px;
 }
 .wizard > section:nth-child(1) {
   border-color: #1ba1e2;
