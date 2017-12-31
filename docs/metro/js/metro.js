@@ -12497,7 +12497,7 @@ var Wizard = {
 
         bar = $("<div>").addClass("action-bar").addClass(o.clsActions).appendTo(element);
 
-        var buttonMode = o.buttonMode === "default" ? "" : o.buttonMode;
+        var buttonMode = o.buttonMode === "button" ? "" : o.buttonMode;
         if (o.buttonOutline === true) {
             buttonMode += " outline";
         }

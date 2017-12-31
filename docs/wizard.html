@@ -53,7 +53,14 @@
                     <li class="toc-entry"><a href="#_wizard_finish">Finish page</a></li>
                     <li class="toc-entry"><a href="#_wizard_events">Events</a></li>
                     <li class="toc-entry"><a href="#_wizard_methods">Methods</a></li>
-                    <li class="toc-entry"><a href="#_wizard_customize">Customize</a></li>
+                    <li class="toc-entry">
+                        <a href="#_wizard_customize">Customize</a>
+                        <ul>
+                            <li class="toc-entry"><a href="#_wizard_controls_style">Controls style</a></li>
+                            <li class="toc-entry"><a href="#_wizard_controls_icons">Controls icons</a></li>
+                            <li class="toc-entry"><a href="#_wizard_controls_classes">Custom classes</a></li>
+                        </ul>
+                    </li>
                     <li class="toc-entry"><a href="#_wizard_responsive">Responsive</a></li>
                 </ul>
 
@@ -229,12 +236,54 @@
                     You can change a style for the <code>wizard</code> and it controls and elements with special <code>data attributes</code>.
                 </p>
 
-                <h4>Controls style</h4>
+                <h4 id="_wizard_controls_style">Controls style</h4>
                 <p>
-
+                    Two data attributes <code>data-button-mode</code> and <code>data-button-outline</code> are responsible for controls buttons style.
+                    With attribute <code>data-button-mode</code> you can set three modes for buttons: <code>button</code>, <code>cycle</code> and <code>square</code>.
+                    With attribute <code>data-button-outline</code> you can set buttons to <code>outline</code> style (default: true). See more about <a href="buttons.html">Buttons</a>.
                 </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-sm-6">
+                            <h6>square</h6>
+                            <div data-role="wizard" data-button-mode="square"></div>
+                        </div>
+                        <div class="cell-sm-6">
+                            <h6>cycle</h6>
+                            <div data-role="wizard" data-button-mode="cycle"></div>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="cell-sm-6">
+                            <h6>button</h6>
+                            <div data-role="wizard" data-button-mode="button"
+                                 data-icon-help="<span>Help</span>"
+                                 data-icon-prev="<span>Prev</span>"
+                                 data-icon-next="<span>Next</span>"
+                                 data-icon-finish="<span>Finish</span>"
+                            ></div>
+                        </div>
+                        <div class="cell-sm-6">
+                            <h6>button, outline: false</h6>
+                            <div data-role="wizard" data-button-mode="default" data-button-outline="false"></div>
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="wizard" data-button-mode="square"&gt;&lt;/div&gt;
 
-                <h4>Controls icons</h4>
+                    &lt;div data-role="wizard" data-button-mode="cycle"&gt;&lt;/div&gt;
+
+                    &lt;div data-role="wizard" data-button-mode="button"
+                         data-icon-help="&lt;span&gt;Help&lt;/span&gt;"
+                         data-icon-prev="&lt;span&gt;Prev&lt;/span&gt;"
+                         data-icon-next="&lt;span&gt;Next&lt;/span&gt;"
+                         data-icon-finish="&lt;span&gt;Finish&lt;/span&gt;"&gt;&lt;/div&gt;
+
+                    &lt;div data-role="wizard" data-button-mode="button" data-button-outline="false"&gt;&lt;/div&gt;
+                </code></pre>
+
+                <h4 id="_wizard_controls_icons">Controls icons</h4>
                 <p>
                     You can change controls icons with attributes:
                     <code>data-icon-help</code>,
@@ -245,7 +294,8 @@
                 </p>
                 <div class="example">
                     <div data-role="wizard"
-                         data-icon-help="images/help.png"
+                         data-button-mode="button"
+                         data-icon-help="<span>Help</span>"
                          data-icon-prev="<span class='mif-arrow-left'></span>"
                          data-icon-next="<span class='mif-arrow-right'></span>"
                          data-icon-finish="images/checkmark.png"  class="wizard-wide-sm">
@@ -256,7 +306,7 @@
                 </div>
                 <pre><code class="html">
                     &lt;div data-role="wizard"
-                         data-icon-help="images/help.png"
+                         data-icon-help="&lt;span&gt;Help&lt;/span&gt;"
                          data-icon-prev="&lt;span class='mif-arrow-left'&gt;&lt;/span&gt;"
                          data-icon-next="&lt;span class='mif-arrow-right'&gt;&lt;/span&gt;"
                          data-icon-finish="images/checkmark.png"&gt;
@@ -266,8 +316,76 @@
                     &lt;/div&gt;
                 </code></pre>
 
-                <h4>Custom classes</h4>
+                <h4 id="_wizard_controls_classes">Custom classes</h4>
+                <p>
+                    Also you can use special data attributes to define your own classes for wizard and controls:
+                        <code>data-cls-wizard</code>,
+                        <code>data-cls-actions</code>,
+                        <code>data-cls-help</code>,
+                        <code>data-cls-prev</code>,
+                        <code>data-cls-next</code>,
+                        <code>data-cls-finish</code>.
+                </p>
+                <p>
+                    If you need to change colors for feature and complete section, you must define your own style for this with next patterns:
+                </p>
+                <pre><code class="css">
+                    Less preprocessor code:
 
+                    .wizard {
+                        & > section {
+                            &:nth-child(1) {border-color: @cyan;}
+                            &:nth-child(2) {border-color: darken(@cyan, 5%);}
+                            &:nth-child(3) {border-color: darken(@cyan, 10%);}
+                            &:nth-child(4) {border-color: darken(@cyan, 15%);}
+                            &:nth-child(5) {border-color: darken(@cyan, 20%);}
+                            &:nth-child(6) {border-color: darken(@cyan, 25%);}
+                            &:nth-child(7) {border-color: darken(@cyan, 30%);}
+                            &:nth-child(8) {border-color: darken(@cyan, 35%);}
+                            &:nth-child(9) {border-color: darken(@cyan, 40%);}
+                            &:nth-child(10) {border-color: darken(@cyan, 50%);}
+
+                            &.complete {
+                                &:nth-child(1) {border-color: @lightGray;}
+                                &:nth-child(2) {border-color: darken(@lightGray, 5%);}
+                                &:nth-child(3) {border-color: darken(@lightGray, 10%);}
+                                &:nth-child(4) {border-color: darken(@lightGray, 15%);}
+                                &:nth-child(5) {border-color: darken(@lightGray, 20%);}
+                                &:nth-child(6) {border-color: darken(@lightGray, 25%);}
+                                &:nth-child(7) {border-color: darken(@lightGray, 30%);}
+                                &:nth-child(8) {border-color: darken(@lightGray, 35%);}
+                                &:nth-child(9) {border-color: darken(@lightGray, 40%);}
+                                &:nth-child(10) {border-color: darken(@lightGray, 50%);}
+                            }
+                        }
+                    }
+                </code></pre>
+
+                <h3 id="_wizard_responsive">Responsive</h3>
+                <p>
+                    By default wizard displayed in mobile mode wit shrinks feature and complete sections. To expand wizard use special classes:
+                        <code>.wizard-wide-*</code>. Where asterisk is one of: <code>sm</code>, <code>md</code>, <code>lg</code>, <code>xl</code> or <code>xxl</code>.
+                    If you need expand wizard always use class <code>.wizard-wide-fs</code>.
+                    See more information about <a href="media.html">Media breakpoints</a>.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-6">
+                            <div data-role="wizard">
+                                <section><div class="page-content">Page 1</div></section>
+                                <section><div class="page-content">Page 2</div></section>
+                                <section><div class="page-content">Page 3</div></section>
+                            </div>
+                        </div>
+                        <div class="cell-md-6">
+                            <div data-role="wizard" class="wizard-wide-fs">
+                                <section><div class="page-content">Page 1</div></section>
+                                <section><div class="page-content">Page 2</div></section>
+                                <section><div class="page-content">Page 3</div></section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </main>
         </div>
 
