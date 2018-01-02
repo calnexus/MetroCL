@@ -34,6 +34,30 @@
     <link href="css/site.css" rel="stylesheet">
 
     <title>Cube - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+    <script>1
+        var flashRules = [
+            {on: {'top-side': [16],      'left-side': [4],         'right-side': [1]}},
+            {on: {'top-side': [12, 15],  'left-side': [3, 8],      'right-side': [2, 5]}},
+            {on: {'top-side': [11],      'left-side': [7],         'right-side': [6]}},
+            {on: {'top-side': [8, 14],   'left-side': [2, 12],     'right-side': [9, 3]}},
+            {on: {'top-side': [10, 7],   'left-side': [6, 11],     'right-side': [10, 7]}},
+            {on: {'top-side': [13, 4],   'left-side': [1, 16],     'right-side': [13, 4]}},
+            {on: {'top-side': [9, 6, 3], 'left-side': [5, 10, 15], 'right-side': [14, 11, 8]}},
+            {on: {'top-side': [1, 2, 5], 'left-side': [9, 13, 14], 'right-side': [15, 12, 16]}}
+        ]
+
+        var flashRules2 = [
+            {on: {'top-side': [1, 2, 5], 'left-side': [9, 13, 14], 'right-side': [15, 12, 16]}},
+            {on: {'top-side': [9, 6, 3], 'left-side': [5, 10, 15], 'right-side': [14, 11, 8]}},
+            {on: {'top-side': [13, 4],   'left-side': [1, 16],     'right-side': [13, 4]}},
+            {on: {'top-side': [10, 7],   'left-side': [6, 11],     'right-side': [10, 7]}},
+            {on: {'top-side': [8, 14],   'left-side': [2, 12],     'right-side': [9, 3]}},
+            {on: {'top-side': [11],      'left-side': [7],         'right-side': [6]}},
+            {on: {'top-side': [12, 15],  'left-side': [3, 8],      'right-side': [2, 5]}},
+            {on: {'top-side': [16],      'left-side': [4],         'right-side': [1]}}
+        ]
+    </script>
 </head>
 <body>
     <div class="container-fluid">
@@ -63,8 +87,15 @@
 
                 <!-- ads-html -->
 
-                <div class="example d-flex flex-justify-center bg-dark">
-                    <div data-role="cube"></div>
+                <div class="example bg-dark">
+                    <div class="row flex-justify-center ">
+                        <div class="cell-md-6">
+                            <div data-role="cube" data-rules="flashRules"></div>
+                        </div>
+                        <div class="cell-md-6">
+                            <div data-role="cube" data-rules="flashRules2"></div>
+                        </div>
+                    </div>
                 </div>
                 <pre><code class="html">
                     &lt;div data-role="cube"&gt;&lt;/div&gt;

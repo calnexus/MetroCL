@@ -26123,14 +26123,15 @@ video:-webkit-full-screen {
           justify-content: space-between;
   position: absolute;
   overflow: hidden;
-  width: 160px;
-  height: 160px;
+  width: 162px;
+  height: 162px;
   top: 0;
   left: 0;
 }
 .cube .side.left-side {
   -webkit-transform: skewY(23deg) rotateX(10deg);
           transform: skewY(23deg) rotateX(10deg);
+  top: -1px;
 }
 .cube .side.right-side {
   left: 160px;
@@ -26161,35 +26162,39 @@ video:-webkit-full-screen {
           box-shadow: 0 0 5px rgba(118, 118, 118, 0.8);
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+  line-height: 24px;
+  text-align: center;
+  color: #ffffff;
 }
 .cube .side .cube-cell.light {
   -webkit-animation: pulsar-cell 2.5s 0s ease-out infinite;
           animation: pulsar-cell 2.5s 0s ease-out infinite;
   background-color: #c4122f;
   border-color: #c4122f;
-  -webkit-box-shadow: 0 0 10px #d11e14, 0 0 10px #d11e14, 0 0 10px #d11e14;
-          box-shadow: 0 0 10px #d11e14, 0 0 10px #d11e14, 0 0 10px #d11e14;
+  color: #1d1d1d;
+  -webkit-box-shadow: 0 0 10px #c4122f, 0 0 10px #c4122f, 0 0 10px #c4122f;
+          box-shadow: 0 0 10px #c4122f, 0 0 10px #c4122f, 0 0 10px #c4122f;
 }
 @-webkit-keyframes pulsar-cell {
   0%,
   100% {
-    -webkit-box-shadow: 0 0 10px #d11e14, 0 0 10px #d11e14, 0 0 10px #d11e14;
-            box-shadow: 0 0 10px #d11e14, 0 0 10px #d11e14, 0 0 10px #d11e14;
+    -webkit-box-shadow: 0 0 10px #c4122f, 0 0 10px #c4122f, 0 0 10px #c4122f;
+            box-shadow: 0 0 10px #c4122f, 0 0 10px #c4122f, 0 0 10px #c4122f;
   }
   50% {
-    -webkit-box-shadow: 0 0 10px rgba(209, 30, 20, 0.5), 0 0 10px rgba(209, 30, 20, 0.5), 0 0 10px rgba(209, 30, 20, 0.5);
-            box-shadow: 0 0 10px rgba(209, 30, 20, 0.5), 0 0 10px rgba(209, 30, 20, 0.5), 0 0 10px rgba(209, 30, 20, 0.5);
+    -webkit-box-shadow: 0 0 10px rgba(196, 18, 47, 0.5), 0 0 10px rgba(196, 18, 47, 0.5), 0 0 10px rgba(196, 18, 47, 0.5);
+            box-shadow: 0 0 10px rgba(196, 18, 47, 0.5), 0 0 10px rgba(196, 18, 47, 0.5), 0 0 10px rgba(196, 18, 47, 0.5);
   }
 }
 @keyframes pulsar-cell {
   0%,
   100% {
-    -webkit-box-shadow: 0 0 10px #d11e14, 0 0 10px #d11e14, 0 0 10px #d11e14;
-            box-shadow: 0 0 10px #d11e14, 0 0 10px #d11e14, 0 0 10px #d11e14;
+    -webkit-box-shadow: 0 0 10px #c4122f, 0 0 10px #c4122f, 0 0 10px #c4122f;
+            box-shadow: 0 0 10px #c4122f, 0 0 10px #c4122f, 0 0 10px #c4122f;
   }
   50% {
-    -webkit-box-shadow: 0 0 10px rgba(209, 30, 20, 0.5), 0 0 10px rgba(209, 30, 20, 0.5), 0 0 10px rgba(209, 30, 20, 0.5);
-            box-shadow: 0 0 10px rgba(209, 30, 20, 0.5), 0 0 10px rgba(209, 30, 20, 0.5), 0 0 10px rgba(209, 30, 20, 0.5);
+    -webkit-box-shadow: 0 0 10px rgba(196, 18, 47, 0.5), 0 0 10px rgba(196, 18, 47, 0.5), 0 0 10px rgba(196, 18, 47, 0.5);
+            box-shadow: 0 0 10px rgba(196, 18, 47, 0.5), 0 0 10px rgba(196, 18, 47, 0.5), 0 0 10px rgba(196, 18, 47, 0.5);
   }
 }
 .ripple {
