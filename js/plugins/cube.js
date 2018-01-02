@@ -54,16 +54,16 @@ var Cube = {
         setInterval(function(){
             var cells = element.find(".cube-cell");
             var cell_index = Utils.random(0, cells.length-1);
-            var cell = $(cells.get(cell_index)).addClass("light");
-            console.log(cell_index);
-            setTimeout(function(){
-                that._offCell(cell);
-            }, 10000)
-        }, 1000);
+            var cell = $(cells.get(cell_index));
+            cell.addClass("light");
+            that._offCell(cell, 10000);
+        }, 600);
     },
 
-    _offCell: function(cell){
-        cell.removeClass("light");
+    _offCell: function(cell, timeout){
+        setTimeout(function(){
+            cell.removeClass("light");
+        }, timeout);
     },
 
     changeAttribute: function(attributeName){
