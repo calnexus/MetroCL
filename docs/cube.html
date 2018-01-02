@@ -45,7 +45,7 @@
             {on: {'top-side': [13, 4],   'left-side': [1, 16],     'right-side': [13, 4]}},
             {on: {'top-side': [9, 6, 3], 'left-side': [5, 10, 15], 'right-side': [14, 11, 8]}},
             {on: {'top-side': [1, 2, 5], 'left-side': [9, 13, 14], 'right-side': [15, 12, 16]}}
-        ]
+        ];
 
         var flashRules2 = [
             {on: {'top-side': [1, 2, 5], 'left-side': [9, 13, 14], 'right-side': [15, 12, 16]}},
@@ -56,7 +56,55 @@
             {on: {'top-side': [11],      'left-side': [7],         'right-side': [6]}},
             {on: {'top-side': [12, 15],  'left-side': [3, 8],      'right-side': [2, 5]}},
             {on: {'top-side': [16],      'left-side': [4],         'right-side': [1]}}
-        ]
+        ];
+
+        var flashRules3 = [
+            {on: {'top-side': [16],      'left-side': [4],         'right-side': [1]}},
+            {on: {'top-side': [15, 12],  'left-side': [3, 8],      'right-side': [5, 2]}},
+            {on: {'top-side': [14, 8],  'left-side': [2, 12],      'right-side': [9, 3]}},
+            {on: {'top-side': [13, 4],  'left-side': [1, 16],      'right-side': [13, 4]}},
+            {on: {'top-side': [1],  'left-side': [13],      'right-side': [16]}},
+            {on: {'top-side': [6],  'left-side': [10],      'right-side': [11]}},
+            {on: {'top-side': [11],  'left-side': [7],      'right-side': [6]}},
+            {on: {'top-side': [10,7],  'left-side': [6,11],      'right-side': [10,7]}},
+            {on: {'top-side': [9,3],  'left-side': [5,15],      'right-side': [14,8]}},
+            {on: {'top-side': [5,2],  'left-side': [9,14],      'right-side': [15,12]}}
+        ];
+
+        var flashRules4 = [
+            {
+                on: {'top-side': [16],      'left-side': [4],         'right-side': [1]},//1
+                off: {'top-side': [13, 4],   'left-side': [1, 16],     'right-side': [13, 4]}, //6
+            },
+            {
+                on: {'top-side': [12, 15],  'left-side': [3, 8],      'right-side': [2, 5]},//2
+                off: {'top-side': [9, 6, 3], 'left-side': [5, 10, 15], 'right-side': [14, 11, 8]},//7
+            },
+            {
+                on: {'top-side': [11],      'left-side': [7],         'right-side': [6]},//3
+                off: {'top-side': [1, 2, 5], 'left-side': [9, 13, 14], 'right-side': [15, 12, 16]},//8
+            },
+            {
+                on: {'top-side': [8, 14],   'left-side': [2, 12],     'right-side': [9, 3]},//4
+                off: {'top-side': [16],      'left-side': [4],         'right-side': [1]}, //1
+            },
+            {
+                on: {'top-side': [10, 7],   'left-side': [6, 11],     'right-side': [10, 7]},//5
+                off: {'top-side': [12, 15],  'left-side': [3, 8],      'right-side': [2, 5]}, //2
+            },
+            {
+                on: {'top-side': [13, 4],   'left-side': [1, 16],     'right-side': [13, 4]},//6
+                off: {'top-side': [11],      'left-side': [7],         'right-side': [6]}, //3
+            },
+            {
+                on: {'top-side': [9, 6, 3], 'left-side': [5, 10, 15], 'right-side': [14, 11, 8]},//7
+                off: {'top-side': [8, 14],   'left-side': [2, 12],     'right-side': [9, 3]}, //4
+            },
+            {
+                on: {'top-side': [1, 2, 5], 'left-side': [9, 13, 14], 'right-side': [15, 12, 16]},//8
+                off: {'top-side': [10, 7],   'left-side': [6, 11],     'right-side': [10, 7]}, //5
+            }
+        ];
     </script>
 </head>
 <body>
@@ -94,6 +142,14 @@
                         </div>
                         <div class="cell-md-6">
                             <div data-role="cube" data-rules="flashRules2"></div>
+                        </div>
+                    </div>
+                    <div class="row flex-justify-center ">
+                        <div class="cell-md-6">
+                            <div data-role="cube" data-rules="flashRules3"></div>
+                        </div>
+                        <div class="cell-md-6">
+                            <div data-role="cube" data-rules="flashRules4"></div>
                         </div>
                     </div>
                 </div>

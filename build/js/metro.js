@@ -5225,6 +5225,7 @@ var Cube = {
         cells: 4,
         numbers: false,
         offBefore: true,
+        onTick: Metro.noop,
         onCubeCreate: Metro.noop
     },
 
@@ -5306,17 +5307,17 @@ var Cube = {
             $.each(sides, function(){
                 var side_class = "."+this;
                 var side_name = this;
-                var cells_on = rule["on"][side_name];
-                var cells_off = rule["on"][side_name];
+                var cells_on = rule["on"] !== undefined && rule["on"][side_name] !== undefined ? rule["on"][side_name] : false;
+                var cells_off = rule["off"] !== undefined && rule["off"][side_name] !== undefined ? rule["off"][side_name] : false;
 
-                $.each(cells_on, function(){
+                if (cells_on !== false) $.each(cells_on, function(){
                     var cell_index = this - 1;
                     var cell = $(element.find(side_class + " .cube-cell").get(cell_index));
 
                     that._on(cell, i);
                 });
 
-                $.each(cells_off, function(){
+                if (cells_off !== false) $.each(cells_off, function(){
                     var cell_index = this - 1;
                     var cell = $(element.find(side_class + " .cube-cell").get(cell_index));
 
@@ -5332,6 +5333,7 @@ var Cube = {
 
         setTimeout(function(){
             cell.addClass("light");
+            Utils.exec(o.onTick, [cell, element]);
         }, o.flashInterval * t);
     },
 
@@ -5339,7 +5341,7 @@ var Cube = {
         var that = this, element = this.element, o = this.options;
 
         setTimeout(function(){
-            cell.addClass("light");
+            cell.removeClass("light");
         }, o.flashInterval * t);
     },
 
