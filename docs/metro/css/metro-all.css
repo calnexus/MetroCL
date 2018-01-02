@@ -26159,12 +26159,16 @@ video:-webkit-full-screen {
   border: 1px solid #303030;
   -webkit-box-shadow: 0 0 5px rgba(118, 118, 118, 0.8);
           box-shadow: 0 0 5px rgba(118, 118, 118, 0.8);
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .cube .side .cube-cell.light {
   -webkit-animation: pulsar-cell 2.5s 0s ease-out infinite;
           animation: pulsar-cell 2.5s 0s ease-out infinite;
   background-color: #c4122f;
   border-color: #c4122f;
+  -webkit-box-shadow: 0 0 10px #d11e14, 0 0 10px #d11e14, 0 0 10px #d11e14;
+          box-shadow: 0 0 10px #d11e14, 0 0 10px #d11e14, 0 0 10px #d11e14;
 }
 @-webkit-keyframes pulsar-cell {
   0%,

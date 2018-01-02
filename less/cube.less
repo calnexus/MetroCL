@@ -55,11 +55,13 @@
             background-color: #231F20;
             border: 1px solid #303030;
             box-shadow: 0 0 5px rgba(118,118,118, .8);
+            transition: @transition-base;
 
             &.light {
                 animation: pulsar-cell 2.5s 0s ease-out infinite;
                 background-color: #c4122f;
                 border-color: #c4122f;
+                box-shadow: 0 0 10px rgba(209, 30, 20, 1), 0 0 10px rgba(209, 30, 20, 1), 0 0 10px rgba(209, 30, 20, 1);
             }
         }
     }

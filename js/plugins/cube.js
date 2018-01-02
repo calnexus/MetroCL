@@ -55,10 +55,15 @@ var Cube = {
             var cells = element.find(".cube-cell");
             var cell_index = Utils.random(0, cells.length-1);
             var cell = $(cells.get(cell_index)).addClass("light");
+            console.log(cell_index);
             setTimeout(function(){
-                cell.removeClass("light");
+                that._offCell(cell);
             }, 10000)
         }, 1000);
+    },
+
+    _offCell: function(cell){
+        cell.removeClass("light");
     },
 
     changeAttribute: function(attributeName){
