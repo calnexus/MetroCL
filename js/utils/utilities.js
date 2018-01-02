@@ -582,6 +582,31 @@ var Utils = {
 
     keyInObject: function(){
         return Object.keys(obj).indexOf(value) > -1;
+    },
+
+    newCssSheet: function(media){
+        var style = document.createElement("style");
+
+        if (media !== undefined) {
+            style.setAttribute("media", media);
+        }
+
+        // WebKit hack :(
+        //style.appendChild(document.createTextNode(""));
+
+        // Add the <style> element to the page
+        document.head.appendChild(style);
+
+        return style.sheet;
+    },
+
+    addCssRule: function(sheet, selector, rules, index){
+        if("insertRule" in sheet) {
+            sheet.insertRule(selector + "{" + rules + "}", index);
+        }
+        else if("addRule" in sheet) {
+            sheet.addRule(selector, rules, index);
+        }
     }
 };
 

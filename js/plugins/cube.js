@@ -60,7 +60,7 @@ var Cube = {
     _createCube: function(){
         var that = this, element = this.element, o = this.options;
         var sides = ['left-side', 'right-side', 'top-side'];
-        var id = Utils.uniqueId();
+        var id = "cube-"+(new Date()).getTime();
 
         element.addClass("cube");
         if (element.attr('id') === undefined) {
@@ -80,6 +80,22 @@ var Cube = {
             }
         });
 
+        if (o.flashColor !== null) {
+            var sheet = Metro.sheet;
+            var rule1 = "0 0 10px " + Utils.hexColorToRgbA(o.flashColor, 1);
+            var rule2 = "0 0 10px " + Utils.hexColorToRgbA(o.flashColor, .5);
+            var rules1 = [];
+            var rules2 = [];
+            var i;
+            for(i = 0; i < 3; i++) {
+                rules1.push(rule1);
+                rules2.push(rule2);
+            }
+
+            Utils.addCssRule(sheet, "@keyframes pulsar-cell-"+element.attr('id'), "0%, 100% { " + "box-shadow: " + rules1.join(",") + "} 50% { " + "box-shadow: " + rules2.join(",") + " }");
+            Utils.addCssRule(sheet, "#"+element.attr('id')+" .side .cube-cell.light", "animation: pulsar-cell-" + element.attr('id') + " 2.5s 0s ease-out infinite; " + "background-color: " + o.flashColor + "; border-color: " + o.flashColor+";");
+        }
+
         var interval = 0;
 
         $.each(this.rules, function(){
@@ -87,9 +103,21 @@ var Cube = {
         });
 
         this._start();
-        setInterval(function(){
+        this.interval = setInterval(function(){
             that._start();
         }, interval * 1000);
+    },
+
+    _createEvents: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $(window).on(Metro.events.blur, function(){
+
+        });
+
+        $(window).on(Metro.events.focus, function(){
+
+        });
     },
 
     _start: function(){

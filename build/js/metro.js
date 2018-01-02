@@ -74,6 +74,7 @@ var Metro = {
     version: "4.0.0-alpha",
     isTouchable: isTouch,
     isFullscreenEnabled: document.fullscreenEnabled,
+    sheet: null,
 
     controlsPosition: {
         INSIDE: "inside",
@@ -228,6 +229,8 @@ var Metro = {
             Metro.initHotkeys(hotkeys);
             Metro.initWidgets(widgets);
         }, 0);
+
+        this.sheet = Utils.newCssSheet();
 
         return this;
     },
@@ -2358,6 +2361,31 @@ var d = new Date().getTime();
 
     keyInObject: function(){
         return Object.keys(obj).indexOf(value) > -1;
+    },
+
+    newCssSheet: function(media){
+        var style = document.createElement("style");
+
+        if (media !== undefined) {
+            style.setAttribute("media", media);
+        }
+
+        // WebKit hack :(
+        //style.appendChild(document.createTextNode(""));
+
+        // Add the <style> element to the page
+        document.head.appendChild(style);
+
+        return style.sheet;
+    },
+
+    addCssRule: function(sheet, selector, rules, index){
+        if("insertRule" in sheet) {
+            sheet.insertRule(selector + "{" + rules + "}", index);
+        }
+        else if("addRule" in sheet) {
+            sheet.addRule(selector, rules, index);
+        }
     }
 };
 
@@ -5264,7 +5292,7 @@ var Cube = {
     _createCube: function(){
         var that = this, element = this.element, o = this.options;
         var sides = ['left-side', 'right-side', 'top-side'];
-        var id = Utils.uniqueId();
+        var id = "cube-"+(new Date()).getTime();
 
         element.addClass("cube");
         if (element.attr('id') === undefined) {
@@ -5284,6 +5312,22 @@ var Cube = {
             }
         });
 
+        if (o.flashColor !== null) {
+            var sheet = Metro.sheet;
+            var rule1 = "0 0 10px " + Utils.hexColorToRgbA(o.flashColor, 1);
+            var rule2 = "0 0 10px " + Utils.hexColorToRgbA(o.flashColor, .5);
+            var rules1 = [];
+            var rules2 = [];
+            var i;
+            for(i = 0; i < 3; i++) {
+                rules1.push(rule1);
+                rules2.push(rule2);
+            }
+
+            Utils.addCssRule(sheet, "@keyframes pulsar-cell-"+element.attr('id'), "0%, 100% { " + "box-shadow: " + rules1.join(",") + "} 50% { " + "box-shadow: " + rules2.join(",") + " }");
+            Utils.addCssRule(sheet, "#"+element.attr('id')+" .side .cube-cell.light", "animation: pulsar-cell-" + element.attr('id') + " 2.5s 0s ease-out infinite; " + "background-color: " + o.flashColor + "; border-color: " + o.flashColor+";");
+        }
+
         var interval = 0;
 
         $.each(this.rules, function(){
@@ -5291,9 +5335,21 @@ var Cube = {
         });
 
         this._start();
-        setInterval(function(){
+        this.interval = setInterval(function(){
             that._start();
         }, interval * 1000);
+    },
+
+    _createEvents: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $(window).on(Metro.events.blur, function(){
+
+        });
+
+        $(window).on(Metro.events.focus, function(){
+
+        });
     },
 
     _start: function(){

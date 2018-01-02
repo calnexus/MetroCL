@@ -56,6 +56,7 @@ var Metro = {
     version: "4.0.0-alpha",
     isTouchable: isTouch,
     isFullscreenEnabled: document.fullscreenEnabled,
+    sheet: null,
 
     controlsPosition: {
         INSIDE: "inside",
@@ -210,6 +211,8 @@ var Metro = {
             Metro.initHotkeys(hotkeys);
             Metro.initWidgets(widgets);
         }, 0);
+
+        this.sheet = Utils.newCssSheet();
 
         return this;
     },
