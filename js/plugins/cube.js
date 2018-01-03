@@ -135,7 +135,7 @@ var Cube = {
         }
 
         Utils.addCssRule(sheet, "@keyframes pulsar-cell-"+element.attr('id'), "0%, 100% { " + "box-shadow: " + rules1.join(",") + "} 50% { " + "box-shadow: " + rules2.join(",") + " }");
-        Utils.addCssRule(sheet, "#"+element.attr('id')+" .side .cube-cell.light", "animation: pulsar-cell-" + element.attr('id') + " 2.5s 0s ease-out infinite; " + "background-color: " + o.flashColor + "; border-color: " + o.flashColor+";");
+        Utils.addCssRule(sheet, "#"+element.attr('id')+" .side .cube-cell.light", "animation: pulsar-cell-" + element.attr('id') + " 2.5s 0s ease-out infinite; " + "background-color: " + o.flashColor + "!important; border-color: " + o.flashColor+"!important;");
     },
 
     _createEvents: function(){
@@ -157,13 +157,15 @@ var Cube = {
     _start: function(){
         var that = this, element = this.element, o = this.options;
         var sides = ['left-side', 'right-side', 'top-side'];
-        var i = 0;
 
         this.running = true;
 
         if (o.offBefore === true) element.find(".cube-cell").removeClass("light");
 
         $.each(this.rules, function(index, rule){
+
+            that._tick(index);
+
             $.each(sides, function(){
                 var side_class = "."+this;
                 var side_name = this;
@@ -174,17 +176,16 @@ var Cube = {
                     var cell_index = this - 1;
                     var cell = $(element.find(side_class + " .cube-cell").get(cell_index));
 
-                    that._on(cell, i);
+                    that._on(cell, index);
                 });
 
                 if (cells_off !== false) $.each(cells_off, function(){
                     var cell_index = this - 1;
                     var cell = $(element.find(side_class + " .cube-cell").get(cell_index));
 
-                    that._off(cell, i);
+                    that._off(cell, index);
                 });
             });
-            i++;
         });
     },
 
@@ -193,12 +194,19 @@ var Cube = {
         clearInterval(this.interval);
     },
 
+    _tick: function(index){
+        var that = this, element = this.element, o = this.options;
+
+        setTimeout(function(){
+            Utils.exec(o.onTick, [index, element]);
+        }, o.flashInterval * index);
+    },
+
     _on: function(cell, t){
         var that = this, element = this.element, o = this.options;
 
         setTimeout(function(){
             cell.addClass("light");
-            Utils.exec(o.onTick, [cell, element]);
         }, o.flashInterval * t);
     },
 
