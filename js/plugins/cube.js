@@ -74,7 +74,7 @@ var Cube = {
 
     _createCube: function(){
         var that = this, element = this.element, o = this.options;
-        var sides = ['left-side', 'right-side', 'top-side'];
+        var sides = ['left', 'right', 'top'];
         var id = "cube-"+(new Date()).getTime();
         var cells_count = Math.pow(o.cells, 2);
 
@@ -92,11 +92,11 @@ var Cube = {
         $.each(sides, function(){
             var side, cell, clsSide = this, i;
 
-            side = $("<div>").addClass("side " + clsSide).addClass(o.clsSide).appendTo(element);
+            side = $("<div>").addClass("side " + clsSide+"-side").addClass(o.clsSide).appendTo(element);
 
-            if (clsSide === 'left-side') {side.addClass(o.clsSideLeft);}
-            if (clsSide === 'right-side') {side.addClass(o.clsSideRight);}
-            if (clsSide === 'top-side') {side.addClass(o.clsSideTop);}
+            if (clsSide === 'left') {side.addClass(o.clsSideLeft);}
+            if (clsSide === 'right') {side.addClass(o.clsSideRight);}
+            if (clsSide === 'top') {side.addClass(o.clsSideTop);}
 
             for(i = 0; i < cells_count; i++) {
                 cell = $("<div>").addClass("cube-cell").addClass("cell-id-"+i).addClass(o.clsCell).appendTo(side);
@@ -116,7 +116,6 @@ var Cube = {
             this._start();
         } else {
             if (o.runDefault === true) {
-                console.log(o.default);
                 if (o.default !== Metro.noop) {
                     Utils.exec(o.default, [element]);
                 } else {
@@ -191,10 +190,10 @@ var Cube = {
 
     _startDefault: function(){
         var that = this, element = this.element, o = this.options;
-        var sides = ['left-side', 'right-side', 'top-side'];
+        var sides = ['left', 'right', 'top'];
 
         $.each(sides, function(){
-            var side_class = "." + this;
+            var side_class = "." + this+"-side";
             var cells_on = [Utils.random(0, Math.pow(o.cells, 2) - 1), Utils.random(0, Math.pow(o.cells, 2) - 1), Utils.random(0, Math.pow(o.cells, 2) - 1)];
             $.each(cells_on, function(index, cell_index){
                 var cell = element.find(side_class + " .cell-id-"+cell_index);
@@ -206,7 +205,7 @@ var Cube = {
 
     _start: function(){
         var that = this, element = this.element, o = this.options;
-        var sides = ['left-side', 'right-side', 'top-side'];
+        var sides = ['left', 'right', 'top'];
 
         this.running = true;
 
@@ -217,7 +216,7 @@ var Cube = {
             that._tick(index);
 
             $.each(sides, function(){
-                var side_class = "."+this;
+                var side_class = "."+this+"-side";
                 var side_name = this;
                 var cells_on = rule["on"] !== undefined && rule["on"][side_name] !== undefined ? rule["on"][side_name] : false;
                 var cells_off = rule["off"] !== undefined && rule["off"][side_name] !== undefined ? rule["off"][side_name] : false;
