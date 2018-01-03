@@ -26182,8 +26182,8 @@ video:-webkit-full-screen {
             box-shadow: 0 0 10px #c4122f, 0 0 10px #c4122f, 0 0 10px #c4122f;
   }
   50% {
-    -webkit-box-shadow: 0 0 10px rgba(196, 18, 47, 0.5), 0 0 10px rgba(196, 18, 47, 0.5), 0 0 10px rgba(196, 18, 47, 0.5);
-            box-shadow: 0 0 10px rgba(196, 18, 47, 0.5), 0 0 10px rgba(196, 18, 47, 0.5), 0 0 10px rgba(196, 18, 47, 0.5);
+    -webkit-box-shadow: 0 0 10px rgba(196, 18, 47, 0.3), 0 0 10px rgba(196, 18, 47, 0.3), 0 0 10px rgba(196, 18, 47, 0.3);
+            box-shadow: 0 0 10px rgba(196, 18, 47, 0.3), 0 0 10px rgba(196, 18, 47, 0.3), 0 0 10px rgba(196, 18, 47, 0.3);
   }
 }
 @keyframes pulsar-cell {
@@ -26193,8 +26193,8 @@ video:-webkit-full-screen {
             box-shadow: 0 0 10px #c4122f, 0 0 10px #c4122f, 0 0 10px #c4122f;
   }
   50% {
-    -webkit-box-shadow: 0 0 10px rgba(196, 18, 47, 0.5), 0 0 10px rgba(196, 18, 47, 0.5), 0 0 10px rgba(196, 18, 47, 0.5);
-            box-shadow: 0 0 10px rgba(196, 18, 47, 0.5), 0 0 10px rgba(196, 18, 47, 0.5), 0 0 10px rgba(196, 18, 47, 0.5);
+    -webkit-box-shadow: 0 0 10px rgba(196, 18, 47, 0.3), 0 0 10px rgba(196, 18, 47, 0.3), 0 0 10px rgba(196, 18, 47, 0.3);
+            box-shadow: 0 0 10px rgba(196, 18, 47, 0.3), 0 0 10px rgba(196, 18, 47, 0.3), 0 0 10px rgba(196, 18, 47, 0.3);
   }
 }
 .ripple {

@@ -6,6 +6,7 @@ var Cube = {
         this.id = null;
         this.rules = null;
         this.interval = false;
+        this.running = false;
 
         this._setOptionsFromDOM();
         this._create();
@@ -18,9 +19,18 @@ var Cube = {
         color: null,
         flashColor: null,
         flashInterval: 1000,
-        cells: 4,
         numbers: false,
         offBefore: true,
+        attenuation: .3,
+        stopOnBlur: false,
+
+        clsCube: "",
+        clsCell: "",
+        clsSide: "",
+        clsSideLeft: "",
+        clsSideRight: "",
+        clsSideTop: "",
+
         onTick: Metro.noop,
         onCubeCreate: Metro.noop
     },
@@ -53,6 +63,7 @@ var Cube = {
         }
 
         this._createCube();
+        this._createEvents();
 
         Utils.exec(o.onCubeCreate, [element]);
     },
@@ -61,8 +72,10 @@ var Cube = {
         var that = this, element = this.element, o = this.options;
         var sides = ['left-side', 'right-side', 'top-side'];
         var id = "cube-"+(new Date()).getTime();
+        var cells_count = 16;
 
-        element.addClass("cube");
+        element.addClass("cube").addClass(o.clsCube);
+
         if (element.attr('id') === undefined) {
             element.attr('id', id);
         }
@@ -71,30 +84,22 @@ var Cube = {
 
         $.each(sides, function(){
             var side, cell, clsSide = this, i;
-            side = $("<div>").addClass("side " + clsSide).appendTo(element);
-            for(i = 0; i < Math.pow(o.cells, 2); i++) {
-                cell = $("<div>").addClass("cube-cell").appendTo(side);
+
+            side = $("<div>").addClass("side " + clsSide).addClass(o.clsSide).appendTo(element);
+
+            if (clsSide === 'left-side') {side.addClass(o.clsSideLeft);}
+            if (clsSide === 'right-side') {side.addClass(o.clsSideRight);}
+            if (clsSide === 'top-side') {side.addClass(o.clsSideTop);}
+
+            for(i = 0; i < cells_count; i++) {
+                cell = $("<div>").addClass("cube-cell").addClass(o.clsCell).appendTo(side);
                 if (o.numbers === true) {
                     cell.html(i + 1);
                 }
             }
         });
 
-        if (o.flashColor !== null) {
-            var sheet = Metro.sheet;
-            var rule1 = "0 0 10px " + Utils.hexColorToRgbA(o.flashColor, 1);
-            var rule2 = "0 0 10px " + Utils.hexColorToRgbA(o.flashColor, .5);
-            var rules1 = [];
-            var rules2 = [];
-            var i;
-            for(i = 0; i < 3; i++) {
-                rules1.push(rule1);
-                rules2.push(rule2);
-            }
-
-            Utils.addCssRule(sheet, "@keyframes pulsar-cell-"+element.attr('id'), "0%, 100% { " + "box-shadow: " + rules1.join(",") + "} 50% { " + "box-shadow: " + rules2.join(",") + " }");
-            Utils.addCssRule(sheet, "#"+element.attr('id')+" .side .cube-cell.light", "animation: pulsar-cell-" + element.attr('id') + " 2.5s 0s ease-out infinite; " + "background-color: " + o.flashColor + "; border-color: " + o.flashColor+";");
-        }
+        this._setCubeFlashColor();
 
         var interval = 0;
 
@@ -108,15 +113,44 @@ var Cube = {
         }, interval * 1000);
     },
 
+    _setCubeFlashColor: function(){
+        var that = this, element = this.element, o = this.options;
+        var sheet = Metro.sheet;
+        var rule1;
+        var rule2;
+        var rules1 = [];
+        var rules2 = [];
+        var i;
+
+        if (o.flashColor === null) {
+            return ;
+        }
+
+        rule1 = "0 0 10px " + Utils.hexColorToRgbA(o.flashColor, 1);
+        rule2 = "0 0 10px " + Utils.hexColorToRgbA(o.flashColor, o.attenuation);
+
+        for(i = 0; i < 3; i++) {
+            rules1.push(rule1);
+            rules2.push(rule2);
+        }
+
+        Utils.addCssRule(sheet, "@keyframes pulsar-cell-"+element.attr('id'), "0%, 100% { " + "box-shadow: " + rules1.join(",") + "} 50% { " + "box-shadow: " + rules2.join(",") + " }");
+        Utils.addCssRule(sheet, "#"+element.attr('id')+" .side .cube-cell.light", "animation: pulsar-cell-" + element.attr('id') + " 2.5s 0s ease-out infinite; " + "background-color: " + o.flashColor + "; border-color: " + o.flashColor+";");
+    },
+
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
         $(window).on(Metro.events.blur, function(){
-
+            if (o.stopOnBlur === true && that.running === true) {
+                that._stop();
+            }
         });
 
         $(window).on(Metro.events.focus, function(){
-
+            if (o.stopOnBlur === true && that.running === false) {
+                that._start();
+            }
         });
     },
 
@@ -124,6 +158,8 @@ var Cube = {
         var that = this, element = this.element, o = this.options;
         var sides = ['left-side', 'right-side', 'top-side'];
         var i = 0;
+
+        this.running = true;
 
         if (o.offBefore === true) element.find(".cube-cell").removeClass("light");
 
@@ -150,6 +186,11 @@ var Cube = {
             });
             i++;
         });
+    },
+
+    _stop: function(){
+        this.running = false;
+        clearInterval(this.interval);
     },
 
     _on: function(cell, t){
