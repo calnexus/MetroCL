@@ -98,7 +98,7 @@ var Cube = {
             if (clsSide === 'top-side') {side.addClass(o.clsSideTop);}
 
             for(i = 0; i < cells_count; i++) {
-                cell = $("<div>").addClass("cube-cell").addClass(o.clsCell).appendTo(side);
+                cell = $("<div>").addClass("cube-cell").addClass("cell-id-"+i).addClass(o.clsCell).appendTo(side);
                 if (o.numbers === true) {
                     cell.html(i + 1);
                 }
@@ -178,7 +178,7 @@ var Cube = {
             var side_class = "." + this;
             var cells_on = [Utils.random(0, Math.pow(o.cells, 2) - 1), Utils.random(0, Math.pow(o.cells, 2) - 1), Utils.random(0, Math.pow(o.cells, 2) - 1)];
             $.each(cells_on, function(index, cell_index){
-                var cell = $(element.find(side_class + " .cube-cell").get(cell_index));
+                var cell = element.find(side_class + " .cell-id-"+cell_index);
                 that._on(cell, index);
                 that._off(cell, index * 5);
             });
@@ -205,14 +205,16 @@ var Cube = {
 
                 if (cells_on !== false) $.each(cells_on, function(){
                     var cell_index = this - 1;
-                    var cell = $(element.find(side_class + " .cube-cell").get(cell_index));
+                    var cell = element.find(side_class + " .cell-id-"+cell_index);
+                    // var cell = $(element.find(side_class + " .cube-cell").get(cell_index));
 
                     that._on(cell, index);
                 });
 
                 if (cells_off !== false) $.each(cells_off, function(){
                     var cell_index = this - 1;
-                    var cell = $(element.find(side_class + " .cube-cell").get(cell_index));
+                    var cell = element.find(side_class + " .cell-id-"+cell_index);
+                    // var cell = $(element.find(side_class + " .cube-cell").get(cell_index));
 
                     that._off(cell, index);
                 });
