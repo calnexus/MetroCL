@@ -5266,7 +5266,7 @@ var Cube = {
         clsSideRight: "",
         clsSideTop: "",
 
-        customDefault: Metro.noop,
+        default: Metro.noop,
         onTick: Metro.noop,
         onCubeCreate: Metro.noop
     },
@@ -5348,8 +5348,9 @@ var Cube = {
             this._start();
         } else {
             if (o.runDefault === true) {
-                if (o.customDefault !== Metro.noop) {
-                    Utils.exec(o.customDefault, [element]);
+                console.log(o.default);
+                if (o.default !== Metro.noop) {
+                    Utils.exec(o.default, [element]);
                 } else {
                     that._startDefault();
                 }
@@ -5361,8 +5362,8 @@ var Cube = {
                 that._start();
             } else {
                 if (o.runDefault === true) {
-                    if (o.customDefault !== Metro.noop) {
-                        Utils.exec(o.customDefault, [element]);
+                    if (o.default !== Metro.noop) {
+                        Utils.exec(o.default, [element]);
                     } else {
                         that._startDefault();
                     }
