@@ -23,6 +23,9 @@ var Cube = {
         offBefore: true,
         attenuation: .3,
         stopOnBlur: false,
+        cells: 4,
+        margin: 8,
+        runDefault: false,
 
         clsCube: "",
         clsCell: "",
@@ -72,7 +75,7 @@ var Cube = {
         var that = this, element = this.element, o = this.options;
         var sides = ['left-side', 'right-side', 'top-side'];
         var id = "cube-"+(new Date()).getTime();
-        var cells_count = 16;
+        var cells_count = Math.pow(o.cells, 2);
 
         element.addClass("cube").addClass(o.clsCube);
 
@@ -81,6 +84,9 @@ var Cube = {
         }
 
         this.id = element.attr('id');
+
+        this._createCssForFlashColor();
+        this._createCssForCellSize();
 
         $.each(sides, function(){
             var side, cell, clsSide = this, i;
@@ -99,8 +105,6 @@ var Cube = {
             }
         });
 
-        this._setCubeFlashColor();
-
         var interval = 0;
 
         $.each(this.rules, function(){
@@ -109,11 +113,23 @@ var Cube = {
 
         this._start();
         this.interval = setInterval(function(){
-            that._start();
+            if (that.rules !== null) {
+                that._start();
+            } else {
+                if (o.runDefault === true) that._startDefault();
+            }
         }, interval * 1000);
     },
 
-    _setCubeFlashColor: function(){
+    _createCssForCellSize: function(){
+        var that = this, element = this.element, o = this.options;
+        var sheet = Metro.sheet;
+        var cell_size = Math.ceil((160 - o.margin * o.cells * 2) / o.cells);
+
+        Utils.addCssRule(sheet, "#"+element.attr('id')+" .side .cube-cell", "width: "+cell_size+"px!important; height: "+cell_size+"px!important; margin: " + o.margin + "px!important;");
+    },
+
+    _createCssForFlashColor: function(){
         var that = this, element = this.element, o = this.options;
         var sheet = Metro.sheet;
         var rule1;
@@ -151,6 +167,21 @@ var Cube = {
             if (o.stopOnBlur === true && that.running === false) {
                 that._start();
             }
+        });
+    },
+
+    _startDefault: function(){
+        var that = this, element = this.element, o = this.options;
+        var sides = ['left-side', 'right-side', 'top-side'];
+
+        $.each(sides, function(){
+            var side_class = "." + this;
+            var cells_on = [Utils.random(0, Math.pow(o.cells, 2) - 1), Utils.random(0, Math.pow(o.cells, 2) - 1), Utils.random(0, Math.pow(o.cells, 2) - 1)];
+            $.each(cells_on, function(index, cell_index){
+                var cell = $(element.find(side_class + " .cube-cell").get(cell_index));
+                that._on(cell, index);
+                that._off(cell, index * 5);
+            });
         });
     },
 
