@@ -5266,6 +5266,7 @@ var Cube = {
         clsSideRight: "",
         clsSideTop: "",
 
+        customDefault: Metro.noop,
         onTick: Metro.noop,
         onCubeCreate: Metro.noop
     },
@@ -5343,12 +5344,29 @@ var Cube = {
             interval++;
         });
 
-        this._start();
+        if (that.rules !== null) {
+            this._start();
+        } else {
+            if (o.runDefault === true) {
+                if (o.customDefault !== Metro.noop) {
+                    Utils.exec(o.customDefault, [element]);
+                } else {
+                    that._startDefault();
+                }
+            }
+        }
+
         this.interval = setInterval(function(){
             if (that.rules !== null) {
                 that._start();
             } else {
-                if (o.runDefault === true) that._startDefault();
+                if (o.runDefault === true) {
+                    if (o.customDefault !== Metro.noop) {
+                        Utils.exec(o.customDefault, [element]);
+                    } else {
+                        that._startDefault();
+                    }
+                }
             }
         }, interval * 1000);
     },
@@ -5438,7 +5456,6 @@ var Cube = {
                 if (cells_on !== false) $.each(cells_on, function(){
                     var cell_index = this - 1;
                     var cell = element.find(side_class + " .cell-id-"+cell_index);
-                    // var cell = $(element.find(side_class + " .cube-cell").get(cell_index));
 
                     that._on(cell, index);
                 });
@@ -5446,7 +5463,6 @@ var Cube = {
                 if (cells_off !== false) $.each(cells_off, function(){
                     var cell_index = this - 1;
                     var cell = element.find(side_class + " .cell-id-"+cell_index);
-                    // var cell = $(element.find(side_class + " .cube-cell").get(cell_index));
 
                     that._off(cell, index);
                 });
