@@ -33,7 +33,7 @@ var Popover = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }

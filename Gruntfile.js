@@ -124,26 +124,6 @@ module.exports = function(grunt) {
             }
         },
 
-        compress: {
-            main: {
-                options: {
-                    archive: 'target/metro-<%= pkg.version %>-alpha.zip'
-                },
-                files: [
-                    {
-                        expand: true,
-                        cwd: "build/",
-                        src: ['**/*'],
-                        dest: '.'
-                    },
-                    {
-                        src: ['README.md', 'CHANGELOG.md', 'LICENSE'],
-                        dest: '.'
-                    }
-                ]
-            }
-        },
-
         copy: {
             fonts: {
                 expand: true,
@@ -156,25 +136,19 @@ module.exports = function(grunt) {
                 cwd: 'build',
                 src: '**/*',
                 dest: 'docs/metro'
-            },
-            target: {
-                expand: true,
-                cwd: 'target',
-                src: '**/*',
-                dest: 'docs/files'
             }
         },
 
         watch: {
             scripts: {
                 files: ['js/i18n/*.json', 'js/*.js', 'js/utils/*.js', 'js/plugins/*js', 'less/*.less', 'less/include/*.less', 'less/schemes/*.less', 'less/schemes/builder/*.less', 'Gruntfile.js'],
-                tasks: ['clean',  'less', 'postcss', 'concat',  'uglify', 'cssmin', 'compress', 'copy']
+                tasks: ['clean',  'less', 'postcss', 'concat',  'uglify', 'cssmin', 'copy']
             }
         }
     });
 
     grunt.registerTask('default', [
-        'clean', 'less', 'postcss', 'concat',  'uglify', 'cssmin', 'compress', 'copy', 'watch'
+        'clean', 'less', 'postcss', 'concat',  'uglify', 'cssmin', 'copy', 'watch'
     ]);
 
 };

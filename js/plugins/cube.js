@@ -45,7 +45,7 @@ var Cube = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -56,20 +56,32 @@ var Cube = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        if (Utils.isObject(o.rules)) {
-            this.rules = Utils.isObject(o.rules);
-        } else {
-            try {
-                this.rules = $.parseJSON(o.rules);
-            } catch (err) {
-                console.log("Unknown rules format for cell flashing!");
-            }
-        }
+        this._parseRules(o.rules);
 
         this._createCube();
         this._createEvents();
 
         Utils.exec(o.onCubeCreate, [element]);
+    },
+
+    _parseRules: function(rules){
+
+        if (rules === undefined || rules === null) {
+            return false;
+        }
+
+        if (Utils.isObject(rules)) {
+            this.rules = Utils.isObject(rules);
+            return true;
+        } else {
+            try {
+                this.rules = JSON.parse(rules);
+                return true;
+            } catch (err) {
+                console.log("Unknown rules format for cell flashing!");
+                return false;
+            }
+        }
     },
 
     _createCube: function(){
@@ -106,13 +118,18 @@ var Cube = {
             }
         });
 
+        this._run();
+    },
+
+    _run: function(){
+        var that = this, element = this.element, o = this.options;
         var interval = 0;
 
         $.each(this.rules, function(){
             interval++;
         });
 
-        if (that.rules !== null) {
+        if (this.rules !== null) {
             this._start();
         } else {
             if (o.runDefault === true) {
@@ -136,14 +153,21 @@ var Cube = {
                     }
                 }
             }
-        }, interval * 1000);
+        }, interval * o.flashInterval);
     },
 
     _createCssForCellSize: function(){
         var that = this, element = this.element, o = this.options;
         var sheet = Metro.sheet;
-        var cell_size = Math.ceil((160 - o.margin * o.cells * 2) / o.cells);
+        var width;
+        var cell_size;
 
+        if (o.margin === 8 && o.cells === 4) {
+            return ;
+        }
+
+        width = parseInt(Utils.getStyleOne(element, 'width'));
+        cell_size = Math.ceil((width / 2 - o.margin * o.cells * 2) / o.cells);
         Utils.addCssRule(sheet, "#"+element.attr('id')+" .side .cube-cell", "width: "+cell_size+"px!important; height: "+cell_size+"px!important; margin: " + o.margin + "px!important;");
     },
 
@@ -267,8 +291,20 @@ var Cube = {
         }, o.flashInterval * t);
     },
 
-    changeAttribute: function(attributeName){
+    changeRules: function(){
+        var that = this, element = this.element, o = this.options;
+        var rules = element.attr("data-rules");
+        if (this._parseRules(rules) !== true) {
+            return ;
+        }
+        o.rules = rules;
+        this._run();
+    },
 
+    changeAttribute: function(attributeName){
+        switch (attributeName) {
+            case "data-rules": this.changeRules(); break;
+        }
     }
 };
 

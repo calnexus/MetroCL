@@ -34,7 +34,7 @@ var meta_callback_timeout = $("meta[name='metro4:callback_timeout']").attr("cont
 var meta_timeout = $("meta[name='metro4:timeout']").attr("content");
 
 if (window.METRO_INIT === undefined) {
-    window.METRO_INIT = meta_init !== undefined ? $.parseJSON(meta_init) : true;
+    window.METRO_INIT = meta_init !== undefined ? JSON.parse(meta_init) : true;
 }
 if (window.METRO_DEBUG === undefined) {window.METRO_DEBUG = true;}
 
@@ -2424,7 +2424,7 @@ var Accordion = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -2576,7 +2576,7 @@ var Activity = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -2716,7 +2716,7 @@ var Audio = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -3103,7 +3103,7 @@ var ButtonsGroup = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -3234,7 +3234,7 @@ var Calendar = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -3980,7 +3980,7 @@ var Carousel = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -4402,7 +4402,7 @@ var Charms = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -4566,7 +4566,7 @@ var Checkbox = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -4687,7 +4687,7 @@ var Clock = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -4800,7 +4800,7 @@ var Collapse = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -4950,7 +4950,7 @@ var Countdown = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -5277,7 +5277,7 @@ var Cube = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -5288,20 +5288,32 @@ var Cube = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        if (Utils.isObject(o.rules)) {
-            this.rules = Utils.isObject(o.rules);
-        } else {
-            try {
-                this.rules = $.parseJSON(o.rules);
-            } catch (err) {
-                console.log("Unknown rules format for cell flashing!");
-            }
-        }
+        this._parseRules(o.rules);
 
         this._createCube();
         this._createEvents();
 
         Utils.exec(o.onCubeCreate, [element]);
+    },
+
+    _parseRules: function(rules){
+
+        if (rules === undefined || rules === null) {
+            return false;
+        }
+
+        if (Utils.isObject(rules)) {
+            this.rules = Utils.isObject(rules);
+            return true;
+        } else {
+            try {
+                this.rules = JSON.parse(rules);
+                return true;
+            } catch (err) {
+                console.log("Unknown rules format for cell flashing!");
+                return false;
+            }
+        }
     },
 
     _createCube: function(){
@@ -5338,13 +5350,18 @@ var Cube = {
             }
         });
 
+        this._run();
+    },
+
+    _run: function(){
+        var that = this, element = this.element, o = this.options;
         var interval = 0;
 
         $.each(this.rules, function(){
             interval++;
         });
 
-        if (that.rules !== null) {
+        if (this.rules !== null) {
             this._start();
         } else {
             if (o.runDefault === true) {
@@ -5368,14 +5385,21 @@ var Cube = {
                     }
                 }
             }
-        }, interval * 1000);
+        }, interval * o.flashInterval);
     },
 
     _createCssForCellSize: function(){
         var that = this, element = this.element, o = this.options;
         var sheet = Metro.sheet;
-        var cell_size = Math.ceil((160 - o.margin * o.cells * 2) / o.cells);
+        var width;
+        var cell_size;
 
+        if (o.margin === 8 && o.cells === 4) {
+            return ;
+        }
+
+        width = parseInt(Utils.getStyleOne(element, 'width'));
+        cell_size = Math.ceil((width / 2 - o.margin * o.cells * 2) / o.cells);
         Utils.addCssRule(sheet, "#"+element.attr('id')+" .side .cube-cell", "width: "+cell_size+"px!important; height: "+cell_size+"px!important; margin: " + o.margin + "px!important;");
     },
 
@@ -5499,8 +5523,20 @@ var Cube = {
         }, o.flashInterval * t);
     },
 
-    changeAttribute: function(attributeName){
+    changeRules: function(){
+        var that = this, element = this.element, o = this.options;
+        var rules = element.attr("data-rules");
+        if (this._parseRules(rules) !== true) {
+            return ;
+        }
+        o.rules = rules;
+        this._run();
+    },
 
+    changeAttribute: function(attributeName){
+        switch (attributeName) {
+            case "data-rules": this.changeRules(); break;
+        }
     }
 };
 
@@ -5568,7 +5604,7 @@ var Datepicker = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -5848,7 +5884,7 @@ var Dialog = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -6181,7 +6217,7 @@ var Donut = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -6320,7 +6356,7 @@ var Draggable = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -6469,7 +6505,7 @@ var Dropdown = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -6621,7 +6657,7 @@ var File = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -6749,7 +6785,7 @@ var Gravatar = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -6849,7 +6885,7 @@ var Hint = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -6995,7 +7031,7 @@ var Input = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -7173,7 +7209,7 @@ var Keypad = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -7517,7 +7553,7 @@ var Listview = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -7811,7 +7847,7 @@ var Listview = {
 
     changeSelectable: function(){
         var element = this.element, o = this.options;
-        o.selectable = $.parseJSON(element.attr("data-selectable")) === true;
+        o.selectable = JSON.parse(element.attr("data-selectable")) === true;
         this.toggleSelectable();
     },
 
@@ -7870,7 +7906,7 @@ var Master = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -8329,7 +8365,7 @@ var Panel = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -8467,7 +8503,7 @@ var Popover = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -8664,7 +8700,7 @@ var Progress = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -8817,7 +8853,7 @@ var Radio = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -8917,7 +8953,7 @@ var Resizable = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -9008,7 +9044,7 @@ var Ripple = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -9108,7 +9144,7 @@ var Search = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -9271,7 +9307,7 @@ var Select = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -9508,7 +9544,7 @@ var Slider = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -9922,7 +9958,7 @@ var Stepper = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -10072,7 +10108,7 @@ var Streamer = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -10573,7 +10609,7 @@ var Switch = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -10672,7 +10708,7 @@ var Tabs = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -10816,7 +10852,7 @@ var Textarea = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -10958,7 +10994,7 @@ var Tile = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -11207,7 +11243,7 @@ var Treeview = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -11639,7 +11675,7 @@ var Validator = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -11801,7 +11837,7 @@ var Video = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -12340,7 +12376,7 @@ var Window = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -12776,7 +12812,7 @@ var Wizard = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }

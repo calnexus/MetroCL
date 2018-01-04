@@ -16,7 +16,7 @@ var meta_callback_timeout = $("meta[name='metro4:callback_timeout']").attr("cont
 var meta_timeout = $("meta[name='metro4:timeout']").attr("content");
 
 if (window.METRO_INIT === undefined) {
-    window.METRO_INIT = meta_init !== undefined ? $.parseJSON(meta_init) : true;
+    window.METRO_INIT = meta_init !== undefined ? JSON.parse(meta_init) : true;
 }
 if (window.METRO_DEBUG === undefined) {window.METRO_DEBUG = true;}
 

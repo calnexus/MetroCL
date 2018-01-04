@@ -33,7 +33,7 @@ var Listview = {
         $.each(element.data(), function(key, value){
             if (key in o) {
                 try {
-                    o[key] = $.parseJSON(value);
+                    o[key] = JSON.parse(value);
                 } catch (e) {
                     o[key] = value;
                 }
@@ -327,7 +327,7 @@ var Listview = {
 
     changeSelectable: function(){
         var element = this.element, o = this.options;
-        o.selectable = $.parseJSON(element.attr("data-selectable")) === true;
+        o.selectable = JSON.parse(element.attr("data-selectable")) === true;
         this.toggleSelectable();
     },
 
