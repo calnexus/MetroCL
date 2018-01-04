@@ -5567,7 +5567,7 @@ var Cube = {
         var that = this, element = this.element, o = this.options;
         var style = element.attr("data-axis-style");
 
-        element.find(".axis").removeClass("arrow line").addClass(style);
+        element.find(".axis").removeClass("arrow line no-style").addClass(style);
     },
 
     changeAttribute: function(attributeName){

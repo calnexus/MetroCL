@@ -113,6 +113,7 @@
             position: absolute;
             height: 1px;
             background-color: inherit;
+            display: block;
         }
 
         &.arrow {
@@ -167,6 +168,12 @@
                 &::after {
                     .rotate(-113deg);
                 }
+            }
+        }
+
+        &.no-style {
+            &::before, &::after {
+                display: none;
             }
         }
 

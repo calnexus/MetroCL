@@ -26213,6 +26213,7 @@ video:-webkit-full-screen {
   position: absolute;
   height: 1px;
   background-color: inherit;
+  display: block;
 }
 .cube .axis.arrow::before,
 .cube .axis.arrow::after {
@@ -26262,6 +26263,10 @@ video:-webkit-full-screen {
 .cube .axis.line.axis-x::after {
   -webkit-transform: rotate(-113deg);
           transform: rotate(-113deg);
+}
+.cube .axis.no-style::before,
+.cube .axis.no-style::after {
+  display: none;
 }
 .cube .axis.axis-x {
   top: 33px;
