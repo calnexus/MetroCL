@@ -11,7 +11,7 @@
     position: relative;
     width: 320px;
     height: 160px;
-    margin: 120px auto 50px;
+    margin: 120px auto 72px;
     .rotateY(30deg);
 }
 
@@ -95,5 +95,53 @@
                 0 0 10px rgba(red(@cubeCellFlash), green(@cubeCellFlash), blue(@cubeCellFlash), .3),
                 0 0 10px rgba(red(@cubeCellFlash), green(@cubeCellFlash), blue(@cubeCellFlash), .3),
                 0 0 10px rgba(red(@cubeCellFlash), green(@cubeCellFlash), blue(@cubeCellFlash), .3);
+    }
+}
+
+.cube {
+    .axis {
+        height: 1px;
+        width: 200px;
+        position: absolute;
+        background-color: @cubeCellFlash;
+        top: 32px;
+        left: 162px;
+        transform-origin: 0 0 0;
+
+        &::before, &::after {
+            content: "";
+            position: absolute;
+            height: 1px;
+            background-color: inherit;
+        }
+
+        &.arrow {
+            &::before, &::after {
+                width: 16px;
+                top: 0;
+                right: 0;
+                transform-origin: 100% 100% 0;
+            }
+
+            &::before {
+                .rotate(35deg);
+            }
+
+            &::after {
+                .rotate(-35deg);
+            }
+        }
+
+        &.axis-x {
+            top: 33px;
+            .rotate(203deg);
+        }
+        &.axis-y {
+            .rotate(-23deg);
+        }
+        &.axis-z {
+            width: 190px;
+            .rotate(90deg);
+        }
     }
 }

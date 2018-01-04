@@ -26106,7 +26106,7 @@ video:-webkit-full-screen {
   position: relative;
   width: 320px;
   height: 160px;
-  margin: 120px auto 50px;
+  margin: 120px auto 72px;
   -webkit-transform: rotateY(30deg);
           transform: rotateY(30deg);
 }
@@ -26196,6 +26196,53 @@ video:-webkit-full-screen {
     -webkit-box-shadow: 0 0 10px rgba(196, 18, 47, 0.3), 0 0 10px rgba(196, 18, 47, 0.3), 0 0 10px rgba(196, 18, 47, 0.3);
             box-shadow: 0 0 10px rgba(196, 18, 47, 0.3), 0 0 10px rgba(196, 18, 47, 0.3), 0 0 10px rgba(196, 18, 47, 0.3);
   }
+}
+.cube .axis {
+  height: 1px;
+  width: 200px;
+  position: absolute;
+  background-color: #c4122f;
+  top: 32px;
+  left: 162px;
+  -webkit-transform-origin: 0 0 0;
+          transform-origin: 0 0 0;
+}
+.cube .axis::before,
+.cube .axis::after {
+  content: "";
+  position: absolute;
+  height: 1px;
+  background-color: inherit;
+}
+.cube .axis.arrow::before,
+.cube .axis.arrow::after {
+  width: 16px;
+  top: 0;
+  right: 0;
+  -webkit-transform-origin: 100% 100% 0;
+          transform-origin: 100% 100% 0;
+}
+.cube .axis.arrow::before {
+  -webkit-transform: rotate(35deg);
+          transform: rotate(35deg);
+}
+.cube .axis.arrow::after {
+  -webkit-transform: rotate(-35deg);
+          transform: rotate(-35deg);
+}
+.cube .axis.axis-x {
+  top: 33px;
+  -webkit-transform: rotate(203deg);
+          transform: rotate(203deg);
+}
+.cube .axis.axis-y {
+  -webkit-transform: rotate(-23deg);
+          transform: rotate(-23deg);
+}
+.cube .axis.axis-z {
+  width: 190px;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
 }
 .ripple {
   display: block;

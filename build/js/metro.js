@@ -5258,6 +5258,8 @@ var Cube = {
         cells: 4,
         margin: 8,
         runDefault: false,
+        showAxis: true,
+        axisStyle: "arrow", //line
 
         clsCube: "",
         clsCell: "",
@@ -5265,6 +5267,10 @@ var Cube = {
         clsSideLeft: "",
         clsSideRight: "",
         clsSideTop: "",
+        clsAxis: "",
+        clsAxisX: "",
+        clsAxisY: "",
+        clsAxisZ: "",
 
         default: Metro.noop,
         onTick: Metro.noop,
@@ -5350,12 +5356,29 @@ var Cube = {
             }
         });
 
+        var axis = ['x', 'y', 'z'];
+        $.each(axis, function(){
+            var axis_name = this;
+            var ax = $("<div>").addClass("axis " + o.axisStyle).addClass("axis-"+axis_name).addClass(o.clsAxis);
+            if (axis_name === "x") ax.addClass(o.clsAxisX);
+            if (axis_name === "y") ax.addClass(o.clsAxisY);
+            if (axis_name === "z") ax.addClass(o.clsAxisZ);
+            ax.appendTo(element);
+        });
+
+        if (o.showAxis === false) {
+            element.find(".axis").hide();
+        }
+
         this._run();
     },
 
     _run: function(){
         var that = this, element = this.element, o = this.options;
         var interval = 0;
+
+        clearInterval(this.interval);
+        element.find(".cube-cell").removeClass("light");
 
         $.each(this.rules, function(){
             interval++;
@@ -5533,9 +5556,17 @@ var Cube = {
         this._run();
     },
 
+    changeEdgesVisibility: function(){
+        var that = this, element = this.element, o = this.options;
+        var visibility = JSON.parse(element.attr("data-show-edges")) === true;
+        var func = visibility ? "show" : "hide";
+        element.find(".edges")[func]();
+    },
+
     changeAttribute: function(attributeName){
         switch (attributeName) {
             case "data-rules": this.changeRules(); break;
+            case "data-show-edges": this.changeEdgesVisibility(); break;
         }
     }
 };

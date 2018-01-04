@@ -1,6 +1,6 @@
 body {
   font-size: 0.875rem;
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Ubuntu", "Helvetica Neue", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   color: #000000;
   background-color: #ffffff;
 }
@@ -333,4 +333,4 @@ textarea,
   background-color: #970012;
 }
 
-/*# sourceMappingURL=../maps/red-alert.css.map */
+/*# sourceMappingURL=../maps/red-alert-sans.css.map */
