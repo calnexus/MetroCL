@@ -26,7 +26,7 @@ var Cube = {
         cells: 4,
         margin: 8,
         runDefault: false,
-        showAxis: true,
+        showAxis: false,
         axisStyle: "arrow", //line
 
         clsCube: "",
