@@ -132,6 +132,44 @@
             }
         }
 
+        &.line {
+            &::before, &::after {
+                width: 16px;
+                top: 0;
+                right: 0;
+                transform-origin: 100% 100% 0;
+            }
+
+            &::before {
+                .rotate(90deg);
+            }
+
+            &::after {
+                .rotate(-90deg);
+                right: -1px;
+            }
+
+            &.axis-y {
+                &::before {
+                    .rotate(113deg);
+                }
+
+                &::after {
+                    .rotate(-67deg);
+                }
+            }
+
+            &.axis-x {
+                &::before {
+                    .rotate(67deg);
+                }
+
+                &::after {
+                    .rotate(-113deg);
+                }
+            }
+        }
+
         &.axis-x {
             top: 33px;
             .rotate(203deg);

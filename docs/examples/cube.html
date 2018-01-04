@@ -29,6 +29,7 @@
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
 
     <link href="../metro/css/metro-all.css" rel="stylesheet">
+    <link href="../metro/css/schemes/red-alert.css" rel="stylesheet">
 
     <title>Cube demo - Metro 4 :: Popular HTML, CSS and JS library</title>
 
@@ -38,24 +39,29 @@
             position: absolute;
             font-size: 32px;
             color: #c4122f;
+            width: 200px;
+            white-space: nowrap;
         }
 
         #disk-info {
-            top: 40px;
+            text-align: right;
+            top: 64px;
             left: 50%;
-            transform: translateX(-200px);
+            transform: translateX(-370px);
         }
 
         #cpu-info {
-            top: 40px;
+            text-align: left;
+            top: 64px;
             left: 50%;
-            transform: translateX(130px);
+            transform: translateX(180px);
         }
 
         #ram-info {
             top: 100%;
             left: 50%;
-            transform: translateX(-40px) translateY(-30px);
+            transform: translateX(-50%) translateY(-30px);
+            text-align: center;
         }
     </style>
 
@@ -65,8 +71,17 @@
         <h1 class='text-center'>Metro 4 Components Library</h1>
         <h4 class='text-center'>Cube component demo</h4>
 
+        <div class="d-flex flex-justify-center mt-6">
+            <input data-role="switch" checked data-caption="Show Axis" onclick="$('#demo-cube').attr('data-show-axis', $(this).is(':checked'))">
+
+            <span class="ml-4 mr-4">Axis type: </span>
+
+            <input data-role="radio" name="r1" value="arrow" checked data-caption="Arrow" onclick="$('#demo-cube').attr('data-axis-style', this.value)">
+            <input data-role="radio" name="r1" value="line" data-caption="Line" onclick="$('#demo-cube').attr('data-axis-style', this.value)">
+        </div>
+
         <div class="p-4 pos-relative">
-            <div id="demo-cube" data-role="cube" data-rules="rules" data-on-tick="cubeTick"></div>
+            <div id="demo-cube" data-role="cube" data-rules="rules" data-on-tick="cubeTick" data-show-axis="true" data-axis-style="arrow"></div>
             <div id="disk-info"></div>
             <div id="ram-info"></div>
             <div id="cpu-info"></div>

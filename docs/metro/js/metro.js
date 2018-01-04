@@ -5556,17 +5556,25 @@ var Cube = {
         this._run();
     },
 
-    changeEdgesVisibility: function(){
+    changeAxisVisibility: function(){
         var that = this, element = this.element, o = this.options;
-        var visibility = JSON.parse(element.attr("data-show-edges")) === true;
+        var visibility = JSON.parse(element.attr("data-show-axis")) === true;
         var func = visibility ? "show" : "hide";
-        element.find(".edges")[func]();
+        element.find(".axis")[func]();
+    },
+
+    changeAxisStyle: function(){
+        var that = this, element = this.element, o = this.options;
+        var style = element.attr("data-axis-style");
+
+        element.find(".axis").removeClass("arrow line").addClass(style);
     },
 
     changeAttribute: function(attributeName){
         switch (attributeName) {
             case "data-rules": this.changeRules(); break;
-            case "data-show-edges": this.changeEdgesVisibility(); break;
+            case "data-show-axis": this.changeAxisVisibility(); break;
+            case "data-axis-style": this.changeAxisStyle(); break;
         }
     }
 };

@@ -26230,6 +26230,39 @@ video:-webkit-full-screen {
   -webkit-transform: rotate(-35deg);
           transform: rotate(-35deg);
 }
+.cube .axis.line::before,
+.cube .axis.line::after {
+  width: 16px;
+  top: 0;
+  right: 0;
+  -webkit-transform-origin: 100% 100% 0;
+          transform-origin: 100% 100% 0;
+}
+.cube .axis.line::before {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+.cube .axis.line::after {
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  right: -1px;
+}
+.cube .axis.line.axis-y::before {
+  -webkit-transform: rotate(113deg);
+          transform: rotate(113deg);
+}
+.cube .axis.line.axis-y::after {
+  -webkit-transform: rotate(-67deg);
+          transform: rotate(-67deg);
+}
+.cube .axis.line.axis-x::before {
+  -webkit-transform: rotate(67deg);
+          transform: rotate(67deg);
+}
+.cube .axis.line.axis-x::after {
+  -webkit-transform: rotate(-113deg);
+          transform: rotate(-113deg);
+}
 .cube .axis.axis-x {
   top: 33px;
   -webkit-transform: rotate(203deg);
