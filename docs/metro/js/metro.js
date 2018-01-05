@@ -5246,6 +5246,19 @@ var Cube = {
         return this;
     },
 
+    default_rules: [
+        {on: {'top': [16],      'left': [4],         'right': [1]}},
+        {on: {'top': [15, 12],  'left': [3, 8],      'right': [5, 2]}},
+        {on: {'top': [14, 8],  'left': [2, 12],      'right': [9, 3]}},
+        {on: {'top': [13, 4],  'left': [1, 16],      'right': [13, 4]}},
+        {on: {'top': [1],  'left': [13],      'right': [16]}},
+        {on: {'top': [6],  'left': [10],      'right': [11]}},
+        {on: {'top': [11],  'left': [7],      'right': [6]}},
+        {on: {'top': [10,7],  'left': [6,11],      'right': [10,7]}},
+        {on: {'top': [9,3],  'left': [5,15],      'right': [14,8]}},
+        {on: {'top': [5,2],  'left': [9,14],      'right': [15,12]}}
+    ],
+
     options: {
         rules: null,
         color: null,
@@ -5257,7 +5270,6 @@ var Cube = {
         stopOnBlur: false,
         cells: 4,
         margin: 8,
-        runDefault: false,
         showAxis: false,
         axisStyle: "arrow", //line
         cellClick: false,
@@ -5273,7 +5285,7 @@ var Cube = {
         clsAxisY: "",
         clsAxisZ: "",
 
-        default: Metro.noop,
+        custom: Metro.noop,
         onTick: Metro.noop,
         onCubeCreate: Metro.noop
     },
@@ -5295,7 +5307,11 @@ var Cube = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        this._parseRules(o.rules);
+        if (o.rules === null) {
+            this.rules = this.default_rules;
+        } else {
+            this._parseRules(o.rules);
+        }
 
         this._createCube();
         this._createEvents();
@@ -5381,35 +5397,20 @@ var Cube = {
         clearInterval(this.interval);
         element.find(".cube-cell").removeClass("light");
 
-        $.each(this.rules, function(){
-            interval++;
-        });
-
-        if (this.rules !== null) {
-            this._start();
+        if (o.custom !== Metro.noop) {
+            Utils.exec(o.default, [element]);
         } else {
-            if (o.runDefault === true) {
-                if (o.default !== Metro.noop) {
-                    Utils.exec(o.default, [element]);
-                } else {
-                    that._startDefault();
-                }
-            }
-        }
 
-        this.interval = setInterval(function(){
-            if (that.rules !== null) {
+            that._start();
+
+            $.each(this.rules, function(){
+                interval++;
+            });
+
+            this.interval = setInterval(function(){
                 that._start();
-            } else {
-                if (o.runDefault === true) {
-                    if (o.default !== Metro.noop) {
-                        Utils.exec(o.default, [element]);
-                    } else {
-                        that._startDefault();
-                    }
-                }
-            }
-        }, interval * o.flashInterval);
+            }, interval * o.flashInterval);
+        }
     },
 
     _createCssForCellSize: function(){
@@ -5473,21 +5474,6 @@ var Cube = {
                 cell.addClass("light");
                 that._off(cell, 1);
             }
-        });
-    },
-
-    _startDefault: function(){
-        var that = this, element = this.element, o = this.options;
-        var sides = ['left', 'right', 'top'];
-
-        $.each(sides, function(){
-            var side_class = "." + this+"-side";
-            var cells_on = [Utils.random(0, Math.pow(o.cells, 2) - 1), Utils.random(0, Math.pow(o.cells, 2) - 1), Utils.random(0, Math.pow(o.cells, 2) - 1)];
-            $.each(cells_on, function(index, cell_index){
-                var cell = element.find(side_class + " .cell-id-"+cell_index);
-                that._on(cell, index);
-                that._off(cell, index * 5);
-            });
         });
     },
 
