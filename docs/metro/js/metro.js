@@ -5260,6 +5260,7 @@ var Cube = {
         runDefault: false,
         showAxis: false,
         axisStyle: "arrow", //line
+        cellClick: false,
 
         clsCube: "",
         clsCell: "",
@@ -5463,6 +5464,14 @@ var Cube = {
         $(window).on(Metro.events.focus, function(){
             if (o.stopOnBlur === true && that.running === false) {
                 that._start();
+            }
+        });
+
+        element.on(Metro.events.click, ".cube-cell", function(){
+            if (o.cellClick === true) {
+                var cell = $(this);
+                cell.addClass("light");
+                that._off(cell, 1);
             }
         });
     },
