@@ -10,8 +10,8 @@
     display: block;
     position: relative;
     width: 320px;
-    height: 160px;
-    margin: 120px auto 72px;
+    height: 310px;
+    margin: 0 auto 30px;
     .rotateY(30deg);
 }
 
@@ -24,27 +24,23 @@
         overflow: hidden;
         width: 162px;
         height: 162px;
-        top: 0;
+        bottom: 38px;
         left: 0;
     }
 
     .side {
         &.left-side {
             .skewY(23deg); .rotateX(10deg);
-            //border-top: 1px solid @cubeCellFlash;
-            top: -1px;
         }
 
         &.right-side {
             left: 160px;
             .skewY(-23deg); .rotateY(10deg);
-            //border-left: 1px solid @cubeCellFlash;
-            //border-top: 1px solid @cubeCellFlash;
         }
 
         &.top-side {
             left: 80px;
-            bottom: 116px;
+            bottom: 154px;
             top: auto;
             .rotate(45deg); .rotateZ(0); .skew(-22deg, -22deg);
         }
@@ -100,11 +96,11 @@
 
 .cube {
     .axis {
-        height: 1px;
+        height: 2px;
         width: 200px;
         position: absolute;
         background-color: @cubeCellFlash;
-        top: 32px;
+        bottom: 164px;
         left: 162px;
         transform-origin: 0 0 0;
 
@@ -130,6 +126,7 @@
 
             &::after {
                 .rotate(-35deg);
+                right: -1px;
             }
         }
 
@@ -178,10 +175,10 @@
         }
 
         &.axis-x {
-            top: 33px;
             .rotate(203deg);
         }
         &.axis-y {
+            bottom: 166px;
             .rotate(-23deg);
         }
         &.axis-z {

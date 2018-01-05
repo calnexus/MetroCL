@@ -26105,8 +26105,8 @@ video:-webkit-full-screen {
   display: block;
   position: relative;
   width: 320px;
-  height: 160px;
-  margin: 120px auto 72px;
+  height: 310px;
+  margin: 0 auto 30px;
   -webkit-transform: rotateY(30deg);
           transform: rotateY(30deg);
 }
@@ -26125,13 +26125,12 @@ video:-webkit-full-screen {
   overflow: hidden;
   width: 162px;
   height: 162px;
-  top: 0;
+  bottom: 38px;
   left: 0;
 }
 .cube .side.left-side {
   -webkit-transform: skewY(23deg) rotateX(10deg);
           transform: skewY(23deg) rotateX(10deg);
-  top: -1px;
 }
 .cube .side.right-side {
   left: 160px;
@@ -26140,7 +26139,7 @@ video:-webkit-full-screen {
 }
 .cube .side.top-side {
   left: 80px;
-  bottom: 116px;
+  bottom: 154px;
   top: auto;
   -webkit-transform: rotate(45deg) rotateZ(0) skew(-22deg, -22deg);
           transform: rotate(45deg) rotateZ(0) skew(-22deg, -22deg);
@@ -26198,11 +26197,11 @@ video:-webkit-full-screen {
   }
 }
 .cube .axis {
-  height: 1px;
+  height: 2px;
   width: 200px;
   position: absolute;
   background-color: #c4122f;
-  top: 32px;
+  bottom: 164px;
   left: 162px;
   -webkit-transform-origin: 0 0 0;
           transform-origin: 0 0 0;
@@ -26230,6 +26229,7 @@ video:-webkit-full-screen {
 .cube .axis.arrow::after {
   -webkit-transform: rotate(-35deg);
           transform: rotate(-35deg);
+  right: -1px;
 }
 .cube .axis.line::before,
 .cube .axis.line::after {
@@ -26269,11 +26269,11 @@ video:-webkit-full-screen {
   display: none;
 }
 .cube .axis.axis-x {
-  top: 33px;
   -webkit-transform: rotate(203deg);
           transform: rotate(203deg);
 }
 .cube .axis.axis-y {
+  bottom: 166px;
   -webkit-transform: rotate(-23deg);
           transform: rotate(-23deg);
 }

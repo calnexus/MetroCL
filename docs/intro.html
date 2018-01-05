@@ -157,57 +157,9 @@
 
                 <h3 id="_short_demo">Short demo</h3>
                 <div class="example bg-dark fg-white">
-                    <style>
-                        #one-info, #two-info, #three-info {
-                            display: block;
-                            position: absolute;
-                            font-size: 32px;
-                            color: #c4122f;
-                            width: 200px;
-                            white-space: nowrap;
-                        }
-
-                        #one-info {
-                            text-align: right;
-                            top: 64px;
-                            left: 50%;
-                            transform: translateX(-370px);
-                        }
-
-                        #two-info {
-                            text-align: left;
-                            top: 64px;
-                            left: 50%;
-                            transform: translateX(180px);
-                        }
-
-                        #three-info {
-                            top: 100%;
-                            left: 50%;
-                            transform: translateX(-50%) translateY(-30px);
-                            text-align: center;
-                        }
-                    </style>
-                    <script>
-                        var shortDemoCubeRules = [
-                            {on: {'top': [16],      'left': [4],         'right': [1]}},
-                            {on: {'top': [12, 15],  'left': [3, 8],      'right': [2, 5]}},
-                            {on: {'top': [11],      'left': [7],         'right': [6]}},
-                            {on: {'top': [8, 14],   'left': [2, 12],     'right': [9, 3]}},
-                            {on: {'top': [10, 7],   'left': [6, 11],     'right': [10, 7]}},
-                            {on: {'top': [13, 4],   'left': [1, 16],     'right': [13, 4]}},
-                            {on: {'top': [9, 6, 3], 'left': [5, 10, 15], 'right': [14, 11, 8]}},
-                            {on: {'top': [1, 2, 5], 'left': [9, 13, 14], 'right': [15, 12, 16]}}
-                        ];
-                    </script>
                     <h1 class="text-center">Metro 4</h1>
                     <h3 class="text-center">The Components Library</h3>
-                    <div class="p-4 pos-relative mb-4">
-                        <div data-role="cube" data-rules="shortDemoCubeRules" data-show-axis="true" data-axis-style="arrow" data-cls-axis="bg-yellow" data-flash-color="#6a00ff"></div>
-                        <div id="one-info" class="fg-green">easy to use</div>
-                        <div id="two-info" class="fg-orange">open source</div>
-                        <div id="three-info" class="fg-cyan">mit license</div>
-                    </div>
+                    <div data-role="cube" data-run-default="true" data-cells="10" data-margin="2"></div>
                 </div>
 
                 <pre class=""><code>
@@ -218,62 +170,12 @@
                         &lt;meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"&gt;
 
                         &lt;link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css"&gt;
-                        &lt;style&gt;
-                            #one-info, #two-info, #three-info {
-                                display: block;
-                                position: absolute;
-                                font-size: 32px;
-                                width: 200px;
-                                white-space: nowrap;
-                            }
-
-                            #one-info {
-                                text-align: right;
-                                top: 64px;
-                                left: 50%;
-                                transform: translateX(-370px);
-                            }
-
-                            #two-info {
-                                text-align: left;
-                                top: 64px;
-                                left: 50%;
-                                transform: translateX(180px);
-                            }
-
-                            #three-info {
-                                top: 100%;
-                                left: 50%;
-                                transform: translateX(-50%) translateY(-30px);
-                                text-align: center;
-                            }
-                        &lt;/style&gt;
-                        &lt;script&gt;
-                            var shortDemoCubeRules = [
-                                {on: {'top': [16],      'left': [4],         'right': [1]}},
-                                {on: {'top': [12, 15],  'left': [3, 8],      'right': [2, 5]}},
-                                {on: {'top': [11],      'left': [7],         'right': [6]}},
-                                {on: {'top': [8, 14],   'left': [2, 12],     'right': [9, 3]}},
-                                {on: {'top': [10, 7],   'left': [6, 11],     'right': [10, 7]}},
-                                {on: {'top': [13, 4],   'left': [1, 16],     'right': [13, 4]}},
-                                {on: {'top': [9, 6, 3], 'left': [5, 10, 15], 'right': [14, 11, 8]}},
-                                {on: {'top': [1, 2, 5], 'left': [9, 13, 14], 'right': [15, 12, 16]}}
-                            ];
-                        &lt;/script&gt;
                       &lt;/head&gt;
                       &lt;body&gt;
                         &lt;h1 class="text-center"&gt;Metro 4&lt;/h1&gt;
                         &lt;h3 class="text-center"&gt;The Components Library&lt;/h3&gt;
-                        &lt;div class="p-4 pos-relative mb-4"&gt;
-                            &lt;div data-role="cube" data-rules="shortDemoCubeRules"
-                                data-show-axis="true" data-axis-style="arrow"
-                                data-cls-axis="bg-yellow"
-                                data-flash-color="#6a00ff"&gt;&lt;/div&gt;
-                    
-                            &lt;div id="one-info" class="fg-green"&gt;easy to use&lt;/div&gt;
-                            &lt;div id="two-info" class="fg-orange"&gt;open source&lt;/div&gt;
-                            &lt;div id="three-info" class="fg-cyan"&gt;mit license&lt;/div&gt;
-                        &lt;/div&gt;
+                        &lt;div data-role="cube" data-run-default="true"
+                            data-cells="10" data-margin="2"&gt;&lt;/div&gt;
 
                         &lt;script src="https://code.jquery.com/jquery-3.2.1.min.js"&gt;&lt;/script&gt;
                         &lt;script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"&gt;&lt;/script&gt;
