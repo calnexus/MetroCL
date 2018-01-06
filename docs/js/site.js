@@ -10,7 +10,7 @@
     });
 
     $.get('footer.html', function(data){
-        body.append(data);
+        // body.append(data);
     });
 
     $.get('sidenav.html', function(data){

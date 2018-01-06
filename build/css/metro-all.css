@@ -26164,6 +26164,7 @@ video:-webkit-full-screen {
   line-height: 24px;
   text-align: center;
   color: #ffffff;
+  font-size: 12px;
 }
 .cube .side .cube-cell.light {
   -webkit-animation: pulsar-cell 2.5s 0s ease-out infinite;
