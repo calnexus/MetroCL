@@ -59,12 +59,6 @@ It's an independent project with its ongoing development made possible entirely 
 - jQuery Core [jquery](https://jquery.com/)
 - All who brought something good 
 
-### Testers
-- [Prabakar Decipher](https://www.facebook.com/itz.prabakar)
-- [Steve Egger](https://github.com/Chaoswriter96)
-- [Puskás Zsolt](https://github.com/errotan)
-- [Jakub Kučera](https://github.com/Expertik99)
-
 ### Browser Compatibility
 IE11+, Chrome, Firefox, Opera, Safari, Android, IOS
 
