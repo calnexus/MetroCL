@@ -5398,7 +5398,7 @@ var Cube = {
         element.find(".cube-cell").removeClass("light");
 
         if (o.custom !== Metro.noop) {
-            Utils.exec(o.default, [element]);
+            Utils.exec(o.custom, [element]);
         } else {
 
             that._start();
