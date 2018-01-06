@@ -63,6 +63,7 @@ It's an independent project with its ongoing development made possible entirely 
 - [Prabakar Decipher](https://www.facebook.com/itz.prabakar)
 - [Steve Egger](https://github.com/Chaoswriter96)
 - [Puskás Zsolt](https://github.com/errotan)
+- [Jakub Kučera](https://github.com/Expertik99)
 
 ### Browser Compatibility
 IE11+, Chrome, Firefox, Opera, Safari, Android, IOS
