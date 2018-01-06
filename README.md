@@ -17,7 +17,7 @@
 Metro 4 is an MIT-licensed open source project. 
 It's an independent project with its ongoing development made possible entirely thanks to the support by these
 <br>
-<a href="https://github.com/Pro-Club/MetroCL/blob/master/backers.md"><strong>awesome Backers</strong></a>.
+<a href="https://github.com/Pro-Club/MetroCL/blob/master/BACKERS.md"><strong>awesome Backers</strong></a>.
 </p>
 
 <br>
