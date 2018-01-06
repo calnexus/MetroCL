@@ -8508,6 +8508,7 @@ var Popover = {
         this.elem  = elem;
         this.element = $(elem);
         this.popover = null;
+        this.popovered = false;
         this.size = {
             width: 0,
             height: 0
@@ -8563,7 +8564,7 @@ var Popover = {
         }
 
         element.on(event, function(){
-            if (that.popover !== null) {
+            if (that.popover !== null || that.popovered === true) {
                 return ;
             }
             that.createPopover();
@@ -8648,6 +8649,9 @@ var Popover = {
         this.setPosition();
 
         popover.appendTo($('body'));
+
+        this.popovered = true;
+
         Utils.exec(o.onPopoverShow, [popover, element]);
     },
 
@@ -8661,6 +8665,7 @@ var Popover = {
                 popover.hide(0, function(){
                     popover.remove();
                     that.popover = null;
+                    that.popovered = false;
                 });
             }, timeout);
         }
@@ -8668,6 +8673,10 @@ var Popover = {
 
     show: function(){
         var that = this, o = this.options;
+        if (this.popovered === true) {
+            return ;
+        }
+
         this.createPopover();
         if (o.popoverHide > 0) {
             setTimeout(function(){
