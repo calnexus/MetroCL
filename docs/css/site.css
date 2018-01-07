@@ -494,3 +494,6 @@ pre .copy-button {
   width: 124px;
   max-height: 64px;
 }
+main {
+  padding-bottom: 20px!important;
+}
