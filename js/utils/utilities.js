@@ -279,8 +279,12 @@ var Utils = {
         return obj[key] !== undefined ? obj : delete obj[key];
     },
 
-    arrayDelete: function(arr, key){
-        return arr.indexOf(key) > -1 ? arr.splice(arr.indexOf(key), 1) : arr;
+    arrayDelete: function(arr, val){
+        return arr.splice(arr.indexOf(val), 1);
+    },
+
+    arrayDeleteByKey: function(arr, key){
+        return delete arr[key];
     },
 
     nvl: function(data, other){

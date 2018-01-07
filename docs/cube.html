@@ -55,7 +55,6 @@
                     <li class="toc-entry"><a href="#">Axis</a></li>
                     <li class="toc-entry"><a href="#">Events</a></li>
                     <li class="toc-entry"><a href="#">Methods</a></li>
-                    <li class="toc-entry"><a href="#">Customize</a></li>
                     <li class="toc-entry"><a href="#">My cube - my rules</a></li>
                 </ul>
 
@@ -212,13 +211,173 @@
                 <h3 id="_cube_numbers">Numbers of cells</h3>
                 <p>
                     When creating rules, it is useful to know the cell numbers and their location on the faces of the cube.
-                    You can use attribute <code>data-numbers="true|false"</code> to set numbers visible inside a cells.
-                    <br><br><small>Useful for a small number of cells and is useless for large :)</small>.
+                    Cells placed from left to right from top left side corner.
                 </p>
                 <div class="example">
                     <div data-role="cube" data-numbers="true" data-rules=""></div>
                 </div>
 
+                <h3 id="_cube_axis">Axis</h3>
+                <p>
+                    You can set visible cube <code>axis</code>. To set axis visible use attribute <code>data-show-axis="true"</code>.
+                </p>
+                <div class="example">
+                    <div data-role="cube" data-show-axis="true" data-rules=""></div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="cube" data-show-axis="true"&gt;&lt;/div&gt;
+                </code></pre>
+                <p>
+                    You can change axis color and style with attributes <code>data-cls-axis</code>, <code>data-cls-axis-x</code>, <code>data-cls-axis-y</code>, <code>data-cls-axis-z</code> and <code>data-axis-style</code>.
+                    For attributes <code>data-cls-axis*</code> use custom class.
+                    For <code>data-axis-style</code> use one of next values: <code>arrow</code>, <code>line</code> and <code>no-style</code>.
+                </p>
+                <div class="example">
+                    <div class="mb-10">
+                        <p class="h5 text-center">line</p>
+                        <div data-role="cube" data-show-axis="true" data-axis-style="line" data-cls-axis="bg-dark" data-rules=""></div>
+                    </div>
+                    <div class="mb-10">
+                        <p class="h5 text-center">arrow</p>
+                        <div data-role="cube" data-show-axis="true" data-axis-style="arrow" data-cls-axis-x="bg-cyan" data-cls-axis-y="bg-green" data-cls-axis-z="bg-orange" data-rules=""></div>
+                    </div>
+                    <div class="mb-10">
+                        <p class="h5 text-center">no-style</p>
+                        <div data-role="cube" data-show-axis="true" data-axis-style="no-style" data-rules=""></div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="cube"
+                         data-show-axis="true"
+                         data-axis-style="line"
+                         data-cls-axis="bg-dark"
+                         data-rules=""&gt;&lt;/div&gt;
+
+                    &lt;div data-role="cube"
+                         data-show-axis="true"
+                         data-axis-style="arrow"
+                         data-cls-axis-x="bg-cyan"
+                         data-cls-axis-y="bg-green"
+                         data-cls-axis-z="bg-orange"
+                         data-rules=""&gt;&lt;/div&gt;
+
+                    &lt;div data-role="cube"
+                         data-show-axis="true"
+                         data-axis-style="no-style"
+                         data-rules=""&gt;&lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_cube_events">Events</h3>
+                <p>
+                    When <code>cube</code> works, it generate the number of events. You can use callbacks for this events to interact with it.
+                </p>
+                <table class="table cell-border table-border options-table mt-4">
+                    <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Data-*</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>onTick(index, element)</td>
+                        <td><code>data-on-tick</code></td>
+                        <td>Fired for each cube flashing step</td>
+                    </tr>
+                    <tr>
+                        <td>onCubeCreate(element)</td>
+                        <td><code>data-on-cube-create</code></td>
+                        <td>Fired when cube was created</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <pre><code class="html">
+                    &lt;div data-role="cube" data-on-tick="console.log(arguments)"&gt;&lt;/div&gt;
+                </code></pre>
+                <p class="remark">
+                    See additional <a href="https://codepen.io/olton/full/zpdVPo/">example</a> on Codepen.io.
+                </p>
+
+                <h3 id="_cube_methods">Cube methods</h3>
+                <p>
+                    Cube has the number of methods to interact with it.
+                </p>
+                <table class="table cell-border table-border options-table mt-4">
+                    <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>start()</code></td>
+                        <td>Start flashing</td>
+                    </tr>
+                    <tr>
+                        <td><code>stop()</code></td>
+                        <td>Stop flashing</td>
+                    </tr>
+                    <tr>
+                        <td><code>rule(r)</code></td>
+                        <td>Set rules</td>
+                    </tr>
+                    <tr>
+                        <td><code>rule()</code></td>
+                        <td>Get rules</td>
+                    </tr>
+                    <tr>
+                        <td><code>axis(show)</code></td>
+                        <td>Set axis visibility. If parameter is true - axis is visible</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="example">
+                    <div class="text-center">
+                        <button class="button" onclick="setRules(myDemoRules1)">Rule set #1</button>
+                        <button class="button" onclick="setRules(myDemoRules2)">Rule set #2</button>
+                        <button class="button" onclick="setRules(myDemoRules3)">Rule set #3</button>
+                    </div>
+                    <div data-role="cube" id="demo-cube-methods"></div>
+                    <div class="text-center">
+                        <button class="button" onclick="$('#demo-cube-methods').data('cube').axis(true)">Show axis</button>
+                        <button class="button" onclick="$('#demo-cube-methods').data('cube').axis(false)">Hide axis</button>
+                    </div>
+                    <script>
+                        function setRules(rules){
+                            $('#demo-cube-methods').data('cube').rule(rules)
+                        }
+                    </script>
+                </div>
+                <pre><code class="html">
+                    &lt;div class="text-center"&gt;
+                        &lt;button class="button" onclick="setRules(myDemoRules1)"&gt;Rule set #1&lt;/button&gt;
+                        &lt;button class="button" onclick="setRules(myDemoRules2)"&gt;Rule set #2&lt;/button&gt;
+                        &lt;button class="button" onclick="setRules(myDemoRules3)"&gt;Rule set #3&lt;/button&gt;
+                    &lt;/div&gt;
+
+                    &lt;div data-role="cube" id="demo-cube-methods"&gt;&lt;/div&gt;
+
+                    &lt;div class="text-center"&gt;
+                        &lt;button class="button"
+                            onclick="$('#demo-cube-methods').data('cube').axis(true)"&gt;Show axis&lt;/button&gt;
+
+                        &lt;button class="button"
+                            onclick="$('#demo-cube-methods').data('cube').axis(false)"&gt;Hide axis&lt;/button&gt;
+                    &lt;/div&gt;
+
+                    &lt;script&gt;
+                        function setRules(rules){
+                            $('#demo-cube-methods').data('cube').rule(rules)
+                        }
+                    &lt;/script&gt;
+                </code></pre>
+
+                <h3 id="_cube_customize">My cube - my rules</h3>
+                <p>
+                    You can <strong>customize</strong> <code>cube</code> component.
+                </p>
 
             </main>
         </div>

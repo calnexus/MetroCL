@@ -2058,8 +2058,12 @@ var d = new Date().getTime();
         return obj[key] !== undefined ? obj : delete obj[key];
     },
 
-    arrayDelete: function(arr, key){
-        return arr.indexOf(key) > -1 ? arr.splice(arr.indexOf(key), 1) : arr;
+    arrayDelete: function(arr, val){
+        return arr.splice(arr.indexOf(val), 1);
+    },
+
+    arrayDeleteByKey: function(arr, key){
+        return delete arr[key];
     },
 
     nvl: function(data, other){
@@ -5239,6 +5243,7 @@ var Cube = {
         this.rules = null;
         this.interval = false;
         this.running = false;
+        this.intervals = [];
 
         this._setOptionsFromDOM();
         this._create();
@@ -5437,11 +5442,11 @@ var Cube = {
             Utils.exec(o.custom, [element]);
         } else {
 
+            element.find(".cube-cell").removeClass("light");
+
             that._start();
 
-            $.each(this.rules, function(){
-                interval++;
-            });
+            interval = Utils.isObject(this.rules) ? Utils.objectLength(this.rules) : 0;
 
             this.interval = setInterval(function(){
                 that._start();
@@ -5516,9 +5521,9 @@ var Cube = {
         var that = this, element = this.element, o = this.options;
         var sides = ['left', 'right', 'top'];
 
-        this.running = true;
+        element.find(".cube-cell").removeClass("light");
 
-        if (o.offBefore === true) element.find(".cube-cell").removeClass("light");
+        this.running = true;
 
         $.each(this.rules, function(index, rule){
 
@@ -5561,7 +5566,8 @@ var Cube = {
     },
 
     _toggle: function(cell, func, time){
-        setTimeout(function(){
+        var that = this;
+        var interval = setTimeout(function(){
             cell[func === 'on' ? 'addClass' : 'removeClass']("light");
         }, this.options.flashInterval * time);
     },
@@ -5572,6 +5578,23 @@ var Cube = {
 
     stop: function(){
         this._stop();
+    },
+
+    rule: function(r){
+        if (r === undefined) {
+            return this.rules;
+        }
+
+        if (this._parseRules(r) !== true) {
+            return ;
+        }
+        this.options.rules = r;
+        this._run();
+    },
+
+    axis: function(show){
+        var func = show === true ? "show" : "hide";
+        this.element.find(".axis")[func]();
     },
 
     changeRules: function(){
