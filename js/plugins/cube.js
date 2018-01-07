@@ -147,16 +147,18 @@ var Cube = {
         this._createCssForCellSize();
 
         $.each(sides, function(){
-            var side, cell, clsSide = this, i;
+            var side, cell, i;
 
-            side = $("<div>").addClass("side " + clsSide+"-side").addClass(o.clsSide).appendTo(element);
+            side = $("<div>").addClass("side " + this+"-side").addClass(o.clsSide).appendTo(element);
 
-            if (clsSide === 'left') {side.addClass(o.clsSideLeft);}
-            if (clsSide === 'right') {side.addClass(o.clsSideRight);}
-            if (clsSide === 'top') {side.addClass(o.clsSideTop);}
+            if (this === 'left') {side.addClass(o.clsSideLeft);}
+            if (this === 'right') {side.addClass(o.clsSideRight);}
+            if (this === 'top') {side.addClass(o.clsSideTop);}
 
             for(i = 0; i < cells_count; i++) {
-                cell = $("<div>").addClass("cube-cell").addClass("cell-id-"+i).addClass(o.clsCell).appendTo(side);
+                cell = $("<div>").addClass("cube-cell").addClass("cell-id-"+(i+1)).addClass(o.clsCell);
+                cell.data("id", i + 1).data("side", this);
+                cell.appendTo(side);
                 if (o.numbers === true) {
                     cell.html(i + 1);
                 }
@@ -273,8 +275,7 @@ var Cube = {
         element.on(Metro.events.click, ".cube-cell", function(){
             if (o.cellClick === true) {
                 var cell = $(this);
-                cell.addClass("light");
-                that._off(cell, 1);
+                cell.toggleClass("light");
             }
         });
     },
@@ -298,17 +299,17 @@ var Cube = {
                 var cells_off = rule["off"] !== undefined && rule["off"][side_name] !== undefined ? rule["off"][side_name] : false;
 
                 if (cells_on !== false) $.each(cells_on, function(){
-                    var cell_index = this - 1;
+                    var cell_index = this;
                     var cell = element.find(side_class + " .cell-id-"+cell_index);
 
-                    that._on(cell, index);
+                    that._toggle(cell, 'on', index);
                 });
 
                 if (cells_off !== false) $.each(cells_off, function(){
-                    var cell_index = this - 1;
+                    var cell_index = this;
                     var cell = element.find(side_class + " .cell-id-"+cell_index);
 
-                    that._off(cell, index);
+                    that._toggle(cell, 'off', index);
                 });
             });
         });
@@ -327,20 +328,18 @@ var Cube = {
         }, o.flashInterval * index);
     },
 
-    _on: function(cell, t){
-        var that = this, element = this.element, o = this.options;
-
+    _toggle: function(cell, func, time){
         setTimeout(function(){
-            cell.addClass("light");
-        }, o.flashInterval * t);
+            cell[func === 'on' ? 'addClass' : 'removeClass']("light");
+        }, this.options.flashInterval * time);
     },
 
-    _off: function(cell, t){
-        var that = this, element = this.element, o = this.options;
+    start: function(){
+        this._start();
+    },
 
-        setTimeout(function(){
-            cell.removeClass("light");
-        }, o.flashInterval * t);
+    stop: function(){
+        this._stop();
     },
 
     changeRules: function(){
