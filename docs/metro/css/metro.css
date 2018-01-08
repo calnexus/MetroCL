@@ -26389,6 +26389,12 @@ video:-webkit-full-screen {
 .navview .navview-menu li:active {
   background-color: #b7b7b7;
 }
+.navview .navview-item {
+  position: relative;
+  display: block;
+  width: calc(100% - 24px);
+  margin: 8px 12px;
+}
 .navview.expanded {
   -webkit-transform: translateX(0);
           transform: translateX(0);
