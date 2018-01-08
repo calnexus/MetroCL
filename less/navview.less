@@ -121,11 +121,24 @@
                 }
             }
         }
+
+        li {
+            &.navview-menu-header {
+                font-size: 22px;
+                height: 32px;
+                line-height: 32px;
+                padding-left: 16px;
+                cursor: default;
+                &:hover, &:active {
+                    background-color: inherit;
+                }
+            }
+        }
     }
 }
 
 .navview {
-    .pull-button, .navview-menu li {
+    .pull-button, .navview-menu li, .navview-item .item-holder {
         &:hover {
             background-color: @navviewHoverBackground;
         }
@@ -137,30 +150,99 @@
 }
 
 .navview {
+
+    .input {
+        width: ~"calc(100% - 24px)"!important;
+        margin: 0 12px;
+    }
+
+    .item-holder {
+        position: relative;
+        display: none;
+        color: inherit;
+        height: 40px;
+        width: 48px;
+        background-color: inherit;
+        cursor: pointer;
+        text-decoration: none;
+        white-space: nowrap;
+        outline: none;
+        border: 2px solid transparent;
+        padding: 12px 14px;
+        top: 0;
+        left: 0;
+
+        & > * {
+            width: 16px;
+            height: 16px;
+            line-height: 16px;
+            font-size: 14px;
+            vertical-align: initial;
+        }
+
+        &:focus {
+            border: 2px solid @navviewFocusColor;
+        }
+    }
+
     .navview-item {
         position: relative;
         display: block;
-        width: ~"calc(100% - 24px)";
-        margin: 8px 12px;
     }
 }
 
 .navview {
-    &.expanded {
-        .translateX(0);
+    .item-separator {
+        height: 8px;
+        width: 100%;
+        display: block;
     }
+}
 
-    &.compact {
-        width: 48px;
-        .navview-menu {
-            width: 100%;
-            overflow: hidden;
-            li a {
-                padding-left: 44px;
-                padding-right: 0;
+.generate-navview-media-options(@mediaBreakpointListMobileLength);
+.generate-navview-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
+    @m: extract(@mediaBreakpointListMobile, @i);
+
+    @media screen and (min-width: @@m) {
+        .navview-margin-@{m} {
+            margin-left: 280px!important;
+        }
+        .navview-margin-compact-@{m} {
+            margin-left: 48px!important;
+        }
+
+        .navview {
+            &.expanded-@{m} {
+                .translateX(0);
+                width: 280px;
+            }
+
+            &.compact-@{m} {
+                .translateX(0);
                 width: 48px;
-                overflow: hidden;
+
+                .navview-menu {
+                    width: 100%;
+                    overflow: hidden;
+
+                    li a {
+                        padding-left: 44px;
+                        padding-right: 0;
+                        width: 48px;
+                        overflow: hidden;
+                    }
+                }
+
+                .navview-menu-header, .input {
+                    display: none!important;
+                }
+
+                .item-holder {
+                    display: block;
+                }
             }
         }
     }
+
+    .generate-navview-media-options(@name, @i + 1);
 }

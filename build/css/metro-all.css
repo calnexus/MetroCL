@@ -26381,36 +26381,275 @@ video:-webkit-full-screen {
   background-color: #1ba1e2;
   z-index: 1;
 }
+.navview .navview-menu li.navview-menu-header {
+  font-size: 22px;
+  height: 32px;
+  line-height: 32px;
+  padding-left: 16px;
+  cursor: default;
+}
+.navview .navview-menu li.navview-menu-header:hover,
+.navview .navview-menu li.navview-menu-header:active {
+  background-color: inherit;
+}
 .navview .pull-button:hover,
-.navview .navview-menu li:hover {
+.navview .navview-menu li:hover,
+.navview .navview-item .item-holder:hover {
   background-color: #cecece;
 }
 .navview .pull-button:active,
-.navview .navview-menu li:active {
+.navview .navview-menu li:active,
+.navview .navview-item .item-holder:active {
   background-color: #b7b7b7;
+}
+.navview .input {
+  width: calc(100% - 24px) !important;
+  margin: 0 12px;
+}
+.navview .item-holder {
+  position: relative;
+  display: none;
+  color: inherit;
+  height: 40px;
+  width: 48px;
+  background-color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  outline: none;
+  border: 2px solid transparent;
+  padding: 12px 14px;
+  top: 0;
+  left: 0;
+}
+.navview .item-holder > * {
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  font-size: 14px;
+  vertical-align: initial;
+}
+.navview .item-holder:focus {
+  border: 2px solid #0a0a0a;
 }
 .navview .navview-item {
   position: relative;
   display: block;
-  width: calc(100% - 24px);
-  margin: 8px 12px;
 }
-.navview.expanded {
-  -webkit-transform: translateX(0);
-          transform: translateX(0);
-}
-.navview.compact {
-  width: 48px;
-}
-.navview.compact .navview-menu {
+.navview .item-separator {
+  height: 8px;
   width: 100%;
-  overflow: hidden;
+  display: block;
 }
-.navview.compact .navview-menu li a {
-  padding-left: 44px;
-  padding-right: 0;
-  width: 48px;
-  overflow: hidden;
+@media screen and (min-width: 0) {
+  .navview-margin-fs {
+    margin-left: 280px!important;
+  }
+  .navview-margin-compact-fs {
+    margin-left: 48px!important;
+  }
+  .navview.expanded-fs {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    width: 280px;
+  }
+  .navview.compact-fs {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    width: 48px;
+  }
+  .navview.compact-fs .navview-menu {
+    width: 100%;
+    overflow: hidden;
+  }
+  .navview.compact-fs .navview-menu li a {
+    padding-left: 44px;
+    padding-right: 0;
+    width: 48px;
+    overflow: hidden;
+  }
+  .navview.compact-fs .navview-menu-header,
+  .navview.compact-fs .input {
+    display: none!important;
+  }
+  .navview.compact-fs .item-holder {
+    display: block;
+  }
+}
+@media screen and (min-width: 576px) {
+  .navview-margin-sm {
+    margin-left: 280px!important;
+  }
+  .navview-margin-compact-sm {
+    margin-left: 48px!important;
+  }
+  .navview.expanded-sm {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    width: 280px;
+  }
+  .navview.compact-sm {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    width: 48px;
+  }
+  .navview.compact-sm .navview-menu {
+    width: 100%;
+    overflow: hidden;
+  }
+  .navview.compact-sm .navview-menu li a {
+    padding-left: 44px;
+    padding-right: 0;
+    width: 48px;
+    overflow: hidden;
+  }
+  .navview.compact-sm .navview-menu-header,
+  .navview.compact-sm .input {
+    display: none!important;
+  }
+  .navview.compact-sm .item-holder {
+    display: block;
+  }
+}
+@media screen and (min-width: 768px) {
+  .navview-margin-md {
+    margin-left: 280px!important;
+  }
+  .navview-margin-compact-md {
+    margin-left: 48px!important;
+  }
+  .navview.expanded-md {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    width: 280px;
+  }
+  .navview.compact-md {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    width: 48px;
+  }
+  .navview.compact-md .navview-menu {
+    width: 100%;
+    overflow: hidden;
+  }
+  .navview.compact-md .navview-menu li a {
+    padding-left: 44px;
+    padding-right: 0;
+    width: 48px;
+    overflow: hidden;
+  }
+  .navview.compact-md .navview-menu-header,
+  .navview.compact-md .input {
+    display: none!important;
+  }
+  .navview.compact-md .item-holder {
+    display: block;
+  }
+}
+@media screen and (min-width: 992px) {
+  .navview-margin-lg {
+    margin-left: 280px!important;
+  }
+  .navview-margin-compact-lg {
+    margin-left: 48px!important;
+  }
+  .navview.expanded-lg {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    width: 280px;
+  }
+  .navview.compact-lg {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    width: 48px;
+  }
+  .navview.compact-lg .navview-menu {
+    width: 100%;
+    overflow: hidden;
+  }
+  .navview.compact-lg .navview-menu li a {
+    padding-left: 44px;
+    padding-right: 0;
+    width: 48px;
+    overflow: hidden;
+  }
+  .navview.compact-lg .navview-menu-header,
+  .navview.compact-lg .input {
+    display: none!important;
+  }
+  .navview.compact-lg .item-holder {
+    display: block;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .navview-margin-xl {
+    margin-left: 280px!important;
+  }
+  .navview-margin-compact-xl {
+    margin-left: 48px!important;
+  }
+  .navview.expanded-xl {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    width: 280px;
+  }
+  .navview.compact-xl {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    width: 48px;
+  }
+  .navview.compact-xl .navview-menu {
+    width: 100%;
+    overflow: hidden;
+  }
+  .navview.compact-xl .navview-menu li a {
+    padding-left: 44px;
+    padding-right: 0;
+    width: 48px;
+    overflow: hidden;
+  }
+  .navview.compact-xl .navview-menu-header,
+  .navview.compact-xl .input {
+    display: none!important;
+  }
+  .navview.compact-xl .item-holder {
+    display: block;
+  }
+}
+@media screen and (min-width: 1452px) {
+  .navview-margin-xxl {
+    margin-left: 280px!important;
+  }
+  .navview-margin-compact-xxl {
+    margin-left: 48px!important;
+  }
+  .navview.expanded-xxl {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    width: 280px;
+  }
+  .navview.compact-xxl {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    width: 48px;
+  }
+  .navview.compact-xxl .navview-menu {
+    width: 100%;
+    overflow: hidden;
+  }
+  .navview.compact-xxl .navview-menu li a {
+    padding-left: 44px;
+    padding-right: 0;
+    width: 48px;
+    overflow: hidden;
+  }
+  .navview.compact-xxl .navview-menu-header,
+  .navview.compact-xxl .input {
+    display: none!important;
+  }
+  .navview.compact-xxl .item-holder {
+    display: block;
+  }
 }
 .ripple {
   display: block;
