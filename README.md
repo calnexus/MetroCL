@@ -50,7 +50,6 @@ It's an independent project with its ongoing development made possible entirely 
  Documentation and Demo for V0: [metroui.org.ua/v0](https://metroui.org.ua/v0).   
 
 ### Credits
-- Metro UI CSS is a Microsoft BizSpark Startup.
 - Styles created using the [less](http://lesscss.org) preprocessor by  [Alexis Sellier](https://github.com/cloudhead)
 - preCode by Leon Sorokin [preCode](https://github.com/leeoniya/preCode.js)
 - easing functions by George McGinley Smith [easing](http://gsgd.co.uk/sandbox/jquery/easing/)
@@ -63,7 +62,7 @@ It's an independent project with its ongoing development made possible entirely 
 IE11+, Chrome, Firefox, Opera, Safari, Android, IOS
 
 # License
-Metro UI CSS has [MIT License](http://metroui.org.ua/license.html)
+Metro 4 has [MIT License](http://metroui.org.ua/license.html)
 
 ## Old version
 Metro UI CSS 3.x you can find in a branch [metrouicss-3x](https://github.com/olton/Metro-UI-CSS/tree/metrouicss-3x)     

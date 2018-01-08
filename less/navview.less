@@ -1,0 +1,157 @@
+@import (once) "include/vars";
+@import (once) "include/mixins";
+
+@navviewHoverBackground: #cecece;
+@navviewActiveBackground: #b7b7b7;
+@navviewFocusColor: #0a0a0a;
+@navviewDisabledColor: #9c9c9c;
+@navviewBackground: rgba(red(#e5e5e5), green(#e5e5e5), blue(#e5e5e5), .8);
+
+.navview {
+    display: block;
+    position: fixed;
+    width: 280px;
+    top: 0;
+    left: 0;
+    height: 100%;
+    .translateX(-100%);
+    background-color: @navviewBackground;
+    color: @dark;
+    padding: 8px 0;
+}
+
+.navview {
+    .pull-button {
+        position: relative;
+        display: block;
+        width: 48px;
+        height: 48px;
+        line-height: 48px;
+        padding: 0 12px 12px;
+        background-color: inherit;
+        margin-bottom: 8px;
+        border: 2px solid transparent;
+        outline: none;
+
+        & > * {
+            width: 16px;
+            height: 16px;
+            font-size: 16px;
+            vertical-align: initial;
+        }
+
+        &:focus {
+            border: 2px solid @navviewFocusColor;
+        }
+    }
+}
+
+.navview {
+    .navview-menu {
+        display: block;
+        position: relative;
+        list-style: none inside;
+        margin: 0;
+        padding: 0;
+    }
+
+    .navview-menu {
+        li {
+            height: 40px;
+            line-height: 40px;
+            display: block;
+            background-color: inherit;
+            cursor: pointer;
+            position: relative;
+            width: 100%;
+
+            a {
+                color: inherit;
+                height: 40px;
+                line-height: 36px;
+                padding-left: 48px;
+                padding-right: 8px;
+                display: block;
+                background-color: inherit;
+                cursor: pointer;
+                position: relative;
+                width: 100%;
+                text-decoration: none;
+                white-space: nowrap;
+                outline: none;
+                border: 2px solid transparent;
+            }
+
+            .icon {
+                width: 48px;
+                height: 40px;
+                padding: 0 14px;
+                position: absolute;
+                top: 0;
+                left: 0;
+
+                * {
+                    width: 16px;
+                    height: 16px;
+                    line-height: 16px;
+                    font-size: 14px;
+                    vertical-align: initial;
+                }
+            }
+
+            a:focus {
+                border: 2px solid @navviewFocusColor;
+            }
+
+            &.disabled {
+                color: @navviewDisabledColor!important;
+            }
+
+            &.active {
+                &::before {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    height: 24px;
+                    top: 8px;
+                    left: 0;
+                    width: 4px;
+                    background-color: @cyan;
+                    z-index: 1;
+                }
+            }
+        }
+    }
+}
+
+.navview {
+    .pull-button, .navview-menu li {
+        &:hover {
+            background-color: @navviewHoverBackground;
+        }
+
+        &:active {
+            background-color: @navviewActiveBackground;
+        }
+    }
+}
+
+.navview {
+    &.expanded {
+        .translateX(0);
+    }
+
+    &.compact {
+        width: 48px;
+        .navview-menu {
+            width: 100%;
+            overflow: hidden;
+            li a {
+                padding-left: 44px;
+                padding-right: 0;
+                width: 48px;
+                overflow: hidden;
+            }
+        }
+    }
+}
