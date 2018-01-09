@@ -574,10 +574,16 @@ var Utils = {
         })
     },
 
-    aspectRatio: function(width, a){
+    aspectRatioH: function(width, a){
         if (a === "16/9") return width * 9 / 16;
         if (a === "21/9") return width * 9 / 21;
         if (a === "4/3") return width * 3 / 4;
+    },
+
+    aspectRatioW: function(height, a){
+        if (a === "16/9") return height * 16 / 9;
+        if (a === "21/9") return height * 21 / 9;
+        if (a === "4/3") return height * 4 / 3;
     },
 
     valueInObject: function(obj, value){
@@ -595,10 +601,8 @@ var Utils = {
             style.setAttribute("media", media);
         }
 
-        // WebKit hack :(
-        //style.appendChild(document.createTextNode(""));
+        style.appendChild(document.createTextNode(""));
 
-        // Add the <style> element to the page
         document.head.appendChild(style);
 
         return style.sheet;
@@ -611,6 +615,10 @@ var Utils = {
         else if("addRule" in sheet) {
             sheet.addRule(selector, rules, index);
         }
+    },
+
+    media: function(query){
+        return window.matchMedia(query).matches
     }
 };
 

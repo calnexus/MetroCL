@@ -457,9 +457,9 @@ var Video = {
         var height;
 
         switch (o.aspectRatio) {
-            case Metro.aspectRatio.SD: height = Utils.aspectRatio(width, "4/3"); break;
-            case Metro.aspectRatio.CINEMA: height = Utils.aspectRatio(width, "21/9"); break;
-            default: height = Utils.aspectRatio(width, "16/9");
+            case Metro.aspectRatio.SD: height = Utils.aspectRatioH(width, "4/3"); break;
+            case Metro.aspectRatio.CINEMA: height = Utils.aspectRatioH(width, "21/9"); break;
+            default: height = Utils.aspectRatioH(width, "16/9");
         }
 
         player.outerHeight(height);

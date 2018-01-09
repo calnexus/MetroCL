@@ -149,7 +149,7 @@ var Carousel = {
         var medias = [];
 
         if (["16/9", "21/9", "4/3"].indexOf(o.height) > -1) {
-            height = Utils.aspectRatio(width, o.height);
+            height = Utils.aspectRatioH(width, o.height);
         } else {
             if (String(o.height).indexOf("@") > -1) {
                 medias = Utils.strToArray(o.height.substr(1), "|");
@@ -157,7 +157,7 @@ var Carousel = {
                     var media = Utils.strToArray(this, ",");
                     if (window.matchMedia(media[0]).matches) {
                         if (["16/9", "21/9", "4/3"].indexOf(media[1]) > -1) {
-                            height = Utils.aspectRatio(width, media[1]);
+                            height = Utils.aspectRatioH(width, media[1]);
                         } else {
                             height = parseInt(media[1]);
                         }

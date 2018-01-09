@@ -155,6 +155,14 @@ var Metro = {
         mousewheel: 'mousewheel.metro'
     },
 
+    media: {
+        sm: "(min-width: 576px)",
+        md: "(min-width: 768px)",
+        lg: "(min-width: 992px)",
+        xl: "(min-width: 1200px)",
+        xxl: "(min-width: 1452px)"
+    },
+
     hotkeys: [],
 
     about: function(){
@@ -2353,10 +2361,16 @@ var d = new Date().getTime();
         })
     },
 
-    aspectRatio: function(width, a){
+    aspectRatioH: function(width, a){
         if (a === "16/9") return width * 9 / 16;
         if (a === "21/9") return width * 9 / 21;
         if (a === "4/3") return width * 3 / 4;
+    },
+
+    aspectRatioW: function(height, a){
+        if (a === "16/9") return height * 16 / 9;
+        if (a === "21/9") return height * 21 / 9;
+        if (a === "4/3") return height * 4 / 3;
     },
 
     valueInObject: function(obj, value){
@@ -2374,10 +2388,8 @@ var d = new Date().getTime();
             style.setAttribute("media", media);
         }
 
-        // WebKit hack :(
-        //style.appendChild(document.createTextNode(""));
+        style.appendChild(document.createTextNode(""));
 
-        // Add the <style> element to the page
         document.head.appendChild(style);
 
         return style.sheet;
@@ -2390,6 +2402,10 @@ var d = new Date().getTime();
         else if("addRule" in sheet) {
             sheet.addRule(selector, rules, index);
         }
+    },
+
+    media: function(query){
+        return window.matchMedia(query).matches
     }
 };
 
@@ -4065,7 +4081,7 @@ var Carousel = {
         var medias = [];
 
         if (["16/9", "21/9", "4/3"].indexOf(o.height) > -1) {
-            height = Utils.aspectRatio(width, o.height);
+            height = Utils.aspectRatioH(width, o.height);
         } else {
             if (String(o.height).indexOf("@") > -1) {
                 medias = Utils.strToArray(o.height.substr(1), "|");
@@ -4073,7 +4089,7 @@ var Carousel = {
                     var media = Utils.strToArray(this, ",");
                     if (window.matchMedia(media[0]).matches) {
                         if (["16/9", "21/9", "4/3"].indexOf(media[1]) > -1) {
-                            height = Utils.aspectRatio(width, media[1]);
+                            height = Utils.aspectRatioH(width, media[1]);
                         } else {
                             height = parseInt(media[1]);
                         }
@@ -12379,9 +12395,9 @@ var Video = {
         var height;
 
         switch (o.aspectRatio) {
-            case Metro.aspectRatio.SD: height = Utils.aspectRatio(width, "4/3"); break;
-            case Metro.aspectRatio.CINEMA: height = Utils.aspectRatio(width, "21/9"); break;
-            default: height = Utils.aspectRatio(width, "16/9");
+            case Metro.aspectRatio.SD: height = Utils.aspectRatioH(width, "4/3"); break;
+            case Metro.aspectRatio.CINEMA: height = Utils.aspectRatioH(width, "21/9"); break;
+            default: height = Utils.aspectRatioH(width, "16/9");
         }
 
         player.outerHeight(height);
