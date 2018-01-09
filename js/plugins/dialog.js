@@ -162,7 +162,8 @@ var Dialog = {
         }
         setTimeout(function(){
             element.css({
-                visibility: "hidden"
+                visibility: "hidden",
+                top: "100%"
             });
             Utils.callback(callback);
         }, timeout);
