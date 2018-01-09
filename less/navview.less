@@ -21,6 +21,18 @@
 }
 
 .navview {
+    .item-separator {
+        height: 8px!important;
+        width: 100%;
+        display: block;
+        cursor: default!important;
+        &:hover, &:active {
+            background-color: inherit!important;
+        }
+    }
+}
+
+.navview {
     .pull-button {
         position: relative;
         display: block;
@@ -191,11 +203,42 @@
     }
 }
 
-.navview {
-    .item-separator {
-        height: 8px;
+.navview-expanded() {
+    .translateX(0);
+    width: 280px;
+}
+
+.navview-compact() {
+    .translateX(0);
+    width: 48px;
+
+    .navview-menu {
         width: 100%;
+        overflow: hidden;
+
+        li a {
+            padding-left: 44px;
+            padding-right: 0;
+            width: 48px;
+            overflow: hidden;
+        }
+    }
+
+    .navview-menu-header, .input {
+        display: none!important;
+    }
+
+    .item-holder {
         display: block;
+    }
+}
+
+.navview {
+    &.expanded {
+        .navview-expanded();
+    }
+    &.compact {
+        .navview-compact();
     }
 }
 
@@ -213,33 +256,11 @@
 
         .navview {
             &.expanded-@{m} {
-                .translateX(0);
-                width: 280px;
+                .navview-expanded();
             }
 
             &.compact-@{m} {
-                .translateX(0);
-                width: 48px;
-
-                .navview-menu {
-                    width: 100%;
-                    overflow: hidden;
-
-                    li a {
-                        padding-left: 44px;
-                        padding-right: 0;
-                        width: 48px;
-                        overflow: hidden;
-                    }
-                }
-
-                .navview-menu-header, .input {
-                    display: none!important;
-                }
-
-                .item-holder {
-                    display: block;
-                }
+                .navview-compact();
             }
         }
     }
