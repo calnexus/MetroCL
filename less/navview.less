@@ -65,6 +65,7 @@
         list-style: none inside;
         margin: 0;
         padding: 0;
+        width: 100%;
     }
 
     .navview-menu {
@@ -206,6 +207,24 @@
 .navview-expanded() {
     .translateX(0);
     width: 280px;
+
+    .navview-menu {
+        overflow: hidden;
+
+        li a {
+            padding-left: 44px;
+            padding-right: 0;
+            width: 100%;
+        }
+    }
+
+    .navview-menu-header, .input {
+        display: flex!important;
+    }
+
+    .item-holder {
+        display: none;
+    }
 }
 
 .navview-compact() {
@@ -213,19 +232,18 @@
     width: 48px;
 
     .navview-menu {
-        width: 100%;
         overflow: hidden;
 
         li a {
-            padding-left: 44px;
-            padding-right: 0;
+            padding-left: 48px;
+            padding-right: 8px;
             width: 48px;
             overflow: hidden;
         }
     }
 
     .navview-menu-header, .input {
-        display: none!important;
+        display: none;
     }
 
     .item-holder {

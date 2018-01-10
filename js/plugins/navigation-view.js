@@ -11,8 +11,7 @@ var NavigationView = {
     },
 
     options: {
-        compactOn: Metro.media.MD,
-        expandedOn: Metro.media.LG,
+        toggleElement: null,
         onNavigationViewCreate: Metro.noop
     },
 
@@ -47,6 +46,10 @@ var NavigationView = {
 
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
+
+        element.on(Metro.events.click, ".pull-button", function(){
+
+        });
 
         $(window).on(Metro.events.resize, function(){
 
