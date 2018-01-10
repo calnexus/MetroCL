@@ -11,6 +11,8 @@ var NavigationView = {
     },
 
     options: {
+        compactOn: Metro.media.MD,
+        expandedOn: Metro.media.LG,
         onNavigationViewCreate: Metro.noop
     },
 
@@ -43,7 +45,13 @@ var NavigationView = {
         element.addClass("navview");
     },
 
-    _createEvents: function(){},
+    _createEvents: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $(window).on(Metro.events.resize, function(){
+
+        });
+    },
 
     changeAttribute: function(attributeName){
 

@@ -156,11 +156,12 @@ var Metro = {
     },
 
     media: {
-        sm: "(min-width: 576px)",
-        md: "(min-width: 768px)",
-        lg: "(min-width: 992px)",
-        xl: "(min-width: 1200px)",
-        xxl: "(min-width: 1452px)"
+        FS: "(min-width: 0px)",
+        SM: "(min-width: 576px)",
+        MD: "(min-width: 768px)",
+        LG: "(min-width: 992px)",
+        XL: "(min-width: 1200px)",
+        XXL: "(min-width: 1452px)"
     },
 
     hotkeys: [],
@@ -8329,6 +8330,8 @@ var NavigationView = {
     },
 
     options: {
+        compactOn: Metro.media.MD,
+        expandedOn: Metro.media.LG,
         onNavigationViewCreate: Metro.noop
     },
 
@@ -8361,7 +8364,13 @@ var NavigationView = {
         element.addClass("navview");
     },
 
-    _createEvents: function(){},
+    _createEvents: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $(window).on(Metro.events.resize, function(){
+
+        });
+    },
 
     changeAttribute: function(attributeName){
 
@@ -11519,8 +11528,7 @@ var Treeview = {
         element.on(Metro.events.click, "li > .caption", function(e){
             var node = $(this).parent();
 
-            element.find("li").removeClass("current");
-            node.addClass("current");
+            that.current(node);
 
             Utils.exec(o.onNodeClick, [node, element]);
 
@@ -11546,6 +11554,8 @@ var Treeview = {
             var checked = check.is(":checked");
             var node = check.closest("li");
 
+            that.current(node);
+
             Utils.exec(o.onRadioClick, [checked, check, node, element]);
         });
 
@@ -11554,6 +11564,8 @@ var Treeview = {
             var checked = check.is(":checked");
             var node = check.closest("li");
             var checks;
+
+            that.current(node);
 
             // down
             checks = check.closest("li").find("ul input[type=checkbox]");
@@ -11591,6 +11603,17 @@ var Treeview = {
             Utils.exec(o.onCheckClick, [checked, check, node, element]);
 
         });
+    },
+
+    current: function(node){
+        var element = this.element, o = this.options;
+
+        if (node === undefined) {
+            return element.find("li.current")
+        }
+
+        element.find("li").removeClass("current");
+        node.addClass("current");
     },
 
     toggleNode: function(node){

@@ -134,8 +134,7 @@ var Treeview = {
         element.on(Metro.events.click, "li > .caption", function(e){
             var node = $(this).parent();
 
-            element.find("li").removeClass("current");
-            node.addClass("current");
+            that.current(node);
 
             Utils.exec(o.onNodeClick, [node, element]);
 
@@ -161,6 +160,8 @@ var Treeview = {
             var checked = check.is(":checked");
             var node = check.closest("li");
 
+            that.current(node);
+
             Utils.exec(o.onRadioClick, [checked, check, node, element]);
         });
 
@@ -169,6 +170,8 @@ var Treeview = {
             var checked = check.is(":checked");
             var node = check.closest("li");
             var checks;
+
+            that.current(node);
 
             // down
             checks = check.closest("li").find("ul input[type=checkbox]");
@@ -206,6 +209,17 @@ var Treeview = {
             Utils.exec(o.onCheckClick, [checked, check, node, element]);
 
         });
+    },
+
+    current: function(node){
+        var element = this.element, o = this.options;
+
+        if (node === undefined) {
+            return element.find("li.current")
+        }
+
+        element.find("li").removeClass("current");
+        node.addClass("current");
     },
 
     toggleNode: function(node){

@@ -442,6 +442,13 @@
 
                     <button class="button" onclick="
                         var tv = $('#tv_1');
+                        tv.data('treeview').addTo(tv.find('.current'), {
+                            html: '<input data-role=checkbox data-caption=Checkbox>'
+                        })
+                    ">Add checkbox</button>
+
+                    <button class="button" onclick="
+                        var tv = $('#tv_1');
                         tv.data('treeview').insertBefore(tv.find('.current'), {
                             caption: 'Before node'
                         })
@@ -477,29 +484,36 @@
                     "&gt;Add node&lt;/button&gt;
 
                     &lt;button class="button" onclick="
-                        $('#tv_1').data('treeview').addTo($($('#tv_1').find('.current')[0]), {
+                        $('#tv_1').data('treeview').addTo($('#tv_1').find('.current'), {
                             caption: 'New node'
                         })
                     "&gt;Add subnode&lt;/button&gt;
 
                     &lt;button class="button" onclick="
-                        $('#tv_1').data('treeview').insertBefore($($('#tv_1').find('.current')[0]), {
+                        var tv = $('#tv_1');
+                        tv.data('treeview').addTo(tv.find('.current'), {
+                            html: '&lt;input data-role=checkbox data-caption=Checkbox&gt;'
+                        })
+                    "&gt;Add checkbox&lt;/button&gt;
+
+                    &lt;button class="button" onclick="
+                        $('#tv_1').data('treeview').insertBefore($('#tv_1').find('.current'), {
                             caption: 'Before node'
                         })
                     "&gt;Insert before&lt;/button&gt;
 
                     &lt;button class="button" onclick="
-                        $('#tv_1').data('treeview').insertAfter($($('#tv_1').find('.current')[0]), {
+                        $('#tv_1').data('treeview').insertAfter($('#tv_1').find('.current'), {
                             caption: 'After node'
                         })
                     "&gt;Insert after&lt;/button&gt;
 
                     &lt;button class="button" onclick="
-                        $('#tv_1').data('treeview').del($($('#tv_1').find('.current')[0]))
+                        $('#tv_1').data('treeview').del($('#tv_1').find('.current'))
                     "&gt;Delete&lt;/button&gt;
 
                     &lt;button class="button" onclick="
-                        $('#tv_1').data('treeview').clean($($('#tv_1').find('.current')[0]))
+                        $('#tv_1').data('treeview').clean($('#tv_1').find('.current'))
                     "&gt;Clear&lt;/button&gt;
 
                     &lt;hr&gt;

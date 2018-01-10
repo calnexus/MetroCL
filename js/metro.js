@@ -138,11 +138,12 @@ var Metro = {
     },
 
     media: {
-        sm: "(min-width: 576px)",
-        md: "(min-width: 768px)",
-        lg: "(min-width: 992px)",
-        xl: "(min-width: 1200px)",
-        xxl: "(min-width: 1452px)"
+        FS: "(min-width: 0px)",
+        SM: "(min-width: 576px)",
+        MD: "(min-width: 768px)",
+        LG: "(min-width: 992px)",
+        XL: "(min-width: 1200px)",
+        XXL: "(min-width: 1452px)"
     },
 
     hotkeys: [],
