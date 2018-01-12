@@ -3,6 +3,8 @@ var NavigationView = {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
         this.element = $(elem);
+        this.pane = null;
+        this.content = null;
 
         this._setOptionsFromDOM();
         this._create();
@@ -11,7 +13,8 @@ var NavigationView = {
     },
 
     options: {
-        toggleElement: null,
+        state: "wide", //compact
+        expand: "md",
         onNavigationViewCreate: Metro.noop
     },
 
@@ -42,17 +45,17 @@ var NavigationView = {
         var that = this, element = this.element, o = this.options;
 
         element.addClass("navview");
+
+        this.pane = element.children(".navview-pane").length > 0 ? element.children(".navview-pane") : null;
+        this.content = element.children(".navview-content").length > 0 ? element.children(".navview-content") : null;
     },
 
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
+        var pane = this.pane, content = this.content;
 
         element.on(Metro.events.click, ".pull-button", function(){
-
-        });
-
-        $(window).on(Metro.events.resize, function(){
-
+            console.log(pane.width());
         });
     },
 
@@ -61,4 +64,4 @@ var NavigationView = {
     }
 };
 
-Metro.plugin('navigationView', NavigationView);
+Metro.plugin('navview', NavigationView);

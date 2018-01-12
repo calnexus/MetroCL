@@ -1,7 +1,7 @@
 @import (once) "vars";
 
 .debug() {
-    outline: 1px dotted red;
+    outline: 1px dotted red!important;
     min-width: 1px;
     min-height: 1px;
 }
@@ -217,7 +217,7 @@
     transform+_: skewY(@y);
 }
 .translate3d(@x: 0, @y: 0, @z: 0) {
-    transform+_: translate(@x, @y, @z);
+    transform+_: translate3d(@x, @y, @z);
 }
 
 .transformOrigin(@origin) {

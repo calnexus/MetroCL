@@ -1,64 +1,73 @@
 @import (once) "include/vars";
 @import (once) "include/mixins";
 
-@navviewHoverBackground: #cecece;
-@navviewActiveBackground: #b7b7b7;
-@navviewFocusColor: #0a0a0a;
-@navviewDisabledColor: #9c9c9c;
-@navviewBackground: rgba(red(#e5e5e5), green(#e5e5e5), blue(#e5e5e5), .8);
+@navviewPaneWidth: 280px;
+@navviewPaneWidthCompact: 48px;
+@navviewPaneItemHeight: 40px;
+
+@navviewPaneBackground: #e5e5e5;
+@navviewPaneItemHover: #cecece;
+@navviewPaneItemActive: #b7b7b7;
+@navviewPaneItemFocus: #0a0a0a;
+@navviewPaneItemDisabled: #9c9c9c;
+
 
 .navview {
     display: block;
-    position: fixed;
-    width: 280px;
-    top: 0;
-    left: 0;
-    height: 100%;
-    .translateX(-100%);
-    background-color: @navviewBackground;
+    position: relative;
+    background-color: @white;
     color: @dark;
-    padding: 8px 0;
+    overflow: hidden;
 }
 
 .navview {
-    .item-separator {
-        height: 8px!important;
-        width: 100%;
+
+    .navview-pane, .navview-content {
         display: block;
-        cursor: default!important;
-        &:hover, &:active {
-            background-color: inherit!important;
+        transition: all .1s linear;
+    }
+
+    .navview-pane {
+        flex-shrink: 0;
+        flex-grow: 0;
+        width: @navviewPaneWidthCompact;
+        background-color: @navviewPaneBackground;
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        .translate3d(-100%);
+
+        &.open {
+            .translate3d(0);
         }
+    }
+
+    .navview-content {
+        width: 100%;
+        position: relative;
     }
 }
 
 .navview {
-    .pull-button {
+    .pull-button, .holder {
         position: relative;
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 48px;
         height: 48px;
-        line-height: 48px;
-        padding: 0 12px 12px;
         background-color: inherit;
         margin-bottom: 8px;
         border: 2px solid transparent;
         outline: none;
-
-        & > * {
-            width: 16px;
-            height: 16px;
-            font-size: 16px;
-            vertical-align: initial;
-        }
-
-        &:focus {
-            border: 2px solid @navviewFocusColor;
-        }
+        cursor: pointer;
     }
-}
 
-.navview {
+    .holder {
+        height: 40px;
+    }
+
     .navview-menu {
         display: block;
         position: relative;
@@ -66,60 +75,56 @@
         margin: 0;
         padding: 0;
         width: 100%;
-    }
 
-    .navview-menu {
         li {
-            height: 40px;
-            line-height: 40px;
             display: block;
-            background-color: inherit;
-            cursor: pointer;
             position: relative;
-            width: 100%;
+            height: @navviewPaneItemHeight;
+        }
 
+        li {
             a {
-                color: inherit;
-                height: 40px;
-                line-height: 36px;
-                padding-left: 48px;
-                padding-right: 8px;
-                display: block;
-                background-color: inherit;
-                cursor: pointer;
+                display: flex;
+                align-items: center;
                 position: relative;
-                width: 100%;
+                height: 100%;
+                line-height: @navviewPaneItemHeight;
                 text-decoration: none;
+                color: inherit;
                 white-space: nowrap;
-                outline: none;
                 border: 2px solid transparent;
             }
+        }
 
-            .icon {
-                width: 48px;
-                height: 40px;
-                padding: 0 14px;
-                position: absolute;
-                top: 0;
-                left: 0;
+        .icon {
+            width: 48px;
+            height: 40px;
+            display: block;
+            text-align: center;
+        }
 
-                * {
-                    width: 16px;
-                    height: 16px;
-                    line-height: 16px;
-                    font-size: 14px;
-                    vertical-align: initial;
-                }
-            }
+        .caption {
+            padding-left: 48px;
+            white-space: nowrap;
+            display: none;
+        }
 
-            a:focus {
-                border: 2px solid @navviewFocusColor;
-            }
+        .icon + .caption {
+            padding-left: 0;
+        }
 
-            &.disabled {
-                color: @navviewDisabledColor!important;
-            }
+        .item-header {
+            font-size: 22px;
+            height: 32px;
+            line-height: 32px;
+            padding-left: 16px;
+            cursor: default;
+            background-color: transparent;
+            white-space: nowrap;
+            display: none;
+        }
 
+        li {
             &.active {
                 &::before {
                     content: "";
@@ -133,130 +138,98 @@
                     z-index: 1;
                 }
             }
-        }
 
-        li {
-            &.navview-menu-header {
-                font-size: 22px;
-                height: 32px;
-                line-height: 32px;
-                padding-left: 16px;
-                cursor: default;
-                &:hover, &:active {
-                    background-color: inherit;
+            &.disabled {
+                color: @navviewPaneItemDisabled!important;
+
+                img {
+                    opacity: .5;
                 }
             }
         }
     }
-}
 
-.navview {
-    .pull-button, .navview-menu li, .navview-item .item-holder {
-        &:hover {
-            background-color: @navviewHoverBackground;
-        }
-
-        &:active {
-            background-color: @navviewActiveBackground;
-        }
-    }
-}
-
-.navview {
-
-    .input {
-        width: ~"calc(100% - 24px)"!important;
-        margin: 0 12px;
-    }
-
-    .item-holder {
-        position: relative;
-        display: none;
-        color: inherit;
-        height: 40px;
-        width: 48px;
-        background-color: inherit;
-        cursor: pointer;
-        text-decoration: none;
-        white-space: nowrap;
-        outline: none;
-        border: 2px solid transparent;
-        padding: 12px 14px;
-        top: 0;
-        left: 0;
-
+    .pull-button, .navview-menu .icon, .suggest-box .holder {
         & > * {
             width: 16px;
             height: 16px;
             line-height: 16px;
-            font-size: 14px;
+            font-size: 16px;
             vertical-align: initial;
+        }
+    }
+
+    .pull-button, .holder, .navview-menu li a {
+
+        &:hover {
+            background-color: @navviewPaneItemHover;
+        }
+
+        &:active {
+            background-color: @navviewPaneItemActive;
         }
 
         &:focus {
-            border: 2px solid @navviewFocusColor;
+            border: 2px solid @navviewPaneItemFocus;
         }
     }
 
-    .navview-item {
-        position: relative;
+    .suggest-box {
         display: block;
-    }
-}
 
-.navview-expanded() {
-    .translateX(0);
-    width: 280px;
-
-    .navview-menu {
-        overflow: hidden;
-
-        li a {
-            padding-left: 44px;
-            padding-right: 0;
-            width: 100%;
+        .input {
+            display: none;
+            width: ~"calc(100% - 24px)"!important;
+            margin: 0 12px;
         }
     }
 
-    .navview-menu-header, .input {
-        display: flex!important;
-    }
-
-    .item-holder {
-        display: none;
-    }
-}
-
-.navview-compact() {
-    .translateX(0);
-    width: 48px;
-
-    .navview-menu {
-        overflow: hidden;
-
-        li a {
-            padding-left: 48px;
-            padding-right: 8px;
-            width: 48px;
-            overflow: hidden;
-        }
-    }
-
-    .navview-menu-header, .input {
-        display: none;
-    }
-
-    .item-holder {
+    .item-separator {
+        height: 16px!important;
+        width: 100%;
         display: block;
+        background-color: transparent;
+        cursor: default;
     }
 }
 
-.navview {
-    &.expanded {
-        .navview-expanded();
+.navview-compact(){
+    .navview-pane {
+        width: @navviewPaneWidthCompact;
+        .translate3d(0);
     }
-    &.compact {
-        .navview-compact();
+    .navview-content {
+        margin-left: @navviewPaneWidthCompact;
+    }
+}
+
+.navview-expanded(){
+    .navview-pane {
+        width: @navviewPaneWidth;
+        .translate3d(0);
+
+        .navview-menu {
+            .caption {
+                display: block;
+            }
+        }
+
+        .suggest-box {
+            .input {
+                display: flex;
+            }
+        }
+
+        .item-header {
+            display: block;
+        }
+
+        .holder {
+            display: none;
+        }
+    }
+    .navview-content {
+        margin-left: @navviewPaneWidth;
     }
 }
 
@@ -265,20 +238,16 @@
     @m: extract(@mediaBreakpointListMobile, @i);
 
     @media screen and (min-width: @@m) {
-        .navview-margin-@{m} {
-            margin-left: 280px!important;
-        }
-        .navview-margin-compact-@{m} {
-            margin-left: 48px!important;
-        }
+
+        .navview-margin-@{m} {margin-left: @navviewPaneWidth;}
+        .navview-margin-compact-@{m} {margin-left: @navviewPaneWidthCompact;}
 
         .navview {
-            &.expanded-@{m} {
-                .navview-expanded();
-            }
-
             &.compact-@{m} {
                 .navview-compact();
+            }
+            &.expanded-@{m} {
+                .navview-expanded();
             }
         }
     }

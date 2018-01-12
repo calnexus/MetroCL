@@ -2,9 +2,9 @@ if (typeof jQuery === 'undefined') {
     throw new Error('Metro\'s JavaScript requires jQuery');
 }
 
-window.canObserveMutation = 'MutationObserver' in window;
+// window.canObserveMutation = 'MutationObserver' in window;
 
-if (window.canObserveMutation === false) {
+if ('MutationObserver' in window === false) {
     throw new Error('Metro 4 requires MutationObserver. Your browser does not support MutationObserver. Please use polyfill, example: //cdn.jsdelivr.net/g/mutationobserver/ or other.');
 }
 
@@ -40,6 +40,8 @@ if (window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS === undefined) {window.
 if (window.METRO_HOTKEYS_FILTER_TEXT_INPUTS === undefined) {window.METRO_HOTKEYS_FILTER_TEXT_INPUTS = true;}
 if (window.METRO_HOTKEYS_BUBBLE_UP === undefined) {window.METRO_HOTKEYS_BUBBLE_UP = false;}
 if (window.METRO_THROWS === undefined) {window.METRO_THROWS = true;}
+
+window.METRO_MEDIA = [];
 
 if ( typeof Object.create !== 'function' ) {
     Object.create = function (o) {
@@ -144,6 +146,15 @@ var Metro = {
         LG: "(min-width: 992px)",
         XL: "(min-width: 1200px)",
         XXL: "(min-width: 1452px)"
+    },
+
+    media_mode: {
+        FS: "fs",
+        SM: "sm",
+        MD: "md",
+        LG: "lg",
+        XL: "xl",
+        XXL: "xxl"
     },
 
     hotkeys: [],
@@ -323,3 +334,11 @@ var Metro = {
 
 window['Metro'] = Metro;
 
+$(window).on(Metro.events.resize, function(){
+    window.METRO_MEDIA = [];
+    $.each(Metro.media, function(key, query){
+        if (Utils.media(query)) {
+            METRO_MEDIA.push(Metro.media_mode[key]);
+        }
+    })
+});

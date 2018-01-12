@@ -457,6 +457,22 @@ var Utils = {
         return this.getStyle(el).getPropertyValue(property);
     },
 
+    getTransformMatrix: function(el, returnArray){
+        var computedMatrix = this.getStyleOne(el, "transform");
+        var a = computedMatrix
+            .replace("matrix(", '')
+            .slice(0, -1)
+            .split(',');
+        return returnArray !== true ? {
+            a: a[0],
+            b: a[1],
+            c: a[2],
+            d: a[3],
+            tx: a[4],
+            ty: a[5]
+        } : a;
+    },
+
     computedRgbToHex: function(rgb){
         var a = rgb.replace(/[^\d,]/g, '').split(',');
         var result = "#";

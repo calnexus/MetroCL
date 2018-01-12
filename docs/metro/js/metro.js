@@ -20,9 +20,9 @@ if (typeof jQuery === 'undefined') {
     throw new Error('Metro\'s JavaScript requires jQuery');
 }
 
-window.canObserveMutation = 'MutationObserver' in window;
+// window.canObserveMutation = 'MutationObserver' in window;
 
-if (window.canObserveMutation === false) {
+if ('MutationObserver' in window === false) {
     throw new Error('Metro 4 requires MutationObserver. Your browser does not support MutationObserver. Please use polyfill, example: //cdn.jsdelivr.net/g/mutationobserver/ or other.');
 }
 
@@ -58,6 +58,8 @@ if (window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS === undefined) {window.
 if (window.METRO_HOTKEYS_FILTER_TEXT_INPUTS === undefined) {window.METRO_HOTKEYS_FILTER_TEXT_INPUTS = true;}
 if (window.METRO_HOTKEYS_BUBBLE_UP === undefined) {window.METRO_HOTKEYS_BUBBLE_UP = false;}
 if (window.METRO_THROWS === undefined) {window.METRO_THROWS = true;}
+
+window.METRO_MEDIA = [];
 
 if ( typeof Object.create !== 'function' ) {
     Object.create = function (o) {
@@ -162,6 +164,15 @@ var Metro = {
         LG: "(min-width: 992px)",
         XL: "(min-width: 1200px)",
         XXL: "(min-width: 1452px)"
+    },
+
+    media_mode: {
+        FS: "fs",
+        SM: "sm",
+        MD: "md",
+        LG: "lg",
+        XL: "xl",
+        XXL: "xxl"
     },
 
     hotkeys: [],
@@ -341,6 +352,14 @@ var Metro = {
 
 window['Metro'] = Metro;
 
+$(window).on(Metro.events.resize, function(){
+    window.METRO_MEDIA = [];
+    $.each(Metro.media, function(key, query){
+        if (Utils.media(query)) {
+            METRO_MEDIA.push(Metro.media_mode[key]);
+        }
+    })
+});
 
 // Source: js/utils/animation.js
 var Animation = {
@@ -2243,6 +2262,22 @@ var d = new Date().getTime();
 
     getStyleOne: function(el, property){
         return this.getStyle(el).getPropertyValue(property);
+    },
+
+    getTransformMatrix: function(el, returnArray){
+        var computedMatrix = this.getStyleOne(el, "transform");
+        var a = computedMatrix
+            .replace("matrix(", '')
+            .slice(0, -1)
+            .split(',');
+        return returnArray !== true ? {
+            a: a[0],
+            b: a[1],
+            c: a[2],
+            d: a[3],
+            tx: a[4],
+            ty: a[5]
+        } : a;
     },
 
     computedRgbToHex: function(rgb){
@@ -8316,12 +8351,14 @@ var Master = {
 };
 
 Metro.plugin('master', Master);
-// Source: js/plugins/navigation-view.js
+// Source: js/plugins/navview.js
 var NavigationView = {
     init: function( options, elem ) {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
         this.element = $(elem);
+        this.pane = null;
+        this.content = null;
 
         this._setOptionsFromDOM();
         this._create();
@@ -8330,7 +8367,8 @@ var NavigationView = {
     },
 
     options: {
-        toggleElement: null,
+        state: "wide", //compact
+        expand: "md",
         onNavigationViewCreate: Metro.noop
     },
 
@@ -8361,17 +8399,17 @@ var NavigationView = {
         var that = this, element = this.element, o = this.options;
 
         element.addClass("navview");
+
+        this.pane = element.children(".navview-pane").length > 0 ? element.children(".navview-pane") : null;
+        this.content = element.children(".navview-content").length > 0 ? element.children(".navview-content") : null;
     },
 
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
+        var pane = this.pane, content = this.content;
 
         element.on(Metro.events.click, ".pull-button", function(){
-
-        });
-
-        $(window).on(Metro.events.resize, function(){
-
+            console.log(pane.width());
         });
     },
 
@@ -8380,7 +8418,7 @@ var NavigationView = {
     }
 };
 
-Metro.plugin('navigationView', NavigationView);
+Metro.plugin('navview', NavigationView);
 // Source: js/plugins/notify.js
 var Notify = {
 
