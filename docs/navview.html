@@ -69,7 +69,7 @@
                     This control implements the nav pane, or hamburger menu, pattern and automatically adapts the pane's display mode to different window sizes.
                 </p>
 
-                <div data-role="navview" class="navview mt-4 compact-md expanded-lg" style="height: 500px;">
+                <div data-role="navview" data-compact="md" data-expanded="lg" data-toggle="#pane-toggle" class="mt-4" style="height: 500px;">
                     <nav class="navview-pane">
                         <button class="pull-button">
                             <span class="mif-menu"></span>
@@ -77,7 +77,7 @@
 
                         <div class="suggest-box">
                             <input data-role="search" data-clear-button="false">
-                            <button class="holder debug">
+                            <button class="holder">
                                 <span class="mif-search"></span>
                             </button>
                         </div>
@@ -130,7 +130,8 @@
                         </nav>
                     </nav>
 
-                    <div class="navview-content p-4">
+                    <div class="navview-content pl-4 pr-4">
+                        <button id="pane-toggle" class="button square float-right d-none-md"><span class="mif-menu" ></span></button>
                         <h1>What is?</h1>
                         <p>
                             Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -138,41 +139,6 @@
                         </p>
                     </div>
                 </div>
-
-
-<!--
-                <div class="example p-0 no-overflow" style="height: 500px;">
-                    <nav data-role="navigationView" data-compact-mode="md" data-expanded-mode="lg" data-content-element="#navview-content-1" class="pos-absolute">
-                        <button class="pull-button">
-                            <span class="default-icon-menu"></span>
-                        </button>
-                        <div class="navview-item">
-                            <a href="#" class="item-holder"><span class="default-icon-search"></span></a>
-                            <input data-role="search" data-clear-button="false">
-                        </div>
-                        <div class="item-separator"></div>
-                        <ul class="navview-menu">
-                            <li class="navview-menu-header">Header</li>
-                            <li><a href="#"><span class="icon"><span class="mif-headphones"></span></span>Navigation item</a></li>
-                            <li><a href="#"><span class="icon"><span class="mif-compass"></span></span>Navigation item</a></li>
-                            <li class="disabled"><a><span class="icon"><span class="mif-library"></span></span>Navigation item</a></li>
-                            <li class="item-separator"></li>
-                            <li class="navview-menu-header">Header</li>
-                            <li class="active"><a href="#"><span class="icon"><span class="mif-music"></span></span>Navigation item</a></li>
-                            <li><a href="#"><span class="icon"><span class="mif-apps"></span></span>Navigation item</a></li>
-                            <li><a href="#"><span class="icon"><img src="images/location.png"></span>Navigation item</a></li>
-                        </ul>
-                    </nav>
-                    <div id="navview-content-1" class="h-100 p-4">
-                        <h1>What is?</h1>
-                        <p>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                        </p>
-                    </div>
-                </div>
--->
-
 
             </main>
         </div>

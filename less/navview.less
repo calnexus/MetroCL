@@ -28,15 +28,14 @@
     }
 
     .navview-pane {
-        flex-shrink: 0;
-        flex-grow: 0;
-        width: @navviewPaneWidthCompact;
+        width: @navviewPaneWidth;
         background-color: @navviewPaneBackground;
         position: absolute;
         left: 0;
         top: 0;
         height: 100%;
         .translate3d(-100%);
+        z-index: 1;
 
         &.open {
             .translate3d(0);
@@ -44,7 +43,6 @@
     }
 
     .navview-content {
-        width: 100%;
         position: relative;
     }
 }
@@ -66,6 +64,7 @@
 
     .holder {
         height: 40px;
+        display: none;
     }
 
     .navview-menu {
@@ -106,7 +105,7 @@
         .caption {
             padding-left: 48px;
             white-space: nowrap;
-            display: none;
+            display: block;
         }
 
         .icon + .caption {
@@ -121,7 +120,7 @@
             cursor: default;
             background-color: transparent;
             white-space: nowrap;
-            display: none;
+            display: block;
         }
 
         li {
@@ -177,8 +176,8 @@
     .suggest-box {
         display: block;
 
-        .input {
-            display: none;
+        .input, .select, .textarea {
+            display: flex;
             width: ~"calc(100% - 24px)"!important;
             margin: 0 12px;
         }
@@ -193,10 +192,64 @@
     }
 }
 
+.navview {
+    &.expand {
+        .navview-pane {
+            width: @navviewPaneWidth!important;
+
+            .navview-menu .caption, .item-header {
+                display: block!important;
+            }
+
+            .suggest-box {
+                .input, .select, .textarea {
+                    display: flex!important;
+                }
+            }
+
+            .holder {
+                display: none!important;
+            }
+        }
+    }
+
+    &.compacted {
+        .navview-pane {
+            width: @navviewPaneWidthCompact!important;
+            .translate3d(0);
+
+            .navview-menu .caption, .suggest-box .input, .suggest-box .select, .suggest-box .textarea, .item-header {
+                display: none!important;
+            }
+
+            .holder {
+                display: block!important;
+            }
+        }
+        .navview-content {
+            margin-left: @navviewPaneWidthCompact!important;
+        }
+    }
+}
+
 .navview-compact(){
     .navview-pane {
         width: @navviewPaneWidthCompact;
         .translate3d(0);
+
+        .navview-menu .caption, .item-header {
+            display: none;
+        }
+
+        .suggest-box {
+            .input, .select, .textarea {
+                display: none;
+            }
+        }
+
+        .holder {
+            display: block;
+        }
     }
     .navview-content {
         margin-left: @navviewPaneWidthCompact;
@@ -208,20 +261,14 @@
         width: @navviewPaneWidth;
         .translate3d(0);
 
-        .navview-menu {
-            .caption {
-                display: block;
-            }
+        .navview-menu .caption, .item-header {
+            display: block;
         }
 
         .suggest-box {
-            .input {
+            .input, .select, .textarea {
                 display: flex;
             }
-        }
-
-        .item-header {
-            display: block;
         }
 
         .holder {
