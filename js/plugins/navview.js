@@ -68,6 +68,11 @@ var NavigationView = {
         element.on(Metro.events.click, ".pull-button, .holder", function(){
             var pane_compact = pane.width() < 280;
 
+            if (that.pane.hasClass("open")) {
+                that.close();
+                return ;
+            }
+
             if ((pane_compact || element.hasClass("expand")) && !element.hasClass("compacted")) {
                 element.toggleClass("expand");
                 return ;
@@ -87,8 +92,14 @@ var NavigationView = {
         }
 
         $(window).on(Metro.events.resize, function(){
+
             element.removeClass("expand");
             that.pane.removeClass("open");
+
+            if ($(this).width() <= Metro.media_sizes[String(o.compact).toUpperCase()]) {
+                element.removeClass("compacted");
+            }
+
         })
     },
 

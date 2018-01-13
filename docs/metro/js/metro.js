@@ -157,13 +157,22 @@ var Metro = {
         mousewheel: 'mousewheel.metro'
     },
 
-    media: {
+    media_queries: {
         FS: "(min-width: 0px)",
         SM: "(min-width: 576px)",
         MD: "(min-width: 768px)",
         LG: "(min-width: 992px)",
         XL: "(min-width: 1200px)",
         XXL: "(min-width: 1452px)"
+    },
+
+    media_sizes: {
+        FS: 0,
+        SM: 576,
+        MD: 768,
+        LG: 992,
+        XL: 1200,
+        XXL: 1452
     },
 
     media_mode: {
@@ -354,7 +363,7 @@ window['Metro'] = Metro;
 
 $(window).on(Metro.events.resize, function(){
     window.METRO_MEDIA = [];
-    $.each(Metro.media, function(key, query){
+    $.each(Metro.media_queries, function(key, query){
         if (Utils.media(query)) {
             METRO_MEDIA.push(Metro.media_mode[key]);
         }
@@ -8422,6 +8431,11 @@ var NavigationView = {
         element.on(Metro.events.click, ".pull-button, .holder", function(){
             var pane_compact = pane.width() < 280;
 
+            if (that.pane.hasClass("open")) {
+                that.close();
+                return ;
+            }
+
             if ((pane_compact || element.hasClass("expand")) && !element.hasClass("compacted")) {
                 element.toggleClass("expand");
                 return ;
@@ -8441,8 +8455,14 @@ var NavigationView = {
         }
 
         $(window).on(Metro.events.resize, function(){
+
             element.removeClass("expand");
             that.pane.removeClass("open");
+
+            if ($(this).width() <= Metro.media_sizes[String(o.compact).toUpperCase()]) {
+                element.removeClass("compacted");
+            }
+
         })
     },
 
