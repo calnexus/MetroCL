@@ -1,0 +1,190 @@
+var Rating = {
+    init: function( options, elem ) {
+        this.options = $.extend( {}, this.options, options );
+        this.elem  = elem;
+        this.element = $(elem);
+        this.value = 0;
+        this.values = [];
+        this.rate = 0;
+        this.rating = null;
+
+        this._setOptionsFromDOM();
+        this._create();
+
+        return this;
+    },
+
+    options: {
+        static: false,
+        title: null,
+        value: 0,
+        values: null,
+        message: "",
+        stars: 5,
+        starColor: null,
+        staredColor: null,
+        roundFunc: "round", // ceil, floor, round
+        clsRating: "",
+        clsTitle: "",
+        clsStars: "",
+        clsResult: "",
+        onStarClick: Metro.noop,
+        onRatingCreate: Metro.noop
+    },
+
+    _setOptionsFromDOM: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = JSON.parse(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+    },
+
+    _create: function(){
+        var that = this, element = this.element, o = this.options;
+        var i;
+
+        if (o.values !== null) {
+            if (Array.isArray(o.values)) {
+                this.values = o.values;
+            } else if (typeof o.values === "string") {
+                this.values = Utils.strToArray(o.values)
+            }
+        } else {
+            for(i = 0; i < o.stars; i++) {
+                this.values.push(i);
+            }
+        }
+
+        this.value = o.value > 0 ? Math[o.roundFunc](o.value) : 0;
+
+        if (o.starColor !== null) {
+            if (!Utils.isColor(o.starColor)) {
+                o.starColor = Utils.color(o.starColor);
+            }
+        }
+
+        if (o.staredColor !== null) {
+            if (!Utils.isColor(o.staredColor)) {
+                o.staredColor = Utils.color(o.staredColor);
+            }
+        }
+
+        this._createRating();
+        this._createEvents();
+
+        Utils.exec(o.onRatingCreate, [element]);
+    },
+
+    _createRating: function(){
+        var that = this, element = this.element, o = this.options;
+
+        var prev = element.prev();
+        var parent = element.parent();
+        var id = Utils.elementId("rating");
+        var rating = $("<div>").addClass("rating " + String(element[0].className).replace("d-block", "d-flex")).addClass(o.clsRating);
+        var i, stars, result, li;
+        var sheet = Metro.sheet;
+
+        rating.attr("id", id);
+
+        if (prev.length === 0) {
+            parent.prepend(rating);
+        } else {
+            rating.insertAfter(prev);
+        }
+
+        element.appendTo(rating);
+
+        stars = $("<ul>").addClass("stars").addClass(o.clsStars).appendTo(rating);
+
+        for(i = 0; i < o.stars; i++) {
+            li = $("<li>").data("value", this.values[i]).appendTo(stars);
+            if (i < this.value) {
+                li.addClass("on");
+            }
+        }
+
+        result = $("<span>").addClass("result").addClass(o.clsResult).appendTo(rating);
+
+        result.html(o.message);
+
+        if (o.starColor !== null) {
+            Utils.addCssRule(sheet, "#" + id + " .stars:hover li", "color: " + o.starColor + ";");
+        }
+        if (o.staredColor !== null) {
+            Utils.addCssRule(sheet, "#"+id+" .stars li.on", "color: "+o.staredColor+";");
+        }
+
+        if (o.title !== null) {
+            var title = $("<span>").addClass("title").addClass(o.clsTitle).html(o.title);
+            rating.prepend(title);
+        }
+
+        this.rating = rating;
+    },
+
+    _createEvents: function(){
+        var that = this, element = this.element, o = this.options;
+        var rating = this.rating;
+
+        rating.on(Metro.events.click, ".stars li", function(){
+
+            if (o.static === true) {
+                return ;
+            }
+
+            var star = $(this);
+            var value = star.data("value");
+            element.val(value).trigger("change");
+            star.addClass("on");
+            star.prevAll().addClass("on");
+            star.nextAll().removeClass("on");
+            Utils.exec(o.onStarClick, [star.data("value"), star, element]);
+        });
+    },
+
+    val: function(v){
+        var that = this, element = this.element, o = this.options;
+        var rating = this.rating, i;
+
+        if (v === undefined) {
+            return this.value;
+        }
+
+        this.value = v > 0 ? Math[o.roundFunc](v) : 0;
+
+        console.log(v, this.value);
+
+        var stars = rating.find(".stars li").removeClass("on");
+        $.each(stars, function(){
+            var star = $(this);
+            if (star.data("value") < that.value) {
+                star.addClass("on");
+            }
+        });
+
+        return this;
+    },
+
+    msg: function(m){
+        var rating = this.rating;
+        if (m ===  undefined) {
+            return ;
+        }
+        rating.find(".result").html(m);
+        return this;
+    },
+
+    changeAttribute: function(attributeName){
+
+    }
+};
+
+Metro.plugin('rating', Rating);

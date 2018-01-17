@@ -136,7 +136,7 @@ var Cube = {
     _createCube: function(){
         var that = this, element = this.element, o = this.options;
         var sides = ['left', 'right', 'top'];
-        var id = "cube-"+(new Date()).getTime();
+        var id = Utils.elementId("cube");
         var cells_count = Math.pow(o.cells, 2);
 
         element.addClass("cube").addClass(o.clsCube);
