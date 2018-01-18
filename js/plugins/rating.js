@@ -33,7 +33,7 @@ var Rating = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -47,7 +47,7 @@ var Rating = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var i;
 
         if (o.values !== null) {
@@ -83,7 +83,7 @@ var Rating = {
     },
 
     _createRating: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         var prev = element.prev();
         var parent = element.parent();
@@ -91,6 +91,8 @@ var Rating = {
         var rating = $("<div>").addClass("rating " + String(element[0].className).replace("d-block", "d-flex")).addClass(o.clsRating);
         var i, stars, result, li;
         var sheet = Metro.sheet;
+
+        element.val(this.value);
 
         rating.attr("id", id);
 
@@ -135,7 +137,7 @@ var Rating = {
     },
 
     _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var rating = this.rating;
 
         rating.on(Metro.events.click, ".stars li", function(){
@@ -161,13 +163,14 @@ var Rating = {
 
     val: function(v){
         var that = this, element = this.element, o = this.options;
-        var rating = this.rating, i;
+        var rating = this.rating;
 
         if (v === undefined) {
             return this.value;
         }
 
         this.value = v > 0 ? Math[o.roundFunc](v) : 0;
+        element.val(this.value).trigger("change");
 
         var stars = rating.find(".stars li").removeClass("on");
         $.each(stars, function(){
@@ -189,16 +192,36 @@ var Rating = {
         return this;
     },
 
+    static: function (mode) {
+        var o = this.options;
+        var rating = this.rating;
+
+        o.static = mode;
+
+        if (mode === true) {
+            rating.addClass("static");
+        } else {
+            rating.removeClass("static");
+        }
+    },
+
     changeAttributeValue: function(a){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
         var value = a === "value" ? element.val() : element.attr("data-value");
         this.val(value);
     },
 
     changeAttributeMessage: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
         var message = element.attr("data-message");
         this.msg(message);
+    },
+
+    changeAttributeStatic: function(){
+        var element = this.element;
+        var isStatic = JSON.parse(element.attr("data-static")) === true;
+
+        this.static(isStatic);
     },
 
     changeAttribute: function(attributeName){
@@ -206,6 +229,7 @@ var Rating = {
             case "value":
             case "data-value": this.changeAttributeValue(attributeName); break;
             case "data-message": this.changeAttributeMessage(); break;
+            case "data-static": this.changeAttributeStatic(); break;
         }
     }
 };
