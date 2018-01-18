@@ -20422,6 +20422,14 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
     -ms-flex-line-pack: stretch !important;
         align-content: stretch !important;
   }
+  .flex-no-shrink-fs > * {
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+  }
+  .flex-shrink-fs > * {
+    -ms-flex-negative: 1;
+        flex-shrink: 1;
+  }
   .order-fs-12 {
     -webkit-box-ordinal-group: 13;
         -ms-flex-order: 12;
@@ -20622,6 +20630,14 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   .flex-content-stretch-sm {
     -ms-flex-line-pack: stretch !important;
         align-content: stretch !important;
+  }
+  .flex-no-shrink-sm > * {
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+  }
+  .flex-shrink-sm > * {
+    -ms-flex-negative: 1;
+        flex-shrink: 1;
   }
   .order-sm-12 {
     -webkit-box-ordinal-group: 13;
@@ -20824,6 +20840,14 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
     -ms-flex-line-pack: stretch !important;
         align-content: stretch !important;
   }
+  .flex-no-shrink-md > * {
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+  }
+  .flex-shrink-md > * {
+    -ms-flex-negative: 1;
+        flex-shrink: 1;
+  }
   .order-md-12 {
     -webkit-box-ordinal-group: 13;
         -ms-flex-order: 12;
@@ -21024,6 +21048,14 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   .flex-content-stretch-lg {
     -ms-flex-line-pack: stretch !important;
         align-content: stretch !important;
+  }
+  .flex-no-shrink-lg > * {
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+  }
+  .flex-shrink-lg > * {
+    -ms-flex-negative: 1;
+        flex-shrink: 1;
   }
   .order-lg-12 {
     -webkit-box-ordinal-group: 13;
@@ -21226,6 +21258,14 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
     -ms-flex-line-pack: stretch !important;
         align-content: stretch !important;
   }
+  .flex-no-shrink-xl > * {
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+  }
+  .flex-shrink-xl > * {
+    -ms-flex-negative: 1;
+        flex-shrink: 1;
+  }
   .order-xl-12 {
     -webkit-box-ordinal-group: 13;
         -ms-flex-order: 12;
@@ -21426,6 +21466,14 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   .flex-content-stretch-xxl {
     -ms-flex-line-pack: stretch !important;
         align-content: stretch !important;
+  }
+  .flex-no-shrink-xxl > * {
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+  }
+  .flex-shrink-xxl > * {
+    -ms-flex-negative: 1;
+        flex-shrink: 1;
   }
   .order-xxl-12 {
     -webkit-box-ordinal-group: 13;

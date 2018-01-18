@@ -47,16 +47,8 @@
 .flex-content-around {align-content: space-around !important;}
 .flex-content-stretch {align-content: stretch !important;}
 
-.flex-no-shrink {
-    & > * {
-        flex-shrink: 0;
-    }
-}
-.flex-shrink {
-    & > * {
-        flex-shrink: 1;
-    }
-}
+.flex-no-shrink > * {flex-shrink: 0;}
+.flex-shrink > * {flex-shrink: 1;}
 
 .generate-flex-media-options(@mediaBreakpointListMobileLength);
 .generate-flex-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
@@ -94,6 +86,9 @@
         .flex-content-between-@{m} {align-content: space-between !important;}
         .flex-content-around-@{m} {align-content: space-around !important;}
         .flex-content-stretch-@{m} {align-content: stretch !important;}
+
+        .flex-no-shrink-@{m} > * {flex-shrink: 0;}
+        .flex-shrink-@{m} > * {flex-shrink: 1;}
 
         .generate-order(@gridColumns12);
         .generate-order(@j) when (@j > 0){
