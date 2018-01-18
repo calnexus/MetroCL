@@ -45,7 +45,6 @@
         flex-flow: row nowrap;
         justify-content: flex-start;
         align-items: center;
-        cursor: pointer;
 
         li {
             display: block;
@@ -77,6 +76,7 @@
 }
 
 .rating .stars {
+    cursor: default;
 
     li.on {
         color: @ratingStarOn
@@ -84,6 +84,8 @@
 }
 
 .rating:not(.static) .stars {
+    cursor: pointer;
+
     &:hover {
         li {
             color: @ratingStarOn;

@@ -155,8 +155,6 @@ var Rating = {
             star.prevAll().addClass("on");
             star.nextAll().removeClass("on");
 
-            console.log(value);
-
             Utils.exec(o.onStarClick, [value, star, element]);
         });
     },
