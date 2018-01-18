@@ -3,7 +3,7 @@
 
 @ratingStarSize: 24px;
 @ratingStarOff: @gray;
-@ratingStarOn: gold;
+@ratingStarOn: @dark;
 
 .rating-star(@size) {
     width: @size;
@@ -44,6 +44,7 @@
         display: flex;
         flex-flow: row nowrap;
         justify-content: flex-start;
+        align-items: center;
         cursor: pointer;
 
         li {
@@ -80,7 +81,9 @@
     li.on {
         color: @ratingStarOn
     }
+}
 
+.rating:not(.static) .stars {
     &:hover {
         li {
             color: @ratingStarOn;
@@ -89,5 +92,18 @@
 
     li:hover ~ li {
         color: @ratingStarOff!important;
+    }
+
+    li.scale {
+        animation: star-scale .3s ease-in-out;
+    }
+}
+
+@keyframes star-scale {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
     }
 }

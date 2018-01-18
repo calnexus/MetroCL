@@ -64,15 +64,31 @@
                 <!-- ads-html -->
 
                 <div class="example">
-                    <input data-role="rating" class="d-block">
-                    <input data-role="rating" data-star-color="#1ba1e2" class="d-block">
-                    <input data-role="rating" class="d-block" data-value="5" data-star-color="cyan" data-stared-color="pink">
+                    <div class="row">
+                        <div class="cell">
+                            <input data-role="rating" data-values=".1, .2, .3, .4, .5">
+                        </div>
+                        <div class="cell">
+                            <input data-role="rating" data-value="2"  data-star-color="yellow">
+                        </div>
+                        <div class="cell">
+                            <input data-role="rating" data-value="5" data-star-color="cyan" data-stared-color="pink">
+                        </div>
+                        <div class="cell">
+                            <input data-role="rating" data-value="3" data-static="true">
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="example">
                     <input data-role="rating" id="rating_methods">
                     <div>
-                        <button class="button" onclick="$('#rating_methods').data('rating').val(Metro.utils.random(1, 5))">Random star</button>
+                        <button class="button" onclick="
+                            var v = Metro.utils.random(1, 5);
+                            var r = $('#rating_methods').data('rating');
+                            r.val(v).msg('('+v+')');
+                        ">Random star</button>
                     </div>
                 </div>
 

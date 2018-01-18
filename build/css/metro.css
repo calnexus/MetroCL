@@ -26838,6 +26838,9 @@ video:-webkit-full-screen {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   cursor: pointer;
 }
 .rating .stars li {
@@ -26868,13 +26871,39 @@ video:-webkit-full-screen {
   margin-right: 10px;
 }
 .rating .stars li.on {
-  color: gold;
+  color: #1d1d1d;
 }
-.rating .stars:hover li {
-  color: gold;
+.rating:not(.static) .stars:hover li {
+  color: #1d1d1d;
 }
-.rating .stars li:hover ~ li {
+.rating:not(.static) .stars li:hover ~ li {
   color: #bebebe !important;
+}
+.rating:not(.static) .stars li.scale {
+  -webkit-animation: star-scale 0.3s ease-in-out;
+          animation: star-scale 0.3s ease-in-out;
+}
+@-webkit-keyframes star-scale {
+  0%,
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+  }
+}
+@keyframes star-scale {
+  0%,
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+  }
 }
 .ripple {
   display: block;

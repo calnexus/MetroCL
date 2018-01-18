@@ -57,7 +57,7 @@ var Rating = {
                 this.values = Utils.strToArray(o.values)
             }
         } else {
-            for(i = 0; i < o.stars; i++) {
+            for(i = 1; i <= o.stars; i++) {
                 this.values.push(i);
             }
         }
@@ -104,9 +104,9 @@ var Rating = {
 
         stars = $("<ul>").addClass("stars").addClass(o.clsStars).appendTo(rating);
 
-        for(i = 0; i < o.stars; i++) {
-            li = $("<li>").data("value", this.values[i]).appendTo(stars);
-            if (i < this.value) {
+        for(i = 1; i <= o.stars; i++) {
+            li = $("<li>").data("value", this.values[i-1]).appendTo(stars);
+            if (i <= this.value) {
                 li.addClass("on");
             }
         }
@@ -127,6 +127,10 @@ var Rating = {
             rating.prepend(title);
         }
 
+        if (o.static === true) {
+            rating.addClass("static");
+        }
+
         this.rating = rating;
     },
 
@@ -142,11 +146,18 @@ var Rating = {
 
             var star = $(this);
             var value = star.data("value");
+            star.addClass("scale");
+            setTimeout(function(){
+                star.removeClass("scale");
+            }, 300);
             element.val(value).trigger("change");
             star.addClass("on");
             star.prevAll().addClass("on");
             star.nextAll().removeClass("on");
-            Utils.exec(o.onStarClick, [star.data("value"), star, element]);
+
+            console.log(value);
+
+            Utils.exec(o.onStarClick, [value, star, element]);
         });
     },
 
@@ -160,12 +171,10 @@ var Rating = {
 
         this.value = v > 0 ? Math[o.roundFunc](v) : 0;
 
-        console.log(v, this.value);
-
         var stars = rating.find(".stars li").removeClass("on");
         $.each(stars, function(){
             var star = $(this);
-            if (star.data("value") < that.value) {
+            if (star.data("value") <= that.value) {
                 star.addClass("on");
             }
         });
@@ -182,8 +191,24 @@ var Rating = {
         return this;
     },
 
-    changeAttribute: function(attributeName){
+    changeAttributeValue: function(a){
+        var that = this, element = this.element, o = this.options;
+        var value = a === "value" ? element.val() : element.attr("data-value");
+        this.val(value);
+    },
 
+    changeAttributeMessage: function(){
+        var that = this, element = this.element, o = this.options;
+        var message = element.attr("data-message");
+        this.msg(message);
+    },
+
+    changeAttribute: function(attributeName){
+        switch (attributeName) {
+            case "value":
+            case "data-value": this.changeAttributeValue(attributeName); break;
+            case "data-message": this.changeAttributeMessage(); break;
+        }
     }
 };
 
