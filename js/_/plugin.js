@@ -31,7 +31,20 @@ var myObject = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
+        this._createStructure();
+        this._createEvents();
+
         Utils.exec(o.onCreate, [element]);
+    },
+
+    _createStructure: function(){
+        var that = this, element = this.element, o = this.options;
+
+    },
+
+    _createEvents: function(){
+        var that = this, element = this.element, o = this.options;
+
     },
 
     changeAttribute: function(attributeName){

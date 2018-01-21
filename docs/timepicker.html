@@ -33,7 +33,7 @@
     <link href="docsearch/docsearch.min.css" rel="stylesheet">
     <link href="css/site.css" rel="stylesheet">
 
-    <title>mouse wheel - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <title>Timepicker - Metro 4 :: Popular HTML, CSS and JS library</title>
 </head>
 <body>
     <div class="container-fluid">
@@ -46,7 +46,7 @@
                 <h5>Table of contents</h5>
                 <hr/>
                 <ul class="toc-nav">
-                    <li class="toc-entry"><a href="#">Mouse wheel</a></li>
+                    <li class="toc-entry"><a href="#">Timepicker</a></li>
                 </ul>
 
             </div>
@@ -56,36 +56,26 @@
                     <img src="images/logo.png" class="w-100">
                 </div>
 
-                <h1>Mouse wheel</h1>
+                <h1>Timepicker</h1>
                 <p class="text-leader">
-                    Metro 4 contains module to interact with mose wheel.
+
                 </p>
 
                 <!-- ads-html -->
 
-                <h3>About</h3>
-                <p>
-                    Metro 4 is ready to interact with <code>mouse wheel</code> and include a latest <a href="https://github.com/jquery/jquery-mousewheel">jQuery Mouse wheel plugin</a>.
-                    You do not need to include this plug-in separately to use the mouse wheel event.
-                </p>
-
-
-                <h4>To use this event:</h4>
-                <pre><code class="javascript">
-                    // using on
-                    $('#my_elem').on('mousewheel', function(event) {
-                        console.log(event.deltaX, event.deltaY, event.deltaFactor);
-                    });
-
-                    $('#my_elem').on('mousewheel', 'child-element-selector', function(event) {
-                        console.log(event.deltaX, event.deltaY, event.deltaFactor);
-                    });
-
-                    // using the event helper
-                    $('#my_elem').mousewheel(function(event) {
-                        console.log(event.deltaX, event.deltaY, event.deltaFactor);
-                    });
-                </code></pre>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-4">
+                            <input data-role="timepicker">
+                        </div>
+                        <div class="cell-md-4">
+                            <input data-role="timepicker" data-h12="false">
+                        </div>
+                        <div class="cell-md-4">
+                            <input data-role="timepicker" data-seconds="true">
+                        </div>
+                    </div>
+                </div>
 
             </main>
         </div>
