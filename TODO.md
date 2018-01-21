@@ -11,5 +11,7 @@
 - [ ] Keypad: extends positions to all
 
 ####4.1.0
-
 - [ ] Remove jQuery dependency 
+
+####4.x
+- [ ] Layout manager ?
