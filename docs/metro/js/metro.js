@@ -8443,7 +8443,7 @@ var NavigationView = {
 
     _createView: function(){
         var that = this, element = this.element, o = this.options;
-        var pane, content, toggle;
+        var pane, content, toggle, menu;
 
         element
             .addClass("navview")
@@ -8453,6 +8453,20 @@ var NavigationView = {
         pane = element.children(".navview-pane");
         content = element.children(".navview-content");
         toggle = $(o.toggle);
+
+        menu = pane.find(".navview-menu");
+        if (menu.length > 0) {
+            var elements_height = 0;
+            $.each(menu.prevAll(), function(){
+                elements_height += $(this).outerHeight(true);
+            });
+            $.each(menu.nextAll(), function(){
+                elements_height += $(this).outerHeight(true);
+            });
+            menu.css({
+                height: "calc(100% - "+(elements_height + 20)+"px)"
+            });
+        }
 
         this.pane = pane.length > 0 ? pane : null;
         this.content = content.length > 0 ? content : null;
@@ -11889,7 +11903,7 @@ var Timepicker = {
                 $(document).off(Metro.events.stop + "-picker");
             });
         });
-        
+
     },
 
     changeAttribute: function(attributeName){

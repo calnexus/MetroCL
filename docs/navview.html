@@ -69,78 +69,81 @@
                     This control implements the nav pane, or hamburger menu, pattern and automatically adapts the pane's display mode to different window sizes.
                 </p>
 
-                <div data-role="navview" data-compact="md" data-expanded="lg" data-toggle="#pane-toggle" class="mt-4" style="height: 500px;">
-                    <nav class="navview-pane">
-                        <button class="pull-button">
-                            <span class="mif-menu"></span>
-                        </button>
-
-                        <div class="suggest-box">
-                            <input data-role="search" data-clear-button="false">
-                            <button class="holder">
-                                <span class="mif-search"></span>
+                <div class="example p-0" style="height: 300px;">
+                    <div data-role="navview" data-compact="md" data-expanded="lg" data-toggle="#pane-toggle">
+                        <nav class="navview-pane">
+                            <button class="pull-button">
+                                <span class="mif-menu"></span>
                             </button>
-                        </div>
 
-                        <nav class="navview-menu">
-                            <li>
-                                <a href="#">
-                                    <span class="icon"><span class="mif-home"></span></span>
-                                    <span class="caption">Home</span>
-                                </a>
-                            </li>
+                            <div class="suggest-box">
+                                <input data-role="search" data-clear-button="false">
+                                <button class="holder">
+                                    <span class="mif-search"></span>
+                                </button>
+                            </div>
 
-                            <li class="item-separator"></li>
+                            <ul class="navview-menu">
+                                <li>
+                                    <a href="#">
+                                        <span class="icon"><span class="mif-home"></span></span>
+                                        <span class="caption">Home</span>
+                                    </a>
+                                </li>
 
-                            <li class="item-header">Main pages</li>
+                                <li class="item-separator"></li>
 
-                            <li>
-                                <a href="#">
-                                    <span class="icon"><span class="mif-apps"></span></span>
-                                    <span class="caption">Apps</span>
-                                </a>
-                            </li>
-                            <li class="active">
-                                <a href="#">
-                                    <span class="icon"><span class="mif-gamepad"></span></span>
-                                    <span class="caption">Games</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="icon"><span class="mif-music"></span></span>
-                                    <span class="caption">Music</span>
-                                </a>
-                            </li>
-                            <li class="disabled">
-                                <a href="#">
-                                    <span class="icon"><span class="mif-images"></span></span>
-                                    <span class="caption">Images</span>
-                                </a>
-                            </li>
+                                <li class="item-header">Main pages</li>
 
-                            <li class="item-separator"></li>
+                                <li>
+                                    <a href="#">
+                                        <span class="icon"><span class="mif-apps"></span></span>
+                                        <span class="caption">Apps</span>
+                                    </a>
+                                </li>
+                                <li class="active">
+                                    <a href="#">
+                                        <span class="icon"><span class="mif-gamepad"></span></span>
+                                        <span class="caption">Games</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="icon"><span class="mif-music"></span></span>
+                                        <span class="caption">Music</span>
+                                    </a>
+                                </li>
+                                <li class="disabled">
+                                    <a href="#">
+                                        <span class="icon"><span class="mif-images"></span></span>
+                                        <span class="caption">Images</span>
+                                    </a>
+                                </li>
 
-                            <li>
-                                <a href="#">
-                                    <span class="icon"><span class="mif-folder"></span></span>
-                                    <span class="caption">Documents</span>
-                                </a>
-                            </li>
+                                <li class="item-separator"></li>
+
+                                <li>
+                                    <a href="#">
+                                        <span class="icon"><span class="mif-folder"></span></span>
+                                        <span class="caption">Documents</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </nav>
-                    </nav>
 
-                    <div class="navview-content pl-4-md pr-4-md">
-                        <h1>
-                            <button id="pane-toggle" class="button square d-none-md"><span class="mif-menu" ></span></button>
-                            What is?
-                        </h1>
-                        <p>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                        </p>
+                        <div class="navview-content pl-4-md pr-4-md">
+                            <h1>
+                                <button id="pane-toggle" class="button square d-none-md"><span class="mif-menu" ></span></button>
+                                What is?
+                            </h1>
+                            <p>
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            </p>
+                        </div>
                     </div>
                 </div>
+
 
             </main>
         </div>

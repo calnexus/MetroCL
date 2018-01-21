@@ -18,6 +18,8 @@
     background-color: @white;
     color: @dark;
     overflow: hidden;
+    height: 100%;
+    min-height: 100%;
 }
 
 .navview {
@@ -74,6 +76,10 @@
         margin: 0;
         padding: 0;
         width: 100%;
+        overflow: hidden;
+        overflow-y: auto;
+
+        .hideScrollBars();
 
         li {
             display: block;

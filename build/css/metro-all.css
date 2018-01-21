@@ -210,6 +210,12 @@ img {
 [hidden] {
   display: none;
 }
+.hideScrollBars {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+.hideScrollBars::-webkit-scrollbar {
+  display: none!important;
+}
 [class*=default-icon] {
   display: block;
   height: 16px;
@@ -26346,6 +26352,8 @@ video:-webkit-full-screen {
   background-color: #ffffff;
   color: #1d1d1d;
   overflow: hidden;
+  height: 100%;
+  min-height: 100%;
 }
 .navview .navview-pane,
 .navview .navview-content {
@@ -26402,6 +26410,12 @@ video:-webkit-full-screen {
   margin: 0;
   padding: 0;
   width: 100%;
+  overflow: hidden;
+  overflow-y: auto;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+.navview .navview-menu::-webkit-scrollbar {
+  display: none!important;
 }
 .navview .navview-menu li {
   display: block;
@@ -32318,6 +32332,12 @@ input[dir=rtl] {
 }
 
 /*# sourceMappingURL=maps/metro-rtl.css.map */
+.hideScrollBars {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+.hideScrollBars::-webkit-scrollbar {
+  display: none!important;
+}
 @font-face {
   font-family: 'icons';
   src: url('../mif/metro.woff') format('woff');

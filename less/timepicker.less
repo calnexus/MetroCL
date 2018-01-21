@@ -71,11 +71,7 @@
             border: 1px solid @borderColor;
 
             overflow-y: auto;
-            &::-webkit-scrollbar {
-                display: none!important;
-            }
-            -ms-overflow-style: -ms-autohiding-scrollbar;
-
+            .hideScrollBars();
 
             li {
                 display: block;

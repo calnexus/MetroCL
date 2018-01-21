@@ -142,7 +142,7 @@ var Timepicker = {
                 $(document).off(Metro.events.stop + "-picker");
             });
         });
-        
+
     },
 
     changeAttribute: function(attributeName){
