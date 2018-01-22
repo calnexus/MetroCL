@@ -9,6 +9,7 @@
 - [ ] Inheritance for video and audio players from media-player class
 - [ ] Responsive drop left, right ?
 - [ ] Keypad: extends positions to all
+- [ ] Set fixed position for datepicker on phones <= 768px
 
 ####4.1.0
 - [ ] Remove jQuery dependency 

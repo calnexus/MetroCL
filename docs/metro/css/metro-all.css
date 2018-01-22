@@ -26993,7 +26993,7 @@ video:-webkit-full-screen {
           user-select: none;
 }
 .wheelpicker .select-wrapper {
-  display: block;
+  display: none;
   position: absolute;
   top: 100%;
   left: 0;

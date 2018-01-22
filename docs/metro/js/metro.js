@@ -11769,6 +11769,7 @@ var Timepicker = {
         this.elem  = elem;
         this.element = $(elem);
         this.picker = null;
+        this.isOpen = false;
 
         this._setOptionsFromDOM();
         this._create();
@@ -11911,6 +11912,27 @@ var Timepicker = {
             });
         });
 
+        picker.on(Metro.events.click, function(){
+            console.log(that.isOpen);
+            if (that.isOpen === false) {
+                that.open();
+            } else {
+                that.close();
+            }
+        });
+
+        picker.on(Metro.events.click, ".action-ok", function(e){
+            that.close();
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
+        picker.on(Metro.events.click, ".action-cancel", function(e){
+            that.close();
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
         this._addScrollEvents();
     },
 
@@ -11947,6 +11969,18 @@ var Timepicker = {
         $.each(lists, function(){
             picker.find(".sel-" + this).off("scrollstart scrollstop");
         });
+    },
+
+    open: function(){
+        var picker = this.picker;
+        picker.find(".select-wrapper").show();
+        this.isOpen = true;
+    },
+
+    close: function(){
+        var picker = this.picker;
+        picker.find(".select-wrapper").hide();
+        this.isOpen = false;
     },
 
     changeAttribute: function(attributeName){
