@@ -56,6 +56,7 @@ It's an independent project with its ongoing development made possible entirely 
 - mousewheel.js by Brandon Aaron [mousewheel](http://brandonaaron.net)
 - strftime by Tom Doan [strftime](https://github.com/thdoan/strftime)
 - jQuery Core [jquery](https://jquery.com/)
+- scrolStop by Ross Allen [ssorallen](https://github.com/ssorallen)
 - All who brought something good 
 
 ### Browser Compatibility

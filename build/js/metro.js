@@ -154,6 +154,8 @@ var Metro = {
         paste: 'paste.metro',
         drop: 'drop.metro',
         scroll: 'scroll.metro',
+        scrollStart: 'scrollstart.metro',
+        scrollStop: 'scrollstop.metro',
         mousewheel: 'mousewheel.metro'
     },
 
@@ -1651,69 +1653,71 @@ function shouldAdjustOldDeltas(orgEvent, absDelta) {
     return $.event.special.mousewheel.settings.adjustOldDeltas && orgEvent.type === 'mousewheel' && absDelta % 120 === 0;
 }
 // Source: js/utils/scroll-events.js
+var dispatch = $.event.dispatch || $.event.handle;
 var special = jQuery.event.special,
     uid1 = 'D' + (+new Date()),
     uid2 = 'D' + (+new Date() + 1);
 
 special.scrollstart = {
-    setup: function() {
+    setup: function(data) {
+        var _data = $.extend({
+            latency: special.scrollstop.latency
+        }, data);
 
         var timer,
-            handler =  function(evt) {
-
-                var _self = this;
+            handler = function(evt) {
+                var _self = this,
+                    _args = arguments;
 
                 if (timer) {
                     clearTimeout(timer);
                 } else {
                     evt.type = 'scrollstart';
-                    jQuery.event.dispatch.apply(_self, arguments);
+                    dispatch.apply(_self, _args);
                 }
 
-                timer = setTimeout( function(){
+                timer = setTimeout(function() {
                     timer = null;
-                }, special.scrollstop.latency);
-
+                }, _data.latency);
             };
 
-        jQuery(this).bind('scroll', handler).data(uid1, handler);
-
+        $(this).bind('scroll', handler).data(uid1, handler);
     },
-    teardown: function(){
-        jQuery(this).unbind( 'scroll', jQuery(this).data(uid1) );
+    teardown: function() {
+        $(this).unbind('scroll', $(this).data(uid1));
     }
 };
 
 special.scrollstop = {
-    latency: 300,
-    setup: function() {
+    latency: 250,
+    setup: function(data) {
+        var _data = $.extend({
+            latency: special.scrollstop.latency
+        }, data);
 
         var timer,
             handler = function(evt) {
-
-                var _self = this;
+                var _self = this,
+                    _args = arguments;
 
                 if (timer) {
                     clearTimeout(timer);
                 }
 
-                timer = setTimeout( function(){
-
+                timer = setTimeout(function() {
                     timer = null;
                     evt.type = 'scrollstop';
-                    jQuery.event.dispatch.apply(_self, arguments);
-
-                }, special.scrollstop.latency);
-
+                    dispatch.apply(_self, _args);
+                }, _data.latency);
             };
 
-        jQuery(this).bind('scroll', handler).data(uid2, handler);
-
+        $(this).bind('scroll', handler).data(uid2, handler);
     },
     teardown: function() {
-        jQuery(this).unbind( 'scroll', jQuery(this).data(uid2) );
+        $(this).unbind('scroll', $(this).data(uid2));
     }
 };
+
 // Source: js/utils/storage.js
 var Storage = {
     key: "METRO:APP",
@@ -11773,10 +11777,13 @@ var Timepicker = {
     },
 
     options: {
+        distance: 3,
         hours: true,
         minutes: true,
         seconds: false,
         h12: true,
+        duration: METRO_ANIMATION_DURATION,
+        scrollSpeed: 5,
         clsPicker: "",
         clsPart: "",
         clsHours: "",
@@ -11818,7 +11825,7 @@ var Timepicker = {
         var parent = element.parent();
         var id = Utils.elementId("timepicker");
 
-        picker = $("<div>").addClass("timepicker " + String(element[0].className).replace("d-block", "d-flex")).addClass(o.clsPicker);
+        picker = $("<div>").addClass("wheelpicker timepicker " + String(element[0].className).replace("d-block", "d-flex")).addClass(o.clsPicker);
 
         if (prev.length === 0) {
             parent.prepend(picker);
@@ -11846,34 +11853,34 @@ var Timepicker = {
         selectBlock = $("<div>").addClass("select-block").appendTo(selectWrapper);
         if (o.hours === true) {
             hours = $("<ul>").addClass("sel-hours").appendTo(selectBlock);
-            for (i = 0; i < 3; i++) $("<li>").html("").data("value", -1).appendTo(hours);
+            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(hours);
             for (i = 0; i < (o.h12 === true ? 12 : 24); i++) {
-                $("<li>").html(i).data("value", i).appendTo(hours);
+                $("<li>").addClass("js-hours-"+i).html(i).data("value", i).appendTo(hours);
             }
-            for (i = 0; i < 3; i++) $("<li>").html("").data("value", -1).appendTo(hours);
+            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(hours);
         }
         if (o.minutes === true) {
             minutes = $("<ul>").addClass("sel-minutes").appendTo(selectBlock);
-            for (i = 0; i < 3; i++) $("<li>").html("").data("value", -1).appendTo(minutes);
+            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(minutes);
             for (i = 0; i < 60; i++) {
-                $("<li>").html(i).data("value", i).appendTo(minutes);
+                $("<li>").addClass("js-minutes-"+i).html(i).data("value", i).appendTo(minutes);
             }
-            for (i = 0; i < 3; i++) $("<li>").html("").data("value", -1).appendTo(minutes);
+            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(minutes);
         }
         if (o.seconds === true) {
             seconds = $("<ul>").addClass("sel-seconds").appendTo(selectBlock);
-            for (i = 0; i < 3; i++) $("<li>").html("").data("value", -1).appendTo(seconds);
+            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(seconds);
             for (i = 0; i < 60; i++) {
-                $("<li>").html(i).data("value", i).appendTo(seconds);
+                $("<li>").addClass("js-seconds-"+i).html(i).data("value", i).appendTo(seconds);
             }
-            for (i = 0; i < 3; i++) $("<li>").html("").data("value", -1).appendTo(seconds);
+            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(seconds);
         }
         if (o.h12 === true) {
             ampm = $("<ul>").addClass("sel-ampm").appendTo(selectBlock);
-            for (i = 0; i < 3; i++) $("<li>").html("").data("value", -1).appendTo(ampm);
-            $("<li>").html("AM").data("value", "AM").appendTo(ampm);
-            $("<li>").html("PM").data("value", "PM").appendTo(ampm);
-            for (i = 0; i < 3; i++) $("<li>").html("").data("value", -1).appendTo(ampm);
+            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(ampm);
+            $("<li>").addClass("js-ampm-0").html("AM").data("value", "AM").appendTo(ampm);
+            $("<li>").addClass("js-ampm-1").html("PM").data("value", "PM").appendTo(ampm);
+            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(ampm);
         }
 
         actionBlock = $("<div>").addClass("action-block").appendTo(selectWrapper);
@@ -11893,7 +11900,7 @@ var Timepicker = {
 
             $(document).on(Metro.events.move + "-picker", function(e){
 
-                target.scrollTop -= 5 * (pageY  > Utils.pageXY(e).y ? -1 : 1);
+                target.scrollTop -= o.scrollSpeed * (pageY  > Utils.pageXY(e).y ? -1 : 1);
 
                 pageY = Utils.pageXY(e).y;
             });
@@ -11904,6 +11911,42 @@ var Timepicker = {
             });
         });
 
+        this._addScrollEvents();
+    },
+
+    _addScrollEvents: function(){
+        var picker = this.picker, o = this.options;
+        var lists = ['hours', 'minutes', 'seconds', 'ampm'];
+        $.each(lists, function(){
+            var list_name = this;
+            var list = picker.find(".sel-" + list_name);
+
+            if (list.length === 0) return ;
+
+            list.on(Metro.events.scrollStart, function(){
+                list.find(".active").removeClass("active");
+            });
+            list.on(Metro.events.scrollStop, function(){
+
+                var target = Math.round((Math.ceil(list.scrollTop() + 40) / 40)) - 1;
+                var target_element = list.find(".js-"+list_name+"-"+target);
+                var scroll_to = target_element.position().top - (o.distance * 40) + list.scrollTop();
+
+                list.animate({
+                    scrollTop: scroll_to
+                }, o.duration, function(){
+                    target_element.addClass("active")
+                });
+            });
+        });
+    },
+
+    _removeScrollEvents: function(){
+        var picker = this.picker;
+        var lists = ['hours', 'minutes', 'seconds', 'ampm'];
+        $.each(lists, function(){
+            picker.find(".sel-" + this).off("scrollstart scrollstop");
+        });
     },
 
     changeAttribute: function(attributeName){

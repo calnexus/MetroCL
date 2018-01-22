@@ -12,10 +12,13 @@ var Timepicker = {
     },
 
     options: {
+        distance: 3,
         hours: true,
         minutes: true,
         seconds: false,
         h12: true,
+        duration: METRO_ANIMATION_DURATION,
+        scrollSpeed: 5,
         clsPicker: "",
         clsPart: "",
         clsHours: "",
@@ -57,7 +60,7 @@ var Timepicker = {
         var parent = element.parent();
         var id = Utils.elementId("timepicker");
 
-        picker = $("<div>").addClass("timepicker " + String(element[0].className).replace("d-block", "d-flex")).addClass(o.clsPicker);
+        picker = $("<div>").addClass("wheelpicker timepicker " + String(element[0].className).replace("d-block", "d-flex")).addClass(o.clsPicker);
 
         if (prev.length === 0) {
             parent.prepend(picker);
@@ -85,34 +88,34 @@ var Timepicker = {
         selectBlock = $("<div>").addClass("select-block").appendTo(selectWrapper);
         if (o.hours === true) {
             hours = $("<ul>").addClass("sel-hours").appendTo(selectBlock);
-            for (i = 0; i < 3; i++) $("<li>").html("").data("value", -1).appendTo(hours);
+            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(hours);
             for (i = 0; i < (o.h12 === true ? 12 : 24); i++) {
-                $("<li>").html(i).data("value", i).appendTo(hours);
+                $("<li>").addClass("js-hours-"+i).html(i).data("value", i).appendTo(hours);
             }
-            for (i = 0; i < 3; i++) $("<li>").html("").data("value", -1).appendTo(hours);
+            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(hours);
         }
         if (o.minutes === true) {
             minutes = $("<ul>").addClass("sel-minutes").appendTo(selectBlock);
-            for (i = 0; i < 3; i++) $("<li>").html("").data("value", -1).appendTo(minutes);
+            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(minutes);
             for (i = 0; i < 60; i++) {
-                $("<li>").html(i).data("value", i).appendTo(minutes);
+                $("<li>").addClass("js-minutes-"+i).html(i).data("value", i).appendTo(minutes);
             }
-            for (i = 0; i < 3; i++) $("<li>").html("").data("value", -1).appendTo(minutes);
+            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(minutes);
         }
         if (o.seconds === true) {
             seconds = $("<ul>").addClass("sel-seconds").appendTo(selectBlock);
-            for (i = 0; i < 3; i++) $("<li>").html("").data("value", -1).appendTo(seconds);
+            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(seconds);
             for (i = 0; i < 60; i++) {
-                $("<li>").html(i).data("value", i).appendTo(seconds);
+                $("<li>").addClass("js-seconds-"+i).html(i).data("value", i).appendTo(seconds);
             }
-            for (i = 0; i < 3; i++) $("<li>").html("").data("value", -1).appendTo(seconds);
+            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(seconds);
         }
         if (o.h12 === true) {
             ampm = $("<ul>").addClass("sel-ampm").appendTo(selectBlock);
-            for (i = 0; i < 3; i++) $("<li>").html("").data("value", -1).appendTo(ampm);
-            $("<li>").html("AM").data("value", "AM").appendTo(ampm);
-            $("<li>").html("PM").data("value", "PM").appendTo(ampm);
-            for (i = 0; i < 3; i++) $("<li>").html("").data("value", -1).appendTo(ampm);
+            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(ampm);
+            $("<li>").addClass("js-ampm-0").html("AM").data("value", "AM").appendTo(ampm);
+            $("<li>").addClass("js-ampm-1").html("PM").data("value", "PM").appendTo(ampm);
+            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(ampm);
         }
 
         actionBlock = $("<div>").addClass("action-block").appendTo(selectWrapper);
@@ -132,7 +135,7 @@ var Timepicker = {
 
             $(document).on(Metro.events.move + "-picker", function(e){
 
-                target.scrollTop -= 5 * (pageY  > Utils.pageXY(e).y ? -1 : 1);
+                target.scrollTop -= o.scrollSpeed * (pageY  > Utils.pageXY(e).y ? -1 : 1);
 
                 pageY = Utils.pageXY(e).y;
             });
@@ -143,6 +146,42 @@ var Timepicker = {
             });
         });
 
+        this._addScrollEvents();
+    },
+
+    _addScrollEvents: function(){
+        var picker = this.picker, o = this.options;
+        var lists = ['hours', 'minutes', 'seconds', 'ampm'];
+        $.each(lists, function(){
+            var list_name = this;
+            var list = picker.find(".sel-" + list_name);
+
+            if (list.length === 0) return ;
+
+            list.on(Metro.events.scrollStart, function(){
+                list.find(".active").removeClass("active");
+            });
+            list.on(Metro.events.scrollStop, function(){
+
+                var target = Math.round((Math.ceil(list.scrollTop() + 40) / 40)) - 1;
+                var target_element = list.find(".js-"+list_name+"-"+target);
+                var scroll_to = target_element.position().top - (o.distance * 40) + list.scrollTop();
+
+                list.animate({
+                    scrollTop: scroll_to
+                }, o.duration, function(){
+                    target_element.addClass("active")
+                });
+            });
+        });
+    },
+
+    _removeScrollEvents: function(){
+        var picker = this.picker;
+        var lists = ['hours', 'minutes', 'seconds', 'ampm'];
+        $.each(lists, function(){
+            picker.find(".sel-" + this).off("scrollstart scrollstop");
+        });
     },
 
     changeAttribute: function(attributeName){

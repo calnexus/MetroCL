@@ -136,6 +136,8 @@ var Metro = {
         paste: 'paste.metro',
         drop: 'drop.metro',
         scroll: 'scroll.metro',
+        scrollStart: 'scrollstart.metro',
+        scrollStop: 'scrollstop.metro',
         mousewheel: 'mousewheel.metro'
     },
 
