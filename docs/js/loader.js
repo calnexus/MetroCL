@@ -14,7 +14,7 @@ var styles =  [
 
 var scripts = [
     "//cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js",
-    "js/jquery-3.2.1.min.js",
+    "js/jquery-3.3.1.min.js",
     "metro/js/metro.js",
     "js/pre-code.js",
     "highlight/highlight.pack.js",
