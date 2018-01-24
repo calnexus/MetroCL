@@ -10,6 +10,7 @@
 - [ ] Responsive drop left, right ?
 - [ ] Keypad: extends positions to all
 - [ ] Set fixed position for datepicker on phones <= 768px
+- [ ] Set value for inputs components with value attribute 
 
 ####4.1.0
 - [ ] Remove jQuery dependency 

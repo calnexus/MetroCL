@@ -11770,6 +11770,7 @@ var Timepicker = {
         this.element = $(elem);
         this.picker = null;
         this.isOpen = false;
+        this.value = [];
 
         this._setOptionsFromDOM();
         this._create();
@@ -11778,11 +11779,13 @@ var Timepicker = {
     },
 
     options: {
+        value: "00:00:00",
+        leadZero: false,
         distance: 3,
         hours: true,
         minutes: true,
         seconds: false,
-        h12: true,
+        h24: true,
         duration: METRO_ANIMATION_DURATION,
         scrollSpeed: 5,
         clsPicker: "",
@@ -11810,9 +11813,25 @@ var Timepicker = {
 
     _create: function(){
         var that = this, element = this.element, o = this.options;
+        var i;
+
+        if (o.distance < 1) {
+            o.distance = 1;
+        }
+
+        this.value = Utils.strToArray(element.val() !== "" ? element.val() : o.value, ":");
+
+        for(i = 0; i < 3; i++) {
+            if (this.value[i] === undefined || this.value[i] === null) {
+                this.value[i] = 0;
+            } else {
+                this.value[i] = parseInt(this.value[i]);
+            }
+        }
 
         this._createStructure();
         this._createEvents();
+        this._set();
 
         Utils.exec(o.onTimepickerCreate, [element]);
     },
@@ -11837,16 +11856,16 @@ var Timepicker = {
         element.appendTo(picker);
 
         if (o.hours === true) {
-            hours = $("<div>").addClass("hours").html(9).appendTo(picker);
+            hours = $("<div>").addClass("hours").appendTo(picker);
         }
         if (o.minutes === true) {
-            minutes = $("<div>").addClass("minutes").html(26).appendTo(picker);
+            minutes = $("<div>").addClass("minutes").appendTo(picker);
         }
         if (o.seconds === true) {
-            seconds = $("<div>").addClass("seconds").html(56).appendTo(picker);
+            seconds = $("<div>").addClass("seconds").appendTo(picker);
         }
-        if (o.h12 === true) {
-            ampm = $("<div>").addClass("ampm").html("AM").appendTo(picker);
+        if (o.h24 !== true) {
+            ampm = $("<div>").addClass("ampm").appendTo(picker);
         }
 
         selectWrapper = $("<div>").addClass("select-wrapper").appendTo(picker);
@@ -11855,7 +11874,7 @@ var Timepicker = {
         if (o.hours === true) {
             hours = $("<ul>").addClass("sel-hours").appendTo(selectBlock);
             for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(hours);
-            for (i = 0; i < (o.h12 === true ? 12 : 24); i++) {
+            for (i = 0; i < (o.h24 === true ? 24 : 12); i++) {
                 $("<li>").addClass("js-hours-"+i).html(i).data("value", i).appendTo(hours);
             }
             for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(hours);
@@ -11876,13 +11895,15 @@ var Timepicker = {
             }
             for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(seconds);
         }
-        if (o.h12 === true) {
+        if (o.h24 !== true) {
             ampm = $("<ul>").addClass("sel-ampm").appendTo(selectBlock);
             for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(ampm);
             $("<li>").addClass("js-ampm-0").html("AM").data("value", "AM").appendTo(ampm);
             $("<li>").addClass("js-ampm-1").html("PM").data("value", "PM").appendTo(ampm);
             for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(ampm);
         }
+
+        selectBlock.height((o.distance * 2 + 1) * 40);
 
         actionBlock = $("<div>").addClass("action-block").appendTo(selectWrapper);
         $("<button>").addClass("button action-ok").html("<span class='default-icon-check'></span>").appendTo(actionBlock);
@@ -11906,30 +11927,41 @@ var Timepicker = {
                 pageY = Utils.pageXY(e).y;
             });
 
-            $(document).on(Metro.events.stop + "-picker", function(){
+            $(document).on(Metro.events.stop + "-picker", function(e){
                 $(document).off(Metro.events.move + "-picker");
                 $(document).off(Metro.events.stop + "-picker");
             });
         });
 
         picker.on(Metro.events.click, function(){
-            console.log(that.isOpen);
-            if (that.isOpen === false) {
-                that.open();
-            } else {
-                that.close();
-            }
+            if (that.isOpen === false) that.open();
         });
 
         picker.on(Metro.events.click, ".action-ok", function(e){
+            var h, m, s, a;
+
+            h = picker.find(".sel-hours li.active").data("value");
+            m = picker.find(".sel-minutes li.active").data("value");
+            s = picker.find(".sel-seconds li.active").data("value");
+            a = picker.find(".sel-ampm li.active").data("value");
+
+
+            if (o.h24 !== true) {
+                if (a === "PM" && h < 12) {
+                    h = 12 + h;
+                }
+            }
+
+            that.value = [h, m, s];
+            that._set();
+
+
             that.close();
-            e.preventDefault();
             e.stopPropagation();
         });
 
         picker.on(Metro.events.click, ".action-cancel", function(e){
             that.close();
-            e.preventDefault();
             e.stopPropagation();
         });
 
@@ -11971,9 +12003,74 @@ var Timepicker = {
         });
     },
 
-    open: function(){
+    _set: function(){
+        var that = this, element = this.element, o = this.options;
         var picker = this.picker;
+        var h, m, s;
+
+        if (o.hours === true) {
+            h = o.h24 === true ? this.value[0] : (this.value[0] > 12 ? this.value[0] - 12 : this.value[0]);
+            if (o.leadZero === true && h < 10) {
+                h = "0"+h;
+            }
+            picker.find(".hours").html(h);
+        }
+        if (o.minutes === true) {
+            m = this.value[1];
+            if (o.leadZero === true && m < 10) {
+                m = "0"+m;
+            }
+            picker.find(".minutes").html(m);
+        }
+        if (o.seconds === true) {
+            s = this.value[2];
+            if (o.leadZero === true && s < 10) {
+                s = "0"+s;
+            }
+            picker.find(".seconds").html(s);
+        }
+        if (o.h24 !== true) {
+            picker.find(".ampm").html(this.value[0] > 12 ? "PM" : "AM");
+        }
+    },
+
+    open: function(){
+        var that  = this, element = this.element, o = this.options;
+        var picker = this.picker;
+        var h, m, s;
+        var h_list, m_list, s_list, a_list;
+
         picker.find(".select-wrapper").show();
+        picker.find("li").removeClass("active");
+
+        if (o.hours === true) {
+            h = o.h24 === true ? this.value[0] : (this.value[0] > 12 ? this.value[0] - 12 : this.value[0]);
+            h_list = picker.find(".sel-hours");
+            h_list.scrollTop(0).animate({
+                scrollTop: h_list.find("li").eq(h).addClass("active").position().top
+            });
+        }
+        if (o.minutes === true) {
+            m = this.value[1];
+            m_list = picker.find(".sel-minutes");
+            m_list.scrollTop(0).animate({
+                scrollTop: m_list.find("li").eq(m).addClass("active").position().top
+            });
+        }
+        if (o.seconds === true) {
+            s = this.value[2];
+            s_list = picker.find(".sel-seconds");
+            s_list.scrollTop(0).animate({
+                scrollTop: s_list.find("li").eq(s).addClass("active").position().top
+            });
+        }
+        if (o.h24 !== true) {
+            a_list = picker.find(".sel-ampm");
+            a_list.scrollTop(0).animate({
+                scrollTop: a_list.find("li").eq(this.value[0] > 12 ? 1 : 0).addClass("active").position().top
+            });
+        }
+
         this.isOpen = true;
     },
 
@@ -11981,6 +12078,14 @@ var Timepicker = {
         var picker = this.picker;
         picker.find(".select-wrapper").hide();
         this.isOpen = false;
+    },
+
+    time: function(t){
+        if (t === undefined) {
+            return element.val();
+        }
+        this.value = t;
+        this._set();
     },
 
     changeAttribute: function(attributeName){
