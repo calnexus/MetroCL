@@ -5245,15 +5245,24 @@ var Countdown = {
     start: function(){
         var that = this;
 
+        if (this.element.data("paused") === false) {
+            return;
+        }
+
+        clearInterval(this.blinkInterval);
+        clearInterval(this.tickInterval);
+
         this.element.data("paused", false);
 
         this.tick();
+
         this.blinkInterval = setInterval(function(){that.blink();}, 500);
         this.tickInterval = setInterval(function(){that.tick();}, 1000);
     },
 
     stop: function(){
         var that = this, element = this.element, o = this.options;
+        element.data("paused", true);
         element.find(".digit").html("0");
         clearInterval(this.blinkInterval);
         clearInterval(this.tickInterval);
