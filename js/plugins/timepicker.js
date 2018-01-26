@@ -27,7 +27,6 @@ var TimePicker = {
         clsHours: "",
         clsMinutes: "",
         clsSeconds: "",
-        clsAmPm: "",
         onTimePickerCreate: Metro.noop
     },
 
@@ -232,7 +231,7 @@ var TimePicker = {
     _set: function(){
         var that = this, element = this.element, o = this.options;
         var picker = this.picker;
-        var h, m, s;
+        var h = "00", m = "00", s = "00";
 
         if (o.hours === true) {
             h = this.value[0];
@@ -255,6 +254,8 @@ var TimePicker = {
             }
             picker.find(".seconds").html(s);
         }
+
+        element.val([h, m, s].join(":")).trigger("change");
     },
 
     open: function(){
@@ -305,8 +306,14 @@ var TimePicker = {
         this._set();
     },
 
-    changeAttribute: function(attributeName){
+    changeValueAttribute: function(){
+        this.time(this.element.attr("data-value"));
+    },
 
+    changeAttribute: function(attributeName){
+        switch (attributeName) {
+            case "data-value": this.changeValueAttribute(); break;
+        }
     }
 };
 
