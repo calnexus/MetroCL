@@ -22,7 +22,7 @@
     <meta property="og:image:height" content="504">
 
     <meta name="author" content="Sergey Pimenov">
-    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="description" content="Organize date selection for the user with the calendar picker component. The most popular HTML, CSS, and JS library in Metro style.">
     <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
 
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -33,7 +33,7 @@
     <link href="docsearch/docsearch.min.css" rel="stylesheet">
     <link href="css/site.css" rel="stylesheet">
 
-    <title>Datepicker - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <title>Calendar picker - Metro 4 :: Popular HTML, CSS and JS library</title>
 </head>
 <body>
     <div class="container-fluid">
@@ -46,13 +46,13 @@
                 <h5>Table of contents</h5>
                 <hr/>
                 <ul class="toc-nav">
-                    <li class="toc-entry"><a href="#">Datepicker</a></li>
-                    <li class="toc-entry"><a href="#_datepicker_create">Create</a></li>
-                    <li class="toc-entry"><a href="#_datepicker_options">Datepicker options</a></li>
-                    <li class="toc-entry"><a href="#_datepicker_calendar">Calendar options</a></li>
-                    <li class="toc-entry"><a href="#_datepicker_events">Events</a></li>
-                    <li class="toc-entry"><a href="#_datepicker_methods">Methods</a></li>
-                    <li class="toc-entry"><a href="#_datepicker_observe">Observe</a></li>
+                    <li class="toc-entry"><a href="#">Calendar picker</a></li>
+                    <li class="toc-entry"><a href="#_calendarpicker_create">Create</a></li>
+                    <li class="toc-entry"><a href="#_calendarpicker_options">Picker options</a></li>
+                    <li class="toc-entry"><a href="#_calendarpicker_calendar">Calendar options</a></li>
+                    <li class="toc-entry"><a href="#_calendarpicker_events">Events</a></li>
+                    <li class="toc-entry"><a href="#_calendarpicker_methods">Methods</a></li>
+                    <li class="toc-entry"><a href="#_calendarpicker_observe">Observe</a></li>
                 </ul>
 
             </div>
@@ -62,45 +62,45 @@
                     <img src="images/logo.png" class="w-100">
                 </div>
 
-                <h1>Datepicker</h1>
+                <h1>Calendar picker</h1>
                 <p class="text-leader">
-                    Organize date selection for the user with the datepicker component.
+                    Organize date selection for the user with the calendar picker component.
                 </p>
 
                 <!-- ads-html -->
 
-                <h3 id="_datepicker_create">Create datepicker</h3>
+                <h3 id="_calendarpicker_create">Create calendar picker</h3>
                 <p>
-                    To create <code>datepicker</code> component add attribute <code>data-role="datepicker"</code> to form input element.
+                    To create <code>calendarpicker</code> component add attribute <code>data-role="calendarpicker"</code> to form input element.
                 </p>
                 <div class="example">
-                    <input type="text" data-role="datepicker" data-size="280" class="mx-auto">
+                    <input type="text" data-role="calendarpicker" data-size="280" class="mx-auto">
                 </div>
                 <pre><code class="html">
-                    &lt;input type="text" data-role="datepicker"&gt;
+                    &lt;input type="text" data-role="calendarpicker"&gt;
                 </code></pre>
                 <div class="example">
                     <div class="row">
                         <div class="cell-md-4">
-                            <input type="text" data-role="datepicker">
+                            <input type="text" data-role="calendarpicker">
                         </div>
                         <div class="cell-md-4">
-                            <input type="text" data-role="datepicker" value="1972/12/21" data-format="%d %b %Y">
+                            <input type="text" data-role="calendarpicker" value="1972/12/21" data-format="%d %b %Y">
                         </div>
                         <div class="cell-md-4">
-                            <input type="text" data-role="datepicker" data-format="%d %B %Y">
+                            <input type="text" data-role="calendarpicker" data-format="%d %B %Y">
                         </div>
                     </div>
                 </div>
                 <pre><code class="html">
-                    &lt;input type="text" data-role="datepicker"&gt;
-                    &lt;input type="text" data-role="datepicker" value="1972/12/21" data-format="%d %b %Y"&gt;
-                    &lt;input type="text" data-role="datepicker" data-format="%d %B %Y"&gt;
+                    &lt;input type="text" data-role="calendarpicker"&gt;
+                    &lt;input type="text" data-role="calendarpicker" value="1972/12/21" data-format="%d %b %Y"&gt;
+                    &lt;input type="text" data-role="calendarpicker" data-format="%d %B %Y"&gt;
                 </code></pre>
 
-                <h3 id="_datepicker_options">Datepicker options</h3>
+                <h3 id="_calendarpicker_options">Picker options</h3>
                 <p>
-                    Datepicker has several options, who effects to behavior of the component.
+                    Calendar picker has several options, who effects to behavior of the component.
                 </p>
                 <table class="table cell-border table-border options-table">
                     <thead>
@@ -158,15 +158,15 @@
                         <td>clsPicker</td>
                         <td><code>data-cls-picker</code></td>
                         <td></td>
-                        <td>Additional class for datepicker</td>
+                        <td>Additional class for calendarpicker</td>
                     </tr>
                     </tbody>
                 </table>
 
 
-                <h3 id="_datepicker_calendar">Calendar options</h3>
+                <h3 id="_calendarpicker_calendar">Calendar options</h3>
                 <p>
-                    Datepicker has several options, who effects to behavior of the datepicker calendar.
+                    Calendar picker has several options, who effects to behavior of the picker calendar.
                 </p>
                 <table class="table cell-border table-border options-table">
                     <thead>
@@ -295,9 +295,9 @@
                     </tbody>
                 </table>
 
-                <h3 id="_datepicker_events">Events</h3>
+                <h3 id="_calendarpicker_events">Events</h3>
                 <p>
-                    When datepicker works, it generated the numbers of events. You can use callback for this event to behavior with datepicker.
+                    When <code>picker</code> works, it generated the numbers of events. You can use callback for this event to behavior with picker.
                     Rules for working with events are described on <a href="events.html">this page</a>.
                 </p>
                 <table class="table cell-border table-border options-table">
@@ -332,13 +332,13 @@
                         <td><code>onChange(val, date, el)</code></td>
                         <td><code>data-on-change</code></td>
                         <td>Metro.noop</td>
-                        <td>Callback for datepicker value was changed</td>
+                        <td>Callback for picker value was changed</td>
                     </tr>
                     <tr>
-                        <td><code>onDatepickerCreate(el)</code></td>
-                        <td><code>data-on-datepicker-create</code></td>
+                        <td><code>onCalendarPickerCreate(el)</code></td>
+                        <td><code>data-on-calendar-picker-create</code></td>
                         <td>Metro.noop</td>
-                        <td>Callback fired when datepicker is created</td>
+                        <td>Callback fired when picker is created</td>
                     </tr>
                     </tbody>
                 </table>
@@ -348,69 +348,69 @@
                 <div class="example">
                     <div class="row">
                         <div class="cell-md-6">
-                            <input type="text" data-role="datepicker" id="dp2" data-on-change="$('#dp1').attr('value', (arguments[1]))">
+                            <input type="text" data-role="calendarpicker" id="dp2" data-on-change="$('#dp1').attr('value', (arguments[1]))">
                         </div>
                         <div class="cell-md-6">
-                            <input type="text" data-role="datepicker" id="dp1" data-format="%d %b %Y">
+                            <input type="text" data-role="calendarpicker" id="dp1" data-format="%d %b %Y">
                         </div>
                     </div>
                 </div>
                 <pre><code>
                     &lt;input type="text"
-                        data-role="datepicker" id="dp2"
+                        data-role="calendarpicker" id="dp2"
                         data-on-change="$('#dp1').attr('value', (arguments[1]))"&gt;
 
                     &lt;input type="text"
-                        data-role="datepicker" id="dp1" data-format="%d %b %Y"&gt;
+                        data-role="calendarpicker" id="dp1" data-format="%d %b %Y"&gt;
                 </code></pre>
 
-                <h3 id="_datepicker_methods">Methods</h3>
+                <h3 id="_calendarpicker_methods">Methods</h3>
                 <p>
-                    You can use datepicker method <code>val()</code> to set or get datepicker value in javascript. Also you can set or get datepicker value with using <code>value</code> attribute.
+                    You can use picker method <code>val()</code> to set or get picker value in javascript. Also you can set or get picker value with using <code>value</code> attribute.
                 </p>
                 <div class="example">
-                    <input type="text" data-role="datepicker" value="1972/12/21" data-size="280" id="datepicker_val_test" data-format="%d %B %Y" class="">
+                    <input type="text" data-role="calendarpicker" value="1972/12/21" data-size="280" id="calendarpicker_val_test" data-format="%d %B %Y" class="">
                     <br />
-                    <button class="button" onclick="$('#datepicker_val_test').data('datepicker').val('1972/12/21')">Reset</button>
-                    <button class="button" onclick="$('#datepicker_val_test').data('datepicker').val('2017/10/25')">Set 2017/10/25</button>
-                    <button class="button" onclick="alert($('#datepicker_val_test').data('datepicker').val())">Get date</button>
+                    <button class="button" onclick="$('#calendarpicker_val_test').data('calendarpicker').val('1972/12/21')">Reset</button>
+                    <button class="button" onclick="$('#calendarpicker_val_test').data('calendarpicker').val('2017/10/25')">Set 2017/10/25</button>
+                    <button class="button" onclick="alert($('#calendarpicker_val_test').data('calendarpicker').val())">Get date</button>
                 </div>
                 <pre><code>
-                    var cal = $(element).data("datepicker");
+                    var cal = $(element).data("calendarpicker");
                     console.log(cal.val());
                     cal.val("1972/12/21");
                 </code></pre>
 
-                <h3 id="_datepicker_observe">Observe</h3>
+                <h3 id="_calendarpicker_observe">Observe</h3>
                 <p>
                     You can change attributes
                     <code>value</code>,
                     <code>disabled</code>
                     <code>data-locale</code>
-                    at runtime and datepicker will be updated.
+                    at runtime and picker will be updated.
                 </p>
 
                 <div class="example">
                     <div class="d-flex flex-justify-center mb-4">
-                        <button class="button m-1" onclick="$('#datepicker_locale').attr('data-locale', $(this).text())">en-US</button>
-                        <button class="button m-1" onclick="$('#datepicker_locale').attr('data-locale', $(this).text())">de-DE</button>
-                        <button class="button m-1" onclick="$('#datepicker_locale').attr('data-locale', $(this).text())">hu-HU</button>
-                        <button class="button m-1" onclick="$('#datepicker_locale').attr('data-locale', $(this).text())">uk-UA</button>
-                        <button class="button m-1" onclick="$('#datepicker_locale').attr('data-locale', $(this).text())">ru-RU</button>
+                        <button class="button m-1" onclick="$('#calendarpicker_locale').attr('data-locale', $(this).text())">en-US</button>
+                        <button class="button m-1" onclick="$('#calendarpicker_locale').attr('data-locale', $(this).text())">de-DE</button>
+                        <button class="button m-1" onclick="$('#calendarpicker_locale').attr('data-locale', $(this).text())">hu-HU</button>
+                        <button class="button m-1" onclick="$('#calendarpicker_locale').attr('data-locale', $(this).text())">uk-UA</button>
+                        <button class="button m-1" onclick="$('#calendarpicker_locale').attr('data-locale', $(this).text())">ru-RU</button>
                     </div>
 
-                    <input type="text" data-role="datepicker" id="datepicker_locale">
+                    <input type="text" data-role="calendarpicker" id="calendarpicker_locale">
                 </div>
                 <pre><code class="html">
                     &lt;div class="d-flex flex-justify-center mb-4"&gt;
-                        &lt;button class="button m-1" onclick="$('#datepicker_locale').attr('data-locale', $(this).text())"&gt;en-US&lt;/button&gt;
-                        &lt;button class="button m-1" onclick="$('#datepicker_locale').attr('data-locale', $(this).text())"&gt;de-DE&lt;/button&gt;
-                        &lt;button class="button m-1" onclick="$('#datepicker_locale').attr('data-locale', $(this).text())"&gt;hu-HU&lt;/button&gt;
-                        &lt;button class="button m-1" onclick="$('#datepicker_locale').attr('data-locale', $(this).text())"&gt;uk-UA&lt;/button&gt;
-                        &lt;button class="button m-1" onclick="$('#datepicker_locale').attr('data-locale', $(this).text())"&gt;ru-RU&lt;/button&gt;
+                        &lt;button class="button m-1" onclick="$('#calendarpicker_locale').attr('data-locale', $(this).text())"&gt;en-US&lt;/button&gt;
+                        &lt;button class="button m-1" onclick="$('#calendarpicker_locale').attr('data-locale', $(this).text())"&gt;de-DE&lt;/button&gt;
+                        &lt;button class="button m-1" onclick="$('#calendarpicker_locale').attr('data-locale', $(this).text())"&gt;hu-HU&lt;/button&gt;
+                        &lt;button class="button m-1" onclick="$('#calendarpicker_locale').attr('data-locale', $(this).text())"&gt;uk-UA&lt;/button&gt;
+                        &lt;button class="button m-1" onclick="$('#calendarpicker_locale').attr('data-locale', $(this).text())"&gt;ru-RU&lt;/button&gt;
                     &lt;/div&gt;
 
-                    &lt;input type="text" data-role="datepicker" id="datepicker_locale"&gt;
+                    &lt;input type="text" data-role="calendarpicker" id="calendarpicker_locale"&gt;
                 </code></pre>
             </main>
         </div>

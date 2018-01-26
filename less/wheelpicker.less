@@ -2,16 +2,18 @@
 @import (once) "include/mixins";
 
 .wheelpicker {
-    display: inline-flex;
-    flex-flow: row nowrap;
+    display: inline-block;
     position: relative;
-    border: 1px solid @borderColor;
     width: 100%;
     cursor: default;
     background-color: @white;
     color: @dark;
     height: 38px;
     user-select: none;
+
+    &:focus {
+        .debug();
+    }
 }
 
 .wheelpicker {
@@ -34,8 +36,6 @@
         width: 100%;
         flex-shrink: 0;
         background-color: #f2f2f2;
-        //height: 280px;
-        //visibility: hidden;
 
         &::before {
             content: "";
@@ -68,10 +68,10 @@
                 display: block;
                 height: 40px;
                 line-height: 40px;
+                font-size: .9em;
 
                 &.active {
                     font-weight: bold;
-                    font-size: 1.2em;
                 }
             }
         }

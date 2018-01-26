@@ -1,4 +1,4 @@
-var Datepicker = {
+var CalendarPicker = {
     init: function( options, elem ) {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
@@ -10,7 +10,7 @@ var Datepicker = {
         this._setOptionsFromDOM();
         this._create();
 
-        Utils.exec(this.options.onDatepickerCreate, [this.element]);
+        Utils.exec(this.options.onCalendarPickerCreate, [this.element]);
 
         return this;
     },
@@ -26,7 +26,7 @@ var Datepicker = {
         clsPicker: "",
         clsInput: "",
 
-        onDatepickerCreate: Metro.noop,
+        onCalendarPickerCreate: Metro.noop,
         onCalendarShow: Metro.noop,
         onCalendarHide: Metro.noop,
         onChange: Metro.noop,
@@ -72,7 +72,7 @@ var Datepicker = {
         var that = this, element = this.element, o = this.options;
         var prev = element.prev();
         var parent = element.parent();
-        var container = $("<div>").addClass("input " + element[0].className + " datepicker");
+        var container = $("<div>").addClass("input " + element[0].className + " calendar-picker");
         var buttons = $("<div>").addClass("button-group");
         var calendarButton, clearButton, cal = $("<div>").addClass("drop-shadow");
 
@@ -148,7 +148,7 @@ var Datepicker = {
                 });
             }
             if (cal.hasClass("open") === false && cal.hasClass("open-up") === false) {
-                $(".datepicker .calendar").removeClass("open open-up").hide();
+                $(".calendar-picker .calendar").removeClass("open open-up").hide();
                 cal.addClass("open");
                 if (Utils.isOutsider(cal) === false) {
                     cal.addClass("open-up");
@@ -284,8 +284,8 @@ var Datepicker = {
     }
 };
 
-Metro.plugin('datepicker', Datepicker);
+Metro.plugin('calendarpicker', CalendarPicker);
 
 $(document).on(Metro.events.click, function(e){
-    $(".datepicker .calendar").removeClass("open open-up").hide();
+    $(".calendar-picker .calendar").removeClass("open open-up").hide();
 });

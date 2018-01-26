@@ -15,12 +15,10 @@ var Timepicker = {
 
     options: {
         value: "00:00:00",
-        leadZero: false,
         distance: 3,
         hours: true,
         minutes: true,
         seconds: false,
-        h24: true,
         duration: METRO_ANIMATION_DURATION,
         scrollSpeed: 5,
         clsPicker: "",
@@ -74,13 +72,13 @@ var Timepicker = {
     _createStructure: function(){
         var that = this, element = this.element, o = this.options;
         var picker, hours, minutes, seconds, ampm, select, i;
-        var selectWrapper, selectBlock, actionBlock;
+        var timeWrapper, selectWrapper, selectBlock, actionBlock;
 
         var prev = element.prev();
         var parent = element.parent();
         var id = Utils.elementId("timepicker");
 
-        picker = $("<div>").addClass("wheelpicker timepicker " + String(element[0].className).replace("d-block", "d-flex")).addClass(o.clsPicker);
+        picker = $("<label>").addClass("wheelpicker timepicker " + String(element[0].className).replace("d-block", "d-flex")).addClass(o.clsPicker);
 
         if (prev.length === 0) {
             parent.prepend(picker);
@@ -90,17 +88,17 @@ var Timepicker = {
 
         element.appendTo(picker);
 
+
+        timeWrapper = $("<div>").addClass("time-wrapper").appendTo(picker);
+
         if (o.hours === true) {
-            hours = $("<div>").addClass("hours").appendTo(picker);
+            hours = $("<div>").addClass("hours").appendTo(timeWrapper);
         }
         if (o.minutes === true) {
-            minutes = $("<div>").addClass("minutes").appendTo(picker);
+            minutes = $("<div>").addClass("minutes").appendTo(timeWrapper);
         }
         if (o.seconds === true) {
-            seconds = $("<div>").addClass("seconds").appendTo(picker);
-        }
-        if (o.h24 !== true) {
-            ampm = $("<div>").addClass("ampm").appendTo(picker);
+            seconds = $("<div>").addClass("seconds").appendTo(timeWrapper);
         }
 
         selectWrapper = $("<div>").addClass("select-wrapper").appendTo(picker);
@@ -109,8 +107,8 @@ var Timepicker = {
         if (o.hours === true) {
             hours = $("<ul>").addClass("sel-hours").appendTo(selectBlock);
             for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(hours);
-            for (i = 0; i < (o.h24 === true ? 24 : 12); i++) {
-                $("<li>").addClass("js-hours-"+i).html(i).data("value", i).appendTo(hours);
+            for (i = 0; i < 24; i++) {
+                $("<li>").addClass("js-hours-"+i).html(i < 10 ? "0"+i : i).data("value", i).appendTo(hours);
             }
             for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(hours);
         }
@@ -118,7 +116,7 @@ var Timepicker = {
             minutes = $("<ul>").addClass("sel-minutes").appendTo(selectBlock);
             for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(minutes);
             for (i = 0; i < 60; i++) {
-                $("<li>").addClass("js-minutes-"+i).html(i).data("value", i).appendTo(minutes);
+                $("<li>").addClass("js-minutes-"+i).html(i < 10 ? "0"+i : i).data("value", i).appendTo(minutes);
             }
             for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(minutes);
         }
@@ -126,16 +124,9 @@ var Timepicker = {
             seconds = $("<ul>").addClass("sel-seconds").appendTo(selectBlock);
             for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(seconds);
             for (i = 0; i < 60; i++) {
-                $("<li>").addClass("js-seconds-"+i).html(i).data("value", i).appendTo(seconds);
+                $("<li>").addClass("js-seconds-"+i).html(i < 10 ? "0"+i : i).data("value", i).appendTo(seconds);
             }
             for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(seconds);
-        }
-        if (o.h24 !== true) {
-            ampm = $("<ul>").addClass("sel-ampm").appendTo(selectBlock);
-            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(ampm);
-            $("<li>").addClass("js-ampm-0").html("AM").data("value", "AM").appendTo(ampm);
-            $("<li>").addClass("js-ampm-1").html("PM").data("value", "PM").appendTo(ampm);
-            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(ampm);
         }
 
         selectBlock.height((o.distance * 2 + 1) * 40);
@@ -178,18 +169,9 @@ var Timepicker = {
             h = picker.find(".sel-hours li.active").data("value");
             m = picker.find(".sel-minutes li.active").data("value");
             s = picker.find(".sel-seconds li.active").data("value");
-            a = picker.find(".sel-ampm li.active").data("value");
-
-
-            if (o.h24 !== true) {
-                if (a === "PM" && h < 12) {
-                    h = 12 + h;
-                }
-            }
 
             that.value = [h, m, s];
             that._set();
-
 
             that.close();
             e.stopPropagation();
@@ -205,7 +187,7 @@ var Timepicker = {
 
     _addScrollEvents: function(){
         var picker = this.picker, o = this.options;
-        var lists = ['hours', 'minutes', 'seconds', 'ampm'];
+        var lists = ['hours', 'minutes', 'seconds'];
         $.each(lists, function(){
             var list_name = this;
             var list = picker.find(".sel-" + list_name);
@@ -232,7 +214,7 @@ var Timepicker = {
 
     _removeScrollEvents: function(){
         var picker = this.picker;
-        var lists = ['hours', 'minutes', 'seconds', 'ampm'];
+        var lists = ['hours', 'minutes', 'seconds'];
         $.each(lists, function(){
             picker.find(".sel-" + this).off("scrollstart scrollstop");
         });
@@ -244,28 +226,25 @@ var Timepicker = {
         var h, m, s;
 
         if (o.hours === true) {
-            h = o.h24 === true ? this.value[0] : (this.value[0] > 12 ? this.value[0] - 12 : this.value[0]);
-            if (o.leadZero === true && h < 10) {
+            h = this.value[0];
+            if (h < 10) {
                 h = "0"+h;
             }
             picker.find(".hours").html(h);
         }
         if (o.minutes === true) {
             m = this.value[1];
-            if (o.leadZero === true && m < 10) {
+            if (m < 10) {
                 m = "0"+m;
             }
             picker.find(".minutes").html(m);
         }
         if (o.seconds === true) {
             s = this.value[2];
-            if (o.leadZero === true && s < 10) {
+            if (s < 10) {
                 s = "0"+s;
             }
             picker.find(".seconds").html(s);
-        }
-        if (o.h24 !== true) {
-            picker.find(".ampm").html(this.value[0] > 12 ? "PM" : "AM");
         }
     },
 
@@ -279,7 +258,7 @@ var Timepicker = {
         picker.find("li").removeClass("active");
 
         if (o.hours === true) {
-            h = o.h24 === true ? this.value[0] : (this.value[0] > 12 ? this.value[0] - 12 : this.value[0]);
+            h = this.value[0];
             h_list = picker.find(".sel-hours");
             h_list.scrollTop(0).animate({
                 scrollTop: h_list.find("li").eq(h).addClass("active").position().top
@@ -297,12 +276,6 @@ var Timepicker = {
             s_list = picker.find(".sel-seconds");
             s_list.scrollTop(0).animate({
                 scrollTop: s_list.find("li").eq(s).addClass("active").position().top
-            });
-        }
-        if (o.h24 !== true) {
-            a_list = picker.find(".sel-ampm");
-            a_list.scrollTop(0).animate({
-                scrollTop: a_list.find("li").eq(this.value[0] > 12 ? 1 : 0).addClass("active").position().top
             });
         }
 

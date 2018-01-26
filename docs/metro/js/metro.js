@@ -4013,6 +4013,299 @@ $(document).on(Metro.events.click, function(e){
 });
 
 Metro.plugin('calendar', Calendar);
+// Source: js/plugins/calendarpicker.js
+var CalendarPicker = {
+    init: function( options, elem ) {
+        this.options = $.extend( {}, this.options, options );
+        this.elem  = elem;
+        this.element = $(elem);
+        this.value = null;
+        this.value_date = null;
+        this.calendar = null;
+
+        this._setOptionsFromDOM();
+        this._create();
+
+        Utils.exec(this.options.onCalendarPickerCreate, [this.element]);
+
+        return this;
+    },
+
+    options: {
+        locale: METRO_LOCALE,
+        size: "100%",
+        format: "%Y/%m/%d",
+        clearButton: false,
+        calendarButtonIcon: "<span class='default-icon-calendar'></span>",
+        clearButtonIcon: "<span class='default-icon-cross'></span>",
+        copyInlineStyles: false,
+        clsPicker: "",
+        clsInput: "",
+
+        onCalendarPickerCreate: Metro.noop,
+        onCalendarShow: Metro.noop,
+        onCalendarHide: Metro.noop,
+        onChange: Metro.noop,
+
+        yearsBefore: 100,
+        yearsAfter: 100,
+        weekStart: METRO_WEEK_START,
+        outside: true,
+        clsCalendar: "",
+        clsCalendarHeader: "",
+        clsCalendarContent: "",
+        clsCalendarFooter: "",
+        clsCalendarMonths: "",
+        clsCalendarYears: "",
+        clsToday: "",
+        clsSelected: "",
+        clsExcluded: "",
+        ripple: false,
+        rippleColor: "#cccccc",
+        exclude: null,
+        preset: null,
+        minDate: null,
+        maxDate: null,
+
+        onDayClick: Metro.noop
+    },
+
+    _setOptionsFromDOM: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = JSON.parse(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+    },
+
+    _create: function(){
+        var that = this, element = this.element, o = this.options;
+        var prev = element.prev();
+        var parent = element.parent();
+        var container = $("<div>").addClass("input " + element[0].className + " calendar-picker");
+        var buttons = $("<div>").addClass("button-group");
+        var calendarButton, clearButton, cal = $("<div>").addClass("drop-shadow");
+
+        this.value = element.val();
+        if (Utils.isDate(this.value)) {
+            this.value_date = new Date(this.value);
+            this.value_date.setHours(0,0,0,0);
+            element.val(this.value_date.format(o.format));
+        }
+
+        if (prev.length === 0) {
+            parent.prepend(container);
+        } else {
+            container.insertAfter(prev);
+        }
+
+        element.appendTo(container);
+        buttons.appendTo(container);
+        cal.appendTo(container);
+
+        cal.calendar({
+            pickerMode: true,
+            show: o.value,
+            locale: o.locale,
+            weekStart: o.weekStart,
+            outside: o.outside,
+            buttons: false,
+            clsCalendar: o.clsCalendar,
+            clsCalendarHeader: o.clsCalendarHeader,
+            clsCalendarContent: o.clsCalendarContent,
+            clsCalendarFooter: o.clsCalendarFooter,
+            clsCalendarMonths: o.clsCalendarMonths,
+            clsCalendarYears: o.clsCalendarYears,
+            clsToday: o.clsToday,
+            clsSelected: o.clsSelected,
+            clsExcluded: o.clsExcluded,
+            ripple: o.ripple,
+            rippleColor: o.rippleColor,
+            exclude: o.exclude,
+            minDate: o.minDate,
+            maxDate: o.maxDate,
+            onDayClick: function(sel, day, el){
+                var date = new Date(sel[0]);
+                that.value = date.format("%Y/%m/%d");
+                that.value_date = date;
+                element.val(date.format(o.format, o.locale));
+                element.trigger("change");
+                cal.removeClass("open open-up");
+                cal.hide();
+                Utils.exec(o.onChange, [that.value, that.value_date, element]);
+                Utils.exec(o.onDayClick, [sel, day, el]);
+            }
+        });
+
+        cal.hide();
+
+        this.calendar = cal;
+
+        calendarButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.calendarButtonIcon);
+        calendarButton.appendTo(buttons);
+        container.on(Metro.events.click, "button, input", function(e){
+            if (Utils.isDate(that.value) && (cal.hasClass("open") === false && cal.hasClass("open-up") === false)) {
+                cal.css({
+                    visibility: "hidden",
+                    display: "block"
+                });
+                cal.data('calendar').setPreset(that.value);
+                cal.data('calendar').setShow(that.value);
+                cal.data('calendar').setToday(that.value);
+                cal.css({
+                    visibility: "visible",
+                    display: "none"
+                });
+            }
+            if (cal.hasClass("open") === false && cal.hasClass("open-up") === false) {
+                $(".calendar-picker .calendar").removeClass("open open-up").hide();
+                cal.addClass("open");
+                if (Utils.isOutsider(cal) === false) {
+                    cal.addClass("open-up");
+                }
+                cal.show();
+                Utils.exec(o.onCalendarShow, [element, cal]);
+            } else {
+                cal.removeClass("open open-up");
+                cal.hide();
+                Utils.exec(o.onCalendarHide, [element, cal]);
+            }
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
+        if (o.clearButton === true) {
+            clearButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
+            clearButton.on(Metro.events.click, function () {
+                element.val("").trigger('change');
+            });
+            clearButton.appendTo(buttons);
+        }
+
+        if (element.attr('dir') === 'rtl' ) {
+            container.addClass("rtl");
+        }
+
+        if (String(o.size).indexOf("%") > -1) {
+            container.css({
+                width: o.size
+            });
+        } else {
+            container.css({
+                width: parseInt(o.size) + "px"
+            });
+        }
+
+        element[0].className = '';
+        element.attr("readonly", true);
+
+        if (o.copyInlineStyles === true) {
+            $.each(Utils.getInlineStyles(element), function(key, value){
+                container.css(key, value);
+            });
+        }
+
+        container.addClass(o.clsPicker);
+        element.addClass(o.clsInput);
+
+        element.on(Metro.events.blur, function(){container.removeClass("focused");});
+        element.on(Metro.events.focus, function(){container.addClass("focused");});
+        element.on(Metro.events.change, function(){
+            Utils.exec(o.onChange, [that.value_date, that.value, element]);
+        });
+    },
+
+    val: function(v){
+        var that = this, element = this.element, o = this.options;
+
+        if (v === undefined) {
+            return this.value_date;
+        }
+
+        if (Utils.isDate(v) === true) {
+            this.value_date = new Date(v);
+            this.value = this.value_date.format(o.format);
+            element.val(this.value_date.format(o.format));
+            element.trigger("change");
+        }
+    },
+
+    changeValue: function(){
+        var that = this, element = this.element, o = this.options;
+        this.val(element.attr("value"));
+    },
+
+    disable: function(){
+        this.element.data("disabled", true);
+        this.element.parent().addClass("disabled");
+    },
+
+    enable: function(){
+        this.element.data("disabled", false);
+        this.element.parent().removeClass("disabled");
+    },
+
+    toggleState: function(){
+        if (this.element.data("disabled") === false) {
+            this.disable();
+        } else {
+            this.enable();
+        }
+    },
+
+    i18n: function(val){
+        var that = this, element = this.element, o = this.options;
+        var hidden = false;
+        var cal = this.calendar;
+        if (val === undefined) {
+            return o.locale;
+        }
+        if (Metro.locales[val] === undefined) {
+            return false;
+        }
+
+        hidden = cal.is(':hidden');
+        if (hidden) {
+            cal.css({
+                visibility: "hidden",
+                display: "block"
+            });
+        }
+        cal.data('calendar').i18n(val);
+        if (hidden) {
+            cal.css({
+                visibility: "visible",
+                display: "none"
+            });
+        }
+    },
+
+    changeAttrLocale: function(){
+        var that = this, element = this.element, o = this.options;
+        this.i18n(element.attr("data-locale"));
+    },
+
+    changeAttribute: function(attributeName){
+        switch (attributeName) {
+            case "value": this.changeValue(); break;
+            case 'disabled': this.toggleState(); break;
+            case 'data-locale': this.changeAttrLocale(); break;
+        }
+    }
+};
+
+Metro.plugin('calendarpicker', CalendarPicker);
+
+$(document).on(Metro.events.click, function(e){
+    $(".calendar-picker .calendar").removeClass("open open-up").hide();
+});
+
 // Source: js/plugins/carousel.js
 var Carousel = {
     init: function( options, elem ) {
@@ -5743,299 +6036,6 @@ var Cube = {
 };
 
 Metro.plugin('cube', Cube);
-// Source: js/plugins/datepicker.js
-var Datepicker = {
-    init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
-        this.elem  = elem;
-        this.element = $(elem);
-        this.value = null;
-        this.value_date = null;
-        this.calendar = null;
-
-        this._setOptionsFromDOM();
-        this._create();
-
-        Utils.exec(this.options.onDatepickerCreate, [this.element]);
-
-        return this;
-    },
-
-    options: {
-        locale: METRO_LOCALE,
-        size: "100%",
-        format: "%Y/%m/%d",
-        clearButton: false,
-        calendarButtonIcon: "<span class='default-icon-calendar'></span>",
-        clearButtonIcon: "<span class='default-icon-cross'></span>",
-        copyInlineStyles: false,
-        clsPicker: "",
-        clsInput: "",
-
-        onDatepickerCreate: Metro.noop,
-        onCalendarShow: Metro.noop,
-        onCalendarHide: Metro.noop,
-        onChange: Metro.noop,
-
-        yearsBefore: 100,
-        yearsAfter: 100,
-        weekStart: METRO_WEEK_START,
-        outside: true,
-        clsCalendar: "",
-        clsCalendarHeader: "",
-        clsCalendarContent: "",
-        clsCalendarFooter: "",
-        clsCalendarMonths: "",
-        clsCalendarYears: "",
-        clsToday: "",
-        clsSelected: "",
-        clsExcluded: "",
-        ripple: false,
-        rippleColor: "#cccccc",
-        exclude: null,
-        preset: null,
-        minDate: null,
-        maxDate: null,
-
-        onDayClick: Metro.noop
-    },
-
-    _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
-    },
-
-    _create: function(){
-        var that = this, element = this.element, o = this.options;
-        var prev = element.prev();
-        var parent = element.parent();
-        var container = $("<div>").addClass("input " + element[0].className + " datepicker");
-        var buttons = $("<div>").addClass("button-group");
-        var calendarButton, clearButton, cal = $("<div>").addClass("drop-shadow");
-
-        this.value = element.val();
-        if (Utils.isDate(this.value)) {
-            this.value_date = new Date(this.value);
-            this.value_date.setHours(0,0,0,0);
-            element.val(this.value_date.format(o.format));
-        }
-
-        if (prev.length === 0) {
-            parent.prepend(container);
-        } else {
-            container.insertAfter(prev);
-        }
-
-        element.appendTo(container);
-        buttons.appendTo(container);
-        cal.appendTo(container);
-
-        cal.calendar({
-            pickerMode: true,
-            show: o.value,
-            locale: o.locale,
-            weekStart: o.weekStart,
-            outside: o.outside,
-            buttons: false,
-            clsCalendar: o.clsCalendar,
-            clsCalendarHeader: o.clsCalendarHeader,
-            clsCalendarContent: o.clsCalendarContent,
-            clsCalendarFooter: o.clsCalendarFooter,
-            clsCalendarMonths: o.clsCalendarMonths,
-            clsCalendarYears: o.clsCalendarYears,
-            clsToday: o.clsToday,
-            clsSelected: o.clsSelected,
-            clsExcluded: o.clsExcluded,
-            ripple: o.ripple,
-            rippleColor: o.rippleColor,
-            exclude: o.exclude,
-            minDate: o.minDate,
-            maxDate: o.maxDate,
-            onDayClick: function(sel, day, el){
-                var date = new Date(sel[0]);
-                that.value = date.format("%Y/%m/%d");
-                that.value_date = date;
-                element.val(date.format(o.format, o.locale));
-                element.trigger("change");
-                cal.removeClass("open open-up");
-                cal.hide();
-                Utils.exec(o.onChange, [that.value, that.value_date, element]);
-                Utils.exec(o.onDayClick, [sel, day, el]);
-            }
-        });
-
-        cal.hide();
-
-        this.calendar = cal;
-
-        calendarButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.calendarButtonIcon);
-        calendarButton.appendTo(buttons);
-        container.on(Metro.events.click, "button, input", function(e){
-            if (Utils.isDate(that.value) && (cal.hasClass("open") === false && cal.hasClass("open-up") === false)) {
-                cal.css({
-                    visibility: "hidden",
-                    display: "block"
-                });
-                cal.data('calendar').setPreset(that.value);
-                cal.data('calendar').setShow(that.value);
-                cal.data('calendar').setToday(that.value);
-                cal.css({
-                    visibility: "visible",
-                    display: "none"
-                });
-            }
-            if (cal.hasClass("open") === false && cal.hasClass("open-up") === false) {
-                $(".datepicker .calendar").removeClass("open open-up").hide();
-                cal.addClass("open");
-                if (Utils.isOutsider(cal) === false) {
-                    cal.addClass("open-up");
-                }
-                cal.show();
-                Utils.exec(o.onCalendarShow, [element, cal]);
-            } else {
-                cal.removeClass("open open-up");
-                cal.hide();
-                Utils.exec(o.onCalendarHide, [element, cal]);
-            }
-            e.preventDefault();
-            e.stopPropagation();
-        });
-
-        if (o.clearButton === true) {
-            clearButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
-            clearButton.on(Metro.events.click, function () {
-                element.val("").trigger('change');
-            });
-            clearButton.appendTo(buttons);
-        }
-
-        if (element.attr('dir') === 'rtl' ) {
-            container.addClass("rtl");
-        }
-
-        if (String(o.size).indexOf("%") > -1) {
-            container.css({
-                width: o.size
-            });
-        } else {
-            container.css({
-                width: parseInt(o.size) + "px"
-            });
-        }
-
-        element[0].className = '';
-        element.attr("readonly", true);
-
-        if (o.copyInlineStyles === true) {
-            $.each(Utils.getInlineStyles(element), function(key, value){
-                container.css(key, value);
-            });
-        }
-
-        container.addClass(o.clsPicker);
-        element.addClass(o.clsInput);
-
-        element.on(Metro.events.blur, function(){container.removeClass("focused");});
-        element.on(Metro.events.focus, function(){container.addClass("focused");});
-        element.on(Metro.events.change, function(){
-            Utils.exec(o.onChange, [that.value_date, that.value, element]);
-        });
-    },
-
-    val: function(v){
-        var that = this, element = this.element, o = this.options;
-
-        if (v === undefined) {
-            return this.value_date;
-        }
-
-        if (Utils.isDate(v) === true) {
-            this.value_date = new Date(v);
-            this.value = this.value_date.format(o.format);
-            element.val(this.value_date.format(o.format));
-            element.trigger("change");
-        }
-    },
-
-    changeValue: function(){
-        var that = this, element = this.element, o = this.options;
-        this.val(element.attr("value"));
-    },
-
-    disable: function(){
-        this.element.data("disabled", true);
-        this.element.parent().addClass("disabled");
-    },
-
-    enable: function(){
-        this.element.data("disabled", false);
-        this.element.parent().removeClass("disabled");
-    },
-
-    toggleState: function(){
-        if (this.element.data("disabled") === false) {
-            this.disable();
-        } else {
-            this.enable();
-        }
-    },
-
-    i18n: function(val){
-        var that = this, element = this.element, o = this.options;
-        var hidden = false;
-        var cal = this.calendar;
-        if (val === undefined) {
-            return o.locale;
-        }
-        if (Metro.locales[val] === undefined) {
-            return false;
-        }
-
-        hidden = cal.is(':hidden');
-        if (hidden) {
-            cal.css({
-                visibility: "hidden",
-                display: "block"
-            });
-        }
-        cal.data('calendar').i18n(val);
-        if (hidden) {
-            cal.css({
-                visibility: "visible",
-                display: "none"
-            });
-        }
-    },
-
-    changeAttrLocale: function(){
-        var that = this, element = this.element, o = this.options;
-        this.i18n(element.attr("data-locale"));
-    },
-
-    changeAttribute: function(attributeName){
-        switch (attributeName) {
-            case "value": this.changeValue(); break;
-            case 'disabled': this.toggleState(); break;
-            case 'data-locale': this.changeAttrLocale(); break;
-        }
-    }
-};
-
-Metro.plugin('datepicker', Datepicker);
-
-$(document).on(Metro.events.click, function(e){
-    $(".datepicker .calendar").removeClass("open open-up").hide();
-});
-
 // Source: js/plugins/dialog.js
 var Dialog = {
     init: function( options, elem ) {
@@ -11789,12 +11789,10 @@ var Timepicker = {
 
     options: {
         value: "00:00:00",
-        leadZero: false,
         distance: 3,
         hours: true,
         minutes: true,
         seconds: false,
-        h24: true,
         duration: METRO_ANIMATION_DURATION,
         scrollSpeed: 5,
         clsPicker: "",
@@ -11848,13 +11846,13 @@ var Timepicker = {
     _createStructure: function(){
         var that = this, element = this.element, o = this.options;
         var picker, hours, minutes, seconds, ampm, select, i;
-        var selectWrapper, selectBlock, actionBlock;
+        var timeWrapper, selectWrapper, selectBlock, actionBlock;
 
         var prev = element.prev();
         var parent = element.parent();
         var id = Utils.elementId("timepicker");
 
-        picker = $("<div>").addClass("wheelpicker timepicker " + String(element[0].className).replace("d-block", "d-flex")).addClass(o.clsPicker);
+        picker = $("<label>").addClass("wheelpicker timepicker " + String(element[0].className).replace("d-block", "d-flex")).addClass(o.clsPicker);
 
         if (prev.length === 0) {
             parent.prepend(picker);
@@ -11864,17 +11862,17 @@ var Timepicker = {
 
         element.appendTo(picker);
 
+
+        timeWrapper = $("<div>").addClass("time-wrapper").appendTo(picker);
+
         if (o.hours === true) {
-            hours = $("<div>").addClass("hours").appendTo(picker);
+            hours = $("<div>").addClass("hours").appendTo(timeWrapper);
         }
         if (o.minutes === true) {
-            minutes = $("<div>").addClass("minutes").appendTo(picker);
+            minutes = $("<div>").addClass("minutes").appendTo(timeWrapper);
         }
         if (o.seconds === true) {
-            seconds = $("<div>").addClass("seconds").appendTo(picker);
-        }
-        if (o.h24 !== true) {
-            ampm = $("<div>").addClass("ampm").appendTo(picker);
+            seconds = $("<div>").addClass("seconds").appendTo(timeWrapper);
         }
 
         selectWrapper = $("<div>").addClass("select-wrapper").appendTo(picker);
@@ -11883,8 +11881,8 @@ var Timepicker = {
         if (o.hours === true) {
             hours = $("<ul>").addClass("sel-hours").appendTo(selectBlock);
             for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(hours);
-            for (i = 0; i < (o.h24 === true ? 24 : 12); i++) {
-                $("<li>").addClass("js-hours-"+i).html(i).data("value", i).appendTo(hours);
+            for (i = 0; i < 24; i++) {
+                $("<li>").addClass("js-hours-"+i).html(i < 10 ? "0"+i : i).data("value", i).appendTo(hours);
             }
             for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(hours);
         }
@@ -11892,7 +11890,7 @@ var Timepicker = {
             minutes = $("<ul>").addClass("sel-minutes").appendTo(selectBlock);
             for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(minutes);
             for (i = 0; i < 60; i++) {
-                $("<li>").addClass("js-minutes-"+i).html(i).data("value", i).appendTo(minutes);
+                $("<li>").addClass("js-minutes-"+i).html(i < 10 ? "0"+i : i).data("value", i).appendTo(minutes);
             }
             for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(minutes);
         }
@@ -11900,16 +11898,9 @@ var Timepicker = {
             seconds = $("<ul>").addClass("sel-seconds").appendTo(selectBlock);
             for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(seconds);
             for (i = 0; i < 60; i++) {
-                $("<li>").addClass("js-seconds-"+i).html(i).data("value", i).appendTo(seconds);
+                $("<li>").addClass("js-seconds-"+i).html(i < 10 ? "0"+i : i).data("value", i).appendTo(seconds);
             }
             for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(seconds);
-        }
-        if (o.h24 !== true) {
-            ampm = $("<ul>").addClass("sel-ampm").appendTo(selectBlock);
-            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(ampm);
-            $("<li>").addClass("js-ampm-0").html("AM").data("value", "AM").appendTo(ampm);
-            $("<li>").addClass("js-ampm-1").html("PM").data("value", "PM").appendTo(ampm);
-            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(ampm);
         }
 
         selectBlock.height((o.distance * 2 + 1) * 40);
@@ -11952,18 +11943,9 @@ var Timepicker = {
             h = picker.find(".sel-hours li.active").data("value");
             m = picker.find(".sel-minutes li.active").data("value");
             s = picker.find(".sel-seconds li.active").data("value");
-            a = picker.find(".sel-ampm li.active").data("value");
-
-
-            if (o.h24 !== true) {
-                if (a === "PM" && h < 12) {
-                    h = 12 + h;
-                }
-            }
 
             that.value = [h, m, s];
             that._set();
-
 
             that.close();
             e.stopPropagation();
@@ -11979,7 +11961,7 @@ var Timepicker = {
 
     _addScrollEvents: function(){
         var picker = this.picker, o = this.options;
-        var lists = ['hours', 'minutes', 'seconds', 'ampm'];
+        var lists = ['hours', 'minutes', 'seconds'];
         $.each(lists, function(){
             var list_name = this;
             var list = picker.find(".sel-" + list_name);
@@ -12006,7 +11988,7 @@ var Timepicker = {
 
     _removeScrollEvents: function(){
         var picker = this.picker;
-        var lists = ['hours', 'minutes', 'seconds', 'ampm'];
+        var lists = ['hours', 'minutes', 'seconds'];
         $.each(lists, function(){
             picker.find(".sel-" + this).off("scrollstart scrollstop");
         });
@@ -12018,28 +12000,25 @@ var Timepicker = {
         var h, m, s;
 
         if (o.hours === true) {
-            h = o.h24 === true ? this.value[0] : (this.value[0] > 12 ? this.value[0] - 12 : this.value[0]);
-            if (o.leadZero === true && h < 10) {
+            h = this.value[0];
+            if (h < 10) {
                 h = "0"+h;
             }
             picker.find(".hours").html(h);
         }
         if (o.minutes === true) {
             m = this.value[1];
-            if (o.leadZero === true && m < 10) {
+            if (m < 10) {
                 m = "0"+m;
             }
             picker.find(".minutes").html(m);
         }
         if (o.seconds === true) {
             s = this.value[2];
-            if (o.leadZero === true && s < 10) {
+            if (s < 10) {
                 s = "0"+s;
             }
             picker.find(".seconds").html(s);
-        }
-        if (o.h24 !== true) {
-            picker.find(".ampm").html(this.value[0] > 12 ? "PM" : "AM");
         }
     },
 
@@ -12053,7 +12032,7 @@ var Timepicker = {
         picker.find("li").removeClass("active");
 
         if (o.hours === true) {
-            h = o.h24 === true ? this.value[0] : (this.value[0] > 12 ? this.value[0] - 12 : this.value[0]);
+            h = this.value[0];
             h_list = picker.find(".sel-hours");
             h_list.scrollTop(0).animate({
                 scrollTop: h_list.find("li").eq(h).addClass("active").position().top
@@ -12071,12 +12050,6 @@ var Timepicker = {
             s_list = picker.find(".sel-seconds");
             s_list.scrollTop(0).animate({
                 scrollTop: s_list.find("li").eq(s).addClass("active").position().top
-            });
-        }
-        if (o.h24 !== true) {
-            a_list = picker.find(".sel-ampm");
-            a_list.scrollTop(0).animate({
-                scrollTop: a_list.find("li").eq(this.value[0] > 12 ? 1 : 0).addClass("active").position().top
             });
         }
 

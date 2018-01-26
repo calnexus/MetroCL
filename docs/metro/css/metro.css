@@ -23184,17 +23184,17 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
     margin: 0 96px 0 180px;
   }
 }
-.datepicker {
+.calendar-picker {
   position: relative;
 }
-.datepicker .calendar {
+.calendar-picker .calendar {
   position: absolute;
   top: 100%;
   left: 0;
   display: block;
   z-index: 500;
 }
-.datepicker .calendar.open-up {
+.calendar-picker .calendar.open-up {
   top: auto;
   bottom: 100%;
 }
@@ -26973,15 +26973,8 @@ video:-webkit-full-screen {
   }
 }
 .wheelpicker {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row nowrap;
-          flex-flow: row nowrap;
+  display: inline-block;
   position: relative;
-  border: 1px solid #dfdfdf;
   width: 100%;
   cursor: default;
   background-color: #ffffff;
@@ -26991,6 +26984,11 @@ video:-webkit-full-screen {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+}
+.wheelpicker:focus {
+  outline: 1px dotted red!important;
+  min-width: 1px;
+  min-height: 1px;
 }
 .wheelpicker .select-wrapper {
   display: none;
@@ -27050,10 +27048,10 @@ video:-webkit-full-screen {
   display: block;
   height: 40px;
   line-height: 40px;
+  font-size: .9em;
 }
 .wheelpicker .select-block ul li.active {
   font-weight: bold;
-  font-size: 1.2em;
 }
 .wheelpicker .action-block {
   display: -webkit-box;
@@ -27079,10 +27077,25 @@ video:-webkit-full-screen {
   left: 0;
   opacity: 0;
 }
+.timepicker input:focus ~ .time-wrapper {
+  -webkit-box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
+          box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
+}
+.timepicker .time-wrapper {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  position: relative;
+  border: 1px solid #dfdfdf;
+  width: 100%;
+}
 .timepicker .hours,
 .timepicker .minutes,
-.timepicker .seconds,
-.timepicker .ampm {
+.timepicker .seconds {
   display: block;
   -webkit-box-flex: 1;
       -ms-flex: 1;

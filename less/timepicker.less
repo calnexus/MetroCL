@@ -4,7 +4,19 @@
 .timepicker {
     .hideElement(input);
 
-    .hours, .minutes, .seconds, .ampm {
+    input:focus ~ .time-wrapper {
+        .focus-show(@lightGray);
+    }
+
+    .time-wrapper {
+        display: inline-flex;
+        flex-flow: row nowrap;
+        position: relative;
+        border: 1px solid @borderColor;
+        width: 100%;
+    }
+
+    .hours, .minutes, .seconds {
         display: block;
         flex: 1;
         border: 1px solid @borderColor;
