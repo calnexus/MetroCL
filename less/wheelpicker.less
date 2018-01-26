@@ -1,8 +1,8 @@
 @import (once) "include/vars";
 @import (once) "include/mixins";
 
-.wheelpicker {
-    display: inline-block;
+.wheel-picker {
+    display: block;
     position: relative;
     width: 100%;
     cursor: default;
@@ -16,17 +16,16 @@
     }
 }
 
-.wheelpicker {
+.wheel-picker {
 
     .select-wrapper {
         display: none;
         position: absolute;
         top: 100%;
         left: 0;
-        height: 314px;
+        height: auto;
         z-index: 1;
         width: 100%;
-        //.translate3d(0, -50%, 0);
     }
 
     .select-block {

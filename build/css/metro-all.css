@@ -26972,8 +26972,8 @@ video:-webkit-full-screen {
             transform: scale(1.5);
   }
 }
-.wheelpicker {
-  display: inline-block;
+.wheel-picker {
+  display: block;
   position: relative;
   width: 100%;
   cursor: default;
@@ -26985,21 +26985,21 @@ video:-webkit-full-screen {
       -ms-user-select: none;
           user-select: none;
 }
-.wheelpicker:focus {
+.wheel-picker:focus {
   outline: 1px dotted red!important;
   min-width: 1px;
   min-height: 1px;
 }
-.wheelpicker .select-wrapper {
+.wheel-picker .select-wrapper {
   display: none;
   position: absolute;
   top: 100%;
   left: 0;
-  height: 314px;
+  height: auto;
   z-index: 1;
   width: 100%;
 }
-.wheelpicker .select-block {
+.wheel-picker .select-block {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -27013,7 +27013,7 @@ video:-webkit-full-screen {
       flex-shrink: 0;
   background-color: #f2f2f2;
 }
-.wheelpicker .select-block::before {
+.wheel-picker .select-block::before {
   content: "";
   display: block;
   position: absolute;
@@ -27026,7 +27026,7 @@ video:-webkit-full-screen {
           transform: translateY(-50%);
   width: 100%;
 }
-.wheelpicker .select-block ul {
+.wheel-picker .select-block ul {
   margin: 0;
   padding: 0;
   list-style: none inside;
@@ -27041,19 +27041,19 @@ video:-webkit-full-screen {
   overflow-y: auto;
   -ms-overflow-style: -ms-autohiding-scrollbar;
 }
-.wheelpicker .select-block ul::-webkit-scrollbar {
+.wheel-picker .select-block ul::-webkit-scrollbar {
   display: none!important;
 }
-.wheelpicker .select-block ul li {
+.wheel-picker .select-block ul li {
   display: block;
   height: 40px;
   line-height: 40px;
   font-size: .9em;
 }
-.wheelpicker .select-block ul li.active {
+.wheel-picker .select-block ul li.active {
   font-weight: bold;
 }
-.wheelpicker .action-block {
+.wheel-picker .action-block {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -27064,12 +27064,12 @@ video:-webkit-full-screen {
   position: relative;
   width: 100%;
 }
-.wheelpicker .action-block > * {
+.wheel-picker .action-block > * {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
 }
-.timepicker input {
+.time-picker input {
   width: 1px;
   height: 1px;
   position: absolute;
@@ -27077,11 +27077,11 @@ video:-webkit-full-screen {
   left: 0;
   opacity: 0;
 }
-.timepicker input:focus ~ .time-wrapper {
+.time-picker input:focus ~ .time-wrapper {
   -webkit-box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
           box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
 }
-.timepicker .time-wrapper {
+.time-picker .time-wrapper {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -27093,9 +27093,9 @@ video:-webkit-full-screen {
   border: 1px solid #dfdfdf;
   width: 100%;
 }
-.timepicker .hours,
-.timepicker .minutes,
-.timepicker .seconds {
+.time-picker .hours,
+.time-picker .minutes,
+.time-picker .seconds {
   display: block;
   -webkit-box-flex: 1;
       -ms-flex: 1;
@@ -27104,6 +27104,10 @@ video:-webkit-full-screen {
   text-align: center;
   height: 38px;
   line-height: 38px;
+}
+.time-picker .select-wrapper {
+  -webkit-transform: translate3d(0, -50%, 0);
+          transform: translate3d(0, -50%, 0);
 }
 .ripple {
   display: block;

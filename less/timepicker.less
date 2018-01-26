@@ -1,7 +1,7 @@
 @import (once) "include/vars";
 @import (once) "include/mixins";
 
-.timepicker {
+.time-picker {
     .hideElement(input);
 
     input:focus ~ .time-wrapper {
@@ -23,5 +23,9 @@
         text-align: center;
         height: 38px;
         line-height: 38px;
+    }
+
+    .select-wrapper {
+        .translate3d(0, -50%, 0);
     }
 }

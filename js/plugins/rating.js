@@ -133,6 +133,14 @@ var Rating = {
             rating.addClass("static");
         }
 
+
+        element[0].className = '';
+        if (o.copyInlineStyles === true) {
+            for (i = 0; i < element[0].style.length; i++) {
+                rating.css(element[0].style[i], element.css(element[0].style[i]));
+            }
+        }
+
         this.rating = rating;
     },
 

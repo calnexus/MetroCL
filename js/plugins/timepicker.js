@@ -1,4 +1,4 @@
-var Timepicker = {
+var TimePicker = {
     init: function( options, elem ) {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
@@ -21,13 +21,14 @@ var Timepicker = {
         seconds: false,
         duration: METRO_ANIMATION_DURATION,
         scrollSpeed: 5,
+        copyInlineStyles: true,
         clsPicker: "",
         clsPart: "",
         clsHours: "",
         clsMinutes: "",
         clsSeconds: "",
         clsAmPm: "",
-        onTimepickerCreate: Metro.noop
+        onTimePickerCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -66,7 +67,7 @@ var Timepicker = {
         this._createEvents();
         this._set();
 
-        Utils.exec(o.onTimepickerCreate, [element]);
+        Utils.exec(o.onTimePickerCreate, [element]);
     },
 
     _createStructure: function(){
@@ -76,9 +77,9 @@ var Timepicker = {
 
         var prev = element.prev();
         var parent = element.parent();
-        var id = Utils.elementId("timepicker");
+        var id = Utils.elementId("time-picker");
 
-        picker = $("<label>").addClass("wheelpicker timepicker " + String(element[0].className).replace("d-block", "d-flex")).addClass(o.clsPicker);
+        picker = $("<label>").addClass("wheel-picker time-picker " + element[0].className).addClass(o.clsPicker);
 
         if (prev.length === 0) {
             parent.prepend(picker);
@@ -134,6 +135,14 @@ var Timepicker = {
         actionBlock = $("<div>").addClass("action-block").appendTo(selectWrapper);
         $("<button>").addClass("button action-ok").html("<span class='default-icon-check'></span>").appendTo(actionBlock);
         $("<button>").addClass("button action-cancel").html("<span class='default-icon-cross'></span>").appendTo(actionBlock);
+
+
+        element[0].className = '';
+        if (o.copyInlineStyles === true) {
+            for (i = 0; i < element[0].style.length; i++) {
+                picker.css(element[0].style[i], element.css(element[0].style[i]));
+            }
+        }
 
         this.picker = picker;
     },
@@ -301,4 +310,4 @@ var Timepicker = {
     }
 };
 
-Metro.plugin('timepicker', Timepicker);
+Metro.plugin('timepicker', TimePicker);

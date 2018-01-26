@@ -91,6 +91,7 @@ var Slider = {
         var marker = $("<button>").attr("type", "button").addClass("marker").addClass(o.clsMarker);
         var hint = $("<div>").addClass("hint").addClass(o.hintPosition + "-side").addClass(o.clsHint);
         var id = Utils.uniqueId();
+        var i;
 
         slider.attr("id", id);
 
@@ -133,6 +134,13 @@ var Slider = {
                 min_max_wrapper.insertBefore(slider);
             } else {
                 min_max_wrapper.insertAfter(slider);
+            }
+        }
+
+        element[0].className = '';
+        if (o.copyInlineStyles === true) {
+            for (i = 0; i < element[0].style.length; i++) {
+                slider.css(element[0].style[i], element.css(element[0].style[i]));
             }
         }
 
