@@ -27109,6 +27109,56 @@ video:-webkit-full-screen {
   -webkit-transform: translate3d(0, -50%, 0);
           transform: translate3d(0, -50%, 0);
 }
+.date-picker input {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+.date-picker input:focus ~ .time-wrapper {
+  -webkit-box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
+          box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
+}
+.date-picker .date-wrapper {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  position: relative;
+  border: 1px solid #dfdfdf;
+  width: 100%;
+}
+.date-picker .month,
+.date-picker .day,
+.date-picker .year {
+  display: block;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  border: 1px solid #dfdfdf;
+  text-align: center;
+  height: 38px;
+  line-height: 38px;
+}
+.date-picker .month {
+  -webkit-box-flex: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
+}
+.date-picker .sel-month {
+  -webkit-box-flex: 2!important;
+      -ms-flex-positive: 2!important;
+          flex-grow: 2!important;
+}
+.date-picker .select-wrapper {
+  -webkit-transform: translate3d(0, -50%, 0);
+          transform: translate3d(0, -50%, 0);
+}
 .ripple {
   display: block;
   width: 0;

@@ -1,11 +1,12 @@
-var TimePicker = {
+var DatePicker = {
     init: function( options, elem ) {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
         this.element = $(elem);
         this.picker = null;
         this.isOpen = false;
-        this.value = [];
+        this.value = new Date();
+        this.locale = Metro.locales[METRO_LOCALE]['calendar'];
 
         this._setOptionsFromDOM();
         this._create();
@@ -14,24 +15,28 @@ var TimePicker = {
     },
 
     options: {
-        value: "00:00:00",
+        format: "y-m-d",
+        locale: METRO_LOCALE,
+        value: null,
         distance: 3,
-        hours: true,
-        minutes: true,
-        seconds: false,
+        month: true,
+        day: true,
+        year: true,
+        minYear: null,
+        maxYear: null,
         duration: METRO_ANIMATION_DURATION,
         scrollSpeed: 5,
         copyInlineStyles: true,
         clsPicker: "",
         clsPart: "",
-        clsHours: "",
-        clsMinutes: "",
-        clsSeconds: "",
+        clsMonth: "",
+        clsDay: "",
+        clsYear: "",
         onSet: Metro.noop,
         onOpen: Metro.noop,
         onClose: Metro.noop,
         onScroll: Metro.noop,
-        onTimePickerCreate: Metro.noop
+        onDatePickerCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -50,39 +55,46 @@ var TimePicker = {
 
     _create: function(){
         var that = this, element = this.element, o = this.options;
-        var i;
 
         if (o.distance < 1) {
             o.distance = 1;
         }
 
-        this.value = Utils.strToArray(element.val() !== "" ? element.val() : o.value, ":");
+        if (o.value !== null && Utils.isDate(o.value)) {
+            this.value = new Date(o.value);
+        }
 
-        for(i = 0; i < 3; i++) {
-            if (this.value[i] === undefined || this.value[i] === null) {
-                this.value[i] = 0;
-            } else {
-                this.value[i] = parseInt(this.value[i]);
-            }
+        if (Metro.locales[o.locale] === undefined) {
+            o.locale = METRO_LOCALE;
+        }
+
+        this.locale = Metro.locales[o.locale]['calendar'];
+
+        if (o.minYear === null) {
+            o.minYear = (new Date()).getFullYear() - 100;
+        }
+
+        if (o.maxYear === null) {
+            o.maxYear = (new Date()).getFullYear() + 100;
         }
 
         this._createStructure();
         this._createEvents();
         this._set();
 
-        Utils.exec(o.onTimePickerCreate, [element]);
+        Utils.exec(o.onDatePickerCreate, [element]);
     },
 
     _createStructure: function(){
         var that = this, element = this.element, o = this.options;
-        var picker, hours, minutes, seconds, ampm, select, i;
-        var timeWrapper, selectWrapper, selectBlock, actionBlock;
+        var picker, month, day, year, i, j;
+        var dateWrapper, selectWrapper, selectBlock, actionBlock;
 
         var prev = element.prev();
         var parent = element.parent();
-        var id = Utils.elementId("time-picker");
+        var id = Utils.elementId("date-picker");
 
-        picker = $("<label>").attr("id", id).addClass("wheel-picker time-picker " + element[0].className).addClass(o.clsPicker);
+        picker = $("<label>").attr("id", id).addClass("wheel-picker date-picker " + element[0].className).addClass(o.clsPicker);
 
         if (prev.length === 0) {
             parent.prepend(picker);
@@ -93,44 +105,47 @@ var TimePicker = {
         element.appendTo(picker);
 
 
-        timeWrapper = $("<div>").addClass("time-wrapper").appendTo(picker);
+        dateWrapper = $("<div>").addClass("date-wrapper").appendTo(picker);
 
-        if (o.hours === true) {
-            hours = $("<div>").addClass("hours").appendTo(timeWrapper);
+        if (o.month === true) {
+            month = $("<div>").addClass("month").appendTo(dateWrapper);
         }
-        if (o.minutes === true) {
-            minutes = $("<div>").addClass("minutes").appendTo(timeWrapper);
+        if (o.day === true) {
+            day = $("<div>").addClass("day").appendTo(dateWrapper);
         }
-        if (o.seconds === true) {
-            seconds = $("<div>").addClass("seconds").appendTo(timeWrapper);
+        if (o.year === true) {
+            year = $("<div>").addClass("year").appendTo(dateWrapper);
         }
 
         selectWrapper = $("<div>").addClass("select-wrapper").appendTo(picker);
 
         selectBlock = $("<div>").addClass("select-block").appendTo(selectWrapper);
-        if (o.hours === true) {
-            hours = $("<ul>").addClass("sel-hours").appendTo(selectBlock);
-            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(hours);
-            for (i = 0; i < 24; i++) {
-                $("<li>").addClass("js-hours-"+i).html(i < 10 ? "0"+i : i).data("value", i).appendTo(hours);
+
+        if (o.month === true) {
+            month = $("<ul>").addClass("sel-month").appendTo(selectBlock);
+            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(month);
+            for (i = 0; i < 12; i++) {
+                $("<li>").addClass("js-month-"+i+" js-month-real-"+this.locale['months'][i].toLowerCase()).html(this.locale['months'][i]).data("value", i).appendTo(month);
             }
-            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(hours);
+            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(month);
         }
-        if (o.minutes === true) {
-            minutes = $("<ul>").addClass("sel-minutes").appendTo(selectBlock);
-            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(minutes);
-            for (i = 0; i < 60; i++) {
-                $("<li>").addClass("js-minutes-"+i).html(i < 10 ? "0"+i : i).data("value", i).appendTo(minutes);
+
+        if (o.day === true) {
+            day = $("<ul>").addClass("sel-day").appendTo(selectBlock);
+            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(day);
+            for (i = 0; i < 31; i++) {
+                $("<li>").addClass("js-day-"+i+" js-day-real-"+(i+1)).html(i + 1).data("value", i + 1).appendTo(day);
             }
-            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(minutes);
+            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(day);
         }
-        if (o.seconds === true) {
-            seconds = $("<ul>").addClass("sel-seconds").appendTo(selectBlock);
-            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(seconds);
-            for (i = 0; i < 60; i++) {
-                $("<li>").addClass("js-seconds-"+i).html(i < 10 ? "0"+i : i).data("value", i).appendTo(seconds);
+
+        if (o.year === true) {
+            year = $("<ul>").addClass("sel-year").appendTo(selectBlock);
+            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(year);
+            for (i = o.minYear, j = 0; i <= o.maxYear; i++, j++) {
+                $("<li>").addClass("js-year-"+ j + " js-year-real-" + i).html(i).data("value", i).appendTo(year);
             }
-            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(seconds);
+            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(year);
         }
 
         selectBlock.height((o.distance * 2 + 1) * 40);
@@ -176,16 +191,17 @@ var TimePicker = {
         });
 
         picker.on(Metro.events.click, ".action-ok", function(e){
-            var h, m, s, a;
-            var sh = picker.find(".sel-hours li.active"),
-                sm = picker.find(".sel-minutes li.active"),
-                ss = picker.find(".sel-seconds li.active");
+            var m, d, y;
+            var sm = picker.find(".sel-month li.active"),
+                sd = picker.find(".sel-day li.active"),
+                sy = picker.find(".sel-year li.active");
 
-            h = sh.length === 0 ? 0 : sh.data("value");
-            m = sm.length === 0 ? 0 : sm.data("value");
-            s = ss.length === 0 ? 0 : ss.data("value");
+            m = sm.length === 0 ? that.value.getMonth() : sm.data("value");
+            d = sd.length === 0 ? that.value.getDate() : sd.data("value");
+            y = sy.length === 0 ? that.value.getFullYear() : sy.data("value");
 
-            that.value = [h, m, s];
+            that.value = new Date(y, m, d);
+            that._correct();
             that._set();
 
             that.close();
@@ -202,7 +218,7 @@ var TimePicker = {
 
     _addScrollEvents: function(){
         var picker = this.picker, o = this.options;
-        var lists = ['hours', 'minutes', 'seconds'];
+        var lists = ['month', 'day', 'year'];
         $.each(lists, function(){
             var list_name = this;
             var list = picker.find(".sel-" + list_name);
@@ -213,10 +229,10 @@ var TimePicker = {
                 list.find(".active").removeClass("active");
             });
             list.on(Metro.events.scrollStop, function(){
-
-                var target = Math.round((Math.ceil(list.scrollTop() + 40) / 40)) - 1;
+                var target = Math.round((Math.ceil(list.scrollTop()) / 40));
                 var target_element = list.find(".js-"+list_name+"-"+target);
-                var scroll_to = target_element.position().top - (o.distance * 40) + list.scrollTop();
+
+                var scroll_to = target_element.position().top - (o.distance * 40) + list.scrollTop() - 1;
 
                 list.animate({
                     scrollTop: scroll_to
@@ -230,40 +246,38 @@ var TimePicker = {
 
     _removeScrollEvents: function(){
         var picker = this.picker;
-        var lists = ['hours', 'minutes', 'seconds'];
+        var lists = ['month', 'day', 'year'];
         $.each(lists, function(){
             picker.find(".sel-" + this).off("scrollstart scrollstop");
         });
     },
 
+    _correct: function(){
+        var m = this.value.getMonth(),
+            d = this.value.getDate(),
+            y = this.value.getFullYear();
+
+        this.value = new Date(y, m, d);
+    },
+
     _set: function(){
         var that = this, element = this.element, o = this.options;
         var picker = this.picker;
-        var h = "00", m = "00", s = "00";
+        var m = this.locale['months'][this.value.getMonth()],
+            d = this.value.getDate(),
+            y = this.value.getFullYear();
 
-        if (o.hours === true) {
-            h = this.value[0];
-            if (h < 10) {
-                h = "0"+h;
-            }
-            picker.find(".hours").html(h);
+        if (o.month === true) {
+            picker.find(".month").html(m);
         }
-        if (o.minutes === true) {
-            m = this.value[1];
-            if (m < 10) {
-                m = "0"+m;
-            }
-            picker.find(".minutes").html(m);
+        if (o.day === true) {
+            picker.find(".day").html(d);
         }
-        if (o.seconds === true) {
-            s = this.value[2];
-            if (s < 10) {
-                s = "0"+s;
-            }
-            picker.find(".seconds").html(s);
+        if (o.year === true) {
+            picker.find(".year").html(y);
         }
 
-        element.val([h, m, s].join(":")).trigger("change");
+        element.val(this.value.format(o.format, o.locale)).trigger("change");
 
         Utils.exec(o.onSet, [this.value, element.val(), element, picker]);
 
@@ -272,31 +286,28 @@ var TimePicker = {
     open: function(){
         var that  = this, element = this.element, o = this.options;
         var picker = this.picker;
-        var h, m, s;
-        var h_list, m_list, s_list, a_list;
+        var m = this.value.getMonth(), d = this.value.getDate() - 1, y = this.value.getFullYear();
+        var m_list, d_list, y_list;
 
         picker.find(".select-wrapper").show();
         picker.find("li").removeClass("active");
 
-        if (o.hours === true) {
-            h = this.value[0];
-            h_list = picker.find(".sel-hours");
-            h_list.scrollTop(0).animate({
-                scrollTop: h_list.find("li").eq(h).addClass("active").position().top
-            });
-        }
-        if (o.minutes === true) {
-            m = this.value[1];
-            m_list = picker.find(".sel-minutes");
+        if (o.month === true) {
+            m_list = picker.find(".sel-month");
             m_list.scrollTop(0).animate({
-                scrollTop: m_list.find("li").eq(m).addClass("active").position().top
+                scrollTop: m_list.find("li.js-month-" + m).addClass("active").position().top - (40 * o.distance)
             });
         }
-        if (o.seconds === true) {
-            s = this.value[2];
-            s_list = picker.find(".sel-seconds");
-            s_list.scrollTop(0).animate({
-                scrollTop: s_list.find("li").eq(s).addClass("active").position().top
+        if (o.day === true) {
+            d_list = picker.find(".sel-day");
+            d_list.scrollTop(0).animate({
+                scrollTop: d_list.find("li.js-day-" + d).addClass("active").position().top - (40 * o.distance)
+            });
+        }
+        if (o.year === true) {
+            y_list = picker.find(".sel-year");
+            y_list.scrollTop(0).animate({
+                scrollTop: y_list.find("li.js-year-real-" + y).addClass("active").position().top - (40 * o.distance)
             });
         }
 
@@ -316,7 +327,10 @@ var TimePicker = {
         if (t === undefined) {
             return element.val();
         }
-        this.value = t;
+        if (Utils.isDate(t) === false) {
+            return false;
+        }
+        this.value = new Date(t);
         this._set();
     },
 
@@ -331,4 +345,4 @@ var TimePicker = {
     }
 };
 
-Metro.plugin('timepicker', TimePicker);
+Metro.plugin('datepicker', DatePicker);
