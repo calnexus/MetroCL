@@ -52,6 +52,10 @@ var Utils = {
         return this.isType(o, 'object')
     },
 
+    isArray: function(a){
+        return Array.isArray(a);
+    },
+
     isType: function(o, t){
         if (o === undefined || o === null) {
             return false;
@@ -183,7 +187,7 @@ var Utils = {
         if (minutes < 10) {minutes = "0"+minutes;}
         if (seconds < 10) {seconds = "0"+seconds;}
 
-        return hours+':'+minutes+':'+seconds;
+        return [hours, minutes, seconds].join(":");
     },
 
     callback: function(f, args, context){
@@ -404,23 +408,26 @@ var Utils = {
     },
 
     clientXY: function(event){
+        var isTouch = this.isTouchDevice();
         return {
-            x: this.isTouchDevice() ? event.changedTouches[0].clientX : event.clientX,
-            y: this.isTouchDevice() ? event.changedTouches[0].clientY : event.clientY
+            x: isTouch ? event.changedTouches[0].clientX : event.clientX,
+            y: isTouch ? event.changedTouches[0].clientY : event.clientY
         };
     },
 
     screenXY: function(event){
+        var isTouch = this.isTouchDevice();
         return {
-            x: this.isTouchDevice() ? event.changedTouches[0].screenX : event.screenX,
-            y: this.isTouchDevice() ? event.changedTouches[0].screenY : event.screenY
+            x: isTouch ? event.changedTouches[0].screenX : event.screenX,
+            y: isTouch ? event.changedTouches[0].screenY : event.screenY
         };
     },
 
     pageXY: function(event){
+        var isTouch = this.isTouchDevice();
         return {
-            x: this.isTouchDevice() ? event.changedTouches[0].pageX : event.pageX,
-            y: this.isTouchDevice() ? event.changedTouches[0].pageY : event.pageY
+            x: isTouch ? event.changedTouches[0].pageX : event.pageX,
+            y: isTouch ? event.changedTouches[0].pageY : event.pageY
         };
     },
 

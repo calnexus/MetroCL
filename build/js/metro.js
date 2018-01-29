@@ -137,12 +137,19 @@ var Metro = {
     },
 
     events: {
-        click: isTouch ? 'touchstart.metro' : 'click.metro',
-        start: isTouch ? 'touchstart.metro' : 'mousedown.metro',
-        stop: isTouch ? 'touchend.metro' : 'mouseup.metro',
-        move: isTouch ? 'touchmove.metro' : 'mousemove.metro',
-        enter: isTouch ? 'touchstart.metro' : 'mouseenter.metro',
-        leave: isTouch ? 'touchend.metro' : 'mouseleave.metro',
+        // click: isTouch ? 'touchstart.metro' : 'click.metro',
+        // start: isTouch ? 'touchstart.metro' : 'mousedown.metro',
+        // stop: isTouch ? 'touchend.metro' : 'mouseup.metro',
+        // move: isTouch ? 'touchmove.metro' : 'mousemove.metro',
+        // enter: isTouch ? 'touchstart.metro' : 'mouseenter.metro',
+        // leave: isTouch ? 'touchend.metro' : 'mouseleave.metro',
+        click: 'click.metro',
+        start: 'touchstart.metro mousedown.metro',
+        stop: 'touchend.metro mouseup.metro',
+        move: 'touchmove.metro mousemove.metro',
+        enter: 'touchstart.metro mouseenter.metro',
+        leave: 'touchend.metro mouseleave.metro',
+
         focus: 'focus.metro',
         blur: 'blur.metro',
         resize: 'resize.metro',
@@ -1666,14 +1673,13 @@ special.scrollstart = {
 
         var timer,
             handler = function(evt) {
-                var _self = this,
-                    _args = arguments;
+                var _self = this;
 
                 if (timer) {
                     clearTimeout(timer);
                 } else {
                     evt.type = 'scrollstart';
-                    dispatch.apply(_self, _args);
+                    dispatch.apply(_self, arguments);
                 }
 
                 timer = setTimeout(function() {
@@ -1873,6 +1879,10 @@ var Utils = {
         return this.isType(o, 'object')
     },
 
+    isArray: function(a){
+        return Array.isArray(a);
+    },
+
     isType: function(o, t){
         if (o === undefined || o === null) {
             return false;
@@ -2003,7 +2013,7 @@ var d = new Date().getTime();
         if (minutes < 10) {minutes = "0"+minutes;}
         if (seconds < 10) {seconds = "0"+seconds;}
 
-        return hours+':'+minutes+':'+seconds;
+        return [hours, minutes, seconds].join(":");
     },
 
     callback: function(f, args, context){
@@ -2224,23 +2234,26 @@ var d = new Date().getTime();
     },
 
     clientXY: function(event){
+        var isTouch = this.isTouchDevice();
         return {
-            x: this.isTouchDevice() ? event.changedTouches[0].clientX : event.clientX,
-            y: this.isTouchDevice() ? event.changedTouches[0].clientY : event.clientY
+            x: isTouch ? event.changedTouches[0].clientX : event.clientX,
+            y: isTouch ? event.changedTouches[0].clientY : event.clientY
         };
     },
 
     screenXY: function(event){
+        var isTouch = this.isTouchDevice();
         return {
-            x: this.isTouchDevice() ? event.changedTouches[0].screenX : event.screenX,
-            y: this.isTouchDevice() ? event.changedTouches[0].screenY : event.screenY
+            x: isTouch ? event.changedTouches[0].screenX : event.screenX,
+            y: isTouch ? event.changedTouches[0].screenY : event.screenY
         };
     },
 
     pageXY: function(event){
+        var isTouch = this.isTouchDevice();
         return {
-            x: this.isTouchDevice() ? event.changedTouches[0].pageX : event.pageX,
-            y: this.isTouchDevice() ? event.changedTouches[0].pageY : event.pageY
+            x: isTouch ? event.changedTouches[0].pageX : event.pageX,
+            y: isTouch ? event.changedTouches[0].pageY : event.pageY
         };
     },
 
@@ -6265,12 +6278,13 @@ var DatePicker = {
             if (list.length === 0) return ;
 
             list.on(Metro.events.scrollStart, function(){
-                list.find(".active").removeClass("active");
+                setTimeout(function(){
+                    list.find(".active").removeClass("active");
+                }, 0);
             });
             list.on(Metro.events.scrollStop, function(){
                 var target = Math.round((Math.ceil(list.scrollTop()) / 40));
                 var target_element = list.find(".js-"+list_name+"-"+target);
-
                 var scroll_to = target_element.position().top - (o.distance * 40) + list.scrollTop() - 1;
 
                 list.animate({

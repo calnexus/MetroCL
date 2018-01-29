@@ -11,14 +11,13 @@ special.scrollstart = {
 
         var timer,
             handler = function(evt) {
-                var _self = this,
-                    _args = arguments;
+                var _self = this;
 
                 if (timer) {
                     clearTimeout(timer);
                 } else {
                     evt.type = 'scrollstart';
-                    dispatch.apply(_self, _args);
+                    dispatch.apply(_self, arguments);
                 }
 
                 timer = setTimeout(function() {

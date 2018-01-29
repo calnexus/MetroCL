@@ -226,12 +226,13 @@ var DatePicker = {
             if (list.length === 0) return ;
 
             list.on(Metro.events.scrollStart, function(){
-                list.find(".active").removeClass("active");
+                setTimeout(function(){
+                    list.find(".active").removeClass("active");
+                }, 0);
             });
             list.on(Metro.events.scrollStop, function(){
                 var target = Math.round((Math.ceil(list.scrollTop()) / 40));
                 var target_element = list.find(".js-"+list_name+"-"+target);
-
                 var scroll_to = target_element.position().top - (o.distance * 40) + list.scrollTop() - 1;
 
                 list.animate({
