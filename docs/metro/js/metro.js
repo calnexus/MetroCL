@@ -17,10 +17,8 @@ var $ = jQuery;
 
 // Source: js/metro.js
 if (typeof jQuery === 'undefined') {
-    throw new Error('Metro\'s JavaScript requires jQuery');
+    throw new Error('Metro 4 JS part required jQuery');
 }
-
-// window.canObserveMutation = 'MutationObserver' in window;
 
 if ('MutationObserver' in window === false) {
     throw new Error('Metro 4 requires MutationObserver. Your browser does not support MutationObserver. Please use polyfill, example: //cdn.jsdelivr.net/g/mutationobserver/ or other.');
@@ -75,7 +73,7 @@ var Metro = {
 
     version: "4.0.0-alpha",
     isTouchable: isTouch,
-    isFullscreenEnabled: document.fullscreenEnabled,
+    fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
 
     controlsPosition: {
@@ -137,19 +135,12 @@ var Metro = {
     },
 
     events: {
-        // click: isTouch ? 'touchstart.metro' : 'click.metro',
-        // start: isTouch ? 'touchstart.metro' : 'mousedown.metro',
-        // stop: isTouch ? 'touchend.metro' : 'mouseup.metro',
-        // move: isTouch ? 'touchmove.metro' : 'mousemove.metro',
-        // enter: isTouch ? 'touchstart.metro' : 'mouseenter.metro',
-        // leave: isTouch ? 'touchend.metro' : 'mouseleave.metro',
         click: 'click.metro',
         start: 'touchstart.metro mousedown.metro',
         stop: 'touchend.metro mouseup.metro',
         move: 'touchmove.metro mousemove.metro',
         enter: 'touchstart.metro mouseenter.metro',
         leave: 'touchend.metro mouseleave.metro',
-
         focus: 'focus.metro',
         blur: 'blur.metro',
         resize: 'resize.metro',
@@ -692,6 +683,10 @@ Number.prototype.format = function(n, x, s, c) {
 
 String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
+};
+
+String.prototype.contains = function() {
+    return !!~String.prototype.indexOf.apply(this, arguments);
 };
 
 Date.prototype.format = function(format, locale){
@@ -2233,27 +2228,24 @@ var d = new Date().getTime();
         }
     },
 
-    clientXY: function(event){
-        var isTouch = this.isTouchDevice();
+    clientXY: function(e){
         return {
-            x: isTouch ? event.changedTouches[0].clientX : event.clientX,
-            y: isTouch ? event.changedTouches[0].clientY : event.clientY
+            x: e.changedTouches ? e.changedTouches[0].clientX : e.clientX,
+            y: e.changedTouches ? e.changedTouches[0].clientY : e.clientY
         };
     },
 
-    screenXY: function(event){
-        var isTouch = this.isTouchDevice();
+    screenXY: function(e){
         return {
-            x: isTouch ? event.changedTouches[0].screenX : event.screenX,
-            y: isTouch ? event.changedTouches[0].screenY : event.screenY
+            x: e.changedTouches ? e.changedTouches[0].screenX : e.screenX,
+            y: e.changedTouches ? e.changedTouches[0].screenY : e.screenY
         };
     },
 
-    pageXY: function(event){
-        var isTouch = this.isTouchDevice();
+    pageXY: function(e){
         return {
-            x: isTouch ? event.changedTouches[0].pageX : event.pageX,
-            y: isTouch ? event.changedTouches[0].pageY : event.pageY
+            x: e.changedTouches ? e.changedTouches[0].pageX : e.pageX,
+            y: e.changedTouches ? e.changedTouches[0].pageY : e.pageY
         };
     },
 
@@ -7019,7 +7011,7 @@ var Draggable = {
 
                 Utils.exec(o.onDragMove, [position, element]);
 
-                return false;
+                e.preventDefault();
             });
         });
 
@@ -13200,7 +13192,7 @@ var Video = {
     _create: function(){
         var that = this, element = this.element, o = this.options, video = this.video;
 
-        if (Metro.isFullscreenEnabled === false) {
+        if (Metro.fullScreenEnabled === false) {
             o.fullScreenMode = Metro.fullScreenMode.WINDOW;
         }
 

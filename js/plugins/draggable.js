@@ -118,7 +118,7 @@ var Draggable = {
 
                 Utils.exec(o.onDragMove, [position, element]);
 
-                return false;
+                e.preventDefault();
             });
         });
 

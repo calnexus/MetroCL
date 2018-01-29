@@ -1,8 +1,6 @@
 if (typeof jQuery === 'undefined') {
-    throw new Error('Metro\'s JavaScript requires jQuery');
+    throw new Error('Metro 4 JS part required jQuery');
 }
-
-// window.canObserveMutation = 'MutationObserver' in window;
 
 if ('MutationObserver' in window === false) {
     throw new Error('Metro 4 requires MutationObserver. Your browser does not support MutationObserver. Please use polyfill, example: //cdn.jsdelivr.net/g/mutationobserver/ or other.');
@@ -57,7 +55,7 @@ var Metro = {
 
     version: "4.0.0-alpha",
     isTouchable: isTouch,
-    isFullscreenEnabled: document.fullscreenEnabled,
+    fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
 
     controlsPosition: {
@@ -119,19 +117,12 @@ var Metro = {
     },
 
     events: {
-        // click: isTouch ? 'touchstart.metro' : 'click.metro',
-        // start: isTouch ? 'touchstart.metro' : 'mousedown.metro',
-        // stop: isTouch ? 'touchend.metro' : 'mouseup.metro',
-        // move: isTouch ? 'touchmove.metro' : 'mousemove.metro',
-        // enter: isTouch ? 'touchstart.metro' : 'mouseenter.metro',
-        // leave: isTouch ? 'touchend.metro' : 'mouseleave.metro',
         click: 'click.metro',
         start: 'touchstart.metro mousedown.metro',
         stop: 'touchend.metro mouseup.metro',
         move: 'touchmove.metro mousemove.metro',
         enter: 'touchstart.metro mouseenter.metro',
         leave: 'touchend.metro mouseleave.metro',
-
         focus: 'focus.metro',
         blur: 'blur.metro',
         resize: 'resize.metro',

@@ -63,6 +63,10 @@ String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
+String.prototype.contains = function() {
+    return !!~String.prototype.indexOf.apply(this, arguments);
+};
+
 Date.prototype.format = function(format, locale){
 
     if (locale === undefined) {

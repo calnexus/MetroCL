@@ -407,27 +407,24 @@ var Utils = {
         }
     },
 
-    clientXY: function(event){
-        var isTouch = this.isTouchDevice();
+    clientXY: function(e){
         return {
-            x: isTouch ? event.changedTouches[0].clientX : event.clientX,
-            y: isTouch ? event.changedTouches[0].clientY : event.clientY
+            x: e.changedTouches ? e.changedTouches[0].clientX : e.clientX,
+            y: e.changedTouches ? e.changedTouches[0].clientY : e.clientY
         };
     },
 
-    screenXY: function(event){
-        var isTouch = this.isTouchDevice();
+    screenXY: function(e){
         return {
-            x: isTouch ? event.changedTouches[0].screenX : event.screenX,
-            y: isTouch ? event.changedTouches[0].screenY : event.screenY
+            x: e.changedTouches ? e.changedTouches[0].screenX : e.screenX,
+            y: e.changedTouches ? e.changedTouches[0].screenY : e.screenY
         };
     },
 
-    pageXY: function(event){
-        var isTouch = this.isTouchDevice();
+    pageXY: function(e){
         return {
-            x: isTouch ? event.changedTouches[0].pageX : event.pageX,
-            y: isTouch ? event.changedTouches[0].pageY : event.pageY
+            x: e.changedTouches ? e.changedTouches[0].pageX : e.pageX,
+            y: e.changedTouches ? e.changedTouches[0].pageY : e.pageY
         };
     },
 

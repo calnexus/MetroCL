@@ -83,7 +83,7 @@ var Video = {
     _create: function(){
         var that = this, element = this.element, o = this.options, video = this.video;
 
-        if (Metro.isFullscreenEnabled === false) {
+        if (Metro.fullScreenEnabled === false) {
             o.fullScreenMode = Metro.fullScreenMode.WINDOW;
         }
 
