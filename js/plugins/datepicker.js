@@ -15,7 +15,7 @@ var DatePicker = {
     },
 
     options: {
-        format: "y-m-d",
+        format: "%Y-%m-%d",
         locale: METRO_LOCALE,
         value: null,
         distance: 3,
@@ -323,7 +323,7 @@ var DatePicker = {
         Utils.exec(o.onClose, [this.value, element, picker]);
     },
 
-    time: function(t){
+    val: function(t){
         if (t === undefined) {
             return element.val();
         }
@@ -334,8 +334,21 @@ var DatePicker = {
         this._set();
     },
 
+    date: function(t){
+        if (t === undefined) {
+            return this.value;
+        }
+
+        try {
+            this.value = new Date(t.format("%Y-%m-%d"));
+            this._set();
+        } catch (e) {
+            return false;
+        }
+    },
+
     changeValueAttribute: function(){
-        this.time(this.element.attr("data-value"));
+        this.val(this.element.attr("data-value"));
     },
 
     changeAttribute: function(attributeName){

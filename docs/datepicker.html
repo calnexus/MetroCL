@@ -71,7 +71,7 @@
                 <div class="example">
                     <div class="row">
                         <div class="cell-md-4">
-                            <input data-role="datepicker">
+                            <input data-role="datepicker" onchange="console.log(this.value)">
                         </div>
                         <div class="cell-md-4">
                             <input data-role="datepicker" data-value="1972.12.21" data-day="false">
@@ -81,6 +81,11 @@
                         </div>
                     </div>
                 </div>
+                <pre><code class="html">
+                    &lt;input data-role="datepicker"&gt;
+                    &lt;input data-role="datepicker" data-value="1972.12.21" data-day="false"&gt;
+                    &lt;input data-role="datepicker" data-day="false" data-year="false" data-value="1972.3.21"&gt;
+                </code></pre>
 
             </main>
         </div>
