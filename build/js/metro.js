@@ -2224,7 +2224,7 @@ var d = new Date().getTime();
             case 'client': return this.clientXY(e);
             case 'screen': return this.screenXY(e);
             case 'page': return this.pageXY(e);
-            default: return {left: o, top: 0}
+            default: return {x: 0, y: 0}
         }
     },
 
