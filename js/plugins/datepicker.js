@@ -24,7 +24,7 @@ var DatePicker = {
         year: true,
         minYear: null,
         maxYear: null,
-        duration: METRO_ANIMATION_DURATION,
+        duration: 100,
         scrollSpeed: 5,
         copyInlineStyles: true,
         clsPicker: "",
@@ -170,6 +170,11 @@ var DatePicker = {
         var picker = this.picker;
 
         picker.on(Metro.events.start, ".select-block ul", function(e){
+
+            if (e.changedTouches) {
+                return ;
+            }
+
             var target = this;
             var pageY = Utils.pageXY(e).y;
 
