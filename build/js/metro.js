@@ -17,11 +17,11 @@ var $ = jQuery;
 
 // Source: js/metro.js
 if (typeof jQuery === 'undefined') {
-    throw new Error('Metro 4 JS part required jQuery');
+    throw new Error('Metro 4 requires jQuery!');
 }
 
 if ('MutationObserver' in window === false) {
-    throw new Error('Metro 4 requires MutationObserver. Your browser does not support MutationObserver. Please use polyfill, example: //cdn.jsdelivr.net/g/mutationobserver/ or other.');
+    throw new Error('Metro 4 requires MutationObserver!');
 }
 
 var meta_init = $("meta[name='metro4:init']").attr("content");
@@ -12182,7 +12182,7 @@ var TimePicker = {
         hours: true,
         minutes: true,
         seconds: false,
-        duration: METRO_ANIMATION_DURATION,
+        duration: 100,
         scrollSpeed: 5,
         copyInlineStyles: true,
         clsPicker: "",
@@ -12318,6 +12318,11 @@ var TimePicker = {
         var picker = this.picker;
 
         picker.on(Metro.events.start, ".select-block ul", function(e){
+
+            if (e.changedTouches) {
+                return ;
+            }
+
             var target = this;
             var pageY = Utils.pageXY(e).y;
 

@@ -1,9 +1,9 @@
 if (typeof jQuery === 'undefined') {
-    throw new Error('Metro 4 JS part required jQuery');
+    throw new Error('Metro 4 requires jQuery!');
 }
 
 if ('MutationObserver' in window === false) {
-    throw new Error('Metro 4 requires MutationObserver. Your browser does not support MutationObserver. Please use polyfill, example: //cdn.jsdelivr.net/g/mutationobserver/ or other.');
+    throw new Error('Metro 4 requires MutationObserver!');
 }
 
 var meta_init = $("meta[name='metro4:init']").attr("content");
