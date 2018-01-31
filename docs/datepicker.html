@@ -70,7 +70,7 @@
 
                 <!-- ads-html -->
 
-                <h3 id="_timepicker_about">About</h3>
+                <h3 id="_datepicker_about">About</h3>
                 <p>
                     The date picker gives you a standardized way to let users pick a date value.
                     To create picker you must add role with attribute <code>data-role="datepicker"</code> to <code>input</code> element.
@@ -88,6 +88,220 @@
                     &lt;input data-role="datepicker"&gt;
                 </code></pre>
 
+                <h3 id="_datepicker_parts">Picker parts</h3>
+                <p>
+                    The picker consists of three parts: <code>month</code>, <code>day</code> and <code>year</code>.
+                    With attributes <code>data-month</code>, <code>data-day</code> and <code>data-year</code> you can on/off each part.
+                    For disabled parts, the picker will get value from current system date.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-4">
+                            <input data-role="datepicker" data-day="false" data-year="false">
+                        </div>
+                        <div class="cell-md-4">
+                            <input data-role="datepicker" data-day="false">
+                        </div>
+                        <div class="cell-md-4">
+                            <input data-role="datepicker" data-year="false">
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;input data-role="datepicker" data-day="false" data-year="false"&gt;
+                    &lt;input data-role="datepicker" data-day="false"&gt;
+                    &lt;input data-role="datepicker" data-year="false"&gt;
+                </code></pre>
+
+                <h3 id="_datepicker_locale">Locale</h3>
+                <p>
+                    You can set <code>locale</code> for picker with attribute data-locale.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-4">
+                            <input data-role="datepicker" data-locale="uk-UA">
+                        </div>
+                        <div class="cell-md-4">
+                            <input data-role="datepicker" data-locale="de-DE">
+                        </div>
+                        <div class="cell-md-4">
+                            <input data-role="datepicker" data-locale="hu-HU">
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;input data-role="datepicker" data-locale="uk-UA"&gt;
+                </code></pre>
+
+                <h3 id="_datepicker_value">Picker value</h3>
+                <p>
+                    By default picker get current date from system for init value.
+                    But you can set init date with attribute <code>data-value</code>.
+                    Also you can change attribute <code>data-value</code> at runtime to change real value for component.
+                    To get value you can read <code>input</code> <code>value</code> attribute or use special <a href="#_datepicker_methods">component methods</a>.
+                    To format output value for input, you can use attribute <code>data-format</code>. More about date format you can read from <a href="dateformat.html">this article</a>.
+                </p>
+                <p class="remark warning">
+                    Important! Value for attribute <code>data-value</code> must be a valid javascript datetime string.
+                    Read about valid date format <a href="http://tools.ietf.org/html/rfc2822#page-14">this</a> and <a href="https://www.w3.org/TR/NOTE-datetime">this</a>.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-4">
+                            <input data-role="datepicker" data-value="1972-12-21">
+                        </div>
+                        <div class="cell-md-4">
+                            <input data-role="datepicker" data-value="Mon, 25 Dec 1995">
+                        </div>
+                        <div class="cell-md-4">
+                            <input data-role="datepicker" data-value="2018-02">
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;input data-role="datepicker" data-value="1972-12-21"&gt;
+                    &lt;input data-role="datepicker" data-value="Mon, 25 Dec 1995"&gt;
+                    &lt;input data-role="datepicker" data-value="2018-02"&gt;
+                </code></pre>
+
+                <h3 id="_datepicker_events">Events</h3>
+                <p>
+                    When picker works, it generated a number of events. You can use callbacks to these events to interact with it.
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Events</th>
+                        <th>Data-*</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>onSet(val, elem_val, elem, picker)</code></td>
+                        <td><code>data-on-set</code></td>
+                        <td>Fired when value sets to picker</td>
+                    </tr>
+                    <tr>
+                        <td><code>onOpen(val, elem, picker)</code></td>
+                        <td><code>data-on-open</code></td>
+                        <td>Fired when picker is open</td>
+                    </tr>
+                    <tr>
+                        <td><code>onClose(val, elem, picker)</code></td>
+                        <td><code>data-on-close</code></td>
+                        <td>Fired when picker is close</td>
+                    </tr>
+                    <tr>
+                        <td><code>onScroll(target, list, picker)</code></td>
+                        <td><code>data-on-scroll</code></td>
+                        <td>Fired when picker is scroll</td>
+                    </tr>
+                    <tr>
+                        <td><code>onTimePickerCreate(elem, picker)</code></td>
+                        <td><code>data-on-time-picker-create</code></td>
+                        <td>Fired when picker was created</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <pre><code class="html">
+                    html:
+
+                    &lt;input data-role="datepicker" data-on-set="console.log(arguments)"&gt;
+                    &lt;input data-role="datepicker" data-on-set="myLib.date.set"&gt;
+
+                    javascript:
+
+                    var myLib = {
+                        date: {
+                            set: function(val){
+                                console.log(val);
+                            }
+                        }
+                    }
+                </code></pre>
+
+                <h3 id="_datepicker_methods">Methods</h3>
+                <p>
+                    To interact with component you can use picker methods.
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>open()</code></td>
+                        <td>Use this method to open picker scroller</td>
+                    </tr>
+                    <tr>
+                        <td><code>close()</code></td>
+                        <td>Use this method to close picker scroller</td>
+                    </tr>
+                    <tr>
+                        <td><code>val()</code></td>
+                        <td>Use this method to get picker value as string</td>
+                    </tr>
+                    <tr>
+                        <td><code>val(t)</code></td>
+                        <td>Use this method to set picker value from string</td>
+                    </tr>
+                    <tr>
+                        <td><code>date()</code></td>
+                        <td>Use this method to get picker value as datetime object</td>
+                    </tr>
+                    <tr>
+                        <td><code>date(t)</code></td>
+                        <td>Use this method to set picker value from datetime object</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="_datepicker_custom">Customize</h3>
+                <p>
+                    You can use attribute <code>data-distance</code> to set scroller size.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-4"><input data-role="datepicker" data-distance="1"></div>
+                        <div class="cell-md-4"><input data-role="datepicker" data-distance="2"></div>
+                        <div class="cell-md-4"><input data-role="datepicker" data-distance="3"></div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;input data-role="datepicker" data-distance="1"&gt;
+                    &lt;input data-role="datepicker" data-distance="2"&gt;
+                    &lt;input data-role="datepicker" data-distance="3"&gt;
+                </code></pre>
+
+                <p>
+                    Also you can use attributes
+                    <code>data-cls-picker</code>,
+                    <code>data-cls-part</code>,
+                    <code>data-cls-month</code>,
+                    <code>data-cls-day</code>,
+                    <code>data-cls-year</code> to set additional styles to picker. Values for these attributes must be <strong>valid css class</strong>.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-4">
+                        </div>
+                        <div class="cell-md-4">
+                            <input data-role="datepicker"
+                                   data-cls-picker="drop-shadow"
+                                   data-cls-month="bg-red fg-white"
+                                   data-cls-day="bg-green fg-white"
+                                   data-cls-year="bg-cyan fg-white"
+                            >
+                        </div>
+                        <div class="cell-md-4">
+                        </div>
+                    </div>
+                </div>
 
             </main>
         </div>

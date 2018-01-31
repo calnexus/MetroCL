@@ -226,7 +226,6 @@ var TimePicker = {
     _addScrollEvents: function(){
         var picker = this.picker, o = this.options;
         var lists = ['hours', 'minutes', 'seconds'];
-        var h_timer = null;
 
         $.each(lists, function(){
             var list_name = this;

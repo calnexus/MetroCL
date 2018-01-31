@@ -6278,11 +6278,9 @@ var DatePicker = {
             if (list.length === 0) return ;
 
             list.on(Metro.events.scrollStart, function(){
-                setTimeout(function(){
-                    list.find(".active").removeClass("active");
-                }, 0);
+                list.find(".active").removeClass("active");
             });
-            list.on(Metro.events.scrollStop, function(){
+            list.on(Metro.events.scrollStop, {latency: 50}, function(){
                 var target = Math.round((Math.ceil(list.scrollTop()) / 40));
                 var target_element = list.find(".js-"+list_name+"-"+target);
                 var scroll_to = target_element.position().top - (o.distance * 40) + list.scrollTop() - 1;
@@ -6349,19 +6347,19 @@ var DatePicker = {
             m_list = picker.find(".sel-month");
             m_list.scrollTop(0).animate({
                 scrollTop: m_list.find("li.js-month-" + m).addClass("active").position().top - (40 * o.distance)
-            });
+            }, 100);
         }
         if (o.day === true) {
             d_list = picker.find(".sel-day");
             d_list.scrollTop(0).animate({
                 scrollTop: d_list.find("li.js-day-" + d).addClass("active").position().top - (40 * o.distance)
-            });
+            }, 100);
         }
         if (o.year === true) {
             y_list = picker.find(".sel-year");
             y_list.scrollTop(0).animate({
                 scrollTop: y_list.find("li.js-year-real-" + y).addClass("active").position().top - (40 * o.distance)
-            });
+            }, 100);
         }
 
         this.isOpen = true;
@@ -12400,7 +12398,6 @@ var TimePicker = {
     _addScrollEvents: function(){
         var picker = this.picker, o = this.options;
         var lists = ['hours', 'minutes', 'seconds'];
-        var h_timer = null;
 
         $.each(lists, function(){
             var list_name = this;
