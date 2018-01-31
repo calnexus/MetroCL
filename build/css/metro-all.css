@@ -26996,7 +26996,7 @@ video:-webkit-full-screen {
   top: 100%;
   left: 0;
   height: auto;
-  z-index: 1;
+  z-index: 3;
   width: 100%;
 }
 .wheel-picker .select-block {
