@@ -27103,8 +27103,27 @@ video:-webkit-full-screen {
   border: 1px solid #dfdfdf;
   text-align: center;
   height: 38px;
-  line-height: 38px;
+  line-height: 34px;
   position: relative;
+  font-size: 1.2em;
+}
+.time-picker.show-labels .hours,
+.time-picker.show-labels .minutes,
+.time-picker.show-labels .seconds {
+  line-height: 30px;
+}
+.time-picker.show-labels .hours::before,
+.time-picker.show-labels .minutes::before,
+.time-picker.show-labels .seconds::before {
+  content: attr(data-title);
+  position: absolute;
+  display: block;
+  font-size: 8px;
+  line-height: 12px;
+  left: 50%;
+  bottom: 0;
+  -webkit-transform: translate3d(-50%, 0, 0);
+          transform: translate3d(-50%, 0, 0);
 }
 .time-picker .select-wrapper {
   -webkit-transform: translate3d(0, -50%, 0);

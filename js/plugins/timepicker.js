@@ -6,6 +6,7 @@ var TimePicker = {
         this.picker = null;
         this.isOpen = false;
         this.value = [];
+        this.locale = Metro.locales[METRO_LOCALE]['calendar'];
 
         this._setOptionsFromDOM();
         this._create();
@@ -15,10 +16,12 @@ var TimePicker = {
 
     options: {
         value: "00:00:00",
+        locale: METRO_LOCALE,
         distance: 3,
         hours: true,
         minutes: true,
-        seconds: false,
+        seconds: true,
+        showLabels: true,
         scrollSpeed: 5,
         copyInlineStyles: true,
         clsPicker: "",
@@ -65,6 +68,12 @@ var TimePicker = {
             }
         }
 
+        if (Metro.locales[o.locale] === undefined) {
+            o.locale = METRO_LOCALE;
+        }
+
+        this.locale = Metro.locales[o.locale]['calendar'];
+
         this._createStructure();
         this._createEvents();
         this._set();
@@ -95,13 +104,13 @@ var TimePicker = {
         timeWrapper = $("<div>").addClass("time-wrapper").appendTo(picker);
 
         if (o.hours === true) {
-            hours = $("<div>").addClass("hours").appendTo(timeWrapper);
+            hours = $("<div>").attr("data-title", this.locale['time']['hours']).addClass("hours").appendTo(timeWrapper);
         }
         if (o.minutes === true) {
-            minutes = $("<div>").addClass("minutes").appendTo(timeWrapper);
+            minutes = $("<div>").attr("data-title", this.locale['time']['minutes']).addClass("minutes").appendTo(timeWrapper);
         }
         if (o.seconds === true) {
-            seconds = $("<div>").addClass("seconds").appendTo(timeWrapper);
+            seconds = $("<div>").attr("data-title", this.locale['time']['seconds']).addClass("seconds").appendTo(timeWrapper);
         }
 
         selectWrapper = $("<div>").addClass("select-wrapper").appendTo(picker);
@@ -144,6 +153,10 @@ var TimePicker = {
             for (i = 0; i < element[0].style.length; i++) {
                 picker.css(element[0].style[i], element.css(element[0].style[i]));
             }
+        }
+
+        if (o.showLabels === true) {
+            picker.addClass("show-labels");
         }
 
         this.picker = picker;
