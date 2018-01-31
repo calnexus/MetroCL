@@ -46,7 +46,13 @@
                 <h5>Table of contents</h5>
                 <hr/>
                 <ul class="toc-nav">
-                    <li class="toc-entry"><a href="#">Timepicker</a></li>
+                    <li class="toc-entry"><a href="#">Time picker</a></li>
+                    <li class="toc-entry"><a href="#">Picker parts</a></li>
+                    <li class="toc-entry"><a href="#">Labels &amp; locale</a></li>
+                    <li class="toc-entry"><a href="#">Value</a></li>
+                    <li class="toc-entry"><a href="#">Events</a></li>
+                    <li class="toc-entry"><a href="#">Methods</a></li>
+                    <li class="toc-entry"><a href="#">Customize</a></li>
                 </ul>
 
             </div>
@@ -82,6 +88,94 @@
                     &lt;input data-role="timepicker"&gt;
                 </code></pre>
 
+                <h3 id="_timepciker_parts">Picker parts</h3>
+                <p>
+                    The picker consists of three parts: <code>hours</code>, <code>minutes</code> and <code>seconds</code>.
+                    With attributes <code>data-hours</code>, <code>data-minutes</code> and <code>data-seconds</code> you can on/off each part.
+                    For disabled parts, the picker will generate <strong>zero value</strong> - <code>00</code>.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-4">
+                            <input data-role="timepicker" data-minutes="false" data-seconds="false">
+                        </div>
+                        <div class="cell-md-4">
+                            <input data-role="timepicker" data-seconds="false">
+                        </div>
+                        <div class="cell-md-4">
+                            <input data-role="timepicker" data-hours="false">
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;input data-role="timepicker" data-minutes="false" data-seconds="false"&gt;
+                    &lt;input data-role="timepicker" data-seconds="false"&gt;
+                    &lt;input data-role="timepicker" data-hours="false"&gt;
+                </code></pre>
+
+                <h3 id="_timepicker_labels">Labels &amp; locale</h3>
+                <p>
+                    You can on/off <code>parts labels</code> with attribute <code>data-show-labels</code>.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-6">
+                            <input data-role="timepicker" data-show-labels="true">
+                        </div>
+                        <div class="cell-md-6">
+                            <input data-role="timepicker" data-show-labels="false">
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;input data-role="timepicker" data-show-labels="true"&gt;
+                    &lt;input data-role="timepicker" data-show-labels="false"&gt;
+                </code></pre>
+                <p>
+                    Also you can set <code>locale</code> for labels with attribute <code>data-locale</code>.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-4">
+                            <input data-role="timepicker" data-locale="uk-UA">
+                        </div>
+                        <div class="cell-md-4">
+                            <input data-role="timepicker" data-locale="de-DE">
+                        </div>
+                        <div class="cell-md-4">
+                            <input data-role="timepicker" data-locale="hu-HU">
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;input data-role="timepicker" data-locale="uk-UA"&gt;
+                    &lt;input data-role="timepicker" data-locale="de-DE"&gt;
+                    &lt;input data-role="timepicker" data-locale="hu-HU"&gt;
+                </code></pre>
+
+                <h3 id="_timepicker_value">Value</h3>
+                <p>
+                    By default picker get current time from system for init value. But you can set init time with attribute <code>data-value</code>.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-4">
+                            <input data-role="timepicker" data-value="0">
+                        </div>
+                        <div class="cell-md-4">
+                            <input data-role="timepicker" data-value="12:00">
+                        </div>
+                        <div class="cell-md-4">
+                            <input data-role="timepicker" data-value="13:01:23">
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;input data-role="timepicker" data-value="0"&gt;
+                    &lt;input data-role="timepicker" data-value="12:00"&gt;
+                    &lt;input data-role="timepicker" data-value="13:01:23"&gt;
+                </code></pre>
+
             </main>
         </div>
 
@@ -94,5 +188,9 @@
     <script src="js/clipboard.min.js"></script>
     <script src="js/site.js"></script>
     <!-- ads-script -->
+
+    <script>
+        console.log(typeof (new Date()));
+    </script>
 </body>
 </html>

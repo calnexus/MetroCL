@@ -15,7 +15,7 @@ var TimePicker = {
     },
 
     options: {
-        value: "00:00:00",
+        value: null,
         locale: METRO_LOCALE,
         distance: 3,
         hours: true,
@@ -58,7 +58,11 @@ var TimePicker = {
             o.distance = 1;
         }
 
-        this.value = Utils.strToArray(element.val() !== "" ? element.val() : o.value, ":");
+        if (element.val() === "" && o.value === null) {
+            o.value = (new Date()).format("%H:%M:%S");
+        }
+
+        this.value = Utils.strToArray(element.val() !== "" ? element.val() : String(o.value), ":");
 
         for(i = 0; i < 3; i++) {
             if (this.value[i] === undefined || this.value[i] === null) {
@@ -336,8 +340,10 @@ var TimePicker = {
 
         if (Array.isArray(t)) {
             result = t;
+        } else if (typeof  t.getMonth === 'function') {
+            result = [t.getHours(), t.getMinutes(), t.getSeconds()];
         } else if (Utils.isObject(t)) {
-            result = [t.h, t.m, t.s]
+            result = [t.h, t.m, t.s];
         } else {
             result = Utils.strToArray(t, ":");
         }
@@ -360,6 +366,20 @@ var TimePicker = {
                 m: this.value[1],
                 s: this.value[2]
             }
+        }
+
+        this.value = this._convert(t);
+        this._set();
+    },
+
+    date: function(t){
+        if (t === undefined || typeof t.getMonth !== 'function') {
+            var ret = new Date();
+            ret.setHours(this.value[0]);
+            ret.setMinutes(this.value[1]);
+            ret.setSeconds(this.value[2]);
+            ret.setMilliseconds(0);
+            return ret;
         }
 
         this.value = this._convert(t);

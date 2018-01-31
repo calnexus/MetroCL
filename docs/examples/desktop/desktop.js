@@ -24,6 +24,7 @@ var Desktop = {
     },
 
     removeFromTaskBar: function(wnd){
+        console.log(wnd);
         var wID = wnd.attr("id");
         var items = $(".task-bar-item");
         var that = this;
@@ -38,18 +39,19 @@ var Desktop = {
 
     createWindow: function(o){
         var that = this;
-        o.onDragStart = function(el, pos){
+        o.onDragStart = function(pos, el){
             win = $(el);
             $(".window").css("z-index", 1);
             if (!win.hasClass("modal"))
                 win.css("z-index", 3);
         };
-        o.onDragStop = function(el, pos){
+        o.onDragStop = function(pos, el){
             win = $(el);
             if (!win.hasClass("modal"))
                 win.css("z-index", 2);
         };
-        o.onDestroy = function(win){
+        o.onWindowDestroy = function(win){
+            console.log(win);
             that.removeFromTaskBar(win);
         };
         var w = $("<div>").appendTo($(this.options.windowArea));
