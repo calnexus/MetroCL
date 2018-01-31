@@ -190,8 +190,9 @@ var DatePicker = {
             });
         });
 
-        picker.on(Metro.events.click, function(){
+        picker.on(Metro.events.click, function(e){
             if (that.isOpen === false) that.open();
+            e.stopPropagation();
         });
 
         picker.on(Metro.events.click, ".action-ok", function(e){
