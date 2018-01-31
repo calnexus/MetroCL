@@ -153,9 +153,11 @@
                     &lt;input data-role="timepicker" data-locale="hu-HU"&gt;
                 </code></pre>
 
-                <h3 id="_timepicker_value">Value</h3>
+                <h3 id="_timepicker_value">Picker value</h3>
                 <p>
                     By default picker get current time from system for init value. But you can set init time with attribute <code>data-value</code>.
+                    Also you can change attribute <code>data-value</code> at runtime to change real value for component.
+                    To get value you can read input <code>value</code> attribute or use special <code>component methods</code>.
                 </p>
                 <div class="example">
                     <div class="row">
@@ -176,6 +178,153 @@
                     &lt;input data-role="timepicker" data-value="13:01:23"&gt;
                 </code></pre>
 
+                <h3 id="_timepicker_events">Events</h3>
+                <p>
+                    When picker works, it generated a number of events. You can use callbacks to these events to interact with it.
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Events</th>
+                        <th>Data-*</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>onSet(val, elem_val, elem, picker)</code></td>
+                        <td><code>data-on-set</code></td>
+                        <td>Fired when value sets to picker</td>
+                    </tr>
+                    <tr>
+                        <td><code>onOpen(val, elem, picker)</code></td>
+                        <td><code>data-on-open</code></td>
+                        <td>Fired when picker is open</td>
+                    </tr>
+                    <tr>
+                        <td><code>onClose(val, elem, picker)</code></td>
+                        <td><code>data-on-close</code></td>
+                        <td>Fired when picker is close</td>
+                    </tr>
+                    <tr>
+                        <td><code>onScroll(target, list, picker)</code></td>
+                        <td><code>data-on-scroll</code></td>
+                        <td>Fired when picker is scroll</td>
+                    </tr>
+                    <tr>
+                        <td><code>onTimePickerCreate(elem, picker)</code></td>
+                        <td><code>data-on-time-picker-create</code></td>
+                        <td>Fired when picker was created</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <pre><code class="html">
+                    html:
+
+                    &lt;input data-role="timepicker" data-on-set="console.log(arguments)"&gt;
+                    &lt;input data-role="timepicker" data-on-set="myLib.time.set"&gt;
+
+                    javascript:
+
+                    var myLib = {
+                        time: {
+                            set: function(val){
+                                console.log(val);
+                            }
+                        }
+                    }
+                </code></pre>
+
+                <h3 id="_timepicker_methods">Methods</h3>
+                <p>
+                    To interact with component you can use picker methods.
+                </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>open()</code></td>
+                        <td>Use this method to open picker scroller</td>
+                    </tr>
+                    <tr>
+                        <td><code>close()</code></td>
+                        <td>Use this method to close picker scroller</td>
+                    </tr>
+                    <tr>
+                        <td><code>val()</code></td>
+                        <td>Use this method to get picker value as string</td>
+                    </tr>
+                    <tr>
+                        <td><code>val(t)</code></td>
+                        <td>Use this method to set picker value from string</td>
+                    </tr>
+                    <tr>
+                        <td><code>time()</code></td>
+                        <td>Use this method to get picker value as object {h, m, s}</td>
+                    </tr>
+                    <tr>
+                        <td><code>time(t)</code></td>
+                        <td>Use this method to set picker value from object {h, m, s}</td>
+                    </tr>
+                    <tr>
+                        <td><code>date()</code></td>
+                        <td>Use this method to get picker value as datetime object</td>
+                    </tr>
+                    <tr>
+                        <td><code>date(t)</code></td>
+                        <td>Use this method to set picker value from datetime object</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="_timepicker_custom">Customize</h3>
+                <p>
+                    You can use attribute <code>data-distance</code> to set scroller size.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-4"><input data-role="timepicker" data-distance="1"></div>
+                        <div class="cell-md-4"><input data-role="timepicker" data-distance="2"></div>
+                        <div class="cell-md-4"><input data-role="timepicker" data-distance="3"></div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;input data-role="timepicker" data-distance="1"&gt;
+                    &lt;input data-role="timepicker" data-distance="2"&gt;
+                    &lt;input data-role="timepicker" data-distance="3"&gt;
+                </code></pre>
+
+                <p>
+                    Also you can use attributes
+                        <code>data-cls-picker</code>,
+                        <code>data-cls-part</code>,
+                        <code>data-cls-hours</code>,
+                        <code>data-cls-minutes</code>,
+                        <code>data-cls-seconds</code> to set additional styles to picker. Values for these attributes must be valid css class.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-4">
+                        </div>
+                        <div class="cell-md-4">
+                            <input data-role="timepicker"
+                                   data-cls-picker="shadow-3"
+                                   data-cls-hours="bg-red fg-white"
+                                   data-cls-minutes="bg-green fg-white"
+                                   data-cls-seconds="bg-cyan fg-white"
+                            >
+                        </div>
+                        <div class="cell-md-4">
+                        </div>
+                    </div>
+                </div>
+
+
             </main>
         </div>
 
@@ -188,9 +337,5 @@
     <script src="js/clipboard.min.js"></script>
     <script src="js/site.js"></script>
     <!-- ads-script -->
-
-    <script>
-        console.log(typeof (new Date()));
-    </script>
 </body>
 </html>

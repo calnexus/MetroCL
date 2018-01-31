@@ -12220,13 +12220,14 @@ var TimePicker = {
 
     _create: function(){
         var that = this, element = this.element, o = this.options;
+        var picker = this.picker;
         var i;
 
         if (o.distance < 1) {
             o.distance = 1;
         }
 
-        if (element.val() === "" && o.value === null) {
+        if (element.val() === "" && (o.value === null || String(o.value).trim() === "")) {
             o.value = (new Date()).format("%H:%M:%S");
         }
 
@@ -12250,7 +12251,7 @@ var TimePicker = {
         this._createEvents();
         this._set();
 
-        Utils.exec(o.onTimePickerCreate, [element]);
+        Utils.exec(o.onTimePickerCreate, [element, picker]);
     },
 
     _createStructure: function(){
@@ -12276,13 +12277,13 @@ var TimePicker = {
         timeWrapper = $("<div>").addClass("time-wrapper").appendTo(picker);
 
         if (o.hours === true) {
-            hours = $("<div>").attr("data-title", this.locale['time']['hours']).addClass("hours").appendTo(timeWrapper);
+            hours = $("<div>").attr("data-title", this.locale['time']['hours']).addClass("hours").addClass(o.clsPart).addClass(o.clsHours).appendTo(timeWrapper);
         }
         if (o.minutes === true) {
-            minutes = $("<div>").attr("data-title", this.locale['time']['minutes']).addClass("minutes").appendTo(timeWrapper);
+            minutes = $("<div>").attr("data-title", this.locale['time']['minutes']).addClass("minutes").addClass(o.clsPart).addClass(o.clsMinutes).appendTo(timeWrapper);
         }
         if (o.seconds === true) {
-            seconds = $("<div>").attr("data-title", this.locale['time']['seconds']).addClass("seconds").appendTo(timeWrapper);
+            seconds = $("<div>").attr("data-title", this.locale['time']['seconds']).addClass("seconds").addClass(o.clsPart).addClass(o.clsSeconds).appendTo(timeWrapper);
         }
 
         selectWrapper = $("<div>").addClass("select-wrapper").appendTo(picker);
@@ -12457,7 +12458,6 @@ var TimePicker = {
         element.val([h, m, s].join(":")).trigger("change");
 
         Utils.exec(o.onSet, [this.value, element.val(), element, picker]);
-
     },
 
     open: function(){
@@ -12566,6 +12566,11 @@ var TimePicker = {
 };
 
 Metro.plugin('timepicker', TimePicker);
+
+$(document).on(Metro.events.click, function(e){
+    $(".time-picker").data("timepicker").close();
+});
+
 // Source: js/plugins/toast.js
 var Toast = {
     create: function(message, callback, timeout, cls){
