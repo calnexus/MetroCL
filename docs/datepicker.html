@@ -47,6 +47,7 @@
                 <hr/>
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Date picker</a></li>
+                    <li class="toc-entry"><a href="#">About</a></li>
                 </ul>
 
             </div>
@@ -66,26 +67,21 @@
                 <h3 id="_timepicker_about">About</h3>
                 <p>
                     The date picker gives you a standardized way to let users pick a date value.
+                    To create picker you must add role with attribute <code>data-role="datepicker"</code> to <code>input</code> element.
                 </p>
-
                 <div class="example">
                     <div class="row">
+                        <div class="cell-md-4"></div>
                         <div class="cell-md-4">
-                            <input data-role="datepicker" onchange="console.log(this.value)">
+                            <input data-role="datepicker">
                         </div>
-                        <div class="cell-md-4">
-                            <input data-role="datepicker" data-value="1972.12.21" data-day="false">
-                        </div>
-                        <div class="cell-md-4">
-                            <input data-role="datepicker" data-day="false" data-year="false" data-value="1972.3.21">
-                        </div>
+                        <div class="cell-md-4"></div>
                     </div>
                 </div>
                 <pre><code class="html">
                     &lt;input data-role="datepicker"&gt;
-                    &lt;input data-role="datepicker" data-value="1972.12.21" data-day="false"&gt;
-                    &lt;input data-role="datepicker" data-day="false" data-year="false" data-value="1972.3.21"&gt;
                 </code></pre>
+
 
             </main>
         </div>

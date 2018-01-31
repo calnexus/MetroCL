@@ -193,8 +193,9 @@ var TimePicker = {
             });
         });
 
-        picker.on(Metro.events.click, function(){
+        picker.on(Metro.events.click, function(e){
             if (that.isOpen === false) that.open();
+            e.stopPropagation();
         });
 
         picker.on(Metro.events.click, ".action-ok", function(e){
@@ -400,5 +401,7 @@ var TimePicker = {
 Metro.plugin('timepicker', TimePicker);
 
 $(document).on(Metro.events.click, function(e){
-    $(".time-picker").data("timepicker").close();
+    $.each($(".time-picker"), function(){
+        $(this).find("input").data("timepicker").close();
+    });
 });

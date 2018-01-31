@@ -6071,7 +6071,6 @@ var DatePicker = {
         year: true,
         minYear: null,
         maxYear: null,
-        duration: 100,
         scrollSpeed: 5,
         copyInlineStyles: true,
         clsPicker: "",
@@ -6155,13 +6154,13 @@ var DatePicker = {
         dateWrapper = $("<div>").addClass("date-wrapper").appendTo(picker);
 
         if (o.month === true) {
-            month = $("<div>").addClass("month").appendTo(dateWrapper);
+            month = $("<div>").addClass("month").addClass(o.clsPart).addClass(o.clsMonth).appendTo(dateWrapper);
         }
         if (o.day === true) {
-            day = $("<div>").addClass("day").appendTo(dateWrapper);
+            day = $("<div>").addClass("day").addClass(o.clsPart).addClass(o.clsDay).appendTo(dateWrapper);
         }
         if (o.year === true) {
-            year = $("<div>").addClass("year").appendTo(dateWrapper);
+            year = $("<div>").addClass("year").addClass(o.clsPart).addClass(o.clsYear).appendTo(dateWrapper);
         }
 
         selectWrapper = $("<div>").addClass("select-wrapper").appendTo(picker);
@@ -6289,7 +6288,7 @@ var DatePicker = {
 
                 list.animate({
                     scrollTop: scroll_to
-                }, o.duration, function(){
+                }, 100, function(){
                     target_element.addClass("active");
                     Utils.exec(o.onScroll, [target_element, list, picker]);
                 });
@@ -6412,6 +6411,12 @@ var DatePicker = {
 };
 
 Metro.plugin('datepicker', DatePicker);
+
+$(document).on(Metro.events.click, function(e){
+    $.each($(".date-picker"), function(){
+        $(this).find("input").data("datepicker").close();
+    });
+});
 // Source: js/plugins/dialog.js
 var Dialog = {
     init: function( options, elem ) {
@@ -12361,8 +12366,9 @@ var TimePicker = {
             });
         });
 
-        picker.on(Metro.events.click, function(){
+        picker.on(Metro.events.click, function(e){
             if (that.isOpen === false) that.open();
+            e.stopPropagation();
         });
 
         picker.on(Metro.events.click, ".action-ok", function(e){
@@ -12568,7 +12574,9 @@ var TimePicker = {
 Metro.plugin('timepicker', TimePicker);
 
 $(document).on(Metro.events.click, function(e){
-    $(".time-picker").data("timepicker").close();
+    $.each($(".time-picker"), function(){
+        $(this).find("input").data("timepicker").close();
+    });
 });
 
 // Source: js/plugins/toast.js
