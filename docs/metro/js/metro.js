@@ -254,10 +254,8 @@ var Metro = {
 
         this.observe();
 
-        setTimeout(function(){
-            Metro.initHotkeys(hotkeys);
-            Metro.initWidgets(widgets);
-        }, 0);
+        this.initHotkeys(hotkeys);
+        this.initWidgets(widgets);
 
         this.sheet = Utils.newCssSheet();
 
@@ -958,7 +956,10 @@ var Locales = {
                 "days": "DAYS",
                 "hours": "HOURS",
                 "minutes": "MINS",
-                "seconds": "SECS"
+                "seconds": "SECS",
+                "month": "MON",
+                "day": "DAY",
+                "year": "YEAR"
             }
         },
         "buttons": {
@@ -1672,6 +1673,7 @@ special.scrollstart = {
 
                 if (timer) {
                     clearTimeout(timer);
+                    timer = null;
                 } else {
                     evt.type = 'scrollstart';
                     dispatch.apply(_self, arguments);
@@ -1682,10 +1684,10 @@ special.scrollstart = {
                 }, _data.latency);
             };
 
-        $(this).bind('scroll', handler).data(uid1, handler);
+        $(this).on('scroll', handler).data(uid1, handler);
     },
     teardown: function() {
-        $(this).unbind('scroll', $(this).data(uid1));
+        $(this).off('scroll', $(this).data(uid1));
     }
 };
 
@@ -1703,6 +1705,7 @@ special.scrollstop = {
 
                 if (timer) {
                     clearTimeout(timer);
+                    timer = null;
                 }
 
                 timer = setTimeout(function() {
@@ -1712,10 +1715,10 @@ special.scrollstop = {
                 }, _data.latency);
             };
 
-        $(this).bind('scroll', handler).data(uid2, handler);
+        $(this).on('scroll', handler).data(uid2, handler);
     },
     teardown: function() {
-        $(this).unbind('scroll', $(this).data(uid2));
+        $(this).off('scroll', $(this).data(uid2));
     }
 };
 
@@ -6138,7 +6141,7 @@ var DatePicker = {
         var parent = element.parent();
         var id = Utils.elementId("date-picker");
 
-        picker = $("<label>").attr("id", id).addClass("wheel-picker date-picker " + element[0].className).addClass(o.clsPicker);
+        picker = $("<div>").attr("id", id).addClass("wheel-picker date-picker " + element[0].className).addClass(o.clsPicker);
 
         if (prev.length === 0) {
             parent.prepend(picker);
@@ -12182,7 +12185,6 @@ var TimePicker = {
         hours: true,
         minutes: true,
         seconds: false,
-        duration: 100,
         scrollSpeed: 5,
         copyInlineStyles: true,
         clsPicker: "",
@@ -12245,7 +12247,7 @@ var TimePicker = {
         var parent = element.parent();
         var id = Utils.elementId("time-picker");
 
-        picker = $("<label>").attr("id", id).addClass("wheel-picker time-picker " + element[0].className).addClass(o.clsPicker);
+        picker = $("<div>").attr("id", id).addClass("wheel-picker time-picker " + element[0].className).addClass(o.clsPicker);
 
         if (prev.length === 0) {
             parent.prepend(picker);
@@ -12253,7 +12255,7 @@ var TimePicker = {
             picker.insertAfter(prev);
         }
 
-        element.appendTo(picker);
+        element.attr("readonly", true).appendTo(picker);
 
 
         timeWrapper = $("<div>").addClass("time-wrapper").appendTo(picker);
@@ -12371,6 +12373,8 @@ var TimePicker = {
     _addScrollEvents: function(){
         var picker = this.picker, o = this.options;
         var lists = ['hours', 'minutes', 'seconds'];
+        var h_timer = null;
+
         $.each(lists, function(){
             var list_name = this;
             var list = picker.find(".sel-" + list_name);
@@ -12378,17 +12382,19 @@ var TimePicker = {
             if (list.length === 0) return ;
 
             list.on(Metro.events.scrollStart, function(){
-                list.find(".active").removeClass("active");
+                setTimeout(function(){
+                    list.find(".active").removeClass("active");
+                }, 0);
             });
-            list.on(Metro.events.scrollStop, function(){
 
+            list.on(Metro.events.scrollStop, {latency: 50}, function(){
                 var target = Math.round((Math.ceil(list.scrollTop() + 40) / 40)) - 1;
                 var target_element = list.find(".js-"+list_name+"-"+target);
                 var scroll_to = target_element.position().top - (o.distance * 40) + list.scrollTop();
 
                 list.animate({
                     scrollTop: scroll_to
-                }, o.duration, function(){
+                }, 100, function(){
                     target_element.addClass("active");
                     Utils.exec(o.onScroll, [target_element, list, picker]);
                 });
@@ -12451,21 +12457,21 @@ var TimePicker = {
             h_list = picker.find(".sel-hours");
             h_list.scrollTop(0).animate({
                 scrollTop: h_list.find("li").eq(h).addClass("active").position().top
-            });
+            }, 100);
         }
         if (o.minutes === true) {
             m = this.value[1];
             m_list = picker.find(".sel-minutes");
             m_list.scrollTop(0).animate({
                 scrollTop: m_list.find("li").eq(m).addClass("active").position().top
-            });
+            }, 100);
         }
         if (o.seconds === true) {
             s = this.value[2];
             s_list = picker.find(".sel-seconds");
             s_list.scrollTop(0).animate({
                 scrollTop: s_list.find("li").eq(s).addClass("active").position().top
-            });
+            }, 100);
         }
 
         this.isOpen = true;

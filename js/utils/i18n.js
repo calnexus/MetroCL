@@ -14,7 +14,10 @@ var Locales = {
                 "days": "DAYS",
                 "hours": "HOURS",
                 "minutes": "MINS",
-                "seconds": "SECS"
+                "seconds": "SECS",
+                "month": "MON",
+                "day": "DAY",
+                "year": "YEAR"
             }
         },
         "buttons": {

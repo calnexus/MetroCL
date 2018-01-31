@@ -236,10 +236,8 @@ var Metro = {
 
         this.observe();
 
-        setTimeout(function(){
-            Metro.initHotkeys(hotkeys);
-            Metro.initWidgets(widgets);
-        }, 0);
+        this.initHotkeys(hotkeys);
+        this.initWidgets(widgets);
 
         this.sheet = Utils.newCssSheet();
 

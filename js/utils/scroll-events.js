@@ -15,6 +15,7 @@ special.scrollstart = {
 
                 if (timer) {
                     clearTimeout(timer);
+                    timer = null;
                 } else {
                     evt.type = 'scrollstart';
                     dispatch.apply(_self, arguments);
@@ -25,10 +26,10 @@ special.scrollstart = {
                 }, _data.latency);
             };
 
-        $(this).bind('scroll', handler).data(uid1, handler);
+        $(this).on('scroll', handler).data(uid1, handler);
     },
     teardown: function() {
-        $(this).unbind('scroll', $(this).data(uid1));
+        $(this).off('scroll', $(this).data(uid1));
     }
 };
 
@@ -46,6 +47,7 @@ special.scrollstop = {
 
                 if (timer) {
                     clearTimeout(timer);
+                    timer = null;
                 }
 
                 timer = setTimeout(function() {
@@ -55,9 +57,9 @@ special.scrollstop = {
                 }, _data.latency);
             };
 
-        $(this).bind('scroll', handler).data(uid2, handler);
+        $(this).on('scroll', handler).data(uid2, handler);
     },
     teardown: function() {
-        $(this).unbind('scroll', $(this).data(uid2));
+        $(this).off('scroll', $(this).data(uid2));
     }
 };

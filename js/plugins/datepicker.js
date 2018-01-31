@@ -94,7 +94,7 @@ var DatePicker = {
         var parent = element.parent();
         var id = Utils.elementId("date-picker");
 
-        picker = $("<label>").attr("id", id).addClass("wheel-picker date-picker " + element[0].className).addClass(o.clsPicker);
+        picker = $("<div>").attr("id", id).addClass("wheel-picker date-picker " + element[0].className).addClass(o.clsPicker);
 
         if (prev.length === 0) {
             parent.prepend(picker);
