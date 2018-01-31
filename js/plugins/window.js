@@ -272,6 +272,7 @@ var Window = {
 
     close: function(e){
         var that = this, win = this.win,  element = this.element, o = this.options;
+        var timer = null;
 
         if (Utils.exec(o.onCanClose, [win]) === false) {
             return false;
@@ -285,7 +286,8 @@ var Window = {
 
         Utils.exec(o.onClose, [win]);
 
-        setTimeout(function(){
+        timer = setTimeout(function(){
+            timer = null;
             if (o.modal === true) {
                 win.siblings(".overlay").remove();
             }

@@ -216,9 +216,7 @@ var TimePicker = {
             if (list.length === 0) return ;
 
             list.on(Metro.events.scrollStart, function(){
-                setTimeout(function(){
-                    list.find(".active").removeClass("active");
-                }, 0);
+                list.find(".active").removeClass("active");
             });
 
             list.on(Metro.events.scrollStop, {latency: 50}, function(){

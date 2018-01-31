@@ -2,6 +2,7 @@ var Toast = {
     create: function(message, callback, timeout, cls){
         var toast = $("<div>").addClass("toast").html(message).appendTo($("body")).hide();
         var width = toast.outerWidth();
+        var timer = null;
         timeout = timeout || METRO_TIMEOUT;
 
         toast.css({
@@ -9,7 +10,8 @@ var Toast = {
             'margin-left': -(width / 2)
         }).addClass(cls).fadeIn(METRO_ANIMATION_DURATION);
 
-        setTimeout(function(){
+        timer = setTimeout(function(){
+            timer = null;
             toast.fadeOut(METRO_ANIMATION_DURATION, function(){
                 toast.remove();
                 Utils.callback(callback);

@@ -40,6 +40,7 @@ var Ripple = {
 
         element.on(Metro.events.click, target, function(e){
             var el = $(this);
+            var timer = null;
 
             if (el.css('position') === 'static') {
                 el.css('position', 'relative');
@@ -73,7 +74,8 @@ var Ripple = {
                 top: y + 'px',
                 left: x + 'px'
             }).addClass("rippleEffect");
-            setTimeout(function(){
+            timer = setTimeout(function(){
+                timer = null;
                 $(".ripple").remove();
             }, 400);
         });

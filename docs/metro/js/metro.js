@@ -10027,6 +10027,7 @@ var Ripple = {
 
         element.on(Metro.events.click, target, function(e){
             var el = $(this);
+            var timer = null;
 
             if (el.css('position') === 'static') {
                 el.css('position', 'relative');
@@ -10060,7 +10061,8 @@ var Ripple = {
                 top: y + 'px',
                 left: x + 'px'
             }).addClass("rippleEffect");
-            setTimeout(function(){
+            timer = setTimeout(function(){
+                timer = null;
                 $(".ripple").remove();
             }, 400);
         });
@@ -11842,6 +11844,7 @@ var Textarea = {
         var parent = element.parent();
         var container = $("<div>").addClass("textarea " + element[0].className);
         var clearButton;
+        var timer = null;
 
         if (prev.length === 0) {
             parent.prepend(container);
@@ -11861,17 +11864,16 @@ var Textarea = {
         element.appendTo(container);
 
         var resize = function(){
-            setTimeout(function(){
-                element[0].style.cssText = 'height:auto;';
-                element[0].style.cssText = 'height:' + element[0].scrollHeight + 'px';
-            }, 0);
+            element[0].style.cssText = 'height:auto;';
+            element[0].style.cssText = 'height:' + element[0].scrollHeight + 'px';
         };
 
         if (o.autoSize) {
 
             container.addClass("autosize");
 
-            setTimeout(function(){
+            timer = setTimeout(function(){
+                timer = null;
                 resize();
             }, 0);
 
@@ -12382,9 +12384,7 @@ var TimePicker = {
             if (list.length === 0) return ;
 
             list.on(Metro.events.scrollStart, function(){
-                setTimeout(function(){
-                    list.find(".active").removeClass("active");
-                }, 0);
+                list.find(".active").removeClass("active");
             });
 
             list.on(Metro.events.scrollStop, {latency: 50}, function(){
@@ -12538,6 +12538,7 @@ var Toast = {
     create: function(message, callback, timeout, cls){
         var toast = $("<div>").addClass("toast").html(message).appendTo($("body")).hide();
         var width = toast.outerWidth();
+        var timer = null;
         timeout = timeout || METRO_TIMEOUT;
 
         toast.css({
@@ -12545,7 +12546,8 @@ var Toast = {
             'margin-left': -(width / 2)
         }).addClass(cls).fadeIn(METRO_ANIMATION_DURATION);
 
-        setTimeout(function(){
+        timer = setTimeout(function(){
+            timer = null;
             toast.fadeOut(METRO_ANIMATION_DURATION, function(){
                 toast.remove();
                 Utils.callback(callback);
@@ -13945,6 +13947,7 @@ var Window = {
 
     close: function(e){
         var that = this, win = this.win,  element = this.element, o = this.options;
+        var timer = null;
 
         if (Utils.exec(o.onCanClose, [win]) === false) {
             return false;
@@ -13958,7 +13961,8 @@ var Window = {
 
         Utils.exec(o.onClose, [win]);
 
-        setTimeout(function(){
+        timer = setTimeout(function(){
+            timer = null;
             if (o.modal === true) {
                 win.siblings(".overlay").remove();
             }

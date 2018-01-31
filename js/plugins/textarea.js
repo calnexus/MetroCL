@@ -41,6 +41,7 @@ var Textarea = {
         var parent = element.parent();
         var container = $("<div>").addClass("textarea " + element[0].className);
         var clearButton;
+        var timer = null;
 
         if (prev.length === 0) {
             parent.prepend(container);
@@ -60,17 +61,16 @@ var Textarea = {
         element.appendTo(container);
 
         var resize = function(){
-            setTimeout(function(){
-                element[0].style.cssText = 'height:auto;';
-                element[0].style.cssText = 'height:' + element[0].scrollHeight + 'px';
-            }, 0);
+            element[0].style.cssText = 'height:auto;';
+            element[0].style.cssText = 'height:' + element[0].scrollHeight + 'px';
         };
 
         if (o.autoSize) {
 
             container.addClass("autosize");
 
-            setTimeout(function(){
+            timer = setTimeout(function(){
+                timer = null;
                 resize();
             }, 0);
 
