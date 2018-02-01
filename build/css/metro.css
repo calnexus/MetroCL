@@ -27179,6 +27179,40 @@ video:-webkit-full-screen {
   -webkit-transform: translate3d(0, -50%, 0);
           transform: translate3d(0, -50%, 0);
 }
+.sidebar {
+  display: block;
+  position: relative;
+  list-style: none inside;
+  height: 100%;
+  min-width: 220px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+.sidebar::-webkit-scrollbar {
+  display: none!important;
+}
+.sidebar li,
+.sidebar a {
+  display: block;
+  position: relative;
+  height: 52px;
+  line-height: 52px;
+  background-color: inherit;
+  color: inherit;
+  width: 100%;
+}
+.sidebar a {
+  padding: .625rem 1rem .625rem 3.75rem;
+}
+.sidebar .icon {
+  width: 28px;
+  height: 28px;
+  font-size: 26px;
+  line-height: 28px;
+  vertical-align: middle;
+  text-align: center;
+}
 .ripple {
   display: block;
   width: 0;
