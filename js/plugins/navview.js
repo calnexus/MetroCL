@@ -49,8 +49,8 @@ var NavigationView = {
 
         element
             .addClass("navview")
-            .addClass("compact-"+o.compact)
-            .addClass("expanded-"+o.expanded);
+            .addClass(o.compact !== false ? "compact-"+o.compact : "")
+            .addClass(o.expanded !== false ? "expanded-"+o.expanded : "");
 
         pane = element.children(".navview-pane");
         content = element.children(".navview-content");
