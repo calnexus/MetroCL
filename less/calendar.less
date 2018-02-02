@@ -153,9 +153,20 @@
     color: @dark;
     float: left;
     width: 120px;
-    overflow-y: auto;
+    overflow: hidden;
     transition: @transition-base;
     z-index: @zindex-absolute;
+}
+
+.calendar-years > .years-list, .calendar-months > .months-list {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto!important;
+
+    li.active {
+        background-color: @cyan;
+        color: @white;
+    }
 }
 
 .calendar-months {

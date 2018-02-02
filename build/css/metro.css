@@ -22764,10 +22764,21 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   color: #1d1d1d;
   float: left;
   width: 120px;
-  overflow-y: auto;
+  overflow: hidden;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   z-index: 500;
+}
+.calendar-years > .years-list,
+.calendar-months > .months-list {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto!important;
+}
+.calendar-years > .years-list li.active,
+.calendar-months > .months-list li.active {
+  background-color: #1ba1e2;
+  color: #ffffff;
 }
 .calendar-months {
   left: 0;
@@ -27179,21 +27190,21 @@ video:-webkit-full-screen {
   -webkit-transform: translate3d(0, -50%, 0);
           transform: translate3d(0, -50%, 0);
 }
-.sidebar {
+.sidenav {
   display: block;
   position: relative;
   list-style: none inside;
   height: 100%;
-  min-width: 220px;
+  width: 220px;
   overflow-x: hidden;
   overflow-y: auto;
   -ms-overflow-style: -ms-autohiding-scrollbar;
 }
-.sidebar::-webkit-scrollbar {
+.sidenav::-webkit-scrollbar {
   display: none!important;
 }
-.sidebar li,
-.sidebar a {
+.sidenav li,
+.sidenav a {
   display: block;
   position: relative;
   height: 52px;
@@ -27202,10 +27213,10 @@ video:-webkit-full-screen {
   color: inherit;
   width: 100%;
 }
-.sidebar a {
+.sidenav a {
   padding: .625rem 1rem .625rem 3.75rem;
 }
-.sidebar .icon {
+.sidenav .icon {
   width: 28px;
   height: 28px;
   font-size: 26px;

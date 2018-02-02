@@ -324,7 +324,21 @@ var Calendar = {
         });
 
         element.on(Metro.events.click, ".curr-month", function(e){
+            var target;
+            var list = element.find(".months-list");
+
+            list.find(".active").removeClass("active");
+            list.scrollTop(0);
             element.find(".calendar-months").addClass("open");
+
+            target = list.find(".js-month-"+that.current.month).addClass("active");
+
+            setTimeout(function(){
+                list.animate({
+                    scrollTop: target.position().top - ( (list.height() - target.height() )/ 2)
+                }, 200);
+            }, 300);
+
             e.preventDefault();
             e.stopPropagation();
         });
@@ -339,7 +353,21 @@ var Calendar = {
         });
 
         element.on(Metro.events.click, ".curr-year", function(e){
+            var target;
+            var list = element.find(".years-list");
+
+            list.find(".active").removeClass("active");
+            list.scrollTop(0);
             element.find(".calendar-years").addClass("open");
+
+            target = list.find(".js-year-"+that.current.year).addClass("active");
+
+            setTimeout(function(){
+                list.animate({
+                    scrollTop: target.position().top - ( (list.height() - target.height() )/ 2)
+                }, 200);
+            }, 300);
+
             e.preventDefault();
             e.stopPropagation();
         });
@@ -412,7 +440,7 @@ var Calendar = {
         var calendar_locale = this.locale['calendar'];
         var i;
         for(i = 0; i < 12; i++) {
-            $("<li>").html(calendar_locale['months'][i]).appendTo(list);
+            $("<li>").addClass("js-month-"+i).html(calendar_locale['months'][i]).appendTo(list);
         }
     },
 
@@ -422,7 +450,7 @@ var Calendar = {
         var list = $("<ul>").addClass("years-list").appendTo(years);
         var i;
         for(i = this.minYear; i <= this.maxYear; i++) {
-            $("<li>").html(i).appendTo(list);
+            $("<li>").addClass("js-year-"+i).html(i).appendTo(list);
         }
     },
 
