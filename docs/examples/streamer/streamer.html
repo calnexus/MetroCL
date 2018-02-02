@@ -42,7 +42,12 @@
             <ul class="times-list mt-2 mb-4"></ul>
         </div>
 
-        <div id="streamer" class="streamer-expand-sm" data-role="streamer" data-source="../../data/streamer_data.json" data-on-streamer-create="streamerCreate" data-start-from="09:00" data-on-event-select="eventSelect"></div>
+        <div id="streamer" class="streamer-expand-sm"
+             data-role="streamer"
+             data-source="../../data/streamer_data.json"
+             data-on-streamer-create="streamerCreate"
+             data-start-from="09:00"
+             data-on-event-select="eventSelect"></div>
 
         <div class="actions mt-2">
             <p class="remark alert">
@@ -140,6 +145,10 @@
             }
 
             li.data("selected", selected_count);
+
+            if (selected) {
+                document.location.href = event.data('target');
+            }
         }
 
     </script>
