@@ -69,12 +69,12 @@
                 <h3 id="_sidenav_about">About</h3>
                 <p>
                     Often the project needs to implement a side menu. Metro 4 gives you the opportunity to do this in many ways.
-                    You can use: <strong>vertical menu</strong>, <strong>side menu with counter</strong>.
+                    You can use: <strong>vertical menu</strong>, <strong>side menu with counter</strong> or <strong>side menu m3</strong>.
                 </p>
 
                 <h3 id="_v-menu">Vertical menu</h3>
                 <p>
-                    The vertical menu is intended, first of all, to create sidebar menus of your site. To create vertical menu add class .v-menu to list.
+                    The vertical menu is intended, first of all, to create sidebar menus of your site. To create vertical menu add class <code>.v-menu</code> to list.
                     How to create it you can read in <a href="http://localhost:63342/Metro-UI-CSS-4/docs/menu.html#_v_menu">this article</a>.
                 </p>
                 <div class="example clear">
@@ -207,6 +207,97 @@
                         ...
                     &lt;/ul&gt;
                 </code></pre>
+
+                <h3 id="_sidenav-m3">Side menu m3</h3>
+                <p>
+                    This navigation menu crawled from the version of Metro 3, hence the name <code>.sidenav-m3</code>
+                </p>
+
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-6 clear">
+                            <ul class="sidenav-m3 float-left">
+                                <li class="title">Title 1</li>
+                                <li class="active"><a href="#"><span class="mif-home icon"></span>Dashboard</a></li>
+                                <li class="stick-right bg-red"><a href="#"><span class="mif-cog icon"></span>Layouts</a></li>
+                                <li class="stick-left bg-green">
+                                    <a class="dropdown-toggle" href="#"><span class="mif-tree icon"></span>Sub menu</a>
+                                    <ul class="d-menu" data-role="dropdown" style="display: none;">
+                                        <li><a href=""><span class="mif-vpn-lock icon"></span> Subitem 1</a></li>
+                                        <li><a href="">Subitem 2</a></li>
+                                        <li><a href="">Subitem 3</a></li>
+                                        <li><a href="">Subitem 4</a></li>
+                                        <li class="disabled"><a href="">Subitem 5</a></li>
+                                    </ul>
+                                </li>
+                                <li class=""><a href="#">Thread item</a></li>
+                                <li class="disabled"><a href="#">Disabled item</a></li>
+
+                                <li class="title">Title 2</li>
+                                <li><a href="#">Other Item 1</a></li>
+                                <li><a href="#">Other item 2</a></li>
+                                <li><a href="#">Other item 3</a></li>
+                            </ul>
+                        </div>
+                        <div class="cell-md-6 clear">
+                            <ul class="sidenav-m3 float-right" dir="rtl">
+                                <li class="title">Title 1</li>
+                                <li class="active"><a href="#"><span class="mif-home icon"></span>Dashboard</a></li>
+                                <li class="stick-right bg-red"><a href="#"><span class="mif-cog icon"></span>Layouts</a></li>
+                                <li class="stick-left bg-green">
+                                    <a class="dropdown-toggle" href="#"><span class="mif-tree icon"></span>Sub menu</a>
+                                    <ul class="d-menu" data-role="dropdown" style="display: none;">
+                                        <li><a href=""><span class="mif-vpn-lock icon"></span> Subitem 1</a></li>
+                                        <li><a href="">Subitem 2</a></li>
+                                        <li><a href="">Subitem 3</a></li>
+                                        <li><a href="">Subitem 4</a></li>
+                                        <li class="disabled"><a href="">Subitem 5</a></li>
+                                    </ul>
+                                </li>
+                                <li class=""><a href="#">Thread item</a></li>
+                                <li class="disabled"><a href="#">Disabled item</a></li>
+
+                                <li class="title">Title 2</li>
+                                <li><a href="#">Other Item 1</a></li>
+                                <li><a href="#">Other item 2</a></li>
+                                <li><a href="#">Other item 3</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;ul class="sidenav-m3"&gt;
+                        &lt;li class="title"&gt;Title 1&lt;/li&gt;
+                        &lt;li class="active"&gt;&lt;a href="#"&gt;&lt;span class="mif-home icon"&gt;&lt;/span&gt;Dashboard&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="stick-right bg-red"&gt;&lt;a href="#"&gt;&lt;span class="mif-cog icon"&gt;&lt;/span&gt;Layouts&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="stick-left bg-green"&gt;
+                            &lt;a class="dropdown-toggle" href="#"&gt;&lt;span class="mif-tree icon"&gt;&lt;/span&gt;Sub menu&lt;/a&gt;
+                            &lt;ul class="d-menu" data-role="dropdown" style="display: none;"&gt;
+                                &lt;li&gt;&lt;a href=""&gt;&lt;span class="mif-vpn-lock icon"&gt;&lt;/span&gt; Subitem 1&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href=""&gt;Subitem 2&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href=""&gt;Subitem 3&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href=""&gt;Subitem 4&lt;/a&gt;&lt;/li&gt;
+                                &lt;li class="disabled"&gt;&lt;a href=""&gt;Subitem 5&lt;/a&gt;&lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+                        &lt;li class=""&gt;&lt;a href="#"&gt;Thread item&lt;/a&gt;&lt;/li&gt;
+                        &lt;li class="disabled"&gt;&lt;a href="#"&gt;Disabled item&lt;/a&gt;&lt;/li&gt;
+
+                        &lt;li class="title"&gt;Title 2&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Other Item 1&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Other item 2&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;Other item 3&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <p>
+                    To set this menu for right to left language, add attribute <code>dir="rtl"</code> to list.
+                </p>
+                <pre><code class="html">
+                    &lt;ul class="sidenav-m3" dir="rtl"&gt;
+                    ...
+                    &lt;/ul&gt;
+                </code></pre>
+
 
             </main>
         </div>
