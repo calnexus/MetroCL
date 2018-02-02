@@ -11253,6 +11253,7 @@ var Streamer = {
                             .data("sid", sid)
                             .data("data", event_item.data)
                             .data("time", event_item.time)
+                            .data("target", event_item.target)
                             .addClass("stream-event")
                             .addClass("size-"+event_item.size+"x")
                             .addClass(event_item.cls)
