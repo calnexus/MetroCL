@@ -1,7 +1,7 @@
 @import (once) "include/vars";
 @import (once) "include/mixins";
 
-.sidenav {
+.sidenav-counter {
     display: block;
     position: relative;
     list-style: none inside;
@@ -17,7 +17,7 @@
     .hideScrollBars();
 }
 
-.sidenav {
+.sidenav-counter {
     li, a {
         display: block;
         position: relative;
@@ -83,7 +83,7 @@
     }
 }
 
-.sidenav-expand() {
+.sidenav-counter-expand() {
     width: 220px;
 
     a {
@@ -108,9 +108,9 @@
 
     @media screen and (min-width: @@m) {
 
-        .sidenav {
-            &.sidenav-expand-@{m} {
-                .sidenav-expand();
+        .sidenav-counter {
+            &.sidenav-counter-expand-@{m} {
+                .sidenav-counter-expand();
             }
         }
     }
