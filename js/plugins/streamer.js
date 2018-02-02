@@ -168,6 +168,9 @@ var Streamer = {
                         var event_item = this;
                         var _icon;
                         var sid = stream_index+":"+event_index;
+                        var custom_html = event_item.custom !== undefined ? event_item.custom : "";
+                        var custom_html_open = event_item.custom_open !== undefined ? event_item.custom_open : "";
+                        var custom_html_close = event_item.custom_close !== undefined ? event_item.custom_close : "";
                         var event = $("<div>")
                             .data("origin", event_item)
                             .data("sid", sid)
@@ -210,12 +213,16 @@ var Streamer = {
                             event
                                 .data("closed", true)
                                 .data("target", event_item.target);
+                            event.append(custom_html_open);
                         } else {
                             _icon = event_item.openIcon !== undefined ? Utils.isTag(event_item.openIcon) ? event_item.openIcon : "<span>"+event_item.openIcon+"</span>"  : Utils.isTag(o.defaultOpenIcon) ? o.defaultOpenIcon : "<span>"+o.defaultOpenIcon+"</span>";
                             $(_icon).addClass("state-icon").addClass(event_item.clsOpenIcon).appendTo(slide);
                             event
                                 .data("closed", false);
+                            event.append(custom_html_close);
                         }
+
+                        event.append(custom_html);
                     });
 
                     var last_child = stream_events.find(".stream-event:last-child");
