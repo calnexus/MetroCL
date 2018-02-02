@@ -125,8 +125,8 @@
 
                 <div class="example">
                     <div class="row">
-                        <div class="cell-md-6">
-                            <h5>Expanded mode</h5>
+                        <div class="cell-md-6 flex-no-shrink">
+                            <h5>Expanded</h5>
                             <ul class="sidenav-counter sidenav-counter-expand-fs h-auto">
                                 <li><a href="#">
                                     <span class="mif-apps icon"></span>
@@ -161,7 +161,7 @@
                             </ul>
                         </div>
                         <div class="cell-md-6">
-                            <h5>Compact mode (default)</h5>
+                            <h5>Compact</h5>
                             <ul class="sidenav-counter h-auto">
                                 <li><a href="#">
                                     <span class="mif-apps icon"></span>
@@ -199,6 +199,93 @@
                 </div>
                 <pre><code class="html">
                     &lt;ul class="sidenav-counter"&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;
+                            &lt;span class="mif-apps icon"&gt;&lt;/span&gt;
+                            &lt;span class="title"&gt;all items&lt;/span&gt;
+                            &lt;span class="counter"&gt;0&lt;/span&gt;
+                        &lt;/a&gt;&lt;/li&gt;
+                        ...
+                    &lt;/ul&gt;
+                </code></pre>
+                <p>
+                    To set this menu for right to left language, add attribute <code>dir="rtl"</code> to list.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-6 flex-no-shrink">
+                            <h5>Expanded</h5>
+                            <ul class="sidenav-counter sidenav-counter-expand-fs h-auto" dir="rtl">
+                                <li><a href="#">
+                                    <span class="mif-apps icon"></span>
+                                    <span class="title">all items</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-vpn-lock icon"></span>
+                                    <span class="title">websites</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li class="active"><a href="#">
+                                    <span class="mif-drive-eta icon"></span>
+                                    <span class="title">Virtual machines</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-cloud icon"></span>
+                                    <span class="title">Cloud services</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-database icon"></span>
+                                    <span class="title">SQL Databases</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-cogs icon"></span>
+                                    <span class="title">Automation</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                            </ul>
+                        </div>
+                        <div class="cell-md-6">
+                            <h5>Compact</h5>
+                            <ul class="sidenav-counter h-auto" dir="rtl">
+                                <li><a href="#">
+                                    <span class="mif-apps icon"></span>
+                                    <span class="title">all items</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-vpn-lock icon"></span>
+                                    <span class="title">websites</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li class="active"><a href="#">
+                                    <span class="mif-drive-eta icon"></span>
+                                    <span class="title">Virtual machines</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-cloud icon"></span>
+                                    <span class="title">Cloud services</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-database icon"></span>
+                                    <span class="title">SQL Databases</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="mif-cogs icon"></span>
+                                    <span class="title">Automation</span>
+                                    <span class="counter">0</span>
+                                </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;ul class="sidenav-counter" dir="rtl"&gt;
                         &lt;li&gt;&lt;a href="#"&gt;
                             &lt;span class="mif-apps icon"&gt;&lt;/span&gt;
                             &lt;span class="title"&gt;all items&lt;/span&gt;

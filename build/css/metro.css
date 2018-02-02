@@ -27286,6 +27286,13 @@ video:-webkit-full-screen {
   background-color: #1ba1e2;
   color: #ffffff;
 }
+.sidenav-counter[dir=rtl] .counter {
+  right: auto;
+  left: 4px;
+}
+.sidenav-counter[dir=rtl] .icon {
+  left: .725rem;
+}
 @media screen and (min-width: 0) {
   .sidenav-counter.sidenav-counter-expand-fs {
     width: 220px;
@@ -27300,6 +27307,13 @@ video:-webkit-full-screen {
     position: relative;
     top: auto;
     right: auto;
+  }
+  .sidenav-counter.sidenav-counter-expand-fs[dir=rtl] a {
+    padding: .625rem 3.75rem .625rem 1rem;
+  }
+  .sidenav-counter.sidenav-counter-expand-fs[dir=rtl] .icon {
+    left: auto;
+    right: .625rem;
   }
 }
 @media screen and (min-width: 576px) {
@@ -27317,6 +27331,13 @@ video:-webkit-full-screen {
     top: auto;
     right: auto;
   }
+  .sidenav-counter.sidenav-counter-expand-sm[dir=rtl] a {
+    padding: .625rem 3.75rem .625rem 1rem;
+  }
+  .sidenav-counter.sidenav-counter-expand-sm[dir=rtl] .icon {
+    left: auto;
+    right: .625rem;
+  }
 }
 @media screen and (min-width: 768px) {
   .sidenav-counter.sidenav-counter-expand-md {
@@ -27332,6 +27353,13 @@ video:-webkit-full-screen {
     position: relative;
     top: auto;
     right: auto;
+  }
+  .sidenav-counter.sidenav-counter-expand-md[dir=rtl] a {
+    padding: .625rem 3.75rem .625rem 1rem;
+  }
+  .sidenav-counter.sidenav-counter-expand-md[dir=rtl] .icon {
+    left: auto;
+    right: .625rem;
   }
 }
 @media screen and (min-width: 992px) {
@@ -27349,6 +27377,13 @@ video:-webkit-full-screen {
     top: auto;
     right: auto;
   }
+  .sidenav-counter.sidenav-counter-expand-lg[dir=rtl] a {
+    padding: .625rem 3.75rem .625rem 1rem;
+  }
+  .sidenav-counter.sidenav-counter-expand-lg[dir=rtl] .icon {
+    left: auto;
+    right: .625rem;
+  }
 }
 @media screen and (min-width: 1200px) {
   .sidenav-counter.sidenav-counter-expand-xl {
@@ -27365,6 +27400,13 @@ video:-webkit-full-screen {
     top: auto;
     right: auto;
   }
+  .sidenav-counter.sidenav-counter-expand-xl[dir=rtl] a {
+    padding: .625rem 3.75rem .625rem 1rem;
+  }
+  .sidenav-counter.sidenav-counter-expand-xl[dir=rtl] .icon {
+    left: auto;
+    right: .625rem;
+  }
 }
 @media screen and (min-width: 1452px) {
   .sidenav-counter.sidenav-counter-expand-xxl {
@@ -27380,6 +27422,13 @@ video:-webkit-full-screen {
     position: relative;
     top: auto;
     right: auto;
+  }
+  .sidenav-counter.sidenav-counter-expand-xxl[dir=rtl] a {
+    padding: .625rem 3.75rem .625rem 1rem;
+  }
+  .sidenav-counter.sidenav-counter-expand-xxl[dir=rtl] .icon {
+    left: auto;
+    right: .625rem;
   }
 }
 .sidenav-m3 {

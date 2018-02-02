@@ -83,6 +83,17 @@
     }
 }
 
+.sidenav-counter[dir=rtl] {
+    .counter {
+        right: auto;
+        left: 4px;
+    }
+
+    .icon {
+        left: .725rem;
+    }
+}
+
 .sidenav-counter-expand() {
     width: 220px;
 
@@ -111,6 +122,16 @@
         .sidenav-counter {
             &.sidenav-counter-expand-@{m} {
                 .sidenav-counter-expand();
+            }
+            &.sidenav-counter-expand-@{m}[dir=rtl] {
+                a {
+                    padding: .625rem 3.75rem .625rem 1rem;
+                }
+
+                .icon {
+                    left: auto;
+                    right: .625rem;
+                }
             }
         }
     }
