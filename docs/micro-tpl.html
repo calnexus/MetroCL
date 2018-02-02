@@ -71,11 +71,15 @@
                     Keys supported: <code>var</code>, <code>if</code>, <code>for</code>, <code>else</code>, <code>switch</code>, <code>case</code>, <code>break</code>.
                 </p>
 
-                <pre><code class="html">
-                    ...html
-                    &lt;div id="template_result"&gt;&lt;/div&gt;
+                <h3>Example</h3>
 
-                    ...javascript
+                <h5>html</h5>
+                <pre><code class="html">
+                    &lt;div id="template_result"&gt;&lt;/div&gt;
+                </code></pre>
+
+                <h5>javascript</h5>
+                <pre><code class="html">
                     var template =
                          'My skills:' +
                          '<hr>' +
@@ -111,7 +115,33 @@
 
                 <h5>Result</h5>
                 <div class="example">
-                    <div id="template_result"></div>
+                    <div class="row">
+                        <div class="cell-md-6">
+                            <div id="template_result"></div>
+                        </div>
+                        <div class="cell-md-6">
+                            <pre class="m-0"><code class="html">
+                                &lt;div id="template_result"&gt;
+                                    My skills:
+                                    &lt;hr&gt;
+                                    &lt;ul&gt;
+                                        &lt;li&gt;javascript&lt;/li&gt;
+                                        &lt;li&gt;html&lt;/li&gt;
+                                        &lt;li&gt;css&lt;/li&gt;
+                                        &lt;li&gt;php&lt;/li&gt;
+                                        &lt;li&gt;oracle&lt;/li&gt;
+                                        &lt;li&gt;mysql&lt;/li&gt;
+                                        &lt;li&gt;java&lt;/li&gt;
+                                        &lt;li&gt;pascal&lt;/li&gt;
+                                        &lt;li&gt;c/c++&lt;/li&gt;
+                                        &lt;li&gt;kotlin&lt;/li&gt;
+                                    &lt;/ul&gt;
+                                    &lt;br&gt;
+                                    &lt;strong&gt;Total: &lt;/strong&gt;10 main skills
+                                &lt;/div&gt;
+                            </code></pre>
+                        </div>
+                    </div>
                 </div>
 
             </main>
