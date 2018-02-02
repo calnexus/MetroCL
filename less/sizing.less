@@ -1,14 +1,15 @@
 @import (once) "include/vars";
 @import (once) "include/mixins";
 
-.w-sxd {width: 320px;}
-.w-smd {width: 480px;}
-.w-ldd {width: 640px;}
-.w-mdd {width: 768px;}
-.w-lgd {width: 1024px;}
-.w-xld {width: 1200px;}
-.w-xxld {width: 1440px;}
+.w-sx {width: 320px;}
+.w-sm {width: 480px;}
+.w-ld {width: 640px;}
+.w-md {width: 768px;}
+.w-lg {width: 1024px;}
+.w-xl {width: 1200px;}
+.w-xxl {width: 1440px;}
 .w-auto {width: auto!important;}
+.h-auto {height: auto!important;}
 
 .generate-width(4);
 .generate-width(@i) when (@i > 0) {
@@ -30,6 +31,7 @@
     @media screen and (min-width: @@m) {
 
         .w-auto-@{m} {width: auto!important;}
+        .h-auto-@{m} {width: auto!important;}
 
         .generate-width(4);
         .generate-width(@i) when (@i > 0) {
@@ -38,8 +40,8 @@
 
             .w-@{s}-@{m} {width: @i * 25 + 0% !important;}
             .h-@{s}-@{m} {height: @i * 25 + 0% !important;}
-            .mh-@{s} {max-height: @i * 25 + 0% !important;}
-            .mw-@{s} {max-width: @i * 25 + 0% !important;}
+            .mh-@{s}-@{m} {max-height: @i * 25 + 0% !important;}
+            .mw-@{s}-@{m} {max-width: @i * 25 + 0% !important;}
 
             .generate-width(@i - 1);
         }
