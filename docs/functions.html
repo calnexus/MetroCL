@@ -67,37 +67,305 @@
                 <p>
                     All special utilities functions stored in <code>Metro.utils</code> object.
                 </p>
-                <ul>
-                    <li><strong>isUrl(val)</strong> - check string is url</li>
-                    <li><strong>isColor(val)</strong> - check string is hex color</li>
-                    <li><strong>secondsToTime(time)</strong> - return object <code>{h, m, s}</code></li>
-                    <li><strong>hex2rgba(hex, alpha)</strong> - return rgba value for hex color</li>
-                    <li><strong>random(from, to)</strong> - return random value</li>
-                    <li><strong>isInt(v)</strong> - check value is integer</li>
-                    <li><strong>isFloat(v)</strong> - check value is float</li>
-                    <li><strong>uniqueId()</strong> - return unique value in format <code>xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx</code></li>
-                    <li><strong>isTouchDevice()</strong> - check device is touchable</li>
-                    <li><strong>secondsToFormattedString(time)</strong> - return string value in format <code>hh:mm:ss</code></li>
-                    <li><strong>callback(func)</strong> - execute function or code with return value</li>
-                    <li><strong>exec(func)</strong> - execute function or code with return value</li>
-                    <li><strong>isFunc(val)</strong> - if val is function return function object else return false</li>
-                    <li><strong>isJQueryObject(obj)</strong> - check value is jQuery object</li>
-                    <li><strong>addLocale(locale)</strong> - add locale at runtime</li>
-                    <li><strong>getLocaleNames()</strong> - return registered locales</li>
-                    <li><strong>elementInViewport(el)</strong> - check element visible in viewport</li>
-                    <li><strong>objectLength(obj)</strong> - return object length</li>
-                    <li><strong>percent(a, b, c)</strong> - return percent value</li>
-                    <li><strong>camelCase(val)</strong> - return string in camel case. my-value -> myValue</li>
-                    <li><strong>objectShift(obj)</strong> - remove first value from object</li>
-                    <li><strong>objectDelete(obj, key)</strong> - remove value from object</li>
-                    <li><strong>arrayDelete(array, key)</strong> - remove value from array</li>
-                    <li><strong>nvl(value, other)</strong> - return other if value is undefined or null else return value</li>
-                    <li><strong>github(repo, callback)</strong> - return github repo data to callback function</li>
-                    <li><strong>detectIE()</strong> - detect IE, Edge</li>
-                    <li><strong>md5(val)</strong> - calc md5 value for string</li>
-                    <li><strong>encodeURI(val)</strong> - fixed encode uri function</li>
-                    <li><strong>pageHeight()</strong> - return actual page height</li>
-                </ul>
+
+                <table class="table cell-border table-border options-table mt-4">
+                    <thead>
+                    <tr>
+                        <th>Function</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>isUrl(v)</code></td>
+                        <td>Checks if value is url</td>
+                    </tr>
+                    <tr>
+                        <td><code>isTag(v)</code></td>
+                        <td>Checks if value is tag.</td>
+                    </tr>
+                    <tr>
+                        <td><code>isColor(v)</code></td>
+                        <td>Checks if value is hex color. #fff, #ffffff - true</td>
+                    </tr>
+                    <tr>
+                        <td><code>isEmbedObject(v)</code></td>
+                        <td>Checks if value is embed object, value to check - html string</td>
+                    </tr>
+                    <tr>
+                        <td><code>isVideoUrl(v)</code></td>
+                        <td>Checks if value is youtube or vimeo video link</td>
+                    </tr>
+                    <tr>
+                        <td><code>isDate(v)</code></td>
+                        <td>Checks if value is valid date string</td>
+                    </tr>
+                    <tr>
+                        <td><code>isInt(v)</code></td>
+                        <td>Checks if value is integer</td>
+                    </tr>
+                    <tr>
+                        <td><code>isFloat(v)</code></td>
+                        <td>Checks if value is float</td>
+                    </tr>
+                    <tr>
+                        <td><code>isTouchDevice()</code></td>
+                        <td>Checks if device is touchable</td>
+                    </tr>
+                    <tr>
+                        <td><code>isFunc(v)</code></td>
+                        <td>Checks if value is function</td>
+                    </tr>
+                    <tr>
+                        <td><code>isObject(v)</code></td>
+                        <td>Checks if value is object</td>
+                    </tr>
+                    <tr>
+                        <td><code>isArray(v)</code></td>
+                        <td>Checks if value is array</td>
+                    </tr>
+                    <tr>
+                        <td><code>isType(v, t)</code></td>
+                        <td>Checks if value is a type</td>
+                    </tr>
+                    <tr>
+                        <td><code>isMetroObject(el, type)</code></td>
+                        <td>Checks if element is a Metro component</td>
+                    </tr>
+                    <tr>
+                        <td><code>isJQueryObject(el)</code></td>
+                        <td>Checks if element is a jQuery object</td>
+                    </tr>
+                    <tr>
+                        <td><code>embedObject(el)</code></td>
+                        <td>Insert element into embed container. Return html string</td>
+                    </tr>
+                    <tr>
+                        <td><code>embedUrl(el)</code></td>
+                        <td>Insert youtube link into embed container. Return html string</td>
+                    </tr>
+                    <tr>
+                        <td><code>secondsToTime(seconds)</code></td>
+                        <td>Return object {hours, minutes, seconds}</td>
+                    </tr>
+                    <tr>
+                        <td><code>hex2rgba(hex, alpha)</code></td>
+                        <td>Return string 'rgba(x, x, x, a)'</td>
+                    </tr>
+                    <tr>
+                        <td><code>random(from, to)</code></td>
+                        <td>Return random value</td>
+                    </tr>
+                    <tr>
+                        <td><code>uniqueId()</code></td>
+                        <td>Return string in format <span class="no-wrap">xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx</span></td>
+                    </tr>
+                    <tr>
+                        <td><code>elementId(prefix)</code></td>
+                        <td>Return string. Based in datetime</td>
+                    </tr>
+                    <tr>
+                        <td><code>secondsToFormattedString(seconds)</code></td>
+                        <td>Return string "hh:mm:ss"</td>
+                    </tr>
+                    <tr>
+                        <td><code>callback(f, args, context)</code></td>
+                        <td>Synonym to exec function</td>
+                    </tr>
+                    <tr>
+                        <td><code>exec(f, args, context)</code></td>
+                        <td>Exec function or code with arguments and context</td>
+                    </tr>
+                    <tr>
+                        <td><code>isOutsider(el)</code></td>
+                        <td>Check element to outside of the view</td>
+                    </tr>
+                    <tr>
+                        <td><code>inViewport(el)</code></td>
+                        <td>Check element in viewport</td>
+                    </tr>
+                    <tr>
+                        <td><code>objectLength(el)</code></td>
+                        <td>Return object length.</td>
+                    </tr>
+                    <tr>
+                        <td><code>percent(a, b, r)</code></td>
+                        <td>Return percent value for b from a. If r is true, returned value is integer else - real</td>
+                    </tr>
+                    <tr>
+                        <td><code>camelCase(str)</code></td>
+                        <td>Return 'data-on-value' as 'dataOnValue'</td>
+                    </tr>
+                    <tr>
+                        <td><code>objectShift(obj)</code></td>
+                        <td>Return shifted object. Remove element with first key</td>
+                    </tr>
+                    <tr>
+                        <td><code>objectDelete(obj, key)</code></td>
+                        <td>Delete key from object and return it</td>
+                    </tr>
+                    <tr>
+                        <td><code>arrayDelete(arr, key)</code></td>
+                        <td>Delete key from array and return it</td>
+                    </tr>
+                    <tr>
+                        <td><code>github(repo, callback)</code></td>
+                        <td>Get information from github and put then in callback</td>
+                    </tr>
+                    <tr>
+                        <td><code>detectIE()</code></td>
+                        <td>Detect if browser is Internet explorer or Edge</td>
+                    </tr>
+                    <tr>
+                        <td><code>detectChrome()</code></td>
+                        <td>Detect if browser is Chrome</td>
+                    </tr>
+                    <tr>
+                        <td><code>md5(str)</code></td>
+                        <td>Encode string with md5 algorithm</td>
+                    </tr>
+                    <tr>
+                        <td><code>encodeUri(str)</code></td>
+                        <td>Fix to base eencodeUri function</td>
+                    </tr>
+                    <tr>
+                        <td><code>pageHeight()</code></td>
+                        <td>Return real page height</td>
+                    </tr>
+                    <tr>
+                        <td><code>cleanPreCode(selector)</code></td>
+                        <td>Remove white spaces from code</td>
+                    </tr>
+                    <tr>
+                        <td><code>coords(el)</code></td>
+                        <td>Return element coordinates as object {top, left}</td>
+                    </tr>
+                    <tr>
+                        <td><code>positionXY(event, type)</code></td>
+                        <td>Return position for type: screen, page, client</td>
+                    </tr>
+                    <tr>
+                        <td><code>clientXY(event)</code></td>
+                        <td>Return position</td>
+                    </tr>
+                    <tr>
+                        <td><code>pageXY(event)</code></td>
+                        <td>Return position</td>
+                    </tr>
+                    <tr>
+                        <td><code>screenXY(event)</code></td>
+                        <td>Return position</td>
+                    </tr>
+                    <tr>
+                        <td><code>isRightMouse(event)</code></td>
+                        <td>Check if user click on right mouse button</td>
+                    </tr>
+                    <tr>
+                        <td><code>hiddenElementSize(el, includeMargin)</code></td>
+                        <td>Return element size as object {width, height}</td>
+                    </tr>
+                    <tr>
+                        <td><code>getStyle(el, pseudo)</code></td>
+                        <td>Return element calculated styles</td>
+                    </tr>
+                    <tr>
+                        <td><code>getStyleOne(el, property)</code></td>
+                        <td>Return element calculated styles for specified property</td>
+                    </tr>
+                    <tr>
+                        <td><code>getTransformMatrix(el)</code></td>
+                        <td>Return element transform matrix</td>
+                    </tr>
+                    <tr>
+                        <td><code>computedRgbToHex(rgb)</code></td>
+                        <td>Return hex value for computed element color.</td>
+                    </tr>
+                    <tr>
+                        <td><code>computedRgbToHex(rgb)</code></td>
+                        <td>Return hex value for rgb string 'rgb(x, x, x)' => #xxxxxx</td>
+                    </tr>
+                    <tr>
+                        <td><code>computedRgbToRgba(rgb, alpha)</code></td>
+                        <td>Return rgba string for rgb string 'rgb(x, x, x)' => 'rgba(x, x, x, a)'</td>
+                    </tr>
+                    <tr>
+                        <td><code>computedRgbToArray(rgb)</code></td>
+                        <td>Return array for string 'rgb(x, x, x)' => [x, x, x]</td>
+                    </tr>
+                    <tr>
+                        <td><code>isDarkColor(c)</code></td>
+                        <td>Check for color for darken. This is a function from microsoft</td>
+                    </tr>
+                    <tr>
+                        <td><code>hexColorToArray(c)</code></td>
+                        <td>Convert hex color value to array</td>
+                    </tr>
+                    <tr>
+                        <td><code>hexColorToRgbA(c, a)</code></td>
+                        <td>Convert hex color value rgba string: '#xxxxxx' => 'rgba(x, x, x, a)'</td>
+                    </tr>
+                    <tr>
+                        <td><code>getInlineStyles(el)</code></td>
+                        <td>Return element inline styles as array</td>
+                    </tr>
+                    <tr>
+                        <td><code>updateURIParameter(uri, key, val)</code></td>
+                        <td>Update parameter in Uri</td>
+                    </tr>
+                    <tr>
+                        <td><code>getURIParameter(uri, key)</code></td>
+                        <td>get parameter from Uri</td>
+                    </tr>
+                    <tr>
+                        <td><code>getLocales()</code></td>
+                        <td>Get registered metro locales</td>
+                    </tr>
+                    <tr>
+                        <td><code>addLocale(data)</code></td>
+                        <td>Register metro locale in runtime</td>
+                    </tr>
+                    <tr>
+                        <td><code>strToArray(str, delimiter)</code></td>
+                        <td>Convert string to array</td>
+                    </tr>
+                    <tr>
+                        <td><code>aspectRatioH(width, ratio)</code></td>
+                        <td>Return height for specific ratio</td>
+                    </tr>
+                    <tr>
+                        <td><code>aspectRatioW(height, ratio)</code></td>
+                        <td>Return width for specific ratio</td>
+                    </tr>
+                    <tr>
+                        <td><code>valueInObject(obj, value)</code></td>
+                        <td>Check if value exist in object</td>
+                    </tr>
+                    <tr>
+                        <td><code>keyInObject(obj, key)</code></td>
+                        <td>Check if key exist in object</td>
+                    </tr>
+                    <tr>
+                        <td><code>newCssSheet(media)</code></td>
+                        <td>Create css sheet object</td>
+                    </tr>
+                    <tr>
+                        <td><code>addCssRule(sheet, selector, rules, index)</code></td>
+                        <td>Add rule to css sheet object</td>
+                    </tr>
+                    <tr>
+                        <td><code>media(query)</code></td>
+                        <td>Check media query</td>
+                    </tr>
+                    <tr>
+                        <td><code>color(name)</code></td>
+                        <td>Return predefined color value for name</td>
+                    </tr>
+                    <tr>
+                        <td><code>colors()</code></td>
+                        <td>Return array with predefined colors names</td>
+                    </tr>
+                    </tbody>
+                </table>
             </main>
         </div>
 
@@ -110,5 +378,14 @@
     <script src="js/clipboard.min.js"></script>
     <script src="js/site.js"></script>
     <!-- ads-script -->
+    <script>
+        console.log(Metro.utils.percent(35, 4, false));
+        console.log(Metro.utils.percent(35, 4, true));
+        console.log(Metro.utils.camelCase('data-on-value'));
+
+        var o = {a: 1, b: 2, c: 3};
+        console.log(o);
+        console.log(Metro.utils.objectShift(o));
+    </script>
 </body>
 </html>

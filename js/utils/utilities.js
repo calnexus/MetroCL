@@ -119,7 +119,10 @@ var Utils = {
     },
 
     embedObject: function(val){
-        return "<div class='embed-container'>"+val+"</div>";
+        if (typeof  val !== "string" ) {
+            val = this.isJQueryObject(val) ? val.html() : val.innerHTML;
+        }
+        return "<div class='embed-container'>" + val + "</div>";
     },
 
     embedUrl: function(val){
@@ -260,7 +263,7 @@ var Utils = {
             return 0;
         }
         var result = b * 100 / a;
-        return r ? Math.round(result) : Math.round(result * 100) / 100;
+        return r === true ? Math.round(result) : Math.round(result * 100) / 100;
     },
 
     camelCase: function(str){
@@ -510,7 +513,7 @@ var Utils = {
         if (this.isColor(color) === false) {
             a = this.hexColorToArray(color);
         } else {
-            this.computedRgbToArray(color);
+            a = this.computedRgbToArray(color);
         }
 
         return (2 * a[0] + 5 * a[1] + a[2]) <= 8 * 128;
@@ -574,14 +577,6 @@ var Utils = {
         if (!results) return null;
         if (!results[2]) return '';
         return decodeURIComponent(results[2].replace(/\+/g, " "));
-    },
-
-    dateToString: function(val){
-        var y = val.getFullYear();
-        var m = val.getMonth() + 1;
-        var d = val.getDate();
-
-        return (m < 10 ? '0'+m:m)+ "/" + (d<10?'0'+d:d)+"/"+y;
     },
 
     getLocales: function(){
@@ -648,7 +643,7 @@ var Utils = {
         return window.matchMedia(query).matches
     },
 
-    colors: {
+    colorList: {
         lime: '#a4c400',
         green: '#60a917',
         emerald: '#008a00',
@@ -673,7 +668,11 @@ var Utils = {
     },
 
     color: function(name){
-        return this.colors[name];
+        return this.colorList[name];
+    },
+
+    colors: function(){
+        return Object.keys(this.colorList);
     }
 };
 
