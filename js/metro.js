@@ -234,12 +234,12 @@ var Metro = {
             html.addClass("metro-no-touch-device");
         }
 
+        this.sheet = Utils.newCssSheet();
+
         this.observe();
 
         this.initHotkeys(hotkeys);
         this.initWidgets(widgets);
-
-        this.sheet = Utils.newCssSheet();
 
         return this;
     },

@@ -66,13 +66,13 @@ var Rating = {
 
         if (o.starColor !== null) {
             if (!Utils.isColor(o.starColor)) {
-                o.starColor = Utils.color(o.starColor);
+                o.starColor = Colors.color(o.starColor);
             }
         }
 
         if (o.staredColor !== null) {
             if (!Utils.isColor(o.staredColor)) {
-                o.staredColor = Utils.color(o.staredColor);
+                o.staredColor = Colors.color(o.staredColor);
             }
         }
 
