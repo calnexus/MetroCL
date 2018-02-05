@@ -302,6 +302,16 @@ var Utils = {
         return data === undefined || data === null ? other : data;
     },
 
+    objectClone: function(obj){
+        var copy = {};
+        for(var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                copy[key] = obj[key];
+            }
+        }
+        return copy;
+    },
+
     github: function(repo, callback){
         var that = this;
         $.ajax({

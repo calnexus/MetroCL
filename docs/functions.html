@@ -205,8 +205,20 @@
                         <td>Delete key from object and return it</td>
                     </tr>
                     <tr>
-                        <td><code>arrayDelete(arr, key)</code></td>
+                        <td><code>objectClone(obj)</code></td>
+                        <td>Copy object to clone and return it</td>
+                    </tr>
+                    <tr>
+                        <td><code>arrayDelete(arr, val)</code></td>
+                        <td>Delete from array by value and return it</td>
+                    </tr>
+                    <tr>
+                        <td><code>arrayDeleteByKey(arr, key)</code></td>
                         <td>Delete key from array and return it</td>
+                    </tr>
+                    <tr>
+                        <td><code>nvl(data, other)</code></td>
+                        <td>Check data for null value and return other if null</td>
                     </tr>
                     <tr>
                         <td><code>github(repo, callback)</code></td>
@@ -356,14 +368,6 @@
                         <td><code>media(query)</code></td>
                         <td>Check media query</td>
                     </tr>
-                    <tr>
-                        <td><code>color(name)</code></td>
-                        <td>Return predefined color value for name</td>
-                    </tr>
-                    <tr>
-                        <td><code>colors()</code></td>
-                        <td>Return array with predefined colors names</td>
-                    </tr>
                     </tbody>
                 </table>
             </main>
@@ -378,8 +382,5 @@
     <script src="js/clipboard.min.js"></script>
     <script src="js/site.js"></script>
     <!-- ads-script -->
-    <script>
-        console.log(Metro.utils.objectLength(Metro.utils.colorListStandard));
-    </script>
 </body>
 </html>
