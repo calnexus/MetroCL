@@ -5957,6 +5957,8 @@ var Cube = {
             return false;
         }
 
+        console.log(Utils.isObject(rules));
+
         if (Utils.isObject(rules)) {
             this.rules = Utils.isObject(rules);
             return true;
