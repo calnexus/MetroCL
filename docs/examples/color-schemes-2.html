@@ -85,9 +85,10 @@
 
     <script>
         var cm = Metro.colors;
+        var palette = cm.PALETTES.ALL;
         var container = $("#scheme-container");
         var select = $("#scheme-name");
-        var colors = cm.collection(cm.PALETTES.METRO);
+        var colors = cm.collection(palette);
         var algorithm = $("#options-algorithm");
         var angle = $("#options-angle");
         var step = $("#options-step");
@@ -105,8 +106,13 @@
             container.html("");
 
             $.each(colors, function(){
-                var color = this;
-                var color_hex = cm.color(color, cm.PALETTES.METRO);
+                var color = String(this);
+
+                if (['white', 'black'].indexOf(color) !== -1) {
+                    return ;
+                }
+
+                var color_hex = cm.color(color, palette);
                 var target = $("<div>").addClass("row flex-align-center m-0").appendTo(container);
 
                 var scheme_colors = cm.getScheme(color_hex, scheme_name, 'hex', {
@@ -115,7 +121,7 @@
                     step: stp,
                     distance: 5
                 });
-                $("<div>").addClass("p-4 cell text-center mr-4").html(color).attr("style", "background-color:"+ color_hex).appendTo(target);
+                $("<div>").addClass("p-4 cell text-center mr-4").html(color).attr("style", "width: 100px; background-color:"+ color_hex).appendTo(target);
                 $.each(scheme_colors, function(key, bg_color){
                     $("<div>").addClass("p-4 cell text-center").html(bg_color).attr("style", "background-color:"+ bg_color).appendTo(target);
                 })
