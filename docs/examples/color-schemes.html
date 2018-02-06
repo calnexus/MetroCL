@@ -58,14 +58,14 @@
 
     <script>
         var cm = Metro.colors;
-        // var color = "#cc0000";
         var schemes = ['analogous', 'split-complementary', 'complementary', 'triadic', 'square', 'tetradic', 'double-complementary', 'monochromatic'];
         var colors = [];
         var container = $("#scheme-container").html("");
+        var input = $("#current-color");
 
-        $("#current-color").on(Metro.events.inputchange, function(){
-            var color = "#"+this.value;
-
+        input.on(Metro.events.inputchange, function(){
+            var target;
+            var color = this.value[0] === "#" ? "" : "#"+this.value;
 
             if (cm.colorList[this.value] === undefined && (this.value.length < 6 || cm.isHEX(color) === false)) {
                 return ;
@@ -81,7 +81,8 @@
 
             $.each(schemes, function(){
                 var scheme_name = String(this);
-                var target = $("<div>").addClass("row flex-align-center m-0").appendTo(container);
+
+                target = $("<div>").addClass("row flex-align-center m-0").appendTo(container);
 
                 colors = cm.getScheme(color, scheme_name, 'hex');
 
@@ -90,10 +91,16 @@
                     $("<div>").addClass("p-4 cell text-center mb-2").html(bg_color).attr("style", "background-color:"+ bg_color).appendTo(target);
                 })
             });
+
+            target = $("<div>").addClass("row flex-align-center m-0").appendTo(container);
+            $("<h5>").addClass("w-100 text-light pl-4 flex-no-shrink").html("lighten &amp; darken on 10%").appendTo(target);
+            $("<div>").addClass("p-4 cell text-center mb-2").html(cm.lighten(color)).attr("style", "background-color:"+ cm.lighten(color)).appendTo(target);
+            $("<div>").addClass("p-4 cell text-center mb-2").html(color).attr("style", "background-color:"+ color).appendTo(target);
+            $("<div>").addClass("p-4 cell text-center mb-2").html(cm.darken(color)).attr("style", "background-color:"+ cm.darken(color)).appendTo(target);
+
         });
 
-        $("#current-color").val("4b2d92").trigger("change");
-        // $("#current-color").val("cc0000").trigger("change");
+        input.val("cc0000").trigger("change");
     </script>
 
 </body>

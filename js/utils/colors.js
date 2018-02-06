@@ -281,8 +281,122 @@ var Colors = {
         return this.rgb2hsv(this.hex2rgb(hex));
     },
 
-    darken: function(){},
-    lighten: function(){},
+    rgb2cmyk: function(rgb){
+        var cmyk = {};
+
+        var r = rgb.r / 255;
+        var g = rgb.g / 255;
+        var b = rgb.b / 255;
+
+        cmyk.k = Math.min( 1 - r, 1 - g, 1 - b );
+        cmyk.c = ( 1 - r - cmyk.k ) / ( 1 - cmyk.k );
+        cmyk.m = ( 1 - g - cmyk.k ) / ( 1 - cmyk.k );
+        cmyk.y = ( 1 - b - cmyk.k ) / ( 1 - cmyk.k );
+
+        cmyk.c = Math.round( cmyk.c * 100 );
+        cmyk.m = Math.round( cmyk.m * 100 );
+        cmyk.y = Math.round( cmyk.y * 100 );
+        cmyk.k = Math.round( cmyk.k * 100 );
+
+        return cmyk;
+    },
+
+    cmyk2rgb: function(cmyk){
+        var rgb = {};
+
+        var c = cmyk.c / 100;
+        var m = cmyk.m / 100;
+        var y = cmyk.y / 100;
+        var k = cmyk.k / 100;
+
+        rgb.r = 1 - Math.min( 1, c * ( 1 - k ) + k );
+        rgb.g = 1 - Math.min( 1, m * ( 1 - k ) + k );
+        rgb.b = 1 - Math.min( 1, y * ( 1 - k ) + k );
+
+        rgb.r = Math.round( rgb.r * 255 );
+        rgb.g = Math.round( rgb.g * 255 );
+        rgb.b = Math.round( rgb.b * 255 );
+
+        return rgb;
+    },
+
+    rgb2websafe: function(rgb){
+        return {
+            r: Math.round(rgb.r / 51) * 51,
+            g: Math.round(rgb.g / 51) * 51,
+            b: Math.round(rgb.b / 51) * 51
+        }
+    },
+
+    hex2websafe: function(hex){
+        return this.rgb2hex(this.rgb2websafe(this.hex2rgb(hex)));
+    },
+
+    hsv2websafe: function(hsv){
+        return this.rgb2hsv(this.rgb2websafe(this.hsv2rgb(hsv)));
+    },
+
+    websafe: function(color){
+        if (this.isHEX(color)) return this.hex2websafe(color);
+        if (this.isRGB(color)) return this.rgb2websafe(color);
+        if (this.isHSV(color)) return this.hsv2websafe(color);
+
+        return color;
+    },
+
+
+
+    darken: function(color, amount){
+        if (amount === undefined) {
+            amount = 10;
+        }
+        return this.lighten(color, -1 * Math.abs(amount));
+    },
+
+    lighten: function(color, amount){
+        var col, type, res;
+
+        if (amount === undefined) {
+            amount = 10;
+        }
+
+        if (this.isRGB(color)) {
+            col = this.rgb2hex(color);
+            type = "rgb";
+        } else if (this.isHSV(color)) {
+            col = this.hsv2hex(color);
+            type = "hsv";
+        } else {
+            col = color;
+            type = "hex";
+        }
+
+        col = col.slice(1);
+
+        var num = parseInt(col, 16);
+        var r = (num >> 16) + amount;
+
+        if (r > 255) r = 255;
+        else if  (r < 0) r = 0;
+
+        var b = ((num >> 8) & 0x00FF) + amount;
+
+        if (b > 255) b = 255;
+        else if  (b < 0) b = 0;
+
+        var g = (num & 0x0000FF) + amount;
+
+        if (g > 255) g = 255;
+        else if (g < 0) g = 0;
+
+        res = "#" + (g | (b << 8) | (r << 16)).toString(16);
+
+        switch (type) {
+            case "rgb": return this.hex2rgb(res);
+            case "hsv": return this.hex2hsv(res);
+            default: return res;
+        }
+    },
 
     isDark: function(hex){
         var rgb = this.hex2rgb(hex);
