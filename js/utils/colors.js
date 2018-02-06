@@ -407,7 +407,7 @@ var Colors = {
             ( rgb.g * 587 ) +
             ( rgb.b * 114 )
         ) / 1000;
-        return ( YIQ >= 128 )
+        return ( YIQ < 128 )
     },
 
     isLight: function(hex){
@@ -476,56 +476,45 @@ var Colors = {
             case "monochromatic":
             case "mono":
                 if (o.algorithm === 1) {
-                    s = hsv.s - .8;
-                    if (s < 0) s += 1;
+                    s = clamp(hsv.s - .8, 0, 1);
                     scheme.push({h: h, s: s, v: v});
 
-                    s = hsv.s - .4;
-                    if (s < 0) s += 1;
+                    s = clamp(hsv.s - .4, 0, 1);
                     scheme.push({h: h, s: s, v: v});
 
                     scheme.push(hsv);
 
-                    v = hsv.v - .3;
-                    if (v < 0) v += 1;
+                    v = clamp(hsv.v - .3, 0, 1);
                     scheme.push({h: h, s: s, v: v});
 
-                    v = hsv.v - .6;
-                    if (v < 0) v += 1;
+                    v = clamp(hsv.v - .6, 0, 1);
                     scheme.push({h: h, s: s, v: v});
                 } else if (o.algorithm === 2) {
                     scheme.push(hsv);
                     for(i = 1; i <= o.distance; i++) {
-                        v = v - o.step;
-                        s = s - o.step;
-                        if (v < 0) v += 1;
-                        if (s < 0) s += 1;
+                        v = clamp(v - o.step, 0, 1);
+                        s = clamp(s - o.step, 0, 1);
                         scheme.push({h: h, s: s, v: v});
                     }
                 } else if (o.algorithm === 3) {
                     scheme.push(hsv);
                     for(i = 1; i <= o.distance; i++) {
-                        v = v - o.step;
-                        if (v < 0) v += 1;
+                        v = clamp(v - o.step, 0, 1);
                         scheme.push({h: h, s: s, v: v});
                     }
                 } else {
-                    v = hsv.v + o.step * 2;
-                    if (v > 1) v -= 1;
+                    v = clamp(hsv.v + o.step * 2, 0, 1);
                     scheme.push({h: h, s: s, v: v});
 
-                    v = hsv.v + o.step;
-                    if (v > 1) v -= 1;
+                    v = clamp(hsv.v + o.step, 0, 1);
                     scheme.push({h: h, s: s, v: v});
 
                     scheme.push(hsv); s = hsv.s; v = hsv.v;
 
-                    v = hsv.v - o.step;
-                    if (v < 0) v += 1;
+                    v = clamp(hsv.v - o.step, 0, 1);
                     scheme.push({h: h, s: s, v: v});
 
-                    v = hsv.v - o.step * 2;
-                    if (v < 0) v += 1;
+                    v = clamp(hsv.v - o.step * 2, 0, 1);
                     scheme.push({h: h, s: s, v: v});
                 }
                 break;

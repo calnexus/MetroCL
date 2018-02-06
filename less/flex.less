@@ -49,6 +49,13 @@
 
 .flex-no-shrink > * {flex-shrink: 0;}
 .flex-shrink > * {flex-shrink: 1;}
+.flex-no-grow > * {flex-grow: 0;}
+.flex-grow > * {flex-grow: 1;}
+
+.flex-no-shrink-self {flex-shrink: 0;}
+.flex-shrink-self {flex-shrink: 1;}
+.flex-no-grow-self {flex-grow: 0;}
+.flex-grow-self {flex-grow: 1;}
 
 .generate-flex-media-options(@mediaBreakpointListMobileLength);
 .generate-flex-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
@@ -89,6 +96,13 @@
 
         .flex-no-shrink-@{m} > * {flex-shrink: 0;}
         .flex-shrink-@{m} > * {flex-shrink: 1;}
+        .flex-no-grow-@{m} > * {flex-grow: 0;}
+        .flex-grow-@{m} > * {flex-grow: 1;}
+
+        .flex-no-shrink-self-@{m} {flex-shrink: 0;}
+        .flex-shrink-self-@{m} {flex-shrink: 1;}
+        .flex-no-grow-self-@{m} {flex-grow: 0;}
+        .flex-grow-self-@{m} {flex-grow: 1;}
 
         .generate-order(@gridColumns12);
         .generate-order(@j) when (@j > 0){

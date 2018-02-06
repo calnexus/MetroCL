@@ -121,9 +121,9 @@
                     step: stp,
                     distance: 5
                 });
-                $("<div>").addClass("p-4 cell text-center mr-4").html(color).attr("style", "width: 100px; background-color:"+ color_hex).appendTo(target);
+                $("<div>").addClass("p-4 cell text-center mr-4  " + (cm.isLight(color_hex) ? "fg-dark" : "fg-white")).html("<span class='reduce-3 text-ellipsis'>"+color+"</span>").attr("style", "width: 100px!important; background-color:"+ color_hex).appendTo(target);
                 $.each(scheme_colors, function(key, bg_color){
-                    $("<div>").addClass("p-4 cell text-center").html(bg_color).attr("style", "background-color:"+ bg_color).appendTo(target);
+                    $("<div>").addClass("p-4 cell text-center " + (cm.isLight(bg_color) ? "fg-dark" : "fg-white")).html(bg_color).attr("style", "background-color:"+ bg_color).appendTo(target);
                 })
             });
         });
