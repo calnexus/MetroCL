@@ -176,8 +176,10 @@ var Colors = {
     colorList: {},
 
     options: {
-        distance: 5,
-        angle: 30
+        angle: 30,
+        algorithm: 1,
+        step: .1,
+        distance: 5
     },
 
     init: function(){
@@ -473,19 +475,34 @@ var Colors = {
         switch (name) {
             case "monochromatic":
             case "mono":
-                s = hsv.s - .8;  if (s < 0) s += 1;
-                scheme.push({h: h, s: s, v: v});
+                if (o.algorithm === 1) {
+                    s = hsv.s - .8;
+                    if (s < 0) s += 1;
+                    scheme.push({h: h, s: s, v: v});
 
-                s = hsv.s - .4;  if (s < 0) s += 1;
-                scheme.push({h: h, s: s, v: v});
+                    s = hsv.s - .4;
+                    if (s < 0) s += 1;
+                    scheme.push({h: h, s: s, v: v});
 
-                scheme.push(hsv);
+                    scheme.push(hsv);
 
-                v = hsv.v - .3; if (v < 0) v += 1;
-                scheme.push({h: h, s: s, v: v});
+                    v = hsv.v - .3;
+                    if (v < 0) v += 1;
+                    scheme.push({h: h, s: s, v: v});
 
-                v = hsv.v - .6; if (v < 0) v += 1;
-                scheme.push({h: h, s: s, v: v});
+                    v = hsv.v - .6;
+                    if (v < 0) v += 1;
+                    scheme.push({h: h, s: s, v: v});
+                } else {
+                    scheme.push(hsv);
+                    for(i = 1; i <= o.distance; i++) {
+                        v = v - o.step;
+                        s = s - o.step;
+                        if (v < 0) v += 1;
+                        if (s < 0) s += 1;
+                        scheme.push({h: h, s: s, v: v});
+                    }
+                }
                 break;
 
             case 'complementary':
