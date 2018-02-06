@@ -359,18 +359,18 @@ var Colors = {
         switch (name) {
             case "monochromatic":
             case "mono":
-                s = hsv.s - .8;
+                s = hsv.s - .8;  if (s < 0) s += 1;
                 scheme.push({h: h, s: s, v: v});
 
-                s = hsv.s - .4;
+                s = hsv.s - .4;  if (s < 0) s += 1;
                 scheme.push({h: h, s: s, v: v});
 
                 scheme.push(hsv);
 
-                v = hsv.v - .3;
+                v = hsv.v - .3; if (v < 0) v += 1;
                 scheme.push({h: h, s: s, v: v});
 
-                v = hsv.v - .6;
+                v = hsv.v - .6; if (v < 0) v += 1;
                 scheme.push({h: h, s: s, v: v});
                 break;
 
