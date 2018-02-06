@@ -959,7 +959,7 @@ var Colors = {
                     v = hsv.v - .6;
                     if (v < 0) v += 1;
                     scheme.push({h: h, s: s, v: v});
-                } else {
+                } else if (o.algorithm === 2) {
                     scheme.push(hsv);
                     for(i = 1; i <= o.distance; i++) {
                         v = v - o.step;
@@ -968,6 +968,31 @@ var Colors = {
                         if (s < 0) s += 1;
                         scheme.push({h: h, s: s, v: v});
                     }
+                } else if (o.algorithm === 3) {
+                    scheme.push(hsv);
+                    for(i = 1; i <= o.distance; i++) {
+                        v = v - o.step;
+                        if (v < 0) v += 1;
+                        scheme.push({h: h, s: s, v: v});
+                    }
+                } else {
+                    v = hsv.v + o.step * 2;
+                    if (v > 1) v -= 1;
+                    scheme.push({h: h, s: s, v: v});
+
+                    v = hsv.v + o.step;
+                    if (v > 1) v -= 1;
+                    scheme.push({h: h, s: s, v: v});
+
+                    scheme.push(hsv); s = hsv.s; v = hsv.v;
+
+                    v = hsv.v - o.step;
+                    if (v < 0) v += 1;
+                    scheme.push({h: h, s: s, v: v});
+
+                    v = hsv.v - o.step * 2;
+                    if (v < 0) v += 1;
+                    scheme.push({h: h, s: s, v: v});
                 }
                 break;
 
