@@ -129,6 +129,7 @@ var Metro = {
         keyup: 'keyup.metro',
         keydown: 'keydown.metro',
         dblclick: 'dblclick.metro',
+        input: 'input.metro',
         change: 'change.metro',
         cut: 'cut.metro',
         paste: 'paste.metro',
@@ -136,7 +137,8 @@ var Metro = {
         scroll: 'scroll.metro',
         scrollStart: 'scrollstart.metro',
         scrollStop: 'scrollstop.metro',
-        mousewheel: 'mousewheel.metro'
+        mousewheel: 'mousewheel.metro',
+        inputchange: "change.metro input.metro propertychange.metro cut.metro paste.metro copy.metro"
     },
 
     media_queries: {

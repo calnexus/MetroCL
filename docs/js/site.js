@@ -5,15 +5,19 @@
     var sidenav = $("#sidenav");
     var search;
 
-    $.get('header.html', function(data){
-        body.prepend(data);
-    });
+    try {
+        $.get('header.html', function (data) {
+            body.prepend(data);
+        });
+    } catch (e) {}
 
-    $.get('footer.html', function(data){
-        // body.append(data);
-    });
+    try {
+        $.get('footer.html', function (data) {
+            // body.append(data);
+        });
+    } catch (e) {}
 
-    $.get('sidenav.html', function(data){
+    if (sidenav.length > 0) $.get('sidenav.html', function(data){
         sidenav.html(data);
 
         setTimeout(function(){

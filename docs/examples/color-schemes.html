@@ -42,55 +42,57 @@
 </head>
 <body>
     <div class="container">
-        <h1>
-            Base color is <code id="base-color"></code>
-        </h1>
-        <div id="scheme_monochromatic" class="row mt-4"></div>
-        <div id="scheme_complementary" class="row mt-4"></div>
-        <div id="scheme_double-complementary" class="row mt-4"></div>
-        <div id="scheme_analogous" class="row mt-4"></div>
-        <div id="scheme_triadic" class="row mt-4"></div>
-        <div id="scheme_split-complementary" class="row mt-4"></div>
+        <h1>Metro 4 Color generator</h1>
+        <div class="bg-light p-4">
+            <input data-role="input" id="current-color" data-prepend="Color: #" placeholder="Enter your color hex value or color name">
+        </div>
 
-        <h4 class="mt-4">Code example</h4>
-        <pre><code class="javascript">
-            var color = "#1ba1e2";
+        <h3><code id="base-color" class="w-100"></code></h3>
+        <div id="scheme-container"></div>
 
-            Metro.colors.getScheme(color, 'monochromatic', 'hex');
-            Metro.colors.getScheme(color, 'complementary', 'hex');
-            Metro.colors.getScheme(color, 'double-complementary', 'hex');
-            Metro.colors.getScheme(color, 'split-complementary', 'hex');
-            Metro.colors.getScheme(color, 'analogous', 'hex');
-            Metro.colors.getScheme(color, 'triadic', 'hex');
-
-        </code></pre>
     </div>
 
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../metro/js/metro.js"></script>
-    <script src="../highlight/highlight.pack.js"></script>
-    <script src="../js/clipboard.min.js"></script>
-    <script src="../js/site.js"></script>
     <!-- ads-script -->
 
     <script>
-        var color = Metro.colors.color("cyan");
-        var schemes = ['monochromatic', 'complementary', 'double-complementary', 'analogous', 'triadic', 'split-complementary'];
+        var cm = Metro.colors;
+        // var color = "#cc0000";
+        var schemes = ['analogous', 'split-complementary', 'complementary', 'triadic', 'square', 'tetradic', 'double-complementary', 'monochromatic'];
         var colors = [];
+        var container = $("#scheme-container").html("");
 
-        $("#base-color").html(color);
+        $("#current-color").on(Metro.events.inputchange, function(){
+            var color = "#"+this.value;
 
-        $.each(schemes, function(){
-            var scheme_name = String(this);
-            var target = $("#scheme_"+scheme_name).html("");
 
-            colors = Metro.colors.getScheme(color, scheme_name, 'hex');
+            if (cm.colorList[this.value] === undefined && (this.value.length < 6 || cm.isHEX(color) === false)) {
+                return ;
+            }
 
-            $("<h5>").addClass("w-100 text-light pl-4").html(scheme_name).appendTo(target);
-            $.each(colors, function(key, bg_color){
-                $("<div>").addClass("p-4 cell text-center").html(bg_color).attr("style", "background-color:"+ bg_color).appendTo(target);
-            })
+            if (cm.isHEX(color) === false) {
+                color = cm.colorList[this.value];
+            }
+
+            container.html("");
+
+            $("#base-color").html("Base color is: " + color);
+
+            $.each(schemes, function(){
+                var scheme_name = String(this);
+                var target = $("<div>").addClass("row flex-align-center m-0").appendTo(container);
+
+                colors = cm.getScheme(color, scheme_name, 'hex');
+
+                $("<h5>").addClass("w-100 text-light pl-4 flex-no-shrink").html(scheme_name).appendTo(target);
+                $.each(colors, function(key, bg_color){
+                    $("<div>").addClass("p-4 cell text-center mb-2").html(bg_color).attr("style", "background-color:"+ bg_color).appendTo(target);
+                })
+            });
         });
+
+        $("#current-color").val("cc0000").trigger("change");
     </script>
 
 </body>

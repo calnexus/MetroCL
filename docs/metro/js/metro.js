@@ -147,6 +147,7 @@ var Metro = {
         keyup: 'keyup.metro',
         keydown: 'keydown.metro',
         dblclick: 'dblclick.metro',
+        input: 'input.metro',
         change: 'change.metro',
         cut: 'cut.metro',
         paste: 'paste.metro',
@@ -154,7 +155,8 @@ var Metro = {
         scroll: 'scroll.metro',
         scrollStart: 'scrollstart.metro',
         scrollStop: 'scrollstop.metro',
-        mousewheel: 'mousewheel.metro'
+        mousewheel: 'mousewheel.metro',
+        inputchange: "change.metro input.metro propertychange.metro cut.metro paste.metro copy.metro"
     },
 
     media_queries: {
@@ -639,6 +641,11 @@ var Colors = {
 
     colorList: {},
 
+    options: {
+        distance: 5,
+        angle: 30
+    },
+
     init: function(){
         this.colorList = $.extend( {}, this.colorListStandard, this.colorListMetro );
         return this;
@@ -674,97 +681,62 @@ var Colors = {
     },
 
     rgb2hsv: function(rgb){
-        var r = ( rgb.r / 255 ),
-            g = ( rgb.g / 255 ),
-            b = ( rgb.b / 255 );
-        var computed_H = 0,
-            computed_S = 0,
-            computed_V = 0;
-        var min_RGB = Math.min( r, Math.min( g, b ) ),
-            max_RGB = Math.max( r, Math.max( g, b ) );
-        // Black-gray-white
-        if ( min_RGB === max_RGB ) {
-            computed_V = min_RGB;
-            return{
-                h: 0,
-                s: 0,
-                v: computed_V
-            };
+        var h, s, v;
+        var r = rgb.r / 255, g = rgb.g / 255, b = rgb.b / 255;
+        var max = Math.max(r, g, b);
+        var min = Math.min(r, g, b);
+        var delta = max - min;
+
+        v = max;
+
+        if (max === 0) {
+            s = 0;
+        } else {
+            s = 1 - min / max;
         }
-        // Colors other than black-gray-white:
-        var d = ( r === min_RGB ) ? g - b : (( b === min_RGB ) ? r - g : b - r);
-        var h = ( r === min_RGB ) ? 3 : (( b === min_RGB ) ? 1 : 5 );
-        computed_H = 60 * ( h - d / ( max_RGB - min_RGB ));
-        computed_S = ( max_RGB - min_RGB ) / max_RGB;
-        computed_V = max_RGB;
+
+        if (max === min) {
+            h = 0;
+        } else if (max === r && g >= b) {
+            h = 60 * ( (g - b) / delta );
+        } else if (max === r && g < b) {
+            h = 60 * ( (g - b) / delta) + 360
+        } else if (max === g) {
+            h = 60 * ( (b - r) / delta) + 120
+        } else if (max === b) {
+            h = 60 * ( (r - g) / delta) + 240
+        } else {
+            h = 0;
+        }
+
         return {
-            h: computed_H,
-            s: computed_S,
-            v: computed_V
-        };
+            h: h, s: s, v: v
+        }
     },
 
     hsv2rgb: function(hsv){
-        var h = hsv.h,
-            s = hsv.s,
-            v = hsv.v;
-
         var r, g, b;
+        var h = hsv.h, s = hsv.s * 100, v = hsv.v * 100;
+        var Hi = Math.floor(h / 60);
+        var Vmin = (100 - s) * v / 100;
+        var alpha = (v - Vmin) * ( (h % 60) / 60 );
+        var Vinc = Vmin + alpha;
+        var Vdec = v - alpha;
 
-        var i, f, p, q, t;
-
-        if( s === 0 ){
-            return {
-                r: v,
-                g: v,
-                b: v
-            };
-        }
-        h /= 60;
-        i = Math.floor( h );
-        f = h - i;
-        p = v * ( 1 - s );
-        q = v * ( 1 - s * f );
-        t = v * ( 1 - s * ( 1 - f ) );
-
-        switch(i) {
-            case 0:
-                r = v;
-                g = t;
-                b = p;
-                break;
-            case 1:
-                r = q;
-                g = v;
-                b = p;
-                break;
-            case 2:
-                r = p;
-                g = v;
-                b = t;
-                break;
-            case 3:
-                r = p;
-                g = q;
-                b = v;
-                break;
-            case 4:
-                r = t;
-                g = p;
-                b = v;
-                break;
-            case 5:
-                r = v;
-                g = p;
-                b = q;
-                break;
+        switch (Hi) {
+            case 0: r = v; g = Vinc; b = Vmin; break;
+            case 1: r = Vdec; g = v; b = Vmin; break;
+            case 2: r = Vmin; g = v; b = Vinc; break;
+            case 3: r = Vmin; g = Vdec; b = v; break;
+            case 4: r = Vinc; g = Vmin; b = v; break;
+            case 5: r = v; g = Vmin; b = Vdec; break;
         }
 
         return {
-            r: Math.floor(r * 255),
-            g: Math.floor(g * 255),
-            b: Math.floor(b * 255)
-        };
+            r: Math.round(r * 255 / 100),
+            g: Math.round(g * 255 / 100),
+            b: Math.round(b * 255 / 100)
+        }
     },
 
     hsv2hex: function(hsv){
@@ -774,6 +746,9 @@ var Colors = {
     hex2hsv: function(hex){
         return this.rgb2hsv(this.hex2rgb(hex));
     },
+
+    darken: function(){},
+    lighten: function(){},
 
     isDark: function(hex){
         var rgb = this.hex2rgb(hex);
@@ -801,7 +776,16 @@ var Colors = {
         return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(val);
     },
 
-    getScheme: function(color, name, format){
+    hueShift: function(h, s){
+        h+=s;
+        while (h >= 360.0) h -= 360.0;
+        while (h < 0.0) h += 360.0;
+        return h;
+    },
+
+    getScheme: function(color, name, format, options){
+        this.options = $.extend( {}, this.options, options );
+
         var that = this;
         var i;
         var scheme = [];
@@ -831,23 +815,37 @@ var Colors = {
             return result;
         }
 
-        var h = hsv.h, s = hsv.s, v = hsv.v, m = 5;
+        function clamp( num, min, max ){
+            return Math.max( min, Math.min( num, max ));
+        }
+
+        var c, h = hsv.h, s = hsv.s, v = hsv.v;
+        var o = this.options;
 
         switch (name) {
             case "monochromatic":
             case "mono":
-                v = hsv.v;
-                for( i = 1; i <= m; i ++) {
-                    scheme.push({h: h, s: s, v: v});
-                    v = (v + (1/m)) % 1;
-                }
+                s = hsv.s - .8;
+                scheme.push({h: h, s: s, v: v});
+
+                s = hsv.s - .4;
+                scheme.push({h: h, s: s, v: v});
+
+                scheme.push(hsv);
+
+                v = hsv.v - .3;
+                scheme.push({h: h, s: s, v: v});
+
+                v = hsv.v - .6;
+                scheme.push({h: h, s: s, v: v});
                 break;
 
             case 'complementary':
             case 'complement':
             case 'comp':
                 scheme.push(hsv);
-                h = ( h + 180 ) % 360;
+
+                h = this.hueShift(hsv.h, 180.0);
                 scheme.push({h: h, s: s, v: v});
                 break;
 
@@ -856,34 +854,58 @@ var Colors = {
             case 'double':
                 scheme.push(hsv);
 
-                h = ( h + 180 ) % 360;
+                h = this.hueShift(hsv.h, 180.0);
                 scheme.push({h: h, s: s, v: v});
 
-                h = ( h + 30 ) % 360;
+                h = this.hueShift(h, -30.0);
                 scheme.push({h: h, s: s, v: v});
 
-                h = ( h + 180 ) % 360;
+                h = this.hueShift(h, 180.0);
                 scheme.push({h: h, s: s, v: v});
 
                 break;
 
             case 'analogous':
             case 'analog':
-            case 'ana':
+
+                h = this.hueShift(h, o.angle);
+                scheme.push({h: h, s: s, v: v});
+
                 scheme.push(hsv);
 
-                for ( i = 1; i <= 5; i++ ) {
-                    h = ( hsv.h + ( 20 * i ) ) % 360;
-                    scheme.push({h: h, s: s, v: v});
-                }
+                h = this.hueShift(hsv.h, 0.0 - o.angle);
+                scheme.push({h: h, s: s, v: v});
+
                 break;
 
             case 'triadic':
             case 'triad':
-            case 'tri':
                 scheme.push(hsv);
                 for ( i = 1; i < 3; i++ ) {
-                    h = ( hsv.h + ( 120 * i ) ) % 360;
+                    h = this.hueShift(h, 120.0);
+                    scheme.push({h: h, s: s, v: v});
+                }
+                break;
+
+            case 'tetradic':
+            case 'tetra':
+                scheme.push(hsv);
+
+                h = this.hueShift(hsv.h, 180.0);
+                scheme.push({h: h, s: s, v: v});
+
+                h = this.hueShift(hsv.h, 240.0);
+                scheme.push({h: h, s: s, v: v});
+
+                h = this.hueShift(h, 180.0);
+                scheme.push({h: h, s: s, v: v});
+
+                break;
+
+            case 'square':
+                scheme.push(hsv);
+                for ( i = 1; i < 4; i++ ) {
+                    h = this.hueShift(h, 90.0);
                     scheme.push({h: h, s: s, v: v});
                 }
                 break;
@@ -891,13 +913,13 @@ var Colors = {
             case 'split-complementary':
             case 'split-complement':
             case 'split':
+                h = this.hueShift(h, 180.0 - o.angle);
+                scheme.push({h: h, s: s, v: v});
+
                 scheme.push(hsv);
 
-                h = ( hsv.h + 165 ) % 360;
-                scheme.push({h: h, s: hsv.s, v: hsv.v});
-
-                h = Math.abs( ( hsv.h - 165 ) % 360 );
-                scheme.push({h: h, s: hsv.s, v: hsv.v});
+                h = this.hueShift(hsv.h, 180.0 + o.angle);
+                scheme.push({h: h, s: s, v: v});
                 break;
 
             default: console.log("Unknown scheme name");
