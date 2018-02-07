@@ -645,7 +645,11 @@ var Colors = {
         angle: 30,
         algorithm: 1,
         step: .1,
-        distance: 5
+        distance: 5,
+        tint1: .8,
+        tint2: .4,
+        shade1: .6,
+        shade2: .3
     },
 
     init: function(){
@@ -804,15 +808,79 @@ var Colors = {
         return this.rgb2hsv(this.rgb2websafe(this.hsv2rgb(hsv)));
     },
 
+    cmyk2websafe: function(cmyk){
+        return this.rgb2cmyk(this.rgb2websafe(this.cmyk2rgb(cmyk)));
+    },
+
     websafe: function(color){
         if (this.isHEX(color)) return this.hex2websafe(color);
         if (this.isRGB(color)) return this.rgb2websafe(color);
         if (this.isHSV(color)) return this.hsv2websafe(color);
+        if (this.isCMYK(color)) return this.cmyk2websafe(color);
 
         return color;
     },
 
+    toRGB: function(color){
+        if (this.isHSV(color)) return this.hsv2rgb(color);
+        if (this.isRGB(color)) return color;
+        if (this.isHEX(color)) return this.hex2rgb(color);
+        if (this.isCMYK(color)) return this.cmyk2rgb(color);
 
+        throw new Error("Unknown color format!");
+    },
+
+    toRGBA: function(color, alpha){
+        var result = this.toRGB(color);
+        result.a = alpha;
+        return result;
+    },
+
+    toHSV: function(color){
+        return this.rgb2hsv(this.toRGB(color));
+    },
+
+    toHEX: function(color){
+        return this.rgb2hex(this.toRGB(color));
+    },
+
+    toCMYK: function(color){
+        return this.rgb2cmyk(this.toRGB(color));
+    },
+
+    toHexString: function(color){
+        return this.toHEX(color);
+    },
+
+    toHsvString: function(color){
+        var hsv = this.toHSV(color);
+        return "hsv("+[hsv.h, hsv.s, hsv.v].join(",")+")";
+    },
+
+    toCmykString: function(color){
+        var cmyk = this.toCMYK(color);
+        return "cmyk("+[cmyk.c, cmyk.m, cmyk.y, cmyk.k].join(",")+")";
+    },
+
+    toRgbString: function(color){
+        var rgb = this.toRGB(color);
+        return "rgb("+[rgb.r, rgb.g, rgb.b].join(",")+")";
+    },
+
+    toRgbaString: function(color, alpha){
+        var rgb = this.toRGBA(color, alpha);
+        return "rgba("+[rgb.r, rgb.g, rgb.b, rgb.a].join(",")+")";
+    },
+
+    toString: function(color){
+        if (this.isHEX(color)) return this.toHexString(color);
+        if (this.isRGB(color)) return this.toRgbString(color);
+        if (this.isRGBA(color)) return this.toRgbaString(color);
+        if (this.isHSV(color)) return this.toHsvString(color);
+        if (this.isCMYK(color)) return this.toCmykString(color);
+
+        throw new Error("Unknown color format!");
+    },
 
     darken: function(color, amount){
         if (amount === undefined) {
@@ -888,6 +956,14 @@ var Colors = {
         return Utils.isObject(val) && "r" in val && "g" in val && "b" in val;
     },
 
+    isRGBA: function(val){
+        return Utils.isObject(val) && "r" in val && "g" in val && "b" in val && "a" in val;
+    },
+
+    isCMYK: function(val){
+        return Utils.isObject(val) && "c" in val && "m" in val && "y" in val && "k" in val;
+    },
+
     isHEX: function(val){
         return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(val);
     },
@@ -935,26 +1011,43 @@ var Colors = {
             return Math.max( min, Math.min( num, max ));
         }
 
-        var c, h = hsv.h, s = hsv.s, v = hsv.v;
+        function toRange(a, b, c){
+            return a < b ? b : ( a > c ? c : a);
+        }
+
+        var rgb, c, h = hsv.h, s = hsv.s, v = hsv.v;
         var o = this.options;
 
         switch (name) {
             case "monochromatic":
             case "mono":
                 if (o.algorithm === 1) {
-                    s = clamp(hsv.s - .8, 0, 1);
-                    scheme.push({h: h, s: s, v: v});
 
-                    s = clamp(hsv.s - .4, 0, 1);
-                    scheme.push({h: h, s: s, v: v});
+                    rgb = this.hsv2rgb(hsv);
+                    rgb.r = toRange(Math.round(rgb.r + (255 - rgb.r) * o.tint1), 0, 255);
+                    rgb.g = toRange(Math.round(rgb.g + (255 - rgb.g) * o.tint1), 0, 255);
+                    rgb.b = toRange(Math.round(rgb.b + (255 - rgb.b) * o.tint1), 0, 255);
+                    scheme.push(this.rgb2hsv(rgb));
+
+                    rgb = this.hsv2rgb(hsv);
+                    rgb.r = toRange(Math.round(rgb.r + (255 - rgb.r) * o.tint2), 0, 255);
+                    rgb.g = toRange(Math.round(rgb.g + (255 - rgb.g) * o.tint2), 0, 255);
+                    rgb.b = toRange(Math.round(rgb.b + (255 - rgb.b) * o.tint2), 0, 255);
+                    scheme.push(this.rgb2hsv(rgb));
 
                     scheme.push(hsv);
 
-                    v = clamp(hsv.v - .3, 0, 1);
-                    scheme.push({h: h, s: s, v: v});
+                    rgb = this.hsv2rgb(hsv);
+                    rgb.r = toRange(Math.round(rgb.r * o.shade1), 0, 255);
+                    rgb.g = toRange(Math.round(rgb.g * o.shade1), 0, 255);
+                    rgb.b = toRange(Math.round(rgb.b * o.shade1), 0, 255);
+                    scheme.push(this.rgb2hsv(rgb));
 
-                    v = clamp(hsv.v - .6, 0, 1);
-                    scheme.push({h: h, s: s, v: v});
+                    rgb = this.hsv2rgb(hsv);
+                    rgb.r = toRange(Math.round(rgb.r * o.shade2), 0, 255);
+                    rgb.g = toRange(Math.round(rgb.g * o.shade2), 0, 255);
+                    rgb.b = toRange(Math.round(rgb.b * o.shade2), 0, 255);
+                    scheme.push(this.rgb2hsv(rgb));
                 } else if (o.algorithm === 2) {
                     scheme.push(hsv);
                     for(i = 1; i <= o.distance; i++) {
