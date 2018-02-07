@@ -12012,7 +12012,7 @@ var Streamer = {
                     });
 
                     var last_child = stream_events.find(".stream-event:last-child");
-                    stream_events.outerWidth(last_child[0].offsetLeft + last_child.outerWidth());
+                    if (last_child.length > 0) stream_events.outerWidth(last_child[0].offsetLeft + last_child.outerWidth());
                 }
             });
         }
