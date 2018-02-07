@@ -12008,7 +12008,9 @@ var Streamer = {
                             .addClass(event_item.cls)
                             .appendTo(stream_events);
 
+
                         var left = timeline.find(".js-time-point-"+this.time.replace(":", "-"))[0].offsetLeft - stream.outerWidth();
+
                         event.css({
                             position: "absolute",
                             left: left
@@ -12019,7 +12021,14 @@ var Streamer = {
                         var slide_logo = $("<div>").addClass("slide-logo").appendTo(slide);
                         var slide_data = $("<div>").addClass("slide-data").appendTo(slide);
 
-                        $("<img>").addClass("icon").attr("src", event_item.icon).appendTo(slide_logo);
+                        if (event_item.icon !== undefined) {
+                            if (Utils.isTag(event_item.icon)) {
+                                $(event_item.icon).addClass("icon").appendTo(slide_logo);
+                            } else {
+                                $("<img>").addClass("icon").attr("src", event_item.icon).appendTo(slide_logo);
+                            }
+                        }
+
                         $("<span>").addClass("time").css({
                             backgroundColor: bg,
                             color: fg

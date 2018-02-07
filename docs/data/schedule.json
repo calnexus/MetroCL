@@ -1,0 +1,90 @@
+{
+  "actions": [],
+  "timeline": {
+    "start": "9:00",
+    "stop": "18:00",
+    "step": "20"
+  },
+  "streams": [
+    {
+      "title": "\u0418\u043d\u0442\u0435\u0440\u043d\u0435\u0442-\u0411\u0438\u0437\u043d\u0435\u0441 \/ \u0421\u0442\u0430\u0440\u0442\u0430\u043f\u044b",
+      "secondary": "",
+      "icon": "",
+      "cls": "bg-teal fg-white",
+      "data": "",
+      "events": []
+    },
+    {
+      "title": "\u0420\u0435\u043a\u043b\u0430\u043c\u0430 \u0438 \u043f\u0440\u043e\u0434\u0432\u0438\u0436\u0435\u043d\u0438\u0435",
+      "secondary": "",
+      "icon": "",
+      "cls": "bg-cyan fg-white",
+      "data": "",
+      "events": []
+    },
+    {
+      "title": "\u0418\u043d\u0442\u0435\u0440\u043d\u0435\u0442-\u0442\u0435\u0445\u043d\u043e\u043b\u043e\u0433\u0438\u0438",
+      "secondary": "",
+      "icon": "",
+      "cls": "bg-red fg-white",
+      "data": "",
+      "events": []
+    },
+    {
+      "title": "\u041e\u0431\u0440\u0430\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044c\u043d\u044b\u0435 \u0442\u0435\u0445\u043d\u043e\u043b\u043e\u0433\u0438\u0438 \u0431\u0443\u0434\u0443\u0449\u0435\u0433\u043e \/ \u0418\u043d\u043d\u043e\u0432\u0430\u0446\u0438\u0438",
+      "secondary": "",
+      "icon": "",
+      "cls": "bg-brown fg-white",
+      "data": "",
+      "events": []
+    },
+    {
+      "title": "Digital Fun \/ CRM & \u041b\u043e\u044f\u043b\u044c\u043d\u043e\u0441\u0442\u044c",
+      "secondary": "",
+      "icon": "",
+      "cls": "bg-green fg-white",
+      "data": "",
+      "events": []
+    },
+    {
+      "title": "Blockchain",
+      "secondary": "",
+      "icon": "",
+      "cls": "bg-pink fg-white",
+      "data": "",
+      "events": [
+        {
+          "icon": "<img width=\"150\" height=\"150\" src=\"https:\/\/2018.iforum.ua\/wp-content\/uploads\/2017\/12\/dovgopoliy400d-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/2018.iforum.ua\/wp-content\/uploads\/2017\/12\/dovgopoliy400d-150x150.jpg 150w, https:\/\/2018.iforum.ua\/wp-content\/uploads\/2017\/12\/dovgopoliy400d-300x300.jpg 300w, https:\/\/2018.iforum.ua\/wp-content\/uploads\/2017\/12\/dovgopoliy400d.jpg 400w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/>",
+          "time": "10:20",
+          "title": "\u0414\u0435\u043d\u0438\u0441 \u0414\u043e\u0432\u0433\u043e\u043f\u043e\u043b\u044b\u0439",
+          "subtitle": "BVU Group",
+          "desc": "\u0420\u0438\u0441\u043a\u0438 ICO \u043f\u0440\u043e\u0435\u043a\u0442\u043e\u0432",
+          "size": 2,
+          "selected": 0,
+          "closed": true,
+          "data": [],
+          "closedIcon": "",
+          "openIcon": "",
+          "target": "\/speakers\/denis-dovgopoliy\/#speech_749",
+          "cls": ""
+        },
+        {
+          "icon": "<img width=\"150\" height=\"150\" src=\"https:\/\/2018.iforum.ua\/wp-content\/uploads\/2018\/02\/afedotov-150x150.jpg\" class=\"attachment-thumbnail size-thumbnail\" alt=\"\" srcset=\"https:\/\/2018.iforum.ua\/wp-content\/uploads\/2018\/02\/afedotov-150x150.jpg 150w, https:\/\/2018.iforum.ua\/wp-content\/uploads\/2018\/02\/afedotov-300x300.jpg 300w, https:\/\/2018.iforum.ua\/wp-content\/uploads\/2018\/02\/afedotov.jpg 499w\" sizes=\"(max-width: 150px) 100vw, 150px\" \/>",
+          "time": "11:00",
+          "title": "\u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440 \u0424\u0435\u0434\u043e\u0442\u043e\u0432",
+          "subtitle": "&quot;\u041e\u043b\u044c\u0448\u0430\u043d\u0441\u043a\u0438\u0439 \u0438 \u043f\u0430\u0440\u0442\u043d\u0435\u0440\u044b&quot;",
+          "desc": "\u041a\u0442\u043e \u0438\u043d\u0432\u0435\u0441\u0442\u043e\u0440 \u0438 \u043a\u0430\u043a \u0435\u0433\u043e \u043d\u0430\u0439\u0442\u0438 \u0432 \u043a\u0440\u0438\u043f\u0442\u043e \u043c\u0438\u0440\u0435. \u041e\u043f\u044b\u0442 10 \u043c\u043b\u043d USD",
+          "size": 2,
+          "selected": 0,
+          "closed": true,
+          "data": [],
+          "closedIcon": "",
+          "openIcon": "",
+          "target": "\/speakers\/alexander-fedotov\/#speech_752",
+          "cls": ""
+        }
+      ]
+    }
+  ],
+  "global": []
+}
