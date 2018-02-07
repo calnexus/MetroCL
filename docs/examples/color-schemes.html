@@ -100,6 +100,11 @@
             $("<div>").addClass("p-4 cell text-center mb-2").html(color).attr("style", "background-color:"+ color).appendTo(target);
             $("<div>").addClass("p-4 cell text-center mb-2").html(cm.darken(color)).attr("style", "background-color:"+ cm.darken(color)).appendTo(target);
 
+            target = $("<div>").addClass("row flex-align-center m-0").appendTo(container);
+            $("<h5>").addClass("w-100 text-light pl-4 flex-no-shrink").html("Grayscale").appendTo(target);
+            $("<div>").addClass("p-4 cell text-center mb-2").html(color).attr("style", "background-color:"+ color).appendTo(target);
+            $("<div>").addClass("p-4 cell text-center mb-2").html(cm.grayscale(color)).attr("style", "background-color:"+ cm.grayscale(color)).appendTo(target);
+
         });
 
         input.val("cc0000").trigger("change");

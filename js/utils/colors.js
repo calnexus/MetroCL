@@ -416,6 +416,18 @@ var Colors = {
         throw new Error("Unknown color format!");
     },
 
+    grayscale: function(color, output){
+        output = output || "hex";
+        var rgb = this.toRGB(color);
+        var gray = Math.round(rgb.r * .2125 + rgb.g * .7154 + rgb.b * .0721);
+        var mono = {
+            r: gray,
+            g: gray,
+            b: gray
+        };
+        return this["rgb2"+output](mono);
+    },
+
     darken: function(color, amount){
         if (amount === undefined) {
             amount = 10;
