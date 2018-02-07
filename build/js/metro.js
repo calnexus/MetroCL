@@ -465,6 +465,17 @@ var Animation = {
 Metro['animation'] = Animation;
 // Source: js/utils/colors.js
 var Colors = {
+
+    TYPES: {
+        HEX: "hex",
+        RGB: "rgb",
+        RGBA: "rgba",
+        HSV: "hsv",
+        HSL: "hsl",
+        CMYK: "cmyk",
+        UNKNOWN: "unknown"
+    },
+
     PALETTES: {
         ALL: "colorList",
         METRO: "colorListMetro",
@@ -649,7 +660,8 @@ var Colors = {
         tint1: .8,
         tint2: .4,
         shade1: .6,
-        shade2: .3
+        shade2: .3,
+        alpha: 1
     },
 
     init: function(){
@@ -662,7 +674,7 @@ var Colors = {
         return this[palette][name];
     },
 
-    collection: function(palette){
+    palette: function(palette){
         palette = palette || this.PALETTES.ALL;
         return Object.keys(this[palette]);
     },
@@ -829,7 +841,7 @@ var Colors = {
     },
 
     hsl2websafe: function(hsl){
-        return this.hsv2hsl(this.rgb2hsv(this.rgb2websafe(this.toRGB(hsv))));
+        return this.hsv2hsl(this.rgb2hsv(this.rgb2websafe(this.toRGB(hsl))));
     },
 
     cmyk2websafe: function(cmyk){
@@ -844,6 +856,17 @@ var Colors = {
         if (this.isCMYK(color)) return this.cmyk2websafe(color);
 
         return color;
+    },
+
+    is: function(color){
+        if (this.isHEX(color)) return this.TYPES.HEX;
+        if (this.isRGB(color)) return this.TYPES.RGB;
+        if (this.isRGBA(color)) return this.TYPES.RGBA;
+        if (this.isHSV(color)) return this.TYPES.HSV;
+        if (this.isHSL(color)) return this.TYPES.HSL;
+        if (this.isCMYK(color)) return this.TYPES.CMYK;
+
+        return this.TYPES.UNKNOWN;
     },
 
     toRGB: function(color){
@@ -889,7 +912,7 @@ var Colors = {
 
     toHslString: function(color){
         var hsl = this.toHSL(color);
-        return "hsl("+[hsv.h, hsv.s, hsv.l].join(",")+")";
+        return "hsl("+[hsl.h, hsl.s, hsl.l].join(",")+")";
     },
 
     toCmykString: function(color){
@@ -938,24 +961,20 @@ var Colors = {
     },
 
     lighten: function(color, amount){
-        var col, type, res;
+        var col, type, res, alpha = 1;
 
         if (amount === undefined) {
             amount = 10;
         }
 
-        if (this.isRGB(color)) {
-            col = this.rgb2hex(color);
-            type = "rgb";
-        } else if (this.isHSV(color)) {
-            col = this.hsv2hex(color);
-            type = "hsv";
-        } else {
-            col = color;
-            type = "hex";
-        }
-
+        col = this.toHEX(color);
         col = col.slice(1);
+
+        type = this.is(color);
+
+        if (type === this.TYPES.RGBA) {
+            alpha = color.a;
+        }
 
         var num = parseInt(col, 16);
         var r = (num >> 16) + amount;
@@ -976,14 +995,17 @@ var Colors = {
         res = "#" + (g | (b << 8) | (r << 16)).toString(16);
 
         switch (type) {
-            case "rgb": return this.hex2rgb(res);
-            case "hsv": return this.hex2hsv(res);
+            case "rgb": return this.toRGB(res);
+            case "rgba": return this.toRGBA(res, alpha);
+            case "hsv": return this.toHSV(res);
+            case "hsl": return this.toHSL(res);
+            case "cmyk": return this.toCMYK(res);
             default: return res;
         }
     },
 
-    isDark: function(hex){
-        var rgb = this.hex2rgb(hex);
+    isDark: function(color){
+        var rgb = this.toRGB(color);
         var YIQ = (
             ( rgb.r * 299 ) +
             ( rgb.g * 587 ) +
@@ -1020,6 +1042,10 @@ var Colors = {
         return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(val);
     },
 
+    isColor: function(color){
+        return this.isHEX(color) || this.isRGB(color) || this.isRGBA(color) || this.isHSV(color) || this.isHSL(color) || this.isCMYK(color);
+    },
+
     hueShift: function(h, s){
         h+=s;
         while (h >= 360.0) h -= 360.0;
@@ -1030,18 +1056,11 @@ var Colors = {
     getScheme: function(color, name, format, options){
         this.options = $.extend( {}, this.options, options );
 
-        var that = this;
         var i;
         var scheme = [];
         var hsv;
 
-        if (this.isRGB(color)) {
-            hsv = this.rgb2hsv(color);
-        } else if (this.isHEX(color)) {
-            hsv = this.hex2hsv(color);
-        } else {
-            hsv = color;
-        }
+        hsv = this.toHSV(color);
 
         if (this.isHSV(hsv) === false) {
             console.log("The value is a not supported color format!");
@@ -1051,9 +1070,12 @@ var Colors = {
         function convert(source, format) {
             var result = [];
             switch (format) {
-                case "hex": result = source.map(function(v){return Colors.hsv2hex(v);}); break;
-                case "rgb": result = source.map(function(v){return Colors.hsv2rgb(v);}); break;
-                default:
+                case "hex": result = source.map(function(v){return Colors.toHEX(v);}); break;
+                case "rgb": result = source.map(function(v){return Colors.toRGB(v);}); break;
+                case "rgba": result = source.map(function(v){return Colors.toRGBA(v, options.alpha);}); break;
+                case "hsl": result = source.map(function(v){return Colors.toHSL(v);}); break;
+                case "cmyk": result = source.map(function(v){return Colors.toCMYK(v);}); break;
+                default: result = source;
             }
 
             return result;
@@ -1067,7 +1089,7 @@ var Colors = {
             return a < b ? b : ( a > c ? c : a);
         }
 
-        var rgb, c, h = hsv.h, s = hsv.s, v = hsv.v;
+        var rgb, h = hsv.h, s = hsv.s, v = hsv.v;
         var o = this.options;
 
         switch (name) {
