@@ -792,6 +792,26 @@ var Colors = {
         return rgb;
     },
 
+    hsv2hsl: function(hsv){
+        var h, s, l;
+        h = hsv.h;
+        l = (2 - hsv.s) * hsv.v;
+        s = hsv.s * hsv.v;
+        s /= (l <= 1) ? l : 2 - l;
+        l /= 2;
+        return {h: h, s: s, l: l}
+    },
+
+    hsl2hsv: function(hsl){
+        var h, s, v, l;
+        h = hsl.h;
+        l = hsl.l * 2;
+        s = hsl.s * (l <= 1 ? l : 2 - l);
+        v = (l + s) / 2;
+        s = (2 * s) / (l + s);
+        return {h: h, s: s, l: v}
+    },
+
     rgb2websafe: function(rgb){
         return {
             r: Math.round(rgb.r / 51) * 51,
@@ -801,11 +821,15 @@ var Colors = {
     },
 
     hex2websafe: function(hex){
-        return this.rgb2hex(this.rgb2websafe(this.hex2rgb(hex)));
+        return this.rgb2hex(this.rgb2websafe(this.toRGB(hex)));
     },
 
     hsv2websafe: function(hsv){
-        return this.rgb2hsv(this.rgb2websafe(this.hsv2rgb(hsv)));
+        return this.rgb2hsv(this.rgb2websafe(this.toRGB(hsv)));
+    },
+
+    hsl2websafe: function(hsl){
+        return this.hsv2hsl(this.rgb2hsv(this.rgb2websafe(this.toRGB(hsv))));
     },
 
     cmyk2websafe: function(cmyk){
@@ -816,6 +840,7 @@ var Colors = {
         if (this.isHEX(color)) return this.hex2websafe(color);
         if (this.isRGB(color)) return this.rgb2websafe(color);
         if (this.isHSV(color)) return this.hsv2websafe(color);
+        if (this.isHSL(color)) return this.hsl2websafe(color);
         if (this.isCMYK(color)) return this.cmyk2websafe(color);
 
         return color;
@@ -823,6 +848,7 @@ var Colors = {
 
     toRGB: function(color){
         if (this.isHSV(color)) return this.hsv2rgb(color);
+        if (this.isHSL(color)) return this.hsv2rgb(this.hsl2hsv(color));
         if (this.isRGB(color)) return color;
         if (this.isHEX(color)) return this.hex2rgb(color);
         if (this.isCMYK(color)) return this.cmyk2rgb(color);
@@ -840,6 +866,10 @@ var Colors = {
         return this.rgb2hsv(this.toRGB(color));
     },
 
+    toHSL: function(color){
+        return this.hsv2hsl(this.rgb2hsv(this.toRGB(color)));
+    },
+
     toHEX: function(color){
         return this.rgb2hex(this.toRGB(color));
     },
@@ -855,6 +885,11 @@ var Colors = {
     toHsvString: function(color){
         var hsv = this.toHSV(color);
         return "hsv("+[hsv.h, hsv.s, hsv.v].join(",")+")";
+    },
+
+    toHslString: function(color){
+        var hsl = this.toHSL(color);
+        return "hsl("+[hsv.h, hsv.s, hsv.l].join(",")+")";
     },
 
     toCmykString: function(color){
@@ -877,6 +912,7 @@ var Colors = {
         if (this.isRGB(color)) return this.toRgbString(color);
         if (this.isRGBA(color)) return this.toRgbaString(color);
         if (this.isHSV(color)) return this.toHsvString(color);
+        if (this.isHSL(color)) return this.toHslString(color);
         if (this.isCMYK(color)) return this.toCmykString(color);
 
         throw new Error("Unknown color format!");
@@ -962,6 +998,10 @@ var Colors = {
 
     isHSV: function(val){
         return Utils.isObject(val) && "h" in val && "s" in val && "v" in val;
+    },
+
+    isHSL: function(val){
+        return Utils.isObject(val) && "h" in val && "s" in val && "l" in val;
     },
 
     isRGB: function(val){

@@ -108,6 +108,14 @@
         });
 
         input.val("cc0000").trigger("change");
+
+        var col = "#cc0000";
+        var hsv = cm.hex2hsv(col);
+        var hsl = cm.hsv2hsl(hsv);
+        console.log(col);
+        console.log(hsv);
+        console.log(hsl);
+        console.log(cm.hsl2hsv(cm.hsv2hsl(hsv)));
     </script>
 
 </body>
