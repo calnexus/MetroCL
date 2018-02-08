@@ -1204,7 +1204,7 @@ var Colors = {
             case 'double':
                 scheme.push(hsv);
 
-                h = this.hueShift(hsv.h, 180.0);
+                h = this.hueShift(h, 180.0);
                 scheme.push({h: h, s: s, v: v});
 
                 h = this.hueShift(h, -30.0);
@@ -11898,6 +11898,7 @@ var Streamer = {
     },
 
     options: {
+        duration: METRO_ANIMATION_DURATION,
         defaultClosedIcon: "",
         defaultOpenIcon: "",
         changeUri: true,
@@ -12258,7 +12259,7 @@ var Streamer = {
 
         element.find(".events-area").animate({
             scrollLeft: target[0].offsetLeft - element.find(".streams .stream").outerWidth()
-        }, METRO_ANIMATION_DURATION);
+        }, o.duration);
     },
 
     enableStream: function(stream){

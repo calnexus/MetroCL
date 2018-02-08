@@ -738,7 +738,7 @@ var Colors = {
             case 'double':
                 scheme.push(hsv);
 
-                h = this.hueShift(hsv.h, 180.0);
+                h = this.hueShift(h, 180.0);
                 scheme.push({h: h, s: s, v: v});
 
                 h = this.hueShift(h, -30.0);
