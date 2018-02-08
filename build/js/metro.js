@@ -489,6 +489,13 @@ function HSL(h, s, l){
     this.l = l || 0;
 }
 
+function HSLA(h, s, l, a){
+    this.h = h || 0;
+    this.s = s || 0;
+    this.l = l || 0;
+    this.a = a || 1;
+}
+
 function CMYK(c, m, y, k){
     this.c = c || 0;
     this.m = m || 0;
@@ -735,6 +742,7 @@ var Colors = {
     },
 
     rgb2hsv: function(rgb){
+        var hsv = new HSV();
         var h, s, v;
         var r = rgb.r / 255, g = rgb.g / 255, b = rgb.b / 255;
         var max = Math.max(r, g, b);
@@ -763,9 +771,11 @@ var Colors = {
             h = 0;
         }
 
-        return {
-            h: h, s: s, v: v
-        }
+        hsv.h = h;
+        hsv.s = s;
+        hsv.v = v;
+
+        return hsv;
     },
 
     hsv2rgb: function(hsv){
@@ -868,6 +878,15 @@ var Colors = {
         }
     },
 
+    rgba2websafe: function(rgba){
+        return {
+            r: Math.round(rgba.r / 51) * 51,
+            g: Math.round(rgba.g / 51) * 51,
+            b: Math.round(rgba.b / 51) * 51,
+            a: rgba.a
+        }
+    },
+
     hex2websafe: function(hex){
         return this.rgb2hex(this.rgb2websafe(this.toRGB(hex)));
     },
@@ -887,6 +906,7 @@ var Colors = {
     websafe: function(color){
         if (this.isHEX(color)) return this.hex2websafe(color);
         if (this.isRGB(color)) return this.rgb2websafe(color);
+        if (this.isRGBA(color)) return this.rgba2websafe(color);
         if (this.isHSV(color)) return this.hsv2websafe(color);
         if (this.isHSL(color)) return this.hsl2websafe(color);
         if (this.isCMYK(color)) return this.cmyk2websafe(color);
@@ -929,6 +949,13 @@ var Colors = {
         return this.hsv2hsl(this.rgb2hsv(this.toRGB(color)));
     },
 
+    toHSLA: function(color, alpha){
+        var hsla;
+        hsla = this.hsv2hsl(this.rgb2hsv(this.toRGB(color)));
+        hsla.a = alpha || this.options.alpha;
+        return hsla;
+    },
+
     toHEX: function(color){
         return this.rgb2hex(this.toRGB(color));
     },
@@ -948,7 +975,12 @@ var Colors = {
 
     toHslString: function(color){
         var hsl = this.toHSL(color);
-        return "hsl("+[hsl.h, hsl.s, hsl.l].join(",")+")";
+        return "hsl("+[Math.round(hsl.h), Math.round(hsl.s * 100) + "%" , Math.round(hsl.l * 100) + "%"].join(",")+")";
+    },
+
+    toHslaString: function(color){
+        var hsl = this.toHSLA(color);
+        return "hsl("+[Math.round(hsl.h), Math.round(hsl.s * 100) + "%" , Math.round(hsl.l * 100) + "%", hsl.a].join(",")+")";
     },
 
     toCmykString: function(color){
@@ -972,6 +1004,7 @@ var Colors = {
         if (this.isRGBA(color)) return this.toRgbaString(color);
         if (this.isHSV(color)) return this.toHsvString(color);
         if (this.isHSL(color)) return this.toHslString(color);
+        if (this.isHSLA(color)) return this.toHslaString(color);
         if (this.isCMYK(color)) return this.toCmykString(color);
 
         throw new Error("Unknown color format!");
@@ -1060,6 +1093,10 @@ var Colors = {
 
     isHSL: function(val){
         return Utils.isObject(val) && "h" in val && "s" in val && "l" in val;
+    },
+
+    isHSLA: function(val){
+        return Utils.isObject(val) && "h" in val && "s" in val && "l" in val && "a" in val;
     },
 
     isRGB: function(val){
@@ -1204,14 +1241,22 @@ var Colors = {
             case 'double':
                 scheme.push(hsv);
 
-                h = this.hueShift(h, 180.0);
-                scheme.push({h: h, s: s, v: v});
-
-                h = this.hueShift(h, -30.0);
-                scheme.push({h: h, s: s, v: v});
+                console.log(h);
 
                 h = this.hueShift(h, 180.0);
                 scheme.push({h: h, s: s, v: v});
+
+                console.log(h);
+
+                h = this.hueShift(h, o.angle);
+                scheme.push({h: h, s: s, v: v});
+
+                console.log(h);
+
+                h = this.hueShift(h, 180.0);
+                scheme.push({h: h, s: s, v: v});
+
+                console.log(h);
 
                 break;
 
@@ -1244,7 +1289,7 @@ var Colors = {
                 h = this.hueShift(hsv.h, 180.0);
                 scheme.push({h: h, s: s, v: v});
 
-                h = this.hueShift(hsv.h, 240.0);
+                h = this.hueShift(hsv.h, -1 * o.angle);
                 scheme.push({h: h, s: s, v: v});
 
                 h = this.hueShift(h, 180.0);

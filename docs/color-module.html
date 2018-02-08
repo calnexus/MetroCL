@@ -22,7 +22,7 @@
     <meta property="og:image:height" content="504">
 
     <meta name="author" content="Sergey Pimenov">
-    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="description" content="Manipulate and transform colors and can create any color schemes. The most popular HTML, CSS, and JS library in Metro style.">
     <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
 
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -47,25 +47,25 @@
                 <hr/>
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Color module</a></li>
-                    <li class="toc-entry"><a href="#">About</a></li>
-                    <li class="toc-entry"><a href="#">Formats</a></li>
-                    <li class="toc-entry"><a href="#">Palettes</a></li>
-                    <li class="toc-entry"><a href="#">Check &amp; convert</a></li>
-                    <li class="toc-entry"><a href="#">Tone functions</a></li>
+                    <li class="toc-entry"><a href="#_cm_about">About</a></li>
+                    <li class="toc-entry"><a href="#_cm_formats">Formats</a></li>
+                    <li class="toc-entry"><a href="#_cm_palettes">Palettes</a></li>
+                    <li class="toc-entry"><a href="#_cm_check-convert">Check &amp; convert</a></li>
+                    <li class="toc-entry"><a href="#_cm-tone-functions">Tone functions</a></li>
                     <li class="toc-entry">
-                        <a href="#">Schemes</a>
+                        <a href="#_cm_schemes">Schemes</a>
                         <ul>
-                            <li class="toc-entry"><a href="#">Monochromatic</a></li>
-                            <li class="toc-entry"><a href="#">Complementary</a></li>
-                            <li class="toc-entry"><a href="#">Split-complementary</a></li>
-                            <li class="toc-entry"><a href="#">Double-complementary</a></li>
-                            <li class="toc-entry"><a href="#">Analogous</a></li>
-                            <li class="toc-entry"><a href="#">Triadic</a></li>
-                            <li class="toc-entry"><a href="#">Tetradic</a></li>
-                            <li class="toc-entry"><a href="#">Square</a></li>
+                            <li class="toc-entry"><a href="#_cm_schemes_mono">Monochromatic</a></li>
+                            <li class="toc-entry"><a href="#_cm_schemes_complement">Complementary</a></li>
+                            <li class="toc-entry"><a href="#_cm_schemes_split">Split-complementary</a></li>
+                            <li class="toc-entry"><a href="#_cm_schemes_double">Double-complementary</a></li>
+                            <li class="toc-entry"><a href="#_cm_schemes_analog">Analogous</a></li>
+                            <li class="toc-entry"><a href="#_cm_schemes_triadic">Triadic</a></li>
+                            <li class="toc-entry"><a href="#_cm_schemes_tetra">Tetradic</a></li>
+                            <li class="toc-entry"><a href="#_cm_schemes_square">Square</a></li>
                         </ul>
                     </li>
-                    <li class="toc-entry"><a href="#">Websafe colors</a></li>
+                    <li class="toc-entry"><a href="#_cm_websafe">Websafe colors</a></li>
                 </ul>
 
             </div>
@@ -239,6 +239,10 @@
                         <td>Check if value is a hsl color value</td>
                     </tr>
                     <tr>
+                        <td><code>isHSLA(val)</code></td>
+                        <td>Check if value is a hsla color value</td>
+                    </tr>
+                    <tr>
                         <td><code>isCMYK(val)</code></td>
                         <td>Check if value is a hsl color value</td>
                     </tr>
@@ -290,6 +294,10 @@
                         <td>Any type color value to hsl: <code>{h, s, l}</code></td>
                     </tr>
                     <tr>
+                        <td><code>toHSLA(val)</code></td>
+                        <td>Any type color value to hsla: <code>{h, s, l, a}</code></td>
+                    </tr>
+                    <tr>
                         <td><code>toCMYK(val)</code></td>
                         <td>Any type color value to hsl: <code>{c, m, y, k}</code></td>
                     </tr>
@@ -336,6 +344,10 @@
                     </tr>
                     <tr>
                         <td><code>toHslString(val)</code></td>
+                        <td>Return hsl string for color: <code>hsl(h, s, l)</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>toHslaString(val)</code></td>
                         <td>Return hsl string for color: <code>hsl(h, s, l)</code></td>
                     </tr>
                     <tr>
@@ -497,7 +509,7 @@
                     colors = cm.getScheme("#cc0000", "mono", "rgba");
                 </code></pre>
 
-                <h4>Monochromatic</h4>
+                <h4 id="_cm_schemes_mono">Monochromatic</h4>
                 <p>
                     Monochromatic colors are all the colors (tones, tints and shades ) of a single hue.
                     Monochromatic color schemes are derived from a single base hue and extended using its shades, tones and tints. Tints are achieved by adding white and shades and tones are achieved by adding a darker color, grey or black.
@@ -513,8 +525,14 @@
                         </div>
                     </div>
                 </div>
+                <pre><code>
+                    var cm = Metro.colors,
+                        colors, color = "#ffff00";
 
-                <h4>Analogous</h4>
+                    colors = cm.getScheme(color, "mono", "hex");
+                </code></pre>
+
+                <h4 id="_cm_schemes_analog">Analogous</h4>
                 <p>
                     Analogous (or adjacent colors) is a color scheme using one base color and two secondary colors placed symetrically around it on the color wheel.
                     The base color is main, while the secondary colors should be used only for highlights and accents. It always looks very elegant and clear.
@@ -531,8 +549,14 @@
                         </div>
                     </div>
                 </div>
+                <pre><code>
+                    var cm = Metro.colors,
+                        colors, color = "#ffff00";
 
-                <h4>Complementary</h4>
+                    colors = cm.getScheme(color, "analog", "hex");
+                </code></pre>
+
+                <h4 id="_cm_schemes_complement">Complementary</h4>
                 <p>
                     Complementary is a color scheme using one base color and its complement, the color on the exact opposite side of the color wheel.
                     The base color is main and dominant, while the complementary color is used only as an accent.
@@ -547,8 +571,14 @@
                         </div>
                     </div>
                 </div>
+                <pre><code>
+                    var cm = Metro.colors,
+                        colors, color = "#ffff00";
 
-                <h4>Split-complementary</h4>
+                    colors = cm.getScheme(color, "complement", "hex");
+                </code></pre>
+
+                <h4 id="_cm_schemes_split">Split-complementary</h4>
                 <p>
                     Split-complementary is a color scheme using one base color and two secondary colors.
                     Instead of using a complementary color, two colors placed symetrically around it on the color wheel are used.
@@ -564,8 +594,14 @@
                         </div>
                     </div>
                 </div>
+                <pre><code>
+                    var cm = Metro.colors,
+                        colors, color = "#ffff00";
 
-                <h4>Double-complementary</h4>
+                    colors = cm.getScheme(color, "split", "hex");
+                </code></pre>
+
+                <h4 id="_cm_schemes_double">Double-complementary</h4>
                 <p>
                     Double-complementary is a color scheme using two sets of base color and their complements with next rules on wheel: 180 &deg;, -30 &deg;, 180 &deg;.
                     Both base colors are equivalent, cannot be decided which one should be the main color (though a designer could choose one).
@@ -573,7 +609,7 @@
                     While working with it, we have to take care especially of relations between one color and the complement of its adjacent color.
                 </p>
                 <div class="example">
-                    <div class="row">
+                    <div class="row flex-align-center">
                         <div class="cell-md-6 text-center">
                             <img src="images/double-complementary.jpg" style="height: 150px;">
                         </div>
@@ -582,26 +618,38 @@
                         </div>
                     </div>
                 </div>
+                <pre><code>
+                    var cm = Metro.colors,
+                        colors, color = "#ffff00";
 
-                <h4>Tetradic</h4>
+                    colors = cm.getScheme(color, "double", "hex");
+                </code></pre>
+
+                <h4 id="_cm_schemes_tetra">Tetradic</h4>
                 <p>
-                    Tetraqic is a color scheme using two sets of base color and their complements with next rules on wheel: 180 &deg;, 240 &deg;, 180 &deg;.
+                    Tetraqic is a color scheme using two sets of base color and their complements with next rules on wheel: 180 &deg;, 30 &deg;, 180 &deg;.
                     Both base colors are equivalent, cannot be decided which one should be the main color (though a designer could choose one).
                     Less distance between two base colors causes less tension in the result. However, this scheme is always more "nervous” and “action” than other schemes.
                     While working with it, we have to take care especially of relations between one color and the complement of its adjacent color.
                 </p>
                 <div class="example">
-                    <div class="row">
+                    <div class="row flex-align-center">
                         <div class="cell-md-6 text-center">
-                            <img src="images/Tetrad.gif" style="height: 150px;">
+                            <img src="images/tetradic.jpg" style="height: 150px;">
                         </div>
                         <div class="cell-md-6">
                             <div id="s-tetradic"></div>
                         </div>
                     </div>
                 </div>
+                <pre><code>
+                    var cm = Metro.colors,
+                        colors, color = "#ffff00";
 
-                <h4>Square</h4>
+                    colors = cm.getScheme(color, "tetra", "hex");
+                </code></pre>
+
+                <h4 id="_cm_schemes_square">Square</h4>
                 <p>
                     A square is a color scheme, a special variant of the dual color scheme, with the equal distance between all colors.
                     All four colors are distributed evenly around the color wheel, causing there is no clear dominance of one color.
@@ -618,8 +666,14 @@
                         </div>
                     </div>
                 </div>
+                <pre><code>
+                    var cm = Metro.colors,
+                        colors, color = "#ffff00";
 
-                <h4>Triadic</h4>
+                    colors = cm.getScheme(color, "square", "hex");
+                </code></pre>
+
+                <h4 id="_cm_schemes_triadic">Triadic</h4>
                 <p>
                     A triad is a color scheme, a special variant of the split-complementary color scheme, with the equal distance between all colors.
                     All three colors are distributed evenly around the color wheel, causing there is no clear dominance of one color.
@@ -635,9 +689,35 @@
                         </div>
                     </div>
                 </div>
+                <pre><code>
+                    var cm = Metro.colors,
+                        colors, color = "#ffff00";
 
+                    colors = cm.getScheme(color, "triadic", "hex");
+                </code></pre>
 
-                <h3>Websafe colors</h3>
+                <h3 id="_cm_websafe">Websafe colors</h3>
+                <p>
+                    You can get <code>websafe</code> color from any. To get it, use function <code>websafe(color)</code> or specific for color format
+                        <code>hex2websafe</code>,
+                        <code>rgb2websafe</code>,
+                        <code>rgba2websafe</code>,
+                        <code>hsv2websafe</code>,
+                        <code>hsl2websafe</code> and
+                        <code>cmyk2websafe</code>.
+                </p>
+                <div class="example">
+                    <div class="row fg-white text-center">
+                        <div class="cell-md-6 p-4" style="background-color: #9d4232">#9d4232 - not safe</div>
+                        <div class="cell-md-6 p-4" style="background-color: #993333">#993333 - websafe</div>
+                    </div>
+                </div>
+                <pre><code>
+                    var cm = Metro.colors,
+                        color = "#9d4232";
+
+                    cm.websafe(color); // #993333
+                </code></pre>
 
             </main>
         </div>
@@ -652,7 +732,8 @@
     <script src="js/site.js"></script>
     <!-- ads-script -->
     <script>
-        var cm = Metro.colors, color = "#ffff00";
+        var cm = Metro.colors,
+            color = "#ffff00";
         var colors, schemes = ['mono', 'complement', 'split', 'double', 'analog', 'triadic', 'tetradic', 'square'];
         $.each(schemes, function(){
             var scheme_name = String(this);
@@ -663,7 +744,9 @@
                 var target = $("#s-"+scheme_name);
                 $("<div>").addClass("p-4 cell text-center mb-2").html(bg_color).attr("style", "background-color:"+ bg_color).appendTo(target);
             })
-        })
+        });
+
+        console.log(cm.toHslaString("#9d4232"));
     </script>
 </body>
 </html>
