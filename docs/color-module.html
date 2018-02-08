@@ -406,6 +406,63 @@
                     cm.darken(c, 10); // #c20000
                 </code></pre>
 
+                <h3 id="_cm_schemes">Schemes</h3>
+                <p>
+                    Metro 4 color module contains function <code>getScheme()</code>. This function generate any color schemes from base color:
+                    <code>monochromatic</code>,
+                    <code>complementary</code>,
+                    <code>split-complementary</code>,
+                    <code>double-complementary</code>,
+                    <code>analogous</code>,
+                    <code>triadic</code>,
+                    <code>tetradic</code> and
+                    <code>square</code>.
+                </p>
+                <table class="table cell-border table-border options-table mt-4">
+                    <thead>
+                    <tr>
+                        <th>Function</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>getScheme(color, name,<br class="d-block d-none-md"> format, options)</code></td>
+                        <td>
+                            Generate color scheme from base color.
+                                <code>color</code> - color in Metro 4 color module format,
+                                <code>name</code> - scheme name,
+                                <code>format</code> - format for return values (hex, rgb, rgba, hsv, hsl, cmyk),
+                                <code>options</code> - additional options.
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <pre><code>
+                    var cm = Metro.colors;
+                    var colors = cm.getScheme("#cc0000", "mono", "hex", {algorithm: 1});
+                </code></pre>
+
+                <h4>Options</h4>
+
+                <table class="table cell-border table-border options-table mt-4">
+                    <thead>
+                    <tr>
+                        <th>Options</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>angle</code></td>
+                        <td>Angle for analogous and split-complementary schemes</td>
+                    </tr>
+                    <tr>
+                        <td><code>angle</code></td>
+                        <td>Angle for analogous and split-complementary schemes</td>
+                    </tr>
+                    </tbody>
+                </table>
 
             </main>
         </div>
