@@ -303,6 +303,17 @@
                     </tr>
                     </tbody>
                 </table>
+                <pre><code>
+                    var cm = Metro.colors;
+                    var c = "#cc0000";
+
+                    cm.toHEX(c); // #cc0000
+                    cm.toRGB(c); // {r: 204, g: 0, b: 0}
+                    cm.toRGBA(c, .5); // {r: 204, g: 0, b: 0, a: 0.5}
+                    cm.toHSV(c); // {h: 0, s: 1, v: 0.8}
+                    cm.toHSL(c); // {h: 0, s: 1, l: 0.4}
+                    cm.toCMYK(c); // {c: 0, m: 100, y: 100, k: 20}
+                </code></pre>
 
                 <p>
                     The following functions are used to convert a color value to string value:
@@ -345,6 +356,17 @@
                     </tr>
                     </tbody>
                 </table>
+                <pre><code>
+                    var cm = Metro.colors;
+                    var c = "#cc0000";
+
+                    cm.toHexString(c); // #cc0000
+                    cm.toRgbString(c); // rgb(204,0,0)
+                    cm.toRgbaString(c); // rgba(204,0,0,1)
+                    cm.toHsvString(c); // hsv(0,1,0.8)
+                    cm.toHslString(c); // hsl(0,1,0.4)
+                    cm.toCmykString(c); // cmyk(0,100,100,20)
+                </code></pre>
 
             </main>
         </div>
@@ -358,5 +380,9 @@
     <script src="js/clipboard.min.js"></script>
     <script src="js/site.js"></script>
     <!-- ads-script -->
+    <script>
+        var cm = Metro.colors;
+        var c = "#cc0000";
+    </script>
 </body>
 </html>

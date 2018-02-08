@@ -464,6 +464,38 @@ var Animation = {
 
 Metro['animation'] = Animation;
 // Source: js/utils/colors.js
+function RGB(r, g, b){
+    this.r = r || 0;
+    this.g = g || 0;
+    this.g = b || 0;
+}
+
+function RGBA(r, g, b, a){
+    this.r = r || 0;
+    this.g = g || 0;
+    this.g = b || 0;
+    this.a = a || 1;
+}
+
+function HSV(h, s, v){
+    this.h = h || 0;
+    this.s = s || 0;
+    this.v = v || 0;
+}
+
+function HSL(h, s, l){
+    this.h = h || 0;
+    this.s = s || 0;
+    this.l = l || 0;
+}
+
+function CMYK(c, m, y, k){
+    this.c = c || 0;
+    this.m = m || 0;
+    this.y = y || 0;
+    this.k = k || 0;
+}
+
 var Colors = {
 
     TYPES: {
@@ -766,7 +798,7 @@ var Colors = {
     },
 
     rgb2cmyk: function(rgb){
-        var cmyk = {};
+        var cmyk = new CMYK();
 
         var r = rgb.r / 255;
         var g = rgb.g / 255;
@@ -786,7 +818,7 @@ var Colors = {
     },
 
     cmyk2rgb: function(cmyk){
-        var rgb = {};
+        var rgb = new RGB();
 
         var c = cmyk.c / 100;
         var m = cmyk.m / 100;
@@ -881,7 +913,7 @@ var Colors = {
 
     toRGBA: function(color, alpha){
         var result = this.toRGB(color);
-        result.a = alpha;
+        result.a = alpha || 1;
         return result;
     },
 
@@ -925,8 +957,8 @@ var Colors = {
         return "rgb("+[rgb.r, rgb.g, rgb.b].join(",")+")";
     },
 
-    toRgbaString: function(color, alpha){
-        var rgb = this.toRGBA(color, alpha);
+    toRgbaString: function(color){
+        var rgb = this.toRGBA(color);
         return "rgba("+[rgb.r, rgb.g, rgb.b, rgb.a].join(",")+")";
     },
 
