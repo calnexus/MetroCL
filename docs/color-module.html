@@ -51,14 +51,7 @@
                     <li class="toc-entry"><a href="#">Formats</a></li>
                     <li class="toc-entry"><a href="#">Palettes</a></li>
                     <li class="toc-entry"><a href="#">Check &amp; convert</a></li>
-                    <li class="toc-entry">
-                        <a href="#">Tone functions</a>
-                        <ul>
-                            <li class="toc-entry"><a href="#">Grayscale</a></li>
-                            <li class="toc-entry"><a href="#">Lighten</a></li>
-                            <li class="toc-entry"><a href="#">Darken</a></li>
-                        </ul>
-                    </li>
+                    <li class="toc-entry"><a href="#">Tone functions</a></li>
                     <li class="toc-entry">
                         <a href="#">Schemes</a>
                         <ul>
@@ -369,8 +362,49 @@
 
                 <h3 id="_cm-tone-functions">Tone functions</h3>
                 <p>
-
+                    Metro 4 color module contains functions to change color tone:
+                        <code>grayscale</code>,
+                        <code>lighten</code> and
+                        <code>darken</code>.
                 </p>
+                <div class="example">
+                    <div class="row text-center">
+                        <div class="cell-md-3 p-4 fg-white" style="background: #2b2b2b">grayscale</div>
+                        <div class="cell-md-3 p-4 fg-white" style="background: #d60a0a">lighten</div>
+                        <div class="cell-md-3 p-4 fg-white" style="background: #cc0000">normal</div>
+                        <div class="cell-md-3 p-4 fg-white" style="background: #c20000">darken</div>
+                    </div>
+                </div>
+                <table class="table cell-border table-border options-table mt-4">
+                    <thead>
+                    <tr>
+                        <th>Function</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>grayscale(color)</code></td>
+                        <td>Calculate grayscale color for color value</td>
+                    </tr>
+                    <tr>
+                        <td><code>lighten(color, percent)</code></td>
+                        <td>Lighten color. Percent value must be from 0 to 100.</td>
+                    </tr>
+                    <tr>
+                        <td><code>darken(color, percent)</code></td>
+                        <td>Darken color. Percent value must be from 0 to 100.</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <pre><code>
+                    var cm = Metro.colors;
+                    var c = "#cc0000";
+
+                    cm.grayscale(c); // #2b2b2b
+                    cm.lighten(c, 10); // #d60a0a
+                    cm.darken(c, 10); // #c20000
+                </code></pre>
 
 
             </main>
@@ -388,6 +422,10 @@
     <script>
         var cm = Metro.colors;
         var c = "#cc0000";
+
+        console.log(cm.grayscale(c));
+        console.log(cm.lighten(c));
+        console.log(cm.darken(c));
     </script>
 </body>
 </html>
