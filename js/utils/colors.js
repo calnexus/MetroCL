@@ -235,6 +235,10 @@ var Colors = {
         return this;
     },
 
+    setup: function(options){
+        this.options = $.extend( {}, this.options, options );
+    },
+
     color: function(name, palette){
         palette = palette || this.PALETTES.ALL;
         return this[palette][name];
@@ -625,6 +629,7 @@ var Colors = {
         var i;
         var scheme = [];
         var hsv;
+        var that = this;
 
         hsv = this.toHSV(color);
 
@@ -635,10 +640,11 @@ var Colors = {
 
         function convert(source, format) {
             var result = [];
+            var o = that.options;
             switch (format) {
                 case "hex": result = source.map(function(v){return Colors.toHEX(v);}); break;
                 case "rgb": result = source.map(function(v){return Colors.toRGB(v);}); break;
-                case "rgba": result = source.map(function(v){return Colors.toRGBA(v, options.alpha);}); break;
+                case "rgba": result = source.map(function(v){return Colors.toRGBA(v, o.alpha);}); break;
                 case "hsl": result = source.map(function(v){return Colors.toHSL(v);}); break;
                 case "cmyk": result = source.map(function(v){return Colors.toCMYK(v);}); break;
                 default: result = source;

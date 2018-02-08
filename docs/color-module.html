@@ -443,7 +443,7 @@
                     var colors = cm.getScheme("#cc0000", "mono", "hex", {algorithm: 1});
                 </code></pre>
 
-                <h4>Options</h4>
+                <h5>Options</h5>
 
                 <table class="table cell-border table-border options-table mt-4">
                     <thead>
@@ -461,8 +461,182 @@
                         <td><code>algorithm</code></td>
                         <td>Algorithm for monochromatic schemes (1, 2, 3, 4)</td>
                     </tr>
+                    <tr>
+                        <td><code>tint1, tint2</code></td>
+                        <td>This option use for monochromatic schemes 1 for create two left colors</td>
+                    </tr>
+                    <tr>
+                        <td><code>shade1, shade2</code></td>
+                        <td>This option use for monochromatic schemes 1 for create two right colors</td>
+                    </tr>
+                    <tr>
+                        <td><code>distance</code></td>
+                        <td>This option use for monochromatic schemes 2, 3 and determines how many colors will be generated</td>
+                    </tr>
+                    <tr>
+                        <td><code>step</code></td>
+                        <td>This option use for monochromatic schemes 2, 3, 4 and determines with what step the color will be generated. Default is <code>0.1</code></td>. Value must be in range from 0 to 1.
+                    </tr>
+                    <tr>
+                        <td><code>alpha</code></td>
+                        <td>This option use for default alpha channel value for rgba colors.
+                    </tr>
                     </tbody>
                 </table>
+                <p>
+                    Also you can set options with function <code>setup({...})</code>.
+                </p>
+                <pre><code>
+                    var cm = Metro.colors, colors;
+
+                    cm.setup({
+                       alpha: .5,
+                       algorithm: 1
+                    })
+
+                    colors = cm.getScheme("#cc0000", "mono", "rgba");
+                </code></pre>
+
+                <h4>Monochromatic</h4>
+                <p>
+                    Monochromatic colors are all the colors (tones, tints and shades ) of a single hue.
+                    Monochromatic color schemes are derived from a single base hue and extended using its shades, tones and tints. Tints are achieved by adding white and shades and tones are achieved by adding a darker color, grey or black.
+                    Monochromatic color schemes provide opportunities in art and visual communications design as they allow for a greater range of contrasting tones that can be used to attract attention, create focus and support legibility.
+                </p>
+                <div class="example">
+                    <div class="row flex-align-center">
+                        <div class="cell-md-6 text-center">
+                            <img src="images/monochromatic.jpg" style="height: 150px;">
+                        </div>
+                        <div class="cell-md-6">
+                            <div id="s-mono"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h4>Complementary</h4>
+                <p>
+                    Complementary is a color scheme using one base color and its complement, the color on the exact opposite side of the color wheel.
+                    The base color is main and dominant, while the complementary color is used only as an accent.
+                </p>
+                <div class="example">
+                    <div class="row flex-align-center">
+                        <div class="cell-md-6 text-center">
+                            <img src="images/complementary.jpg" style="height: 150px;">
+                        </div>
+                        <div class="cell-md-6">
+                            <div id="s-complement"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h4>Split-complementary</h4>
+                <p>
+                    Split-complementary is a color scheme using one base color and two secondary colors.
+                    Instead of using a complementary color, two colors placed symetrically around it on the color wheel are used.
+                    The base color is main, while the secondary colors should be used only for highlights and accents.
+                </p>
+                <div class="example">
+                    <div class="row flex-align-center">
+                        <div class="cell-md-6 text-center">
+                            <img src="images/split-complementary.jpg" style="height: 150px;">
+                        </div>
+                        <div class="cell-md-6">
+                            <div id="s-split"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h4>Double-complementary</h4>
+                <p>
+                    Double-complementary is a color scheme using two sets of base color and their complements with next rules on wheel: 180 &deg;, -30 &deg;, 180 &deg;.
+                    Both base colors are equivalent, cannot be decided which one should be the main color (though a designer could choose one).
+                    Less distance between two base colors causes less tension in the result. However, this scheme is always more "nervous” and “action” than other schemes.
+                    While working with it, we have to take care especially of relations between one color and the complement of its adjacent color.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-6 text-center">
+                            <img src="images/double-complementary.jpg" style="height: 150px;">
+                        </div>
+                        <div class="cell-md-6">
+                            <div id="s-double"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h4>Analogous</h4>
+                <p>
+                    Analogous (or adjacent colors) is a color scheme using one base color and two secondary colors placed symetrically around it on the color wheel.
+                    The base color is main, while the secondary colors should be used only for highlights and accents. It always looks very elegant and clear.
+                    There is no tension in the palette, and typically it’s uniformly all warm, or all cold.
+                    If a base color on the warm-cold border is chosen, the color with opposite “temperature” may be used for accenting the other two colors.
+                </p>
+                <div class="example">
+                    <div class="row flex-align-center">
+                        <div class="cell-md-6 text-center">
+                            <img src="images/analog.jpg" style="height: 150px;">
+                        </div>
+                        <div class="cell-md-6">
+                            <div id="s-analog"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h4>Triadic</h4>
+                <p>
+                    A triad is a color scheme, a special variant of the split-complementary color scheme, with the equal distance between all colors.
+                    All three colors are distributed evenly around the color wheel, causing there is no clear dominance of one color.
+                    The scheme is always vibrant and colorful, designers should use it and balance very carefully to maintan the desired effects and color meaning.
+                </p>
+                <div class="example">
+                    <div class="row flex-align-center">
+                        <div class="cell-md-6 text-center">
+                            <img src="images/triadic.jpg" style="height: 150px;">
+                        </div>
+                        <div class="cell-md-6">
+                            <div id="s-triadic"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h4>Tetradic</h4>
+                <p>
+                    Tetraqic is a color scheme using two sets of base color and their complements with next rules on wheel: 180 &deg;, 240 &deg;, 180 &deg;.
+                    Both base colors are equivalent, cannot be decided which one should be the main color (though a designer could choose one).
+                    Less distance between two base colors causes less tension in the result. However, this scheme is always more "nervous” and “action” than other schemes.
+                    While working with it, we have to take care especially of relations between one color and the complement of its adjacent color.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-6 text-center">
+                            <img src="images/Tetrad.gif" style="height: 150px;">
+                        </div>
+                        <div class="cell-md-6">
+                            <div id="s-tetradic"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h4>Square</h4>
+                <p>
+                    A square is a color scheme, a special variant of the dual color scheme, with the equal distance between all colors.
+                    All four colors are distributed evenly around the color wheel, causing there is no clear dominance of one color.
+                    The scheme is always vibrant, nervous and colorful, there is equal tension between all colors.
+                    Square is very aggressive color scheme, requiring very good planning and very sensitive approach to relations of these colors.
+                </p>
+                <div class="example">
+                    <div class="row flex-align-center">
+                        <div class="cell-md-6 text-center">
+                            <img src="images/square.jpg" style="height: 150px;">
+                        </div>
+                        <div class="cell-md-6">
+                            <div id="s-square"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Websafe colors</h3>
 
             </main>
         </div>
@@ -477,12 +651,18 @@
     <script src="js/site.js"></script>
     <!-- ads-script -->
     <script>
-        var cm = Metro.colors;
-        var c = "#cc0000";
+        var cm = Metro.colors, color = "#ffff00";
+        var colors, schemes = ['mono', 'complement', 'split', 'double', 'analog', 'triadic', 'tetradic', 'square'];
+        $.each(schemes, function(){
+            var scheme_name = String(this);
+            colors = cm.getScheme(color, scheme_name, "hex");
 
-        console.log(cm.grayscale(c));
-        console.log(cm.lighten(c));
-        console.log(cm.darken(c));
+            $.each(colors, function(){
+                var bg_color = this;
+                var target = $("#s-"+scheme_name);
+                $("<div>").addClass("p-4 cell text-center mb-2").html(bg_color).attr("style", "background-color:"+ bg_color).appendTo(target);
+            })
+        })
     </script>
 </body>
 </html>

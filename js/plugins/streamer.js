@@ -259,7 +259,9 @@ var Streamer = {
                         $("<div>").addClass("event-subtitle").html(event_item.subtitle).appendTo(event);
                         $("<div>").addClass("event-html").html(event_item.html).appendTo(event);
 
-                        var left = timeline.find(".js-time-point-"+this.time.replace(":", "-"))[0].offsetLeft - streams.find(".stream").outerWidth();
+                        var left, t = timeline.find(".js-time-point-"+this.time.replace(":", "-"));
+
+                        if (t.length > 0) left = t[0].offsetLeft - streams.find(".stream").outerWidth();
                         group.css({
                             position: "absolute",
                             left: left,
