@@ -8263,6 +8263,7 @@ var FluentMenu = {
     _createStructure: function(){
         var that = this, element = this.element, o = this.options;
 
+        element.addClass("fluent-menu");
     },
 
     _createEvents: function(){

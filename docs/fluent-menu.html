@@ -64,15 +64,57 @@
 
                 <!-- ads-html -->
 
-                <div class="example p-0">
-                    <nav data-role="fluentmenu">
-                        <ul class="tabs-holder">
-                            <li class="static">File</li>
-                            <li>Home</li>
-                            <li>Share</li>
-                            <li>View</li>
-                        </ul>
-                    </nav>
+                <div class="example">
+
+                    <div class="window">
+                        <div class="window-caption">
+                            <span class="icon mif-windows"></span>
+                            <span class="title">Metro 4</span>
+                            <div class="buttons">
+                                <span class="btn-min"></span>
+                                <span class="btn-max"></span>
+                                <span class="btn-close"></span>
+                            </div>
+                        </div>
+                        <nav data-role="fluentmenu">
+                            <ul class="tabs-holder">
+                                <li class="static"><a href="#">File</a></li>
+                                <li><a href="#">Main</a></li>
+                                <li class="active"><a href="#">Share</a></li>
+                                <li><a href="#">View</a></li>
+                            </ul>
+
+                            <div class="content-holder">
+                                <div class="section active">
+                                    <div class="group">
+                                        <button class="button">
+                                            <span class="icon">
+                                                <img src="images/share.svg">
+                                            </span>
+                                            <span class="caption">Share</span>
+                                        </button>
+                                        <button class="button">
+                                            <span class="icon">
+                                                <img src="images/email.svg">
+                                            </span>
+                                            <span class="caption">Email</span>
+                                        </button>
+                                        <button class="button">
+                                            <span class="icon">
+                                                <span class="mif-file-zip fg-cyan"></span>
+                                            </span>
+                                            <span class="caption">Compress</span>
+                                        </button>
+
+                                        <span class="title">Send</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                        <div class="window-content p-2">
+                            Window content
+                        </div>
+                    </div>
                 </div>
 
             </main>

@@ -1,6 +1,139 @@
 @import (once) "include/vars";
 @import (once) "include/mixins";
 
-.fluent-menu {
+@fluentMenuStaticBackground: #1979ca;
+@fluentMenuBackground: #ffffff;
+@fluentMenuActiveBackground: #f5f6f7;
+@fluentMenuBorder: #dadbdc;
+@fluentMenuItemBorder: #a4cef9;
+@fluentMenuItemHoverBackground: rgba(red(#a4cef9), green(#a4cef9), blue(#a4cef9), .2);
 
+.fluent-menu {
+    display: block;
+    position: relative;
+}
+
+.fluent-menu {
+    .tabs-holder {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        .reset-list();
+        z-index: 1;
+        border-bottom: 1px solid @fluentMenuBorder;
+    }
+
+    .tabs-holder {
+        li, a {
+            display: block;
+            height: 24px;
+            line-height: 24px;
+        }
+
+        li {
+            color: @dark;
+            background-color: @fluentMenuBackground;
+            border-bottom: 1px solid @fluentMenuBorder;
+
+            &:hover {
+                border-left: 1px solid @fluentMenuBorder;
+                border-right: 1px solid @fluentMenuBorder;
+                border-top: 1px solid @fluentMenuBorder;
+            }
+        }
+
+        a {
+            text-decoration: none;
+            padding: 0 14px;
+            font-size: 12px;
+            background-color: inherit;
+            color: inherit;
+        }
+
+        .active {
+            background-color: @fluentMenuActiveBackground;
+            border: 1px solid @fluentMenuBorder;
+            border-bottom-color: transparent;
+        }
+
+        .static {
+            background-color: @fluentMenuStaticBackground;
+            color: @white;
+        }
+    }
+}
+
+.fluent-menu {
+    .content-holder {
+        display: block;
+        position: relative;
+    }
+
+    .content-holder {
+        .section {
+            display: none;
+            padding: 4px 8px;
+            border-bottom: 1px solid @fluentMenuBorder;
+            background-color: @fluentMenuActiveBackground;
+
+            &.active {
+                display: flex;
+            }
+        }
+
+        .group {
+            padding-bottom: 24px;
+            display: flex;
+            cursor: default;
+            background-color: inherit;
+
+            .title {
+                display: block;
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                line-height: 24px;
+                height: 24px;
+                font-size: 11px;
+                text-align: center;
+            }
+        }
+
+        .button {
+            display: block;
+            height: 64px;
+            width: auto;
+            border: 1px solid transparent;
+            background-color: inherit;
+
+            &:hover {
+                border-color: @fluentMenuItemBorder;
+                background-color: @fluentMenuItemHoverBackground!important;
+            }
+
+            .caption, .icon {
+                display: block;
+                text-align: center;
+            }
+
+            .caption {
+                font-size: 12px;
+            }
+
+            .icon {
+
+                * {
+                    height: 32px;
+                    max-width: 32px;
+                    font-size: 26px;
+                    line-height: 32px;
+                }
+            }
+
+            .icon + .caption {
+                margin-top: 8px;
+            }
+        }
+    }
 }
