@@ -17125,7 +17125,7 @@ form[data-role*=validator] .invalid_feedback {
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
   color: #ffffff;
-  background-color: transparent;
+  background-color: #ffffff;
   top: 2px;
 }
 .checkbox .check,
@@ -27790,13 +27790,11 @@ video:-webkit-full-screen {
   background-color: #ffffff;
   border-left: 1px solid transparent;
   border-right: 1px solid transparent;
-  border-top: 1px solid transparent;
   border-bottom: 1px solid #dadbdc;
 }
 .fluent-menu .tabs-holder li:hover {
-  border-left: 1px solid #dadbdc;
-  border-right: 1px solid #dadbdc;
-  border-top: 1px solid #dadbdc;
+  border-left-color: #dadbdc;
+  border-right-color: #dadbdc;
 }
 .fluent-menu .tabs-holder li + li {
   margin-left: 3px;
@@ -27833,12 +27831,18 @@ video:-webkit-full-screen {
   display: flex;
 }
 .fluent-menu .content-holder .group {
-  padding-bottom: 24px;
+  padding: 0 4px 24px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   cursor: default;
   background-color: inherit;
+  position: relative;
+  -webkit-box-align: start !important;
+      -ms-flex-align: start !important;
+          align-items: flex-start !important;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
 }
 .fluent-menu .content-holder .group .title {
   display: block;
@@ -27846,37 +27850,40 @@ video:-webkit-full-screen {
   left: 0;
   bottom: 0;
   width: 100%;
-  line-height: 24px;
-  height: 24px;
+  line-height: 20px;
+  height: 20px;
   font-size: 11px;
   text-align: center;
 }
-.fluent-menu .content-holder .button {
+.fluent-menu .content-holder .group + .group {
+  border-left: 1px solid #dadbdc;
+}
+.fluent-menu .content-holder .fluent-button {
   display: block;
   height: 64px;
   width: auto;
   border: 1px solid transparent;
   background-color: inherit;
 }
-.fluent-menu .content-holder .button:hover {
+.fluent-menu .content-holder .fluent-button:hover {
   border-color: #a4cef9;
   background-color: rgba(164, 206, 249, 0.2) !important;
 }
-.fluent-menu .content-holder .button .caption,
-.fluent-menu .content-holder .button .icon {
+.fluent-menu .content-holder .fluent-button .caption,
+.fluent-menu .content-holder .fluent-button .icon {
   display: block;
   text-align: center;
 }
-.fluent-menu .content-holder .button .caption {
+.fluent-menu .content-holder .fluent-button .caption {
   font-size: 12px;
 }
-.fluent-menu .content-holder .button .icon * {
+.fluent-menu .content-holder .fluent-button .icon * {
   height: 32px;
   max-width: 32px;
   font-size: 26px;
   line-height: 32px;
 }
-.fluent-menu .content-holder .button .icon + .caption {
+.fluent-menu .content-holder .fluent-button .icon + .caption {
   margin-top: 8px;
 }
 .ripple {

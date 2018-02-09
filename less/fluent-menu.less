@@ -35,13 +35,11 @@
             background-color: @fluentMenuBackground;
             border-left: 1px solid transparent;
             border-right: 1px solid transparent;
-            border-top: 1px solid transparent;
             border-bottom: 1px solid @fluentMenuBorder;
 
             &:hover {
-                border-left: 1px solid @fluentMenuBorder;
-                border-right: 1px solid @fluentMenuBorder;
-                border-top: 1px solid @fluentMenuBorder;
+                border-left-color: @fluentMenuBorder;
+                border-right-color: @fluentMenuBorder;
             }
         }
 
@@ -89,10 +87,13 @@
         }
 
         .group {
-            padding-bottom: 24px;
+            padding: 0 4px 24px;
             display: flex;
             cursor: default;
             background-color: inherit;
+            position: relative;
+            align-items: flex-start!important;
+            align-content: flex-start;
 
             .title {
                 display: block;
@@ -100,14 +101,18 @@
                 left: 0;
                 bottom: 0;
                 width: 100%;
-                line-height: 24px;
-                height: 24px;
+                line-height: 20px;
+                height: 20px;
                 font-size: 11px;
                 text-align: center;
             }
         }
 
-        .button {
+        .group + .group {
+            border-left: 1px solid @fluentMenuBorder;
+        }
+
+        .fluent-button {
             display: block;
             height: 64px;
             width: auto;
@@ -141,6 +146,10 @@
             .icon + .caption {
                 margin-top: 8px;
             }
+        }
+
+        .input {
+            //max-height: 38px;
         }
     }
 }
