@@ -47,13 +47,14 @@
                 <hr/>
                 <ul class="toc-nav">
                     <li class="toc-entry"><a href="#">Date picker</a></li>
-                    <li class="toc-entry"><a href="#">About</a></li>
-                    <li class="toc-entry"><a href="#">Picker parts</a></li>
-                    <li class="toc-entry"><a href="#">Locale</a></li>
-                    <li class="toc-entry"><a href="#">Value</a></li>
-                    <li class="toc-entry"><a href="#">Events</a></li>
-                    <li class="toc-entry"><a href="#">Methods</a></li>
-                    <li class="toc-entry"><a href="#">Customize</a></li>
+                    <li class="toc-entry"><a href="#_datepicker_about">About</a></li>
+                    <li class="toc-entry"><a href="#_datepicker_parts">Picker parts</a></li>
+                    <li class="toc-entry"><a href="#_datepicker_locale">Locale</a></li>
+                    <li class="toc-entry"><a href="#_datepicker_min-max-years">Min &amp; max years</a></li>
+                    <li class="toc-entry"><a href="#_datepicker_value">Value</a></li>
+                    <li class="toc-entry"><a href="#_datepicker_events">Events</a></li>
+                    <li class="toc-entry"><a href="#_datepicker_methods">Methods</a></li>
+                    <li class="toc-entry"><a href="#_datepicker_custom">Customize</a></li>
                 </ul>
 
             </div>
@@ -132,6 +133,26 @@
                 </div>
                 <pre><code class="html">
                     &lt;input data-role="datepicker" data-locale="uk-UA"&gt;
+                </code></pre>
+
+                <h3 id="_datepicker_min-max-years">Min &amp; max years</h3>
+                <p>
+                    You can set min and max years for picker. To set min and max years use attributes
+                        <code>data-min-year</code> and <code>data-max-year</code>.
+                </p>
+                <div class="example">
+                    <div class="row">
+                        <div class="cell-md-4">
+                        </div>
+                        <div class="cell-md-4">
+                            <input data-role="datepicker" data-min-year="2014" data-max-year="2020">
+                        </div>
+                        <div class="cell-md-4">
+                        </div>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;input data-role="datepicker"  data-min-year="2014" data-max-year="2020"&gt;
                 </code></pre>
 
                 <h3 id="_datepicker_value">Picker value</h3>
