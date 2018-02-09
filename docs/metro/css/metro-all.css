@@ -27788,12 +27788,18 @@ video:-webkit-full-screen {
 .fluent-menu .tabs-holder li {
   color: #1d1d1d;
   background-color: #ffffff;
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
+  border-top: 1px solid transparent;
   border-bottom: 1px solid #dadbdc;
 }
 .fluent-menu .tabs-holder li:hover {
   border-left: 1px solid #dadbdc;
   border-right: 1px solid #dadbdc;
   border-top: 1px solid #dadbdc;
+}
+.fluent-menu .tabs-holder li + li {
+  margin-left: 3px;
 }
 .fluent-menu .tabs-holder a {
   text-decoration: none;

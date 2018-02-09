@@ -114,6 +114,8 @@ var CalendarPicker = {
             exclude: o.exclude,
             minDate: o.minDate,
             maxDate: o.maxDate,
+            yearsBefore: o.yearsBefore,
+            yearsAfter: o.yearsAfter,
             onDayClick: function(sel, day, el){
                 var date = new Date(sel[0]);
                 that.value = date.format("%Y/%m/%d");
