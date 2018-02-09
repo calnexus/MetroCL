@@ -12012,6 +12012,7 @@ var Streamer = {
         source: null,
         data: null,
         eventClick: "select",
+        selectGlobal: true,
         streamSelect: false,
         onStreamClick: Metro.noop,
         onStreamSelect: Metro.noop,
@@ -12238,6 +12239,7 @@ var Streamer = {
                         var events = $("<div>").addClass("stream-events global-stream").appendTo(group);
                         var event = $("<div>").addClass("stream-event").appendTo(events);
                         event
+                            .addClass("global-event")
                             .addClass(event_item.cls)
                             .data("time", event_item.time)
                             .data("origin", event_item)
@@ -12277,7 +12279,13 @@ var Streamer = {
         element.on(Metro.events.click, ".stream-event", function(e){
             var event = $(this);
             if (o.closed === false && event.data("closed") !== true && o.eventClick === 'select') {
-                event.toggleClass("selected");
+                if (event.hasClass("global-event")) {
+                    if (o.selectGlobal === true) {
+                        event.toggleClass("selected");
+                    }
+                } else {
+                    event.toggleClass("selected");
+                }
                 if (o.changeUri === true) {
                     that._changeURI();
                 }

@@ -47,6 +47,7 @@
              data-source="../../data/streamer_data.json"
              data-on-streamer-create="streamerCreate"
              data-start-from="09:00"
+             data-select-global="false"
              data-on-event-select="eventSelect"></div>
 
         <div class="actions mt-2">
@@ -146,7 +147,7 @@
 
             li.data("selected", selected_count);
 
-            if (selected) {
+            if (selected && event.data('target') !== undefined) {
                 document.location.href = event.data('target');
             }
         }
