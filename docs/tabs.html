@@ -51,7 +51,7 @@
                     <li class="toc-entry"><a href="#_tabs_vertical">Vertical</a></li>
                     <li class="toc-entry"><a href="#_tabs_alignment">Alignment</a></li>
                     <li class="toc-entry"><a href="#_tabs_target">Target content</a></li>
-                    <li class="toc-entry"><a href="#_tabs_js">Javascript behavior</a></li>
+                    <li class="toc-entry"><a href="#_tabs_js">Events</a></li>
                 </ul>
 
             </div>
@@ -322,11 +322,37 @@
                     &lt;/div&gt;
                 </code></pre>
 
-                <h3 id="_tabs_js">Javascript behavior</h3>
+                <h3 id="_tabs_js">Events</h3>
                 <p>
                     Plugin activated automaticaly when you add attribute <code>data-role="tabs"</code> to list.
-                    You can define callbacks for events: <code>onTabsCreate</code> over attribute <code>data-on-tabs-create</code> and <code>onTab</code> over attribute <code>data-on-tab</code>.
+                    You can define callbacks for events: <code>onTabsCreate</code> over attribute <code>data-on-tabs-create</code>, <code>onTab</code> over attribute <code>data-on-tab</code> and <code>on-before-tab</code> for <code>onBeforeTab</code>.
                 </p>
+                <table class="table cell-border table-border options-table">
+                    <thead>
+                    <tr>
+                        <th>Events</th>
+                        <th>Data-*</th>
+                        <th>Desc</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code>onBeforeTab(tab, elem)</code></td>
+                        <td><code>data-on-before-tab</code></td>
+                        <td>This event occurs before the tab is opened if this function return false, tab is not open</td>
+                    </tr>
+                    <tr>
+                        <td><code>onTab(tab, elem)</code></td>
+                        <td><code>data-on-tab</code></td>
+                        <td>This event occurs when the tab is opened</td>
+                    </tr>
+                    <tr>
+                        <td><code>onTabsCreate(tab, elem)</code></td>
+                        <td><code>data-on-tabs-create</code></td>
+                        <td>This event occurs when the tabs is created</td>
+                    </tr>
+                    </tbody>
+                </table>
             </main>
         </div>
 

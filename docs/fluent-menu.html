@@ -79,13 +79,15 @@
                         <nav data-role="fluentmenu">
                             <ul class="tabs-holder">
                                 <li class="static"><a href="#">File</a></li>
-                                <li><a href="#">Main</a></li>
-                                <li class="active"><a href="#">Share</a></li>
-                                <li><a href="#">View</a></li>
+                                <li><a href="#section_main">Main</a></li>
+                                <li><a href="#section_buttons">Buttons</a></li>
+                                <li class="active"><a href="#section_inputs">Inputs</a></li>
+                                <li><a href="#section_dropdown">Dropdown</a></li>
                             </ul>
 
                             <div class="content-holder">
-                                <div class="section active">
+
+                                <div class="section" id="section_main">
                                     <div class="group">
                                         <button class="fluent-button">
                                             <span class="icon">
@@ -115,17 +117,54 @@
                                             </button>
                                         </div>
 
-                                        <span class="title">Send</span>
+                                        <span class="title">Self controls</span>
+                                    </div>
+                                </div>
+
+                                <div class="section" id="section_buttons">
+                                    <div class="group">
+                                        <button class="button">Button</button>
+                                        <span class="title">Buttons</span>
+                                    </div>
+                                </div>
+
+                                <div class="section" id="section_inputs">
+                                    <div class="group flex-column" style="width: 220px">
+                                        <input data-role="input" data-prepend="<span class='mif-envelop'>">
+                                        <input data-role="input" data-prepend="<span class='mif-user'>">
+                                        <span class="title">Input and checks</span>
+                                    </div>
+                                    <div class="group" style="width: 220px">
+                                        <textarea data-role="textarea" class="flex-self-stretch"></textarea>
+                                        <span class="title">Textarea</span>
                                     </div>
                                     <div class="group flex-column" style="width: 220px">
-                                        <input data-role="input">
-                                        <div class="mt-1">
+                                        <select data-role="select">
+                                            <option value="1">Value 1</option>
+                                            <option value="2">Value 2</option>
+                                            <option value="3">Value 3</option>
+                                        </select>
+                                        <span class="title">Select</span>
+                                    </div>
+                                    <div class="group flex-column" style="width: 220px">
+                                        <div>
                                             <input name="c1" type="checkbox" data-role="checkbox" data-caption="check it">
+                                        </div>
+                                        <div>
                                             <input name="r1" type="radio" data-role="radio" data-caption="A">
                                             <input name="r1" type="radio" data-role="radio" data-caption="B">
                                             <input name="r1" type="radio" data-role="radio" data-caption="C">
                                         </div>
-                                        <span class="title">Title</span>
+                                        <div>
+                                            <input name="c2" type="checkbox" data-role="switch" data-caption="check it">
+                                        </div>
+                                        <span class="title">Switches</span>
+                                    </div>
+                                </div>
+
+                                <div class="section" id="section_dropdown">
+                                    <div class="group">
+                                        <span class="title">Dropdown</span>
                                     </div>
                                 </div>
                             </div>

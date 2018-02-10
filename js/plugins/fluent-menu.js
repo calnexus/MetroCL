@@ -11,6 +11,9 @@ var FluentMenu = {
     },
 
     options: {
+        onStatic: Metro.noop,
+        onBeforeTab: Metro.noop_true,
+        onTab: Metro.noop,
         onFluentMenuCreate: Metro.noop
     },
 
@@ -41,11 +44,54 @@ var FluentMenu = {
         var that = this, element = this.element, o = this.options;
 
         element.addClass("fluent-menu");
+
+        var tabs = element.find(".tabs-holder li:not(.static)");
+        var active_tab = element.find(".tabs-holder li.active");
+        if (active_tab.length > 0) {
+            this.open($(active_tab[0]));
+        } else {
+            if (tabs.length > 0) {
+                this.open($(tabs[0]));
+            }
+        }
     },
 
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
+        element.on(Metro.events.click, ".tabs-holder li a", function(e){
+            var link = $(this);
+            var tab = $(this).parent("li");
+
+            if (tab.hasClass("static")) {
+                if (o.onStatic === Metro.noop && link.attr("href") !== undefined) {
+                    document.location.href = link.attr("href");
+                } else {
+                    Utils.exec(o.onStatic, [tab, element]);
+                }
+            } else {
+                if (Utils.exec(o.onBeforeTab, [tab, element]) === true) {
+                    that.open(tab);
+                }
+            }
+            e.preventDefault();
+        })
+    },
+
+    open: function(tab){
+        var that = this, element = this.element, o = this.options;
+        var tabs = element.find(".tabs-holder li");
+        var sections = element.find(".content-holder .section");
+        var target = tab.children("a").attr("href");
+        var target_section = target !== "#" ? element.find(target) : null;
+
+        tabs.removeClass("active");
+        tab.addClass("active");
+
+        sections.removeClass("active");
+        if (target_section) target_section.addClass("active");
+
+        Utils.exec(o.onTab, [tab, element]);
     },
 
     changeAttribute: function(attributeName){

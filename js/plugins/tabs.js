@@ -15,6 +15,7 @@ var Tabs = {
 
     options: {
         onTab: Metro.noop,
+        onBeforeTab: Metro.noop_true,
         onTabsCreate: Metro.noop
     },
 
@@ -72,7 +73,7 @@ var Tabs = {
                 element.removeClass("expand");
                 element.data('expanded', false);
             }
-            that._open(tab);
+            if (Utils.exec(o.onBeforeTab, [tab, element]) === true) that._open(tab);
             e.preventDefault();
         });
 
@@ -95,6 +96,7 @@ var Tabs = {
         var that = this, element = this.element, o = this.options;
         var tabs = element.find("li");
         var expandTitle = element.siblings(".expand-title");
+
 
         if (tabs.length === 0) {
             return;
@@ -129,7 +131,7 @@ var Tabs = {
 
         expandTitle.html(tab.find("a").html());
 
-        Utils.exec(o.onTab, [tab]);
+        Utils.exec(o.onTab, [tab, element]);
     },
 
     changeAttribute: function(attributeName){
