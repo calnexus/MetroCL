@@ -7,6 +7,9 @@
 @fluentMenuBorder: #dadbdc;
 @fluentMenuItemBorder: #a4cef9;
 @fluentMenuItemHoverBackground: rgba(red(#a4cef9), green(#a4cef9), blue(#a4cef9), .2);
+@fluentDropdownBackground: #fbfcfd;
+@fluentDropdownDivider: #dcddde;
+@fluentDropdownShadow: #e3e4e5;
 
 .fluent-menu {
     display: block;
@@ -118,64 +121,140 @@
             border-left: 1px solid @fluentMenuBorder;
         }
 
-        .fluent-button, .fluent-tool-button {
-            cursor: pointer;
-            min-width: 0;
-            text-align: center;
-            border: 1px solid transparent;
-            background-color: inherit;
+    }
+}
+
+.fluent-button, .fluent-tool-button {
+    cursor: pointer;
+    min-width: 0;
+    text-align: center;
+    border: 1px solid transparent;
+    background-color: inherit;
+}
+
+.fluent-button {
+    height: 64px;
+    width: auto;
+
+    &:hover {
+        border-color: @fluentMenuItemBorder;
+        background-color: @fluentMenuItemHoverBackground!important;
+    }
+
+    .caption, .icon {
+        display: block;
+        text-align: center;
+    }
+
+    .caption {
+        font-size: 12px;
+    }
+
+    .icon {
+
+        * {
+            height: 32px;
+            max-width: 32px;
+            font-size: 26px;
+            line-height: 32px;
         }
+    }
 
-        .fluent-button {
-            height: 64px;
-            width: auto;
+    .icon + .caption {
+        margin-top: 8px;
+    }
+}
 
-            &:hover {
-                border-color: @fluentMenuItemBorder;
-                background-color: @fluentMenuItemHoverBackground!important;
-            }
+.fluent-tool-button {
+    width: 24px;
+    height: 24px;
+    padding: 2px;
+    margin: 2px;
 
-            .caption, .icon {
-                display: block;
-                text-align: center;
-            }
+    * {
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        font-size: 14px;
+    }
 
-            .caption {
-                font-size: 12px;
-            }
+    &:hover {
+        border-color: @fluentMenuItemBorder;
+        background-color: @fluentMenuItemHoverBackground!important;
+    }
+}
 
-            .icon {
+.fluent-dropdown {
+    .reset-list();
+    width: auto;
+    float: left;
+    display: block;
+    position: relative;
+    background-color: @fluentDropdownBackground;
+    color: @dark;
+    padding: 2px;
+    border: 1px solid @fluentMenuBorder;
+    font-size: 12px;
+    box-shadow: 2px 2px 2px 0 rgba(red(@fluentDropdownShadow), green(@fluentDropdownShadow), blue(@fluentDropdownShadow), .7);
 
-                * {
-                    height: 32px;
-                    max-width: 32px;
-                    font-size: 26px;
-                    line-height: 32px;
-                }
-            }
+    li, a {
+        display: block;
+        position: relative;
+        background-color: inherit;
+        color: inherit;
+        height: 24px;
+    }
 
-            .icon + .caption {
-                margin-top: 8px;
-            }
+    li {
+        border: 1px solid transparent;
+        padding-left: 24px;
+
+        &:hover {
+            border-color: @fluentMenuItemBorder;
+            background-color: @fluentMenuItemHoverBackground!important;
         }
+    }
 
-        .fluent-tool-button {
-            width: 24px;
-            height: 24px;
-            padding: 2px;
-            margin: 2px;
+    a {
+        line-height: 24px;
+        text-decoration: none;
+        padding: 0 8px;
+        border-left: 1px solid @fluentDropdownDivider;
+    }
 
-            * {
-                width: 16px;
-                height: 16px;
-                line-height: 16px;
-                font-size: 14px;
-            }
+    .divider {
+        display: block;
+        height: 1px;
+        width: 100%;
+        position: relative;
+        background-color: @fluentDropdownDivider;
+    }
 
-            &:hover {
-                border-color: @fluentMenuItemBorder;
-                background-color: @fluentMenuItemHoverBackground!important;
-            }
+    .checked, .checked-one {
+        &::before {
+            position: absolute;
+            display: block;
+            content: "";
+            background-color: transparent;
+            border-color: @dark;
+            border-left: 2px solid;
+            border-bottom: 2px solid;
+            height: .325rem;
+            width: .5rem;
+            left: .5rem;
+            top: 50%;
+            .translateY(-50%);
+            .rotate(-45deg);
+            z-index: @zindex-dropdown;
+        }
+    }
+
+    .checked-one {
+        &::before {
+            width: .4rem;
+            height: .4rem;
+            border-radius: 50%;
+            background-color: @dark;
         }
     }
 }
