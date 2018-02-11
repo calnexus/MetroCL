@@ -7,6 +7,7 @@
 @fluentMenuBorder: #dadbdc;
 @fluentMenuItemBorder: #a4cef9;
 @fluentMenuItemHoverBackground: rgba(red(#a4cef9), green(#a4cef9), blue(#a4cef9), .2);
+@fluentMenuItemActiveBackground: rgba(red(#a4cef9), green(#a4cef9), blue(#a4cef9), .8);
 @fluentDropdownBackground: #fbfcfd;
 @fluentDropdownDivider: #dcddde;
 @fluentDropdownShadow: #e3e4e5;
@@ -122,23 +123,49 @@
         }
 
     }
+
+    .dropdown-toggle {
+        //&::before {
+        //    display: none;
+        //}
+        //&::after {
+        //    content: "";
+        //    display: block;
+        //    position: absolute;
+        //    bottom: 0;
+        //    right: 0;
+        //    width: 0;
+        //    height: 0;
+        //    border-style: solid;
+        //    border-width: 0 0 8px 8px;
+        //    border-color: transparent transparent @dark  transparent;
+        //    z-index: 1;
+        //}
+    }
 }
 
-.fluent-button, .fluent-tool-button {
+.fluent-button, .fluent-tool-button, .fluent-button-dropdown {
     cursor: pointer;
     min-width: 0;
     text-align: center;
     border: 1px solid transparent;
     background-color: inherit;
+    outline: none;
+    position: relative;
 }
 
 .fluent-button {
     height: 64px;
     width: auto;
+    padding: 4px;
 
     &:hover {
         border-color: @fluentMenuItemBorder;
         background-color: @fluentMenuItemHoverBackground;
+    }
+
+    &:active, &.active {
+        background-color: @fluentMenuItemActiveBackground;
     }
 
     .caption, .icon {
@@ -162,6 +189,10 @@
 
     .icon + .caption {
         margin-top: 8px;
+    }
+
+    &.dropdown-toggle {
+        padding-right: 4px!important;
     }
 }
 
@@ -189,7 +220,7 @@
     width: auto;
     float: left;
     display: block;
-    position: relative;
+    position: absolute;
     background-color: @fluentDropdownBackground;
     color: @dark;
     padding: 2px;
@@ -197,6 +228,8 @@
     font-size: 12px;
     box-shadow: 2px 2px 2px 0 rgba(red(@fluentDropdownShadow), green(@fluentDropdownShadow), blue(@fluentDropdownShadow), .7);
     z-index: @zindex-dropdown;
+    top: 100%;
+    left: 0;
 
     li, a {
         display: block;
@@ -271,5 +304,10 @@
             border-radius: 50%;
             background-color: @dark;
         }
+    }
+
+    .fluent-dropdown {
+        top: -4px;
+        left: 100%;
     }
 }

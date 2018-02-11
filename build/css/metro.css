@@ -27867,20 +27867,28 @@ video:-webkit-full-screen {
   border-left: 1px solid #dadbdc;
 }
 .fluent-button,
-.fluent-tool-button {
+.fluent-tool-button,
+.fluent-button-dropdown {
   cursor: pointer;
   min-width: 0;
   text-align: center;
   border: 1px solid transparent;
   background-color: inherit;
+  outline: none;
+  position: relative;
 }
 .fluent-button {
   height: 64px;
   width: auto;
+  padding: 4px;
 }
 .fluent-button:hover {
   border-color: #a4cef9;
   background-color: rgba(164, 206, 249, 0.2);
+}
+.fluent-button:active,
+.fluent-button.active {
+  background-color: rgba(164, 206, 249, 0.8);
 }
 .fluent-button .caption,
 .fluent-button .icon {
@@ -27898,6 +27906,9 @@ video:-webkit-full-screen {
 }
 .fluent-button .icon + .caption {
   margin-top: 8px;
+}
+.fluent-button.dropdown-toggle {
+  padding-right: 4px!important;
 }
 .fluent-tool-button {
   width: 24px;
@@ -27919,10 +27930,11 @@ video:-webkit-full-screen {
   list-style: none inside none;
   margin: 0;
   padding: 0;
+  position: relative;
   width: auto;
   float: left;
   display: block;
-  position: relative;
+  position: absolute;
   background-color: #fbfcfd;
   color: #1d1d1d;
   padding: 2px;
@@ -27931,6 +27943,8 @@ video:-webkit-full-screen {
   -webkit-box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7);
           box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7);
   z-index: 1000;
+  top: 100%;
+  left: 0;
 }
 .fluent-dropdown li,
 .fluent-dropdown a {
@@ -27998,6 +28012,10 @@ video:-webkit-full-screen {
   height: .4rem;
   border-radius: 50%;
   background-color: #1d1d1d;
+}
+.fluent-dropdown .fluent-dropdown {
+  top: -4px;
+  left: 100%;
 }
 .ripple {
   display: block;
