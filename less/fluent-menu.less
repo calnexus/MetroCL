@@ -96,7 +96,7 @@
             cursor: default;
             background-color: inherit;
             position: relative;
-            align-items: flex-start!important;
+            align-items: flex-start;
             align-content: flex-start;
 
             &:nth-child(1):last-child {
@@ -138,7 +138,7 @@
 
     &:hover {
         border-color: @fluentMenuItemBorder;
-        background-color: @fluentMenuItemHoverBackground!important;
+        background-color: @fluentMenuItemHoverBackground;
     }
 
     .caption, .icon {
@@ -180,7 +180,7 @@
 
     &:hover {
         border-color: @fluentMenuItemBorder;
-        background-color: @fluentMenuItemHoverBackground!important;
+        background-color: @fluentMenuItemHoverBackground;
     }
 }
 
@@ -196,6 +196,7 @@
     border: 1px solid @fluentMenuBorder;
     font-size: 12px;
     box-shadow: 2px 2px 2px 0 rgba(red(@fluentDropdownShadow), green(@fluentDropdownShadow), blue(@fluentDropdownShadow), .7);
+    z-index: @zindex-dropdown;
 
     li, a {
         display: block;
@@ -211,7 +212,7 @@
 
         &:hover {
             border-color: @fluentMenuItemBorder;
-            background-color: @fluentMenuItemHoverBackground!important;
+            background-color: @fluentMenuItemHoverBackground;
         }
     }
 
@@ -231,10 +232,14 @@
     }
 
     .checked, .checked-one {
-        &::before {
+
+        &::before, &::after {
             position: absolute;
             display: block;
             content: "";
+        }
+
+        &::before {
             background-color: transparent;
             border-color: @dark;
             border-left: 2px solid;
@@ -245,7 +250,17 @@
             top: 50%;
             .translateY(-50%);
             .rotate(-45deg);
-            z-index: @zindex-dropdown;
+            z-index: 2;
+        }
+
+        &::after {
+            width: 23px;
+            height: 22px;
+            top: 0;
+            left: 0;
+            border: 1px solid @fluentMenuItemBorder;
+            background-color: @fluentMenuItemHoverBackground;
+            z-index: 1;
         }
     }
 

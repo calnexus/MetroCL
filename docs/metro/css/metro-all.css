@@ -27841,9 +27841,9 @@ video:-webkit-full-screen {
   cursor: default;
   background-color: inherit;
   position: relative;
-  -webkit-box-align: start !important;
-      -ms-flex-align: start !important;
-          align-items: flex-start !important;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   -ms-flex-line-pack: start;
       align-content: flex-start;
 }
@@ -27880,7 +27880,7 @@ video:-webkit-full-screen {
 }
 .fluent-button:hover {
   border-color: #a4cef9;
-  background-color: rgba(164, 206, 249, 0.2) !important;
+  background-color: rgba(164, 206, 249, 0.2);
 }
 .fluent-button .caption,
 .fluent-button .icon {
@@ -27913,7 +27913,7 @@ video:-webkit-full-screen {
 }
 .fluent-tool-button:hover {
   border-color: #a4cef9;
-  background-color: rgba(164, 206, 249, 0.2) !important;
+  background-color: rgba(164, 206, 249, 0.2);
 }
 .fluent-dropdown {
   list-style: none inside none;
@@ -27930,6 +27930,7 @@ video:-webkit-full-screen {
   font-size: 12px;
   -webkit-box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7);
           box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7);
+  z-index: 1000;
 }
 .fluent-dropdown li,
 .fluent-dropdown a {
@@ -27945,7 +27946,7 @@ video:-webkit-full-screen {
 }
 .fluent-dropdown li:hover {
   border-color: #a4cef9;
-  background-color: rgba(164, 206, 249, 0.2) !important;
+  background-color: rgba(164, 206, 249, 0.2);
 }
 .fluent-dropdown a {
   line-height: 24px;
@@ -27961,10 +27962,15 @@ video:-webkit-full-screen {
   background-color: #dcddde;
 }
 .fluent-dropdown .checked::before,
-.fluent-dropdown .checked-one::before {
+.fluent-dropdown .checked-one::before,
+.fluent-dropdown .checked::after,
+.fluent-dropdown .checked-one::after {
   position: absolute;
   display: block;
   content: "";
+}
+.fluent-dropdown .checked::before,
+.fluent-dropdown .checked-one::before {
   background-color: transparent;
   border-color: #1d1d1d;
   border-left: 2px solid;
@@ -27975,7 +27981,17 @@ video:-webkit-full-screen {
   top: 50%;
   -webkit-transform: translateY(-50%) rotate(-45deg);
           transform: translateY(-50%) rotate(-45deg);
-  z-index: 1000;
+  z-index: 2;
+}
+.fluent-dropdown .checked::after,
+.fluent-dropdown .checked-one::after {
+  width: 23px;
+  height: 22px;
+  top: 0;
+  left: 0;
+  border: 1px solid #a4cef9;
+  background-color: rgba(164, 206, 249, 0.2);
+  z-index: 1;
 }
 .fluent-dropdown .checked-one::before {
   width: .4rem;
