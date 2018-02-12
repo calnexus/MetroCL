@@ -105,6 +105,7 @@ var Dropdown = {
         var func = options.effect === "slide" ? "slideUp" : "fadeOut";
 
         toggle.removeClass('active-toggle').removeClass("active-control");
+        dropdown.element.parent().removeClass("active-container");
         el[func](options.duration, function(){
             el.trigger("onClose", null, el);
         });

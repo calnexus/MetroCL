@@ -6,6 +6,7 @@
 @fluentMenuActiveBackground: #f5f6f7;
 @fluentMenuBorder: #dadbdc;
 @fluentMenuItemBorder: #a4cef9;
+@fluentMenuItemActiveBorder: #1979ca;
 @fluentMenuItemHoverBackground: rgba(red(#a4cef9), green(#a4cef9), blue(#a4cef9), .2);
 @fluentMenuItemActiveBackground: rgba(red(#a4cef9), green(#a4cef9), blue(#a4cef9), .8);
 @fluentDropdownBackground: #fbfcfd;
@@ -117,7 +118,7 @@
                 border-top: 1px solid @fluentMenuBorder;
             }
 
-            .divider {
+            .group-divider {
                 display: block;
                 position: relative;
                 height: 100%;
@@ -134,7 +135,7 @@
     }
 }
 
-.fluent-button, .fluent-tool-button, .fluent-button-dropdown {
+.fluent-button, .fluent-tool-button, .fluent-button-dropdown, .fluent-icon-button {
     cursor: pointer;
     min-width: 0;
     text-align: center;
@@ -185,6 +186,47 @@
     }
 }
 
+.fluent-icon-button {
+    height: 24px;
+    width: auto;
+    margin: 2px;
+    display: inline-flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    padding: 2px 4px;
+
+    &:hover {
+        border-color: @fluentMenuItemBorder;
+        background-color: @fluentMenuItemHoverBackground;
+    }
+
+    .caption, .icon {
+        display: block;
+    }
+
+    .caption {
+        font-size: 12px;
+    }
+
+    .icon {
+
+        * {
+            width: 16px;
+            height: 16px;
+            line-height: 16px;
+            font-size: 14px;
+        }
+    }
+
+    .icon + .caption, .caption + .icon {
+        margin-left: 4px;
+    }
+
+    [class*=mif-] {
+        vertical-align: inherit;
+    }
+}
+
 .fluent-tool-button {
     width: 24px;
     height: 24px;
@@ -197,12 +239,9 @@
         line-height: 16px;
         font-size: 14px;
     }
+}
 
-    &:hover {
-        border-color: @fluentMenuItemBorder;
-        background-color: @fluentMenuItemHoverBackground;
-    }
-
+.fluent-icon-button, .fluent-tool-button {
     &.dropdown-toggle {
         padding-right: 2px!important;
         &::before {
@@ -221,6 +260,12 @@
             border-color: transparent transparent @dark  transparent;
             z-index: 1;
         }
+    }
+}
+
+.fluent-icon-button {
+    &.dropdown-toggle {
+        padding-right: 4px!important;
     }
 }
 
@@ -396,8 +441,29 @@
     }
 }
 
-.fluent-button, .fluent-tool-button, .fluent-split, .fluent-main {
+.fluent-toggle-group {
+    
+}
+
+.fluent-button, .fluent-tool-button, .fluent-icon-button {
+    &:hover {
+        border-color: @fluentMenuItemBorder;
+        background-color: @fluentMenuItemHoverBackground;
+    }
+}
+
+.fluent-button, .fluent-tool-button, .fluent-split, .fluent-main, .fluent-icon-button {
     &:active, &.active {
+        border-color: @fluentMenuItemActiveBorder;
         background-color: @fluentMenuItemActiveBackground!important;
+    }
+}
+
+.fluent-menu {
+    .active-container {
+        .fluent-button, .fluent-tool-button, .fluent-icon-button {
+            border-color: @fluentMenuItemActiveBorder;
+            background-color: @fluentMenuItemActiveBackground!important;
+        }
     }
 }
