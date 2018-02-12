@@ -210,6 +210,9 @@ img {
 [hidden] {
   display: none;
 }
+div {
+  position: relative;
+}
 .hideScrollBars {
   -ms-overflow-style: -ms-autohiding-scrollbar;
 }
@@ -27910,6 +27913,9 @@ video:-webkit-full-screen {
 .fluent-button.dropdown-toggle {
   padding-right: 4px!important;
 }
+.fluent-button.dropdown-toggle::before {
+  margin-left: -0.65rem;
+}
 .fluent-tool-button {
   width: 24px;
   height: 24px;
@@ -27925,6 +27931,25 @@ video:-webkit-full-screen {
 .fluent-tool-button:hover {
   border-color: #a4cef9;
   background-color: rgba(164, 206, 249, 0.2);
+}
+.fluent-tool-button.dropdown-toggle {
+  padding-right: 2px!important;
+}
+.fluent-tool-button.dropdown-toggle::before {
+  display: none;
+}
+.fluent-tool-button.dropdown-toggle::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 8px 8px;
+  border-color: transparent transparent #1d1d1d transparent;
+  z-index: 1;
 }
 .fluent-dropdown {
   list-style: none inside none;
