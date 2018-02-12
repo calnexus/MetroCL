@@ -28163,7 +28163,7 @@ video:-webkit-full-screen {
           transform: rotate(45deg) !important;
 }
 .fluent-toggle-group {
-  background-color: #ffffff;
+  background-color: #f8f8f8;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
