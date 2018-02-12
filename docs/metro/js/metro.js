@@ -8280,6 +8280,24 @@ var FluentMenu = {
                 this.open($(tabs[0]));
             }
         }
+
+        var fluentGroups = element.find(".fluent-toggle-group");
+        $.each(fluentGroups, function(){
+            var g = $(this);
+            g.buttonsGroup({
+                clsActive: "active"
+            });
+
+            var gw = 0;
+            var btns = g.find(".fluent-icon-button");
+            $.each(btns, function(){
+                var b = $(this);
+                var w = b.outerWidth(true);
+                if (w > gw) gw = w;
+            });
+
+            g.css("width", Math.ceil(gw * btns.length / 3) + 4);
+        })
     },
 
     _createEvents: function(){
