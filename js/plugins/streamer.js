@@ -28,6 +28,8 @@ var Streamer = {
         selectGlobal: true,
         streamSelect: false,
         excludeSelectElement: null,
+        excludeClickElement: null,
+        excludeElement: null,
         excludeSelectClass: "",
         excludeClickClass: "",
         excludeClass: "",
@@ -299,29 +301,38 @@ var Streamer = {
             if (o.excludeClass !== "" && event.hasClass(o.excludeClass)) {
                 return ;
             }
+
+            if (o.excludeElement !== null && $(e.target).is(o.excludeElement)) {
+                return ;
+            }
+
             if (o.closed === false && event.data("closed") !== true && o.eventClick === 'select') {
 
                 if (o.excludeSelectClass !== "" && event.hasClass(o.excludeSelectClass)) {
 
                 } else {
-                    if (event.hasClass("global-event")) {
-                        if (o.selectGlobal === true) {
+                    if (o.excludeSelectElement !== null && $(e.target).is(o.excludeSelectElement)) {
+
+                    } else {
+                        if (event.hasClass("global-event")) {
+                            if (o.selectGlobal === true) {
+                                event.toggleClass("selected");
+                            }
+                        } else {
                             event.toggleClass("selected");
                         }
-                    } else {
-                        event.toggleClass("selected");
+                        if (o.changeUri === true) {
+                            that._changeURI();
+                        }
+                        Utils.exec(o.onEventSelect, [event, event.hasClass("selected")]);
                     }
-                    if (o.changeUri === true) {
-                        that._changeURI();
-                    }
-                    Utils.exec(o.onEventSelect, [event, event.hasClass("selected")]);
                 }
             } else {
                 if (o.excludeClickClass !== "" && event.hasClass(o.excludeClickClass)) {
 
                 } else {
 
-                    if (o.excludeSelectElement !== null && $(e.target).is(o.excludeSelectElement)) {
+                    if (o.excludeClickElement !== null && $(e.target).is(o.excludeClickElement)) {
 
                     } else {
 
