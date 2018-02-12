@@ -7,53 +7,46 @@
     z-index: @zindex-charms;
     background-color: @dark;
     color: @white;
+    transition: @transition-transform;
 }
 
 .charms {
     &.top-side {
-        top: 0;
-        left: 0;
+        bottom: 100%;
         width: 100%;
-        transform: translateY(-100%);
-        transition: @transition-transform;
+        left: 0;
 
         &.open {
-            transform: translateY(0);
+            transform: translateY(100%);
         }
     }
     &.bottom-side {
-        bottom: 0;
+        top: 100%;
         left: 0;
         width: 100%;
-        transform: translateY(100%);
-        transition: @transition-transform;
 
         &.open {
-            transform: translateY(0);
+            transform: translateY(-100%);
         }
     }
     &.left-side {
         top: 0;
         bottom: 0;
-        left: 0;
+        right: 100%;
         width: auto;
-        transform: translateX(-100%);
-        transition: @transition-transform;
 
         &.open {
-            transform: translateX(0);
+            transform: translateX(100%);
         }
     }
     &.right-side {
         top: 0;
         bottom: 0;
-        right: 0;
         width: auto;
-        transform: translateX(100%);
-        transition: @transition-transform;
+        left: 100%;
 
         &.open {
-            transform: translateX(0);
+            transform: translateX(-100%);
         }
     }
 }

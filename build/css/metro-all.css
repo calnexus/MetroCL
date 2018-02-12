@@ -23897,68 +23897,48 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   z-index: 1090;
   background-color: #1d1d1d;
   color: #ffffff;
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
 }
 .charms.top-side {
-  top: 0;
-  left: 0;
+  bottom: 100%;
   width: 100%;
-  -webkit-transform: translateY(-100%);
-          transform: translateY(-100%);
-  -webkit-transition: -webkit-transform 0.3s ease;
-  transition: -webkit-transform 0.3s ease;
-  transition: transform 0.3s ease;
-  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+  left: 0;
 }
 .charms.top-side.open {
-  -webkit-transform: translateY(0);
-          transform: translateY(0);
-}
-.charms.bottom-side {
-  bottom: 0;
-  left: 0;
-  width: 100%;
   -webkit-transform: translateY(100%);
           transform: translateY(100%);
-  -webkit-transition: -webkit-transform 0.3s ease;
-  transition: -webkit-transform 0.3s ease;
-  transition: transform 0.3s ease;
-  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+.charms.bottom-side {
+  top: 100%;
+  left: 0;
+  width: 100%;
 }
 .charms.bottom-side.open {
-  -webkit-transform: translateY(0);
-          transform: translateY(0);
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
 }
 .charms.left-side {
   top: 0;
   bottom: 0;
-  left: 0;
+  right: 100%;
   width: auto;
-  -webkit-transform: translateX(-100%);
-          transform: translateX(-100%);
-  -webkit-transition: -webkit-transform 0.3s ease;
-  transition: -webkit-transform 0.3s ease;
-  transition: transform 0.3s ease;
-  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
 }
 .charms.left-side.open {
-  -webkit-transform: translateX(0);
-          transform: translateX(0);
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
 }
 .charms.right-side {
   top: 0;
   bottom: 0;
-  right: 0;
   width: auto;
-  -webkit-transform: translateX(100%);
-          transform: translateX(100%);
-  -webkit-transition: -webkit-transform 0.3s ease;
-  transition: -webkit-transform 0.3s ease;
-  transition: transform 0.3s ease;
-  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+  left: 100%;
 }
 .charms.right-side.open {
-  -webkit-transform: translateX(0);
-          transform: translateX(0);
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
 }
 .slider {
   display: block;
