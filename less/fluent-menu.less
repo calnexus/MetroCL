@@ -116,6 +116,15 @@
                 text-align: center;
                 border-top: 1px solid @fluentMenuBorder;
             }
+
+            .divider {
+                display: block;
+                position: relative;
+                height: 100%;
+                margin: 0 4px;
+                width: 1px;
+                background-color: @fluentMenuBorder;
+            }
         }
 
         .group + .group {
@@ -143,10 +152,6 @@
     &:hover {
         border-color: @fluentMenuItemBorder;
         background-color: @fluentMenuItemHoverBackground;
-    }
-
-    &:active, &.active {
-        background-color: @fluentMenuItemActiveBackground;
     }
 
     .caption, .icon {
@@ -215,6 +220,81 @@
             border-width: 0 0 8px 8px;
             border-color: transparent transparent @dark  transparent;
             z-index: 1;
+        }
+    }
+}
+
+.fluent-split-button {
+    text-align: center;
+    border: 1px solid transparent;
+    padding: 0;
+
+    &:hover {
+        border-color: @fluentMenuItemBorder;
+
+        .fluent-split {
+            border-color: @fluentMenuItemBorder;
+        }
+    }
+
+    .fluent-main, .fluent-split {
+        display: block;
+        text-align: center;
+        min-width: 0;
+        padding: 2px 4px;
+        width: 100%;
+        cursor: pointer;
+
+        &:hover {
+            background-color: @fluentMenuItemHoverBackground;
+        }
+    }
+
+    .fluent-main {
+        background-color: inherit;
+        outline: none;
+        position: relative;
+        border: none;
+    }
+
+    .icon {
+        * {
+            height: 32px;
+            max-width: 32px;
+            font-size: 26px;
+            line-height: 32px;
+        }
+    }
+
+    .icon + .caption {
+        margin-top: 8px;
+    }
+
+    .fluent-split {
+        font-size: 12px;
+        border-top: 1px solid transparent;
+        padding-bottom: 4px;
+
+        &.dropdown-toggle {
+            padding-right: 4px!important;
+            &::before {
+                display: none;
+            }
+            &::after {
+                content: "";
+                display: block;
+                position: absolute;
+                bottom: 2px;
+                left: 50%;
+                .translateX(-50%);
+                .rotate(45deg);
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 0 0 4px 4px;
+                border-color: transparent transparent @dark  transparent;
+                z-index: 1;
+            }
         }
     }
 }
@@ -313,5 +393,11 @@
     .fluent-dropdown {
         top: -4px;
         left: 100%;
+    }
+}
+
+.fluent-button, .fluent-tool-button, .fluent-split, .fluent-main {
+    &:active, &.active {
+        background-color: @fluentMenuItemActiveBackground!important;
     }
 }
