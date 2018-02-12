@@ -38,11 +38,11 @@
                     "desc": "Information revolution - the way to new middle ages",
                     "size": 1,
                     "selected": 0,
-                    "closed": false,
+                    "closed": true,
                     "closedIcon": "<span class='mif-video-camera'></span>",
                     "openIcon": "<span class='mif-apps'></span>",
                     "target": "https://2017.iforum.ua/reporter/?id=99#video-365",
-                    "cls": "",
+                    "cls": "exclude-click-class",
                     "clsClosedIcon": "fg-red"
                 },
                 {
@@ -53,7 +53,8 @@
                     "desc": "Greeting speech",
                     "size": 1,
                     "openIcon": "<span class='mif-apps'></span>",
-                    "clsOpenIcon": "fg-green"
+                    "clsOpenIcon": "fg-green",
+                    "cls": "exclude-select-class"
                 },
                 {
                     "icon": "images/ChernodubAr.jpg",
@@ -61,7 +62,8 @@
                     "title": "Artem Chernodub",
                     "subtitle": "Clikque Technology",
                     "desc": "Practical AI: what tasks are really solved using artificial intelligence technologies",
-                    "size": 2
+                    "size": 2,
+                    "cls": "exclude-class"
                 },
                 {
                     "icon": "images/ChernodubAr.jpg",

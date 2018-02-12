@@ -12063,6 +12063,9 @@ var Streamer = {
         eventClick: "select",
         selectGlobal: true,
         streamSelect: false,
+        excludeSelectClass: "",
+        excludeClickClass: "",
+        excludeClass: "",
         onStreamClick: Metro.noop,
         onStreamSelect: Metro.noop,
         onEventClick: Metro.noop,
@@ -12327,25 +12330,37 @@ var Streamer = {
 
         element.on(Metro.events.click, ".stream-event", function(e){
             var event = $(this);
+            if (o.excludeClass !== "" && event.hasClass(o.excludeClass)) {
+                return ;
+            }
             if (o.closed === false && event.data("closed") !== true && o.eventClick === 'select') {
-                if (event.hasClass("global-event")) {
-                    if (o.selectGlobal === true) {
+
+                if (o.excludeSelectClass !== "" && event.hasClass(o.excludeSelectClass)) {
+
+                } else {
+                    if (event.hasClass("global-event")) {
+                        if (o.selectGlobal === true) {
+                            event.toggleClass("selected");
+                        }
+                    } else {
                         event.toggleClass("selected");
                     }
-                } else {
-                    event.toggleClass("selected");
+                    if (o.changeUri === true) {
+                        that._changeURI();
+                    }
+                    Utils.exec(o.onEventSelect, [event, event.hasClass("selected")]);
                 }
-                if (o.changeUri === true) {
-                    that._changeURI();
-                }
-                Utils.exec(o.onEventSelect, [event, event.hasClass("selected")]);
             } else {
-                Utils.exec(o.onEventClick, [event]);
+                if (o.excludeClickClass !== "" && event.hasClass(o.excludeClickClass)) {
 
-                if (o.closed === true || event.data("closed") === true) {
-                    var target = event.data("target");
-                    if (target) {
-                        window.location.href = target;
+                } else {
+                    Utils.exec(o.onEventClick, [event]);
+
+                    if (o.closed === true || event.data("closed") === true) {
+                        var target = event.data("target");
+                        if (target) {
+                            window.location.href = target;
+                        }
                     }
                 }
             }
