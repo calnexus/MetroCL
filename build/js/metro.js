@@ -12063,6 +12063,7 @@ var Streamer = {
         eventClick: "select",
         selectGlobal: true,
         streamSelect: false,
+        excludeSelectElement: null,
         excludeSelectClass: "",
         excludeClickClass: "",
         excludeClass: "",
@@ -12330,6 +12331,7 @@ var Streamer = {
 
         element.on(Metro.events.click, ".stream-event", function(e){
             var event = $(this);
+
             if (o.excludeClass !== "" && event.hasClass(o.excludeClass)) {
                 return ;
             }
@@ -12354,13 +12356,20 @@ var Streamer = {
                 if (o.excludeClickClass !== "" && event.hasClass(o.excludeClickClass)) {
 
                 } else {
-                    Utils.exec(o.onEventClick, [event]);
 
-                    if (o.closed === true || event.data("closed") === true) {
-                        var target = event.data("target");
-                        if (target) {
-                            window.location.href = target;
+                    if (o.excludeSelectElement !== null && $(e.target).is(o.excludeSelectElement)) {
+
+                    } else {
+
+                        Utils.exec(o.onEventClick, [event]);
+
+                        if (o.closed === true || event.data("closed") === true) {
+                            var target = event.data("target");
+                            if (target) {
+                                window.location.href = target;
+                            }
                         }
+
                     }
                 }
             }
