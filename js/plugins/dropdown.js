@@ -18,7 +18,7 @@ var Dropdown = {
         effect: 'slide',
         toggleElement: null,
         noClose: false,
-        duration: METRO_ANIMATION_DURATION,
+        duration: 100,
         onDrop: Metro.noop,
         onUp: Metro.noop,
         onDropdownCreate: Metro.noop

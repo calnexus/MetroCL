@@ -439,6 +439,18 @@
         top: -4px;
         left: 100%;
     }
+
+    .dropdown-toggle {
+        &::before {
+            transform: rotate(-135deg)!important;
+        }
+
+        &.active-toggle {
+            &::before {
+                transform: rotate(45deg)!important;
+            }
+        }
+    }
 }
 
 .fluent-toggle-group {

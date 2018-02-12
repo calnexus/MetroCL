@@ -28154,6 +28154,14 @@ video:-webkit-full-screen {
   top: -4px;
   left: 100%;
 }
+.fluent-dropdown .dropdown-toggle::before {
+  -webkit-transform: rotate(-135deg) !important;
+          transform: rotate(-135deg) !important;
+}
+.fluent-dropdown .dropdown-toggle.active-toggle::before {
+  -webkit-transform: rotate(45deg) !important;
+          transform: rotate(45deg) !important;
+}
 .fluent-toggle-group {
   background-color: #ffffff;
   display: -webkit-box;
