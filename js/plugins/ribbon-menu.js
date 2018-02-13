@@ -1,4 +1,4 @@
-var FluentMenu = {
+var RibbonMenu = {
     init: function( options, elem ) {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
@@ -43,7 +43,7 @@ var FluentMenu = {
     _createStructure: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.addClass("fluent-menu");
+        element.addClass("ribbon-menu");
 
         var tabs = element.find(".tabs-holder li:not(.static)");
         var active_tab = element.find(".tabs-holder li.active");
@@ -55,7 +55,7 @@ var FluentMenu = {
             }
         }
 
-        var fluentGroups = element.find(".fluent-toggle-group");
+        var fluentGroups = element.find(".ribbon-toggle-group");
         $.each(fluentGroups, function(){
             var g = $(this);
             g.buttonsGroup({
@@ -63,7 +63,7 @@ var FluentMenu = {
             });
 
             var gw = 0;
-            var btns = g.find(".fluent-icon-button");
+            var btns = g.find(".ribbon-icon-button");
             $.each(btns, function(){
                 var b = $(this);
                 var w = b.outerWidth(true);
@@ -117,4 +117,4 @@ var FluentMenu = {
     }
 };
 
-Metro.plugin('fluentmenu', FluentMenu);
+Metro.plugin('ribbonmenu', RibbonMenu);

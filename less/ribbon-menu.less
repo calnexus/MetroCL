@@ -1,31 +1,31 @@
 @import (once) "include/vars";
 @import (once) "include/mixins";
 
-@fluentMenuStaticBackground: #1979ca;
-@fluentMenuBackground: #ffffff;
-@fluentMenuActiveBackground: #f5f6f7;
-@fluentMenuBorder: #dadbdc;
-@fluentMenuItemBorder: #a4cef9;
-@fluentMenuItemActiveBorder: #1979ca;
-@fluentMenuItemHoverBackground: rgba(red(#a4cef9), green(#a4cef9), blue(#a4cef9), .2);
-@fluentMenuItemActiveBackground: rgba(red(#a4cef9), green(#a4cef9), blue(#a4cef9), .8);
-@fluentDropdownBackground: #fbfcfd;
-@fluentDropdownDivider: #dcddde;
-@fluentDropdownShadow: #e3e4e5;
+@ribbonMenuStaticBackground: #1979ca;
+@ribbonMenuBackground: #ffffff;
+@ribbonMenuActiveBackground: #f5f6f7;
+@ribbonMenuBorder: #dadbdc;
+@ribbonMenuItemBorder: #a4cef9;
+@ribbonMenuItemActiveBorder: #1979ca;
+@ribbonMenuItemHoverBackground: rgba(red(#a4cef9), green(#a4cef9), blue(#a4cef9), .2);
+@ribbonMenuItemActiveBackground: rgba(red(#a4cef9), green(#a4cef9), blue(#a4cef9), .8);
+@ribbonDropdownBackground: #fbfcfd;
+@ribbonDropdownDivider: #dcddde;
+@ribbonDropdownShadow: #e3e4e5;
 
-.fluent-menu {
+.ribbon-menu {
     display: block;
     position: relative;
 }
 
-.fluent-menu {
+.ribbon-menu {
     .tabs-holder {
         display: flex;
         justify-content: flex-start;
         align-items: center;
         .reset-list();
         z-index: 1;
-        border-bottom: 1px solid @fluentMenuBorder;
+        border-bottom: 1px solid @ribbonMenuBorder;
     }
 
     .tabs-holder {
@@ -37,14 +37,14 @@
 
         li {
             color: @dark;
-            background-color: @fluentMenuBackground;
+            background-color: @ribbonMenuBackground;
             border-left: 1px solid transparent;
             border-right: 1px solid transparent;
-            border-bottom: 1px solid @fluentMenuBorder;
+            border-bottom: 1px solid @ribbonMenuBorder;
 
             &:hover {
-                border-left-color: @fluentMenuBorder;
-                border-right-color: @fluentMenuBorder;
+                border-left-color: @ribbonMenuBorder;
+                border-right-color: @ribbonMenuBorder;
             }
         }
 
@@ -61,19 +61,19 @@
         }
 
         .active {
-            background-color: @fluentMenuActiveBackground;
-            border: 1px solid @fluentMenuBorder;
+            background-color: @ribbonMenuActiveBackground;
+            border: 1px solid @ribbonMenuBorder;
             border-bottom-color: transparent;
         }
 
         .static {
-            background-color: @fluentMenuStaticBackground;
+            background-color: @ribbonMenuStaticBackground;
             color: @white;
         }
     }
 }
 
-.fluent-menu {
+.ribbon-menu {
     .content-holder {
         display: block;
         position: relative;
@@ -83,8 +83,8 @@
         .section {
             display: none;
             padding: 4px 4px;
-            border-bottom: 1px solid @fluentMenuBorder;
-            background-color: @fluentMenuActiveBackground;
+            border-bottom: 1px solid @ribbonMenuBorder;
+            background-color: @ribbonMenuActiveBackground;
             justify-content: flex-start;
 
             &.active {
@@ -115,7 +115,7 @@
                 height: 20px;
                 font-size: 11px;
                 text-align: center;
-                border-top: 1px solid @fluentMenuBorder;
+                border-top: 1px solid @ribbonMenuBorder;
             }
 
             .group-divider {
@@ -124,18 +124,18 @@
                 height: 100%;
                 margin: 0 4px;
                 width: 1px;
-                background-color: @fluentMenuBorder;
+                background-color: @ribbonMenuBorder;
             }
         }
 
         .group + .group {
-            border-left: 1px solid @fluentMenuBorder;
+            border-left: 1px solid @ribbonMenuBorder;
         }
 
     }
 }
 
-.fluent-button, .fluent-tool-button, .fluent-button-dropdown, .fluent-icon-button {
+.ribbon-button, .ribbon-tool-button, .ribbon-button-dropdown, .ribbon-icon-button {
     cursor: pointer;
     min-width: 0;
     text-align: center;
@@ -145,14 +145,15 @@
     position: relative;
 }
 
-.fluent-button {
-    height: 64px;
+.ribbon-button {
+    height: auto;
+    min-height: 64px;
     width: auto;
     padding: 4px;
 
     &:hover {
-        border-color: @fluentMenuItemBorder;
-        background-color: @fluentMenuItemHoverBackground;
+        border-color: @ribbonMenuItemBorder;
+        background-color: @ribbonMenuItemHoverBackground;
     }
 
     .caption, .icon {
@@ -186,7 +187,7 @@
     }
 }
 
-.fluent-icon-button {
+.ribbon-icon-button {
     height: 24px;
     width: auto;
     margin: 2px;
@@ -196,8 +197,8 @@
     padding: 2px 4px;
 
     &:hover {
-        border-color: @fluentMenuItemBorder;
-        background-color: @fluentMenuItemHoverBackground;
+        border-color: @ribbonMenuItemBorder;
+        background-color: @ribbonMenuItemHoverBackground;
     }
 
     .caption, .icon {
@@ -227,7 +228,7 @@
     }
 }
 
-.fluent-tool-button {
+.ribbon-tool-button {
     width: 24px;
     height: 24px;
     padding: 2px;
@@ -241,7 +242,7 @@
     }
 }
 
-.fluent-icon-button, .fluent-tool-button {
+.ribbon-icon-button, .ribbon-tool-button {
     &.dropdown-toggle {
         padding-right: 2px!important;
         &::before {
@@ -263,26 +264,26 @@
     }
 }
 
-.fluent-icon-button {
+.ribbon-icon-button {
     &.dropdown-toggle {
         padding-right: 4px!important;
     }
 }
 
-.fluent-split-button {
+.ribbon-split-button {
     text-align: center;
     border: 1px solid transparent;
     padding: 0;
 
     &:hover {
-        border-color: @fluentMenuItemBorder;
+        border-color: @ribbonMenuItemBorder;
 
-        .fluent-split {
-            border-color: @fluentMenuItemBorder;
+        .ribbon-split {
+            border-color: @ribbonMenuItemBorder;
         }
     }
 
-    .fluent-main, .fluent-split {
+    .ribbon-main, .ribbon-split {
         display: block;
         text-align: center;
         min-width: 0;
@@ -291,11 +292,11 @@
         cursor: pointer;
 
         &:hover {
-            background-color: @fluentMenuItemHoverBackground;
+            background-color: @ribbonMenuItemHoverBackground;
         }
     }
 
-    .fluent-main {
+    .ribbon-main {
         background-color: inherit;
         outline: none;
         position: relative;
@@ -315,7 +316,7 @@
         margin-top: 8px;
     }
 
-    .fluent-split {
+    .ribbon-split {
         font-size: 12px;
         border-top: 1px solid transparent;
         padding-bottom: 4px;
@@ -344,18 +345,18 @@
     }
 }
 
-.fluent-dropdown {
+.ribbon-dropdown {
     .reset-list();
     width: auto;
     float: left;
     display: block;
     position: absolute;
-    background-color: @fluentDropdownBackground;
+    background-color: @ribbonDropdownBackground;
     color: @dark;
     padding: 2px;
-    border: 1px solid @fluentMenuBorder;
+    border: 1px solid @ribbonMenuBorder;
     font-size: 12px;
-    box-shadow: 2px 2px 2px 0 rgba(red(@fluentDropdownShadow), green(@fluentDropdownShadow), blue(@fluentDropdownShadow), .7);
+    box-shadow: 2px 2px 2px 0 rgba(red(@ribbonDropdownShadow), green(@ribbonDropdownShadow), blue(@ribbonDropdownShadow), .7);
     z-index: @zindex-dropdown;
     top: 100%;
     left: 0;
@@ -373,8 +374,8 @@
         padding-left: 24px;
 
         &:hover {
-            border-color: @fluentMenuItemBorder;
-            background-color: @fluentMenuItemHoverBackground;
+            border-color: @ribbonMenuItemBorder;
+            background-color: @ribbonMenuItemHoverBackground;
         }
     }
 
@@ -382,7 +383,7 @@
         line-height: 24px;
         text-decoration: none;
         padding: 0 8px;
-        border-left: 1px solid @fluentDropdownDivider;
+        border-left: 1px solid @ribbonDropdownDivider;
     }
 
     .divider {
@@ -390,7 +391,7 @@
         height: 1px;
         width: 100%;
         position: relative;
-        background-color: @fluentDropdownDivider;
+        background-color: @ribbonDropdownDivider;
     }
 
     .checked, .checked-one {
@@ -420,8 +421,8 @@
             height: 22px;
             top: 0;
             left: 0;
-            border: 1px solid @fluentMenuItemBorder;
-            background-color: @fluentMenuItemHoverBackground;
+            border: 1px solid @ribbonMenuItemBorder;
+            background-color: @ribbonMenuItemHoverBackground;
             z-index: 1;
         }
     }
@@ -435,7 +436,7 @@
         }
     }
 
-    .fluent-dropdown {
+    .ribbon-dropdown {
         top: -4px;
         left: 100%;
     }
@@ -453,15 +454,15 @@
     }
 }
 
-.fluent-toggle-group {
+.ribbon-toggle-group {
     background-color: @light;
     display: flex;
     flex-flow: column wrap;
     max-height: 80px;
-    border: 1px solid @fluentMenuBorder;
+    border: 1px solid @ribbonMenuBorder;
     width: auto;
 
-    .fluent-icon-button {
+    .ribbon-icon-button {
         height: 20px;
         margin: 1px;
         padding: 1px 4px;
@@ -469,25 +470,25 @@
     }
 }
 
-.fluent-button, .fluent-tool-button, .fluent-icon-button {
+.ribbon-button, .ribbon-tool-button, .ribbon-icon-button {
     &:hover {
-        border-color: @fluentMenuItemBorder;
-        background-color: @fluentMenuItemHoverBackground;
+        border-color: @ribbonMenuItemBorder;
+        background-color: @ribbonMenuItemHoverBackground;
     }
 }
 
-.fluent-button, .fluent-tool-button, .fluent-split, .fluent-main, .fluent-icon-button {
+.ribbon-button, .ribbon-tool-button, .ribbon-split, .ribbon-main, .ribbon-icon-button {
     &:active, &.active {
-        border-color: @fluentMenuItemActiveBorder;
-        background-color: @fluentMenuItemActiveBackground!important;
+        border-color: @ribbonMenuItemActiveBorder;
+        background-color: @ribbonMenuItemActiveBackground!important;
     }
 }
 
-.fluent-menu {
+.ribbon-menu {
     .active-container {
-        .fluent-button, .fluent-tool-button, .fluent-icon-button {
-            border-color: @fluentMenuItemActiveBorder;
-            background-color: @fluentMenuItemActiveBackground!important;
+        .ribbon-button, .ribbon-tool-button, .ribbon-icon-button {
+            border-color: @ribbonMenuItemActiveBorder;
+            background-color: @ribbonMenuItemActiveBackground!important;
         }
     }
 }

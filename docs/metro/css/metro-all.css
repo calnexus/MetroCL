@@ -27745,11 +27745,11 @@ video:-webkit-full-screen {
   left: 1rem;
   margin-left: 0;
 }
-.fluent-menu {
+.ribbon-menu {
   display: block;
   position: relative;
 }
-.fluent-menu .tabs-holder {
+.ribbon-menu .tabs-holder {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -27766,47 +27766,47 @@ video:-webkit-full-screen {
   z-index: 1;
   border-bottom: 1px solid #dadbdc;
 }
-.fluent-menu .tabs-holder li,
-.fluent-menu .tabs-holder a {
+.ribbon-menu .tabs-holder li,
+.ribbon-menu .tabs-holder a {
   display: block;
   height: 24px;
   line-height: 24px;
 }
-.fluent-menu .tabs-holder li {
+.ribbon-menu .tabs-holder li {
   color: #1d1d1d;
   background-color: #ffffff;
   border-left: 1px solid transparent;
   border-right: 1px solid transparent;
   border-bottom: 1px solid #dadbdc;
 }
-.fluent-menu .tabs-holder li:hover {
+.ribbon-menu .tabs-holder li:hover {
   border-left-color: #dadbdc;
   border-right-color: #dadbdc;
 }
-.fluent-menu .tabs-holder li + li {
+.ribbon-menu .tabs-holder li + li {
   margin-left: 3px;
 }
-.fluent-menu .tabs-holder a {
+.ribbon-menu .tabs-holder a {
   text-decoration: none;
   padding: 0 14px;
   font-size: 12px;
   background-color: inherit;
   color: inherit;
 }
-.fluent-menu .tabs-holder .active {
+.ribbon-menu .tabs-holder .active {
   background-color: #f5f6f7;
   border: 1px solid #dadbdc;
   border-bottom-color: transparent;
 }
-.fluent-menu .tabs-holder .static {
+.ribbon-menu .tabs-holder .static {
   background-color: #1979ca;
   color: #ffffff;
 }
-.fluent-menu .content-holder {
+.ribbon-menu .content-holder {
   display: block;
   position: relative;
 }
-.fluent-menu .content-holder .section {
+.ribbon-menu .content-holder .section {
   display: none;
   padding: 4px 4px;
   border-bottom: 1px solid #dadbdc;
@@ -27815,12 +27815,12 @@ video:-webkit-full-screen {
       -ms-flex-pack: start;
           justify-content: flex-start;
 }
-.fluent-menu .content-holder .section.active {
+.ribbon-menu .content-holder .section.active {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-.fluent-menu .content-holder .group {
+.ribbon-menu .content-holder .group {
   padding: 0 4px 24px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -27834,11 +27834,11 @@ video:-webkit-full-screen {
   -ms-flex-line-pack: start;
       align-content: flex-start;
 }
-.fluent-menu .content-holder .group:nth-child(1):last-child {
+.ribbon-menu .content-holder .group:nth-child(1):last-child {
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
 }
-.fluent-menu .content-holder .group .title {
+.ribbon-menu .content-holder .group .title {
   display: block;
   position: absolute;
   left: 0;
@@ -27850,7 +27850,7 @@ video:-webkit-full-screen {
   text-align: center;
   border-top: 1px solid #dadbdc;
 }
-.fluent-menu .content-holder .group .group-divider {
+.ribbon-menu .content-holder .group .group-divider {
   display: block;
   position: relative;
   height: 100%;
@@ -27858,13 +27858,13 @@ video:-webkit-full-screen {
   width: 1px;
   background-color: #dadbdc;
 }
-.fluent-menu .content-holder .group + .group {
+.ribbon-menu .content-holder .group + .group {
   border-left: 1px solid #dadbdc;
 }
-.fluent-button,
-.fluent-tool-button,
-.fluent-button-dropdown,
-.fluent-icon-button {
+.ribbon-button,
+.ribbon-tool-button,
+.ribbon-button-dropdown,
+.ribbon-icon-button {
   cursor: pointer;
   min-width: 0;
   text-align: center;
@@ -27873,39 +27873,40 @@ video:-webkit-full-screen {
   outline: none;
   position: relative;
 }
-.fluent-button {
-  height: 64px;
+.ribbon-button {
+  height: auto;
+  min-height: 64px;
   width: auto;
   padding: 4px;
 }
-.fluent-button:hover {
+.ribbon-button:hover {
   border-color: #a4cef9;
   background-color: rgba(164, 206, 249, 0.2);
 }
-.fluent-button .caption,
-.fluent-button .icon {
+.ribbon-button .caption,
+.ribbon-button .icon {
   display: block;
   text-align: center;
 }
-.fluent-button .caption {
+.ribbon-button .caption {
   font-size: 12px;
 }
-.fluent-button .icon * {
+.ribbon-button .icon * {
   height: 32px;
   max-width: 32px;
   font-size: 26px;
   line-height: 32px;
 }
-.fluent-button .icon + .caption {
+.ribbon-button .icon + .caption {
   margin-top: 8px;
 }
-.fluent-button.dropdown-toggle {
+.ribbon-button.dropdown-toggle {
   padding-right: 4px!important;
 }
-.fluent-button.dropdown-toggle::before {
+.ribbon-button.dropdown-toggle::before {
   margin-left: -0.65rem;
 }
-.fluent-icon-button {
+.ribbon-icon-button {
   height: 24px;
   width: auto;
   margin: 2px;
@@ -27921,52 +27922,52 @@ video:-webkit-full-screen {
           align-items: center;
   padding: 2px 4px;
 }
-.fluent-icon-button:hover {
+.ribbon-icon-button:hover {
   border-color: #a4cef9;
   background-color: rgba(164, 206, 249, 0.2);
 }
-.fluent-icon-button .caption,
-.fluent-icon-button .icon {
+.ribbon-icon-button .caption,
+.ribbon-icon-button .icon {
   display: block;
 }
-.fluent-icon-button .caption {
+.ribbon-icon-button .caption {
   font-size: 12px;
 }
-.fluent-icon-button .icon * {
+.ribbon-icon-button .icon * {
   width: 16px;
   height: 16px;
   line-height: 16px;
   font-size: 14px;
 }
-.fluent-icon-button .icon + .caption,
-.fluent-icon-button .caption + .icon {
+.ribbon-icon-button .icon + .caption,
+.ribbon-icon-button .caption + .icon {
   margin-left: 4px;
 }
-.fluent-icon-button [class*=mif-] {
+.ribbon-icon-button [class*=mif-] {
   vertical-align: inherit;
 }
-.fluent-tool-button {
+.ribbon-tool-button {
   width: 24px;
   height: 24px;
   padding: 2px;
   margin: 2px;
 }
-.fluent-tool-button * {
+.ribbon-tool-button * {
   width: 16px;
   height: 16px;
   line-height: 16px;
   font-size: 14px;
 }
-.fluent-icon-button.dropdown-toggle,
-.fluent-tool-button.dropdown-toggle {
+.ribbon-icon-button.dropdown-toggle,
+.ribbon-tool-button.dropdown-toggle {
   padding-right: 2px!important;
 }
-.fluent-icon-button.dropdown-toggle::before,
-.fluent-tool-button.dropdown-toggle::before {
+.ribbon-icon-button.dropdown-toggle::before,
+.ribbon-tool-button.dropdown-toggle::before {
   display: none;
 }
-.fluent-icon-button.dropdown-toggle::after,
-.fluent-tool-button.dropdown-toggle::after {
+.ribbon-icon-button.dropdown-toggle::after,
+.ribbon-tool-button.dropdown-toggle::after {
   content: "";
   display: block;
   position: absolute;
@@ -27979,22 +27980,22 @@ video:-webkit-full-screen {
   border-color: transparent transparent #1d1d1d transparent;
   z-index: 1;
 }
-.fluent-icon-button.dropdown-toggle {
+.ribbon-icon-button.dropdown-toggle {
   padding-right: 4px!important;
 }
-.fluent-split-button {
+.ribbon-split-button {
   text-align: center;
   border: 1px solid transparent;
   padding: 0;
 }
-.fluent-split-button:hover {
+.ribbon-split-button:hover {
   border-color: #a4cef9;
 }
-.fluent-split-button:hover .fluent-split {
+.ribbon-split-button:hover .ribbon-split {
   border-color: #a4cef9;
 }
-.fluent-split-button .fluent-main,
-.fluent-split-button .fluent-split {
+.ribbon-split-button .ribbon-main,
+.ribbon-split-button .ribbon-split {
   display: block;
   text-align: center;
   min-width: 0;
@@ -28002,37 +28003,37 @@ video:-webkit-full-screen {
   width: 100%;
   cursor: pointer;
 }
-.fluent-split-button .fluent-main:hover,
-.fluent-split-button .fluent-split:hover {
+.ribbon-split-button .ribbon-main:hover,
+.ribbon-split-button .ribbon-split:hover {
   background-color: rgba(164, 206, 249, 0.2);
 }
-.fluent-split-button .fluent-main {
+.ribbon-split-button .ribbon-main {
   background-color: inherit;
   outline: none;
   position: relative;
   border: none;
 }
-.fluent-split-button .icon * {
+.ribbon-split-button .icon * {
   height: 32px;
   max-width: 32px;
   font-size: 26px;
   line-height: 32px;
 }
-.fluent-split-button .icon + .caption {
+.ribbon-split-button .icon + .caption {
   margin-top: 8px;
 }
-.fluent-split-button .fluent-split {
+.ribbon-split-button .ribbon-split {
   font-size: 12px;
   border-top: 1px solid transparent;
   padding-bottom: 4px;
 }
-.fluent-split-button .fluent-split.dropdown-toggle {
+.ribbon-split-button .ribbon-split.dropdown-toggle {
   padding-right: 4px!important;
 }
-.fluent-split-button .fluent-split.dropdown-toggle::before {
+.ribbon-split-button .ribbon-split.dropdown-toggle::before {
   display: none;
 }
-.fluent-split-button .fluent-split.dropdown-toggle::after {
+.ribbon-split-button .ribbon-split.dropdown-toggle::after {
   content: "";
   display: block;
   position: absolute;
@@ -28047,7 +28048,7 @@ video:-webkit-full-screen {
   border-color: transparent transparent #1d1d1d transparent;
   z-index: 1;
 }
-.fluent-dropdown {
+.ribbon-dropdown {
   list-style: none inside none;
   margin: 0;
   padding: 0;
@@ -28067,45 +28068,45 @@ video:-webkit-full-screen {
   top: 100%;
   left: 0;
 }
-.fluent-dropdown li,
-.fluent-dropdown a {
+.ribbon-dropdown li,
+.ribbon-dropdown a {
   display: block;
   position: relative;
   background-color: inherit;
   color: inherit;
   height: 24px;
 }
-.fluent-dropdown li {
+.ribbon-dropdown li {
   border: 1px solid transparent;
   padding-left: 24px;
 }
-.fluent-dropdown li:hover {
+.ribbon-dropdown li:hover {
   border-color: #a4cef9;
   background-color: rgba(164, 206, 249, 0.2);
 }
-.fluent-dropdown a {
+.ribbon-dropdown a {
   line-height: 24px;
   text-decoration: none;
   padding: 0 8px;
   border-left: 1px solid #dcddde;
 }
-.fluent-dropdown .divider {
+.ribbon-dropdown .divider {
   display: block;
   height: 1px;
   width: 100%;
   position: relative;
   background-color: #dcddde;
 }
-.fluent-dropdown .checked::before,
-.fluent-dropdown .checked-one::before,
-.fluent-dropdown .checked::after,
-.fluent-dropdown .checked-one::after {
+.ribbon-dropdown .checked::before,
+.ribbon-dropdown .checked-one::before,
+.ribbon-dropdown .checked::after,
+.ribbon-dropdown .checked-one::after {
   position: absolute;
   display: block;
   content: "";
 }
-.fluent-dropdown .checked::before,
-.fluent-dropdown .checked-one::before {
+.ribbon-dropdown .checked::before,
+.ribbon-dropdown .checked-one::before {
   background-color: transparent;
   border-color: #1d1d1d;
   border-left: 2px solid;
@@ -28118,8 +28119,8 @@ video:-webkit-full-screen {
           transform: translateY(-50%) rotate(-45deg);
   z-index: 2;
 }
-.fluent-dropdown .checked::after,
-.fluent-dropdown .checked-one::after {
+.ribbon-dropdown .checked::after,
+.ribbon-dropdown .checked-one::after {
   width: 23px;
   height: 22px;
   top: 0;
@@ -28128,25 +28129,25 @@ video:-webkit-full-screen {
   background-color: rgba(164, 206, 249, 0.2);
   z-index: 1;
 }
-.fluent-dropdown .checked-one::before {
+.ribbon-dropdown .checked-one::before {
   width: .4rem;
   height: .4rem;
   border-radius: 50%;
   background-color: #1d1d1d;
 }
-.fluent-dropdown .fluent-dropdown {
+.ribbon-dropdown .ribbon-dropdown {
   top: -4px;
   left: 100%;
 }
-.fluent-dropdown .dropdown-toggle::before {
+.ribbon-dropdown .dropdown-toggle::before {
   -webkit-transform: rotate(-135deg) !important;
           transform: rotate(-135deg) !important;
 }
-.fluent-dropdown .dropdown-toggle.active-toggle::before {
+.ribbon-dropdown .dropdown-toggle.active-toggle::before {
   -webkit-transform: rotate(45deg) !important;
           transform: rotate(45deg) !important;
 }
-.fluent-toggle-group {
+.ribbon-toggle-group {
   background-color: #f8f8f8;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -28159,34 +28160,34 @@ video:-webkit-full-screen {
   border: 1px solid #dadbdc;
   width: auto;
 }
-.fluent-toggle-group .fluent-icon-button {
+.ribbon-toggle-group .ribbon-icon-button {
   height: 20px;
   margin: 1px;
   padding: 1px 4px;
   background-color: inherit;
 }
-.fluent-button:hover,
-.fluent-tool-button:hover,
-.fluent-icon-button:hover {
+.ribbon-button:hover,
+.ribbon-tool-button:hover,
+.ribbon-icon-button:hover {
   border-color: #a4cef9;
   background-color: rgba(164, 206, 249, 0.2);
 }
-.fluent-button:active,
-.fluent-tool-button:active,
-.fluent-split:active,
-.fluent-main:active,
-.fluent-icon-button:active,
-.fluent-button.active,
-.fluent-tool-button.active,
-.fluent-split.active,
-.fluent-main.active,
-.fluent-icon-button.active {
+.ribbon-button:active,
+.ribbon-tool-button:active,
+.ribbon-split:active,
+.ribbon-main:active,
+.ribbon-icon-button:active,
+.ribbon-button.active,
+.ribbon-tool-button.active,
+.ribbon-split.active,
+.ribbon-main.active,
+.ribbon-icon-button.active {
   border-color: #1979ca;
   background-color: rgba(164, 206, 249, 0.8) !important;
 }
-.fluent-menu .active-container .fluent-button,
-.fluent-menu .active-container .fluent-tool-button,
-.fluent-menu .active-container .fluent-icon-button {
+.ribbon-menu .active-container .ribbon-button,
+.ribbon-menu .active-container .ribbon-tool-button,
+.ribbon-menu .active-container .ribbon-icon-button {
   border-color: #1979ca;
   background-color: rgba(164, 206, 249, 0.8) !important;
 }
