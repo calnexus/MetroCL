@@ -28098,6 +28098,7 @@ video:-webkit-full-screen {
   text-decoration: none;
   padding: 0 8px;
   border-left: 1px solid #dcddde;
+  white-space: nowrap;
 }
 .ribbon-dropdown .divider {
   display: block;

@@ -555,8 +555,53 @@
                 </code></pre>
 
                 <h3 id="_ribbon_elements">Ribbon elements</h3>
+                <p>
+                    Metro 4 contains the number of special ribbon elements:
+                        <code>button</code>,
+                        <code>tool button</code>,
+                        <code>icon button</code>,
+                        <code>split button</code>,
+                        <code>buttons group</code> and
+                        <code>dropdown</code>.
+                </p>
 
                 <h4 id="_ribbon_elements-button">Button</h4>
+                <div class="example">
+                    <nav data-role="ribbonmenu">
+                        <ul class="tabs-holder">
+                            <li><a href="#section-button">Button</a></li>
+                        </ul>
+
+                        <div class="content-holder">
+                            <div class="section" id="section-button">
+                                <button class="ribbon-button">
+                                            <span class="icon">
+                                                <img src="images/share.svg">
+                                            </span>
+                                    <span class="caption">Share</span>
+                                </button>
+                                <div>
+                                    <button class="ribbon-button dropdown-toggle">
+                                                <span class="icon">
+                                                    <span class="mif-file-zip fg-cyan"></span>
+                                                </span>
+                                        <span class="caption">Compress</span>
+                                    </button>
+                                    <ul class="ribbon-dropdown" data-role="dropdown" data-duration="100">
+                                        <li><a href="#">Item 1</a></li>
+                                        <li><a href="#">Item 2</a></li>
+                                        <li><a href="#">Item 3</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Item 4</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+
+
+
                 <h4 id="_ribbon_elements-icon-button">Icon button</h4>
                 <h4 id="_ribbon_elements-tool-button">Tool button</h4>
                 <h4 id="_ribbon_elements-split-button">Split button</h4>
@@ -565,7 +610,7 @@
 
                 <h4 id="_ribbon_elements-others">Others...</h4>
                 <p>
-                    Also you can out any others elements to ribbon menu section.
+                    You can put any others elements to ribbon menu.
                 </p>
 
             </main>
