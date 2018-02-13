@@ -566,6 +566,10 @@
                 </p>
 
                 <h4 id="_ribbon_elements-button">Button</h4>
+                <p>
+                    To create ribbon button add class <code>.ribbon-button</code> to <code>&lt;button&gt;</code> element and then add <code>icon</code> and <code>caption</code>.
+                    You can create simple button and button with dropdown menu.
+                </p>
                 <div class="example">
                     <nav data-role="ribbonmenu">
                         <ul class="tabs-holder">
@@ -599,6 +603,32 @@
                         </div>
                     </nav>
                 </div>
+                <pre><code class="html">
+                    ...button
+                    &lt;button class="ribbon-button"&gt;
+                        &lt;span class="icon"&gt;
+                            &lt;img src="images/share.svg"&gt;
+                        &lt;/span&gt;
+                        &lt;span class="caption"&gt;Share&lt;/span&gt;
+                    &lt;/button&gt;
+
+                    ...button with dropdown
+                    &lt;div&gt;
+                        &lt;button class="ribbon-button dropdown-toggle"&gt;
+                            &lt;span class="icon"&gt;
+                                &lt;span class="mif-file-zip fg-cyan"&gt;&lt;/span&gt;
+                            &lt;/span&gt;
+                            &lt;span class="caption"&gt;Compress&lt;/span&gt;
+                        &lt;/button&gt;
+                        &lt;ul class="ribbon-dropdown" data-role="dropdown" data-duration="100"&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Item 1&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Item 2&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Item 3&lt;/a&gt;&lt;/li&gt;
+                            &lt;li class="divider"&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Item 4&lt;/a&gt;&lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/div&gt;
+                </code></pre>
 
 
 
