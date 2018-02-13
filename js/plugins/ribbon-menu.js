@@ -14,7 +14,7 @@ var RibbonMenu = {
         onStatic: Metro.noop,
         onBeforeTab: Metro.noop_true,
         onTab: Metro.noop,
-        onFluentMenuCreate: Metro.noop
+        onRibbonMenuCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -37,7 +37,7 @@ var RibbonMenu = {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onFluentMenuCreate, [element]);
+        Utils.exec(o.onRibbonMenuCreate, [element]);
     },
 
     _createStructure: function(){
