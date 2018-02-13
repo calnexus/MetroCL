@@ -12594,7 +12594,9 @@ var Streamer = {
 
     selectEvent: function(event, state){
         var that = this, element = this.element, o = this.options, data = this.data;
-        state = state || true;
+        if (state === undefined) {
+            state = true;
+        }
         event = $(event);
 
         if (event.hasClass("global-event") && o.selectGlobal !== true) {
