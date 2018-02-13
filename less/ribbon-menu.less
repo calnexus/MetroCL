@@ -77,6 +77,8 @@
     .content-holder {
         display: block;
         position: relative;
+        border-left: 1px solid @ribbonMenuBorder;
+        border-right: 1px solid @ribbonMenuBorder;
     }
 
     .content-holder {
@@ -116,6 +118,7 @@
                 font-size: 11px;
                 text-align: center;
                 border-top: 1px solid @ribbonMenuBorder;
+                white-space: nowrap;
             }
 
             .group-divider {
@@ -125,6 +128,10 @@
                 margin: 0 4px;
                 width: 1px;
                 background-color: @ribbonMenuBorder;
+            }
+
+            & > *:not(.title), & > *:not(.group-divider) {
+                margin: 2px;
             }
         }
 
@@ -150,6 +157,7 @@
     min-height: 64px;
     width: auto;
     padding: 4px;
+    margin: 0;
 
     &:hover {
         border-color: @ribbonMenuItemBorder;
@@ -190,7 +198,7 @@
 .ribbon-icon-button {
     height: 24px;
     width: auto;
-    margin: 2px;
+    margin: 0;
     display: inline-flex;
     flex-flow: row nowrap;
     align-items: center;
@@ -232,7 +240,7 @@
     width: 24px;
     height: 24px;
     padding: 2px;
-    margin: 2px;
+    margin: 0;
 
     * {
         width: 16px;
@@ -274,6 +282,7 @@
     text-align: center;
     border: 1px solid transparent;
     padding: 0;
+    margin: 0;
 
     &:hover {
         border-color: @ribbonMenuItemBorder;
