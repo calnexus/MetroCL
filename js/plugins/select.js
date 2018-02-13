@@ -12,7 +12,7 @@ var Select = {
         return this;
     },
     options: {
-        duration: METRO_ANIMATION_DURATION,
+        duration: 100,
         clsElement: "",
         clsSelect: "",
         clsPrepend: "",

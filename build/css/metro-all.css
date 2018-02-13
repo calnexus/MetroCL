@@ -16848,6 +16848,10 @@ label {
   cursor: pointer;
   position: relative;
 }
+.select .d-menu li a,
+.select .v-menu li a {
+  min-width: auto;
+}
 .select select {
   position: absolute;
   opacity: 0;
