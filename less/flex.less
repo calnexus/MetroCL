@@ -57,6 +57,11 @@
 .flex-no-grow-self {flex-grow: 0;}
 .flex-grow-self {flex-grow: 1;}
 
+.flex-right {margin-left: auto;}
+.flex-left {margin-right: auto;}
+.flex-top {margin-bottom: auto;}
+.flex-bottom {margin-top: auto;}
+
 .generate-flex-media-options(@mediaBreakpointListMobileLength);
 .generate-flex-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
     @m: extract(@mediaBreakpointListMobile, @i);
@@ -103,6 +108,11 @@
         .flex-shrink-self-@{m} {flex-shrink: 1;}
         .flex-no-grow-self-@{m} {flex-grow: 0;}
         .flex-grow-self-@{m} {flex-grow: 1;}
+
+        .flex-right-@{m} {margin-left: auto;}
+        .flex-left-@{m} {margin-right: auto;}
+        .flex-top-@{m} {margin-bottom: auto;}
+        .flex-bottom-@{m} {margin-top: auto;}
 
         .generate-order(@gridColumns12);
         .generate-order(@j) when (@j > 0){
