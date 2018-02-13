@@ -12577,6 +12577,38 @@ var Streamer = {
         return this.data;
     },
 
+    toggleEvent: function(event){
+        var that = this, element = this.element, o = this.options, data = this.data;
+        event = $(event);
+
+        if (event.hasClass("global-event") && o.selectGlobal !== true) {
+            return ;
+        }
+
+        if (event.hasClass("selected")) {
+            this.selectEvent(event, false);
+        } else {
+            this.selectEvent(event, true);
+        }
+    },
+
+    selectEvent: function(event, state){
+        var that = this, element = this.element, o = this.options, data = this.data;
+        state = state || true;
+        event = $(event);
+
+        if (event.hasClass("global-event") && o.selectGlobal !== true) {
+            return ;
+        }
+
+        if (state === true) event.addClass("selected"); else event.removeClass("selected");
+
+        if (o.changeUri === true) {
+            that._changeURI();
+        }
+        Utils.exec(o.onEventSelect, [event, state]);
+    },
+
     changeSource: function(){
         var that = this, element = this.element, o = this.options, data = this.data;
         var new_source = element.attr("data-source");
