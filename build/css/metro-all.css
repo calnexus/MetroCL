@@ -17409,10 +17409,6 @@ form[data-role*=validator] .invalid_feedback {
   clear: both;
   content: "";
 }
-.h-menu > li {
-  display: block;
-  float: left;
-}
 .h-menu > li,
 .h-menu > li > a {
   display: block;
@@ -17420,6 +17416,8 @@ form[data-role*=validator] .invalid_feedback {
 }
 .h-menu > li {
   background-color: inherit;
+  color: inherit;
+  float: left;
 }
 .h-menu > li:hover {
   background-color: rgba(29, 29, 29, 0.1);
@@ -17536,10 +17534,12 @@ form[data-role*=validator] .invalid_feedback {
   position: relative;
   cursor: pointer;
   color: inherit;
+  background-color: inherit;
 }
 .d-menu li a,
 .v-menu li a {
   color: inherit;
+  background-color: inherit;
   font-size: .875rem;
   display: block;
   float: none;

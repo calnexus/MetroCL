@@ -10,11 +10,6 @@
     color: @dark;
     .clear();
 
-    & > li {
-        display: block;
-        float: left;
-    }
-
     & > li, & > li > a {
         display: block;
         position: relative;
@@ -22,6 +17,9 @@
 
     & > li {
         background-color: inherit;
+        color: inherit;
+        float: left;
+
         &:hover {
             background-color: @hoverBackground;
             & > a, .icon {
@@ -154,11 +152,13 @@
         position: relative;
         cursor: pointer;
         color: inherit;
+        background-color: inherit;
     }
 
     li {
         a {
             color: inherit;
+            background-color: inherit;
             font-size: .875rem;
             display: block;
             float: none;
