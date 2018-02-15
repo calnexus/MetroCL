@@ -27,6 +27,7 @@ var Donut = {
         total: 100,
         cap: "%",
         showText: true,
+        showValue: false,
         animate: 0,
         onChange: Metro.noop,
         onDonutCreate: Metro.noop
@@ -82,7 +83,8 @@ var Donut = {
         var title = element.find(".donut-title");
         var r = o.radius  * (1 - (1 - o.hole) / 2);
         var circumference = 2 * Math.PI * r;
-        var title_value = Math.round(((v * 1000 / o.total) / 10))+(o.cap);
+        // var title_value = (o.showValue ? o.value : Math.round(((v * 1000 / o.total) / 10)))+(o.cap);
+        var title_value = (o.showValue ? v : Utils.percent(o.total, v, true))  + (o.cap);
         var fill_value = ((v * circumference) / o.total) + ' ' + circumference;
 
         fill.attr("stroke-dasharray", fill_value);
