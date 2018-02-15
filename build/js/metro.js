@@ -202,11 +202,11 @@ var Metro = {
         observerCallback = function(mutations){
             mutations.map(function(mutation){
 
-                if (mutation.type === 'attributes') {
+                if (mutation.type === 'attributes' && mutation.attributeName !== "data-role") {
                     var element = $(mutation.target);
                     if (element.data('metroComponent') !== undefined) {
                         var plug = element.data(element.data('metroComponent'));
-                        plug.changeAttribute(mutation.attributeName);
+                        if (plug) plug.changeAttribute(mutation.attributeName);
                     }
                 } else
 
@@ -298,6 +298,8 @@ var Metro = {
     },
 
     initWidgets: function(widgets) {
+        var that = this;
+
         $.each(widgets, function () {
             var $this = $(this), w = this;
             var roles = $this.data('role').split(/\s*,\s*/);
@@ -325,7 +327,6 @@ var Metro = {
 
     destroyPlugin: function(element, name){
         element = Utils.isJQueryObject(element) ? element[0] : element;
-        $(element).data(name + '-initiated', false);
         var p = $(element).data(name);
         if (Utils.isFunc(p['destroy'])) {
             p['destroy']();
@@ -336,7 +337,7 @@ var Metro = {
     initPlugin: function(element, name){
         element = $(element);
         try {
-            if ($.fn[name] !== undefined && element.data(name + '-initiated') !== true) {
+            if ($.fn[name] !== undefined) {
                 $.fn[name].call(element);
                 element.data(name + '-initiated', true);
                 element.data('metroComponent', name);
@@ -3619,6 +3620,14 @@ var Activity = {
 
     changeAttribute: function(attributeName){
 
+    },
+
+    destroy: function(){
+        var that = this, element = this.element, o = this.options;
+
+        element.html('')
+            .removeClass(o.style + "-style")
+            .removeClass("activity-" + o.type);
     }
 };
 
@@ -4140,6 +4149,9 @@ var Audio = {
 
         Metro.destroyPlugin(this.stream, "slider");
         Metro.destroyPlugin(this.volume, "slider");
+
+        element.insertBefore(player);
+        player.html("").remove();
     }
 };
 
@@ -7834,7 +7846,7 @@ var Donut = {
         var r = o.radius  * (1 - (1 - o.hole) / 2);
         var circumference = 2 * Math.PI * r;
         var title_value = ((v * 1000 / o.total) / 10)+(o.cap);
-        var fill_value = ((v * circumference) / o.total) + ' ' + circumference;
+        var fill_value = Math.round(((v * circumference) / o.total)) + ' ' + circumference;
 
         fill.attr("stroke-dasharray", fill_value);
         title.html(title_value);

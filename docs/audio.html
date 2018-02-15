@@ -85,7 +85,12 @@
                     To define audio file add attribute <code>data-src="..."</code>.
                 </p>
                 <div class="example">
-                    <audio data-role="audio" data-src="https://metroui.org.ua/res/hotel_california.mp3"></audio>
+                    <div class="mb-2">
+                        <button class="button alert" onclick="Metro.destroyPlugin( $('#a1'), 'audio')">Destroy</button>
+                        <button class="button success" onclick="Metro.initPlugin( $('#a1'), 'audio')">Init</button>
+                    </div>
+
+                    <audio id="a1" data-role="audio" data-src="https://metroui.org.ua/res/hotel_california.mp3"></audio>
                 </div>
                 <pre><code class="html">
                     &lt;audio data-role="audio" data-src="file.mp3"&gt;&lt;/audio&gt;
@@ -125,7 +130,7 @@
                     &lt;/audio&gt;
                 </code></pre>
 
-                <h4 id="_audio_controls_schemes">Define controls images</h4>
+                <h4 id="_audio_controls_images">Define controls images</h4>
                 <p>
                     To define controls images use next attributes:
                     <code>data-loop-icon</code>,

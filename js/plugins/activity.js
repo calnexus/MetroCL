@@ -81,6 +81,14 @@ var Activity = {
 
     changeAttribute: function(attributeName){
 
+    },
+
+    destroy: function(){
+        var that = this, element = this.element, o = this.options;
+
+        element.html('')
+            .removeClass(o.style + "-style")
+            .removeClass("activity-" + o.type);
     }
 };
 

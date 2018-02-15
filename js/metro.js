@@ -184,11 +184,11 @@ var Metro = {
         observerCallback = function(mutations){
             mutations.map(function(mutation){
 
-                if (mutation.type === 'attributes') {
+                if (mutation.type === 'attributes' && mutation.attributeName !== "data-role") {
                     var element = $(mutation.target);
                     if (element.data('metroComponent') !== undefined) {
                         var plug = element.data(element.data('metroComponent'));
-                        plug.changeAttribute(mutation.attributeName);
+                        if (plug) plug.changeAttribute(mutation.attributeName);
                     }
                 } else
 
@@ -280,6 +280,8 @@ var Metro = {
     },
 
     initWidgets: function(widgets) {
+        var that = this;
+
         $.each(widgets, function () {
             var $this = $(this), w = this;
             var roles = $this.data('role').split(/\s*,\s*/);
@@ -307,7 +309,6 @@ var Metro = {
 
     destroyPlugin: function(element, name){
         element = Utils.isJQueryObject(element) ? element[0] : element;
-        $(element).data(name + '-initiated', false);
         var p = $(element).data(name);
         if (Utils.isFunc(p['destroy'])) {
             p['destroy']();
@@ -318,7 +319,7 @@ var Metro = {
     initPlugin: function(element, name){
         element = $(element);
         try {
-            if ($.fn[name] !== undefined && element.data(name + '-initiated') !== true) {
+            if ($.fn[name] !== undefined) {
                 $.fn[name].call(element);
                 element.data(name + '-initiated', true);
                 element.data('metroComponent', name);

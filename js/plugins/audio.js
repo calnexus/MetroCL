@@ -457,6 +457,9 @@ var Audio = {
 
         Metro.destroyPlugin(this.stream, "slider");
         Metro.destroyPlugin(this.volume, "slider");
+
+        element.insertBefore(player);
+        player.html("").remove();
     }
 };
 
