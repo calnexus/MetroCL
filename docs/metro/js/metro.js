@@ -323,6 +323,29 @@ var Metro = {
         };
     },
 
+    destroyPlugin: function(element, name){
+        element = Utils.isJQueryObject(element) ? element[0] : element;
+        $(element).data(name + '-initiated', false);
+        var p = $(element).data(name);
+        if (Utils.isFunc(p['destroy'])) {
+            p['destroy']();
+        }
+        $.removeData(element, name);
+    },
+
+    initPlugin: function(element, name){
+        element = $(element);
+        try {
+            if ($.fn[name] !== undefined && element.data(name + '-initiated') !== true) {
+                $.fn[name].call(element);
+                element.data(name + '-initiated', true);
+                element.data('metroComponent', name);
+            }
+        } catch (e) {
+            console.log(e.message, e.stack);
+        }
+    },
+
     noop: function(){},
     noop_true: function(){return true;},
     noop_false: function(){return false;},
@@ -8135,6 +8158,10 @@ var Dropdown = {
 
     changeAttribute: function(attributeName){
 
+    },
+
+    destroy: function(){
+        this._toggle.off(Metro.events.click);
     }
 };
 

@@ -139,6 +139,10 @@ var Dropdown = {
 
     changeAttribute: function(attributeName){
 
+    },
+
+    destroy: function(){
+        this._toggle.off(Metro.events.click);
     }
 };
 

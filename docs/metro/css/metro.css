@@ -17636,8 +17636,8 @@ form[data-role*=validator] .invalid_feedback {
   color: #e4e4e4;
 }
 .d-menu {
-  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
-          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
+          box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
 }
 .d-menu.context li a {
   font-size: .75rem;
@@ -17711,8 +17711,8 @@ form[data-role*=validator] .invalid_feedback {
   color: #1d1d1d;
   border-collapse: separate;
   display: none;
-  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
-          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
+          box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
 }
 .t-menu.open {
   display: block;
@@ -17824,6 +17824,10 @@ form[data-role*=validator] .invalid_feedback {
 .win-shadow {
   -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
           box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+}
+.ribbon-shadow {
+  -webkit-box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7);
+          box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7);
 }
 .shadow-1 {
   -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
@@ -22079,8 +22083,8 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   .tabs-expand-fs > ul .d-menu {
     position: absolute;
     width: auto;
-    -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
-            box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
+            box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
   }
   .tabs-expand-fs.bottom > ul {
     border: none;
@@ -22135,8 +22139,8 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   .tabs-expand-sm > ul .d-menu {
     position: absolute;
     width: auto;
-    -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
-            box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
+            box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
   }
   .tabs-expand-sm.bottom > ul {
     border: none;
@@ -22191,8 +22195,8 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   .tabs-expand-md > ul .d-menu {
     position: absolute;
     width: auto;
-    -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
-            box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
+            box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
   }
   .tabs-expand-md.bottom > ul {
     border: none;
@@ -22247,8 +22251,8 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   .tabs-expand-lg > ul .d-menu {
     position: absolute;
     width: auto;
-    -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
-            box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
+            box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
   }
   .tabs-expand-lg.bottom > ul {
     border: none;
@@ -22303,8 +22307,8 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   .tabs-expand-xl > ul .d-menu {
     position: absolute;
     width: auto;
-    -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
-            box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
+            box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
   }
   .tabs-expand-xl.bottom > ul {
     border: none;
@@ -22359,8 +22363,8 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   .tabs-expand-xxl > ul .d-menu {
     position: absolute;
     width: auto;
-    -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
-            box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
+            box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
   }
   .tabs-expand-xxl.bottom > ul {
     border: none;
