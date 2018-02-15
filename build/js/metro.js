@@ -7845,8 +7845,8 @@ var Donut = {
         var title = element.find(".donut-title");
         var r = o.radius  * (1 - (1 - o.hole) / 2);
         var circumference = 2 * Math.PI * r;
-        var title_value = ((v * 1000 / o.total) / 10)+(o.cap);
-        var fill_value = Math.round(((v * circumference) / o.total)) + ' ' + circumference;
+        var title_value = Math.round(((v * 1000 / o.total) / 10))+(o.cap);
+        var fill_value = ((v * circumference) / o.total) + ' ' + circumference;
 
         fill.attr("stroke-dasharray", fill_value);
         title.html(title_value);
