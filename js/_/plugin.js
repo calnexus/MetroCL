@@ -49,7 +49,9 @@ var myObject = {
 
     changeAttribute: function(attributeName){
 
-    }
+    },
+
+    destroy: function(){}
 };
 
 Metro.plugin('myobj', myObject);

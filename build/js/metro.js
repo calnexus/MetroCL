@@ -3527,6 +3527,10 @@ var Accordion = {
     },
 
     changeAttribute: function(attributeName){
+    },
+
+    destroy: function(){
+        this.element.off(Metro.events.click, ".heading");
     }
 };
 
@@ -3979,7 +3983,7 @@ var Audio = {
             that._setVolume();
         });
 
-        player.on(Metro.events.click, ".play", function(e){
+        player.on(Metro.events.click, ".play", function(){
             if (audio.paused) {
                 that.play();
             } else {
@@ -3987,11 +3991,11 @@ var Audio = {
             }
         });
 
-        player.on(Metro.events.click, ".stop", function(e){
+        player.on(Metro.events.click, ".stop", function(){
             that.stop();
         });
 
-        player.on(Metro.events.click, ".mute", function(e){
+        player.on(Metro.events.click, ".mute", function(){
             that._toggleMute();
         });
 
@@ -4112,6 +4116,30 @@ var Audio = {
             case "data-src": this.changeSource(); break;
             case "data-volume": this.changeVolume(); break;
         }
+    },
+
+    destroy: function(){
+        var element = this.element, player = this.player;
+
+        element.off("loadstart");
+        element.off("loadedmetadata");
+        element.off("canplay");
+        element.off("progress");
+        element.off("timeupdate");
+        element.off("waiting");
+        element.off("loadeddata");
+        element.off("play");
+        element.off("pause");
+        element.off("stop");
+        element.off("ended");
+        element.off("volumechange");
+        player.off(Metro.events.click, ".play");
+        player.off(Metro.events.click, ".stop");
+        player.off(Metro.events.click, ".mute");
+        player.off(Metro.events.click, ".loop");
+
+        Metro.destroyPlugin(this.stream, "slider");
+        Metro.destroyPlugin(this.volume, "slider");
     }
 };
 

@@ -150,6 +150,10 @@ var Accordion = {
     },
 
     changeAttribute: function(attributeName){
+    },
+
+    destroy: function(){
+        this.element.off(Metro.events.click, ".heading");
     }
 };
 
