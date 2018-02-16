@@ -2811,12 +2811,12 @@ var Utils = {
             return false;
         }
 
-        if (this.isTag(o) || this.isUrl(o)) {
-            return false;
-        }
-
         if (typeof o === t) {
             return o;
+        }
+
+        if (this.isTag(o) || this.isUrl(o)) {
+            return false;
         }
 
         if (typeof window[o] === t) {
