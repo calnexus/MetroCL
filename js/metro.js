@@ -186,9 +186,12 @@ var Metro = {
 
                 if (mutation.type === 'attributes' && mutation.attributeName !== "data-role") {
                     var element = $(mutation.target);
-                    if (element.data('metroComponent') !== undefined) {
-                        var plug = element.data(element.data('metroComponent'));
-                        if (plug) plug.changeAttribute(mutation.attributeName);
+                    var mc = element.data('metroComponent');
+                    if (mc !== undefined) {
+                        $.each(mc, function(){
+                            var plug = element.data(this);
+                            if (plug) plug.changeAttribute(mutation.attributeName);
+                        });
                     }
                 } else
 
@@ -290,7 +293,14 @@ var Metro = {
                     if ($.fn[func] !== undefined && $this.data(func + '-initiated') !== true) {
                         $.fn[func].call($this);
                         $this.data(func + '-initiated', true);
-                        $this.data('metroComponent', func);
+
+                        var mc = $this.data('metroComponent');
+
+                        if (mc === undefined) {
+                            $this.data('metroComponent', [func]);
+                        } else {
+                            mc.push(func);
+                        }
                     }
                 } catch (e) {
                     console.log(e.message, e.stack);
@@ -313,7 +323,19 @@ var Metro = {
         if (Utils.isFunc(p['destroy'])) {
             p['destroy']();
         }
+        var mc = $(element).data("metroComponent");
+        Utils.arrayDelete(mc, name);
+        $(element).data("metroComponent", mc);
         $.removeData(element, name);
+    },
+
+    destroyPluginAll: function(element){
+        element = Utils.isJQueryObject(element) ? element[0] : element;
+        var mc = $(element).data("metroComponent");
+
+        if (mc !== undefined && mc.length > 0) $.each(mc, function(){
+            Metro.destroyPlugin(element, this);
+        });
     },
 
     initPlugin: function(element, name){
@@ -322,7 +344,14 @@ var Metro = {
             if ($.fn[name] !== undefined) {
                 $.fn[name].call(element);
                 element.data(name + '-initiated', true);
-                element.data('metroComponent', name);
+
+                var mc = element.data('metroComponent');
+
+                if (mc === undefined) {
+                    element.data('metroComponent', [name]);
+                } else {
+                    mc.push(name);
+                }
             }
         } catch (e) {
             console.log(e.message, e.stack);
