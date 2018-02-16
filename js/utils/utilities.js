@@ -258,12 +258,12 @@ var Utils = {
         return Object.keys(obj).length;
     },
 
-    percent: function(a, b, r){
-        if (a === 0) {
+    percent: function(total, part, round_value){
+        if (total === 0) {
             return 0;
         }
-        var result = b * 100 / a;
-        return r === true ? Math.round(result) : Math.round(result * 100) / 100;
+        var result = part * 100 / total;
+        return round_value === true ? Math.round(result) : Math.round(result * 100) / 100;
     },
 
     camelCase: function(str){
@@ -287,15 +287,15 @@ var Utils = {
     },
 
     objectDelete: function(obj, key){
-        return obj[key] !== undefined ? obj : delete obj[key];
+        if (obj[key] !== undefined) delete obj[key];
     },
 
     arrayDelete: function(arr, val){
-        return arr.splice(arr.indexOf(val), 1);
+        arr.splice(arr.indexOf(val), 1);
     },
 
     arrayDeleteByKey: function(arr, key){
-        return delete arr[key];
+        arr.splice(key, 1);
     },
 
     nvl: function(data, other){

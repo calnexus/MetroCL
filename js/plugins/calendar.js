@@ -765,6 +765,27 @@ var Calendar = {
             case 'data-max-date': this.setMaxDate(); break;
             case 'data-locale': this.changeAttrLocale(); break;
         }
+    },
+
+    destroy: function(){
+        var element = this.element, o = this.options;
+
+        element.off(Metro.events.click, ".prev-month, .next-month, .prev-year, .next-year");
+        element.off(Metro.events.click, ".button.today");
+        element.off(Metro.events.click, ".button.clear");
+        element.off(Metro.events.click, ".button.cancel");
+        element.off(Metro.events.click, ".button.done");
+        element.off(Metro.events.click, ".week-days .day");
+        element.off(Metro.events.click, ".days-row .day");
+        element.off(Metro.events.click, ".curr-month");
+        element.off(Metro.events.click, ".calendar-months li");
+        element.off(Metro.events.click, ".curr-year");
+        element.off(Metro.events.click, ".calendar-years li");
+        element.off(Metro.events.click);
+
+        if (o.ripple === true) Metro.destroyPlugin(element, "ripple");
+
+        element.html("");
     }
 };
 

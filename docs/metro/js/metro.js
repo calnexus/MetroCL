@@ -2978,12 +2978,12 @@ var d = new Date().getTime();
         return Object.keys(obj).length;
     },
 
-    percent: function(a, b, r){
-        if (a === 0) {
+    percent: function(total, part, round_value){
+        if (total === 0) {
             return 0;
         }
-        var result = b * 100 / a;
-        return r === true ? Math.round(result) : Math.round(result * 100) / 100;
+        var result = part * 100 / total;
+        return round_value === true ? Math.round(result) : Math.round(result * 100) / 100;
     },
 
     camelCase: function(str){
@@ -3007,15 +3007,15 @@ var d = new Date().getTime();
     },
 
     objectDelete: function(obj, key){
-        return obj[key] !== undefined ? obj : delete obj[key];
+        if (obj[key] !== undefined) delete obj[key];
     },
 
     arrayDelete: function(arr, val){
-        return arr.splice(arr.indexOf(val), 1);
+        arr.splice(arr.indexOf(val), 1);
     },
 
     arrayDeleteByKey: function(arr, key){
-        return delete arr[key];
+        arr.splice(key, 1);
     },
 
     nvl: function(data, other){
@@ -4233,7 +4233,14 @@ var ButtonsGroup = {
 
     changeAttribute: function(attributeName){
 
+    },
+
+    destroy: function(){
+        var element = this.element, o = this.options;
+        element.off(Metro.events.click, o.targets);
+        element.find(o.targets).removeClass(o.clsActive);
     }
+
 };
 
 Metro.plugin('buttonsGroup', ButtonsGroup);
@@ -5005,6 +5012,27 @@ var Calendar = {
             case 'data-max-date': this.setMaxDate(); break;
             case 'data-locale': this.changeAttrLocale(); break;
         }
+    },
+
+    destroy: function(){
+        var element = this.element, o = this.options;
+
+        element.off(Metro.events.click, ".prev-month, .next-month, .prev-year, .next-year");
+        element.off(Metro.events.click, ".button.today");
+        element.off(Metro.events.click, ".button.clear");
+        element.off(Metro.events.click, ".button.cancel");
+        element.off(Metro.events.click, ".button.done");
+        element.off(Metro.events.click, ".week-days .day");
+        element.off(Metro.events.click, ".days-row .day");
+        element.off(Metro.events.click, ".curr-month");
+        element.off(Metro.events.click, ".calendar-months li");
+        element.off(Metro.events.click, ".curr-year");
+        element.off(Metro.events.click, ".calendar-years li");
+        element.off(Metro.events.click);
+
+        if (o.ripple === true) Metro.destroyPlugin(element, "ripple");
+
+        element.html("");
     }
 };
 
@@ -7901,6 +7929,10 @@ var Donut = {
         switch (attributeName) {
             case "data-value": this.changeValue(); break;
         }
+    },
+
+    destroy: function(){
+        this.element.removeClass("donut").html("");
     }
 };
 

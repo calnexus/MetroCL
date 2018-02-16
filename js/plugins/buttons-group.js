@@ -74,7 +74,14 @@ var ButtonsGroup = {
 
     changeAttribute: function(attributeName){
 
+    },
+
+    destroy: function(){
+        var element = this.element, o = this.options;
+        element.off(Metro.events.click, o.targets);
+        element.find(o.targets).removeClass(o.clsActive);
     }
+
 };
 
 Metro.plugin('buttonsGroup', ButtonsGroup);

@@ -138,6 +138,10 @@ var Donut = {
         switch (attributeName) {
             case "data-value": this.changeValue(); break;
         }
+    },
+
+    destroy: function(){
+        this.element.removeClass("donut").html("");
     }
 };
 
