@@ -39,3 +39,22 @@
         }
     }
 }
+
+.app-bar-expand() {
+
+}
+
+.generate-app-bar-media-options(@mediaBreakpointListMobileLength);
+.generate-app-bar-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
+    @m: extract(@mediaBreakpointListMobile, @i);
+
+    @media screen and (min-width: @@m) {
+        .app-bar {
+            &.app-bar-expand-@{m} {
+                .app-bar-expand();
+            }
+        }
+    }
+
+    .generate-app-bar-media-options(@name, @i + 1);
+}
