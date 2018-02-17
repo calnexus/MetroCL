@@ -47,7 +47,7 @@ var AppBar = {
 
         hamburger = element.find(".hamburger");
         if (hamburger.length === 0) {
-            hamburger = $("<button>").addClass("hamburger").appendTo(element);
+            hamburger = $("<button>").addClass("hamburger menu-down").appendTo(element);
             for(var i = 0; i < 3; i++) {
                 $("<span>").addClass("line").appendTo(hamburger);
             }
@@ -58,6 +58,10 @@ var AppBar = {
         }
 
         menu = element.find(".app-bar-menu");
+
+        if (menu.length === 0) {
+            hamburger.hide();
+        }
 
         if( !!element.attr("id") === false ){
             element.attr("id", id);

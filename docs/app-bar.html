@@ -33,7 +33,7 @@
     <link href="docsearch/docsearch.min.css" rel="stylesheet">
     <link href="css/site.css" rel="stylesheet">
 
-    <title>Appbar - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <title>App bar - Metro 4 :: Popular HTML, CSS and JS library</title>
 </head>
 <body>
     <div class="container-fluid">
@@ -46,7 +46,13 @@
                 <h5>Table of contents</h5>
                 <hr/>
                 <ul class="toc-nav">
-                    <li class="toc-entry"><a href="#">Appbar</a></li>
+                    <li class="toc-entry"><a href="#">App bar</a></li>
+                    <li class="toc-entry"><a href="#_appbar_about">About</a></li>
+                    <li class="toc-entry"><a href="#_appbar_brand">Brand</a></li>
+                    <li class="toc-entry"><a href="#_appbar_static_items">Static items</a></li>
+                    <li class="toc-entry"><a href="#_appbar_menu">Menu</a></li>
+                    <li class="toc-entry"><a href="#_appbar_dropdown">Dropdown</a></li>
+                    <li class="toc-entry"><a href="#_appbar_hamburger">Hamburger</a></li>
                 </ul>
 
             </div>
@@ -56,14 +62,23 @@
                     <img src="images/logo.png" class="w-100">
                 </div>
 
-                <h1>Appbar</h1>
+                <h1>App bar</h1>
                 <p class="text-leader">
+                    Create top application menu with Metro 4 app bar component.
                 </p>
 
                 <!-- ads-html -->
 
+                <h3 id="_appbar_about">About</h3>
+                <p>
+                    Create top application menu with Metro 4 app bar component.
+                    To create it you must create container (ex: <code>&lt;div&gt;</code> or <code>&lt;nav&gt;</code>) with role <code>data-role="appbar"</code>.
+                    Add <code>brand</code> identification, <code>static item</code> or/and <code>menu</code>.
+                    The app bar is displayed in <code>fixed top</code> position.
+                </p>
+
                 <div class="example">
-                    <div class="pos-relative app-bar-expand-md" data-role="appbar" id="app-bar-1">
+                    <div class="pos-relative app-bar-expand-md z-dropdown" data-role="appbar">
                         <a href="#" class="brand no-hover"><span style="width: 55px;" class="p-2 border bd-dark border-radius">m<sup>4</sup></span></a>
 
                         <ul class="app-bar-menu">
@@ -82,7 +97,190 @@
                         </ul>
                     </div>
                 </div>
+                <pre><code class="html">
+                    &lt;div class="app-bar-expand-md" data-role="appbar"&gt;
+                        &lt;a href="#" class="brand no-hover"&gt;
+                            &lt;span style="width: 55px;" class="p-2 border bd-dark border-radius"&gt;
+                                m&lt;sup&gt;4&lt;/sup&gt;
+                            &lt;/span&gt;
+                        &lt;/a&gt;
 
+                        &lt;ul class="app-bar-menu"&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;
+                                &lt;a href="#" class="dropdown-toggle"&gt;Products&lt;/a&gt;
+                                &lt;ul class="d-menu" data-role="dropdown"&gt;
+                                    &lt;li&gt;&lt;a href="#"&gt;Windows 10&lt;/a&gt;&lt;/li&gt;
+                                    &lt;li&gt;&lt;a href="#"&gt;Office 365&lt;/a&gt;&lt;/li&gt;
+                                    &lt;li class="divider bg-lightGray"&gt;&lt;/li&gt;
+                                    &lt;li&gt;&lt;a href="#"&gt;Skype&lt;/a&gt;&lt;/li&gt;
+                                &lt;/ul&gt;
+                            &lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Blog&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Contacts&lt;/a&gt;&lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <p>
+                    By default <code>appbar</code> displayed in collapsed mode. To expand it you must use special media expand classes:
+                        <code>app-bar-expand-fs</code>,
+                        <code>app-bar-expand-sm</code>,
+                        <code>app-bar-expand-md</code>,
+                        <code>app-bar-expand-lg</code>,
+                        <code>app-bar-expand-xl</code> or
+                        <code>app-bar-expand-xxl</code>.
+                    More information about media break points you can read in <a href="media.html">this article</a>.
+                </p>
+
+                <h3 id="_appbar_brand">Brand</h3>
+                <p>
+                    To create <code>brand</code> you can use element with class <code>.brand</code>. If you no need hover for <code>brand element</code>, use class <code>.no-hover</code> for brand element.
+                </p>
+                <div class="example">
+                    <div data-role="appbar" class="pos-relative z-dropdown">
+                        <a href="#" class="brand">Brand name</a>
+                        <a href="#" class="brand no-hover">No hover</a>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="appbar"&gt;
+                        &lt;a href="#" class="brand"&gt;Brand name&lt;/a&gt;
+                        &lt;a href="#" class="brand no-hover"&gt;Brand name&lt;/a&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_appbar_static_items">Static items</h3>
+                <p>
+                    To create static items you must create element with class <code>.brand</code> or <code>.app-bar-item</code>.
+                </p>
+                <div class="example">
+                    <div class="pos-relative z-dropdown" data-role="appbar">
+                        <a href="#" class="brand no-hover"><span style="width: 55px;" class="p-2 border bd-dark border-radius">m<sup>4</sup></span></a>
+
+                        <div class="app-bar-container">
+                            <a href="#" class="app-bar-item dropdown-toggle">Always</a>
+                            <ul class="d-menu" data-role="dropdown">
+                                <li><a href="#">Windows 10</a></li>
+                                <li>
+                                    <a href="#" class="dropdown-toggle">Office 365</a>
+                                    <ul class="d-menu" data-role="dropdown">
+                                        <li><a href="#">Windows 10</a></li>
+                                        <li><a href="#">Office 365</a></li>
+                                        <li class="divider bg-lightGray"></li>
+                                        <li><a href="#">Skype</a></li>
+                                    </ul>
+                                </li>
+                                <li class="divider bg-lightGray"></li>
+                                <li><a href="#">Skype</a></li>
+                            </ul>
+                        </div>
+                        <a href="#" class="app-bar-item">Show</a>
+
+                        <ul class="app-bar-menu">
+                            <li><a href="#">Home</a></li>
+                            <li>
+                                <a href="#" class="dropdown-toggle">Products</a>
+                                <ul class="d-menu" data-role="dropdown">
+                                    <li><a href="#">Windows 10</a></li>
+                                    <li><a href="#">Office 365</a></li>
+                                    <li class="divider bg-lightGray"></li>
+                                    <li><a href="#">Skype</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contacts</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="appbar"&gt;
+                        ...
+                        &lt;a href="#" class="app-bar-item"&gt;Always&lt;/a&gt;
+                        &lt;a href="#" class="app-bar-item"&gt;Show&lt;/a&gt;
+
+                        &lt;ul class="app-bar-menu"&gt;
+                        ...
+                        &lt;/ul&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_appbar_menu">Menu</h3>
+                <p>
+                    To create app bar menu element you must create list with class <code>.app-bar-menu</code>.
+                    Each menu item must contains list item and anchor inside in a list item.
+                </p>
+                <div class="example">
+                    <div class="pos-relative z-dropdown app-bar-expand-md" data-role="appbar">
+                        <a href="#" class="brand no-hover"><span style="width: 55px;" class="p-2 border bd-dark border-radius">m<sup>4</sup></span></a>
+
+                        <ul class="app-bar-menu">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Products</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contacts</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <pre><code class="html">
+                    &lt;div data-role="appbar"&gt;
+                        &lt;ul class="app-bar-menu"&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Products&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Blog&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Contacts&lt;/a&gt;&lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_appbar_dropdown">Dropdown</h3>
+                <p>
+                    To create dropped down sub menu you must create menu with class <code>.d-menu</code> and with role <code>data-role="dropdown"</code>.
+                    How to create menu read in <a href="menu.html">this article</a>.
+                    For <code>static</code> item you must use container with class <code>.app-bar-container</code>
+                </p>
+                <pre><code class="html">
+                    &lt;div data-role="appbar"&gt;
+                        ...
+                        &lt;div class="app-bar-container"&gt;
+                            &lt;a href="#" class="app-bar-item dropdown-toggle"&gt;Always&lt;/a&gt;
+                            &lt;ul class="d-menu" data-role="dropdown"&gt;
+                                &lt;li&gt;&lt;a href="#"&gt;Windows 10&lt;/a&gt;&lt;/li&gt;
+                                &lt;li&gt;
+                                    &lt;a href="#" class="dropdown-toggle"&gt;Office 365&lt;/a&gt;
+                                    &lt;ul class="d-menu" data-role="dropdown"&gt;
+                                        &lt;li&gt;&lt;a href="#"&gt;Windows 10&lt;/a&gt;&lt;/li&gt;
+                                        &lt;li&gt;&lt;a href="#"&gt;Office 365&lt;/a&gt;&lt;/li&gt;
+                                        &lt;li class="divider bg-lightGray"&gt;&lt;/li&gt;
+                                        &lt;li&gt;&lt;a href="#"&gt;Skype&lt;/a&gt;&lt;/li&gt;
+                                    &lt;/ul&gt;
+                                &lt;/li&gt;
+                                &lt;li class="divider bg-lightGray"&gt;&lt;/li&gt;
+                                &lt;li&gt;&lt;a href="#"&gt;Skype&lt;/a&gt;&lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/div&gt;
+                        ...
+                        &lt;ul class="app-bar-menu"&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;
+                                &lt;a href="#" class="dropdown-toggle"&gt;Products&lt;/a&gt;
+                                &lt;ul class="d-menu" data-role="dropdown"&gt;
+                                    &lt;li&gt;&lt;a href="#"&gt;Windows 10&lt;/a&gt;&lt;/li&gt;
+                                    &lt;li&gt;&lt;a href="#"&gt;Office 365&lt;/a&gt;&lt;/li&gt;
+                                    &lt;li class="divider bg-lightGray"&gt;&lt;/li&gt;
+                                    &lt;li&gt;&lt;a href="#"&gt;Skype&lt;/a&gt;&lt;/li&gt;
+                                &lt;/ul&gt;
+                            &lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Blog&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href="#"&gt;Contacts&lt;/a&gt;&lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_appbar_hamburger">Hamburger</h3>
+                <p>
+                    Hamburger button will be created automatically. You no need create it manually.
+                </p>
             </main>
         </div>
 

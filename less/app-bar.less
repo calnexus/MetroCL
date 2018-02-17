@@ -8,6 +8,7 @@
     left: 0;
     width: 100%;
     height: auto;
+    min-height: 55px;
     z-index: @zindex-top;
     background-color: @light;
     .clear();
@@ -20,11 +21,15 @@
         color: inherit;
     }
 
-    .brand, .app-bar-menu {
+    .brand, .app-bar-item, .app-bar-container {
+        float: left;
+    }
+
+    .app-bar-menu {
         float: none;
     }
 
-    .brand, .app-bar-item {
+    .brand, .app-bar-item, .app-bar-container {
         display: block;
         position: relative;
         height: 55px;
@@ -35,6 +40,10 @@
         text-decoration: none;
         font-size: 14px;
         flex-shrink: 0;
+    }
+
+    .app-bar-container {
+        padding: 0;
     }
 
     .app-bar-menu {
@@ -65,7 +74,7 @@
         }
     }
 
-    .brand:not(.no-hover), .app-bar-menu li, .hamburger {
+    .brand:not(.no-hover), .app-bar-menu li, .hamburger, .app-bar-item {
         &:hover, &:active, .active {
             background: @hoverBackground;
         }
@@ -94,31 +103,20 @@
             position: relative;
             width: 100%;
             background-color: @light;
-
-            .divider {
-                height: 1px!important;
-                line-height: 1px!important;
-                background-color: @lightGray;
-            }
         }
     }
-}
 
-.app-bar-expand() {
-
-    flex-wrap: nowrap;
-
-    .brand, .app-bar-menu {
-        float: left;
+    .app-bar-menu, .app-bar-container {
+        .divider {
+            height: 1px!important;
+            line-height: 1px!important;
+            background-color: @lightGray;
+        }
     }
 
-    .app-bar-menu {
-        width: auto;
-        flex-direction: row;
-    }
-
-    .app-bar-menu {
+    .app-bar-container {
         .d-menu {
+            background-color: @light;
             position: absolute;
             width: auto;
             .default-shadow();
@@ -129,8 +127,35 @@
             }
         }
 
-        & > li > a + .d-menu {
-            box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 0 0 rgba(227, 228, 229, 0.7);
+        & > .d-menu {
+            top: 100%;
+        }
+    }
+}
+
+.app-bar-expand() {
+
+    flex-wrap: nowrap;
+
+    .app-bar-menu {
+        float: left;
+    }
+
+    .app-bar-menu {
+        width: auto;
+        flex-direction: row;
+    }
+
+    .app-bar-menu  {
+        .d-menu {
+            position: absolute;
+            width: auto;
+            .default-shadow();
+
+            li, a {
+                height: 38px;
+                line-height: 38px;
+            }
         }
 
         &.collapsed {
