@@ -3266,18 +3266,6 @@ var d = new Date().getTime();
         return rgb.replace(/[^\d,]/g, '').split(',');
     },
 
-    isDarkColor: function (color) {
-        var a;
-
-        if (this.isColor(color) === false) {
-            a = this.hexColorToArray(color);
-        } else {
-            a = this.computedRgbToArray(color);
-        }
-
-        return (2 * a[0] + 5 * a[1] + a[2]) <= 8 * 128;
-    },
-
     hexColorToArray: function(hex){
         var c;
         if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
@@ -3675,6 +3663,7 @@ var AppBar = {
     },
 
     options: {
+        duration: 100,
         onAppBarCreate: Metro.noop
     },
 
@@ -3704,19 +3693,66 @@ var AppBar = {
     _createStructure: function(){
         var that = this, element = this.element, o = this.options;
         var id = Utils.elementId("app-bar");
+        var hamburger, menu;
 
         element.addClass("app-bar");
 
+        hamburger = element.find(".hamburger");
+        if (hamburger.length === 0) {
+            hamburger = $("<button>").addClass("hamburger").appendTo(element);
+            for(var i = 0; i < 3; i++) {
+                $("<span>").addClass("line").appendTo(hamburger);
+            }
+
+            if (Colors.isLight(Utils.computedRgbToHex(Utils.getStyleOne(element, "background-color"))) === true) {
+                hamburger.addClass("dark");
+            }
+        }
+
+        menu = element.find(".app-bar-menu");
+
         if( !!element.attr("id") === false ){
             element.attr("id", id);
+        }
+
+        if (hamburger.css('display') === 'block') {
+            menu.hide().addClass("collapsed");
         }
     },
 
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
+        var menu = element.find(".app-bar-menu");
+        var hamburger = element.find(".hamburger");
 
         element.on(Metro.events.click, ".hamburger", function(){
-            element.find(".app-bar-menu").toggleClass("collapsed");
+            if (menu.length === 0) return ;
+            var collapsed = menu.hasClass("collapsed");
+            if (collapsed) {
+                menu.slideDown(o.duration, function(){
+                    menu.removeClass("collapsed");
+                    hamburger.addClass("active");
+                });
+            } else {
+                menu.slideUp(o.duration, function(){
+                    menu.addClass("collapsed");
+                    hamburger.removeClass("active");
+                });
+            }
+        });
+
+        $(window).on(Metro.events.resize+"-"+element.attr("id"), function(){
+            if (menu.length === 0) return ;
+
+            if (hamburger.css('display') !== 'block') {
+                menu.show();
+            } else {
+                if (hamburger.hasClass("active")) {
+                    menu.show().removeClass("collapsed");
+                } else {
+                    menu.hide().addClass("collapsed");
+                }
+            }
         });
     },
 
@@ -3725,7 +3761,8 @@ var AppBar = {
     },
 
     destroy: function(){
-
+        element.off(Metro.events.click, ".hamburger");
+        $(window).off(Metro.events.resize+"-"+element.attr("id"));
     }
 };
 

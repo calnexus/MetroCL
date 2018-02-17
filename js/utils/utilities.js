@@ -517,18 +517,6 @@ var Utils = {
         return rgb.replace(/[^\d,]/g, '').split(',');
     },
 
-    isDarkColor: function (color) {
-        var a;
-
-        if (this.isColor(color) === false) {
-            a = this.hexColorToArray(color);
-        } else {
-            a = this.computedRgbToArray(color);
-        }
-
-        return (2 * a[0] + 5 * a[1] + a[2]) <= 8 * 128;
-    },
-
     hexColorToArray: function(hex){
         var c;
         if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
