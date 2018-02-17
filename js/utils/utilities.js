@@ -4,7 +4,7 @@ var Utils = {
     },
 
     isTag: function(val){
-        return /<\/?[\w\s="/.':;#-\/\?]+>/gi.test(val);
+        return /^<\/?[\w\s="/.':;#-\/\?]+>/gi.test(val);
     },
 
     isColor: function (val) {

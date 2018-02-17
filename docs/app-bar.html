@@ -64,33 +64,47 @@
                 <!-- ads-html -->
 
                 <div class="example">
-                    <div class="pos-relative bg-brandColor2 fg-white" data-role="appbar">
+
+                    <div class="mb-4">
+                        <button class="button primary" onclick="$('#app-bar-1').toggleClass('app-bar-expand-fs')">Toggle</button>
+                    </div>
+
+                    <div class="pos-relative bg-brandColor2 fg-white" data-role="appbar" id="app-bar-1">
                         <a href="#" class="brand no-hover"><span style="width: 55px;" class="p-2 border bd-white border-radius">m<sup>4</sup></span></a>
-                        <a href="#" class="app-bar-item">Home</a>
-                        <div class="app-bar-container">
-                            <a href="#" class="app-bar-item dropdown-toggle drop-marker-light">Products</a>
-                            <ul class="d-menu" data-role="dropdown" id="dd1">
-                                <li><a href="#">Item 1</a></li>
-                                <li><a href="#">Item 2</a></li>
-                                <li><a href="#">Item 3</a></li>
-                                <li>
-                                    <a href="#" class="dropdown-toggle">Item 4</a>
-                                    <ul class="d-menu" data-role="dropdown">
-                                        <li><a href="#">Item 1</a></li>
-                                        <li><a href="#">Item 2</a></li>
-                                        <li><a href="#">Item 3</a></li>
-                                        <li>
-                                            <a href="#">Item 4</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <a href="#" class="app-bar-item">Blog</a>
-                        <div class="flex-right d-flex flex-row">
-                            <a href="#" class="app-bar-item"><span class="mif-enter"></span></a>
-                            <a href="#" class="app-bar-item">Sign Up</a>
-                        </div>
+
+                        <ul class="app-bar-menu">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Products</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contacts</a></li>
+                        </ul>
+
+
+                        <!--<a href="#" class="app-bar-item">Home</a>-->
+                        <!--<div class="app-bar-container">-->
+                            <!--<a href="#" class="app-bar-item dropdown-toggle drop-marker-light">Products</a>-->
+                            <!--<ul class="d-menu" data-role="dropdown" id="dd1">-->
+                                <!--<li><a href="#">Item 1</a></li>-->
+                                <!--<li><a href="#">Item 2</a></li>-->
+                                <!--<li><a href="#">Item 3</a></li>-->
+                                <!--<li>-->
+                                    <!--<a href="#" class="dropdown-toggle">Item 4</a>-->
+                                    <!--<ul class="d-menu" data-role="dropdown">-->
+                                        <!--<li><a href="#">Item 1</a></li>-->
+                                        <!--<li><a href="#">Item 2</a></li>-->
+                                        <!--<li><a href="#">Item 3</a></li>-->
+                                        <!--<li>-->
+                                            <!--<a href="#">Item 4</a>-->
+                                        <!--</li>-->
+                                    <!--</ul>-->
+                                <!--</li>-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                        <!--<a href="#" class="app-bar-item">Blog</a>-->
+                        <!--<div class="flex-right d-flex flex-row">-->
+                            <!--<a href="#" class="app-bar-item"><span class="mif-enter"></span></a>-->
+                            <!--<a href="#" class="app-bar-item">Sign Up</a>-->
+                        <!--</div>-->
                     </div>
                 </div>
 

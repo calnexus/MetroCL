@@ -2,16 +2,14 @@
 @import (once) "include/mixins";
 
 .app-bar {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
-    align-items: center;
+    display: block;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: auto;
     z-index: @zindex-top;
+    .clear();
 }
 
 .app-bar {
@@ -21,7 +19,11 @@
         color: inherit;
     }
 
-    .brand, .app-bar-item, .app-bar-menu {
+    .brand, .app-bar-menu {
+        float: none;
+    }
+
+    .brand {
         display: block;
         position: relative;
         height: 55px;
@@ -31,9 +33,36 @@
         color: inherit;
         text-decoration: none;
         font-size: 14px;
+        flex-shrink: 0;
     }
 
-    .brand:not(.no-hover), .app-bar-item, .app-bar-menu li {
+    .app-bar-menu {
+        .reset-list();
+        width: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        flex-shrink: 0;
+    }
+
+    .app-bar-menu {
+        li, a {
+            display: block;
+            height: 100%;
+            line-height: 55px;
+            background-color: inherit;
+            color: inherit;
+            flex-shrink: 0;
+        }
+
+        a {
+            padding: 0 16px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+    }
+
+    .brand:not(.no-hover), .app-bar-menu li {
         &:hover, &:active, .active {
             background: @hoverBackground;
         }
@@ -42,6 +71,16 @@
 
 .app-bar-expand() {
 
+    flex-wrap: nowrap;
+
+    .brand, .app-bar-menu {
+        float: left;
+    }
+
+    .app-bar-menu {
+        width: auto;
+        flex-direction: row;
+    }
 }
 
 .generate-app-bar-media-options(@mediaBreakpointListMobileLength);

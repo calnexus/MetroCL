@@ -2754,7 +2754,7 @@ var Utils = {
     },
 
     isTag: function(val){
-        return /<\/?[\w\s="/.':;#-\/\?]+>/gi.test(val);
+        return /^<\/?[\w\s="/.':;#-\/\?]+>/gi.test(val);
     },
 
     isColor: function (val) {
@@ -3703,8 +3703,13 @@ var AppBar = {
 
     _createStructure: function(){
         var that = this, element = this.element, o = this.options;
+        var id = Utils.elementId("app-bar");
 
         element.addClass("app-bar");
+
+        if( !!element.attr("id") === false ){
+            element.attr("id", id);
+        }
     },
 
     _createEvents: function(){
@@ -3713,6 +3718,10 @@ var AppBar = {
     },
 
     changeAttribute: function(attributeName){
+
+    },
+
+    destroy: function(){
 
     }
 };
