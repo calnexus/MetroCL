@@ -74,10 +74,24 @@
 
                         <ul class="app-bar-menu">
                             <li><a href="#">Home</a></li>
-                            <li><a href="#">Products</a></li>
+                            <li>
+                                <a href="#" class="dropdown-toggle drop-marker-light">Products</a>
+                                <ul class="d-menu bg-brandColor2 fg-white" data-role="dropdown">
+                                    <li><a href="#">Windows 10</a></li>
+                                    <li><a href="#">Office 365</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Skype</a></li>
+                                </ul>
+                            </li>
                             <li><a href="#">Blog</a></li>
                             <li><a href="#">Contacts</a></li>
                         </ul>
+
+                        <button class="hamburger menu-down" onclick="$(this).toggleClass('active')">
+                            <span class="line"></span>
+                            <span class="line"></span>
+                            <span class="line"></span>
+                        </button>
 
 
                         <!--<a href="#" class="app-bar-item">Home</a>-->
