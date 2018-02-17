@@ -3715,6 +3715,9 @@ var AppBar = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
+        element.on(Metro.events.click, ".hamburger", function(){
+            element.find(".app-bar-menu").toggleClass("collapsed");
+        });
     },
 
     changeAttribute: function(attributeName){

@@ -9,6 +9,7 @@
     width: 100%;
     height: auto;
     z-index: @zindex-top;
+    background-color: @light;
     .clear();
 }
 
@@ -23,7 +24,7 @@
         float: none;
     }
 
-    .brand {
+    .brand, .app-bar-item {
         display: block;
         position: relative;
         height: 55px;
@@ -64,7 +65,7 @@
         }
     }
 
-    .brand:not(.no-hover), .app-bar-menu li {
+    .brand:not(.no-hover), .app-bar-menu li, .hamburger {
         &:hover, &:active, .active {
             background: @hoverBackground;
         }
@@ -72,9 +73,19 @@
 
     .hamburger {
         position: absolute;
-        right: 8px;
-        top: 6px;
+        right: 0;
+        top: 0;
         display:block;
+        height: 55px;
+        width: 55px;
+
+        &.menu-down {
+            &.active {
+                .line:nth-child(1), .line:nth-child(3) {
+                    margin: -4px 16px;
+                }
+            }
+        }
     }
 
     .app-bar-menu {
@@ -82,6 +93,13 @@
             box-shadow: none;
             position: relative;
             width: 100%;
+            background-color: @light;
+        }
+    }
+
+    .app-bar-menu {
+        &.collapsed {
+            display: none;
         }
     }
 }
@@ -104,6 +122,21 @@
             position: absolute;
             width: auto;
             .default-shadow();
+        }
+
+        & > li > a + .d-menu {
+            box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 0 0 rgba(227, 228, 229, 0.7);
+        }
+
+        .d-menu {
+            .divider {
+                height: 1px!important;
+                background-color: #f2f2f2!important;
+            }
+        }
+
+        &.collapsed {
+            display: flex;
         }
     }
 
