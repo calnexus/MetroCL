@@ -81,6 +81,11 @@ var Carousel = {
         var slides = element.find(".slide");
         var slides_container = element.find(".slides");
         var maxHeight = 0;
+        var id = Utils.elementId("carousel");
+
+        if (element.attr("id") === undefined) {
+            element.attr("id", id);
+        }
 
         element.addClass("carousel").addClass(o.clsCarousel);
         if (o.controlsOutside === true) {
@@ -322,7 +327,7 @@ var Carousel = {
             Utils.exec(o.onSlideClick, [slide, element, e])
         });
 
-        $(window).on(Metro.events.resize, function(){
+        $(window).on(Metro.events.resize + "-" + element.attr("id"), function(){
             that._resize();
         });
     },
@@ -458,6 +463,32 @@ var Carousel = {
 
     changeAttribute: function(attributeName){
 
+    },
+
+    destroy: function(){
+        var that = this, element = this.element, o = this.options;
+
+        element.off(Metro.events.click, ".carousel-bullet");
+        element.off(Metro.events.click, ".carousel-switch-next");
+        element.off(Metro.events.click, ".carousel-switch-prev");
+
+        if (o.stopOnMouse === true && o.autoStart === true) {
+            element.off(Metro.events.enter);
+            element.off(Metro.events.leave);
+        }
+
+        if (o.controlsOnMouse === true) {
+            element.off(Metro.events.enter);
+            element.off(Metro.events.leave);
+        }
+
+        element.off(Metro.events.click, ".slide");
+        $(window).off(Metro.events.resize + "-" + element.attr("id"));
+
+        element.removeClass("carousel").removeClass(o.clsCarousel);
+        if (o.controlsOutside === true) {
+            element.removeClass("controls-outside");
+        }
     }
 };
 
