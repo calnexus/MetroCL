@@ -93,7 +93,7 @@ var Input = {
                 var item = this;
                 var customButton = $("<button>").addClass("button custom-input-button").addClass(item.cls).attr("tabindex", -1).attr("type", "button").html(item.html);
                 customButton.on(Metro.events.click, function(){
-                    Utils.exec(item.onclick, [customButton, element]);
+                    Utils.exec(item.onclick, [customButton, element], element[0]);
                 });
                 customButton.appendTo(buttons);
             });

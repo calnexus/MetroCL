@@ -1,5 +1,5 @@
 /*!
- * Metro 4 Components Library v4.0.0 build 554 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.0.0 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -71,7 +71,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.0.0-554",
+    version: "@@version-@@build",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -8832,7 +8832,7 @@ var Input = {
                 var item = this;
                 var customButton = $("<button>").addClass("button custom-input-button").addClass(item.cls).attr("tabindex", -1).attr("type", "button").html(item.html);
                 customButton.on(Metro.events.click, function(){
-                    Utils.exec(item.onclick, [customButton, element]);
+                    Utils.exec(item.onclick, [customButton, element], element[0]);
                 });
                 customButton.appendTo(buttons);
             });
@@ -11439,7 +11439,7 @@ var Search = {
             searchButton = $("<button>").addClass("button").addClass(o.clsSearchButton).attr("tabindex", -1).attr("type", o.searchButtonClick === 'submit' ? "submit" : "button").html(o.searchButtonIcon);
             searchButton.on(Metro.events.click, function(){
                 if (o.searchButtonClick === 'submit') {
-                    Utils.exec(o.onSearchButtonClick, [this.value, this, this.form]);
+                    Utils.exec(o.onSearchButtonClick, [this.value, this, this.form], element[0]);
                 } else {
                     this.form.submit();
                 }
@@ -11461,7 +11461,7 @@ var Search = {
                 var item = this;
                 var customButton = $("<button>").addClass("button custom-input-button").addClass(item.cls).attr("tabindex", -1).attr("type", "button").html(item.html);
                 customButton.on(Metro.events.click, function(){
-                    Utils.exec(item.onclick, [customButton, element]);
+                    Utils.exec(item.onclick, [customButton, element], element[0]);
                 });
                 customButton.appendTo(buttons);
             });
