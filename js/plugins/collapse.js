@@ -122,6 +122,11 @@ var Collapse = {
             case "collapsed":
             case "data-collapsed": this.toggleState(); break;
         }
+    },
+
+    destroy: function(){
+        this.toggle.off(Metro.events.click);
+        this.element.show();
     }
 };
 
