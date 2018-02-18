@@ -333,6 +333,14 @@ var Countdown = {
             case "data-pause": this.togglePlay(); break;
             case "data-locale": this.changeAttrLocale(); break;
         }
+    },
+
+    destroy: function(){
+        clearInterval(this.blinkInterval);
+        clearInterval(this.tickInterval);
+
+        this.element.html("");
+        this.element.removeClass("countdown").removeClass(this.options.clsCountdown);
     }
 };
 
