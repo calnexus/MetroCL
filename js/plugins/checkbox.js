@@ -3,6 +3,9 @@ var Checkbox = {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
         this.element = $(elem);
+        this.origin = {
+            className: ""
+        };
 
         this._setOptionsFromDOM();
         this._create();
@@ -66,6 +69,7 @@ var Checkbox = {
             caption.insertAfter(check);
         }
 
+        this.origin.className = element[0].className;
         element[0].className = '';
 
         container.addClass(o.clsElement);
@@ -114,6 +118,16 @@ var Checkbox = {
             case 'disabled': this.toggleState(); break;
             case 'indeterminate': this.toggleIndeterminate(); break;
         }
+    },
+
+    destroy: function(){
+        var that = this, element = this.element, o = this.options;
+        var parent = element.parent();
+
+        element[0].className = this.origin.className;
+        element.insertBefore(parent);
+
+        parent.remove();
     }
 };
 
