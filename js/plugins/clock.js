@@ -105,6 +105,12 @@ var Clock = {
 
     changeAttribute: function(attributeName){
 
+    },
+
+    destroy: function(){
+        clearInterval(this._clockInterval);
+        this._clockInterval = null;
+        this.element.html("");
     }
 };
 
