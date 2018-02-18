@@ -77,7 +77,7 @@ var Search = {
             searchButton = $("<button>").addClass("button").addClass(o.clsSearchButton).attr("tabindex", -1).attr("type", o.searchButtonClick === 'submit' ? "submit" : "button").html(o.searchButtonIcon);
             searchButton.on(Metro.events.click, function(){
                 if (o.searchButtonClick === 'submit') {
-                    Utils.exec(o.onSearchButtonClick, [this.value, this, this.form], element[0]);
+                    Utils.exec(o.onSearchButtonClick, [element.val(), $(this)], element[0]);
                 } else {
                     this.form.submit();
                 }
@@ -99,7 +99,7 @@ var Search = {
                 var item = this;
                 var customButton = $("<button>").addClass("button custom-input-button").addClass(item.cls).attr("tabindex", -1).attr("type", "button").html(item.html);
                 customButton.on(Metro.events.click, function(){
-                    Utils.exec(item.onclick, [customButton, element], element[0]);
+                    Utils.exec(item.onclick, [element.val(), customButton], element[0]);
                 });
                 customButton.appendTo(buttons);
             });
