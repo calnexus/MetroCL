@@ -7010,8 +7010,6 @@ var Cube = {
             return false;
         }
 
-        console.log(Utils.isObject(rules));
-
         if (Utils.isObject(rules)) {
             this.rules = Utils.isObject(rules);
             return true;
@@ -7157,13 +7155,13 @@ var Cube = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
-        $(window).on(Metro.events.blur, function(){
+        $(window).on(Metro.events.blur + "-" + element.attr("id"), function(){
             if (o.stopOnBlur === true && that.running === true) {
                 that._stop();
             }
         });
 
-        $(window).on(Metro.events.focus, function(){
+        $(window).on(Metro.events.focus + "-" + element.attr("id"), function(){
             if (o.stopOnBlur === true && that.running === false) {
                 that._start();
             }
@@ -7287,6 +7285,20 @@ var Cube = {
             case "data-show-axis": this.changeAxisVisibility(); break;
             case "data-axis-style": this.changeAxisStyle(); break;
         }
+    },
+
+    destroy: function(){
+        var that = this, element = this.element, o = this.options;
+
+        clearInterval(this.interval);
+        this.interval = null;
+
+        $(window).off(Metro.events.blur + "-" + element.attr("id"));
+        $(window).off(Metro.events.focus + "-" + element.attr("id"));
+        element.off(Metro.events.click, ".cube-cell");
+
+        element.html("");
+        element.removeClass("cube").removeClass(o.clsCube);
     }
 };
 
