@@ -3,6 +3,9 @@ var Charms = {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
         this.element = $(elem);
+        this.origin = {
+            background: ""
+        };
 
         this._setOptionsFromDOM();
         this._create();
@@ -39,7 +42,6 @@ var Charms = {
         this._createStructure();
         this._createEvents();
 
-
         Utils.exec(o.onCharmCreate, [element]);
     },
 
@@ -50,6 +52,8 @@ var Charms = {
             .addClass("charms")
             .addClass(o.position + "-side")
             .addClass(o.clsCharms);
+
+        this.origin.background = element.css("background-color");
 
         element.css({
             backgroundColor: Utils.computedRgbToRgba(Utils.getStyleOne(element, "background-color"), o.opacity)
@@ -119,6 +123,19 @@ var Charms = {
         switch (attributeName) {
             case "data-opacity": this.changeOpacity(); break;
         }
+    },
+
+    destroy: function(){
+        var element = this.element, o = this.options;
+
+        element.off(Metro.events.click);
+
+        element
+            .removeClass("charms")
+            .removeClass(o.position + "-side")
+            .removeClass(o.clsCharms);
+
+        element.css("background-color", this.origin.background);
     }
 };
 
