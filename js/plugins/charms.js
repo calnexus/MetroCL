@@ -36,6 +36,16 @@ var Charms = {
     _create: function(){
         var element = this.element, o = this.options;
 
+        this._createStructure();
+        this._createEvents();
+
+
+        Utils.exec(o.onCharmCreate, [element]);
+    },
+
+    _createStructure: function(){
+        var element = this.element, o = this.options;
+
         element
             .addClass("charms")
             .addClass(o.position + "-side")
@@ -44,8 +54,15 @@ var Charms = {
         element.css({
             backgroundColor: Utils.computedRgbToRgba(Utils.getStyleOne(element, "background-color"), o.opacity)
         });
+    },
 
-        Utils.exec(o.onCharmCreate, [element]);
+    _createEvents: function(){
+        var element = this.element, o = this.options;
+
+        element.on(Metro.events.click, function(e){
+            e.preventDefault();
+            e.stopPropagation();
+        });
     },
 
     open: function(){

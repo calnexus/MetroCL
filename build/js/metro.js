@@ -1,5 +1,5 @@
 /*!
- * Metro 4 Components Library v4.0.0 build 563 (https://metroui.org.ua)
+ * Metro 4 Components Library v4.0.0 build @@build (https://metroui.org.ua)
  * Copyright 2018 Sergey Pimenov
  * Licensed under MIT
  */
@@ -71,7 +71,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.0.0-563",
+    version: "@@version-@@build",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -5996,6 +5996,16 @@ var Charms = {
     _create: function(){
         var element = this.element, o = this.options;
 
+        this._createStructure();
+        this._createEvents();
+
+
+        Utils.exec(o.onCharmCreate, [element]);
+    },
+
+    _createStructure: function(){
+        var element = this.element, o = this.options;
+
         element
             .addClass("charms")
             .addClass(o.position + "-side")
@@ -6004,8 +6014,15 @@ var Charms = {
         element.css({
             backgroundColor: Utils.computedRgbToRgba(Utils.getStyleOne(element, "background-color"), o.opacity)
         });
+    },
 
-        Utils.exec(o.onCharmCreate, [element]);
+    _createEvents: function(){
+        var element = this.element, o = this.options;
+
+        element.on(Metro.events.click, function(e){
+            e.preventDefault();
+            e.stopPropagation();
+        });
     },
 
     open: function(){
